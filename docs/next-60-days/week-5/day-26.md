@@ -135,7 +135,7 @@ It's a template for them to adapt. Even clients who don't use it will remember t
 
 ## Scripts library
 
-These are the canonical scripts for the ask, the post-meeting referral text and the post-claim moment. Practise them out loud, then make them your own.
+The scripts below cover the ask, the post-meeting referral text and the post-claim moment. Practise each one out loud before you use it.
 
 ### Referral request for young adults
 Use this when you've just helped a young-adult client (after a financial review, a new policy or an investment review). The script names the age group and asks for specific names.

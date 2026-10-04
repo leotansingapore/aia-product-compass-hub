@@ -24,7 +24,7 @@ tags: [next-60-days, week-5, new-fc, referrals, mindset, compounding]
 
 ## The compound math
 
-Here's an illustration with round numbers. They aren't a forecast, and your own will differ.
+Take some round numbers. They're an illustration rather than a forecast, and yours will differ.
 
 A new FC closes 10 cases in Year 1. She asks for referrals properly, and each case gives her about 3 warm names. That's 30 warm leads going into Year 2.
 
@@ -52,11 +52,9 @@ He told his mentor the block broke when he saw the ask as a responsibility:
 
 > "If I actually believe my work helps people, it's my responsibility to make sure the people around my clients get access to it. The ask isn't about me."
 
-When the ask is about you, it feels like taking. When it's about the friend who hasn't been helped yet, you feel you owe it to them.
-
 ### Block 2: "I haven't earned it yet."
 
-New FCs tell themselves they need more proof before they can ask: more time, more cases, more testimonials. They picture some future version of themselves who has earned the right.
+It's easy to tell yourself you need more proof before you can ask: more time, more cases, more testimonials. You picture some future version of yourself who has earned the right.
 
 The best moment to ask is right after you've delivered something real for this person. Six months later the feeling has faded and the ask gets awkward. The outcome in front of the client is all the proof you need.
 
@@ -68,7 +66,7 @@ You don't need a closed case to start, either. Anyone you've had a real conversa
 
 Desperation lives in how you say it. "Who else should I be talking to?" sounds desperate with a trailing voice, rushed pacing or an awkward pause before it.
 
-Said with certainty tonality ([Day 5](/learning-track/next-60-days/day/5)) at a natural point in the meeting, the same line sounds professional. That's why the practice this week is about how you ask.
+Said with certainty tonality ([Day 5](/learning-track/next-60-days/day/5)) at a natural point in the meeting, the same line sounds professional. So this week's practice is about how you ask.
 
 ### Block 4: "I don't want to seem pushy."
 
@@ -76,7 +74,7 @@ In Singapore this one is real. People here tend to recommend indirectly. Recomme
 
 So the passive flow many advisors hope for ("my work will speak for itself") mostly doesn't arrive. If you wait for the client to start the referral conversation, most referrals will never happen.
 
-That's why the ask has to come from you. Taking charge of it is the responsible thing to do for people who would benefit from meeting you.
+So the ask has to come from you, and taking charge of it is the responsible thing to do for people who would benefit from meeting you.
 
 Advisors who build a regular referral routine, with Day 28's FACT script and Day 29's flywheel check, get out of the Year 1 grind much faster than advisors waiting for recommendations.
 

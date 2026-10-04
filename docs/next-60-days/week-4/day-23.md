@@ -32,7 +32,7 @@ Ask a new FC to show you their pipeline and you'll usually get one of three answ
 
 None of these is a pipeline. A **pipeline** is one list that you update every week, with one next action against each name. Without those three things, you just have a contact list.
 
-Year 1 advisors who burn out usually have plenty of effort and too little direction. A working pipeline board answers "who do I call today?" in 30 seconds.
+Burnout in Year 1 usually comes from plenty of effort and too little direction. A working pipeline board answers "who do I call today?" in 30 seconds.
 
 ## The Strategic Target List: 20 names a month
 
@@ -63,13 +63,13 @@ There are two kinds of pipeline, and you need both.
 | Current Inventory | Money in the bank | Your existing database of ABC clients and 1/2/3 prospects, whatever's on your books today |
 | Recurring Inventory | A monthly income | The flow of new leads each month from passive referrals, active referrals, marketing, social content, events and collaborations |
 
-The trap: new FCs spend Year 1 on Current Inventory (warm-market reactivation, Market Surveys) and leave Recurring Inventory alone. It works until the current list runs dry, often somewhere around months 9 to 12, with nothing new coming in behind it.
+What usually happens: new FCs spend Year 1 on Current Inventory (warm-market reactivation, Market Surveys) and leave Recurring Inventory alone. It works until the current list runs dry, often somewhere around months 9 to 12, with nothing new coming in behind it.
 
-The fix is to set aside about 20% of your weekly prospecting time for Recurring Inventory from the start. That covers your Week 3 content and stories (passive lead generation) and a referral ask at every Fact-Find (active referrals). Add one new relationship-building activity a month, such as a small event, a collaboration, or getting to know a new community.
+Set aside about 20% of your weekly prospecting time for Recurring Inventory from the start. That covers your Week 3 content and stories (passive lead generation) and a referral ask at every Fact-Find (active referrals). Add one new relationship-building activity a month, such as a small event, a collaboration, or getting to know a new community.
 
 ## Pack-the-schedule math
 
-Here's why the list isn't optional:
+The math shows why the list isn't optional:
 
 > Target: 6 first Fact-Find appointments a week x 40 working weeks = 240 appointments a year.
 
@@ -172,7 +172,7 @@ The prospecting pyramid from Jeb Blount's *Fanatical Prospecting* adds depth to 
 
 On top of ABC/123, A clients sit at about Level 6 (highest daily priority). B clients and Tier 1 prospects sit at Levels 4-5, C clients and Tier 2 prospects at Levels 2-3, and Tier 3 prospects at Level 1.
 
-The team's rule of thumb is 60% of your calling block on Levels 5-6, 30% on Levels 3-4 (nurture) and 10% on Levels 1-2 (qualifying). Most new FCs flip this and spend 60% on unqualified Level 1 names because it feels productive.
+The team's rule of thumb is 60% of your calling block on Levels 5-6, 30% on Levels 3-4 (nurture) and 10% on Levels 1-2 (qualifying). The common mistake is to flip this and spend 60% on unqualified Level 1 names because it feels productive.
 
 ## Do this today
 

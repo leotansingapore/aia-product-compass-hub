@@ -35,7 +35,7 @@ You'll often hear that only 7% of a message is the words, 38% is tone of voice a
 
 The part that carries over is narrower and more useful. When your words and your tone don't match, people believe the tone. Say "I really think this plan suits you" in a flat, rushed voice and the prospect hears doubt.
 
-On the phone the prospect can't see your face, so your voice does the work your face and posture would do in person. That's why flat, scripted phone delivery loses people fast, and why an advisor with good control of their voice can book a prospect who has never met them.
+On the phone the prospect can't see your face, so your voice does the work your face and posture would do in person. Flat, scripted phone delivery loses people fast, and an advisor with good control of their voice can book a prospect who has never met them.
 
 Better scripts won't fix a flat voice. Learn which tone fits which moment, then practise until you stop having to choose.
 
@@ -60,11 +60,11 @@ Two of the six matter most in Week 1. Get them to where you can do them in your 
 
 Use certainty for your intent statement, for setting the meeting agenda and for the close. Your intent statement is the planned opening you give a prospect once the small talk ends. Day 7 builds it in full, and for this week it's beats 3 and 4 of tomorrow's 90-second intro.
 
-Certainty is conviction without volume. You speak steadier, not louder, and each sentence finishes level, with no lift at the end.
+With certainty you speak steadily rather than loudly, and each sentence finishes level, with no lift at the end.
 
 > Wrong: "So, um, what we can do is maybe go through your cashflow and, you know, talk about insurance? If that works?"
 >
-> Right: "Here's how we'll move forward. We'll go through your cashflow, your emergency fund, your insurance and your longer-term goals. Insurance comes before investments, and that one is non-negotiable."
+> Right: "Here's what we'll do. We'll go through your cashflow, your emergency fund, your insurance and your longer-term goals. Insurance comes before investments, and that one is non-negotiable."
 
 Too much certainty flattens everything, so save it for the sentences that carry the weight. Think of it like cooking beef: leave it on the fire too long and the whole thing dries out.
 
@@ -74,7 +74,7 @@ This is the tone people find hard to say no to. It ends on "Fair?", or softens w
 
 > "Being friends doesn't mean we have to do business together. Whether you engage my services or not is entirely up to you. Fair?"
 
-It's hard to disagree with. You've given the prospect a way out, so they can stay in the conversation without feeling cornered.
+You've given the prospect a way out, so they can stay in the conversation without feeling cornered.
 
 ## The tritonal closing pattern
 
@@ -133,7 +133,7 @@ While the prospect answers your fact-finding questions, what are you doing? "Uh-
 
 Match your tone to what they just said. Grief gets slower, lower and sincere. An achievement gets warmer and a little surprised. Worry gets steady and kind.
 
-You aren't agreeing or judging. You're showing that you heard them and it registered. Get this right and by the third question they'll relax, often telling you things they haven't told their family.
+You're showing that you heard them and it registered, without agreeing or judging. Get this right and by the third question they'll relax, often telling you things they haven't told their family.
 
 ## The drill: practise the intonation, not the words
 

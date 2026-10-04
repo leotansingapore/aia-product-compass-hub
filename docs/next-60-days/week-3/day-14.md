@@ -54,7 +54,7 @@ Each beat carries about three specifics, so the reader can see Amir's situation 
 
 The hard part is getting a client to say something useful. "Would you mind leaving me a quick testimonial?" gets you "Jenny is amazing!"
 
-A structured ask gets a structured answer. Ask for their story in three parts:
+Ask for their story in three parts instead:
 
 > "When we first started, what was the situation with your finances? What was frustrating or confusing, or keeping you up at night?"
 >
@@ -92,7 +92,7 @@ Attribute it clearly. You're showing the kind of work you'll do, without taking 
 
 The reader gets the insight, and you get credit for the thinking.
 
-Whichever you use, don't fake it. A made-up testimonial is the quickest way to lose your warm market once someone notices. A real case-in-progress is worth more than an invented closed case.
+Whichever you use, don't fake it. A made-up testimonial is the quickest way to lose your warm market once someone notices.
 
 ## The offer-post variant
 
@@ -102,7 +102,7 @@ Now combine yesterday's Q5 offer post with a pre-during-post testimonial:
 >
 > "If you've got old policies you haven't looked at in a while and you're wondering if yours might be a similar story, DM me 'audit' and I'll send you the same 1-page checklist we used to go through Amir's plans. There's nothing to book, you just get the checklist."
 
-One post does three jobs. The testimonial earns trust. The ask is small, a checklist with no call or meeting. The keyword saves them working out what to say.
+One post does three jobs: the testimonial earns trust, the ask is small (a checklist with no call or meeting), and the keyword saves them working out what to say.
 
 ## Do this today
 

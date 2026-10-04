@@ -99,7 +99,7 @@ Your Loom answers three questions:
 2. Which of the 4 ingredients (hook, impression, pattern interrupt, buy-in) needs the most work?
 3. What will your v3 fix?
 
-Your mentor won't critique the content, and checks two things only:
+Your mentor checks two things, and leaves the content alone:
 
 1. Did you actually deliver to 3 real prospects, as opposed to roleplay?
 2. Did the buy-in land cleanly at least once out of three?

@@ -25,11 +25,11 @@ tags: [next-60-days, week-4, new-fc, warm-market, outreach, vulnerability, rappo
 
 ## Why new FCs stay silent
 
-Most new FCs avoid messaging friends about the business for the same reason people avoid asking someone out: they're afraid it'll make things weird.
+You avoid messaging friends about the business for the same reason people avoid asking someone out: you're afraid it'll make things weird.
 
 The silence costs both of you. Your friend never hears that you do work that could help them, so they end up with a less qualified advisor or no cover at all. You lose the part of your network most likely to say yes, and Month 3 arrives with you still building a pipeline from strangers.
 
-Keeping quiet is a choice. The way out is to message more honestly, since messaging more aggressively only makes it worse.
+Keeping quiet is a choice. Message more honestly, because messaging more aggressively only makes it worse.
 
 ## The 6-step honest message
 
@@ -53,7 +53,7 @@ A good warm-market text hits six beats, in this order.
 
 > "If you're open to it, I'd be happy to do a quick, no-obligation review of where you're at and share some of what I've been learning."
 
-5. Give them an easy out. Knowing they can say no is what makes yes easy.
+5. Give them an easy out. People say yes more easily when they know no is allowed.
 
 > "And if it's not something you're keen on right now, I completely understand."
 
@@ -103,7 +103,7 @@ Once you meet, rapport decides whether the Fact-Find turns into a client. Five s
 | 4 | Listen properly | Don't interrupt. Leave a pause after they finish, because that's often when they add the thing that matters |
 | 5 | Acknowledge | Paraphrase, clarify, compliment the intent, empathise |
 
-Step 5 is the one new FCs skip: they hear the answer, nod and go to the next question. Acknowledging is what makes the prospect feel heard, and people who feel heard open up.
+Step 5 is the one new FCs skip: they hear the answer, nod and go to the next question. Acknowledging makes the prospect feel heard, and people who feel heard open up.
 
 ## The art of acknowledging
 
@@ -135,7 +135,7 @@ Formats that work:
 - a link to a carousel post
 - a worked example with made-up numbers (real client stories and testimonials need compliance sign-off before you share them)
 
-Keep asking and people file you as pushy. Keep sending useful things and they file you as generous, and generous gets replies.
+Keep asking and people file you as pushy. Keep sending useful things and they file you as generous and start replying.
 
 ## The law of familiarity: how many touches before they reply
 
@@ -183,7 +183,7 @@ Use this when you've practised the honest-outreach beats and want a lighter, res
 
 ## Scripts library
 
-These are the canonical scripts for honest warm-market outreach. Practise them out loud, then make them yours.
+For honest warm-market outreach, start from these scripts and say them out loud until they sound like you.
 
 ### Warm market: career transition notice
 Use this when the contact is from your old job or social circle and hasn't heard you've moved into financial advisory, and you want the longer "casual update plus soft offer" version.

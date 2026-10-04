@@ -24,7 +24,7 @@ tags: [next-60-days, week-3, new-fc, crab, blue-ticks, follow-up, messaging]
 
 ## Why the default follow-up fails
 
-This is what most new FCs send after a blue tick:
+After a blue tick, the usual follow-up looks like this:
 
 > "Hey, just bumping this up. Let me know when you're free!"
 
@@ -130,9 +130,7 @@ Four rules for using CRAB:
 - Personalise every message, with no copy-paste. Mention a specific detail, like their new role, the wedding or the house move.
 - Keep it warm and professional. You're helping a busy adult, so don't be robotic and don't get over-familiar.
 - Send CRAB after one ignored follow-up, not five. If two CRABs go unanswered, the prospect isn't ready, and a third won't change that.
-- Wait at least 3 to 5 days before any new follow-up to someone who hasn't replied.
-
-Advisors who burn through their warm market send CRAB every 48 hours.
+- Wait at least 3 to 5 days before any new follow-up to someone who hasn't replied. A CRAB every 48 hours burns through your warm market.
 
 ## What to track
 

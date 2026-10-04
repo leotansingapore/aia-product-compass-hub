@@ -60,7 +60,7 @@ In your weekly review, pick the single weakest link and fix it the following wee
 
 ## The math once the flywheel turns
 
-The numbers below are round ones picked for teaching. It isn't a forecast of what you'll earn, and most new FCs start well below it, especially on appointments per hour.
+The numbers below are round ones picked for teaching. They aren't a forecast of what you'll earn, and most new FCs start well below them, especially on appointments per hour.
 
 | Input | Illustrative value |
 |---|---:|
@@ -72,7 +72,7 @@ The numbers below are round ones picked for teaching. It isn't a forecast of wha
 
 Once all three CAR links are working, your income comes down to hours calling x appointments per hour x closing ratio x commission per case. Plug in your own numbers from your scorecard, and expect them to move as your skills grow.
 
-The trap is working on the wrong number first. New FCs see a table like this and try to raise case size before their calls are steady, or chase a better closing ratio before they have enough appointments to practise on. Get calls steady first, then appointments. Then ask for referrals at every one, and work on closing last.
+It's easy to work on the wrong number first. Seeing a table like this, new FCs try to raise case size before their calls are steady, or chase a better closing ratio before they have enough appointments to practise on. Get calls steady first, then appointments. Then ask for referrals at every one, and work on closing last.
 
 ## The 3 behaviours that turn the flywheel
 
@@ -136,11 +136,11 @@ Direct asks work. Events add volume, especially from shy clients who won't recom
 - Track how many people it was forwarded to and how many came.
 - Follow up one to one with attendees who showed interest and agreed to be contacted.
 
-A small, focused event can bring a handful of new people each time. It adds to the one-to-one ask: the ask brings quality, and events bring volume.
+A small, focused event can bring a handful of new people each time.
 
 Two rules before you run one. Get the invite and the slides approved through your firm's compliance process, since a forwarded invite counts as advertising. And collect attendees' contact details with their consent, with a clear line on the sign-up about how you'll follow up.
 
-Most new FCs don't run events in month 2, so treat this as planning for your second quarter. Put a placeholder in your calendar now, and run the event once you have enough clients to invite 10 people.
+You probably won't run an event in month 2, so treat this as planning for your second quarter. Put a placeholder in your calendar now, and run the event once you have enough clients to invite 10 people.
 
 ## Do this today
 

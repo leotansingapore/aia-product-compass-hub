@@ -62,7 +62,7 @@ A made-up or borrowed testimonial costs you your credibility the moment anyone n
 
 ## Q2: Do you actually know your stuff?
 
-This is expertise, and most new FCs already post it: carousels, product explainers, tax tips. Prospects assume a licensed advisor knows the basics, so on its own it won't get you DMs.
+This is expertise, and it's probably what you post already: carousels, product explainers, tax tips. Prospects assume a licensed advisor knows the basics, so on its own it won't get you DMs.
 
 Answer it with a real client problem, broken down in plain language. Skip jargon ("holistic wealth accumulation strategies"), vague authority claims ("trust me, I know what I'm doing") and textbook summaries, which people scroll past.
 
@@ -70,7 +70,7 @@ If you're new, don't bluff. Frame it as "my take" or "what I've been learning". 
 
 ## Q3: Why are you doing this?
 
-Prospects assume every advisor is in it for the commission. "I help people" won't change their mind. The specific reason you care will.
+Prospects assume every advisor is in it for the commission. "I help people" won't change their mind, but the specific reason you care will.
 
 Answer it with your origin story. Skip the CV and tell them about the moment. Ask yourself:
 
@@ -106,7 +106,7 @@ Two more versions:
 ## Do this today
 
 1. Open your IG profile and label each of your last 10 posts with the question it answers.
-2. Count them. Most new FCs find Q2 eight times and the other four about once between them.
+2. Count them. Q2 usually turns up eight times and the other four about once between them.
 3. Plan a 5-post rotation, one post per question. Put the questions your audit found missing first.
 4. Draft the first post this week. It counts toward the Week 3 KPI of 3 posts, one of which must be a Q5 offer post.
 

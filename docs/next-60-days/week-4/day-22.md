@@ -27,7 +27,7 @@ tags: [next-60-days, week-4, new-fc, cold-market, prospecting, abcd-promises]
 
 ## The biggest cold-market mistake
 
-New FCs go into the cold market using warm-market language:
+It's going into the cold market with warm-market language:
 
 > "Hey! Hope you've been well, I've been meaning to message you about something personal..."
 
@@ -42,8 +42,6 @@ So warm runs on vulnerability, and cold runs on authority:
 | Tone | Open, honest | Professional, useful first |
 | Ask | Easy out, no pressure | A clear next step with something useful attached |
 | Follow-up | A value drop | A series of useful things in different formats |
-
-Many new FCs struggle in both channels because they blend the two.
 
 ## The 5 pillars of cold prospecting
 
@@ -63,7 +61,7 @@ A generic line like "I help people grow their wealth" is forgotten the moment th
 - F.A.T: Foundation, Accelerate, Transfer
 - A.P.E.X: Audit, Protect, Expand, eXit
 
-Don't invent one for the sake of it. If your planning process already has three or four clear phases, name them, so people recognise you after a few dozen touches.
+If your planning process already has three or four clear phases, name them, so people recognise you after a few dozen touches. Don't make up phases just to have a name.
 
 ### Pillar 3: your profile is the shop window
 
@@ -199,7 +197,7 @@ Run the check the day you receive a new list. Results are only valid for 21 days
 
 ## Scripts library
 
-These are the canonical cold-market and ABCD scripts. Practise them out loud, then make them yours.
+The cold-market and ABCD scripts are below. Practise them out loud before your first cold block.
 
 ### The ABCD Four Promises (before starting the FHR)
 Use this when you've moved a cold lead into a Fact-Find and need to set the tone in 30 seconds with Assurance, Best Interest, Confidentiality and Full Disclosure.

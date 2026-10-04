@@ -93,7 +93,7 @@ Your first 60 days will be mostly tiers 1 and 2. Tier 3 becomes worth your time 
 
 Each row multiplies the meetup rate (how often the review actually happens) by the close rate and the average case.
 
-These are illustrative Year 2 figures for an FC who already has a book of clients, but learn the ratio now. At $420 against $25, an A-client review is worth about 17 times a C-client touchpoint. Every A-client review slot you let slide costs roughly $420 in expected revenue, and across all your A clients that adds up quickly.
+These are illustrative Year 2 figures for an FC who already has a book of clients, but learn the ratio now. At $420 against $25, an A-client review is worth about 17 times a C-client touchpoint, so every A-client review slot you let slide costs roughly $420 in expected revenue.
 
 ## The scorecard is signed
 
@@ -113,7 +113,7 @@ In *Fanatical Prospecting*, Jeb Blount names three habits that stop salespeople 
 | Perfectionism | "I'll call once I've rehearsed the opener 20 more times." Usually fear of failure underneath. | Dial with the imperfect version and improve it from real feedback. |
 | Paralysis from analysis | "What if they ask X? What if they object with Y? I should study objections first." Endless what-ifs are avoidance. | Pick one thing to focus on: make one call. |
 
-Your Friday review is where these show up. If your CAR numbers dropped, ask which P got in the way, because in Weeks 1 to 8 bad luck and a bad market are rarely the real cause. Name it. Next week your mentor will ask you about it by name.
+Your Friday review is where these show up. If your CAR numbers dropped, ask which P got in the way, because in Weeks 1 to 8 bad luck and a bad market are rarely the real cause. Name it, because next week your mentor will ask you about it by name.
 
 ## Team operations: set up the tools and the business plan
 
@@ -123,7 +123,7 @@ Set up Lark (docs and tasks) and Lark Base (your CRM) this week, so the Friday r
 - Open [the access-checklist doc](https://nsgukkz32942.sg.larksuite.com/wiki/Jqu5wln6eiVL7PklkgplPQc4gIe) and pin it to your left sidebar. Get access to every resource it lists (we walk through each one in coaching calls).
 - Create a Lark task list with sections for ad-hoc and recurring tasks, and spend 15 minutes dumping everything on your mind into it. Then capture things as they come up and process them in one focused session a day. Optional primers on the Getting Things Done (GTD) method: [GTD intro](https://www.youtube.com/watch?v=7M6bIeVbCqA), [Lark task 2-min guide](https://youtu.be/HtBTAnWH3vk).
 
-Ask Leo to set up your CRM in Lark Base ([access here once it's created](https://nsgukkz32942.sg.larksuite.com/base/AKOwbIgCJajwpdsZxtmluiF7gZd?table=tblK1Q35uvwAe4pU&view=vew7AogXqL)). While you wait, watch the [Lark Base intro (2 min)](https://youtu.be/KH2h4kxc_4c) and [the CRM Loom tutorials](https://nsgukkz32942.sg.larksuite.com/wiki/KwYfw7WRxiH6pskbm2tlHCOXgie). The habit: every lead sorted by stage.
+Ask Leo to set up your CRM in Lark Base ([access here once it's created](https://nsgukkz32942.sg.larksuite.com/base/AKOwbIgCJajwpdsZxtmluiF7gZd?table=tblK1Q35uvwAe4pU&view=vew7AogXqL)). While you wait, watch the [Lark Base intro (2 min)](https://youtu.be/KH2h4kxc_4c) and [the CRM Loom tutorials](https://nsgukkz32942.sg.larksuite.com/wiki/KwYfw7WRxiH6pskbm2tlHCOXgie). Get into the habit of sorting every lead by stage.
 
 Do the business plan doc this week, not today. Follow the [instructions in Lark](https://nsgukkz32942.sg.larksuite.com/wiki/JnLewrJCmi6VBSkCJsvlcysYgPe) and duplicate the [sample Canva deck](https://www.canva.com/design/DAG1v21ulvQ/) to edit. Upload yours to [the examples folder](https://drive.google.com/drive/folders/CyXsfQiuPlRA1udutA0lpbPxggf) and send it to your onboarding group chat (GC) for feedback.
 

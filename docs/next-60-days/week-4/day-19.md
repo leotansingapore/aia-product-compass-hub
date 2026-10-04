@@ -31,7 +31,7 @@ Weeks 1 to 3 were voice work (intent statement, story, content, DMs), which give
 
 The [Day 2](/learning-track/next-60-days/day/2) formula is FYC = appointments x close rate x case size, and appointments is the part a new FC controls. From this week you pull this lever on a schedule.
 
-In my experience, Year 1 advisors who drop out rarely lack closing skill. Their calendars are empty, because they never built the volume habit.
+The Year 1 advisors I've seen drop out mostly had the closing skill and an empty calendar, because they never built the volume habit.
 
 ## Market Temperature: the 4-ring model
 
@@ -46,7 +46,7 @@ Picture every prospect sitting in one of four rings around you.
 | Semi-Warm | Secondary-school friends, old colleagues, distant relatives, referrals | The biggest ring, with the least competition and the longest runway |
 | Cold | Strangers | Transactional and low conversion, so it only works at volume |
 
-The usual pattern: a new FC works Hot and Warm in months 1 to 3, closes a handful and runs out of names. Then they panic, and either push the remaining warm contacts harder or jump straight to cold. Both go badly.
+The usual pattern: a new FC works Hot and Warm in months 1 to 3, closes a handful and runs out of names. Then they panic, and either push the remaining warm contacts harder or jump straight to cold, and both go badly.
 
 Semi-Warm is where a long-term pipeline lives: people you haven't spoken to in one to five years who would still pick up if you called. Research on "dormant ties" found that reconnecting with contacts you'd lost touch with was as useful as asking current ones, and often more so (Levin, Walter and Murnighan, 2011). They bring fresh information, and they still trust you. Start reactivating these people now, in Week 4.
 
@@ -106,7 +106,7 @@ For this week's 30 outreaches, aim for about 20 active (direct outreach) and abo
 
 ## Your contact list is the asset
 
-Most new FCs treat their contact list as a phone book. Treat it as the most valuable thing your business owns.
+It's easy to treat your contact list as a phone book. Treat it as the most valuable thing your business owns.
 
 The minimum is one list in one tool (spreadsheet, Notion or CRM) that holds every name you'd ever approach again. Each entry gets an ABC or 1-2-3 tag from [Day 3](/learning-track/next-60-days/day/3) and a last-contact date. Over time, each one also gets a trigger and a script variant: why you'd reach out now, and with what angle.
 
@@ -118,7 +118,7 @@ Day 2 said you need 5 to 7 appointments a week, and [Day 21](/learning-track/nex
 
 Look at the numbers first. The working assumption on this team is that warm and semi-warm calls book at roughly 1 in 20. Each booking comes with about 19 no's attached: polite no's, ghosts, "let me think about it", "not now" and calls nobody answers. Those 19 are what the booking costs. Think of the booking as a dollar: each no pays about 5 cents of it.
 
-In a 20-call block, expect something like this:
+In a 20-call block that goes well, expect something like this:
 
 | Outcome | Count | What it means |
 |---|---:|---|
@@ -126,8 +126,6 @@ In a 20-call block, expect something like this:
 | Polite no / not now | ~12 | Normal friction |
 | Ghost / no answer | ~5 | Try again next cycle |
 | Hang-up / rude | ~2 | You're dialling enough to meet the grumpy ones |
-
-That block went well.
 
 The most common place to quit in Week 4 is dial three or four. After three no's in a row, the FC puts the phone down "to regroup", and the regroup never comes. The block ends at 4 dials and no bookings, when it would have reached 20 dials and one.
 
@@ -188,7 +186,7 @@ Add a second line to your sticky note:
 
 > "Today's rejections are the price. The more I collect, the closer I am."
 
-Late on Wednesday night, when the sixth no of the day lands, that line keeps the phone in your hand.
+Read it when the sixth no of the day lands.
 
 ## Do this today
 
@@ -205,7 +203,7 @@ Use this when you've sorted your list into the 4 rings and want to start on Warm
 
 ## Scripts library
 
-These are the canonical mindset and tip scripts behind a prospecting habit that lasts. Practise them out loud, then make them yours.
+The mindset and tip scripts below keep a prospecting habit going. Say them out loud, then put them in your own words.
 
 ### Warm market: outreach flow (step by step)
 Use this when you want a no-pressure way to plant the seed for a later yes. It works for any of the 4 rings, especially Semi-Warm.

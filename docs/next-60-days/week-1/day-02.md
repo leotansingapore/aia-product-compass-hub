@@ -35,7 +35,7 @@ FYC = Appointments × Close rate × Case size
 
 Appointments is how many qualified first meetings you sit in a week. These are Educational Fact-Finds, and a social coffee doesn't count. Close rate is the percentage of those meetings that become paying clients. Case size is your average first-year commission per closed case.
 
-If your FYC isn't where you want it, one of those three is the reason. There isn't a fourth.
+If your FYC isn't where you want it, one of those three is the reason.
 
 ## Why appointments is the only lever you control today
 
@@ -67,7 +67,7 @@ The close rate and case size haven't changed. Two more meetings a week add about
 
 Say you want $30,000 FYC in your first 6 months. That's $30,000 ÷ 26 weeks, or about $1,154 FYC a week. At starter numbers, $1,154 ÷ ($750 x 30%) = about 5.1 appointments a week.
 
-That's the floor. Some meetings will fall away to cancellations, ghosting and slow weeks, so aim for 6 to 7 a week. This module is built around that activity floor.
+Treat that as the floor. Some meetings will fall away to cancellations, ghosting and slow weeks, so aim for 6 to 7 a week. This module is built around that activity floor.
 
 You can move any lever for a bigger number. Tighter fact-finds in Week 8 raise case size, and objection-handling reps in Week 9 raise close rate. More meetings is the one you can start on this afternoon.
 
@@ -75,7 +75,7 @@ You can move any lever for a bigger number. Tighter fact-finds in Week 8 raise c
 
 1. Work on the right lever. New FCs tend to optimise the wrong thing: the deck, closes rehearsed in the mirror, sales psychology books. That's slow-lever work, and polish only pays off once you have reps. Pick up the phone first.
 2. Count the right unit. Messages sent and people who said maybe don't count. The formula only uses a qualified first meeting booked with a time, a place and a Fact-Find agenda.
-3. Keep the number where you can see it: a whiteboard, your phone wallpaper or a sticky note on your desk. You'll move the number you look at every day.
+3. Keep the number where you can see it: a whiteboard, your phone wallpaper or a sticky note on your desk. A number you see every day is harder to let slide.
 
 The advisors who get through Year 1 usually aren't the smoothest talkers. They're the ones who kept picking up the phone on days they didn't feel like it.
 
@@ -100,7 +100,7 @@ When a Year 1 FC says "I'm in a slump", the chain almost always runs like this:
 3. Deals stopped closing because the pipeline ran out.
 4. Confidence dropped, energy followed and desperation set in.
 
-The way out is to start prospecting hard again straight away, without dwelling on last month. One calling block, then the next.
+The way out is to start prospecting hard again straight away, without dwelling on last month.
 
 ## Team operations: know the money structure
 

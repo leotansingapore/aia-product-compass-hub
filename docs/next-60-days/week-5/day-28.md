@@ -134,7 +134,7 @@ The client may not know what to say to their friend, so give them a template the
 >
 > If you're interested, I'm happy to connect you two. Just let me know."
 
-Why this works:
+What the template gets right:
 
 - It respects the friend's existing adviser by framing the meeting as a second opinion, with no talk of replacing anyone.
 - "If you're interested" is an easy yes, and the friend's reply is their OK for you to get in touch.
@@ -167,7 +167,7 @@ Events are plan B, for when direct asks keep not working with a particular clien
 
 ## Scripts library
 
-These are the canonical referral-ask and post-meeting scripts. Practise them out loud, then make them your own.
+The referral-ask and post-meeting scripts are below. Run each one out loud a few times before this week's asks.
 
 ### Referral request for young adults
 Use this with young-adult clients when the FACT close lands and you want the word-for-word ask.

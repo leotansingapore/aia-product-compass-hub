@@ -26,9 +26,9 @@ tags: [next-60-days, week-2, new-fc, personal-branding, instagram, profile]
 
 ## Why the profile compounds
 
-Most new FCs treat social media as a broadcast channel: post something and hope it reaches someone. The money isn't there.
+Most new FCs treat social media as a broadcast channel: post something and hope it reaches someone. The bigger return is in the profile itself.
 
-Everyone you prospect, every referral and every warm contact you text will look you up before they reply, and what they see affects whether they do. Spend an hour on your bio today, and over the next year a few hundred people will probably make a quick trust call on it while you're elsewhere. The hour keeps paying off while the bio stays up.
+Everyone you prospect, every referral and every warm contact you text will look you up before they reply, and what they see affects whether they do. Spend an hour on your bio today, and over the next year a few hundred people will probably make a quick trust call on it while you're elsewhere.
 
 ## The KLR framework: what your profile is trying to do
 
@@ -141,7 +141,7 @@ Your profile is one of five ways people come to remember you, and it won't sell 
 
 Psychologists call the pull of familiarity the mere exposure effect (Robert Zajonc, 1968): the more often people come across something, the more they tend to like it. A prospect who has seen your profile (5), heard about you from a friend (2) and got your DM (1) is much warmer than someone who has had only one.
 
-New FCs often spend Week 2 polishing their profile and ignore levers 1, 2 and 3. The profile looks great and the pipeline stays empty.
+New FCs often spend Week 2 polishing their profile and ignore levers 1, 2 and 3, and end up with a great-looking profile and an empty pipeline.
 
 ## Do this today
 

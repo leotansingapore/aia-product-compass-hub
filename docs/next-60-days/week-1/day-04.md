@@ -30,7 +30,7 @@ Most new advisors try to perform their story, with smooth delivery and no awkwar
 
 One new advisor rehearsed his story until it was silky: no stumbles, perfect pauses, emotion on cue. The mentor group agreed it was technically flawless, and nobody believed him. The smoothness made him sound like he was performing.
 
-A real story has texture, which comes from letting yourself feel the thing again while you say it. Rehearsal can't produce that. It decides whether a story opens a prospect up or shuts them down.
+A real story has texture, which comes from letting yourself feel the thing again while you say it. That texture decides whether a story opens a prospect up or shuts them down.
 
 ## What makes each part land
 
@@ -44,7 +44,7 @@ A real story has texture, which comes from letting yourself feel the thing again
 
 ### A worked example (to calibrate, not copy)
 
-Here's roughly how one trainer tells his:
+One trainer tells his roughly like this:
 
 > "You see me today, I went to decent schools, I'm comfortable, I can do what I want. Why am I selling insurance?
 >
@@ -56,7 +56,7 @@ Here's roughly how one trainer tells his:
 
 All four parts are there, and it doesn't sound memorised. The details carry it: the Milo nugget, the 20-year-old jacket, the first taxi in the army. They're small enough to believe and concrete enough to picture.
 
-Yours will sound different, and it should. Keep the structure.
+Yours will sound different. Keep the 4-part structure.
 
 ## The drill
 
@@ -70,7 +70,7 @@ When you listen back, mark two spots. One is where your voice flattened, usually
 
 ## Team operations: your motivation artefacts
 
-Your story faces outward. Your vision board and pledge sheet are for you, for when the week drags and you need to remember why you signed up. They're two separate deliverables this week:
+Your story faces outward. Your vision board and pledge sheet are for you, for when the week drags and you need to remember why you signed up. Do both this week:
 
 - Vision board: [walkthrough Loom](https://www.loom.com/share/3dbda27b81f24a089e766702348c3076) and [Canva template](https://www.canva.com/design/DAGomVn0YWE/). Make yours and share it in the onboarding group chat (GC). The team reviews them together on a call about 1 to 2 months after you submit.
 - Pledge sheet part 1: [walkthrough Loom](https://www.loom.com/share/a3b9933ae2b848c6bbfa9bd98b54624b). Download [the pledge sheet](https://nsgukkz32942.sg.larksuite.com/wiki/JnLewrJCmi6VBSkCJsvlcysYgPe), fill it in and submit it to the onboarding GC.

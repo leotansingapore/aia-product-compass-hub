@@ -25,9 +25,9 @@ tags: [next-60-days, week-1, new-fc, story, mindset]
 
 ## What changes today
 
-Yesterday you had a syllabus. Today you have an empty calendar. The FINternship is over, you're licensed, and your income is $0 until you close your first case. That's how the career starts for everyone. From here, you run the business yourself.
+Yesterday you had a syllabus. Today you have an empty calendar. The FINternship is over, you're licensed, and your income is $0 until you close your first case. Everyone starts there. From here, you run the business yourself.
 
-The module runs the same way. Every week has a KPI as well as a quiz, and every practice day (every 6th day) ends with a Loom link you submit. Week N+1 unlocks when you log Week N's KPI, whatever the calendar says.
+Every week in this module has a KPI as well as a quiz, and every practice day (every 6th day) ends with a Loom link you submit. Week N+1 unlocks when you log Week N's KPI, whatever the calendar says.
 
 | Day | What you're doing |
 |---:|---|
@@ -38,7 +38,7 @@ The module runs the same way. Every week has a KPI as well as a quiz, and every 
 | 5 | Tonality: how you say it |
 | 6 | Practice: record your 90-second intro |
 
-The week builds to two deliverables by Saturday: a 90-day scorecard with real numbers on it, and a 90-second intro you've recorded and watched back.
+By Saturday you should have two things done: a 90-day scorecard with real numbers on it, and a 90-second intro you've recorded and watched back.
 
 ## The silent question
 
@@ -61,7 +61,7 @@ Origin stories tend to share a shape, whether it's a superhero film or a 90-seco
 3. The guide. The person or event that changed your direction. For some it's a mentor. For others it's a hospitalisation, a first real paycheck or watching a parent struggle with money. For many of you it will be this career.
 4. Growth. Who you became, what you can do now that you couldn't before, and what that means for the person in front of you.
 
-Here's how three of the parts can sound:
+For example, three of the parts:
 
 > Life today: "You see me today and I can travel, buy a home, take care of my parents. It wasn't always like this."
 >
@@ -73,13 +73,13 @@ Most first drafts break at step 2, because the villain comes out as a fact. "My 
 
 > "I used to avoid going home because my parents always argued about money. I'd rather sit in McDonald's till closing than walk through the door."
 
-The feeling is what lowers the listener's guard, and it's what Roy will remember.
+The feeling lowers the listener's guard, and it's what Roy will remember.
 
 ### Why this is harder than it sounds
 
 Most of you will resist step 2. You've spent years learning to keep it together, hide weakness and not complain. That habit has served you well, but in a story it keeps the listener at arm's length.
 
-So today asks you to be vulnerable, and mean it. The story works when the prospect feels the weight of what you went through, and you can't fake that or hold it back.
+So today asks you to be vulnerable. The story works when the prospect feels the weight of what you went through, and you can't fake that or hold it back.
 
 You don't need a traumatic past. If you grew up comfortable, build the story around the moment money suddenly felt fragile. Or the first time someone close had an uninsured claim, or the mentor who changed how you thought about wealth. How honestly you tell it matters more than how hard it was.
 

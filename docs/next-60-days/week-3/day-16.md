@@ -59,13 +59,13 @@ After the first text, the same six objections come up again and again:
 
 Expect an objection. It's the normal reply, and a yes is a bonus. A prospect is usually lost by a bad reply or by giving up, and seldom by the objection itself.
 
-Most new FCs answer with "no worries, thanks anyway!" and disappear. The objection is usually where the real conversation starts, so stay in it.
+The usual new-FC reply is "no worries, thanks anyway!", and then they disappear. The objection is usually where the real conversation starts, so stay in it.
 
 ## The 6-step objection response
 
 ![The 6-step objection response: 1 Acknowledge casually, 2 Common ground, 3 Different perspective, 4 Make them feel safe, 5 Easy question, 6 Personal warmth](/next-60-days/images/n60-day-16-m0.webp)
 
-Here's one objection through all 6 steps:
+One objection, taken through all 6 steps:
 
 > Prospect: "Thanks bro, I already have an advisor."
 >
@@ -89,7 +89,7 @@ Still a soft response after the 6-step reply? Change the ask itself.
 
 ### Move 1: push the date further out
 
-New FCs try to book the meeting this week or next, which feels like pressure. Suggest 1 to 2 months ahead:
+The instinct is to book the meeting this week or next, which feels like pressure. Suggest 1 to 2 months ahead:
 
 > "No rush at all. What if I check in with you mid-March? You'll be past the wedding prep by then and we can look at everything with a clearer head."
 
@@ -111,7 +111,7 @@ If "can we meet?" keeps getting pushback, stop asking and send something useful:
 
 Your next text is a **value drop** in place of another ask. It could be a video, a PDF, a carousel or a case study. The format matters less than giving something without asking for anything back.
 
-This works because of reciprocity, which Robert Cialdini describes as people's urge to return a favour. Ask after ask makes you look pushy. A run of useful messages makes you look generous, and people reply to generous.
+This works because of reciprocity, which Robert Cialdini describes as people's urge to return a favour. Ask after ask makes you look pushy. A run of useful messages makes you look generous, so people are more willing to reply.
 
 ## Hook openers by life stage
 

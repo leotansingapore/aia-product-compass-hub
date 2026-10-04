@@ -40,7 +40,7 @@ Each post has to answer a different silent question from [Day 13](/learning-trac
 | Post 2 | Q1 or Q3: social proof or origin story | Pre-during-post testimonial or 60-sec origin reel |
 | Post 3 | Q2 or Q4: expertise or get along | Educational carousel or PPVV lifestyle post |
 
-If all three posts answer Q2 (expertise), which is what most new FCs default to, you build no social proof and no connection. The 3 posts have to cover at least three of the five questions, and the Q5 offer post is required because it's the one that brings in DMs.
+If all three posts answer Q2 (expertise), the usual new-FC default, you build no social proof and no connection. The 3 posts have to cover at least three of the five questions, and the Q5 offer post is required because it's the one that brings in DMs.
 
 These don't count:
 
@@ -72,7 +72,7 @@ These don't:
 - A conversation with your mentor or a peer
 - An automated "happy birthday" that got a single "thanks!"
 
-Get five real conversations by Sunday. If you're at 3 by Saturday, use Sunday to get to 5. If you hit 5 by Friday, keep going, because volume is what builds the skill.
+Get five real conversations by Sunday. If you're at 3 by Saturday, use Sunday to get to 5. If you hit 5 by Friday, keep going, because the volume builds the skill.
 
 ## Submission format
 
@@ -102,7 +102,7 @@ Record one Loom that answers three questions:
 
 ### Mentor review
 
-Book a 10-minute mentor check-in before Sunday 9 pm. Your mentor looks at two things only:
+Book a 10-minute mentor check-in before Sunday 9 pm. The review covers two questions:
 
 1. Are your posts answering different silent questions, or are you stuck on Q2 (expertise)?
 2. Are your DMs following all three non-negotiables, or are you still opening with "hey, how are you?"
@@ -111,7 +111,7 @@ Book a 10-minute mentor check-in before Sunday 9 pm. Your mentor looks at two th
 
 The common Week 3 mistake is thinking "I posted 3 times and sent 5 DMs but none of them converted, so I feel like I failed."
 
-You didn't fail. Week 3 is judged on output and the quality of your reps, and results come later. Nobody closes from Day 18 output, and the week isn't built for that. It's built to show you can ship content and open conversations again and again, because the results come from those reps.
+You didn't fail. Week 3 is judged on output and the quality of your reps. Nobody closes from Day 18 output, and the week isn't built for that. It's built to show you can ship content and open conversations again and again, because the results come from those reps.
 
 You only fail Week 3 if you:
 

@@ -86,7 +86,7 @@ A rough split for a typical Week 5 FC:
 | Warm contacts who've met you but haven't committed yet | 2 to 3 | FACT Method, even before they're clients |
 | Total | 10 | |
 
-A lot of new FCs don't realise you can ask without any closed clients. Anyone who's had a real Fact-Find or a proper conversation with you is fair to ask, even if they haven't bought anything:
+You can ask without any closed clients. Anyone who's had a real Fact-Find or a proper conversation with you is fair to ask, even if they haven't bought anything:
 
 > "I'm just getting started and building my practice. Do you happen to know anyone at X stage?"
 
@@ -123,7 +123,7 @@ One short video answering:
 
 ### Mentor review
 
-Book a 10-minute mentor check-in before Sunday ends. Your mentor looks at two things:
+Book a 10-minute mentor check-in before Sunday ends. Expect two questions:
 
 1. Were all 10 asks spoken aloud with the full FACT or 10-Name structure, or did some become texts?
 2. Did each warm referral have a real recommendation and the friend's OK, or were cold names counted as warm?

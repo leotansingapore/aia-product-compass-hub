@@ -26,7 +26,7 @@ tags: [next-60-days, week-2, new-fc, intent-statement, pattern-interrupt, what-d
 
 Of yesterday's 4 ingredients, the pattern interrupt is the one the prospect remembers, while the other three hold the statement together.
 
-Most prospects have heard advisors open before, so when you say what they expect, they tune out halfway through your sentence. They've already guessed the ending.
+Most prospects have heard advisors open before, so when you say what they expect, they tune out halfway through your sentence, because they've already guessed the ending.
 
 A pattern interrupt says something they weren't expecting. For a moment they stop running the script in their head and listen, and that's when the rest of your intent statement gets through.
 
@@ -109,7 +109,7 @@ Before you lock in v2, read it and your "what do you do?" answer out loud. Could
 
 If yes, it isn't yours yet. A pattern interrupt only works if it's unusual, and a line anyone could swap in is still the generic script.
 
-The fix is nearly always to get more specific. Narrow the audience, sharpen the outcome, or make the interrupt more concrete. "I help busy dads in their late 30s work out if their $300/month in old policies is actually covering them" is much harder to swap than "I help families with their financial planning."
+Usually that means getting more specific. Narrow the audience, sharpen the outcome, or make the interrupt more concrete. "I help busy dads in their late 30s work out if their $300/month in old policies is actually covering them" is much harder to swap than "I help families with their financial planning."
 
 ## Do this today
 

@@ -97,7 +97,7 @@ It takes the longest to learn and pays off the most. The rule is "The more you n
 
 When your whole month's FYC hangs on one appointment, you take that desperation into the room. Your voice tightens, you talk faster and you lean in. The prospect picks it up without knowing what it is, and your positioning falls apart.
 
-You can't think your way out of this. The fix is volume: with 5 to 7 appointments a week, no single meeting carries your month. You can walk away from one that isn't a fit, because another is coming next week.
+You can't think your way out of this, but volume fixes it: with 5 to 7 appointments a week, no single meeting carries your month. You can walk away from one that isn't a fit, because another is coming next week.
 
 Until you have that volume, act as if you do. Watch for the signs mid-meeting: your voice rises, you push, you repeat the pitch. When you catch it, stop, slow down and lower your voice. Then say "ultimately this is entirely up to you" and mean it.
 

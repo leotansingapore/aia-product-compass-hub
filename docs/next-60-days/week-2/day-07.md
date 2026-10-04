@@ -44,7 +44,7 @@ Skip it on a cold call where nobody has agreed to meet yet. There's nothing to f
 
 ![The 4 ingredients: 1 Strong hook; 2 Clear impression; 3 Pattern interrupt; 4 Buy-in](/next-60-days/images/n60-day-07-m0.webp)
 
-1. A strong opening hook: your first sentence introduces you and names no product. Like an essay's opening, if it doesn't pull them in, they won't hear the next nine sentences.
+1. A strong opening hook: your first sentence introduces you and names no product. Like an essay's opening, if it doesn't pull them in, they won't hear the rest.
 
 2. A clear impression: you can't be all three advisors at once, so choose. Most new FCs start with "objective" because it's believable, low-pressure and hard to argue with.
 

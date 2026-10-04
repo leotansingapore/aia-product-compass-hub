@@ -50,7 +50,7 @@ Posts are how new people find you. Stories are where people who already follow y
 
 Instagram ranks stories mainly on viewing history, engagement and closeness, so the people who watch yours keep seeing them near the front of their stories tray. Psychologist Robert Zajonc showed in 1968 that repeated exposure to something makes people like it more. Stories give you that familiarity, and one brilliant post can't.
 
-The 3-stories-a-day rhythm from [Day 11](/learning-track/next-60-days/day/11) is what you put out. Hygiene is the other side: whose stories you watch back, reply to and engage with.
+The 3-stories-a-day rhythm from [Day 11](/learning-track/next-60-days/day/11) covers what you put out. Hygiene is the other side: whose stories you watch back, reply to and engage with.
 
 ### The story-viewer review (5 min a day)
 
@@ -84,8 +84,6 @@ Keep, or follow back:
 - Active accounts that post, share stories and comment
 - People you'd actually want a conversation with
 
-Follow back only the accounts that fit.
-
 ### Who follows you
 
 Remove bots and deactivated accounts. Instagram's head, Adam Mosseri, has said inactive followers don't reduce your reach, because they weren't seeing your posts anyway.
@@ -102,8 +100,6 @@ Do this in one 30-minute sitting a week. One block is easier to protect than fiv
 | 2. Story viewer sweep | 5 min | Screenshot your top 30 viewers. Pick 3 names to DM this week. |
 | 3. Engage 30 accounts | 10 min | Leave real comments (likes don't count) on recent posts from 30 accounts in your niche. |
 | 4. DM bump | 10 min | Scroll your DM list. Reopen any conversation older than 2 weeks that needs a follow-up or a value drop (see Day 16). |
-
-Advisors who get leads from their digital pipeline do this every week, in the mood or not.
 
 ## The "DM worth sending" test
 

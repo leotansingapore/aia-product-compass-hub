@@ -27,7 +27,7 @@ tags: [next-60-days, week-4, new-fc, practice, outreach, appointments, loom]
 
 ## The bar today
 
-Week 1 you recorded an intro, Week 2 you delivered your intent statement three times, and Week 3 you posted and opened DMs. Week 4 you show proof in your calendar.
+After a recorded intro, three live intent statements and a week of posts and DMs, Week 4's proof goes in your calendar.
 
 Thirty is the weekly volume that should give you [Day 2](/learning-track/next-60-days/day/2)'s 5 to 7 appointments a week. Day 2's illustration (5 appointments x 30% close x $750 case) comes to about $58,500 FYC a year, but that's only an example of how the numbers combine. Your own results depend on your activity, close rate and case size.
 
@@ -84,7 +84,7 @@ If your [Day 23](/learning-track/next-60-days/day/23) Strategic Target List has 
 
 ## What to submit
 
-Three things. Keep them short.
+Submit three things, and keep each one short.
 
 ### 1. The outreach log
 
@@ -111,14 +111,14 @@ One Loom that answers three questions:
 
 ### Mentor review
 
-Book the 10-minute check-in before Sunday ends. Your mentor looks at two things only:
+Book the 10-minute check-in before Sunday ends. Your mentor asks two questions:
 
 1. Were all 30 outreaches real, sent and substantive, or were some padded to reach the number?
 2. Did the 5 appointments come from a mix of rings, or did you lean on one channel?
 
 ## The honest-numbers rule
 
-You could fake your way through the Week 4 gate. Don't. Counting likes, or "hey how are you" messages that went nowhere, gives you fake confidence that falls apart the moment Week 5 asks for the same reps again.
+You could fake your way through the Week 4 gate, but counting likes, or "hey how are you" messages that went nowhere, gives you fake confidence that falls apart the moment Week 5 asks for the same reps again.
 
 The number is there so you can run the routine again next week without rereading the module, and only real reps get you there. If you're tempted to count something borderline, leave it out. It's better to hit 24 real outreaches and say so than to hit 30 padded ones and believe the week worked.
 

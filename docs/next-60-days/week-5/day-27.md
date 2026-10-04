@@ -24,7 +24,7 @@ tags: [next-60-days, week-5, new-fc, referrals, context, quality]
 
 ## Why "what to say" isn't the bottleneck
 
-Most new FCs know what to say when they ask for referrals, and most still get very few.
+You probably know the words for a referral ask already. Most new FCs do, and most still get very few names.
 
 The words are fine. What decides whether they land is the context: the moment, the tone and how specific you are.
 
@@ -96,15 +96,15 @@ Signs it fell flat:
 - "I don't really know anyone like that", said without a pause.
 - Nothing beyond "mm-hmm".
 
-A flat ask is nearly always a specificity problem, and pushing harder won't help. Ask a narrower question from a different angle instead: "What about someone outgoing and sociable, in their 30s?" A different angle can bring a different person to mind.
+A flat ask is nearly always a specificity problem, and pushing harder won't help. Ask a narrower question from a different angle instead: "What about someone outgoing and sociable, in their 30s?"
 
 ## The honest timeline: "when will you follow up?"
 
-Most FCs finish the ask with "great, text me when you think of someone." That text rarely arrives. Close with a timeline you set yourself:
+The usual close is "great, text me when you think of someone," and that text rarely arrives. Close with a timeline you set yourself:
 
 > "Great. Could you check with those two in the next couple of days whether they're open to a chat? Once they've said yes, I'll get in touch. I'll text you Saturday morning either way."
 
-That line does three jobs:
+The line covers three things:
 
 - It anchors a timeline ("next couple of days"), which gets a faster commitment than "whenever you're free".
 - It names the next step ("check whether they're open to a chat"), which is clearer than "get back to me".

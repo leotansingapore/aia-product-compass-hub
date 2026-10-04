@@ -25,7 +25,7 @@ tags: [next-60-days, week-4, new-fc, market-survey, phone-script, appointment-se
 
 ## What the survey is
 
-A **Market Survey** is a 5-minute call with 4 questions that gives you a legitimate reason to call every name in your warm market. You say what you do upfront, and question 4 asks for the meeting. No pitch, nothing hidden.
+A **Market Survey** is a 5-minute call with 4 questions that gives you a legitimate reason to call every name in your warm market. You say what you do upfront, and question 4 asks for the meeting, so there's no pitch and nothing hidden.
 
 People agree easily to "can I ask you 4 quick questions for a survey?", because everyone knows what a survey is. Five minutes is also an easier yes than asking to meet for an hour. Once it's done, the next step follows naturally: "would you be open to meeting for 30 minutes so I can share what I do?" The answers also show whether this person is ready for a Fact-Find at all.
 
@@ -157,7 +157,7 @@ Use this when the contact is semi-warm (you haven't spoken in six months or more
 
 ## Scripts library
 
-These are the canonical scripts for the Market Survey, plus the texting tools that get you a yes to the call. Practise them out loud, then make them yours.
+These are the canonical scripts for the Market Survey, plus the texting tools that get you a yes to the call. Practise them out loud until you no longer need the page.
 
 ### Market Survey script (the canonical AIA full call)
 Use this when you're running the survey end to end: opening, agenda, 4 questions, the appointment ask in Q4, the binary close (two time slots to choose from), and the 10-objection block at the end.

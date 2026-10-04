@@ -26,7 +26,7 @@ tags: [next-60-days, week-1, new-fc, practice, intro, loom]
 
 ## The 90-second structure
 
-The week has built to one recording: a 90-second intro you could send to anyone in your warm market this weekend, that starts a conversation and doesn't end one.
+The week has built to one recording: a 90-second intro you could send to anyone in your warm market this weekend to start a conversation.
 
 ![The 90-second structure: 1, who you are, about 15 sec; 2, story teaser, about 20 sec; 3, what you do, about 30 sec; 4, easy next step, about 25 sec](/next-60-days/images/n60-day-06-m0.webp)
 
@@ -46,7 +46,7 @@ The week has built to one recording: a 90-second intro you could send to anyone 
 - Use good light and a clean background, and keep earphones out of shot.
 - Put the phone on a tripod or lean it on a stack of books at eye level. Don't hold it.
 - Keep the script out of sight, because you know the beats. Stumbling is fine and you can start again, but reading isn't.
-- Record three takes, and watch each one back before you start the next. You'll catch yourself in the act.
+- Record three takes, and watch each one back before you start the next.
 
 ### Pre-record prep sheet
 
