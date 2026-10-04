@@ -17,7 +17,7 @@ tags: [next-60-days, week-8, new-fc, sales-angles, diagnostic, matching]
 
 **What to remember**
 
-1. Keep a W/R/L/LS tally during the fact-find. The column with the most ticks is probably your primary angle.
+1. Keep a Wealth, Risk, Legacy, Lifestyle (W/R/L/LS) tally during the fact-find. The column with the most ticks is probably your primary angle.
 2. Before the meeting, make a first guess from life stage and DISC, then let the prospect's signals decide.
 3. Pair the primary with a secondary from the same half: Wealth with Lifestyle, or Risk with Legacy.
 4. If their energy drops mid-pitch, pause, ask which matters more to them, and switch.
@@ -143,11 +143,11 @@ Both miss most prospects. A Wealth-minded FC notices Wealth signals because thos
 
 ## Do this today
 
-1. Look at your last 5 pitches. If 4 or more used the same primary angle, your own motivation is probably steering your read of the prospect.
+1. Look at your last 5 pitches. If 4 or more used the same primary angle, your own motivation is probably steering your read of the prospect. Done fewer than 5? Check the ones you have.
 2. Before your next pitch, answer these five:
    1. What primary angle am I using? (Wealth, Risk, Legacy or Lifestyle)
    2. Which 2 or more fact-find signals support it? (Quote them.)
-   3. What secondary angle am I pairing it with? (It must not be the opposite one.)
+   3. What secondary angle am I pairing it with? (Avoid Wealth with Risk.)
    4. What hot-button callback am I using? (Tied to the primary angle.)
    5. Which profile-matched close am I using? (The D, I, S or C close from [Day 41](/learning-track/next-60-days/day/41).)
 

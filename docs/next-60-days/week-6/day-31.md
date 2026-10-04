@@ -17,9 +17,9 @@ tags: [next-60-days, week-6, new-fc, disc, personality, profiles]
 
 **What to remember**
 
-1. Know your own default style first, then match the prospect's style so the same good advice actually lands.
-2. Place people on 2 axes, Thinker or Feeler and Fast or Slow, and you get D, I, S or C.
-3. Commit to a working guess by minute 5, once 3 signals point the same way.
+1. Place people on 2 axes, Thinker or Feeler and Fast or Slow, and you get D, I, S or C.
+2. Commit to a working guess by minute 5, once 3 signals point the same way.
+3. Know your own default style first, then match the prospect's style so the same good advice actually lands.
 4. Connect before you convince: a sincere compliment that fits the profile, then ask, listen and acknowledge.
 
 ## Why this matters now
@@ -35,7 +35,7 @@ DISC gives you a quick guess, in the first few minutes, about how the person acr
 
 ## Where DISC comes from, and what it isn't
 
-DISC traces back to William Moulton Marston, a psychologist who described four patterns of emotional behaviour in his 1928 book Emotions of Normal People. His labels were Dominance, Inducement, Submission and Compliance. Marston never built a test. Industrial psychologists turned his model into questionnaires from the 1940s onwards, and the commercial versions sold today took shape in the 1970s, which is also when the letters picked up the friendlier names you'll see in this course.
+DISC traces back to William Moulton Marston, a psychologist who described four patterns of emotional behaviour in his 1928 book Emotions of Normal People. His labels were Dominance, Inducement, Submission and Compliance. Marston never built a test. Industrial psychologists turned his model into questionnaires from the 1940s onwards. The commercial versions sold today took shape in the 1970s. That's also when the letters picked up the friendlier names you'll see in this course.
 
 Be honest with yourself and with clients about what it is. DISC is a conversation aid that helps you notice style and adjust your delivery. It isn't a validated personality test in the way the Big Five model is, and there's little peer-reviewed evidence that DISC predicts behaviour or buying decisions. Its own publisher doesn't recommend it for hiring. So never tell a client "you're a C" as if it were a diagnosis, and never let a profile guess override what the fact-find tells you.
 
@@ -186,7 +186,7 @@ Rough mapping:
 
 DISC sits inside a wider communication model.
 
-| Layer | Sub-skills | What it does |
+| Layer (number of sub-skills) | Sub-skills | What it does |
 |---|---|---|
 | Connect (5) | Smile, give a sincere compliment, ask about them, listen properly, acknowledge what they said | Lowers the prospect's guard. The first 2 minutes of every meeting. |
 | Convince (1) | Match their logic, using DISC | The same content has to land with four very different people, and this layer is how. All of Week 6. |
@@ -201,7 +201,7 @@ Almost every meeting opens with a compliment, and new FCs usually get it wrong b
 1. Don't rush it. A compliment in the first three seconds sounds scripted, so make it the third or fourth thing you say.
 2. Compliment the person. "Wow, your house is so nice" praises a thing. "You really thought about how to set up this place, it shows" praises them.
 3. Make it personal. Drop "quite friendly", "approachable" and "easygoing", which sound like filler. Say something only this person would recognise: "You handled the [specific situation] way better than I would've."
-4. Fit it to the profile. D and DC profiles like recognition of what they did: results, decisions, calls they made. I and IS profiles like recognition of who they are, such as their energy, warmth or the kind of friend they are. S profiles like recognition of consistency and dependability. C profiles like recognition of their thinking and the care they took.
+4. Fit it to the profile. D and DC profiles (DC means mostly D, with some C) like recognition of what they did: results, decisions, calls they made. I and IS profiles like recognition of who they are, such as their energy, warmth or the kind of friend they are. S profiles like recognition of consistency and dependability. C profiles like recognition of their thinking and the care they took.
 
 A sincere, personal compliment that fits the profile, given early, does more to lower someone's guard than any scripted line. Skip it and the prospect stays guarded, and everything in Days 32 to 35 gets harder.
 
@@ -220,7 +220,7 @@ Most new FCs skip step 5. They hear the answer, nod and move to the next questio
 ## Do this today
 
 1. Take the 4-question self-test and write down your main style and your guess at your secondary one.
-2. Write the one adjustment you'll need most with your opposite profile. A D usually needs to slow down for an S, and an I needs to bring facts for a C.
+2. Write the one adjustment you'll need most with your opposite profile, the one diagonally across the grid (D and S, I and C). A D usually needs to slow down for an S, and an I needs to bring facts for a C.
 3. In your next meeting, note the first 3 signals you see and the profile you commit to by minute 5.
 
 ## Sources

@@ -115,7 +115,7 @@ Something specific gets dealt with there and then. For a general feeling, go on:
 
 > You (Q2): "Let me ask it another way. If the plan were exactly right, would you go ahead today, or would you still want to sit with it?"
 
-A "yes" means there's a specific concern to bring out. Still wanting to sit with it means you ask:
+A "yes" means something about the plan isn't right for them yet, so there's a specific concern to bring out. Still wanting to sit with it means you ask:
 
 > You (Q3): "Help me understand. What would need to be true a week from now, that isn't true today, for you to feel ready?"
 

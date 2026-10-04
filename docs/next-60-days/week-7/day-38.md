@@ -18,7 +18,7 @@ tags: [next-60-days, week-7, new-fc, hot-buttons, questions, surfacing]
 **What to remember**
 
 1. Ask questions that make the prospect picture something specific. "What are your financial goals?" only gets a rehearsed list.
-2. Start from the hot button they raised and map it to one part of the plan. Never start from the product.
+2. Start from the hot button they raised, then map it to the one part of the plan that deals with it.
 3. Write each hot button down the moment it comes up, then quote it back in the pitch with their own numbers.
 4. Press the hot buttons your plan actually fixes, and build the recommendation on real needs.
 
@@ -100,7 +100,7 @@ The numbers must come from their Fact-Find (their spending, their savings) and y
 You can't call back a hot button you didn't write down.
 
 - When one comes up, type 3 words into your notes straight away.
-- Mark it with `**` or `[HB]` so you can find it later.
+- Mark it with `**` or `[HB]`, for hot button, so you can find it later.
 - Go back to those marks when you build the recommendation between the Fact-Find and the presentation.
 
 Example notes from a Fact-Find:
@@ -145,7 +145,7 @@ Only press on a hot button where the product deals with a real concern. If someo
 - C) *"What's your budget?"*
 - D) *"Do you have an existing advisor?"*
 
-**Why:** B goes straight to the loved-ones hot button, and most prospects have never pictured the answer, so the silence after you ask it is the hot button firing. A gets rehearsed answers. B forces a specific picture, and the feeling comes up with it.
+**Why:** "Section 3" is the list of 6 sales hot-button questions. B goes straight to the loved-ones hot button, and most prospects have never pictured the answer, so the silence after you ask it is the hot button firing. A gets rehearsed answers. B forces a specific picture, and the feeling comes up with it.
 
 **Q2. Mapping a hot button to a product benefit means:**
 - A) Finding the product you want to sell and inventing a reason they should want it

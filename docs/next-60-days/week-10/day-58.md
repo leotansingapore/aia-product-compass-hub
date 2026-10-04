@@ -41,7 +41,7 @@ A typical top-producer week runs to about 45 to 50 productive hours, split three
 |---|---|---|
 | New business | 22 to 25 | Prospecting calls, Fact-Finds, pitches, closes |
 | Relationship and referral work | 16 to 18 | Client reviews, onboarding, after-sales touchpoints, referral asks |
-| Systems | 6 to 8 | Admin, the weekly review, CE, mentor time and reading time |
+| Systems | 6 to 8 | Admin, the weekly review, continuing education (CE), mentor time and reading time |
 
 New business brings in this year's income, and relationship work brings in future income through retention and referrals. New FCs tend to spend too long on systems (lots of planning, not enough doing) and too little on relationships, which leaves their book thin by Year 2.
 
@@ -57,7 +57,7 @@ Here's one top-producer week in time blocks.
 - 13:00 to 17:00: more prospecting, appointment setting, text and DM follow-ups
 - 17:00 to 18:00: admin buffer
 
-Before any cold call or text to a number that hasn't given you consent, check it against the Do Not Call Registry, as the PDPA requires.
+Before any cold call or text to a number that hasn't given you consent, check it against the Do Not Call Registry, as the Personal Data Protection Act (PDPA) requires.
 
 ### Tuesday to Thursday: meetings
 
@@ -70,7 +70,7 @@ Before any cold call or text to a number that hasn't given you consent, check it
 
 ### Friday: review and relationships
 
-- 9:00 to 10:00: weekly scorecard review (the CAR numbers from [Day 3](/learning-track/next-60-days/day/3))
+- 9:00 to 10:00: weekly scorecard review (calls, appointments and referrals, the CAR numbers from [Day 3](/learning-track/next-60-days/day/3))
 - 10:00 to 12:00: onboarding touchpoints (Day-7, Day-30 and Day-90 messages and calls)
 - 12:00 to 13:00: lunch and a peer or mentor call
 - 13:00 to 15:00: client review meetings (A-tier check-ins)
@@ -187,7 +187,7 @@ What 62.5 hours a year of professional reading gives you:
 
 1. Put your own week next to the sample schedule. Find the one or two blocks you're missing (usually the Monday calling block or the Friday review) and put them in your calendar from next week.
 2. Fix a 15-minute reading slot at the same time every day: with morning coffee (the business pages and a chapter of a book on advising or selling), on your commute (a podcast or audiobook), or before sleep (a book, not a screen). "I'll read when I can" doesn't work.
-3. On the back of your Day-59 scorecard, write one sentence: "Five years from now, what will keep me caring on a Wednesday in Month 59?" If the answer is "I don't know yet," keep the question and come back to it at Month 12. Plenty of advisers who leave in Years 3 to 5 never found an answer.
+3. On the back of your Day 3 scorecard, which you'll fill in tomorrow, write one sentence: "Five years from now, what will keep me caring on a Wednesday in Month 59?" If the answer is "I don't know yet," keep the question and come back to it at Month 12. Plenty of advisers who leave in Years 3 to 5 never found an answer.
 
 ## Sources
 

@@ -107,7 +107,7 @@ It works because the prospect sees that people at a similar stage made the same 
 
 It goes wrong in three ways:
 
-- Names, initials or details that identify a real client. That's another client's personal data, and the PDPA doesn't let you share it for your own marketing.
+- Names, initials or details that identify a real client. That's another client's personal data, and the Personal Data Protection Act (PDPA) doesn't let you share it for your own marketing.
 - Inventing cases, or saying "dozens" when you have four.
 - Talking about returns, payouts or other clients' results. Financial marketing restricts testimonials and past results because they suggest an outcome nobody can promise.
 
@@ -203,7 +203,7 @@ A healthy 60-minute meeting has 3 to 5 trial closes, 1 main close, the paper-fli
 - C) Scarcity
 - D) "Only use it with high-net-worth prospects" (correct)
 
-**Why:** Cialdini's principles are reciprocity, commitment and consistency, social proof, authority, liking and scarcity, with unity added in 2016. Scarcity is on the list, but it's the easiest one to fake, so leave it out unless a real deadline exists. D is a misconception, and the paper-flip works across prospect segments.
+**Why:** Cialdini's principles are reciprocity, commitment and consistency, social proof, authority, liking and scarcity, with unity added in 2016. Scarcity is on the list, but it's the easiest one to fake, so leave it out unless a real deadline exists. Option D is a misconception, and the paper-flip works across prospect segments.
 
 **Q7. A direct main close like *"Shall we start the application?"* fits which profile best?**
 - A) D (decisive) (correct)
@@ -211,7 +211,7 @@ A healthy 60-minute meeting has 3 to 5 trial closes, 1 main close, the paper-fli
 - C) S
 - D) C
 
-**Why:** A direct, assumptive ask suits a D, who likes decisive momentum. An I usually wants a warm summary first, an S tends to prefer the choice close because it leaves them in control, and a C usually wants the procedural close from Day 41, where every next step is laid out in order.
+**Why:** A direct, assumptive ask suits a D, who likes decisive momentum. An I usually wants a warm summary first, an S tends to prefer the choice close because it leaves them in control, and a C usually wants the summary close with the numbers recapped, so they can see the logic.
 
 ## Related
 

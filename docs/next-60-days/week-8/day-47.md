@@ -144,7 +144,7 @@ Paint the future so they can see themselves in it, with names, places and years.
 
 - Weak: "You'll have a comfortable retirement."
 - Stronger: "You'll be 62, you and Ruth, finally taking the three-month Europe trip you've been putting off for 5 years."
-- Strongest, with the CPF numbers: "Based on your CPF estimate, CPF LIFE pays you about $1,780 a month from 65. The illustration shows this plan adding about $2,200 a month at the higher illustrated rate, less at the lower rate, and that part isn't guaranteed. Add the SRS withdrawals we planned and you're close to the $4,500 a month you mapped out. That covers the Europe trip in year 1, Tokyo in year 3, helping Sarah with her flat in year 5, and a buffer for medical costs the whole way through."
+- Strongest, with the CPF numbers: "Based on your CPF estimate, CPF LIFE pays you about $1,780 a month from 65. The illustration shows this plan adding about $2,200 a month at the higher illustrated rate, less at the lower rate, and that part isn't guaranteed. Add the Supplementary Retirement Scheme (SRS) withdrawals we planned and you're close to the $4,500 a month you mapped out. That covers the Europe trip in year 1, Tokyo in year 3, helping Sarah with her flat in year 5, and a buffer for medical costs the whole way through."
 
 The third version ties the lifestyle to their actual CPF figure and to moments they told you about in the fact-find. It keeps guaranteed and projected money apart, which is what makes it honest. Use it when the prospect is 50 or older and their CPF position is on the table.
 
@@ -187,13 +187,13 @@ A 40-page brochure makes people glaze over, while one diagram of their own situa
 
 ### Product presenters (go through each once)
 
+The core plans to know by heart: APA (AIA Pro Achiever), PLP (AIA Pro Lifetime Protector), PWV (AIA Platinum Wealth Venture), HSG (AIA HealthShield Gold Max), PA, GPP, UCC (AIA Ultimate Critical Cover) and SFT (AIA Secure Flexi Term).
+
 1. [APA: Long-Term Investment Illustrator](https://present.themoneybees.co/long-term-investment-illustrator)
 2. [PLP: Hybrid Investment Plan](https://present.themoneybees.co/hybrid-investment-plan)
 3. [HSG: HealthShield Gold Max Illustrator](https://present.themoneybees.co/healthshield-gold-max-illustrator)
 4. [PWV: 5-Year Investing Plan](https://present.themoneybees.co/5-year-investing-plan/premium) · [CPF LIFE Estimator](https://present.themoneybees.co/cpf-life-estimator) · [Retirement Funding Calculator](https://present.themoneybees.co/retirement-funding-calculator)
 5. [Total Wealth Concept](https://present.themoneybees.co/total-wealth-concept/twfps)
-
-The core plans to know by heart: APA, PLP, PWV, HSG, PA, GPP, UCC, SFT.
 
 ### Core decks to get access to and learn
 
@@ -204,7 +204,7 @@ The core plans to know by heart: APA, PLP, PWV, HSG, PA, GPP, UCC, SFT.
 
 ### Policy summary workflow
 
-1. Ask Aira to create a policy-summary template in your [Policy Summaries GC](https://nsgukkz32942.sg.larksuite.com/wiki/Ngepw1tzGi79u4kEEUQlVHwagwg).
+1. Ask Aira to create a policy-summary template in your [Policy Summaries GC](https://nsgukkz32942.sg.larksuite.com/wiki/Ngepw1tzGi79u4kEEUQlVHwagwg). GC means group chat.
 2. Learn from [these tutorials](https://nsgukkz32942.sg.larksuite.com/wiki/SyDgwo8z1iPMgukezzolxHZ2gOP).
 3. Ask a warm contact whether you can review their policy documents. Get their permission in writing, and make sure it covers the team seeing an anonymised copy. Remove their name, NRIC, address and policy numbers before anything goes into a group chat. Then draft a summary and send it to the onboarding GC for review and a portfolio strategy.
 

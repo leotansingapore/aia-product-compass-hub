@@ -38,7 +38,7 @@ Aim for 8 to 15 minutes. Under 8 you can't fit in feature-to-benefit, the hot-bu
 
 ### Live, with a prospect
 
-- Ask the prospect's permission before you record anything, and record openly, never hidden. A recording of an identifiable person is their personal data under the PDPA, so tell them what it's for (your own training review with your mentor), keep it secure and delete it once you've reviewed it. Check your office's policy on recording client meetings too.
+- Ask the prospect's permission before you record anything, and record openly, never hidden. A recording of an identifiable person is their personal data under the Personal Data Protection Act (PDPA), so tell them what it's for (your own training review with your mentor), keep it secure and delete it once you've reviewed it. Check your office's policy on recording client meetings too.
 - If they'd rather not be recorded, that's fine. Take notes during the meeting, then record a 10-minute video debrief straight afterwards covering what you did, where you adjusted, and what worked and what didn't.
 - Either way counts.
 
@@ -69,7 +69,7 @@ Watch the recording twice, first for the flow of the whole pitch and then for th
 2. Tonality ([Day 5](/learning-track/next-60-days/day/5)). Did you use the right tone on the sentences that carry the most weight: certainty when you framed the problem, reason on the close, empathy at the hot-button moments?
 3. DISC match (Weeks 6 to 7). Did your pace, energy and content suit the prospect's profile? With a C, was the pitch built on data? With an S, did it give them reassurance?
 4. Hot-button callback ([Day 38](/learning-track/next-60-days/day/38)). Did you quote something the prospect said earlier, like "When I was putting this together, I kept coming back to what you said about [X]"?
-5. Angle clarity ([Days 45](/learning-track/next-60-days/day/45) to 46). Can you name the primary angle (W, R, L or LS) and the secondary? Could you see both in the recording?
+5. Angle clarity ([Days 45](/learning-track/next-60-days/day/45) to 46). Can you name the primary angle (Wealth, Risk, Legacy or Lifestyle) and the secondary? Could you see both in the recording?
 6. Feature-to-benefit ([Day 47](/learning-track/next-60-days/day/47)). Did every feature turn into a personal benefit tied to their hot button, or did you read out features?
 7. Close ([Day 41](/learning-track/next-60-days/day/41)). Did the close suit the profile: assumptive for a D, reassurance for an I, procedural for an S or C? Did you both put the specific next step in your calendars?
 8. Silence ([Day 44](/learning-track/next-60-days/day/44)). Did you hold 5 to 10 seconds of silence after loaded questions, or did you fill the pauses?

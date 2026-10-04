@@ -126,7 +126,7 @@ Seven habits a C brings:
 3. They need to be right, so if you contradict them, do it gently and with data.
 4. They can use rigour as cover: a C can justify hesitating by calling it thoroughness. Sometimes you need to gently push back: "I hear that you want more data. What would be enough? Some things we'll only find out once we start."
 5. They sound negative, but they raise downsides because they're seriously considering the plan, so don't read the tone as a no or take it personally.
-6. They guard their own field, so if they're an engineer, they know engineering maths, so respect that.
+6. They guard their own field. If they're an engineer, they know engineering maths, so respect that.
 7. They miss feelings: they often don't pick up emotional signals, so don't assume they noticed your change in tone.
 
 ## Common C objections and how to answer
@@ -162,11 +162,11 @@ It's structured and led by data, with the assumptions named upfront and a compar
 
 A C genuinely needs time to research, compare and check. The procedural part gives them a process, and the follow-up sets a decision point 7 to 14 days out, so you're helping their analysis instead of fighting it.
 
-Don't use an assumptive close with a C. It feels pushy and sends them back to analysing from scratch, which can lose the deal for good. Avoid urgency too ("sign today or lose the rate"), because a C reads it as sloppy.
+Don't use an assumptive close with a C, where you go straight to the paperwork as if they've said yes. It feels pushy and sends them back to analysing from scratch, which can lose the deal for good. Avoid urgency too ("sign today or lose the rate"), because a C reads it as sloppy.
 
 ## Do this today
 
-1. Write the two assumptions behind your usual recommendation, the ones a C would ask about.
+1. Take this week's sample recommendation and write the two assumptions behind it that a C would ask about, such as the illustrated rate the savings figures rely on.
 2. Practise the downside-first walk-through using a real benefit illustration: lower rate, guaranteed values, then the higher rate.
 
 ## Sources
@@ -183,7 +183,7 @@ Don't use an assumptive close with a C. It feels pushy and sends them back to an
 - C) *"Trust me lah, this is the best plan out there"*
 - D) *"Let me tell you why I love this product"*
 
-**Why:** A C looks at the downside first, so starting there shows you've already thought about what could go wrong. A falls flat, C damages trust with a claim you can't back up, and D is about your feelings with nothing behind it.
+**Why:** A C looks at the downside first, so starting there shows you've already thought about what could go wrong. Option A's story falls flat, option C damages trust with a claim you can't back up, and option D is about your feelings with nothing behind it.
 
 **Q2. If you realise mid-meeting that you misstated a fact to a C, you should:**
 - A) Hope they didn't notice and move on
@@ -223,7 +223,7 @@ Don't use an assumptive close with a C. It feels pushy and sends them back to an
 - C) Can be improvised for emphasis
 - D) Should be memorised word for word
 
-**Why:** A C checks claims, and improvising (C) gets caught. The honest *"I don't have that with me, I'll email it by Monday"*, followed by actually sending it, builds more trust than any improvised answer.
+**Why:** A C checks claims, and improvising (option C) gets caught. The honest *"I don't have that with me, I'll email it by Monday"*, followed by actually sending it, builds more trust than any improvised answer.
 
 **Q7. A C sounds pessimistic and negative. The right way to read that is:**
 - A) They're not interested

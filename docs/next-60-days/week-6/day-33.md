@@ -149,7 +149,7 @@ An I likes to know others have made the same choice and that you're on their sid
 
 Keep the reassurance true. "Trust me lah, this is the best plan out there" sets off an I's own over-promising alarm, and "best plan" or "best-selling" is an unsupported claim under MAS fair dealing expectations unless you can show the figures.
 
-Avoid procedural closes with an I (too dry, they tune out halfway). Be careful with assumptive closes too. Use one only after a clear verbal yes, because even an I feels pressured if it comes too early.
+Avoid procedural closes with an I, where you walk through each step in order. They're too dry, and an I tunes out halfway. Be careful with assumptive closes too, where you go straight to the paperwork as if they've said yes. Use one only after a clear verbal yes, because even an I feels pressured if it comes too early.
 
 ## Do this today
 
@@ -177,7 +177,7 @@ Avoid procedural closes with an I (too dry, they tune out halfway). Be careful w
 - C) Stories: a person, a situation, what happened, what changed (correct)
 - D) Risk analyses and worst-case scenarios
 
-**Why:** An I engages with feelings before logic, and a story gets their empathy and imagination going. Data and specs (A and B) are C-profile moves, and worst-case scenarios (D) are D-profile moves. For an I, tell a true story, then show how it applies to them.
+**Why:** An I engages with feelings before logic, and a story gets their empathy and imagination going. Data and specs (options A and B) are C-profile moves, and worst-case scenarios (option D) are D-profile moves. For an I, tell a true story, then show how it applies to them.
 
 **Q3. An I says *"Let me think about it."* The most likely reason is:**
 - A) They're analysing the numbers

@@ -233,7 +233,7 @@ For the last three prospects you met, note their signals and the primary and sec
 - C) *"When I'm gone..."*
 - D) *"I've always wanted to do a 3-month Europe trip"*
 
-**Why:** A points to Risk, C to Legacy and D to Lifestyle. Return questions, benchmark comparisons and on-the-spot maths all point to Wealth. Spot them early in the fact-find and you can plan the angle before the recommendation meeting.
+**Why:** Option A points to Risk, option C to Legacy and option D to Lifestyle. Return questions, benchmark comparisons and on-the-spot maths all point to Wealth. Spot them early in the fact-find and you can plan the angle before the recommendation meeting.
 
 **Q5. A pitch to a 55-year-old pre-retiree with stable assets most naturally leads with:**
 - A) Wealth, with a long compounding curve
@@ -241,7 +241,7 @@ For the last three prospects you met, note their signals and the primary and sec
 - C) Legacy or Lifestyle, because the building-up years are mostly behind them and the focus moves to passing money on or using it (correct)
 - D) Cold outreach scripts
 
-**Why:** A 25-year compounding curve assumes time they don't have, and Risk is less pressing once the finances are stable. Legacy (what goes to the family) or Lifestyle (what the money pays for in retirement) are the natural leads. The life-stage and DISC matrix gives you a first guess, and the fact-find confirms it.
+**Why:** A 25-year compounding curve assumes time they don't have, and Risk is less pressing once the finances are stable. Legacy (what goes to the family) or Lifestyle (what the money pays for in retirement) are the natural leads. The life-stage and DISC matrix in Day 46 gives you a first guess, and the fact-find confirms it.
 
 **Q6. The Lifestyle opener starts with *"Earlier you said you'd love to do that three-month trip around Europe with your wife..."*. Why open like that?**
 - A) Lifestyle pitches require specific examples

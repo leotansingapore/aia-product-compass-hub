@@ -199,7 +199,7 @@ If one of the 3 doesn't qualify (a repeated profile, or no clear hot button), ba
 - C) Walk slowly through assurances about the plan
 - D) Present a structured agenda first
 
-**Why:** A D gets the bottom line first. A warm story (A) is an I opening, slow reassurance (C) is an S opening, and a structured agenda (D) is a C opening. The hot button (retire at 50) goes into the first sentence, so the profile match and the callback land together and the pitch opens with momentum.
+**Why:** A D gets the bottom line first. Option A's warm story is an I opening, option C's slow reassurance is an S opening, and option D's structured agenda is a C opening. The hot button (retire at 50) goes into the first sentence, so the profile match and the callback land together and the pitch opens with momentum.
 
 **Q6. "No two pitches share both profile AND hot button". Why this rule?**
 - A) It's a paperwork requirement

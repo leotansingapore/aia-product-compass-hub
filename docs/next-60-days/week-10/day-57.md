@@ -45,7 +45,7 @@ Touchpoints fall into four types, and a good year uses all of them.
 
 | Type | What it is | How often |
 |---|---|---|
-| Review | Portfolio reviews, annual check-ins, and formal meetings where you go through the client's plan and talk about changes | At least once or twice a year, and quarterly for A-tier clients (the ABC tiers from [Day 3](/learning-track/next-60-days/day/3)) |
+| Review | Portfolio reviews, annual check-ins, and formal meetings where you go through the client's plan and talk about changes | At least once or twice a year, and quarterly for A-tier clients (the ABC tiers from [Day 3](/learning-track/next-60-days/day/3): A has a strong relationship and strong buying power, B has one of those, C bought once) |
 | Value | Articles, videos and short summaries you send because this particular client will find them useful, with no sales angle. A newsletter blast doesn't count. | 4 to 6 a year, light and picked for the person |
 | Celebration | Birthdays, anniversaries, promotions, a new baby, a new home, a graduation, acknowledged personally | As they happen, usually 2 to 4 a year per client |
 | Reach-out | Following up on life events: a parent's illness a week later, layoffs in their industry, settling into a new house | As things come up, 1 to 3 a year. These often mean the most because nobody expects them. |
@@ -100,7 +100,7 @@ You won't remember to do any of this without a system. Set up a few simple remin
 - After every Fact-Find: note 2 or 3 personal details the client chose to share (family, interests, what's worrying them) in your CRM with dates.
 - Quarterly: go through your A-tier clients. Has each one heard from you in the past 30 days? If not, who needs a reach-out?
 
-Those notes are personal data, so handle them under the PDPA. Record only what the client told you, keep it in AIA's approved systems, use it to look after that client, and never pass one client's details to another. If a client asks what you hold about them, you should be able to show them.
+Those notes are personal data, so handle them under the Personal Data Protection Act (PDPA). Record only what the client told you, keep it in AIA's approved systems, use it to look after that client, and never pass one client's details to another. If a client asks what you hold about them, you should be able to show them.
 
 Without it, you'll do three thoughtful things in your first month and then forget.
 
@@ -137,7 +137,7 @@ One well-handled recovery conversation often rebuilds more goodwill than five ro
 
 ## Do this today
 
-1. Sort your clients and warm contacts into A, B and C tiers.
+1. Sort your clients into A, B and C tiers (the Day 3 tags).
 2. Set the four calendar reminders above.
 3. Fill in a 12-month cadence for one B-tier client, with real dates.
 

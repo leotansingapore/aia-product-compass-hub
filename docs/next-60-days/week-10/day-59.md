@@ -104,7 +104,7 @@ It's less common, but it happens. You projected low because you didn't know what
 
 ## The CAR diagnostic over 60 days
 
-Apply the CAR framework (Days 3, [23](/learning-track/next-60-days/day/23) and [29](/learning-track/next-60-days/day/29)) to the whole 60-day window. The thresholds below are the team's rules of thumb.
+Apply the CAR framework of calls, appointments and referrals (Days 3, [23](/learning-track/next-60-days/day/23) and [29](/learning-track/next-60-days/day/29)) to the whole 60-day window. The thresholds below are the team's rules of thumb.
 
 | Link | Healthy | Bottleneck |
 |---|---|---|
@@ -121,7 +121,7 @@ If closing is the weak spot, find the step where it leaks.
 1. Are Fact-Finds leading to qualified pitches? If most Fact-Finds never get to a pitch, you're not finding what the prospect cares about. Go back to [Day 38](/learning-track/next-60-days/day/38) (hot buttons II) and [Day 44](/learning-track/next-60-days/day/44) (silence).
 2. Are pitches leading to commitment? If prospects say yes in the meeting and then don't follow through, the close may not suit their profile. Go back to [Day 41](/learning-track/next-60-days/day/41), where the four closes are matched to DISC profiles.
 3. Are objections ending the conversation? If prospects object and the meeting stalls there, objection handling is the gap. Go back to [Days 52](/learning-track/next-60-days/day/52) and [53](/learning-track/next-60-days/day/53).
-4. Do deferred decisions ever come back? If "let me think about it" turns into never hearing from them again, you're missing the follow-up close. Go back to Day 41 (the follow-up close) and [Day 17](/learning-track/next-60-days/day/17) (CRAB).
+4. Do deferred decisions ever come back? If "let me think about it" turns into never hearing from them again, you're missing the follow-up close. Go back to Day 41 (the follow-up close) and [Day 17](/learning-track/next-60-days/day/17) (CRAB: Care, Reason, Alleviate, Book).
 
 Find the step that leaks most, and put Month 3's practice there.
 

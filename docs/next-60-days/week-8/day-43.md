@@ -56,7 +56,7 @@ A well-built question can do any of these jobs:
 9. Get them to reflect, so their own situation becomes the evidence
 10. Test readiness (a trial close) without asking for commitment
 
-A statement usually does one or two of these. Neil Rackham's SPIN Selling (1988), built on 12 years of research into 35,000 sales calls, is at heart a sequence of four kinds of question.
+A statement usually does one or two of these. Neil Rackham's SPIN Selling (1988), built on 12 years of research into 35,000 sales calls, is at heart a sequence of four kinds of question: Situation, Problem, Implication and Need-Payoff.
 
 ## The 6 golden rules
 

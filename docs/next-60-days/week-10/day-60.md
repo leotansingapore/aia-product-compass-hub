@@ -147,7 +147,7 @@ Treat it as an operating rule you follow every day:
 
 The last call of any block is the cheapest one you'll make. You're warmed up, you're already at the desk, and the hard part of starting is behind you.
 
-The maths: one extra call a day over 250 working days is 250 extra calls a year. If it takes you around 150 calls to close a case (use your own ratio from Day 59), that's close to 2 extra cases a year, and about 34 over a 20-year career, from one daily habit.
+The maths: one extra call a day over 250 working days is 250 extra calls a year. If it takes you around 150 calls to close a case (use your own ratio from Day 59), that's close to 2 extra cases a year, and about 33 over a 20-year career, from one daily habit.
 
 ## Graduation
 

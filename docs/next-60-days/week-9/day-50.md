@@ -174,7 +174,7 @@ The close is also where onboarding starts, and Week 10 picks up from here. Movin
 - C) The client's health, where a delay could change underwriting
 - D) *"This offer is only for people who decide today"*, with nothing real behind it (correct)
 
-**Why:** A, B and C are real facts outside your control that make now better than later. D is invented scarcity. Prospects, and C profiles especially, spot it quickly, and trust goes when they do.
+**Why:** Options A, B and C are real facts outside your control that make now better than later. Option D is invented scarcity. Prospects, and C profiles especially, spot it quickly, and trust goes when they do.
 
 **Q6. The urgency close backfires most often on:**
 - A) D profiles

@@ -45,7 +45,7 @@ Many people have second thoughts in the first week or two ("did I really need th
 
 This also sits inside the free-look period. In Singapore every life policy comes with 14 days, counted from when the client receives the policy document, to review it and cancel for a refund of premiums, less some costs such as medical examination fees. The Day-7 touch is there to answer questions and make sure they understand what they bought. If they're having real doubts, go through them honestly. Never talk them out of using the free-look period, because that right exists for them.
 
-Hold any referral ask until Day 30. Send it by text or email, and keep it short and warm:
+At most, plant a light referral seed here; the actual ask waits for Day 30. Send it by text or email, and keep it short and warm:
 
 > You: "Hi [name], quick one - your policy is confirmed and in force. AIA will send you the policy document, and you've got 14 days from receiving it to read through everything. If anything doesn't sit right or doesn't make sense, just tell me and we'll go through it together. I'll check in properly at the end of the month, and drop me a note anytime before that."
 
@@ -142,7 +142,7 @@ Build your one-page onboarding checklist now. Right after your first close there
 
 - [ ] Confirm the policy is in force and that they understand what they bought
 - [ ] Ask about any changes in their life over the past month
-- [ ] First referral ask, using the FACT Method, kept light and warm
+- [ ] First referral ask, using the FACT Method from [Day 28](/learning-track/next-60-days/day/28), kept light and warm
 - [ ] Book the Day-90 review
 
 ### Days 30 to 90
@@ -225,7 +225,7 @@ Use this when a claim for this client has been paid. It's the moment of highest 
 - C) *"I'll make sure AIA has every document and report it needs, all fully disclosed, and if the answer disappoints we'll look at a review together. No guarantees, but I'll do my best."* (correct)
 - D) Refer them to a different advisor
 
-**Why:** This is the fighter posture, V3 from Day 26. V1 abandons the client, V2 is flat and forgettable, and D breaks the relationship. V3 commits your full effort without promising a result, and the effort goes into complete, honest paperwork. If the insurer still declines, you explain the reasons and the route to FIDReC. Clients remember who stood by them in the hard moment.
+**Why:** This is the fighter posture, V3 from Day 26. V1 abandons the client, V2 is flat and forgettable, and option D breaks the relationship. V3 commits your full effort without promising a result, and the effort goes into complete, honest paperwork. If the insurer still declines, you explain the reasons and the route to FIDReC. Clients remember who stood by them in the hard moment.
 
 **Q4. The 3 onboarding touchpoint moments are Day 7, Day 30, Day 90. The specific purpose of each is:**
 - A) Day 7 referral ask, Day 30 upsell, Day 90 review

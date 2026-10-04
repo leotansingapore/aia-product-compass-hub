@@ -134,7 +134,7 @@ A D's objections come sharper and faster than other profiles'. Three you'll hear
 
 ## The D pitch: same plan, different framing
 
-The recommendation stays the same all week: $500K CI cover plus a $500-a-month savings plan. For a D, you open with the bottom line.
+The sample recommendation stays the same for all four profiles, Days 32 to 35: $500K CI cover plus a $500-a-month savings plan. For a D, you open with the bottom line.
 
 ### D opening (90 seconds)
 
@@ -154,12 +154,12 @@ Once a D has clearly agreed to the recommendation, skip the "so will you?" step 
 
 This fits because a D expects things to keep moving, and assumptive language treats the decision as made. Only use it after the fact-find, once they've actually said yes. The client still gets the product summary and benefit illustration, and still hears the key terms explained before signing. Being brisk with a D never means skipping those.
 
-Avoid procedural closes with a D (too slow) and long reassurance (it sounds like you're hedging). Use a follow-up close only as a last resort, because a D who was pitched well usually decides in the meeting.
+Avoid procedural closes with a D, where you walk through each step in order, because they're too slow. Long reassurance sounds like you're hedging. Use a follow-up close, booking a second meeting to decide, only as a last resort, because a D who was pitched well usually decides in the meeting. [Day 41](/learning-track/next-60-days/day/41) covers all four closes.
 
 ## Do this today
 
 1. Say the D opening out loud, timed. Get it under 90 seconds without rushing.
-2. Rewrite your three most-used hedged phrases as a recommendation followed by the trade-off.
+2. Write down three hedged phrases you catch yourself using, like "maybe", "it depends" or "we could consider". Rewrite each as a recommendation followed by the trade-off.
 
 ## Sources
 
@@ -174,7 +174,7 @@ Avoid procedural closes with a D (too slow) and long reassurance (it sounds like
 - C) Frowning when thinking, process-oriented questions, detailed note-taking
 - D) Shy posture, soft voice, agreeable answers
 
-**Why:** A describes an I, C describes a C and D describes an S. D signals are about speed, directness and results. If you're looking, you'll notice them almost at once: they walk in with momentum and ask *"so what do we need to decide today?"* in the first 2 minutes.
+**Why:** Option A describes an I, option C a C profile and option D an S. D signals are about speed, directness and results. If you're looking, you'll notice them almost at once: they walk in with momentum and ask *"so what do we need to decide today?"* in the first 2 minutes.
 
 **Q2. The worst move you can make with a D after they've said *"okay, let's do it"* is:**
 - A) Move to the next step immediately
@@ -190,7 +190,7 @@ Avoid procedural closes with a D (too slow) and long reassurance (it sounds like
 - C) Explain why thoroughness matters
 - D) Offer to reschedule
 
-**Why:** A ignores what they told you, C defends a process the D doesn't care about, and D stops the meeting cold. With B you take the feedback seriously, shrinking the rest of the agenda to what matters and offering email for everything else, which is the kind of pace change a D respects.
+**Why:** Option A ignores what they told you, option C defends a process the D doesn't care about, and option D stops the meeting cold. With B you take the feedback seriously, shrinking the rest of the agenda to what matters and offering email for everything else, which is the kind of pace change a D respects.
 
 **Q4. A D runs out of patience quickly. In the first few minutes of a meeting, the D is judging:**
 - A) How much you'd charge per hour
@@ -222,7 +222,7 @@ Avoid procedural closes with a D (too slow) and long reassurance (it sounds like
 - C) End the meeting
 - D) Apologise profusely
 
-**Why:** A D's outburst is usually about whatever they're impatient with, like a policy, a delay or some red tape, and matching their volume only makes it worse. Stay calm and it blows over, and the D often carries on as if nothing happened. Apologising for something you didn't cause (D) comes across as weak and costs you some of the trust you've built.
+**Why:** A D's outburst is usually about whatever they're impatient with, like a policy, a delay or some red tape, and matching their volume only makes it worse. Stay calm and it blows over, and the D often carries on as if nothing happened. Apologising for something you didn't cause (option D) comes across as weak and costs you some of the trust you've built.
 
 ## Related
 

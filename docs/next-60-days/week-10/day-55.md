@@ -41,7 +41,7 @@ Restructuring reorganises what they already have so it works better for them. It
 | Premium | What it costs per dollar of cover, how long it has to be paid, whether it's level or stepped |
 | Sum assured | How much, to what age, and whether there are multipliers or indexing |
 | Cash value | Whether it's building cash value, how much so far, the surrender value today and what the illustration shows at later ages |
-| Benefits | Core cover (death, TPD, CI at early, intermediate or major stage), riders (hospitalisation, accident, premium waiver), flexibility (withdrawals, premium holidays, conversion options) |
+| Benefits | Core cover (death, total and permanent disability (TPD), CI at early, intermediate or major stage), riders (hospitalisation, accident, premium waiver), flexibility (withdrawals, premium holidays, conversion options) |
 
 Collect all 4 before you recommend anything. New FCs often restructure on premium alone and miss the cash value, which is usually where the ethics go wrong.
 
@@ -92,11 +92,17 @@ The client has $200K of CI cover bought in 2014. They're now 42 with two kids, a
 
 The client bought a large whole-life at 25, when they were single. At 55 they're financially independent with no dependants, so the death cover they've paid for over 30 years isn't doing much, while the surrender value is substantial. Making the policy paid-up, or taking a partial surrender, is a legitimate fix here. It frees up capital, keeps some cover and stops premiums they no longer need to pay.
 
-The pre-retiree version adds a CPF trigger. Say the same client has just turned 55 in 2026 and has more than the Full Retirement Sum of $220,400 in CPF. Once the FRS is set aside in the Retirement Account, they can withdraw the OA savings above it. That money can also stay in CPF, earning 2.5% risk-free in the OA plus extra interest on the first $60,000 of combined balances, which is a sound option in its own right. So the conversation is about choices, shown side by side:
+The pre-retiree version adds a CPF trigger. Say the same client has just turned 55 in 2026 and has more than the Full Retirement Sum (FRS) of $220,400 in CPF. Once the FRS is set aside in the Retirement Account, they can withdraw the Ordinary Account (OA) savings above it. That money can also stay in CPF, earning 2.5% risk-free in the OA plus extra interest on the first $60,000 of combined balances, which is a sound option in its own right. So the conversation is about choices, shown side by side:
 
 > You: "You've got two pots of money worth a look. One is the cash value in this old whole-life, which was bought for a stage of life you're past. The other is the OA savings above your Full Retirement Sum. You can take that out now or leave it in CPF, and leaving it is a perfectly good answer. What I'd like to do is lay out what each option pays you from 65, the guaranteed part and the non-guaranteed part, so you can decide with the full picture."
 
-This is legitimate when the whole-life genuinely no longer fits, the client has a retirement income gap you can put a number on, and the new plan closes that gap. It becomes churning in three situations: someone still depends on the death benefit; you skip what the client gives up by taking money out of CPF (lower CPF LIFE payouts and lost risk-free interest); or the new premium eats both pots and leaves no buffer. Show the full maths and let the client decide.
+This is legitimate when the whole-life genuinely no longer fits, the client has a retirement income gap you can put a number on, and the new plan closes that gap. It becomes churning in three situations:
+
+- someone still depends on the death benefit
+- you skip what the client gives up by taking money out of CPF (lower CPF LIFE payouts and lost risk-free interest)
+- the new premium eats both pots and leaves no buffer
+
+Show the full maths and let the client decide.
 
 ### Case C: scattered plans (helps)
 

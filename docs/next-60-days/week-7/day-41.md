@@ -173,7 +173,7 @@ A longer version that deals with an objection:
 
 > You: "Jenny, I understand the hesitation. Your job situation is uncertain, and that's real. So let's check this properly before anything else. You told me your savings cover about six months of expenses, and this premium is $150 a month. If you'd rather not commit that right now, we can start with a smaller amount of cover and add more once work settles. What matters is closing the biggest gap without stretching you. Which feels right?"
 
-Suits I and S, who both decide with emotional confirmation. Don't use it on a D (too long), and with a C only when the reassurance comes with numbers, such as the figures in the benefit illustration.
+Suits I and S, who both decide with emotional confirmation. Don't use the longer version on a D, who finds it too long, and with a C use it only when the reassurance comes with numbers, such as the figures in the benefit illustration.
 
 Check affordability properly. A plan the client can't keep paying fails them, and MAS expects your recommendation to fit their finances. Don't claim a plan is the best, the most popular or a bestseller unless you have published figures to back it.
 
@@ -196,7 +196,7 @@ For the follow-up itself:
 ## Do this today
 
 1. Write down the 3 hedged phrases you catch yourself using most, with the direct version beside each.
-2. Pick your three pitches for this week's KPI. For each, note the prospect's DISC profile, the close you'll use, and the close you'll avoid.
+2. Pick the 3 prospects you'll pitch for this week's KPI. For each, note the prospect's DISC profile, the close you'll use, and the close you'll avoid.
 3. Write your transition line and say it out loud until it comes out naturally.
 
 ## Sources
@@ -238,7 +238,7 @@ For the follow-up itself:
 - C) Procedural + Follow-up: walk through the process and book a specific follow-up meeting to close (correct)
 - D) Urgency, tell them the offer expires Friday
 
-**Why:** C's genuinely need time to research, and pushing breaks their process and loses the deal. The best close for a C supports their analysis (Procedural, with the data) and books a follow-up within 3 days, so they get their time and you have a fixed date. Invented urgency (D) is the fastest way to lose a C, and it's a pressure tactic you shouldn't use on anyone.
+**Why:** C's genuinely need time to research, and pushing breaks their process and loses the deal. The best close for a C supports their analysis (Procedural, with the data) and books a follow-up within 3 days, so they get their time and you have a fixed date. Invented urgency (option D) is the fastest way to lose a C, and it's a pressure tactic you shouldn't use on anyone.
 
 **Q5. The Assumptive Position differs from the Assumptive Close because:**
 - A) They're the same thing

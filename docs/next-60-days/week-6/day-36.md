@@ -30,7 +30,7 @@ tags: [next-60-days, week-6, new-fc, practice, disc, roleplay, loom]
 
 You've learned 4 profiles. Today you show, on camera, that you can actually switch between them.
 
-The camera is the only way to check whether your delivery matched the profile you had in mind. In your head you know the D opener should be faster. On tape you'll hear whether you really cut 30% off your pace or barely changed at all.
+The camera is the only way to check whether your delivery matched the profile you had in mind. In your head you know the D opener should be faster. On tape you'll hear whether you really sped up by 15 to 20% or barely changed at all.
 
 Many new FCs are surprised by how little their delivery changes from one profile to the next. That's useful to find out: the tape shows you the gap, and Week 7 trains you to close it.
 
@@ -155,7 +155,7 @@ If Sunday 6pm arrives and you're short, get 4 real videos done before you polish
 - C) Have no effect on the exercise
 - D) Make you worse at all 4 profiles
 
-**Why:** The profile you are is the one you deliver most naturally. An I-profile FC will do the I roleplay well and then struggle with the C, because slow, data-led delivery feels foreign. Knowing your own main profile tells you which 3 adjustments to train. The easiest roleplay needs little practice, and the hardest one gets priority.
+**Why:** The profile you are is the one you deliver most naturally. An I-profile FC will do the I roleplay well and then struggle with the C, because slow, data-led delivery feels foreign. Knowing your own main profile tells you which of the other 3 profiles need the most practice. The easiest roleplay needs little practice, and the hardest one gets priority.
 
 **Q3. Week 7 unlocks when you submit:**
 - A) A closed case

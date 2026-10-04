@@ -104,7 +104,7 @@ Three examples, with the beats marked:
 >
 > You: "Will do (anchor). One thing though, the general version usually leaves people with more questions than answers (disrupt). Could we book 10 minutes so I can send you something that fits your situation? (ask)"
 
-Use one turnaround per brush-off. If they say no a second time, thank them and end the call warmly. Pushing past a clear second no is pressure, and it burns the relationship. For cold calls and texts, the DNC and consent rules from Week 4 still apply.
+Use one turnaround per brush-off. If they say no a second time, thank them and end the call warmly. Pushing past a clear second no is pressure, and it burns the relationship. For cold calls and texts, the Do Not Call (DNC) and consent rules from Week 4 still apply.
 
 Write your versions down and rehearse them until they're yours. When you already know the structure, you can listen properly, so a rehearsed line ends up sounding more natural than one you make up on the spot.
 
@@ -217,7 +217,7 @@ Loop at most three times in one meeting. If new objections are still coming afte
 - C) Post-pitch objections about price
 - D) Ambiguous *"let me think"* situations
 
-**Why:** Anchor-Disrupt-Ask is the fast tool for reflex responses. Its 3 beats take under 15 seconds, which is about the window you have before a brush-off turns into a hang-up. Clear objections (C) get ART and ambiguous ones (D) get Iceberg.
+**Why:** Anchor-Disrupt-Ask is the fast tool for reflex responses. Its 3 beats take under 15 seconds, which is about the window you have before a brush-off turns into a hang-up. Clear objections (option C) get ART and ambiguous ones (option D) get Iceberg.
 
 **Q2. In ART, the "T" (Turn around) step ends with:**
 - A) A direct statement of why the prospect is wrong
