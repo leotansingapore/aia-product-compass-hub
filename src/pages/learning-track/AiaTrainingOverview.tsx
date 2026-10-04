@@ -53,7 +53,7 @@ function CareerLine({ dir, onOpenSection }: { dir: Directory; onOpenSection: (id
 
   return (
     <section className="space-y-4 rounded-2xl border bg-card p-4 sm:p-5" aria-labelledby="aia-career-line">
-      <h3 id="aia-career-line" className="font-semibold">
+      <h3 id="aia-career-line" className="font-serif text-lg font-bold">
         Your career line
       </h3>
 
@@ -206,7 +206,7 @@ function YearHeatmap({ dir, onSeeUpcoming }: { dir: Directory; onSeeUpcoming: ()
   return (
     <section className="space-y-3 rounded-2xl border bg-card p-4 sm:p-5" aria-labelledby="aia-year">
       <div className="flex items-baseline justify-between gap-3">
-        <h3 id="aia-year" className="font-semibold">
+        <h3 id="aia-year" className="font-serif text-lg font-bold">
           {dir.scheduleYear} at a glance
         </h3>
         <p className="text-xs text-muted-foreground">
