@@ -116,7 +116,7 @@ Have it built by [Day 23](/learning-track/next-60-days/day/23), when you pull yo
 
 Day 2 said you need 5 to 7 appointments a week, and [Day 21](/learning-track/next-60-days/day/21) gives you the Market Survey script to get them. If each no along the way lands as a verdict on you ("they don't like me, I'm bad at this"), you'll stop before the numbers can work.
 
-Look at the numbers first. The working assumption on this team is that warm and semi-warm calls book at roughly 1 in 20. Each booking comes with about 19 no's attached: polite no's, ghosts, "let me think about it", "not now" and calls nobody answers. Those 19 are what the booking costs. Think of the booking as a dollar: each no pays about 5 cents of it.
+Look at the numbers first. The working assumption on this team is that a calling block down your warm and semi-warm list books at roughly 1 in 20 dials, counting the calls nobody answers. A personal message to someone who knows you well books more often, about 1 in 6 ([Day 24](/learning-track/next-60-days/day/24)'s 30 outreaches for 5 appointments), and the rate falls towards 1 in 20 as you move out into Semi-Warm. Each booking comes with about 19 no's attached: polite no's, ghosts, "let me think about it", "not now" and calls nobody answers. Those 19 are what the booking costs. Think of the booking as a dollar: each no pays about 5 cents of it.
 
 In a 20-call block that goes well, expect something like this:
 
@@ -131,7 +131,7 @@ The most common place to quit in Week 4 is dial three or four. After three no's 
 
 ### The weekly math
 
-At 1 in 20, here's what 5 to 7 appointments a week works out to, and it needs a protected calling block of 2 to 3 hours a day.
+Once you're working the Semi-Warm list at 1 in 20 dials, here's what 5 to 7 appointments a week works out to. It needs a protected calling block of 2 to 3 hours a day.
 
 ![The weekly math: weekly target 5-7 appointments; 100-140 calls a week; 20-28 calls per day x 5 days; a protected calling block of 2-3 hours a day](/next-60-days/images/n60-day-19-m1.webp)
 

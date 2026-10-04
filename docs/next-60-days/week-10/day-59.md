@@ -109,7 +109,7 @@ Apply the CAR framework of calls, appointments and referrals (Days 3, [23](/lear
 | Link | Healthy | Bottleneck |
 |---|---|---|
 | Calls | Weekly calls at or above your target on average | Below target. Calls are then the bottleneck, whatever happens further down. |
-| Appointments | 25% or more of calls become appointments | Under 20%: a script or targeting problem, where warm conversations aren't turning into bookings |
+| Appointments | About 1 in 6 personal outreaches (17%) or better become appointments ([Day 24](/learning-track/next-60-days/day/24)), or about 1 in 20 dials down a list ([Day 19](/learning-track/next-60-days/day/19)) | Under 15% of outreaches: a script or targeting problem, where warm conversations aren't turning into bookings |
 | Referrals | At least one warm referral per closed case | None at all: either you're not asking, or the ask is falling flat ([Day 27](/learning-track/next-60-days/day/27)) |
 
 Pick the weakest link, and make it your Month 3 focus. Working on every lever at once moves each a little and none of them much. Once that link is healthy, another one becomes the weakest, and you move on to it.

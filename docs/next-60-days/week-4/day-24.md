@@ -29,7 +29,7 @@ tags: [next-60-days, week-4, new-fc, practice, outreach, appointments, loom]
 
 After a recorded intro, three live intent statements and a week of posts and DMs, Week 4's proof goes in your calendar.
 
-Thirty is the weekly volume that should give you [Day 2](/learning-track/next-60-days/day/2)'s 5 to 7 appointments a week. Day 2's illustration (5 appointments x 30% close x $750 case) comes to about $58,500 FYC a year, but that's only an example of how the numbers combine. Your own results depend on your activity, close rate and case size.
+Thirty personal outreaches at this week's bar of about 1 in 6 gives you 5 appointments, the bottom of [Day 2](/learning-track/next-60-days/day/2)'s 5 to 7 a week. Calling down a longer list books nearer 1 in 20 dials ([Day 19](/learning-track/next-60-days/day/19)). Day 2's illustration (5 appointments x 30% close x $750 case) comes to about $58,500 FYC a year, but that's only an example of how the numbers combine. Your own results depend on your activity, close rate and case size.
 
 Five booked appointments from 30 outreaches is about 17%, and that's the bar for Week 4. Above 20%, your scripts are working, so add volume. Below 15%, look at where the no's happen: if people aren't replying, fix the opener, and if they reply but don't book, fix the ask.
 
@@ -63,10 +63,12 @@ A booked appointment counts if it meets all three conditions:
 These count:
 
 - a Fact-Find (a Financial Health Review, or FHR) with a Semi-Warm contact, confirmed for Thursday 6pm at her office
-- a Warm Up coffee with a Hot contact, confirmed for Saturday 2pm at a cafe in Raffles Place
-- a Zoom call with a lukewarm referral, confirmed for Friday 8pm with a calendar invite sent
+- a Fact-Find over coffee with a Hot contact, confirmed for Saturday 2pm at a cafe in Raffles Place
+- a Fact-Find on Zoom with a lukewarm referral, confirmed for Friday 8pm with a calendar invite sent
 
-These don't: "let's definitely meet soon" with no date, "I'll text you next week to confirm" (until they actually do), a meeting with your mentor, and an appointment that's already been cancelled once with no new date.
+Warm Ups ([Day 21](/learning-track/next-60-days/day/21)) go in your log as relationship work, but they don't count toward the 5, because [Day 2](/learning-track/next-60-days/day/2)'s formula only counts Fact-Find appointments.
+
+These don't count either: "let's definitely meet soon" with no date, "I'll text you next week to confirm" (until they actually do), a meeting with your mentor, and an appointment that's already been cancelled once with no new date.
 
 ## Where the 30 outreaches come from
 
