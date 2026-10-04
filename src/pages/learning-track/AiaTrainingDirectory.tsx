@@ -310,9 +310,9 @@ function TagBadges({ tags }: { tags: Tag[] }) {
 }
 
 /** One roadmap label as a row; rows that name a catalogue course link straight to it. */
-function RoadmapItem({ label, laneIndex }: { label: string; laneIndex: number }) {
+function RoadmapItem({ label, laneIndex, links }: { label: string; laneIndex: number; links: Record<string, string> }) {
   const { text, tags } = splitTags(label);
-  const to = roadmapTarget(label);
+  const to = roadmapTarget(label, links);
   const body = (
     <>
       <span aria-hidden className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: lane(laneIndex) }} />
@@ -337,9 +337,9 @@ function RoadmapItem({ label, laneIndex }: { label: string; laneIndex: number })
   );
 }
 
-function RoadmapGroupHeading({ label }: { label: string }) {
+function RoadmapGroupHeading({ label, links }: { label: string; links: Record<string, string> }) {
   const { text, tags } = splitTags(label);
-  const to = roadmapTarget(label);
+  const to = roadmapTarget(label, links);
   const inner = (
     <span className="inline-flex flex-wrap items-center gap-1.5">
       <span>{text}</span>
@@ -428,12 +428,12 @@ function RoadmapsView({ dir, selectedId }: { dir: Directory; selectedId?: string
                 {col.focus && <p className="text-sm text-muted-foreground">{col.focus}</p>}
                 {col.groups.map((g, gi) => (
                   <div key={g.heading ?? gi}>
-                    {g.heading && <RoadmapGroupHeading label={g.heading} />}
+                    {g.heading && <RoadmapGroupHeading label={g.heading} links={dir.roadmapLinks} />}
                     {g.items.length > 0 && (
                       <ul className="space-y-1">
                         {g.items.map((item) => (
                           <li key={item}>
-                            <RoadmapItem label={item} laneIndex={l} />
+                            <RoadmapItem label={item} laneIndex={l} links={dir.roadmapLinks} />
                           </li>
                         ))}
                       </ul>

@@ -106,6 +106,50 @@ describe("catalogue stays out of the browser bundle", () => {
     walk(join(__dirname, "../.."));
     expect(offenders).toEqual([]);
   });
+
+  it("keeps AIA's roadmap labels out of this feature's browser code", () => {
+    // The roadmap link map once shipped AIA's verbatim labels as object keys.
+    // Scoped to this feature's own files: the wider hub legitimately uses
+    // generic phrases like "Objection handling".
+    // Generic stage and path names the overview uses as its own labels, not AIA wording to protect.
+    const allowed = new Set(["Specialised markets", "Pre-contract"]);
+    const labels = new Set(
+      directory.roadmaps.flatMap((r) =>
+        r.columns.flatMap((c) => [c.heading, ...c.groups.flatMap((g) => [...(g.heading ? [g.heading] : []), ...g.items])]),
+      ),
+    );
+    const files = [
+      ...readdirSync(__dirname).filter((n) => /\.tsx?$/.test(n) && !/\.test\./.test(n)).map((n) => join(__dirname, n)),
+      ...readdirSync(join(__dirname, "../../pages/learning-track"))
+        .filter((n) => n.startsWith("AiaTraining"))
+        .map((n) => join(__dirname, "../../pages/learning-track", n)),
+    ];
+    const hits: string[] = [];
+    for (const f of files) {
+      const src = readFileSync(f, "utf8");
+      for (const l of labels) if (l.length >= 12 && !allowed.has(l) && src.includes(l)) hits.push(`${f}: ${l}`);
+    }
+    expect(hits).toEqual([]);
+  });
+
+  it("keeps AIA's course names out of browser code", () => {
+    // Catches the copy-paste version of the leak: a course title typed into a
+    // src/ file (a link map, a label list) ships in a public chunk.
+    const titles = directory.courses.map((c) => c.title).filter((t) => t.length >= 14);
+    const hits: string[] = [];
+    const walk = (dir: string) => {
+      for (const name of readdirSync(dir)) {
+        const path = join(dir, name);
+        if (statSync(path).isDirectory()) walk(path);
+        else if (/\.(ts|tsx)$/.test(name) && !/\.test\.tsx?$/.test(name)) {
+          const src = readFileSync(path, "utf8");
+          for (const t of titles) if (src.includes(t)) hits.push(`${path}: ${t}`);
+        }
+      }
+    };
+    walk(join(__dirname, "../.."));
+    expect(hits).toEqual([]);
+  });
 });
 
 import { LANES, TRUNK, cpdFloor, monthMatrix, sessionsInMonth } from "./overview";
@@ -148,7 +192,8 @@ describe("overview map and heatmap", () => {
 });
 
 import { BASE, courseUrl, filtersFromParams, filtersToParams, sectionUrl } from "./links";
-import { ROADMAP_LINKS, ROADMAP_META, roadmapTarget, splitTags } from "./roadmaps";
+import { ROADMAP_META, roadmapTarget, splitTags } from "./roadmaps";
+import { roadmapLinks } from "../../../supabase/functions/aia-training-directory/directory";
 
 describe("deep links", () => {
   it("round-trips every filter through the query string and writes nothing for defaults", () => {
@@ -180,13 +225,13 @@ describe("roadmap presentation", () => {
   it("links only labels that exist, to courses and sections that exist", () => {
     const courseIds = new Set(directory.courses.map((c) => c.id));
     const sectionIds = new Set(directory.sections.map((s) => s.id));
-    for (const [label, target] of Object.entries(ROADMAP_LINKS)) {
+    for (const [label, target] of Object.entries(roadmapLinks)) {
       expect(labels.has(label), `label not in any roadmap: ${label}`).toBe(true);
       const [kind, id] = target.split(":");
       expect(kind === "course" ? courseIds.has(id) : sectionIds.has(id), `missing target ${target}`).toBe(true);
     }
-    expect(roadmapTarget("Coaching 101")).toBe(courseUrl("coaching-101"));
-    expect(roadmapTarget("Mindset transformation")).toBeNull();
+    expect(roadmapTarget("Coaching 101", roadmapLinks)).toBe(courseUrl("coaching-101"));
+    expect(roadmapTarget("Mindset transformation", roadmapLinks)).toBeNull();
   });
 
   it("gives every roadmap a picker name and one colour per stage", () => {
