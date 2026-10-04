@@ -106,7 +106,7 @@ The way out is to start prospecting hard again straight away, without dwelling o
 
 AIA sets how commission reaches your account, and you should understand it by the end of this week.
 
-- EPS (Entrepreneur Partnership Scheme), AIA's monthly allowance matched to your FYC: watch the walkthrough ([Loom](https://www.loom.com/share/7fda52b3744d47fe8fc57a1ce78ceb63)) and read the [EPS Lark doc](https://nsgukkz32942.sg.larksuite.com/wiki/AK2jwgjKgic5vzkcToSlflbQgXf). Its last page has your month-by-month target. For your first two months on EPS there's no revenue target, only 80% attendance at BTS, AIA's training programme for new consultants.
+- EPS, AIA's monthly allowance scheme matched to your FYC: watch the walkthrough ([Loom](https://www.loom.com/share/7fda52b3744d47fe8fc57a1ce78ceb63)) and read the [EPS Lark doc](https://nsgukkz32942.sg.larksuite.com/wiki/AK2jwgjKgic5vzkcToSlflbQgXf). Its last page has your month-by-month target. For your first two months on EPS there's no revenue target, only 80% attendance at BTS, AIA's training programme for new consultants.
 - How income stacks: watch the walkthrough ([Loom](https://www.loom.com/share/a01cb43f09994861a61ca76a2068eed4)). Commission rates are in the same Lark doc, but don't memorise them. Income builds through renewals, career benefit, Activity Incentive Bonuses and the Agent Provident Fund.
 - New-consultant incentives: aim for the [new-consultant challenges](https://nsgukkz32942.sg.larksuite.com/wiki/D6pHwlmiSimxaikXGKplk1pUgjd) and plan how you'll close your first few cases in your first 3 months.
 
