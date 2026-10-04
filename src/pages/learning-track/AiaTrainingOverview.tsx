@@ -368,7 +368,12 @@ export default function AiaTrainingOverview({
               <dd className="text-xl font-semibold leading-tight">{s.value}</dd>
               <dd className="flex items-center whitespace-nowrap text-xs text-muted-foreground">
                 {s.label}
-                {s.tip && <InfoTip label="How CPD hours are counted">{s.tip}</InfoTip>}
+                {/* The hub gives every button a 44px minimum on phones; the negative margin keeps that hit area without pushing this label below its neighbours. */}
+                {s.tip && (
+                  <span className="-my-3.5 inline-flex">
+                    <InfoTip label="How CPD hours are counted">{s.tip}</InfoTip>
+                  </span>
+                )}
               </dd>
             </div>
           ))}
