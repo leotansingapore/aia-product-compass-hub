@@ -24,7 +24,7 @@ tags: [next-60-days, week-6, new-fc, disc, i-profile]
 
 ## What the I is looking for
 
-An I sits down across from you wondering:
+Three questions run through an I's head in the first few minutes:
 
 1. "Do I like this person?"
 2. "Am I enjoying this?"
@@ -32,7 +32,7 @@ An I sits down across from you wondering:
 
 Efficiency and technical accuracy aren't on that list. An I buys from people they feel connected to, so competence on its own won't win them over.
 
-That's a trap for new FCs. An I enjoys the meeting, laughs at your jokes, compliments you and then doesn't sign. The good feeling is real, but unless you turn it into a specific commitment before they leave, it fades within a few days. Your job is to close that gap.
+That's a trap for new FCs. An I enjoys the meeting, laughs at your jokes, compliments you and then doesn't sign. The good feeling is real, but unless you turn it into a specific commitment before they leave, it fades within a few days.
 
 ## How to spot an I: the 5-signal scan
 
@@ -44,7 +44,7 @@ That's a trap for new FCs. An I enjoys the meeting, laughs at your jokes, compli
 | Words | "Her story is so inspiring!" "Exclusive." "Let's not get into unnecessary conflict." "Trust me lah." |
 | Dressing | Bright colours, fashionable, maybe coloured hair or statement accessories (the weakest signal on its own) |
 
-When 3 or more line up, you're probably with an I. Match their energy: smile more, gesture more, speak a bit faster.
+Three or more of these and you're likely with an I. Match their energy: smile more, gesture more, speak a bit faster.
 
 ## The 4 behaviours that work
 
@@ -59,7 +59,7 @@ A dry walk-through of coverage options bores an I, while a true story about some
 - Weak: "CareShield Life pays a monthly amount if you can't do 3 of the 6 daily activities, and a supplement raises that payout. Let's look at the options..."
 - Better (only if it really happened): "My uncle had a stroke at 52, out of nowhere. He was off work for eight months. What kept the family going was the critical illness payout he'd bought years earlier, because it paid the mortgage while he recovered. That's why, when I look at your plan, I keep coming back to this one area..."
 
-Only tell true stories. Most new FCs don't have client stories yet, so use one from family, friends or your mentor, and say whose it is. Never invent a client, and never share details that could identify a real one without their permission.
+Only tell true stories. You probably don't have client stories yet, so use one from family, friends or your mentor, and say whose it is. Never invent a client, and never share details that could identify a real one without their permission.
 
 ### 3. Show you like them with real compliments
 
@@ -94,11 +94,11 @@ An I hates silence. If you go quiet to think or check your notes, they'll fill t
 
 This is the biggest trap. The meeting goes brilliantly and you both laugh a lot. You promise to "follow up soon" and leave. Five days later they remember that they liked you and very little else, and the sale doesn't happen.
 
-The fix is to end every I meeting with a specific next step on a specific date:
+End every I meeting with a specific next step on a specific date:
 
 > You: "This has been great. Based on what we talked about, I'll put the proposal together and we'll meet again Thursday at 7pm to go through it. Does that work for you?"
 
-Put it in both calendars before they leave. If they say "I'll let you know when I'm free", offer two specific times instead, because an open-ended "later" is how I meetings quietly die.
+Put it in both calendars before they leave. If they say "I'll let you know when I'm free", offer two specific times instead, because an open-ended "later" rarely turns into a meeting.
 
 ## I blind spots
 
@@ -139,7 +139,7 @@ The story below is a template, so replace it with something that really happened
 >
 > That's why, when I looked at your situation, I kept coming back to CI. Let me show you what that looks like for you..."
 
-The recommendation grows out of a real person's story.
+With an I, the recommendation grows out of a real person's story.
 
 ### I close: reassurance
 
@@ -149,7 +149,7 @@ An I likes to know others have made the same choice and that you're on their sid
 
 Keep the reassurance true. "Trust me lah, this is the best plan out there" sets off an I's own over-promising alarm, and "best plan" or "best-selling" is an unsupported claim under MAS fair dealing expectations unless you can show the figures.
 
-Avoid procedural closes with an I, where you walk through each step in order. They're too dry, and an I tunes out halfway. Be careful with assumptive closes too, where you go straight to the paperwork as if they've said yes. Use one only after a clear verbal yes, because even an I feels pressured if it comes too early.
+A procedural close, where you walk through each step in order, is too dry for an I, who tunes out halfway. Be careful with assumptive closes too, where you go straight to the paperwork as if they've said yes. Use one only after a clear verbal yes, because even an I feels pressured if it comes too early.
 
 ## Do this today
 

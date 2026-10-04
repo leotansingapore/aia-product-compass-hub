@@ -34,9 +34,7 @@ The prospect pauses, looks down and starts thinking. The FC can't stand the quie
 - "Obviously nobody can predict these things but..."
 - "Maybe we can come back to that later if it's not relevant..."
 
-The prospect was about to picture a specific scenario, and that picture is what makes cover feel real to them. The FC talked over it to ease their own discomfort.
-
-Asking good questions is half the skill. The other half is keeping quiet long enough for the question to work.
+The prospect was about to picture a specific scenario, and that picture makes cover feel real to them. The FC talked over it to ease their own discomfort.
 
 Three things happen in this order: the cushion ([Day 40](/learning-track/next-60-days/day/40#cushion-first)), a right question that passes the 3-point checklist ([Day 43](/learning-track/next-60-days/day/43#the-3-point-checklist-is-this-a-good-question)), and then silence. Without the cushion, the prospect feels argued with. A weak question surfaces the wrong thing. If you skip the silence, their own conclusion never gets the chance to form. Practise all three as one move.
 
@@ -76,7 +74,7 @@ The quick check is their eyes. Watch them for 3 seconds. Moving eyes usually mea
 
 One question rarely finds the real hot button. A chain of questions usually does, with each one going a level deeper: generic, then specific, then emotional, then actionable.
 
-Here's how a chain on retirement might run with a prospect in their fifties:
+With a prospect in their fifties, a chain on retirement might run like this:
 
 1. Generic. You ask "What does retirement look like for you?" and get "Oh, travel, spend time with the grandkids, the usual."
 2. Specific. "When you picture the travel, what is it? Anywhere in particular?" This time the answer has detail: "Actually, I've always wanted to do three months around Europe with my wife. We talked about it 5 years ago."

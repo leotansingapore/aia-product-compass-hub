@@ -42,7 +42,7 @@ A **cushion** is the short acknowledgement you say between the prospect's object
 
 When someone objects, they've taken a position for a moment, and they listen for whether you're going to fight them on it. If they hear an argument coming, they dig in before you finish your first sentence. A cushion tells them you heard them, so they relax enough to listen.
 
-New FCs skip it because they're nervous and want to get their point in. Experienced advisers say it without thinking. The rule is simple: if you're about to say "however", "but" or "actually", a cushion comes first.
+New FCs skip it because they're nervous and want to get their point in. Experienced advisers say it without thinking. If you're about to say "however", "but" or "actually", a cushion comes first.
 
 Without a cushion:
 
@@ -122,7 +122,7 @@ Use ART when the prospect gives you a specific reason. The letters are the steps
 >
 > Turn around: "Can I ask what you're comparing on? The premium is one part. The other is what each plan actually pays out and when. If we put the two side by side on the things that matter to you, which would you want to look at first?"
 
-The turnaround is a question. You aren't pitching, and you aren't running down the other plan. You're asking them to reason through the comparison on the things they care about. Compare only what's in the other insurer's own published documents or the policy the prospect shows you, and describe it accurately.
+The turnaround is a question. It asks them to reason through the comparison on the things they care about, without you pitching or running down the other plan. Compare only what's in the other insurer's own published documents or the policy the prospect shows you, and describe it accurately.
 
 Other clear objections that suit ART:
 

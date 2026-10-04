@@ -17,7 +17,7 @@ tags: [next-60-days, week-6, new-fc, practice, disc, roleplay, loom]
 
 # Day 36: Practice with 4 profile roleplays
 
-> **Today in one line:** Knowing the profiles in your head is easy. Changing your delivery live, within 3 minutes, is the hard part, and this week you show you can.
+> **Today in one line:** Knowing the profiles is the easy part. This week you show on camera that you can change your delivery live, within 3 minutes.
 
 **What to remember**
 
@@ -87,9 +87,9 @@ After recording all 4, watch them the same day, while you still remember what yo
 | Content match (did I lead with the right thing?) | | | | |
 | Transition (did it look like me choosing to adapt, or like a different person?) | | | | |
 
-These scores are the data. If you gave yourself 3 or more on every line for all 4 profiles, you've got the basics. Any profile that scored below 3 is your focus in Week 7.
+If you gave yourself 3 or more on every line for all 4 profiles, you've got the basics. Any profile that scored below 3 is your focus in Week 7.
 
-Most new FCs find the roleplay for their own main profile scores highest, because that's how they naturally talk. The roleplay for their opposite profile usually scores lowest, because adjusting that far is the hardest skill. If an I-profile FC scores 2 out of 5 on the D roleplay, D prospects are getting that FC's weakest delivery, so that's where the practice goes.
+The roleplay for your own main profile will probably score highest, because that's how you naturally talk. The one for your opposite profile usually scores lowest, because adjusting that far is the hardest skill. If an I-profile FC scores 2 out of 5 on the D roleplay, D prospects are getting that FC's weakest delivery, so that's where the practice goes.
 
 ## Self-assessment: the 4-profile audit
 
@@ -132,7 +132,7 @@ Week 7 unlocks when you have all four:
 - [ ] The Loom reflection recorded
 - [ ] A 15-minute mentor review booked (longer than usual, because your mentor watches the videos with you)
 
-If Sunday 6pm arrives and you're short, get 4 real videos done before you polish anything. A rough recording that exists is worth more than a perfect one that doesn't.
+If Sunday 6pm arrives and you're short, get 4 real videos done before you polish anything.
 
 ## Sources
 

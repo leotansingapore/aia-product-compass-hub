@@ -33,7 +33,7 @@ A new FC's meeting usually runs like this:
 
 The close happens once, at minute 65. The prospect has sat through an hour of information without being asked to agree to anything along the way, so the whole decision lands on them at once, and that's when people hesitate.
 
-The fix is trial closing. You scatter small agreements across the meeting, and each one is a tiny commitment. By the time you ask for the decision, they've already said yes to its shape several times, so the last yes feels like the next step.
+Trial closing spreads that decision out. You scatter small agreements across the meeting, and each one is a tiny commitment. By the time you ask for the decision, they've already said yes to its shape several times, so the last yes feels like the next step.
 
 ## What a trial close looks like
 
@@ -48,7 +48,7 @@ Examples from different points in the meeting:
 | After the recommendation | "If this all makes sense, would you want to submit the application this month or next?" |
 | Just before the close | "Before we get into the final details, is there anything that still feels unclear?" |
 
-Each question assumes the conversation is moving forward without asking for a commitment. The answer tells you where they are:
+Each question assumes the conversation is heading somewhere, without asking for a commitment. The answer tells you where they are:
 
 - A clean answer means they're following you.
 - Hesitation means there's a concern they haven't said out loud, and the Iceberg questions from [Day 40](/learning-track/next-60-days/day/40) will help you find it.
@@ -127,9 +127,9 @@ Reciprocity sits earlier in the process, in the free fact-find and review work y
 
 ## When they say "I need a moment to think"
 
-Sometimes the answer to the main close is "can I have a moment?" The wrong move is to keep talking, fill the silence and pitch again.
+Sometimes the answer to the main close is "can I have a moment?" Don't keep talking, fill the silence or pitch again.
 
-The right move is "Of course, take your time." Then step back. Look at your iPad or tidy your papers, and give them space.
+Say "Of course, take your time", then step back. Look at your iPad or tidy your papers, and give them space.
 
 That pause is often where they actually decide. Ten to thirty seconds of quiet from you lets them think instead of fending off more information. What happens next tells you what to do:
 

@@ -124,7 +124,7 @@ Sometimes you realise halfway through that you're on the wrong angle. The signs:
 - They're polite but switched off
 - They're hedging instead of engaging
 
-The fix is to stop, ask and switch:
+Stop, ask and switch:
 
 > You: "Can I pause for a second? I want to make sure I'm explaining this the right way. When you think about what this plan would do in your life, is it mainly about [angle A], or more about [angle B]?"
 

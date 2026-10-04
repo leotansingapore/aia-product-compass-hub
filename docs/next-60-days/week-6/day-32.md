@@ -55,7 +55,7 @@ When 3 or more line up, you're probably with a D. Match their speed by cutting y
 - Have the fact-find agenda printed or ready on your iPad.
 - When they ask a question, answer it without hedging. If you don't know, say "I'll find out and get back to you by [specific day and time]", then do it.
 
-A D will forgive you for not knowing something on the spot. What they won't forgive is a promise to find out that you never keep.
+A D will forgive you for not knowing something on the spot, but not for a promise to find out that you never keep.
 
 ### 2. Recommend, and skip what they already know
 
@@ -66,7 +66,7 @@ A D wants your recommendation, and a 20-minute lesson on how insurance works get
 
 ### 3. Give options on the solution
 
-A D needs to feel in control, so take that seriously.
+A D needs to feel in control.
 
 - Weak: "The only way to solve this is X." (This gets pushback even when X is right.)
 - Better: "There are two sensible routes, A and B. Here's the trade-off. Which fits you better?"
@@ -85,7 +85,7 @@ A D respects the downside figure most, because it shows you've already tested th
 
 ### 1. Long intros and forced rapport
 
-Warming up a D feels polite to you. To them it looks like stalling. Skip the weather chat, ask "shall we get started?" and start.
+Warming up a D feels polite to you and looks like stalling to them. Skip the weather chat, ask "shall we get started?" and start.
 
 ### 2. Hedging
 
@@ -140,7 +140,7 @@ The sample recommendation stays the same for all four profiles, Days 32 to 35: $
 
 > You: "Based on what you've shared, two kids, you're the main earner and cash flow is a bit tight, I'd recommend $500K of critical illness cover plus a $500-a-month savings plan. That covers your biggest risk and builds the buffer you said you need. You've got three choices: go ahead, adjust the CI amount, or rethink the savings piece. Which one?"
 
-The recommendation comes first. The options give them control, which is their core need, and you finish with a direct question. No story, no warm-up.
+The recommendation comes first. The options give them control, which is their core need, and you finish with a direct question.
 
 ### D close: assumptive
 
@@ -152,7 +152,7 @@ Once a D has clearly agreed to the recommendation, skip the "so will you?" step 
 >
 > You: "GIRO or credit card?"
 
-This fits because a D expects things to keep moving, and assumptive language treats the decision as made. Only use it after the fact-find, once they've actually said yes. The client still gets the product summary and benefit illustration, and still hears the key terms explained before signing. Being brisk with a D never means skipping those.
+This fits because a D expects things to keep moving, and assumptive language treats the decision as made. Only use it after the fact-find, once they've actually said yes. The client still gets the product summary and benefit illustration, and still hears the key terms explained before signing.
 
 Avoid procedural closes with a D, where you walk through each step in order, because they're too slow. Long reassurance sounds like you're hedging. Use a follow-up close, booking a second meeting to decide, only as a last resort, because a D who was pitched well usually decides in the meeting. [Day 41](/learning-track/next-60-days/day/41) covers all four closes.
 

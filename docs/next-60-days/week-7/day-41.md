@@ -35,7 +35,7 @@ When the two line up, the prospect tends to pick up your certainty. When they do
 
 ## Swapping hedged phrases for direct ones
 
-Same content, different framing. Read both columns aloud and listen to the difference:
+Read both columns aloud and listen to the difference:
 
 | Hedged (weak) | Direct (strong) |
 |---|---|
@@ -84,13 +84,13 @@ In practice:
 
 Many sales trainers rank this posture above any single technique. It doesn't guarantee a yes, but it shapes every decision you make around the yes you expect, and most tactics land better from it than from "let's see what happens."
 
-You can't keep up confident language on top of hopeful belief, because the doubt leaks through. Get the posture right and the phrases follow.
+You can't keep up confident language on top of hopeful belief, because the doubt leaks through.
 
 Assuming the yes is about how you prepare. It never means skipping the needs analysis, rushing the client past their questions, or treating a hesitant client as agreed.
 
 ## Building certainty before you close
 
-From Day 40: the prospect needs to be near a 9 or 10 on all three certainties (product, you, firm) before any close works. Your pitch is a structured climb up those three scales.
+From Day 40: the prospect needs to be near a 9 or 10 on all three certainties (product, you, firm) before any close works.
 
 ### The certainty scale
 
@@ -130,7 +130,7 @@ Then walk them through the recommendation, including the benefits, the risks, th
 
 ## The 4 closes
 
-Four closes to keep ready, each suited to different profiles and moments. Every one of them ends in a question ("correct?", "credit card or GIRO?", "shall we proceed?", "are we good to go ahead?"). The close doesn't state that they're buying. It asks a question that assumes they are. [Day 43](/learning-track/next-60-days/day/43) and [Day 44](/learning-track/next-60-days/day/44) go deeper on building those questions, and [First 60 Days, Day 47](/learning-track/first-60-days/day/47) has the 3-point checklist for testing one.
+Four closes to keep ready, each suited to different profiles and moments. Every one of them ends in a question ("correct?", "credit card or GIRO?", "shall we proceed?", "are we good to go ahead?"). Instead of stating that they're buying, the close asks a question that assumes they are. [Day 43](/learning-track/next-60-days/day/43) and [Day 44](/learning-track/next-60-days/day/44) go deeper on building those questions, and [First 60 Days, Day 47](/learning-track/first-60-days/day/47) has the 3-point checklist for testing one.
 
 | Profile | Works well | Avoid or use with care |
 |---|---|---|
@@ -165,7 +165,7 @@ Suits C profiles, who respect the structure, and S profiles, who get a clear pro
 
 ### Close 3: Reassurance
 
-Deal with their specific hesitation, reassure them, and move forward.
+Deal with their specific hesitation, reassure them, and move on to the next step.
 
 > You: "Alan, of everything we looked at, this is the one that fits what you told me you wanted: [their reason]. And you get 14 days after you receive the policy to review it and cancel for a refund if it isn't right. Let's take the first step today."
 
@@ -179,7 +179,7 @@ Check affordability properly. A plan the client can't keep paying fails them, an
 
 ### Close 4: Follow-up
 
-This is the last resort, for when closes 1 to 3 didn't land in the meeting. It suits a C, who needs research time, and an S, who needs processing time. Never make it your default close, because a follow-up without a fixed date is where decisions go to die.
+This is the last resort, for when closes 1 to 3 didn't land in the meeting. It suits a C, who needs research time, and an S, who needs processing time. Never make it your default close, because a follow-up without a fixed date usually never happens.
 
 Before they leave:
 
@@ -197,7 +197,7 @@ For the follow-up itself:
 
 1. Write down the 3 hedged phrases you catch yourself using most, with the direct version beside each.
 2. Pick the 3 prospects you'll pitch for this week's KPI. For each, note the prospect's DISC profile, the close you'll use, and the close you'll avoid.
-3. Write your transition line and say it out loud until it comes out naturally.
+3. Write your transition line and rehearse it until it comes out naturally.
 
 ## Sources
 

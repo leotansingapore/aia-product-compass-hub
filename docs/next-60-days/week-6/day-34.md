@@ -25,7 +25,7 @@ tags: [next-60-days, week-6, new-fc, disc, s-profile]
 
 ## What the S is looking for
 
-An S sits down across from you wondering:
+An S walks in quietly asking themselves:
 
 1. "Is this person kind?"
 2. "Am I going to be pressured?"
@@ -33,7 +33,7 @@ An S sits down across from you wondering:
 
 An S wants to feel safe in two ways: safe from being pushed, and sure their loved ones are covered if something happens.
 
-Match their style and an S can be a very loyal client. Miss it and they'll quietly disappear.
+Match their style and an S can become a very loyal client. Miss it and they go quiet without telling you why.
 
 ## How to spot an S: the 5-signal scan
 
@@ -153,7 +153,7 @@ Same recommendation as the rest of the week: $500K CI cover plus a $500-a-month 
 
 > You: "Before we look at anything specific, I want to repeat what I said at the start: there's no rush on any of this. This is about you seeing what fits, and I won't push you into anything. Based on what you've shared, I'd suggest we look at critical illness cover of around $500K and a small monthly savings plan, and we'll go through each one slowly. If anything doesn't feel right at any point, we stop and adjust, okay?"
 
-You ask permission, you lead with reassurance and you walk through it slowly. Saying out loud that they can say no is what makes them comfortable enough to say yes later.
+Telling an S out loud that they can say no lets them relax enough to say yes later.
 
 ### S close: procedural with gentle reassurance
 
@@ -161,7 +161,7 @@ You ask permission, you lead with reassurance and you walk through it slowly. Sa
 
 The steps give them structure, which feels safe, and the reassurance tells them they won't be pushed. The word "together" keeps you in the role of guide.
 
-Never use an assumptive close with an S, who will hear "credit card or bank transfer?" as pressure. They'll pretend to agree to keep the peace and then disappear for weeks, which is the quickest way to lose an S who was about to say yes.
+Never use an assumptive close with an S, who will hear "credit card or bank transfer?" as pressure. They'll pretend to agree to keep the peace and then disappear for weeks.
 
 ## Do this today
 

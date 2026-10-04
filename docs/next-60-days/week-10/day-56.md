@@ -25,11 +25,9 @@ tags: [next-60-days, week-10, new-fc, after-sales, onboarding, client-experience
 
 ## Why after-sales decides the pipeline
 
-Most new FCs treat the signed case as the end of the job and move on to the next prospect. That habit kills referrals in Year 1 before they start.
+It's tempting to treat the signed case as the end of the job and move on to the next prospect. That habit costs you referrals in Year 1 before they start.
 
 Your client has just made a big financial commitment because they trust you, and they'll feel a bit unsure for the first few weeks. If you go quiet, which is what happens when there's no system, they read it as "once he got the sale, he stopped caring." The referrals you hoped for never come, because you never earned the right to ask.
-
-The client decides whether you're the adviser they tell their friends about in the 90 days after the close, much more than during the pitch.
 
 ## The 3-touchpoint rhythm
 
@@ -51,15 +49,15 @@ At most, plant a light referral seed here; the actual ask waits for Day 30. Send
 
 ### Day 30: reinforcement
 
-The purpose is to make what they bought feel real.
+This one makes what they bought feel real.
 
 Meet for 15 minutes, without selling. Go through the policy, answer questions and make sure they know what they have and what it does for them, then finish with a light referral ask.
 
-At Day 30 a client either understands what they bought or feels they signed up for something abstract. Your job is to make it concrete.
+At Day 30 a client either understands what they bought or feels they signed up for something abstract.
 
 ### Day 90: integration
 
-The purpose is to turn a one-off buyer into a long-term client who refers.
+Here you turn a one-off buyer into a long-term client who refers.
 
 Meet for 30 minutes and take a wider view. Ask about changes in their life, new priorities and any gaps. The referral ask can be more direct here, because they've had 90 days to see how you behave after the sale.
 

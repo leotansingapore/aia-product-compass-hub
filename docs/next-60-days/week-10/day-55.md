@@ -112,11 +112,11 @@ Cases A to C are legitimate for the same reason: the client benefit is clear and
 
 ### Case D: surrendering a young cash-value policy to save premium (wrong call)
 
-The client is five years into a 25-year whole-life with $25K of surrender value, and you're tempted to recommend term cover to save $300 a month. They'd give up the $25K now plus whatever the policy would have built later, which the benefit illustration shows at 3.00% and 4.25% (neither guaranteed). The napkin maths ($300 a month for 20 years beats $25K) leaves that future value out. Don't.
+The client is five years into a 25-year whole-life with $25K of surrender value, and you're tempted to recommend term cover to save $300 a month. They'd give up the $25K now plus whatever the policy would have built later, which the benefit illustration shows at 3.00% and 4.25% (neither guaranteed). The napkin maths ($300 a month for 20 years beats $25K) leaves that future value out, so don't recommend it.
 
 ### Case E: churning for commission (wrong call)
 
-The client's cover is adequate and well structured. There's no real gap, no meaningful premium saving and no benefit upgrade worth the name. The only reason to restructure is the commission. Don't.
+The client's cover is adequate and well structured. There's no real gap, no meaningful premium saving and no benefit upgrade worth the name. If the only reason to restructure is the commission, leave it alone.
 
 ### Case F: restructuring on fear, without the maths (wrong call)
 
@@ -128,7 +128,7 @@ Under MAS Notice FAA-N16 you must not recommend a switch that leaves the client 
 
 ## Five patterns by portfolio shape
 
-These are the five shapes you'll see most often when you run policy summaries ([First 60 Days, Day 58](/learning-track/first-60-days/day/58) covers how to review one). The fix is rarely just "add another product".
+These are the five shapes you'll see most often when you run policy summaries ([First 60 Days, Day 58](/learning-track/first-60-days/day/58) covers how to review one). The answer is rarely just "add another product".
 
 ### Pattern 1: single-claim CI only
 

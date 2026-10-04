@@ -14,7 +14,7 @@ tags: [next-60-days, week-8, new-fc, questions, fact-find, discovery]
 
 # Day 43: The power question (right questions, part 1)
 
-> **Today in one line:** A hundred statements won't do what one right question does.
+> **Today in one line:** Ask questions that let the prospect reach the conclusion themselves, instead of telling them what to believe.
 
 **What to remember**
 
@@ -27,7 +27,7 @@ This builds on [First 60 Days, Day 47](/learning-track/first-60-days/day/47), wh
 
 ## Why statements lose to questions
 
-Here's a statement:
+Take this statement:
 
 > You: "Insurance is important because it protects your family."
 
@@ -87,7 +87,7 @@ Two versions of the same question:
 - Weak: "Wouldn't you agree the earlier you start, the better it is?"
 - Stronger: "Wouldn't you agree we don't have many years we can afford to waste? Since your time matters, why not start early and see the results of your effort sooner?"
 
-The content is the same. The second puts wasted years against time that matters, and that contrast gets a reaction where the first one stays flat.
+The second puts wasted years against time that matters, and that contrast gets a reaction where the first one stays flat.
 
 ### Rule 4: Give two clear, contrasting options
 
@@ -95,7 +95,7 @@ Frame the choice as two options, where the sensible one is easy to see.
 
 > You: "If you had to choose, would you rather pay a large hospital bill out of your own savings, or pass that risk to an insurer for a much smaller regular premium?"
 
-They pick, and because they picked, they own the choice. You didn't tell them what to think.
+They pick, and because they picked, they own the choice.
 
 Then check it, without flattery: "Which of those sits better with you?" Let them say it in their own words. It has to be a fair choice, so if they pick the first option, that's a real answer too and you should ask why.
 
@@ -120,7 +120,7 @@ When a prospect holds a firm view, don't argue with it. Ask them to weigh it aga
 >
 > You: "Their guide says that if protection is all you want, an ILP may not be the best fit, and term insurance may give you more cover for less. An ILP is for people who want cover and investment in one plan and are fine with the charges. Which of those sounds more like you?" (the source plus two options)
 
-Now they aren't arguing with you. They're checking their view against a source they already accepted, and whatever they answer tells you what to recommend. Sometimes the honest answer is that an ILP isn't right for them. Only recommend an ILP if you hold CMFAS M9 and M9A.
+Instead of arguing with you, they're checking their view against a source they already accepted, and whatever they answer tells you what to recommend. Sometimes the honest answer is that an ILP isn't right for them. Only recommend an ILP if you hold CMFAS M9 and M9A.
 
 ## The 3-point checklist: is this a good question?
 

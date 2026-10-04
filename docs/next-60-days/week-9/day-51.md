@@ -30,8 +30,6 @@ For the close, that means:
 - A close that's only logical ("the numbers work out") asks the prospect to decide on reasoning alone, and a lot of people stall there because nothing moved them.
 - A close that's only emotional ("imagine how you'd feel with this in place") can move them to a yes, but without the reasoning behind it they may talk themselves out of it overnight.
 
-The best closes do both, and you decide which one goes first.
-
 ## The emotional close
 
 The emotional close works on the prospect's gut: their hot button and the picture they have of their future. It has three beats:

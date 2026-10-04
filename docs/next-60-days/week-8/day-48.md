@@ -17,7 +17,7 @@ tags: [next-60-days, week-8, new-fc, practice, pitch, loom, recorded]
 
 # Day 48: Practice, 1 live pitch on camera
 
-> **Today in one line:** One live pitch, fully integrated, on tape. Everything from Weeks 1 to 8 goes into one recording.
+> **Today in one line:** Record one continuous pitch that brings together everything from Weeks 1 to 8.
 
 **What to remember**
 
@@ -74,7 +74,7 @@ Watch the recording twice, first for the flow of the whole pitch and then for th
 7. Close ([Day 41](/learning-track/next-60-days/day/41)). Did the close suit the profile: assumptive for a D, reassurance for an I, procedural for an S or C? Did you both put the specific next step in your calendars?
 8. Silence ([Day 44](/learning-track/next-60-days/day/44)). Did you hold 5 to 10 seconds of silence after loaded questions, or did you fill the pauses?
 
-The review scores your delivery. A closing ratio is an outcome, so it isn't one of the dimensions: you're scoring what you did, not how one prospect happened to respond on the day.
+A closing ratio is an outcome, so it isn't one of the dimensions. You're scoring what you did, not how one prospect happened to respond on the day.
 
 | Dimension | Score (1-5) | Evidence |
 |---|---|---|
@@ -94,7 +94,7 @@ What the total means:
 - 27 to 33: competent, with 1 or 2 dimensions that need work
 - Below 27: a gap in the foundations, so use Week 9 to re-record
 
-Nobody scores 40 on their first integrated pitch, and a 40 usually means the scoring wasn't honest. The point is to find your 3 lowest dimensions.
+Nobody scores 40 on their first integrated pitch, and a 40 usually means the scoring wasn't honest. What you're looking for is your 3 lowest dimensions.
 
 ## Using this recording in Week 9
 
@@ -142,7 +142,7 @@ Week 9 opens when you have all four:
 - [ ] The Loom reflection: your 3 lowest scores and your Week 9 priorities
 - [ ] A 20-minute mentor review, booked
 
-If the recording is poor (bad audio, cut off), re-record before you submit. One clean take is worth more than three messy ones.
+If the recording is poor (bad audio, cut off), re-record before you submit.
 
 ## Sources
 

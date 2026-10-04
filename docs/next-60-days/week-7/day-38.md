@@ -24,7 +24,7 @@ tags: [next-60-days, week-7, new-fc, hot-buttons, questions, surfacing]
 
 ## Why surfacing is most of the work
 
-You can only use a hot button that has come up. Most new FCs never get there, because they ask "what are your financial goals?" and accept the flat answer.
+You can only use a hot button that has come up. New FCs often stall here, because they ask "what are your financial goals?" and accept the flat answer.
 
 That question is too direct. People give a rehearsed list ("save for retirement, protect my family, grow my money") that sounds like goals and has no feeling behind it. You can pitch to those answers all day without touching a real hot button.
 
@@ -79,7 +79,7 @@ Once a hot button has come up, match it to a specific part of your recommendatio
 
 The payout conditions come from the policy wording. Under the LIA's 2024 definitions, for example, a severe-stage stroke claim needs a permanent neurological deficit confirmed by a neurologist at least 6 weeks after the event. Quote from the actual policy, never from memory.
 
-Always start from the hot button. "Here's my CI plan, let me find a reason for you to want it" is the wrong way round. "You said X matters, and here's the part of the plan that deals with X" is the right way. The prospect feels heard instead of sold to.
+Always start from the hot button. "Here's my CI plan, let me find a reason for you to want it" is the wrong way round. Say "You said X matters, and here's the part of the plan that deals with X", and the prospect feels heard instead of sold to.
 
 ## The callback technique
 

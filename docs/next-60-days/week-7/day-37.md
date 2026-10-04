@@ -32,7 +32,7 @@ A prospect tells you "retirement planning is important to me." It's polite and r
 
 Thirty minutes later you mention their father's recent stroke. Their voice slows, their eyes narrow, and they look away for a moment before saying "yeah... I don't want my kids going through what I'm going through right now."
 
-That second moment is a hot button. Almost every real buying decision hangs on one, and your job is to find it.
+That second moment is a hot button. Almost every real buying decision hangs on one.
 
 ## Emotion drives decisions, logic justifies them
 
@@ -55,11 +55,11 @@ Hot buttons pull in two directions, and both work.
 
 Negative ones usually carry more weight. Kahneman and Tversky's work on loss aversion found people feel a loss roughly twice as strongly as an equal gain, and a 2024 meta-analysis put the average at about 1.96. That varies by person: some I-profile prospects respond more to a positive picture, and some C profiles respond more to avoiding the worst case.
 
-What lights up one person can leave the next one cold. Roller coasters, hiking, a big family: a hot button for some people, nothing for others. Ask and watch instead of assuming.
+Roller coasters, hiking, a big family: a hot button for some people, nothing for others. Ask and watch instead of assuming.
 
 ## The 7 categories of hot buttons
 
-Most hot buttons fall into one of 7 categories. Knowing them helps you recognise one when it comes up.
+Most hot buttons fall into one of 7 categories.
 
 | Category | What it looks like |
 |---|---|
@@ -88,7 +88,7 @@ The baseline stops you misreading people. An S whose voice is slow and soft all 
 
 ## The biggest mistake with hot buttons
 
-Most new FCs do notice the signal. Where they go wrong is carrying on with the agenda:
+New FCs usually do notice the signal, and then carry on with the agenda anyway:
 
 > You: "Okay, noted. So let's look at your current coverage..."
 
@@ -96,7 +96,7 @@ That files the hot button away as a fact, and the moment passes. Slow down inste
 
 > You: "That thing you just said about your dad's stroke. Can you tell me more about what that was like?"
 
-You aren't fishing for sympathy. You're giving them room to stay with something they care about. The 20 seconds they spend telling you more is where the link between that hot button and your recommendation gets made.
+That gives them room to stay with something they care about. The 20 seconds they spend telling you more is where the link between that hot button and your recommendation gets made.
 
 Don't jump to the product at that point either. Pitching straight away feels manipulative, and changing the topic to spare them discomfort wastes the opening. One question is enough.
 
@@ -106,9 +106,9 @@ When a hot button comes up, note it, in your head or on paper if you're writing.
 
 > You: "Remember when you mentioned [the specific thing]? Here's how this part of the plan deals with that."
 
-That callback is what makes a pitch feel personal. The prospect can tell you listened and that the plan was built for them.
+That callback makes the pitch feel personal. The prospect can tell you listened and that the plan was built for them.
 
-New FCs often hear the hot button, nod, and have forgotten it by minute 50. Without the callback, the pitch sounds like one they could give anyone, so write it down.
+New FCs often hear the hot button, nod, and have forgotten it by minute 50. Without the callback, the pitch sounds like one you could give anyone, so write it down.
 
 ## Do this today
 

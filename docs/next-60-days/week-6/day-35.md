@@ -24,7 +24,7 @@ tags: [next-60-days, week-6, new-fc, disc, c-profile]
 
 ## What the C is looking for
 
-A C sits down across from you wondering:
+A C comes in with three questions:
 
 1. "Are the facts in this presentation correct?"
 2. "Is this good value, or am I being oversold?"
@@ -44,7 +44,7 @@ A C may well do more research after your meeting than you did before it. If they
 | Words | "Sounds too good to be true." "I don't make decisions on the spot." "Let's look at the track record." "Let's play safe." "I need to compare." |
 | Dressing | Practical, clean and plain, nothing flashy (the weakest signal on its own) |
 
-When 3 or more line up, you're probably with a C. Slow down, drop the stories and expect the questions to take longer than the presentation.
+If 3 or more fit, assume a C. Slow down, drop the stories and expect the questions to take longer than the presentation.
 
 ## The 4 behaviours that work
 
@@ -76,7 +76,7 @@ It shows you've already looked for the weak spots, which saves them the trouble 
 
 ### 4. Give data, facts, figures and comparisons
 
-An I tunes out after 2 minutes of data. A C gets more interested. Give them:
+An I tunes out after 2 minutes of data, but a C gets more interested. Give them:
 
 - Detailed coverage tables
 - Year-by-year values from the benefit illustration
@@ -115,7 +115,7 @@ One wrong fact costs you far more with a C than with anyone else, because they s
 
 > You: "Sorry, a correction to what I said earlier. The figure is $1,240, not $1,340. Let me recheck the rest."
 
-That honesty wins trust back. Staying quiet about an error you've noticed can lose it for good.
+Correcting yourself on the spot wins back trust that staying quiet would lose.
 
 ## C blind spots
 
@@ -144,25 +144,25 @@ Seven habits a C brings:
 "I'll think about it." Expected, because a C rarely decides in the meeting.
 
 - Weak: pressure them to commit today.
-- Better: "Completely understandable. A few things that might help: here's a one-page summary you can go through, I've emailed you the benefit illustration and product summary, and let's book a follow-up for next Thursday at 7pm. If you have questions by then we'll go through them, and if not we can move forward. Does that work?" A week or more to digest it, plus a follow-up already booked, is how a C prefers to decide.
+- Better: "Completely understandable. A few things that might help: here's a one-page summary you can go through, I've emailed you the benefit illustration and product summary, and let's book a follow-up for next Thursday at 7pm. If you have questions by then we'll go through them, and if not we can go ahead. Does that work?" A week or more to digest it, plus a follow-up already booked, is how a C prefers to decide.
 
 ## The C pitch: same plan, different framing
 
-Same recommendation as the rest of the week: $500K CI cover plus a $500-a-month savings plan. For a C, you open with structure.
+It's still $500K CI cover plus a $500-a-month savings plan. For a C, you open with structure.
 
 ### C opening (90 seconds)
 
 > You: "Here's the plan for the next 45 minutes. First, 10 minutes on my recommendation. Then 15 minutes on how I got there: the numbers, the assumptions and the other options I considered. The last 20 minutes are for your questions, and I've brought the compareFIRST comparison for similar plans so we can test it. My recommendation is $500K of critical illness cover plus a $500-a-month savings plan, and there are two assumptions I want to flag that may or may not hold for you. Shall we start?"
 
-It's structured and led by data, with the assumptions named upfront and a comparison built in. A C values an organised process as much as the content.
+Naming the assumptions upfront and building in a comparison matters because a C values an organised process as much as the content.
 
 ### C close: procedural with a follow-up
 
 > You: "It makes sense that you'd want to review this before deciding. I'll send you the one-page summary, the benefit illustration with the assumptions marked, and the compareFIRST comparison we looked at. Let's book a follow-up for next Thursday at 7pm. If you have questions by then we'll work through them, and if the numbers check out, we go ahead. Does that work?"
 
-A C genuinely needs time to research, compare and check. The procedural part gives them a process, and the follow-up sets a decision point 7 to 14 days out, so you're helping their analysis instead of fighting it.
+The procedural part gives them a process, and the follow-up sets a decision point 7 to 14 days out, so you're helping their analysis instead of fighting it.
 
-Don't use an assumptive close with a C, where you go straight to the paperwork as if they've said yes. It feels pushy and sends them back to analysing from scratch, which can lose the deal for good. Avoid urgency too ("sign today or lose the rate"), because a C reads it as sloppy.
+Don't use an assumptive close with a C, where you go straight to the paperwork as if they've said yes. It feels pushy and sends them back to analysing from scratch, which can lose you the deal. Avoid urgency too ("sign today or lose the rate"), because a C reads it as sloppy.
 
 ## Do this today
 

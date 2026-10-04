@@ -62,7 +62,7 @@ The test: a prospect asks "what happens to this plan if I'm out of work for 6 mo
 
 ## Step 2: Benchmark it against the alternatives
 
-The prospect isn't choosing between this AIA plan and nothing. They compare anyway, so bring the comparison yourself. The choice is between this plan and:
+The prospect will compare anyway, so bring the comparison yourself. Their real choice is between this plan and:
 
 - similar AIA plans
 - comparable plans from other insurers
@@ -94,7 +94,7 @@ When a C profile asks "how does this compare?", you have the sheet. When a D pro
 
 ## Step 3: Match it to their needs
 
-This is where features become benefits: what the product does, turned into what it does for this client.
+This is where features become benefits.
 
 ### The three levels
 
@@ -120,8 +120,6 @@ The third column is your pitch language. Learn the translations for the top 5 fe
 
 ## Step 4: Write the pitch
 
-Four rules for the pitch.
-
 ### Rule 1: Help them picture owning the plan
 
 Talk as if they already have the plan, while keeping every number honest.
@@ -146,12 +144,12 @@ Paint the future so they can see themselves in it, with names, places and years.
 - Stronger: "You'll be 62, you and Ruth, finally taking the three-month Europe trip you've been putting off for 5 years."
 - Strongest, with the CPF numbers: "Based on your CPF estimate, CPF LIFE pays you about $1,780 a month from 65. The illustration shows this plan adding about $2,200 a month at the higher illustrated rate, less at the lower rate, and that part isn't guaranteed. Add the Supplementary Retirement Scheme (SRS) withdrawals we planned and you're close to the $4,500 a month you mapped out. That covers the Europe trip in year 1, Tokyo in year 3, helping Sarah with her flat in year 5, and a buffer for medical costs the whole way through."
 
-The third version ties the lifestyle to their actual CPF figure and to moments they told you about in the fact-find. It keeps guaranteed and projected money apart, which is what makes it honest. Use it when the prospect is 50 or older and their CPF position is on the table.
+The third version ties the lifestyle to their actual CPF figure and to moments they told you about in the fact-find. It keeps guaranteed and projected money apart, and that keeps it honest. Use it when the prospect is 50 or older and their CPF position is on the table.
 
 ### Rule 4: Drop these phrases
 
 - "I'm not trying to sell you anything." In a recommendation meeting it isn't true, and prospects know it.
-- "Trust me." Asking for trust is the quickest way to lose it.
+- "Trust me." Asking for trust makes people trust you less.
 - "You should buy this." It's a lecture. Ask a question instead ([Day 43](/learning-track/next-60-days/day/43)).
 - "If I may be honest..." It suggests you haven't been.
 - "Everyone needs this." It's generic, and the whole point is to be specific.
@@ -164,7 +162,7 @@ One idea shapes all four steps:
 
 > Approach each customer with the idea of helping them solve a problem or reach a goal, and let the product follow from that.
 
-Walk in thinking "I need to sell this plan" and the prospect feels it. Walk in thinking "I'm showing this person how to solve the problem they told me about" and the same plan comes across as help.
+If you walk in thinking "I need to sell this plan", the prospect feels it. If you're thinking about how to solve the problem they told you about, the same plan comes across as help.
 
 Before every pitch, check: what problem is this prospect trying to solve, and how exactly does this plan solve it? If you can't answer in one sentence, go back to Steps 2 and 3.
 

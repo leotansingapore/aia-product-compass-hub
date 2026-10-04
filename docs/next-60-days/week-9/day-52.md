@@ -32,7 +32,7 @@ The prospect says "too expensive." The new FC launches straight into justifying 
 - they're comparing it with something else entirely, like investing on their own
 - the value hasn't landed, and they can't see what the premium buys them
 
-If the real objection is "I don't see the need," defending the premium won't help, and you have to go back and rebuild the need. That's why you diagnose first.
+If the real objection is "I don't see the need," defending the premium won't help, and you have to go back and rebuild the need. So diagnose first.
 
 ## The 3 magic questions
 
@@ -57,7 +57,7 @@ Use it once they've stated their objection, plus anything that came out of Q1.
 
 It tests whether the stated objection is the real one. If they say "yes, if the premium worked, I'd go ahead," the objection is genuine, and you can look at adjusting the cover to fit their budget. If they say "well, even then I'd want to think about...", you've found the deeper concern.
 
-It works because it lets the prospect name the real block without losing face. They don't have to admit they were holding something back. They're only answering a hypothetical.
+It lets the prospect name the real block without losing face, because they're only answering a hypothetical and don't have to admit they were holding something back.
 
 ### Magic question 3: "What would need to be true?"
 
@@ -93,7 +93,7 @@ Accept it gracefully, leave the door open, and ask if you can check in later:
 
 > You: "Completely understand, and thanks for being straight with me. If things change in a year or two, or you have a question down the line, just message me. Would you mind if I checked in with you sometime next year?"
 
-If they say no to that too, respect it. Pushing past a second no is pressure, and it damages the relationship. Accepting a hard no well keeps the door open for Year 2 and beyond.
+If they say no to that too, respect it, because a second push is pressure and costs you the relationship. Accepting a hard no well keeps the door open for Year 2 and beyond.
 
 ### Soft no: work with it
 

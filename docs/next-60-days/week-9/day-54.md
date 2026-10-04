@@ -28,7 +28,7 @@ tags: [next-60-days, week-9, new-fc, practice, objections, loom, recorded]
 
 ## Today's bar
 
-This week's reps aren't live pitches. They're objection drills on camera.
+This week's reps are objection drills on camera instead of live pitches.
 
 Speed at handling objections comes from repetition. In live meetings you meet one objection at a time, spread over weeks. In a drill session you get 5 objections in 45 minutes, and that volume is what builds the reflex.
 

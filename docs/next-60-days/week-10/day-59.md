@@ -14,7 +14,7 @@ tags: [next-60-days, week-10, new-fc, review, numbers, diagnostic]
 
 # Day 59: Reviewing your 60-day numbers
 
-> **Today in one line:** Sixty days in, the numbers tell the truth. Read them honestly, because what you measure now shapes what you build next.
+> **Today in one line:** Sixty days in, read your real numbers honestly, because what you measure now shapes what you build next.
 
 **What to remember**
 
@@ -25,7 +25,7 @@ tags: [next-60-days, week-10, new-fc, review, numbers, diagnostic]
 
 ## The 60-day reckoning
 
-You started this module 60 days ago with $0 FYC and a plan. Today you count what actually happened. The question is what the numbers say, not how the two months felt.
+You started this module 60 days ago with $0 FYC and a plan. Today you count what actually happened, and go by what the numbers say, whatever the two months felt like.
 
 Without an honest read, you plan Month 3 on a story instead of data. New FCs who tell themselves "Month 2 was rough but Month 3 will be better", without working out what specifically has to change, usually get the same Month 3. Today's diagnosis is what tomorrow's 12-month plan is built on.
 
@@ -88,7 +88,7 @@ The gap between projection and actual is your data, and it usually falls into on
 
 ### Pattern 1: every projection was optimistic
 
-This is the most common one for new FCs. You projected 7 appointments a week and got 3, a 40% close rate and got 20%, a $750 case size and got $500.
+New FCs end up here most often. You projected 7 appointments a week and got 3, a 40% close rate and got 20%, a $750 case size and got $500.
 
 It's normal, because first-year projections tend to run high. Reset your expectations to what the market actually gave you, not what you hoped for at the start. With every metric short, you need a broader reset.
 

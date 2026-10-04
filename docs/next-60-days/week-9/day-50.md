@@ -44,7 +44,7 @@ You skip the "will you?" and go straight to the logistics, on the basis that the
 - "Since you want both girls covered, I'll set up a plan for each of them, correct?"
 - "If everything looks good, would Tuesday evening or Saturday morning work better to sign?"
 
-The second line only works because the client said earlier that they want both children covered. The assumptive close confirms a decision they've already made. It doesn't slip in one they haven't.
+The second line only works because the client said earlier that they want both children covered. The assumptive close confirms a decision they've already made, so never use it to slip in one they haven't.
 
 It suits D profiles, prospects whose trial closes all came back clean, and later-stage prospects you've met more than once.
 
@@ -66,7 +66,7 @@ The figures are only an example, so use the numbers from the client's actual quo
 
 It suits S profiles (control without pressure), C profiles (they like comparing) and prospects who hedge at a single ask.
 
-It backfires with D profiles, who usually want your best recommendation and find a comparison slow. It also backfires with prospects who haven't decided whether to go ahead at all. Asking "A or B?" before they've agreed to the decision underneath feels like a trick. The choice close is for how, once they've agreed to whether.
+It backfires with D profiles, who usually want your best recommendation and find a comparison slow. It also backfires with prospects who haven't decided whether to go ahead at all. Asking "A or B?" before they've agreed to the decision underneath feels like a trick. Use the choice close to settle how they go ahead, once they've agreed to go ahead at all.
 
 ### Two options or three
 
@@ -82,7 +82,7 @@ You point to something with a real time limit that makes acting now better than 
 - the client's own timing, such as a baby, a wedding or a job change where waiting has a real cost
 - the client's health, where a delay could change how the application is underwritten (say this once, factually, and never use a health scare as a lever)
 
-Here's how each sounds:
+Three examples:
 
 > You: "You mentioned wanting this in place before the baby arrives. Once AIA has everything it needs, it can take up to 30 days to accept, counter-offer or decline the application, and any change in your health before it's accepted has to be declared. Starting this week gives us room."
 
@@ -94,7 +94,7 @@ Each of these points to something the client can check: their own dates, or a no
 
 It suits D profiles, who respect a real deadline, and prospects who have been on the fence for weeks and need a genuine reason to decide.
 
-It backfires with S profiles, who feel pressured and pull back, so even a real deadline needs soft wording with an S ("there's no rush at all"). C profiles check the deadline, and if it doesn't hold up you lose their trust for good. With anyone at all, invented urgency backfires.
+It backfires with S profiles, who feel pressured and pull back, so even a real deadline needs soft wording with an S ("there's no rush at all"). C profiles check the deadline, and if it doesn't hold up you lose their trust for good.
 
 ### The rule on urgency
 
@@ -104,14 +104,12 @@ If none of the three real sources apply, use the assumptive or choice close inst
 
 ## Using several closes in one meeting
 
-You can use different closes at different points in the same meeting. Here's a presentation to an S-profile parent:
+You can use different closes at different points in the same meeting. For example, in a presentation to an S-profile parent:
 
 1. Trial close during the presentation: "Does the 20-year term feel right, or would a shorter term suit you better?" (a choice trial)
 2. Trial close after the recommendation: "If we did go ahead, would you want to submit the application this month or next?" (an assumptive trial)
 3. Main close, using choice: "We've looked at Plan A at about $400 a month and Plan B at about $550. Which fits your situation better?"
 4. Reinforcement after the yes, with the paper-flip close from Day 49
-
-The main close is where they decide, and the trial closes built up to it.
 
 ## What the close is not
 
@@ -119,7 +117,7 @@ The close isn't a trick. Closing means asking for the decision the prospect has 
 
 From the outside, a good close looks almost boring, because the prospect is ready and the close confirms it. If your closes keep turning into showdowns, you're leaving the decision too late.
 
-The close is also where onboarding starts, and Week 10 picks up from here. Moving straight on to the next prospect after a signature is the Year 1 habit that kills referrals.
+The close is also where onboarding starts, and Week 10 picks up from here. Moving straight on to the next prospect after a signature is the Year 1 habit that dries up referrals.
 
 ## Do this today
 

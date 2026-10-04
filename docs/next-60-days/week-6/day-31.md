@@ -90,7 +90,7 @@ Thinker and slow. Analytical, precise, sceptical.
 
 ## The 5-minute speed-read and the 6 signals
 
-Every meeting settles into a pace. Without really noticing, you and the prospect agree how fast to talk and how formal to be. That happens in the first 5 minutes, and after that any change feels jarring. Read the person well at the start and the meeting runs smoothly, but misread them and you spend the next 55 minutes fighting the pace.
+Every meeting settles into a pace. Without really noticing, you and the prospect agree how fast to talk and how formal to be. That happens in the first 5 minutes, and after that any change feels jarring. Misread the person at the start and you spend the next 55 minutes fighting the pace.
 
 So commit to a working guess by minute 5. You can still change it if the person surprises you.
 
@@ -109,7 +109,7 @@ In those first 5 minutes, watch for 6 signals:
 
 When 3 signals point the same way, commit to the profile.
 
-No single signal settles it. Waiting for all 6 to agree burns the 5 minutes, and never committing leaves you fighting the pace all meeting. Three is enough to act on and easy to revise if a later signal disagrees. Treat it as a working guess you'll keep checking, never as a verdict.
+No single signal settles it. Waiting for all 6 to agree burns the 5 minutes, and never committing leaves you fighting the pace all meeting. Three is enough to act on and easy to revise if a later signal disagrees.
 
 ## When the speed-read isn't enough: profiling questions
 
@@ -143,7 +143,7 @@ The scenario question:
 - "I'd support whoever's leading and make sure no one's overwhelmed": S
 - "I'd build the plan and make sure we're not missing anything": C
 
-The colour patterns are loose, and the reason matters much more than the colour. People answer these questions openly because nothing obvious rides on the answer, so use 2 or 3 of them spread through normal conversation. Check what you hear against your speed-read: two independent reads that agree beat either one alone.
+The colour patterns are loose, and the reason matters much more than the colour. People answer these questions openly because nothing obvious rides on the answer, so use 2 or 3 of them spread through normal conversation. Check what you hear against your speed-read, and trust the profile more when the two agree.
 
 ## The 2 pairs you'll mix up early
 
@@ -189,7 +189,7 @@ DISC sits inside a wider communication model.
 | Layer (number of sub-skills) | Sub-skills | What it does |
 |---|---|---|
 | Connect (5) | Smile, give a sincere compliment, ask about them, listen properly, acknowledge what they said | Lowers the prospect's guard. The first 2 minutes of every meeting. |
-| Convince (1) | Match their logic, using DISC | The same content has to land with four very different people, and this layer is how. All of Week 6. |
+| Convince (1) | Match their logic, using DISC | Lets the same content land with four very different people. All of Week 6. |
 | Comfort (4) | Warm tone, pace slightly faster than conversational, open body language, plain words with no jargon | Keeps them open for the next 30+ minutes. |
 
 Order matters. New FCs tend to jump straight to Convince before they've done Connect, and the prospect feels rushed and shuts down. The opposite happens too: advisors who are great at Connect but never get to a real Convince have pleasant meetings and don't close.
@@ -203,7 +203,7 @@ Almost every meeting opens with a compliment, and new FCs usually get it wrong b
 3. Make it personal. Drop "quite friendly", "approachable" and "easygoing", which sound like filler. Say something only this person would recognise: "You handled the [specific situation] way better than I would've."
 4. Fit it to the profile. D and DC profiles (DC means mostly D, with some C) like recognition of what they did: results, decisions, calls they made. I and IS profiles like recognition of who they are, such as their energy, warmth or the kind of friend they are. S profiles like recognition of consistency and dependability. C profiles like recognition of their thinking and the care they took.
 
-A sincere, personal compliment that fits the profile, given early, does more to lower someone's guard than any scripted line. Skip it and the prospect stays guarded, and everything in Days 32 to 35 gets harder.
+Skip the compliment and the prospect stays guarded, and everything in Days 32 to 35 gets harder.
 
 ### The 5 steps to build rapport
 

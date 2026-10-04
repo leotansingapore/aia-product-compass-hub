@@ -35,7 +35,7 @@ The policy is why they first sat down with you. The moments are why they stay, r
 
 Psychology backs this up. Daniel Kahneman's work on the peak-end rule found that people judge an experience mostly by its most intense moment and how it ended, with little weight on how long it lasted. Chip and Dan Heath built a whole book, The Power of Moments, on the same idea.
 
-Year-1 FCs often treat moments as a nice extra alongside selling. For retention and referrals they are the work: an adviser who sells without them keeps losing clients, and one who sells with them builds a book that grows by itself.
+Year-1 FCs often treat moments as a nice extra alongside selling. For retention and referrals they are the work, and an adviser who skips them keeps losing clients.
 
 ## The 4 types of touchpoint
 
@@ -70,7 +70,7 @@ For A-tier clients, double it. For C-tier clients, a quarterly broadcast plus a 
 
 ## Competence and the extra mile
 
-Competence is the baseline, and the extra mile is what makes a moment stick.
+Competence is the baseline, and the extra mile turns it into a moment the client remembers.
 
 Competence alone: the client's policy document arrives, and you email to confirm they have it. That's done properly. They'll appreciate it and forget it within a week.
 
@@ -102,11 +102,9 @@ You won't remember to do any of this without a system. Set up a few simple remin
 
 Those notes are personal data, so handle them under the Personal Data Protection Act (PDPA). Record only what the client told you, keep it in AIA's approved systems, use it to look after that client, and never pass one client's details to another. If a client asks what you hold about them, you should be able to show them.
 
-Without it, you'll do three thoughtful things in your first month and then forget.
-
 ## The maths of moments
 
-Here's an illustration. Say you have 20 A-tier clients and create 2 thoughtful moments for each of them a year, which makes 40 moments. If 1 in 4 of those led to a referral, that would be 10 warm referrals a year before you've made a single direct ask. Your own numbers will differ, but the inputs are cheap and the returns build up over years.
+As an illustration, say you have 20 A-tier clients and create 2 thoughtful moments for each of them a year, which makes 40 moments. If 1 in 4 of those led to a referral, that would be 10 warm referrals a year before you've made a single direct ask. Your own numbers will differ, but the inputs are cheap and the returns build up over years.
 
 The payback is uneven: one touch might lead to nothing this quarter and three referrals next year. Each moment also makes the client more likely to stay, and a client who stays keeps referring.
 
@@ -133,7 +131,7 @@ Where it doesn't fit: prospecting, warm or cold. The 8 Steps assume a relationsh
 
 The framework was first written for coaching a struggling teammate, which is why every step centres on the person. It carries over to clients because the idea is the same: acknowledge someone before you say anything hard.
 
-One well-handled recovery conversation often rebuilds more goodwill than five routine check-ins. A client who feels heard in a difficult moment can stay with you for twenty years, and one who feels managed quietly leaves.
+One well-handled recovery conversation often rebuilds more goodwill than five routine check-ins.
 
 ## Do this today
 

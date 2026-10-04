@@ -14,7 +14,7 @@ tags: [next-60-days, week-10, new-fc, case-study, weekly-rhythm, top-producer]
 
 # Day 58: How a top producer runs a week
 
-> **Today in one line:** What separates top producers from everyone else is rarely talent or luck. It's the weekly system they keep running whether they feel like it or not.
+> **Today in one line:** Top producers run the same weekly system whether they feel like it or not, and that habit matters more than talent or luck.
 
 **What to remember**
 
@@ -27,7 +27,7 @@ tags: [next-60-days, week-10, new-fc, case-study, weekly-rhythm, top-producer]
 
 Every top producer who started as a new FC made the same shift. They went from "I work when there's something to do" to "I work the same week every week, whether I feel like it or not."
 
-Motivation came and went, and structure made the shift. Their weekly system keeps prospecting going however many cases close, stops client work getting squeezed out, keeps admin from eating the productive hours, and makes rest and family time actually happen.
+Their weekly system keeps prospecting going however many cases close, stops client work getting squeezed out, keeps admin from eating the productive hours, and makes rest and family time actually happen.
 
 The exact hours differ from person to person, but the shape of the week is strikingly similar across the guest speakers who've shared theirs with the team.
 
@@ -47,7 +47,7 @@ New business brings in this year's income, and relationship work brings in futur
 
 ## A sample weekly schedule
 
-Here's one top-producer week in time blocks.
+One top-producer week, in time blocks:
 
 ### Monday: calling day
 

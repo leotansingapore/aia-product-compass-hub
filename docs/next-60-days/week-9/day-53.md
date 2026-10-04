@@ -143,7 +143,7 @@ Always show the two actual quotes. Don't guess at a multiple like "three times t
 
 ## Objection 10: "Email me the details, I'll look at it"
 
-What it usually means: usually it's a way of putting you off, and they don't really plan to read it. They may be politely ending the meeting.
+What it usually means: it's often a way of putting you off, and they don't really plan to read it. They may be politely ending the meeting.
 
 Be honest that documents on their own rarely lead to a decision, while conversations do:
 
@@ -176,7 +176,7 @@ When to reach for each:
 ## Do this today
 
 1. Pick the 3 objections you hear most. For each, rewrite the response above in your own words.
-2. Say each one out loud until you can deliver it without reading. Tomorrow's drill records 5 of them.
+2. Rehearse each one until you can deliver it without reading. Tomorrow's drill records 5 of them.
 
 ## Sources
 

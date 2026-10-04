@@ -26,7 +26,7 @@ tags: [next-60-days, week-7, new-fc, hot-buttons, pain-before-gain, visualisatio
 
 Kahneman and Tversky's loss aversion research found that losing $100 hurts about twice as much as gaining $100 pleases. A 2024 meta-analysis of the studies since put the average ratio at about 1.96.
 
-In financial planning, "here's what you'd lose without this" usually moves people more than "here's what you gain." Both work. The loss framing tends to be stronger, especially with cautious S and C profiles.
+In financial planning, "here's what you'd lose without this" usually moves people more than "here's what you gain", especially cautious S and C profiles. Gain framing still works.
 
 The ethical rule still applies. If the gap in their coverage leaves them exposed, show it. If there's no gap, don't invent a scenario.
 
@@ -77,7 +77,7 @@ With a real prospect:
 
 > You: "Imagine 20 years from now. You're 58. Your daughter's starting her career and your son's in his final year of uni. Then something happens, a serious critical illness. What do the next 5 years look like with your current setup?"
 
-Then stay quiet for as long as it takes. They're picturing it, and that silence is when the hot button fires.
+Then stay quiet and give them time to picture it.
 
 ### Form B: Past callback
 
@@ -119,7 +119,7 @@ For pre-retirees there's a more concrete version. When the prospect is 53 to 58 
 
 > You: "You said you'd take $100K of the CPF savings you can withdraw at 55 to help your son with his flat. That's your call to make, and it may well be the right one. Here's what it costs: left in your Ordinary Account at the 2.5% floor rate, that $100K would be about $113K by 60. So the gift is really about $113K out of your retirement money. Picture the two of you at 65, five years into retirement. That $13K is the difference between the trip you wanted and the trip you settle for."
 
-"You'd lose some interest" doesn't register with anyone. A specific $13K and a specific trip does. Base it on their actual balances and the CPF rate that applies to them. Check the current rate on the CPF Board site before the meeting (the OA floor has been 2.5% for years, but check), and leave the decision with them.
+Put a number and a trip on it, because "you'd lose some interest" doesn't register with anyone. Base it on their actual balances and the CPF rate that applies to them. Check the current rate on the CPF Board site before the meeting (the OA floor has been 2.5% for years, but check), and leave the decision with them.
 
 ### Bad experiences and fear: direct callback
 

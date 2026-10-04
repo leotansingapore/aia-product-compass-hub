@@ -40,7 +40,7 @@ Weeks 1 to 7 have built up in layers:
 
 Today is the first time you test them together: a pitch that adapts to the profile, uses a real hot button and closes cleanly. Every layer has to work for the pitch to land. That means story for the I, structure for the C, the hot-button callback for depth, and the close for commitment.
 
-Three live pitches to real prospects is ideal. If you don't have 3 prospects ready for a full pitch this week, mix 1 or 2 live with 1 or 2 recorded simulations. Both kinds count.
+Three live pitches to real prospects is ideal. If you don't have 3 prospects ready for a full pitch this week, mix 1 or 2 live with 1 or 2 recorded simulations, and both kinds count.
 
 ## The matrix you're filling in
 
@@ -101,7 +101,7 @@ Live teaches you more. Simulation is still proper practice, especially if you do
 
 ## Do this today
 
-Finish your 3 pitches by Saturday, then submit four things. Keep them tight.
+Finish your 3 pitches by Saturday, then submit four things.
 
 ### 1. The pitch log
 
@@ -141,7 +141,7 @@ Book a 15-minute check-in. Your mentor watches the 3 Looms with you and looks at
 1. Did the pitch really change across the 3 profiles, or did the same delivery show through?
 2. Did the hot-button callbacks feel personal or generic?
 
-If 2 of your 3 pitches are clean, you've passed Week 7. If only 1 felt integrated, Week 8 goes deeper on how to build a pitch, and that's what it's there for.
+If 2 of your 3 pitches are clean, you've passed Week 7. If only 1 felt integrated, Week 8 goes deeper on how to build a pitch.
 
 ### Week 7 KPI: the gate
 
@@ -152,7 +152,7 @@ Week 8 opens when you have all four:
 - [ ] A Loom for each (or a live-delivery reflection if it was a real prospect)
 - [ ] Day 42 Loom reflection done and a 15-minute mentor review booked
 
-If one of the 3 doesn't qualify (a repeated profile, or no clear hot button), back-fill it with a simulation by Sunday. Count honestly: one clean simulation is worth more than one padded live pitch.
+If one of the 3 doesn't qualify (a repeated profile, or no clear hot button), back-fill it with a simulation by Sunday. Count honestly: a clean simulation is better than a live pitch you pad to make it qualify.
 
 ## Sources
 

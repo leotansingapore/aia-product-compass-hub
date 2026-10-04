@@ -15,7 +15,7 @@ tags: [next-60-days, week-10, new-fc, graduation, year-1-plan, 12-month]
 
 # Day 60: Graduation and the 12-month plan
 
-> **Today in one line:** Day 60 is a start line. The question now is what you're going to build over the next 10 months.
+> **Today in one line:** Today you decide what you'll build over the next 10 months, and put it on one signed page.
 
 **What to remember**
 
@@ -134,7 +134,7 @@ Keep the daily 15 minutes of reading from Day 58, but don't go looking for more 
 
 ## The habit to keep: one more call
 
-Everything in this module comes down to three words that top producers say to themselves every working day:
+Top producers say three words to themselves every working day:
 
 > "One more call."
 
@@ -151,7 +151,7 @@ The maths: one extra call a day over 250 working days is 250 extra calls a year.
 
 ## Graduation
 
-You've now finished the 60-day module. Here's what you have today that you didn't have 60 days ago:
+You've now finished the 60-day module. What you have today that you didn't have 60 days ago:
 
 - A voice: your intent statement, your story, your tonality, your frame
 - A pipeline: real warm-market names, a Strategic Target List, referred contacts
