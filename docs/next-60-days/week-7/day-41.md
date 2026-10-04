@@ -134,10 +134,10 @@ Four closes to keep ready, each suited to different profiles and moments. Every 
 
 | Profile | Works well | Avoid or use with care |
 |---|---|---|
-| D | Assumptive (best), plus a short Reassurance, or Procedural if they trust the process | Follow-up is rarely needed |
+| D | Assumptive (best), plus a short Reassurance | Follow-up is rarely needed |
 | I | Reassurance (best), or Assumptive after a warm yes | Procedural is too dry, and a Follow-up only works if it's within days, before interest fades |
 | S | Procedural, Reassurance, Follow-up | Assumptive feels like pressure |
-| C | Procedural (best) and Follow-up (the default for C), with Reassurance only when it comes with numbers | Assumptive feels pushy |
+| C | Procedural (best) and Follow-up (a C rarely decides at the first meeting), with Reassurance only when it comes with numbers | Assumptive feels pushy |
 
 The mismatch that kills the most deals is the Assumptive close on an S or a C. The S either agrees to keep the peace and quietly backs out within 48 hours, or refuses outright. The C goes back to analysing from scratch and often rules you out.
 
@@ -179,7 +179,7 @@ Check affordability properly. A plan the client can't keep paying fails them, an
 
 ### Close 4: Follow-up
 
-This is the last resort, for when closes 1 to 3 didn't land in the meeting. It suits a C, who needs research time, and an S, who needs processing time. Never make it your default close, because a follow-up without a fixed date usually never happens.
+This is the last resort, for when closes 1 to 3 didn't land in the meeting. It suits a C, who needs research time, and an S, who needs processing time. Outside a C, never make it your default close, because a follow-up without a fixed date usually never happens.
 
 Before they leave:
 

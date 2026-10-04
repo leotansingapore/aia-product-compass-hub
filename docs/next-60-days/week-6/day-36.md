@@ -38,7 +38,7 @@ Many new FCs are surprised by how little their delivery changes from one profile
 
 The situation stays the same and the prospect changes:
 
-> Scenario: You're at the start of a first fact-find. You've just sat down and the small talk is done. You're about to give your intent statement and your 90-second pitch, then move to the first fact-find question.
+> Scenario: The fact-find is done and you're back with your recommendation. You've just sat down and the small talk is done. You're about to give your 90-second pitch, then close.
 
 Record 4 versions, 90 seconds each, with a different prospect profile each time. Each roleplay uses the opening and close from that profile's lesson (Days [32](/learning-track/next-60-days/day/32) to [35](/learning-track/next-60-days/day/35)), so you're checking whether your close changes across profiles as well as your voice.
 

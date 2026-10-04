@@ -110,7 +110,7 @@ It's easy to treat your contact list as a phone book. Treat it as the most valua
 
 The minimum is one list in one tool (spreadsheet, Notion or CRM) that holds every name you'd ever approach again. Each entry gets an ABC or 1-2-3 tag from [Day 3](/learning-track/next-60-days/day/3) and a last-contact date. Over time, each one also gets a trigger and a script variant: why you'd reach out now, and with what angle.
 
-Have it built by [Day 23](/learning-track/next-60-days/day/23). Without it, what you have is a hobby with some appointments in it.
+Have it built by [Day 23](/learning-track/next-60-days/day/23), when you pull your Strategic Target List from it. Without it, what you have is a hobby with some appointments in it.
 
 ## The rejection math: reframe before you dial
 

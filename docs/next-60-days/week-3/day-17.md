@@ -162,7 +162,7 @@ Use this when a warm contact has gone quiet after agreeing to meet, or hasn't an
 
 ### No-reply nudge (day 1, day 3, day 7)
 
-Use this when a digital lead has gone cold after their first reply. Send three spaced nudges, then move them to nurture.
+Use this when an inbound digital lead, not a warm contact, has gone cold after their first reply. These nudges run tighter than the 3-to-5-day gap above. Send three spaced nudges, then move them to nurture.
 
 [No-Reply Nudge - Young Adults (Day 1 / Day 3 / Day 7)](/scripts/bdeb4745-292a-48ae-8c4f-5a5e2f470cc5)
 

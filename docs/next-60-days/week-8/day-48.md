@@ -102,7 +102,7 @@ Week 9 is about the close, and it builds on whatever this recording shows about 
 
 - If your close was weak, Days 49 to 51 (closing techniques) will help most
 - If objections tripped you up, focus on Days 52 to 53 (objection handling)
-- If you got to the close and the prospect said "let me think about it", the Iceberg work in Week 9 matters most
+- If you got to the close and the prospect said "let me think about it", Day 52's magic questions and Day 40's Iceberg steps matter most
 
 Pick the 2 or 3 Week 9 lessons you'll spend the most time on, based on what this recording showed you. That's a better use of the week than reading straight through.
 

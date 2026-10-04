@@ -154,7 +154,7 @@ Whether the appointment came from warm or cold, the first 30 seconds of the Fact
 | C: Confidentiality | "Everything you share with me today stays in strictest confidence." |
 | D: Disclosure | "With that said, I hope you can share openly, because the quality of the recommendation depends on the quality of what I learn." |
 
-Each one answers a worry. Assurance answers "is he going to push me?" Best Interest answers "why should I trust him?" Confidentiality answers "is it safe to share?" Disclosure hands the job of being open to them.
+Each one answers a worry. Assurance answers "is he going to push me?" Best Interest answers "is the advice really for me?" Confidentiality answers "is it safe to share?" Disclosure hands the job of being open to them.
 
 Four sentences, about 40 seconds, done before the first Fact-Find question. Prospects open up faster afterwards, because you've already answered worries they hadn't said out loud.
 

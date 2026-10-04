@@ -58,7 +58,7 @@ Aim for 3 to 5 trial closes in a meeting. Fewer and they hit the main close cold
 
 ## The main close
 
-The trial closes collected small agreements. The main close asks for the decision, and there are three ways to phrase it.
+The trial closes collected small agreements. The main close asks for the decision, and there are three ways to phrase it. They word the final ask inside the Day 41 closes: a summary can end a reassurance close for an I or a procedural close for a C, and a choice can end a procedural close for an S.
 
 The summary close:
 

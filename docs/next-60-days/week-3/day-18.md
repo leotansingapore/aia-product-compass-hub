@@ -46,7 +46,7 @@ These don't count:
 
 - A story. Stories disappear after 24 hours, so it has to be a feed post.
 - A repost of someone else's content.
-- A post with no call to action. If it doesn't ask the reader to do something, it isn't doing Q5's job.
+- An offer post with no call to action. If Post 1 doesn't ask the reader to do something, it isn't doing Q5's job.
 
 Your posts count as advertising, so put them through your firm's approval process before they go live. Give yourself time for that before Sunday.
 

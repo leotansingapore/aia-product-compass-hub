@@ -78,7 +78,7 @@ Competence plus the extra mile: you email to confirm, and you also attach a two-
 
 The extra mile is almost always small: five extra minutes, a detail that shows you were listening, a personal touch that goes past the transaction. Three illustrations of the kind of gesture that works:
 
-- The sambal and the toy. A property agent found out during a sale that her client's mum loved a particular homemade sambal chilli, and that the client had a five-year-old daughter. After the deal closed she dropped off a jar of homemade sambal and a small toy for the girl, about $20 in total. The family kept recommending her for years afterwards.
+- The sambal and the toy. A property agent found out during a sale that her client's family loved a particular homemade sambal chilli, and that the client had a five-year-old daughter. After the deal closed she dropped off a jar of homemade sambal and a small toy for the girl, about $20 in total. The family kept recommending her for years afterwards.
 - The medical specialist. A client mentioned that their sister was seeing a specialist she didn't fully trust. The FC knew a well-regarded specialist in that field and offered an introduction. He didn't give any medical opinion himself. He just put two people in touch, and the family remembered who had helped.
 - The travel kit. An FC learned that a client was about to fly alone with two young kids for the first time. The night before, she dropped a small kit at their home: snacks, a few activities for the flight and a card. The client's family still brings it up.
 

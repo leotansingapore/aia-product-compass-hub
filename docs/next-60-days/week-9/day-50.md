@@ -23,13 +23,13 @@ tags: [next-60-days, week-9, new-fc, closing, assumptive, choice, urgency]
 
 ## Three closes for the main ask
 
-[Day 49](/learning-track/next-60-days/day/49) covered trial closes (early and repeated) and the main close (the moment you ask for the decision). Today is about three ways to phrase that main close. Each one puts a different kind of pressure on the moment, so pick the one that suits the person.
+[Day 49](/learning-track/next-60-days/day/49) covered trial closes (early and repeated) and the main close (the moment you ask for the decision). Today goes deeper on the assumptive and choice closes, and adds urgency. Each one puts a different kind of pressure on the moment, so pick the one that suits the person.
 
 ![The 3 mid-tier closes: Assumptive (assume the yes); Choice (A or B?); Urgency (now vs later)](/next-60-days/images/n60-day-50-m0.webp)
 
 | Profile | Works well | Use with care |
 |---|---|---|
-| D | Trial, assumptive (best), urgency with a real deadline | Choice (too many options), keep any summary short |
+| D | Trial, assumptive (best), urgency with a real deadline | Choice with more than two options, keep any summary short |
 | I | Trial, summary with the story, assumptive after a warm yes | Choice (they hedge), urgency (feels pushy) |
 | S | Trial, choice (best, feels safe), reassurance | Assumptive (pressure), urgency (they withdraw) |
 | C | Trial, choice (they like options), summary with data | Assumptive (pushy), urgency unless it's real and documented |

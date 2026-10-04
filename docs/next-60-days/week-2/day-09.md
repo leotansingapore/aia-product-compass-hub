@@ -52,7 +52,7 @@ They work with any prospect, product or stage:
 
 7. Detach from outcome: the less you need the sale, the more likely you are to close.
 
-In your first 60 days, three of them (1, 6 and 7) do most of the work. Today covers those, and the other four come in Week 8 once you've had more reps.
+In your first 60 days, three of them (1, 6 and 7) do most of the work. Today covers those. Sharp questions get their own lessons in Week 8 (Days 43 and 44), and the rest build up as you get more reps.
 
 ## Commandment 1: always be framing
 
@@ -69,7 +69,7 @@ It does four things:
 3. It shows you have a system, which reads as professional.
 4. It gets their buy-in before you've started.
 
-One rule: never say "I'm not trying to sell you anything." Salespeople say it all the time, so it puts the guard up. If they ask "are you trying to sell me something?", admit the commercial side:
+One rule: never say "I'm not trying to sell you anything." Salespeople say it all the time, so it puts the guard up. (The ABCD Assurance promise in Day 22 is a fixed AIA script and goes on to say a proposal may follow, so it's a different move.) If they ask "are you trying to sell me something?", admit the commercial side:
 
 > "Honestly, of course I'd love the opportunity to work with you if it makes sense. But today is really about finding out whether that even makes sense for both of us."
 
@@ -165,7 +165,7 @@ If none of the three works, end the meeting politely and keep the door open. Som
 - C) Sharp questions, refrain from solutions, credentials
 - D) Tonality, urgency, buy-in
 
-**Why:** Framing stops the guard going up, calling the elephant brings it down once it has, and detachment makes both of them work. The other four come in Week 8, once the basics are automatic.
+**Why:** Framing stops the guard going up, calling the elephant brings it down once it has, and detachment makes both of them work. Sharp questions come on Days 43 and 44, and the rest build up once the basics are automatic.
 
 **Q5. *"The more you need a prospect, the less likely you are to close them."* The structural fix for that desperation is:**
 - A) Acting more confidently
