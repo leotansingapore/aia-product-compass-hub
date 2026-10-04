@@ -170,7 +170,7 @@ When to reach for each:
 - [Texting EQ, 4-step objection handling](/scripts/af86c2b2-72ac-4c55-857a-87541d91ff36): when the objection comes in writing. The four steps are to acknowledge it casually, find common ground, offer a different perspective, then give a safety valve.
 - [Cost of delay (pre-retirees)](/scripts/0d7bdc5c-3933-4d4d-9f14-486653ebc295): objection #3 or #6, with a prospect in their 40s or 50s. The idea is that waiting costs either time or money.
 - [Young adults (all objections)](/scripts/ca7f4832-ce18-4bf6-8e09-d3d099e826a5): a young adult giving you lighter versions of #5, #6 and #10.
-- [NSF (all objections)](/scripts/2833e586-02cc-4fd5-8a71-1f17c9d71b73): a lead that came in through an NSF intake.
+- [NSF (all objections)](/scripts/2833e586-02cc-4fd5-8a71-1f17c9d71b73): a lead who is a full-time national serviceman (NSF).
 - [Handling video-off objections (Zoom)](/scripts/7b4ff6b1-c019-44d1-888b-7c5505ca2e54): a prospect who wants to keep their video off for a Zoom fact-find.
 
 ## Do this today

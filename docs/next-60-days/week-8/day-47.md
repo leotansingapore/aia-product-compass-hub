@@ -202,7 +202,7 @@ The core plans to know by heart: APA (AIA Pro Achiever), PLP (AIA Pro Lifetime P
 
 ### Policy summary workflow
 
-1. Ask Aira to create a policy-summary template in your [Policy Summaries GC](https://nsgukkz32942.sg.larksuite.com/wiki/Ngepw1tzGi79u4kEEUQlVHwagwg). GC means group chat.
+1. Ask Aira, from the operations and admin team, to create a policy-summary template in your [Policy Summaries GC](https://nsgukkz32942.sg.larksuite.com/wiki/Ngepw1tzGi79u4kEEUQlVHwagwg). GC means group chat.
 2. Learn from [these tutorials](https://nsgukkz32942.sg.larksuite.com/wiki/SyDgwo8z1iPMgukezzolxHZ2gOP).
 3. Ask a warm contact whether you can review their policy documents. Get their permission in writing, and make sure it covers the team seeing an anonymised copy. Remove their name, NRIC, address and policy numbers before anything goes into a group chat. Then draft a summary and send it to the onboarding GC for review and a portfolio strategy.
 
