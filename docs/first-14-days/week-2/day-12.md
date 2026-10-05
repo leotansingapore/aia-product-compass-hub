@@ -8,7 +8,7 @@ primary_sources:
   - "[[../../explorer/_source-articles/module-2-limiting-beliefs]]"
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
   - "[[../../finternship-orientation/03-10m-read--module-3---faqs/03-limited-time]]"
-duration_minutes: 4
+duration_minutes: 5
 tags: [first-14-days, week-2, prospect, objection, time, office, ifa, leo-voice]
 ---
 
@@ -44,6 +44,20 @@ This was my weekly schedule as a student advisor.
 I didn't have a VA back then. Everything was manual, and 80% of it was done without outsourcing. I didn't have a mentor to guide me either, so my scripts, slides and decks were all made from scratch. All meetings were physical, and everything ran on paper, so admin took wayy more time than it does now.
 
 If I could build my business with just two hours a day, I know you can manage your time well too.
+
+## My own student years
+
+### What was the biggest challenge when you started as a student?
+
+The hardest part was creating everything from scratch: systems, scripts, decks and workflows. I had no mentor, so I figured it out as I went, and I even hired a virtual assistant from Upwork to help with presentation materials.
+
+Time management was the other challenge. I optimised my schedule, used weekends for appointments, and blocked 2 to 3 hours a day for prospecting.
+
+### What was uni life like as a student advisor? Did you still have time for a CCA and friends?
+
+Yes, I had a normal uni life. I was in the tennis CCA and active in my hall (RC4). I still had a social life, but I cut out time-wasters like binge-watching shows.
+
+I watched lectures at 2 to 3x speed and prospected during my commute. Eventually prospecting became a daily habit, as natural as brushing my teeth.
 
 ## Do you need a big office?
 

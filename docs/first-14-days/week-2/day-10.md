@@ -39,6 +39,20 @@ These are the cold-market channels we run for you and teach you:
 
 When I started, my own warm network was small. I was on GEP at NUS with no real social circle, so most of my 1,000+ clients came through cold prospecting. If your network is small too, you'll lean more on cold, maybe 70 to 80% of your pipeline. If your network is big, that's an advantage you bring with you.
 
+## What happened with my own family and friends
+
+People often ask me two things about this.
+
+### Did you get any resistance from family and friends when you joined?
+
+Not really. My parents didn't object since I wasn't giving up anything significant, like my degree, to join this career. Most family members and friends were either neutral or supportive, especially when they saw it as a side hustle. Resistance might come up only if you're dropping out of school or quitting a secure job to go all-in without a clear plan.
+
+### How successful were you in closing cases with your own personal circle?
+
+Initially? Not at all. My friends were mostly students who didn't have the money to commit. It wasn't until I gained traction that some of them started coming to me for advice.
+
+Instead of relying on personal contacts, I built skills, created resources, and focused on cold marketing and lead generation.
+
 ## So, do you need to approach your friends?
 
 If you believe your services can truly help them, then yes, it's a great way to start. But you won't be limited to your warm market. Together we'll build a system that lets you do well across many lead channels, so you start with confidence and a strong foundation.

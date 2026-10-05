@@ -9,7 +9,7 @@ primary_sources:
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
   - "[[../../finternship-orientation/03-10m-read--module-3---faqs/05-lack-of-experience]]"
   - "[[../../finternship-orientation/03-10m-read--module-3---faqs/06-must-you-be-an-extrovert]]"
-duration_minutes: 3
+duration_minutes: 5
 tags: [first-14-days, week-2, prospect, objection, experience, introvert, mentees, leo-voice]
 ---
 
@@ -46,6 +46,37 @@ What matters far more is your ability to listen. Clients don't want someone who 
 And you don't have to figure it all out on your own. We have plenty of sales scripts, frameworks and proven systems that guide you step by step. You don't need to be a natural at talking or selling. You just need to follow the process, stay coachable and put in the effort.
 
 If someone like me, quiet, introverted and once struggling with a stammer, can succeed, I'm confident you can too. This career isn't about being the loudest voice in the room. It's about being the one who listens and delivers real value.
+
+## Gabriel, in his own words
+
+Gabriel was our first FINtern to graduate, and he closed his first case in February 2025. These are his answers to the questions candidates ask him most.
+
+### Why did you join FINternship?
+
+I initially joined because I wanted to develop new skills while still in NS. At the same time, I was open to new opportunities and wanted to surround myself with like-minded people who are into personal finance, self-improvement and hustling. The idea of networking with driven people and learning something practical that I could apply to my own life made this an easy decision.
+
+### Is this career how you imagined it to be? If not, what changed?
+
+Not exactly! At first, I thought financial advisory meant selling to friends and family, facing high KPIs, and relying on the warm market like most agencies do. But working with Leo changed my perspective. He has a strong system for getting cold leads, so if I wanted to, I could focus purely on cold market prospects.
+
+I also realised the real impact of our job. Initially, I thought it was just about selling policies, but after speaking to so many young adults, I saw how important financial planning really is. What's ironic is that financially savvy people, who already understand the value of insurance and investments, are the most open to buying policies. Meanwhile, those who truly need financial planning tend to be the most hesitant. Unfortunately, these are the same people who, later in life, may struggle because of preexisting conditions or a lack of early investments. Realising this gave my work a much deeper sense of purpose.
+
+### How would you rate your first month as a contracted agent out of 10?
+
+I'd rate it an 8/10. The fulfilment and personal growth have been immense. The best part is that your results scale with your effort. I have full control over my schedule, and every activity I do is high-value. Seeing the impact I can create, while having the freedom to manage my time and grow my income, makes this experience incredibly rewarding.
+
+### Do you have to work long hours to close a lot of cases?
+
+I'd be lying if I said you don't have to work long hours. But unlike a 9-to-5 job, where effort doesn't always match income, in this career your results directly reflect your effort.
+
+If you're lazy and work short hours, you won't earn much. But if you're hardworking and strategic, your income potential is unlimited. Over time, leverage plays a role: closing higher-value cases consistently lets you earn more while working less. It's all about efficiency and learning to work smart.
+
+### What tips and advice do you have?
+
+- Be open-minded. Don't let biases stop you from learning.
+- Have a growth mindset. Every challenge is a chance to improve.
+- Be a sponge. Absorb knowledge from seniors who are a few months or years ahead of you.
+- Stay humble. The more you learn, the better you'll get.
 
 ---
 

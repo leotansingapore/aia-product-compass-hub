@@ -105,7 +105,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     week: 2,
     dayInWeek: 4,
     title: "No experience, and not an extrovert",
-    duration: 3,
+    duration: 5,
     bigIdea:
       "It's not about where you start. It's about the direction you choose.",
   },
@@ -114,7 +114,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     week: 2,
     dayInWeek: 5,
     title: "Limited time, office size and product range",
-    duration: 4,
+    duration: 5,
     bigIdea:
       "The question isn't whether you have time, but whether you can find time.",
   },
@@ -122,8 +122,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     dayNumber: 13,
     week: 2,
     dayInWeek: 6,
-    title: "The Flexi scheme and 15 common questions",
-    duration: 7,
+    title: "The Flexi scheme and your questions answered",
+    duration: 9,
     bigIdea:
       "By default, everyone is on the zero-hour scheme with no commitment needed. The 40-hour and 80-hour schemes let you earn extra money while you complete your exams.",
   },
