@@ -29,6 +29,10 @@ verify_jwt = false
 [functions.check-academy-user-exists]
 verify_jwt = false
 
+# ActivityTracker makes a FINtern's account when their signed offer letter comes back. Secret-gated.
+[functions.create-fintern-account]
+verify_jwt = false
+
 [functions.provision-financial-user]
 verify_jwt = false
 
