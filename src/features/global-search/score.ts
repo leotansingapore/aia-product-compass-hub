@@ -47,7 +47,7 @@ function tokenScoreWithTypo(token: string, hay: string): number {
 }
 
 export function scoreEntry(value: string, search: string, keywords?: string[]): number {
-  const q = search.toLowerCase().trim();
+  const q = search.toLowerCase().trim().replace(/\s+/g, " ");
   if (!q) return 1;
   const v = value.toLowerCase();
   const kw = (keywords ?? []).join(" ").toLowerCase();
