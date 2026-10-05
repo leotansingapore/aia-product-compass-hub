@@ -19,6 +19,11 @@
 //   the replay's page href) loses its hash (magic links and password resets
 //   land with #access_token=...), its query string except utm_*, and any path
 //   segment that looks like an id or a token (/playbooks/share/<token>);
+// - a link to any other site keeps only its origin (a LinkedIn or
+//   client-site path names people);
+// - logs and network capture are dropped in code, because the project's own
+//   settings would otherwise win over a local "off";
+// - no cookie: PostHog persists to localStorage on this origin only;
 // - people are identified by user id only, never email or name.
 //
 // Sent straight to us.i.posthog.com, never through a rewrite on our domain: a
@@ -62,8 +67,26 @@ const PERSON_ROUTES: string[] = []
 // A fixed list: "a:attr__href=..." ($elements_chain) must not read as a scheme.
 const ADDRESS_SCHEME = /^(mailto|tel|sms|mms|callto|facetime|facetime-audio|skype|whatsapp|viber|tg|geo|intent|data|blob|javascript):/i
 
-/** Drops the hash, every query param except utm_*, id/token path segments and
- *  the name in a person route. */
+// This app's own host (the production host above): its paths are ours and
+// are read after scrubbing. Any other host keeps only its origin, because a
+// third-party path is often a person (linkedin.com/in/<name>) or a client's
+// own website.
+const OWN_HOST = PRODUCTION_HOST
+// Font CDNs: their URLs name a typeface, and a replay without them looks wrong.
+const ASSET_HOST = /^fonts\.(googleapis|gstatic)\.com$/i
+// Build files, not ids: Vite's content hashes are mixed-case and trip the token rule.
+const STATIC_PREFIXES = ['/assets/', '/_next/static/', '/static/']
+
+function safeDecode(seg: string): string {
+  try {
+    return decodeURIComponent(seg)
+  } catch {
+    return seg // a malformed escape must not throw inside before_send or the recorder
+  }
+}
+
+/** Own-host URLs lose the hash, every query param except utm_*, id/token path
+ *  segments and the slug in a person route; other hosts keep only the origin. */
 export function scrubUrl(raw: string): string {
   // mailto:, tel:, sms:, whatsapp: ... carry the address itself; keep the scheme.
   const scheme = ADDRESS_SCHEME.exec(raw)?.[1]
@@ -74,21 +97,30 @@ export function scrubUrl(raw: string): string {
   try {
     url = new URL(raw, 'https://x.invalid')
   } catch {
-    return raw
+    return '' // unparseable and URL-shaped: send nothing rather than the raw text
   }
-  let path = url.pathname
+  const own = url.hostname === 'x.invalid' || OWN_HOST.test(url.hostname)
+  if (!own) {
+    if (ASSET_HOST.test(url.hostname)) return raw
+    return isAbsolute ? `${url.origin}/` : `//${url.host}/`
+  }
+  const origin = url.hostname === 'x.invalid' ? '' : url.origin
+  let path = url.pathname.replace(/\/{2,}/g, '/')
+  if (STATIC_PREFIXES.some((p) => path.startsWith(p))) return `${origin}${path}`
+  path = path
     .split('/')
-    .map((seg) => (isIdSegment(decodeURIComponent(seg)) ? ':id' : seg))
+    .map((seg) => (isIdSegment(safeDecode(seg)) ? ':id' : seg))
     .join('/')
+  // react-router matches case-insensitively, so the check does too.
   for (const route of PERSON_ROUTES) {
-    if (!path.startsWith(route) || path.length === route.length) continue
+    if (!path.toLowerCase().startsWith(route) || path.length === route.length) continue
     const rest = path.slice(route.length)
     const cut = rest.indexOf('/')
-    path = `${route}:person${cut < 0 ? '' : rest.slice(cut)}`
+    path = `${path.slice(0, route.length)}:person${cut < 0 ? '' : rest.slice(cut)}`
   }
   const kept = [...url.searchParams].filter(([k]) => k.toLowerCase().startsWith('utm_'))
   const query = kept.length ? `?${new URLSearchParams(kept)}` : ''
-  return isAbsolute ? `${url.origin}${path}${query}` : `${path}${query}`
+  return `${origin}${path}${query}`
 }
 
 /** Every string and every object key, at any depth: heatmaps key their data by
@@ -152,8 +184,12 @@ const CSS_URL = /url\((['"]?)(.*?)\1\)/g
 /** Replay attributes: layout kept, URLs scrubbed (url() in a style too),
  *  everything else masked. */
 export function maskAttribute(name: string, value: string): string {
-  if (name === 'style') return value.replace(CSS_URL, (_, qt, u) => `url(${qt}${scrubUrl(u)}${qt})`)
+  // Inline styles and rrweb's inlined stylesheet text: keep the CSS, scrub its url()s.
+  if (name === 'style' || name === '_cssText') return value.replace(CSS_URL, (_, qt, u) => `url(${qt}${scrubUrl(u)}${qt})`)
+  // rrweb's own bookkeeping (a blocked element's size and position); never canvas pixels.
+  if (name.startsWith('rr_') && name !== 'rr_dataURL') return value
   if (LAYOUT_ATTRIBUTES.has(name)) return value
+  if ((name === 'href' || name === 'xlink:href') && value.startsWith('#')) return value // in-page and SVG <use> refs
   if (/^(https?:\/\/|\/)/i.test(value) || ADDRESS_SCHEME.test(value)) return scrubUrl(value)
   return '*'.repeat(Math.min(value.length, 12))
 }
@@ -196,6 +232,13 @@ export async function initPostHog(): Promise<void> {
     // call; advanced_disable_flags would also kill remote config, and with it
     // the project's "record sessions" setting, so replay would never start.
     advanced_disable_feature_flags: true,
+    // No cookie at all: PostHog would otherwise keep the first page's raw URL in a
+    // year-long cookie on the parent domain, sent with every request to it.
+    persistence: 'localStorage',
+    cross_subdomain_cookie: false,
+    // The project's Logs setting can switch console capture on and a local false
+    // does not override it, so every log record is dropped here instead.
+    logs: { captureConsoleLogs: false, beforeSend: () => null },
     session_recording: {
       sampleRate: 1,
       maskAllInputs: true,
@@ -204,6 +247,9 @@ export async function initPostHog(): Promise<void> {
       maskTextSelector: '*',
       blockSelector: 'img, video, picture, canvas, iframe',
       maskAttributeFn: maskAttribute,
+      // recordHeaders/recordBody false lose to the project setting (client OR server),
+      // so every captured network entry is dropped here.
+      maskCapturedNetworkRequestFn: () => null,
     },
     before_send: scrubEvent,
   })

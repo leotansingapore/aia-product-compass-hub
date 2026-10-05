@@ -92,7 +92,7 @@ describe('addresses in links', () => {
   it('keeps only the scheme of tel:, mailto: and friends, and drops phone numbers in paths', () => {
     expect(scrubUrl('tel:+6591234567')).toBe('tel:')
     expect(scrubUrl('mailto:john@client.com?subject=hi')).toBe('mailto:')
-    expect(scrubUrl('https://wa.me/6591234567?text=hello')).toBe('https://wa.me/:id')
+    expect(scrubUrl('https://wa.me/6591234567?text=hello')).toBe('https://wa.me/')
     expect(scrubUrl('/invite/a1b2c3d4e5f6')).toBe('/invite/:id')
     expect(maskAttribute('href', 'tel:+6591234567')).toBe('tel:')
     expect(maskAttribute('data-phone', '91234567')).toBe('********')
@@ -108,7 +108,7 @@ describe('maskAttribute', () => {
     expect(maskAttribute('title', 'Jo')).toBe('**')
     expect(maskAttribute('href', `/roleplay/feedback/${UUID}?tab=chat`)).toBe('/roleplay/feedback/:id')
     expect(maskAttribute('class', 'flex gap-2')).toBe('flex gap-2')
-    expect(maskAttribute('style', 'background-image: url("https://x.supabase.co/storage/v1/object/sign/a.png?token=abc")')).toBe('background-image: url("https://x.supabase.co/storage/v1/object/sign/a.png")')
+    expect(maskAttribute('style', 'background-image: url("https://x.supabase.co/storage/v1/object/sign/a.png?token=abc")')).toBe('background-image: url("https://x.supabase.co/")')
     expect(maskAttribute('data-share', '/playbooks/share/9f86d081884c7d65')).toBe('/playbooks/share/:id')
     expect(maskAttribute('data-state', 'open')).toBe('open')
   })
@@ -152,5 +152,42 @@ describe('init config', () => {
     expect(src).toMatch(/mask_all_element_attributes: true,/)
     expect(src).toMatch(/api_host: 'https:\/\/us\.i\.posthog\.com'/)
     expect(src).toMatch(/sampleRate: 1,/)
+  })
+})
+
+describe('template v2 (2026-10-05 reviews)', () => {
+  it('keeps only the origin of a link to any other site', () => {
+    expect(scrubUrl('https://www.linkedin.com/in/maria-santos-0a1b2c3/')).toBe('https://www.linkedin.com/')
+    expect(scrubUrl('https://mariasantos.com/portfolio?ref=x')).toBe('https://mariasantos.com/')
+    expect(scrubUrl('//evil.example/in/john-tan')).toBe('//evil.example/')
+    expect(scrubUrl('https://aia-product-compass-hub.vercel.app/learning-track/first-60-days/reference/objection-handling')).toBe('https://aia-product-compass-hub.vercel.app/')
+    expect(scrubUrl('https://academy.finternship.com/learning-track/first-60-days/day/12')).toBe('https://academy.finternship.com/learning-track/first-60-days/day/12')
+    expect(scrubUrl('https://fonts.googleapis.com/css2?family=Inter')).toBe('https://fonts.googleapis.com/css2?family=Inter')
+  })
+
+  it('leaves build files alone and survives malformed escapes and odd paths', () => {
+    expect(scrubUrl('/assets/index-AbCdEfGh12345678.js')).toBe('/assets/index-AbCdEfGh12345678.js')
+    expect(scrubUrl('/blog/50%off')).toBe('/blog/50%off')
+    expect(scrubUrl('/roleplay//feedback//' + UUID)).toBe('/roleplay/feedback/:id')
+    expect(scrubUrl('//roleplay//feedback')).toBe('//roleplay/')
+    expect(scrubUrl('https://[bad')).toBe('')
+  })
+
+  it('keeps what a replay needs to render, nothing more', () => {
+    expect(maskAttribute('_cssText', '.a{color:red}.b{background:url(/n/9f86d081884c7d659a2feaa0c55ad015)}')).toBe('.a{color:red}.b{background:url(/n/:id)}')
+    expect(maskAttribute('rr_width', '120px')).toBe('120px')
+    expect(maskAttribute('rr_dataURL', 'data:image/png;base64,AAAA')).toBe('data:')
+    expect(maskAttribute('href', '#icon-check')).toBe('#icon-check')
+    expect(maskAttribute('href', 'https://www.linkedin.com/in/maria-santos/')).toBe('https://www.linkedin.com/')
+  })
+
+  it('pins the settings the project could otherwise switch on', async () => {
+    const { readFileSync } = await import('node:fs')
+    const src = readFileSync('src/lib/posthog.ts', 'utf8')
+    expect(src).toMatch(/persistence: 'localStorage'/)
+    expect(src).toMatch(/cross_subdomain_cookie: false/)
+    expect(src).toMatch(/logs: \{ captureConsoleLogs: false, beforeSend: \(\) => null \}/)
+    expect(src).toMatch(/maskCapturedNetworkRequestFn: \(\) => null/)
+    expect(src).toMatch(/mask_all_element_attributes: true/)
   })
 })
