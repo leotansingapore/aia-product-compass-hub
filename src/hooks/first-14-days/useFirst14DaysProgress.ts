@@ -333,20 +333,6 @@ export function useFirst14DaysProgress() {
     [userId, daysMap, upsertMutation],
   );
 
-  const saveReflection = useCallback(
-    (dayNumber: number, answers: ReflectionAnswers) => {
-      if (!userId) return;
-      upsertMutation.mutate({
-        dayNumber,
-        patch: {
-          reflection_answers: answers,
-          reflection_saved_at: new Date().toISOString(),
-        },
-      });
-    },
-    [userId, upsertMutation],
-  );
-
   const reset = useCallback(async () => {
     if (!userId) return;
     // Returning the deleted rows is mandatory here: a DELETE that RLS filters
@@ -392,7 +378,6 @@ export function useFirst14DaysProgress() {
     completedCount,
     markRead,
     markDayComplete,
-    saveReflection,
     unmarkDayCompleteAsAdmin,
     reset,
   };

@@ -1,4 +1,4 @@
-import type { DayFrontmatter, ReflectionPrompt } from "./types";
+import type { DayFrontmatter } from "./types";
 
 const FRONTMATTER_RE = /^---\s*\n([\s\S]*?)\n---\s*\n?/;
 
@@ -59,13 +59,11 @@ function coerceYamlValue(raw: string): unknown {
   return raw;
 }
 
-const WORKSHEET_HEADING_RE = /^##\s+(Worksheet[^\n]*|The final worksheet)\s*$/m;
-const NEXT_HEADING_RE = /^##\s+\S/m;
-const APPENDIX_CUT_RE = /\n##\s+(Worksheet|The final worksheet|Related|Graduation)\b/;
+const APPENDIX_CUT_RE = /\n##\s+Related\b/;
 
 /**
- * Remove Worksheet, Related and Graduation sections from a day's body
- * markdown. Each lives in its own tab in the UI.
+ * Cut the Related section (Obsidian wiki links) from a day's body; the page
+ * has its own previous/next navigation.
  */
 export function stripAppendix(body: string): string {
   const match = body.match(APPENDIX_CUT_RE);
@@ -73,40 +71,4 @@ export function stripAppendix(body: string): string {
   let out = body.slice(0, match.index);
   out = out.replace(/\n+---\s*$/, "");
   return out.trimEnd();
-}
-
-export function parseReflection(body: string): ReflectionPrompt[] {
-  const heading = body.match(WORKSHEET_HEADING_RE);
-  if (!heading || heading.index === undefined) return [];
-  const afterHeading = body.slice(heading.index + heading[0].length);
-  const nextMatch = afterHeading.match(NEXT_HEADING_RE);
-  const section = nextMatch ? afterHeading.slice(0, nextMatch.index) : afterHeading;
-
-  const prompts: ReflectionPrompt[] = [];
-  // Match numbered prompts "1. **...**" with optional multi-line hint.
-  const blocks = section.split(/\n(?=\d+\.\s+\*\*)/);
-  for (const block of blocks) {
-    const trimmed = block.trim();
-    if (!/^\d+\.\s+\*\*/.test(trimmed)) continue;
-    const p = parseReflectionBlock(trimmed, prompts.length + 1);
-    if (p) prompts.push(p);
-  }
-  return prompts;
-}
-
-function parseReflectionBlock(block: string, index: number): ReflectionPrompt | null {
-  // Question can be across multiple lines within ** ** markers.
-  const questionMatch = block.match(/^\d+\.\s+\*\*([\s\S]+?)\*\*\s*(?:\n|$)/);
-  if (!questionMatch) return null;
-  const question = questionMatch[1].trim().replace(/\s*:\s*$/, "");
-
-  const rest = block.slice(questionMatch[0].length);
-  const hintLines: string[] = [];
-  for (const line of rest.split("\n")) {
-    if (line.trim() === "") continue;
-    if (/^\d+\.\s+\*\*/.test(line)) break;
-    hintLines.push(line.trim());
-  }
-  const hint = hintLines.join(" ").trim() || undefined;
-  return { index, question, hint };
 }

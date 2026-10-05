@@ -22,7 +22,6 @@ type ProgressRow = {
   user_id: string;
   day_number: number;
   quiz_passed_at: string | null;
-  reflection_saved_at: string | null;
   updated_at: string;
 };
 
@@ -40,7 +39,6 @@ type LearnerRoll = {
   email: string | null;
   quizzesPassed: number;
   currentDay: number;
-  reflectionsSaved: number;
   lastActive: string;
 };
 
@@ -58,7 +56,7 @@ async function fetchAllProgress(): Promise<{ rows: ProgressRow[]; profiles: Map<
   const rows = await fetchAllRows<ProgressRow>((from, to) =>
     supabase
       .from("first_14_days_progress")
-      .select("user_id, day_number, quiz_passed_at, reflection_saved_at, updated_at")
+      .select("user_id, day_number, quiz_passed_at, updated_at")
       .order("user_id")
       .order("day_number")
       .range(from, to),
@@ -87,7 +85,6 @@ function rollUp(rows: ProgressRow[], profiles: Map<string, ProfileRow>): Learner
   for (const [userId, list] of byUser) {
     const profile = profiles.get(userId);
     const quizzesPassed = list.filter((r) => r.quiz_passed_at).length;
-    const reflectionsSaved = list.filter((r) => r.reflection_saved_at).length;
     const highestCompleted = list
       .filter((r) => r.quiz_passed_at)
       .reduce((m, r) => Math.max(m, r.day_number), 0);
@@ -99,7 +96,6 @@ function rollUp(rows: ProgressRow[], profiles: Map<string, ProfileRow>): Learner
       email: profile?.email ?? null,
       quizzesPassed,
       currentDay,
-      reflectionsSaved,
       lastActive,
     });
   }
@@ -193,9 +189,7 @@ export default function AdminFirst14Days() {
           One row per prospect. <span className="font-medium text-foreground">Current day</span>{" "}
           = next day they can unlock (highest day completed + 1).{" "}
           <span className="font-medium text-foreground">Days done</span> counts days marked complete
-          across all {TOTAL_DAYS}.{" "}
-          <span className="font-medium text-foreground">Reflections</span> counts saved reflection
-          worksheets.
+          across all {TOTAL_DAYS}.
         </CardContent>
       </Card>
 
@@ -265,10 +259,6 @@ export default function AdminFirst14Days() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-muted-foreground">Reflections</div>
-                    <div className="font-semibold text-foreground">{l.reflectionsSaved}</div>
-                  </div>
-                  <div>
                     <div className="text-muted-foreground">Last active</div>
                     <div
                       className={cn(
@@ -319,7 +309,6 @@ export default function AdminFirst14Days() {
                 </SortButton>
               </th>
               <th className="px-3 py-2">Progress</th>
-              <th className="px-3 py-2">Reflections</th>
               <th className="px-3 py-2">
                 <SortButton
                   active={sortKey === "lastActive"}
@@ -363,7 +352,6 @@ export default function AdminFirst14Days() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-3 py-2 align-top">{l.reflectionsSaved}</td>
                   <td
                     className={cn(
                       "px-3 py-2 align-top text-xs",

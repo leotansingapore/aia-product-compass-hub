@@ -9,8 +9,8 @@ import { useFirst14DaysProgress } from "./useFirst14DaysProgress";
  * progress to localStorage directly. The hook has since been migrated to
  * Supabase (every write goes through `upsertMutation.mutate` against
  * `first_14_days_progress`, and `if (!userId) return;` short-circuits every
- * mutator when there's no signed-in user — including `markDayComplete`, `saveReflection`,
- * and `reset`).
+ * mutator when there's no signed-in user — including `markDayComplete` and
+ * `reset`).
  *
  * The localStorage key is now only consulted for one-shot legacy migration
  * on first sign-in (see `migrateLegacyIfNeeded`).

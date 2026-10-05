@@ -6,17 +6,14 @@ import rehypeSlug from "rehype-slug";
 import {
   ArrowLeft,
   ArrowRight,
-  BookOpen,
   CalendarDays,
   CheckCircle2,
   Lock,
-  NotebookPen,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { useScrollToHash } from "@/hooks/useScrollToHash";
@@ -27,37 +24,11 @@ import type { Day } from "@/features/first-14-days/types";
 import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProgress";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useUserTier } from "@/hooks/useUserTier";
-import { DayWorksheet } from "@/components/first-14-days/DayWorksheet";
 import {
   lessonMarkdownComponents,
   ONBOARDING_CALL_URL,
   trackOnboardingCallClick,
 } from "@/components/first-14-days/lessonMarkdown";
-
-type StatusChipProps = {
-  icon: typeof BookOpen;
-  label: string;
-  done: boolean;
-  dim?: boolean;
-};
-
-function StatusChip({ icon: Icon, label, done, dim = false }: StatusChipProps) {
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors",
-        done
-          ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
-          : dim
-          ? "border-border/60 bg-muted/40 text-muted-foreground"
-          : "border-border/80 bg-background/60 text-foreground/80",
-      )}
-    >
-      {done ? <CheckCircle2 className="h-3 w-3" /> : <Icon className="h-3 w-3" />}
-      {label}
-    </span>
-  );
-}
 
 function WeekWrapup({ weekNumber }: { weekNumber: number }) {
   const [body, setBody] = useState<string | null>(null);
@@ -115,7 +86,6 @@ export default function First14DaysDay() {
 
   const [day, setDay] = useState<Day | undefined>(undefined);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<string>("read");
   const [saving, setSaving] = useState(false);
   const {
     isDayComplete,
@@ -123,7 +93,6 @@ export default function First14DaysDay() {
     isUnlocked,
     markRead,
     markDayComplete,
-    getDay,
     isActualAdmin: isProgressAdmin,
     unmarkDayCompleteAsAdmin,
     isLoading: progressLoading,
@@ -134,11 +103,6 @@ export default function First14DaysDay() {
   // Papers-takers and Post-RNF have already committed — First 14 Days is
   // reference reading for them, so every day is open.
   const bypassGate = isActualAdmin || tier !== "explorer";
-
-  // Reset to Read tab when navigating between days.
-  useEffect(() => {
-    setActiveTab("read");
-  }, [dayNumber]);
 
   useEffect(() => {
     let cancelled = false;
@@ -162,8 +126,6 @@ export default function First14DaysDay() {
   const completed = isDayComplete(dayNumber);
   const unlocked = bypassGate || isUnlocked(dayNumber);
   useScrollToHash(Boolean(day) && unlocked);
-  const persisted = getDay(dayNumber);
-  const worksheetStarted = Boolean(persisted.reflectionSavedAt);
 
   useEffect(() => {
     if (day && unlocked) markRead(dayNumber);
@@ -231,7 +193,6 @@ export default function First14DaysDay() {
   };
   const weekMeta = WEEK_META[day.week];
 
-  const hasWorksheet = day.reflection.length > 0;
   // Course-wide, not per day: opening a day already counts as read, so a
   // per-day ring sat at 50% before anyone had read a word.
   const progressPct = Math.round((completedCount() / TOTAL_DAYS) * 100);
@@ -344,14 +305,6 @@ export default function First14DaysDay() {
                   In progress
                 </Badge>
               )}
-              {hasWorksheet && (
-                <StatusChip
-                  icon={NotebookPen}
-                  label="Worksheet"
-                  done={worksheetStarted}
-                  dim={!worksheetStarted}
-                />
-              )}
             </div>
 
             {isProgressAdmin && completed && (
@@ -371,45 +324,13 @@ export default function First14DaysDay() {
         </div>
       </section>
 
-      {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        {/* A lone "Read" tab is noise; the bar only appears when there's a worksheet. */}
-        {hasWorksheet && (
-          <TabsList className="inline-flex h-auto w-full justify-start gap-1 overflow-x-auto rounded-xl border border-border/60 bg-card/80 p-1 shadow-sm backdrop-blur">
-            <TabsTrigger
-              value="read"
-              className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
-            >
-              <BookOpen className="h-4 w-4" />
-              Read
-            </TabsTrigger>
-            <TabsTrigger
-              value="worksheet"
-              className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
-            >
-              <NotebookPen className="h-4 w-4" />
-              Worksheet
-              <span className="ml-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-muted-foreground data-[state=active]:bg-primary-foreground/20 data-[state=active]:text-primary-foreground">
-                {day.reflection.length}
-              </span>
-            </TabsTrigger>
-          </TabsList>
-        )}
-
-        <TabsContent value="read" className="mt-5">
-          <Card className="border-border/60 shadow-card">
-            <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
-              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={lessonMarkdownComponents}>
-                {day.markdown}
-              </ReactMarkdown>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="worksheet" className="mt-5">
-          <DayWorksheet dayNumber={dayNumber} prompts={day.reflection} />
-        </TabsContent>
-      </Tabs>
+      <Card className="border-border/60 shadow-card">
+        <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={lessonMarkdownComponents}>
+            {day.markdown}
+          </ReactMarkdown>
+        </CardContent>
+      </Card>
 
       {/* Day 14 ends the course: the next step is a call with Leo. */}
       {dayNumber === TOTAL_DAYS && (
