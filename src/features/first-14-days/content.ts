@@ -32,11 +32,11 @@ export { TOTAL_DAYS };
 export const WEEK_META: Record<number, { title: string; tagline: string }> = {
   1: {
     title: "The Opportunity",
-    tagline: "Is this business model structurally right for how I want to live and work?",
+    tagline: "Does this business model fit how you want to live and work?",
   },
   2: {
     title: "The Fit Test",
-    tagline: "Is this agency right for me — and do I have the 6 C's that predict success?",
+    tagline: "Is this agency right for you, and are you right for this career?",
   },
 };
 

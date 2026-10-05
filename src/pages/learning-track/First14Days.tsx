@@ -65,14 +65,14 @@ export default function First14Days() {
               Decide if this career (and this team) is right for you.
             </h1>
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-              14 days, ~15 minutes each. By the end you'll have the honest answer — Commit, Delay,
-              Keep Exploring, or an informed No.
+              14 short reads, one a day. On Day 14 you pick one of four answers: commit, delay, keep
+              exploring, or no.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <Button asChild size="lg" className="gap-2">
               <Link to={`/learning-track/first-14-days/day/${firstIncomplete}`}>
-                {totalDone === 0 ? "Start Day 1" : totalDone === TOTAL_DAYS ? "Review" : `Continue — Day ${firstIncomplete}`}
+                {totalDone === 0 ? "Start Day 1" : totalDone === TOTAL_DAYS ? "Review" : `Continue Day ${firstIncomplete}`}
                 <ChevronRight className="h-4 w-4" />
               </Link>
             </Button>

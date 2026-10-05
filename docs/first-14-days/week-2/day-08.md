@@ -1,8 +1,8 @@
 ---
 week: 2
 day: 8
-title: "Why the Agency Matters More Than Most People Realise"
-big_idea: "People don't fail. Systems fail them. The agency you pick decides whether the model in Week 1 actually plays out — or whether you become a statistic who quits in year one. Three lies most agencies tell, and the Tripod Support System I built as the alternative."
+title: "Why the agency you join matters"
+big_idea: "Do you want to spend the next two years struggling to build a business from scratch, or do you want to plug into a machine that's already working?"
 author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/module-1-the-perfect-business]]"
@@ -10,67 +10,51 @@ primary_sources:
   - "[[../../finternship-orientation/04-module-4---your-unfair-advantage/02-lesson-1what-most-agencies-wont-tell-you-about]]"
   - "[[../../finternship-orientation/04-module-4---your-unfair-advantage/04-lesson-3-systems-vs-culture]]"
   - "[[../../finternship-orientation/04-module-4---your-unfair-advantage/06-lesson-5-tss-the-6-tier-power-pyramid]]"
-duration_minutes: 18
+duration_minutes: 11
 tags: [first-14-days, week-2, prospect, agency-choice, fit-test, tss, leo-voice]
 ---
 
-# Day 8 — Why the Agency Matters More Than Most People Realise
+# Day 8: Why the agency you join matters
 
-> **The one idea for today:** People don't fail, systems fail them. The agency you pick decides whether the Week 1 model actually plays out or whether you become a statistic who quits in year one. Here are the three lies most agencies tell, and the Tripod Support System I built as the alternative.
+You've seen the potential of a financial advisory career, but you've probably also heard the horror stories. The industry has a reputation for being a "sink or swim" environment, and for good reason.
 
-## What you'll walk away with
+Most agencies fail their new advisors. They promise the world but give you little more than a desk and a phone book.
 
-By the end of today you should be able to:
+Today I'll show you exactly why we are different.
 
-1. Spot the three most common failure patterns in traditional agency onboarding.
-2. Explain the Tripod Support System (TSS) and 6-Tier Power Pyramid, so you know what real infrastructure looks like.
-3. Ask the right diagnostic questions at any agency recruiter meeting, including ours.
+## The broken system most agencies won't tell you about
 
----
+Let me be direct with you.
 
-## 1. The uncomfortable truth
+If you've decided financial advisory is the right path, you now face an even bigger decision: which agency to join.
 
-The insurance industry in Singapore has a year-one attrition rate of around 50%. Half of new advisors don't make it past 12 months.
+Most people think all agencies are the same. They couldn't be more wrong.
 
-Is that because the career is too hard? For some, yes. But most of the people who leave are capable, and they were set up to fail. Not because they weren't smart or motivated. Because the agency they joined didn't give them the basic infrastructure a new advisor needs to survive year one.
+I've been in this industry for nearly a decade. I've seen hundreds of talented, ambitious people join the wrong agencies and flame out in their first year. They were capable people who were set up to fail from day one.
 
-This matters because Week 1 made a structural case for the career. That case holds up if you're in an agency that actually delivers the franchise benefits. In a broken agency, you're not in a franchise at all. You're in a sink-or-swim sales floor. The outcomes look nothing alike.
-
-> **"People don't fail. Systems fail them."**
-
-This is the principle I built FINternship around.
-
----
-
-## 2. The three lies most agencies tell new advisors
+The traditional agency model is broken, and here is why.
 
 ### Lie #1: "Just sell to your friends and family"
 
-First thing most agencies tell you is to make a list of 100 people you know.
+This is the first thing most agencies tell you: "Make a list of 100 people you know." They call it your "warm market", and they'll convince you it's the foundation of your business.
 
-The truth is warm market is half the pipeline, not the whole plan.
+Here's the truth: your warm market is a crutch. It can't be your whole plan.
 
-Your friends and family will buy from you initially because they trust you, and serving them well is meaningful work. That part is genuinely valuable. But warm alone isn't a career. You have maybe 50 to 100 real connections. Once you've worked through them, you're done, unless there's a cold-market engine running in parallel. Day 10 covers this in depth.
+Yes, your friends and family might buy from you at first because they trust you. But what happens after that? You have maybe 50 to 100 people in your network, and once you've approached them all, you're done. Your pipeline dries up, your relationships get awkward, and you're left wondering where your next client will come from.
 
-My own warm network was thin. GEP at NUS, a small adult-professional circle. I had to build most of my book through cold systems, and most of my 1,000+ clients started as strangers. That wasn't because warm is wrong. It was because I didn't have much warm to start with. Candidates with richer networks should serve those people too. It's part of the job, and it's good work.
-
-If your agency's plan is sell to your friends and family first, then we'll figure out the rest, what they're really telling you is they don't have a cold-market system. You're on your own after month 3. A well-built agency provides the cold engine so warm stays a meaningful contribution instead of becoming a life raft.
+I learned this the hard way. In my early days I used up my warm market within months, so I had to figure out how to build a real business in the cold market, with complete strangers. That's where the real opportunity is, and most agencies will never teach you how to get there.
 
 ### Lie #2: "Culture and vibes will carry you"
 
-Walk into most agencies and they'll sell you on family culture, team bonding, motivational videos and positive energy.
+Walk into most agencies and they'll sell you their "family culture" and team bonding. They'll show you motivational videos and talk about how "positive energy" will drive your success.
 
-Culture matters. But culture without systems is just expensive cheerleading.
+Don't get me wrong, culture matters. But culture without systems is just expensive cheerleading.
 
-I've seen the pattern too many times. Advisor joins agency, attends weekend retreats, feels pumped, returns Monday to an empty calendar and no idea how to fill it. Motivation fades. They drift. They leave within a year.
-
-What you actually need are predictable systems that generate results whether you feel motivated or not. Scripts, lead sources, training, role-plays, feedback loops, tech tools, mentorship structures.
-
-If the agency's main pitch is "we have great culture," keep asking until you understand what sits behind it. If nothing sits behind it, you have your answer.
+I've seen too many advisors get hyped up at weekend retreats, only to come back to their desk on Monday with an empty calendar and no idea how to fill it. Motivation fades, so what you need are predictable systems that get results whether you feel motivated or not.
 
 ### Lie #3: "Figure it out yourself"
 
-Most agencies run a sink-or-swim model. Desk, phone, outdated training materials, and you figure the rest out.
+Most agencies run on a "sink or swim" mentality. They give you a desk, a phone and maybe some outdated training materials, then expect you to figure out the rest.
 
 You're expected to:
 
@@ -79,34 +63,98 @@ You're expected to:
 - Handle your own admin and paperwork
 - Create your own marketing materials
 - Manage your own follow-ups
-- Build your own CRM
-- Learn all products yourself from brochures
 
-This is insane. You signed up to help people with their finances and build wealth for yourself. Instead you become an unpaid marketer, administrator, telemarketer and operations manager, with no time or energy for the work that actually generates income.
+You become an unpaid marketer, administrator, telemarketer and operations manager, all rolled into one.
 
-The agencies that do this are using you as a cheap customer-acquisition channel. You're not being built up. You're being churned through. Some percentage sticks. Most don't. They recruit replacements.
+This is insane.
 
-That's the broken system most of the industry runs on. It's not evil, it's just that churn is profitable to agencies that monetise headcount rather than production.
+You didn't sign up to become a one-person circus. You signed up to help people with their finances and build wealth for yourself. When you're drowning in low-value tasks, you have no time or energy left for the work that actually brings in income.
 
----
+### Why I built something different
 
-## 3. Why I built something different
+After living through this broken system myself, I made a decision: I would never put another advisor through what I went through.
 
-I lived through this broken system myself. No scripts, no mentors, no systems in my first 2 years. At some point I made a call: I would never put another advisor through what I went through.
+I spent years building the infrastructure, systems and support I wish I'd had when I started. I believe in using business to build people, not using people to build business.
 
-So I spent the last decade building the infrastructure, systems, and support I wish I'd had when I started.
+The result is what we call the Advisor OS, a complete operating system that handles everything traditional agencies leave you to figure out alone.
 
-> **"I'm not looking for people who need to be pushed. I'm looking for people who need to be guided. There's a massive difference."**
+## A side-by-side comparison
 
-I call what I built the **Tripod Support System (TSS)**, combined with our **6-Tier Power Pyramid.**
+I'm not here to sell you dreams. Let's look at what you're actually choosing between.
 
----
+### Lead generation
 
-## 4. The Tripod Support System (TSS)
+At a typical agency, they hand you a list of your friends and family, maybe throw in some outdated cold-calling techniques, and send you on your way. When that runs out, you're expected to buy leads from vendors. These are often recycled, low-quality prospects that have already been sold to five other advisors.
 
-![[first-14-days/images/tripod-support-system.webp|Tripod Support System — three pillars converging on the advisor]]
+I've watched talented people burn through thousands of dollars on garbage leads and blame themselves when nothing converted. The system was rigged against them from the start.
 
-Three pillars, one outcome: your time goes to clients, not to figuring out infrastructure.
+With us, our in-house telemarketers and appointment setters book 3 to 5 qualified meetings for you every week. They are people who have already asked about financial planning and are ready to have a conversation.
+
+You don't chase leads. You serve them.
+
+### Admin and operations
+
+At a typical agency, policy summaries, paperwork, follow-ups and data entry all land on your desk. I've seen advisors spend 20+ hours a week on admin that brings in zero revenue.
+
+With us, our backend VA team handles your operations and admin. Policy summaries are done, paperwork is handled and follow-ups are automated. You focus on what actually makes money: building relationships and closing clients.
+
+### Marketing support
+
+At a typical agency, a basic website costs you $3,000. For social media content, you find your own graphic designer. To run ads, you figure out Facebook and Google yourself and pray you don't waste your budget.
+
+With us, you get our marketing team: graphic designers, web developers, social media managers and copywriters. We're backed by the #1 ranked digital marketing agency in Singapore. And we subsidise 75% of your ad spend.
+
+### The two philosophies
+
+The old way throws you in the deep end and sees if you can swim.
+
+Our way gives you a boat, a map and a crew, then teaches you how to sail.
+
+I built this system because I remember what it felt like to struggle alone. I remember having good intentions but no clear path forward, and wasting time on tasks that didn't move the needle.
+
+You don't have to go through that. The infrastructure is built and the team is in place.
+
+## Systems vs culture
+
+Let me tell you something most agencies won't admit: culture is the bare minimum.
+
+I've been to enough agency events to know the script. Photos of team dinners, motivational posters on the walls, and "we're one big family". Everyone's smiling and talking about "supporting each other".
+
+That's great, and I'm happy for them. But motivation fades by Tuesday. Culture doesn't book your appointments, close your sales or pay your rent when you're struggling to hit your targets.
+
+We have a great culture too. Our team cares about each other's success, and we celebrate wins together. But that's table stakes. What sets us apart is what happens behind the scenes: the systems, processes and SOPs I've spent years building.
+
+I document everything: how to handle different types of leads, how to structure client meetings, how to follow up without being pushy, how to close with conviction, how to onboard new clients. I hate repeating myself, and I hate watching people struggle with problems I've already solved.
+
+Our systems run 24/7. Lead nurturing sequences trigger automatically. Follow-up reminders appear based on client behaviour. Admin gets handled by our backend team without you even knowing about it. I built this because I remember spending weekends doing paperwork instead of living my life.
+
+We have a wiki where you can find the answer to any question in seconds. No more hunting through old WhatsApp messages or asking the same question again.
+
+And we track lead quality, conversion rates, appointment show rates and closing percentages. This isn't to micromanage you. It shows us exactly where you need support, so we can keep improving the system.
+
+### What this means for your day
+
+At a culture-first agency, you start your day with a motivational huddle about "believing in yourself". Then you spend two hours cold calling from a list bought online. You type data into a CRM that crashes half the time, write your own follow-up emails because there's no template, and do your own paperwork because "that's part of the learning process". You end the day exhausted, maybe with one appointment booked, and you wonder if you're cut out for this.
+
+With our systems, you check your calendar and see three pre-qualified appointments already booked by our team. You walk into each meeting with full client notes and a proven presentation framework. While you're in meetings, our VAs handle the paperwork. Your follow-ups are automated and your CRM updates itself. You end the day having had three good conversations with people who actually want to buy.
+
+One approach hopes you'll figure it out. The other makes sure you do.
+
+### Why I built it this way
+
+After running several businesses and managing teams in different industries, I've learned that you can't scale personalities, but you can scale systems.
+
+Culture is fragile. It depends on moods, relationships, and whether the team leader had a good day. When key people leave, the culture often leaves with them.
+
+Systems get stronger under pressure. They work no matter who's having a bad day, and they keep working as you grow.
+
+That's why I've spent hundreds of thousands of dollars and countless hours building infrastructure instead of throwing pizza parties.
+
+## What the system looks like
+
+We call it the Tripod Support System (TSS).
+
+![[first-14-days/images/tripod-support-system.webp|Tripod Support System: three pillars around the advisor]]
 
 ```mermaid
 flowchart TB
@@ -131,19 +179,15 @@ flowchart TB
     style C fill:#fce7f3,stroke:#be185d,color:#000
 ```
 
-**1. Client Acquisition Systems.** Subsidised digital ads on Facebook, Instagram and Google. In-house appointment setters who book qualified leads directly to your calendar. A centralised marketing funnel generating warm inbound leads. Cold-market scripts and frameworks tested across hundreds of real calls. LinkedIn cold-outbound systems. Value-first lead magnets like policy reviews, BTO calculators, tax reliefs.
+Client acquisition: subsidised ads on Facebook, Instagram and Google, in-house appointment setters who book qualified leads into your calendar, cold-market scripts tested on hundreds of real calls, LinkedIn outreach, and lead magnets like policy reviews, BTO calculators and tax relief guides.
 
-**2. Talent Acquisition Systems.** Structured recruitment programs so when you're ready to build a team, the talent pipeline already exists. You inherit the same infrastructure I'm using right now.
+Talent acquisition: a recruitment pipeline that already exists when you're ready to build your own team.
 
-**3. Nurturing Systems.** Digital CRM (iSmart), automated follow-ups, retention campaigns, client-birthday and anniversary reminders, review-meeting scheduling, referral-ask scripts, value-first content calendar.
+Nurturing: the iSmart CRM, automated follow-ups, birthday and anniversary reminders, review meetings and referral scripts.
 
-Sitting under all three is the foundation: proper training, value-adding, and 1-1 coaching.
+Under all three sits the foundation: training, value-adding and 1-1 coaching.
 
----
-
-## 4a. The 6-Tier Power Pyramid — what's actually plugged in behind TSS
-
-TSS names the three pillars. The 6-Tier Pyramid shows the stack, the layers of support sitting under every meeting you'll ever run.
+Behind TSS is the 6-tier power pyramid, the layers of support under every meeting you run.
 
 ```mermaid
 flowchart TB
@@ -169,109 +213,26 @@ flowchart TB
     style T6 fill:#ede9fe,stroke:#6d28d9,color:#000
 ```
 
-| Tier | What it gives you | Failure mode it solves |
-|---|---|---|
-| **1. Company (AIA)** | EPS allowance, career benefit (1.5x years 2-6, perpetual APF year 7+), #1 hospitalisation + HNW + corporate, $1B+ claims approved/year, 50-60% ad subsidy | "My company doesn't back me up." |
-| **2. District (WFG)** | More ad subsidy stacking on AIA, corporate talks, roadshows, overseas trips, smaller office → more marketing budget | "My district's marketing budget is on rent, not leads." |
-| **3. Team** | Weekly 1-1s, VAs for ops (Ira), graphic designer, content writer, appointment setter, telemarketer, in-house web dev | "I'm a one-person circus — ops + sales + marketing." |
-| **4. Infrastructure** | Lark DB with SEO-named searchable articles, 34 objections × 43 responses, SOPs, chatbots | "I have to figure out every objection from scratch." |
-| **5. Frontline tools** | TWC presenter, DBI adequacy calculator, retirement calc, welcome-bonus calc, enhanced AIA presenter | "I have to pause mid-meeting to look things up." |
-| **6. Post-sale** | Auto onboarding kit, monthly market updates, media-agency blog, telegram communities, expense tracker | "My client forgot I exist by year 2." |
+1. Company (AIA): EPS allowance, career benefit (1.5x in years 2 to 6, APF from year 7), hospitalisation, HNW and corporate products, $1B+ in claims approved a year, and a 50-60% ad subsidy. This answers "my company doesn't back me up".
+2. District (WFG): more ad subsidy on top of AIA's, corporate talks, roadshows and overseas trips. This answers "my district spends its budget on rent, not leads".
+3. Team: weekly 1-1s, VAs for ops, a graphic designer, a content writer, an appointment setter, a telemarketer and an in-house web developer. This answers "I'm doing ops, sales and marketing alone".
+4. Infrastructure: a searchable Lark database, 34 objections with 43 responses, SOPs and chatbots. This answers "I have to figure out every objection from scratch".
+5. Frontline tools: the TWC presenter, the DBI adequacy calculator, and retirement and welcome-bonus calculators. This answers "I have to stop mid-meeting to look things up".
+6. Post-sale: an onboarding kit, monthly market updates, blog content, Telegram communities and an expense tracker. This answers "my client forgot I exist by year 2".
 
-A typical Wednesday runs the pyramid top-to-bottom. Tier 3 books the appointments overnight. Tier 5 is open when you walk in. Tier 4 catches the tricky objection. Tier 1 handles the submission. Tier 3 processes the summary. Tier 6 starts the lifecycle. Every step plumbed into the next.
+## What to ask any agency, including us
 
-If an agency can't name something concrete at each tier, that tier is missing, and you'll feel the gap within 90 days.
+If you're comparing agencies, ask each one these:
 
----
+- What happens when I've finished my list of friends and family?
+- Where do the cold-market leads come from?
+- How many new advisors are still here after 12 months, and after 36?
+- Can I see the first 90 days, week by week, in writing?
+- What does Day 30 look like for a new advisor here: where their leads come from, who coaches them, and which tools they use?
 
-## 5. The Right People × Right Systems matrix
+A good agency answers these on the spot. If the answers get vague or turn into talk about culture, you have your answer.
 
-Here's the framing of why agency choice matters so much.
-
-| | Wrong systems | Right systems |
-|---|---|---|
-| **Right people** | **Capable burn-out** — year-1 dropouts at broken agencies; stuck on warm-market only | **Compound growth (TARGET)** — top producers we build; small-by-design team |
-| **Wrong people** | **Total failure** — quit before licensing; fast wash-outs | **No discipline** — coasting hires at good agencies; systems sit unused |
-
-- Wrong people, wrong systems: total fail, fast.
-- Wrong people, right systems: no discipline, not proactive, still fail even with good infrastructure.
-- Right people, wrong systems: capable people burn out trying to build everything themselves. This is where the majority of year-one dropouts sit.
-- Right people, right systems: compound growth, year 5 looks nothing like year 1.
-
-The agencies pushing warm-market plus culture-only are offering the wrong-systems quadrant. The right-people candidates they attract burn out. The agency shrugs and recruits replacements.
-
-What I'm building sits in the right-people, right-systems cell. Small by design, quality over quantity.
-
----
-
-## 6. What I actually give you (when you pass the test)
-
-If you pass CMFAS and join the team, here's what you get access to. Everything I've built over the past decade.
-
-**Complete knowledge transfer:**
-- Every script I've used to close hundreds of cases
-- All presentation slides and frameworks
-- Lead generation methods and proven ad funnels
-- Marketing strategies and templates
-- Operational SOPs
-
-**Systems infrastructure:**
-- Digital CRM (iSmart)
-- Project management software
-- Virtual assistant and outsourcing support
-- Weekly team meetings
-- CMFAS exam tutoring and chatbot
-- Structured lessons, videos, lecture recordings
-- 50% subsidy on your marketing activities
-- Sponsored overseas trips
-- Done-for-you authority creation (website, social media, marketing funnels)
-
-**The multiplication effect:**
-Eventually you can use this entire program to build your own team. Everything I've used to develop you becomes infrastructure for you to develop others.
-
-I'm building a large organisation of strong leaders who build other strong leaders, carrying these principles and systems forward across generations.
-
----
-
-## 7. What to ask any agency (including us)
-
-Before committing anywhere, test the agency against these five red flags:
-
-1. **Warm-market-first strategy.** If the plan is approach your friends and family first, ask what happens after the list is done.
-2. **Vague on lead sources.** If they can't explain where cold-market leads come from, there aren't any.
-3. **Culture-heavy, systems-light.** If the pitch is mostly vibes, the systems don't exist.
-4. **Churn-friendly economics.** Ask about 12-month and 36-month retention rates of new advisors. A healthy agency shares them. A broken one dodges.
-5. **No written onboarding curriculum.** If there's no document showing the first 90 days week by week, there isn't one.
-
-If an agency fails two or more of these, walk. The model doesn't save you from a broken agency.
-
-### The one question that cuts through
-
-If you only have time for one diagnostic question at any agency meeting (ours included), ask this:
-
-> **"Can you walk me through what an average Day 30 looks like for a new advisor in this agency — specifically where their leads come from, who's coaching them, and what tools they use?"**
-
-Watch the answer. If the recruiter gets vague, talks about culture, or can't give you a day-in-the-life answer, you have your data.
-
-A good agency has this memorised. A bad one improvises.
-
----
-
-## 8. The bottom line
-
-All the systems, support, and infrastructure in the world won't matter if you're not ready to do the work. No system works without the right person at the centre.
-
-The harder questions aren't about what I can do for you. They're about what you're willing to do for yourself:
-
-- Are you taking action, or just consuming information?
-- Are you dreaming big enough to justify the effort required?
-- Can you turn fleeting motivation into firm discipline?
-- Will you form the routines that create lasting success?
-- Are you willing to learn to delegate and automate as you grow?
-
-That's Day 9. The 6 C's I screen every candidate for.
-
-The racetrack is built. Are you ready to drive?
+So ask yourself this: do you want to spend the next two years struggling to build a business from scratch, or do you want to plug into a machine that's already working?
 
 ---
 

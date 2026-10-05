@@ -1,178 +1,90 @@
 ---
 week: 1
 day: 5
-title: "The Hidden Math: $40 vs $667 an Hour"
-big_idea: "Your true hourly rate isn't your commission divided by meeting hours. It's the lifetime value of a client divided by total time to acquire and serve them. Once you see this math, the choice of which business to build becomes obvious."
+title: "The hidden math of your hourly rate"
+big_idea: "Your true hourly rate is the total value you earn from a customer, divided by the entire time it takes to acquire and serve them."
 author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/module-1-the-perfect-business]]"
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
   - "[[../../finternship-orientation/02-10m-read--module-2-the-ideal-business/05-lesson-5-your-hourly-rate]]"
-duration_minutes: 15
+duration_minutes: 3
 tags: [first-14-days, week-1, prospect, economics, hourly-rate, ltv, leo-voice]
 ---
 
-# Day 5 — The Hidden Math: $40 vs $667 an Hour
+# Day 5: The hidden math of your hourly rate
 
-> **The one idea for today:** Your true hourly rate isn't your commission divided by meeting hours. It's the lifetime value of a client divided by total time to acquire and serve them. Once you see this math, the choice of which business to build becomes obvious.
+One of the most deceptive parts of entrepreneurship is that the promise of flexibility and autonomy can lead to you working more hours for less pay. Not all hustle is equal. Understanding the math behind your time matters more than anything else when you choose which business to build.
 
-## What you'll walk away with
+Your true hourly rate isn't just your commission divided by the hours you spend in meetings. It's the total value you earn from a customer, divided by the entire time it takes to acquire and serve them.
 
-By the end of today you should be able to:
+Let's break this down with a real example.
 
-1. Calculate your true hourly rate using the lifetime-value method.
-2. Compare a service business (interior design) with FA, with the full arithmetic shown.
-3. See why clients who compound let you out-wait your competitors.
+## The interior designer
 
----
+During my reservist, I spoke to an interior designer. He was great at sales and loved his work, but the business model was slowly burning him out.
 
-## 1. Not all hustle is equal
+First, his income was unpredictable and badly delayed. He had closed one project nine months earlier, and the client was still waiting for their keys. With another 2 to 3 months left on the project, he was looking at a full 12-month wait to collect his commission.
 
-People assume business is business. Work hard, be smart, money comes. Mostly true, but the detail matters.
+Second, the work after the sale was a huge headache. He spent hours in meetings that went nowhere and was constantly bogged down by project management.
 
-> **Which business you pick sets a mathematical ceiling on what your effort can produce.**
+So we did the math on his hourly rate.
 
-The most honest way to compare two businesses is by true hourly rate. Not per-deal, not annual income divided by office hours. The full lifecycle of a customer.
+The assumptions:
 
-**True hourly rate = Lifetime value of a customer ÷ Total hours to acquire and serve them**
+- Average commission: $3,000 (10% of a $30k project)
+- Time to close one sale: 25 hours, including prep, 3 meetings and proposal work
+- Time for project management: 50 hours of coordinating clients and contractors
 
-That one formula explains why two people with identical work ethic end up in wildly different income tiers.
+It took him 75 hours of work to earn $3,000. His effective hourly rate was around $40 an hour.
 
----
+And there's almost no repeat business. A client renovates their home once every 5 to 10 years, so he was always starting from zero.
 
-## 2. Worked example — the interior designer
+## The financial advisor
 
-During reservist one year, I got talking to an interior designer friend. Great at sales, loved his craft, slowly burning out.
+Now let's run the numbers for the financial advisory business.
 
-The math:
+The assumption:
 
-- **Average commission per project:** $3,000 (10% of a $30K project)
-- **Time to close one sale:** 25 hours (prep, 3 client meetings, proposal)
-- **Time for project management:** 50 hours (coordinating client, contractors, suppliers)
+- Time to close one case: 15 hours, including 6 hours of calling, 6 hours of prep and 3 hours of meetings
 
-**Total hours per customer:** 75
-**Total income per customer:** $3,000
-**True hourly rate:** $3,000 ÷ 75 = **~$40/hour**
+Notice what's missing? The 50+ hours of project management after the sale.
 
-And the kicker. Almost no repeat business. A client renovates once every 5 to 10 years, so he was always starting from zero.
+Once the policy is sold, the company handles the fulfilment. The fund managers grow the money, and the claims department pays it out. You don't need to hire a project manager or spend money on R&D. Your time is freed up for the next client.
 
-Good salesperson, good craft, burning out. You could see the ceiling from a mile away.
+This business is also built on lifetime value (LTV). With back-end commissions, bonuses and repeat business from clients you serve well, each customer is worth a lot over time. After nearly a decade in this industry, I've found the average LTV per customer works out to around $10,000.
 
----
+You spend 15 hours of work to earn a lifetime commission of $10,000. Your effective hourly rate is $667 an hour.
 
-## 3. Worked example — the financial advisor
+(That doesn't include time for upskilling and training, but the gap is still huge.)
 
-Same math, my own career:
+## What the math looked like for me
 
-- **Time to close one case:** ~15 hours (prospecting, calling, prep, 2–3 meetings, close)
-- **Post-sale project management:** basically zero hours
+These are my income statements from the AIA system, year by year, from my first year at NUS to my first year after graduation.
 
-Zero? Yes. Once a policy is sold, fulfilment is handled by other people:
+![[first-14-days/images/income-y1-145k.webp|Year 1: $145K as a Uni Y1 full-time engineering student]]
 
-- Underwriters process the application
-- Fund managers grow the money
-- Claims team pays out when something happens
-- Admin team handles paperwork
+![[first-14-days/images/income-y2-251k.webp|Year 2: $251K as a Uni Y2 full-time engineering student]]
 
-- **Lifetime value of a client:** averages ~$10,000 across the full relationship (initial case, upgrades, renewals, referrals)
+![[first-14-days/images/income-y3-297k.webp|Year 3: $297K as a Uni Y3 full-time engineering student]]
 
-**Total hours per customer:** 15
-**Total income per customer (lifetime):** $10,000
-**True hourly rate:** $10,000 ÷ 15 = **~$667–$1,000/hour**
+![[first-14-days/images/income-y4-327k.webp|Year 4: $327K as a Uni Y4 student]]
 
-Not a promise. Just what happens when the company handles fulfilment and clients stay for decades.
+![[first-14-days/images/income-fresh-grad-416k.webp|Fresh grad: $416K]]
 
----
+$145k in year 1 grew to $416k by my first year out of school, while I was a full-time student for most of it.
 
-## 4. My own income progression — real screenshots, year by year
+## Why this math changes everything
 
-Here's what the $667/hour math actually produces. These are my real income statements from the AIA system, year by year, as a full-time NUS Engineering student moonlighting in financial advisory. Not projections. Screenshots of the actual numbers.
+When you understand your hourly rate, your whole business strategy shifts. You start asking the right questions:
 
-### Year 1 — $145K (Uni Y1)
+- If my time is worth $667 an hour, should I hire someone at $10 an hour to handle lower-level tasks? (Yes.)
+- How much am I willing to invest to acquire a customer with a $10,000 LTV?
+- Why does following up and giving excellent service matter so much?
 
-![[first-14-days/images/income-y1-145k.webp|Y1 income: $145K as a Uni Y1 full-time engineering student]]
+The math will always work out in your favour. My competitors who are stuck in the old model of trading time for money can't invest as much as me or wait as long as me.
 
-### Year 2 — $251K (Uni Y2)
-
-![[first-14-days/images/income-y2-251k.webp|Y2 income: $251K as a Uni Y2 full-time engineering student]]
-
-### Year 3 — $297K (Uni Y3)
-
-![[first-14-days/images/income-y3-297k.webp|Y3 income: $297K as a Uni Y3 full-time engineering student]]
-
-### Year 4 — $327K (Uni Y4)
-
-![[first-14-days/images/income-y4-327k.webp|Y4 income: $327K as a Uni Y4 student]]
-
-### Fresh-grad year — $416K
-
-![[first-14-days/images/income-fresh-grad-416k.webp|Fresh grad: $416K income]]
-
-### What the progression proves
-
-Year 1 to fresh-grad year: $145K up to $416K. Nearly 3x, while I was still a full-time student juggling overloaded engineering modules on the Global Engineering Program.
-
-I'm showing you these because every prospect asks "is it really possible?" Now you don't have to wonder. That's what the compounding math looks like when you plug into a real system and work it for 4 to 5 years.
-
-The $40 vs $667 ratio isn't theoretical. It's what produces the numbers above.
-
----
-
-## 5. Why this gap exists (three reasons)
-
-1. **Fulfilment is centralised.** The insurance company pays claims and manages the money. You don't do 50 hours per case. The interior designer does.
-2. **Clients stay for decades.** A policy doesn't get cancelled for a better offer, and a renovation doesn't repeat for 5 to 10 years. That's baked into the product.
-3. **Cross-sell is natural.** A client who trusts you for one product comes back for critical illness, hospitalisation, retirement, education planning. One relationship, many revenue events.
-
-Together these push LTV up and hours-per-dollar down. Built into the model, not into the hype.
-
----
-
-## 6. What this unlocks strategically
-
-Once your true hourly rate is $600+, a lot of decisions become obvious that wouldn't be otherwise.
-
-- Hire a VA at $10/hour? Obvious yes. You're arbitraging $590/hour of difference.
-- Spend $300 on a thoughtful client gift? A $10K LTV client with a 90% referral rate pays for it many times over.
-- Write a 2-hour personalised email instead of a templated one? Yes. One relationship is worth far more than 2 hours.
-- Wait 6 months for a high-value deal? Obviously patient. The math rewards patience.
-
-The reverse is also true. An advisor who thinks their hourly rate is $100 won't outsource, won't invest in relationships, won't wait for slow deals, and ends up doing everything badly. You, knowing your real math, can do the opposite.
-
-> **You win by playing a longer game than your competitors, because the math lets you.**
-
-This is how I actually run my FA practice. I use the arbitrage to keep 2 VAs handling admin and lead-gen so my time goes entirely into clients and mentoring.
-
----
-
-## 7. Honest caveats
-
-So this doesn't read as hype:
-
-- $667/hour is per-client, not monthly income. You still need to build the book before the monthly numbers look meaningful.
-- The math doesn't include training and self-improvement time. In year 1 your effective rate is lower because you're still getting to competence.
-- It depends on client retention. Churn-and-burn advisors never reach this LTV. The advisor who does reviews, handles claims well, and stays in touch does.
-- Case size varies. Different markets and demographics produce different LTVs.
-
-Even with all the caveats, the structural advantage holds. An FA's worst-case hourly rate is still materially better than most service businesses.
-
----
-
-## 8. The real question shifts
-
-Once you see this math, the question changes.
-
-The question isn't "can I earn well in this career?" The math says yes, as long as you can build the book.
-
-The real question is: can I build the book?
-
-That depends on:
-
-- The agency and systems you have (Day 8)
-- The traits you bring (Day 9)
-- Your willingness to do the reps in year 1 while compounding is still ahead of you
-
-All real questions. But they're different from "is the math of this business good?" That one is already settled.
+In this business, you win by playing the long game. It all starts with choosing a model where your time is leveraged.
 
 ---
 

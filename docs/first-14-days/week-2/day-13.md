@@ -1,313 +1,126 @@
 ---
 week: 2
 day: 13
-title: "The FLEXI Scheme + 15 Rapid-Fire FAQs"
-big_idea: "I pay you to prove whether this career is right for you — up to $4,200/month through the FLEXI scheme, plus sponsored certifications, plus a $2,000/$4,000 monthly income guarantee once you're licensed. Then: 15 rapid-fire answers to every serious residual question."
+title: "The Flexi scheme and 15 common questions"
+big_idea: "By default, everyone is on the zero-hour scheme with no commitment needed. The 40-hour and 80-hour schemes let you earn extra money while you complete your exams."
 author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/faqs-15-candidate-questions]]"
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
   - "[[../../finternship-orientation/05-optional-resources---career-opportunities-in-aia/02-finternship-flexi-scheme]]"
-duration_minutes: 20
+duration_minutes: 7
 tags: [first-14-days, week-2, prospect, faq, flexi-scheme, income-guarantee, reference, leo-voice]
 ---
 
-# Day 13 — The FLEXI Scheme + 15 Rapid-Fire FAQs
+# Day 13: The Flexi scheme and 15 common questions
 
-> **The one idea for today:** I pay *you* to test this career — up to $4,200/month through the FLEXI scheme, plus sponsored certifications, plus a $2,000/$4,000/month income guarantee once licensed. Then 15 rapid-fire answers to every residual question.
+## The Flexi scheme
 
-## What you'll walk away with
+![[first-14-days/images/flexi-scheme-tiers.webp|Flexi scheme tiers]]
 
-By the end of today you should be able to:
+By default, everyone is on the zero-hour scheme, with no commitment needed. The 40-hour and 80-hour schemes give you a chance to earn some extra money while you complete the required exams.
 
-1. Understand the FINternship FLEXI Scheme, including all three tiers and what each one pays.
-2. Find a clean answer to every residual operational question you still have.
-3. Enter Day 14 with no lingering "yeah but what about…" questions.
+Eligibility: 6 months or less to your ORD, or already ORD. You need to pass at least 1 CMFAS paper to take part.
 
----
+On the 40-hour scheme, you get $400 for each paper you pass, once your cumulative work hours reach the next mark:
 
-## 1. The FLEXI Scheme — I pay you to test this
+1. Pass M9 and work 40 hours: $400
+2. Pass M9A and work 80 hours: another $400
+3. Pass HI and work 120 hours: another $400
+4. Pass RES5 and work 160 hours: another $400
 
-Most paid programs charge you. Mine pays you.
+The 80-hour scheme follows the same structure, but you get $800 for each paper you pass.
 
-Think of it like a football academy. Most academies make you pay to join. I pay you to test your skills here.
+When you sign your financial advisor contract, you get a $1,000 onboarding incentive on top. So the 40-hour scheme comes to $2,600 in total, and the 80-hour scheme to $4,200. On the zero-hour scheme, you still get the $1,000.
 
-There are three tiers, based on how many hours a week you can commit:
+Your hours don't reset after each exam. They keep adding up. You're paid by bank transfer once you've clocked the hours and passed the paper. If you finish 40 hours before you pass M9, the first $400 is back-paid when you pass.
 
-![[first-14-days/images/flexi-scheme-tiers.webp|FLEXI scheme tiers]]
+Some common questions:
 
-### FLEXI 0 HRS — $1,000 (Build a firm foundation)
+- What if I don't pass the exam? You must pass to receive the payout.
+- Can I move from the 40-hour to the 80-hour scheme? Yes. Keep working up to 80 hours and you get $800 after passing the next exam.
+- Can I move down from 80 to 40? Yes. If you worked 40 hours but passed only one exam, you get $400.
+- What's the weekly schedule? You're self-employed, so you set your own hours. On the days you work, you send me an end-of-day report with what you did, your hours, what you learned, what got in the way, and what's next.
+- What doesn't count as work hours? Studying for exams, reading or watching course videos, attending training meetings, and attending job-shadowing meetings.
+- Is there a 160-hour scheme? Yes. Ask me about it. It pays $1,600 for each exam you pass.
+- Do I have to pay the money back if I decide not to be a financial advisor? No. The Flexi scheme is separate from becoming an advisor. You can be a full-time, part-time or even "no-time" advisor (you hold the licence but don't practise).
 
-- $1,000 upon licensing
-- Sponsored certifications (CMFAS exam fees covered)
-- $400 for each passed paper
+## The income guarantee
 
-For candidates who want to keep commitment minimal while still testing the career. You pass exams, you get paid.
+![[first-14-days/images/income-guarantee.jpeg|Income guarantee: $2,000 or $4,000 a month for the first full year]]
 
-### FLEXI 10 HRS/WEEK — $2,600 (Realise your potential)
+Once you're licensed, we personally guarantee an average income of $2,000 a month ($4,000 if you're full-time) for your first full year as a student or full-time advisor.
 
-- $1,000 upon licensing
-- Sponsored certifications
-- $800 for each passed paper
-- Monthly stipend for your 10 hours of business development work
+The conditions: it applies after your first 3 months, and you have to follow all the FINternship training methods and apply all the techniques we teach. If you do all of that and still fall short, I pay you the difference myself.
 
-For candidates who can commit 10 hours a week to side projects like content, lead gen support or admin while they prep for exams.
+## 15 common questions
 
-### FLEXI 20 HRS/WEEK — $4,200 (Supercharge your growth) — TOP PICK
+### 1. What's the difference between this and a 9-to-5?
 
-- $1,000 upon licensing
-- Sponsored certifications
-- $800 for each passed paper
-- Monthly stipend for 20 hours of business development work
-- Highest upside, most intensive mentorship, fastest ramp
+A 9-to-5 caps your income no matter how many hours you put in, and someone else sets your schedule. Here your income grows with your output, you set your own hours, and your security comes from renewals on your own book of clients instead of from one employer.
 
-This is the tier most serious candidates take. 20 hours a week is the same commitment I made during NUS GEP, and I hit $145K in Year 1 on it. You can do it while studying or working.
+### 2. How is this like a franchise, but with less risk?
 
-### All three tiers include:
+A Ya Kun franchise costs $200k+ upfront and nearly 10% of revenue every year in royalties, and takes years to break even. Here you pay $0 upfront and no royalty, and the company invests in you through sponsored exams, the Flexi scheme and subsidised leads. Day 2 covers this.
 
-- Paid to complete 4 financial certifications (M5, M9, M9A, HI)
-- Weekly online training sessions
-- Entrepreneurship and digital marketing exposure (I share everything I learned building 4 other companies)
-- Hybrid work environment
-- Certificate of completion
-- $200 for every buddy referral. Bring a friend in, you get paid.
+### 3. Why does it scale better than interior design or a marketing agency?
 
----
+Those businesses have to deliver after every sale, so more sales means more work until the business breaks. Here, underwriters, fund managers and the claims team do the delivery. I run 1,000+ clients with two virtual assistants. Day 6 covers this.
 
-## 2. The Income Guarantee (after licensing)
+### 4. What makes it an ideal career?
 
-This is the one most candidates can't believe the first time they hear it.
+Five things: income with no ceiling, flexible hours, meaningful work, being your own boss, and security from renewal income that doesn't depend on one employer.
 
-![[first-14-days/images/income-guarantee.jpeg|Income Guarantee — $2,000/$4,000 per month for the first full year]]
+### 5. How can introverts do well, when this seems to be about talking?
 
-> **We personally guarantee an average of $2,000 ($4,000 for full-time) in income per month for the first full year** as a student advisor or full-time advisor.
+The best advisors listen more than they talk. I'm an introvert and I stammered when I started. The scripts and frameworks mean you never have to wing it. Day 11 covers this.
 
-Conditions:
+### 6. How much can a student advisor earn, and how many hours does it take?
 
-- Applies after the first 3 months
-- You must follow ALL FINternship training methods
-- You must apply ALL techniques we teach
+The average student advisor earns about $61,000 a year. I made $145k in my first year as a full-time NUS engineering student, on 20 to 30 hours a week. Gabriel and Benjamin each hit $10k a month within their first two months. For $4,000 to $5,000 a month, plan on about 75 hours of work a month, which is under 20 hours a week.
 
-If you do all that and still don't hit the minimum, I pay you the difference personally.
+### 7. How does income grow from renewals, even if I stop selling for a year?
 
-Most agencies don't do this because they can't afford to. It only makes sense if your systems actually produce predictable results. Mine do, so I'm willing to put my money where my mouth is. This is what "eliminating the downside" actually looks like in practice.
+Three layers stack up. Renewal commissions are paid every year that clients keep paying premiums. AIA's Career Benefit adds to your renewals. From year 7, the Accumulated Premium Fund (APF) pays 1 to 1.5% of monthly premiums for the policy term. By year 6, my passive income alone was over $100k a year.
 
----
+### 8. What is EPS?
 
-## 3. How the FLEXI and Income Guarantee changes the math
+The Entrepreneur Power Scheme is AIA's monthly allowance for new advisors, paid after you're licensed. It runs for two years, extended to four for students who go full-time after graduating. You need to hit 75% of your yearly EPS target to continue to the next year, and you earn bonus months for beating it. It's separate from my Flexi scheme.
 
-Combine FLEXI (up to $4,200 a month during exam prep) with the Income Guarantee (up to $4,000 a month after licensing, full-time).
+### 9. What's the hourly rate when you count a client's lifetime value?
 
-That means:
+About $667 an hour: roughly $10,000 of lifetime commission per client for about 15 hours of work. Day 5 has the full math.
 
-- During exam period (typically 2 to 4 months): you're earning FLEXI pay
-- First 3 months after licensing: ramp period, no guarantee yet
-- Months 4 to 12 after licensing: guaranteed $2K (student) or $4K (full-time) minimum
+### 10. How is this cash-flow positive from the first month?
 
-The only realistic income gap in the whole journey is the first 3 months post-licensing, and even that gap is small because you close your first cases during it.
+There's no upfront capital and no rent, staff or stock to pay for. The company pays for your exams and leads, and commission comes in as soon as you close a case.
 
-Compare that to starting a traditional business where you'd be burning capital for 3 to 5 years before break-even. The math isn't even close.
+### 11. Do I have to sell to my friends and family?
 
----
+You can, and if you believe you can help them, you should. But you won't depend on them. Most of my clients came from cold prospecting. Day 10 covers this.
 
-# Part 2 — 15 Rapid-Fire FAQs
+### 12. How do you find clients in the cold market?
 
-This is a reference section. Skim the questions you already have answers to. Sit with the ones you don't.
+Cold calling, direct outreach on WhatsApp, Telegram, Instagram, LinkedIn and TikTok, catch-ups with people you already know, and hobby and interest groups. On top of that, our ads and funnels bring in inbound leads, our appointment setters book meetings for you, and we use free resources like policy reviews and BTO calculators to start conversations.
 
----
+### 13. How does AIA help new consultants get leads?
 
-## Q1. What's the difference between this career and a 9-to-5?
+AIA's NASA leads cost about $6 each. AIA sponsors 50 leads for new consultants, and managers often subsidise another 25%, which brings the cost down to just over $1 a lead. My team adds its own lead funnel, ad subsidies and appointment setters on top.
 
-Four real differences:
+### 14. What scripts and tools help with objections and rejection?
 
-- Income. A 9-to-5 is capped regardless of hours. FA is variable and scales with output, uncapped on the upside.
-- Time. A 9-to-5 is schedule-imposed. FA is self-scheduled.
-- Role. Most corporate jobs are cost centres. FA is a profit centre where you own the economic output you create.
-- Security. Corporate security is the employer's call. FA security comes from renewals, a diversified book, and financial independence. None of which anyone can take from you.
+The ART framework (acknowledge, relate, throw it back) turns an objection into a conversation. Pre-framing deals with the common objections before the client raises them. "Ask for a no" means asking "would you be against me sharing this?" instead of "are you open to meeting?". You also get the concept presentation I've refined over 7 years, referral scripts, flowcharts, and the iSmart CRM.
 
-Neither is inherently better. Depends on what you want.
-
----
-
-## Q2. How is this like a franchise but with less risk?
-
-Compared to a real franchise like Ya Kun or Subway:
-
-- $200K+ upfront vs $0
-- 10% royalty on revenue forever vs no royalty
-- 3+ years to break-even vs cash-flow positive from month one
-
-The company invests in you (sponsored exams, FLEXI allowance, subsidised leads) instead of the other way around. The risk structure is reversed.
-
----
-
-## Q3. Why does this scale better than a service business?
-
-A service business like interior design or a marketing agency has a delivery ceiling. More sales means more post-sale work, and eventually the business breaks.
-
-FA has zero post-sale delivery on your side. Once a policy is sold, underwriters process it, fund managers grow it, the claims team pays out, and admin handles paperwork. You keep selling without delivery load growing. An FA with 1,000 clients runs with 1 to 2 admin helpers. A marketing agency at similar revenue runs 40.
-
----
-
-## Q4. What are the five ideal-career traits FA offers?
-
-1. Income, scalable and uncapped
-2. Flexibility, self-scheduled
-3. Fulfilment, real impact on real lives
-4. Autonomy, self-employed professional
-5. Security, renewal income compounds and doesn't depend on one employer
-
-Most careers deliver one or two of these. FA delivers all five, which is rare.
-
----
-
-## Q5. How can introverts succeed?
-
-A lot of top-advisor performance comes from listening, not talking. I'm an introvert who stammered as a kid. I did Toastmasters during NS to work on speaking. Five-time MDRT, three-time COT. Introverts tend to be good at asking more questions before speaking, sitting comfortably with silence (which is when clients say the truth), not over-selling, and building trust through depth rather than charisma.
-
-The training system gives you scripts and frameworks so you don't have to "wing it" from extroversion. See Day 11 for the full answer.
-
----
-
-## Q6. How much can a student advisor realistically earn?
-
-The hard numbers:
-
-- Average: ~$61K a year
-- Minimum with FLEXI $2K a month plus hitting FYC target: ~$54K a year, or roughly $4 to 5K a month
-- Strong performer: $100K+ in Year 1
-- My own Year 1: $145K as a full-time NUS Engineering student
-- Some mentees (Gabriel, Benjamin): $10K a month within the first 1 to 2 months
-
-Hours required for $4 to 5K a month is typically around 75 hours a month (less than 20 hours a week) including prospecting, appointments and prep.
-
-None of this is guaranteed, but it's structurally achievable.
-
----
-
-## Q7. How does income grow from renewals and back-end?
-
-Three passive-income layers stack on top of each other:
-
-1. Renewals. Commissions paid annually as clients keep paying premiums. By year 5+, a steady book's renewals match or exceed new-business commission.
-2. Career Benefit. AIA bonus that eventually matches renewal commission 1:1, doubling your renewal stream vs competitors.
-3. Accumulated Premium Fund (APF). Starts paying from year 7. 1 to 1.5% of monthly premiums from policies closed 7 years prior, and it compounds.
-
-Even if you stopped selling entirely in year 10, the existing book keeps paying materially. See Day 6 for my own passive-income progression from $50K in Year 1 to $101K in Year 6.
-
----
-
-## Q8. What is the EPS (Entrepreneur Power Scheme)?
-
-AIA's income-support program for new advisors. It's separate from my FLEXI scheme and kicks in after licensing:
-
-- Duration: typically 24 months, extended up to 48 months for student-to-full-time transitions. The full scheme is a 36-month bond.
-- Allowance: $1K to $2K a month for students, up to $4K a month for degree holders (up to $48K a year).
-- Performance: must hit FYC targets to continue. 75% of Year 1 target is required to move to Year 2.
-- Bonuses: overachievers hitting 150%+ of target earn 6 additional months of allowance.
-- Catch-up: 3-month grace to make up missed targets with back-pay.
-
-EPS and FLEXI combined are why this career is cash-flow positive from the start.
-
----
-
-## Q9. What's the realistic hourly rate?
-
-Using the lifetime-value method:
-
-- Average LTV per client: ~$10K over the full relationship
-- Active hours per client: ~15 (prospecting, prep, meetings)
-- Effective rate: $667 to $1,000 an hour
-
-Excludes training and study time, which lowers the effective rate in Year 1. Doesn't include admin (minimal). See Day 5 for the full breakdown.
-
----
-
-## Q10. How is this cash-flow positive from month one?
-
-Four structural reasons:
-
-1. No upfront capital
-2. No monthly overhead (rent, staff, inventory)
-3. The company invests first (sponsored exams, FLEXI allowance, lead subsidies)
-4. Commissions flow immediately on closed cases
-
-You start earning without any prior expense to recoup. There's no break-even period to grind through.
-
----
-
-## Q11. Do I have to sell to friends and family?
-
-Warm market is about half of a complete pipeline. Not optional, but not the whole plan either.
-
-- Other agencies force warm-only. They have no cold-market system, so you're fully dependent on your network. When it runs out in 3 to 6 months, you run out.
-- We settle cold for you. Digital ads, appointment setters, funnels are around 50% of your pipeline, handled.
-- Warm is your 50% contribution. Not because it's a chore, but because you should be offering good advice to the people closest to you. If you genuinely believe this career helps, not reaching out to friends and family is a disservice because they'll get worse advice from a stranger.
-- My own warm network was thin (GEP at NUS, small social circle) so my book is mostly cold. That was a function of my starting position, not a rule. Candidates with rich warm networks should serve them.
-
-The professional version (low pressure, helping thoroughly, fine with a no) strengthens relationships. Do it with pride. See Day 10 for the full answer.
-
----
-
-## Q12. What cold-market methods are taught?
-
-Four main approaches:
-
-1. Cold calling. Pure volume, requires discipline and rejection tolerance.
-2. Direct outreach on WhatsApp, Telegram, Instagram, LinkedIn, TikTok.
-3. Catch-ups with existing network. Casual social appointments where work comes up naturally.
-4. Hobbies and interest groups. Long-term community building.
-
-On top of that:
-
-- Centralised marketing funnels generating warm inbound leads
-- In-house appointment setters booking qualified meetings to your calendar
-- Value-first approach with free resources (policy reviews, BTO calculators, tax reliefs)
-
----
-
-## Q13. How does AIA support new consultants with leads?
-
-- NASA leads (AIA-generated inbound) at ~$6 a lead
-- 50 leads sponsored for new consultants. Manager often subsidises another 25%, bringing cost to ~$1+ a lead
-- 1,000 fresh untouched leads for fresh grads
-- Ad lead generation fully subsidised for 4 months, then 75% subsidised
-- My team's own internal lead funnel, ad spend subsidies, and appointment setter team on top of that
-
-Materially more support than most competitor agencies.
-
----
-
-## Q14. What scripts and tools are provided for objections?
-
-Key frameworks:
-
-- ART Framework: Acknowledge, Relate, Throw it back. Turns objections into conversations.
-- Pre-framing. Address common objections before the client raises them. Eliminates up to 90% of them.
-- "Ask for a no." Instead of *"are you open to meeting?"* (which invites *"let me think"*), use *"would you be against me sharing this?"* A natural no moves things forward.
-- Ghosting handling. Create safe space, acknowledge delay, offer a low-pressure path, accept a no cleanly.
-- Positive vocabulary. *"Questions"* instead of *"concerns,"* *"explore"* instead of *"try."* Negative framing prompts negative emotions.
-
-You also get an integrated concept-presentation refined over 7 years, LinkedIn outbound systems, referral scripts, flowcharts, and the iSmart CRM.
-
----
-
-## Q15. How many calls and meetings per day to hit $4,000 FYC?
-
-Target: $4,000 FYC a month (totals $8 to 10K a month including FLEXI/EPS and bonuses).
-
-Activity math:
+### 15. How many calls and meetings does it take to hit $4,000 FYC a month?
 
 | Metric | Monthly | Weekly | Daily |
 |---|---|---|---|
-| Cases closed | 5 | 1.25 | — |
-| Appointments | 25 (at 20% close) | 6 | 2 |
-| Prospecting/calling hours | 50 | 12 | 1.5–2 |
-| Total work hours | 75 | ~18 | — |
+| Cases closed | 5 | 1.25 | |
+| Appointments (20% close rate) | 25 | 6 | 2 |
+| Prospecting and calling hours | 50 | 12 | 1.5 to 2 |
+| Total work hours | 75 | about 18 | |
 
-That's about 18 hours of real work a week with efficient systems. With stronger systems it can be closer to half the traditional "15 appointments a week" benchmark while still hitting $10K a month.
-
-Numbers scale proportionally. For $10K FYC a month, roughly double the activity.
+For $10,000 FYC a month, roughly double the activity.
 
 ---
 

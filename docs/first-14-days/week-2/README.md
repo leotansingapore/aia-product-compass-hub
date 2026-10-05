@@ -1,79 +1,26 @@
 ---
 week: 2
-title: "Week 2 — The Fit Test"
+title: "Week 2: The fit test"
 author: "Leo Tan"
-kpi: "By end of Day 14: you have a clear Commit / Delay / Keep Exploring / No decision — grounded in real criteria, not emotion."
+kpi: "By the end of Day 14, you have picked one answer: commit, delay, keep exploring or no."
 unlocks: null
 tags: [first-14-days, week-2, week-overview, fit, agency-choice, decision, leo-voice]
 ---
 
-# Week 2 — The Fit Test
+# Week 2: The fit test
 
-*Seven reads on whether *this specific career — and this specific team — is right for *you*.*
-
----
-
-## Why Week 2 exists
-
-Week 1 made the structural case for the career. Week 2 is where we get personal.
-
-Three things have to line up for this to be the right move:
-
-1. **The model is good** (Week 1 proved that)
-2. **The agency is good** (Day 8)
-3. **You're a fit for the craft** (Day 9 onwards)
-
-If all three are yes, Day 14 is where we talk about commitment — FLEXI scheme, onboarding call, timeline, income guarantee, the works.
-
-If any one of the three is no — also valid. We'll get you to a clear answer.
-
----
-
-## What Week 2 covers
-
-- **Day 8** — What separates real agencies from broken ones. The 3 lies. The Tripod Support System (TSS). Why systems beat culture every time.
-- **Day 9** — The 6 C's I screen every candidate for: **Consistency of Actions, Constancy of Emotions, Continuous Improvement, Creativity, Can-do Spirit, CEO Mindset.**
-- **Days 10–12** — The three most common objections. All have honest answers; none are disqualifying on their own.
-- **Day 13** — Our FLEXI Scheme (how you actually get paid during this journey) + 15 rapid-fire FAQs.
-- **Day 14** — Your decision. Your timeline with us if you come on board. The income guarantee. The commitment both sides are making.
-
----
+Week 1 looked at the business model. Week 2 looks at the agency, and at you.
 
 ## The 7 days
 
-- [Day 8 — Why the Agency Matters More Than Most People Realise](/learning-track/first-14-days/day/8)
-  *The 3 lies most agencies tell. The Tripod Support System (TSS). The Right People × Right Systems matrix. Why I built what I built.*
+- [Day 8: Why the agency you join matters](/learning-track/first-14-days/day/8). The three lies most agencies tell new advisors, and the system we built instead.
+- [Day 9: The 6 C's](/learning-track/first-14-days/day/9). The six traits I look for, and a self-rating.
+- [Day 10: Getting clients without relying on friends](/learning-track/first-14-days/day/10). Your warm market gets you started. The cold market is where you grow.
+- [Day 11: No experience, and not an extrovert](/learning-track/first-14-days/day/11). I started from zero, with a stammer.
+- [Day 12: Limited time, office size and product range](/learning-track/first-14-days/day/12). How I built the business on 2 hours a day during GEP.
+- [Day 13: The Flexi scheme and 15 common questions](/learning-track/first-14-days/day/13). How you get paid while you take your exams.
+- [Day 14: Your decision and your timeline with us](/learning-track/first-14-days/day/14). Pick your answer, and see what happens next.
 
-- [Day 9 — The 6 C's — Honest Self-Assessment](/learning-track/first-14-days/day/9)
-  *Consistency of Actions, Constancy of Emotions, Continuous Improvement, Creativity, Can-do Spirit, CEO Mindset. Rate yourself honestly.*
+## Four answers
 
-- [Day 10 — Warm + Cold Market: Your Full Pipeline](/learning-track/first-14-days/day/10)
-  *We settle the cold market for you. Warm is your 50% contribution — and a good one. Pride in serving people you love, done professionally. Other agencies force warm-only; we do both.*
-
-- [Day 11 — "I Have No Experience / I'm Too Introverted"](/learning-track/first-14-days/day/11)
-  *Gabriel Kow — ORD NSF, $10K/month in his first month. Benjamin Gnoh — NTU Maritime Studies, $10K/month in 2 months. No experience needed. Introverts win in this career.*
-
-- [Day 12 — "I Don't Have Time / I Need a Big Office / I Need IFA Range"](/learning-track/first-14-days/day/12)
-  *I did this at 80/20 split during NUS GEP engineering. No big office. No IFA range. 2-3 hours a day. Here's the math.*
-
-- [Day 13 — The FLEXI Scheme + 15 Rapid-Fire FAQs](/learning-track/first-14-days/day/13)
-  *FLEXI 0 / 10 / 20 hours tiers. The $2K/$4K income guarantee. Every residual question — hourly rate, cash flow, leads, warm/cold math, calls-per-day — answered tight.*
-
-- [Day 14 — Your Decision + Your Timeline With Us](/learning-track/first-14-days/day/14)
-  *The honest four-outcome decision. The full timeline — onboarding call, CMFAS exams, RNF, FTS/EPS/BTS. The $1,000 onboarding incentive. The commitment I make to you.*
-
----
-
-## Four valid outcomes (not just yes/no)
-
-By end of Day 14 you should land on one of these:
-
-| Outcome | Meaning | Next step |
-|---|---|---|
-| **Commit** | Model + agency + you — all yes | Book an onboarding call |
-| **Delay** | Model + agency yes, timing no | Revisit date + conditions |
-| **Keep Exploring** | Model yes, this agency isn't fit | Day 8 checklist vs 2-3 other agencies |
-| **No** | Career isn't for you | You've saved 12 months. Go well. |
-
-All four are legitimate. I'd rather you land honestly on *No* than commit on momentum.
-
+On Day 14 you pick one: commit, delay, keep exploring, or no. All four are fine answers.

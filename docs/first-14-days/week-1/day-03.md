@@ -1,118 +1,70 @@
 ---
 week: 1
 day: 3
-title: "High-Income Skills You Build Either Way"
-big_idea: "Don't chase the money. Master the skills that make money chase you. This career is the fastest incubator for three skills every entrepreneur eventually needs — and you keep all three for life, even if you leave in year two."
+title: "More than a job: an incubator for high-income skills"
+big_idea: "A 9-to-5 job pays you to perform a function. This career pays you to grow into a builder, an operator, and an entrepreneur."
 author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/module-1-the-perfect-business]]"
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
   - "[[../../finternship-orientation/02-10m-read--module-2-the-ideal-business/03-lesson-3-more-than-a-job]]"
-duration_minutes: 15
+duration_minutes: 3
 tags: [first-14-days, week-1, prospect, skills, transferable, leo-voice]
 ---
 
-# Day 3 — High-Income Skills You Build Either Way
+# Day 3: More than a job
 
-> **The one idea for today:** Don't chase the money. Master the skills that make money chase you. This career is the fastest incubator for three skills every entrepreneur eventually needs — and you keep all three for life, even if you leave in year two.
+So, we've established that this career is a "business-in-a-box", a proven franchise model without the crippling financial risk.
 
-## What you'll walk away with
+But there's more to it than a low-risk business model. This career is one of the most accessible places to develop the high-income skills that any form of entrepreneurship needs.
 
-By the end of today you should be able to:
+Think of it this way. A 9-to-5 job pays you to perform a function. This career pays you to grow into a builder, an operator, and an entrepreneur. The business sense I needed to build four other companies came from the foundation I built right here in financial advisory.
 
-1. Name the three high-income skills this career builds, in the specific way they're built here rather than the stereotype.
-2. Estimate the market value of those skills if you carried them into any other career.
-3. Reframe the worst-case scenario of joining as a win rather than a loss.
+Even if you decide this isn't your forever path, the skills you learn stay with you for life. Here are the top three.
 
----
+![[first-14-days/images/three-skills-stacked.webp|Sales and influence, communication and trust, financial IQ]]
 
-## 1. Why I don't chase the money
+## Skill #1: sales and influence (it's not what you think)
 
-Quick context: I'm CFA Level 2, CFP certified, and a NUS Engineering graduate. I'm not telling you to skip the credentials and just sell.
+Most people hear the word "sales" and think of pushy, aggressive tactics. That's not what we do.
 
-But after a decade in the industry, one pattern keeps showing up.
+I believe selling is not a soft skill. It's a life skill.
 
-> 80% of self-made millionaires started with sales.
+Every successful entrepreneur, leader or inventor is good at sales. They have to sell their vision to investors, their product to customers, and their mission to their team.
 
-Not because sales is glamorous. Because sales teaches you how humans actually decide, and that's the single most portable skill in business.
+Here, you won't just learn how to close clients. You'll learn how to build. We teach:
 
-> "Leadership starts with influence, and influence starts with sales."
+- Sales psychology: what drives people to make decisions.
+- Branding and lead generation: how to attract opportunities instead of chasing them.
+- Conviction and storytelling: how to communicate value so clearly that the "sale" becomes the natural next step.
 
-Every founder, CEO, negotiator, politician, manager and investor I've met is a salesperson wearing a different job title. They're selling vision to investors, products to customers, missions to teams. The sooner you master it, the sooner everything else compounds.
+Most advisors are taught to sell products. I will teach you how to build conviction, culture and systems.
 
-So don't chase the money. Master the skills that make money chase you. This career is the fastest incubator for three of them.
+## Skill #2: communication and building trust
 
----
+Being a great talker isn't what makes you successful. In fact, I'm an introvert by nature, and I even had a stammering problem when I started.
 
-## 2. Skill #1 — Sales and influence (not what you think)
+What matters far more is your ability to listen.
 
-Ask the average person what "sales" means and they picture someone pushing a product on a reluctant stranger.
+Clients don't want someone who talks at them. They want someone who understands their fears, listens to their goals, and asks the right questions. In this career you'll learn to build deep, trust-based relationships. Every venture runs on that, whether you're managing a team, negotiating a partnership, or building a loyal customer base.
 
-That's not what this craft is. Real sales, done well, is applied human psychology. You learn what drives people to decide: cash-flow pressures, family context, fears. You learn to communicate value clearly so the right choice becomes obvious to the client rather than something argued into them. You build conviction through story, because why lands before what. And you learn to attract opportunities through positioning, content and reputation, instead of chasing them.
+## Skill #3: financial IQ (the education school forgot)
 
-Most agencies teach product-push selling. On my team we teach consultative, heart-led selling, with the mindset that the salesperson isn't the product pusher, you are the product.
+This is your biggest unfair advantage.
 
-The difference compounds over five years. Advisors who learn real consultative selling are still in the career. Advisors who learned to push products are gone.
+Financial planning isn't taught in schools. Most people are left to figure out money on their own, often through painful and expensive mistakes. Most entrepreneurs learn about cash flow, investing and risk management the hard way, by nearly losing their business.
 
----
+Here, you get paid to learn it.
 
-## 3. Skill #2 — Communication and trust-building
+You'll understand how money really works: how to manage it, how to protect it, and how to make it grow. That knowledge is the base of building wealth, and it gives you a big head start in any business you decide to build later.
 
-Something that surprises most candidates: being a great talker is not what makes a top advisor successful. Most of the best advisors I know are introverts. Some, like me, had a stammer growing up. Several went through Toastmasters as adults.
+## The "no-lose" scenario
 
-What actually matters is listening.
+This career is one of the most accessible ways to build income, communication skills and leadership with no upfront capital. It's a guided path where the backend and operations are handled for you, so you can focus on your own growth.
 
-Clients don't want someone who talks at them. They want someone who understands them. The top advisors I've trained are all trained to ask questions that uncover what the client actually cares about, reflect back what they've heard so the client feels understood, sit in silence long enough for the real concern to surface, and build trust fast enough that the client shares financial details most people won't even tell their spouse.
+When people join me, they don't just get a job. They get a future.
 
-It's the same skillset that makes someone an excellent negotiator, a brilliant manager, a great board member, a trusted confidant. Hard to learn from a book. You learn it by sitting across from hundreds of people over years.
-
-Carry this into tech, law, medicine, or founding a company, and you'll be materially better at it than someone who never trained it.
-
----
-
-## 4. Skill #3 — Financial IQ (the education school forgot)
-
-This one might be the most valuable of all.
-
-Think about what you weren't taught in school. How to structure cash flow. How to build an emergency buffer. How compounding actually works over 30 years. What insurance is for and when it's a waste of money. How to read a policy, a fund fact sheet, a retirement plan. When to pay down debt and when to invest. How to protect dependants if something happens to you. How tax-advantaged savings schemes work.
-
-Most adults learn these lessons through painful, expensive mistakes. Some never learn them at all.
-
-In this career you don't just learn financial planning. You get paid to learn it. And when you're surrounded by a community of financially literate advisors, your own money decisions start compounding quietly in the background.
-
-Three years in, even if you'd left the career, you'd be the financially literate one in your family, your friend group and most corporate meetings you sit in. That alone prevents a lifetime of avoidable mistakes.
-
-> "Earning ability beats saving and investing early on."
-
-Even Warren Buffett at 20% returns can't move a $10K portfolio meaningfully. Build the high-income skill first. The investing math only starts to matter once you've scaled the income, and this career builds the income engine first.
-
----
-
-## 5. The three skills stacked = the modern entrepreneur
-
-The three of them compound together.
-
-![[first-14-days/images/three-skills-stacked.webp|The three skills stacked — Sales & Influence, Communication & Trust, and Financial IQ compound into Builder · Operator · Owner]]
-
-Every successful founder has some version of all three. Many had to learn them slowly and expensively. In this career they get built in parallel, paid, with feedback from day one.
-
-I used exactly these three skills to build four other companies on top of the FA business. My digital marketing agency is now #1 on Google for "Digital Marketing Agency" in Singapore, with 50 full-time staff. The corporate cleaning business I bought over in 2023 runs at more than $15K a month profit. My outsourcing business and my consulting firm both launched in 2024.
-
-Combined revenue across all four is seven figures. I didn't learn business in business school. I learned it by sitting across the table from more than a thousand financial-advisory clients first.
-
-![[first-14-days/images/four-businesses.webp|Leo's businesses]]
-
----
-
-## 6. Why this matters for the worst case
-
-Here's the reframe. Imagine you join, stick with it for 6 to 12 months, and then decide this isn't your forever career.
-
-What do you walk away with? A working financial plan for yourself that would have taken years to build otherwise. Sales, listening and negotiation skills that transfer directly into any industry. A network of real clients and mentors. A year of client-facing reps that most corporate jobs will never give you. And battle-tested self-discipline.
-
-What do you not walk away with? No debt. No failed franchise fee. No non-compete ruining your next move. No years of your life spent running a high-stress business with nothing to show for it.
-
-Even the bad version of the story is a win. Day 4 goes deeper on this exact idea, the risk-reversal card.
+Tomorrow we look at why even the worst case here still leaves you ahead.
 
 ---
 

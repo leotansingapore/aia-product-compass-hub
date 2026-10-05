@@ -1,74 +1,28 @@
 ---
 week: 1
-title: "Week 1 — The Opportunity"
+title: "Week 1: The opportunity"
 author: "Leo Tan"
-kpi: "By end of Day 7: can you answer — *does this business model fit how I want to live and work?*"
+kpi: "By the end of Day 7, you can answer one question: does this business model fit how I want to live and work?"
 unlocks: "Week 2 — The Fit Test"
 tags: [first-14-days, week-1, week-overview, opportunity, leo-voice]
 ---
 
-# Week 1 — The Opportunity
+# Week 1: The opportunity
 
-*Seven short reads on why financial advisory is a serious career — not a fallback, not a scam, not a commission-chasing game.*
+Week 1 looks at one question: is the business model itself any good?
 
----
-
-## Why Week 1 exists
-
-Most people who hesitate on this career are hesitating on the wrong thing. They're worried about selling to friends, or being an introvert, or not having a finance degree — when the real question they haven't answered yet is: **is the business model itself any good?**
-
-Week 1 is about that question, and nothing else.
-
-Forget agencies, forget products, forget you. Just look at the math and the structure. If the model doesn't stack up, nothing else matters. If it does, Week 2 is where we check the fit.
-
----
-
-## What you'll have by Sunday
-
-> **A clear read on whether this business model — franchise without the fee, decade-long client relationships, software-like scalability, six-figure achievable in year one — fits how you want to live and work.**
-
-Not *"should I join?"* That's Week 2.
-
-Just *"is this model good?"*
-
----
+Forget agencies and products for now. If the model doesn't stack up, nothing else matters. If it does, Week 2 checks whether it fits you.
 
 ## The 7 days
 
-- [Day 1 — Why You're Even Reading This](/learning-track/first-14-days/day/1)
-  *The 9-to-5 ceiling. My NS-era story. Why caution is a strength. What this 14-day read really is.*
-
-- [Day 2 — The Franchise Without the $200K Fee](/learning-track/first-14-days/day/2)
-  *Ya Kun is $200K + 10% royalty. GP clinic is $650K + 6-year break-even. FA gives you the same franchise structure with $0 upfront.*
-
-- [Day 3 — High-Income Skills You Build Either Way](/learning-track/first-14-days/day/3)
-  *Sales psychology, trust-based communication, financial IQ — the three skills every entrepreneur needs. Even if you leave year 2, you keep them for life.*
-
-- [Day 4 — The Risk-Reversal Card](/learning-track/first-14-days/day/4)
-  *Everything to gain, nothing to lose. Why this is the rare bet where the "worst case" is still a win.*
-
-- [Day 5 — The Hidden Math: $40 vs $667 an Hour](/learning-track/first-14-days/day/5)
-  *Interior designer at ~$40/hour. Financial consultant at ~$667/hour. Same effort, completely different ceiling. Why model beats hustle.*
-
-- [Day 6 — Stickiness and Scalability](/learning-track/first-14-days/day/6)
-  *Why insurance clients stay for decades. Why this business scales like SAAS, not like a service business. Why year 5 looks nothing like year 1.*
-
-- [Day 7 — The Three I's: Income, Independence, Impact](/learning-track/first-14-days/day/7)
-  *Three things most careers promise, this one delivers. Which of the three pulls you hardest — and why that shapes how you'd build.*
-
----
-
-## Reading pace
-
-- **Weekdays:** Days 1–5, ~15 min each. Coffee break, commute, lunch.
-- **Saturday:** Day 6 is slightly longer (~18 min) because stickiness + scalability link.
-- **Sunday:** Day 7 + a short honest self-check before Week 2.
-
----
+- [Day 1: Why this program exists](/learning-track/first-14-days/day/1). How I started as a student advisor straight out of NS, and why I built FINternship.
+- [Day 2: The franchise model without the $200,000 fee](/learning-track/first-14-days/day/2). A Ya Kun franchise costs over $200,000 and a GP clinic $650,000. This career gives you a franchise with no fee.
+- [Day 3: More than a job](/learning-track/first-14-days/day/3). The three skills you keep for life: sales, communication and financial IQ.
+- [Day 4: The risk-reversal card](/learning-track/first-14-days/day/4). What winning looks like, and what you still walk away with if you "lose".
+- [Day 5: The hidden math of your hourly rate](/learning-track/first-14-days/day/5). An interior designer earns about $40 an hour. A financial advisor earns about $667.
+- [Day 6: Stickiness and scalability](/learning-track/first-14-days/day/6). Why clients stay for decades, and why this business scales like software.
+- [Day 7: The three I's](/learning-track/first-14-days/day/7). Income, independence and impact.
 
 ## After Week 1
 
-If the model is a no for you — stop here. You've saved yourself 12 months. Genuinely.
-
-If it's a yes or a *"maybe, but which agency?"* — Week 2 is for you. That's where the fit question gets real.
-
+If the model is a no for you, you can stop here. If it's a yes, or "yes, but which agency?", Week 2 is for you.

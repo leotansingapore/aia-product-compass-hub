@@ -1,158 +1,108 @@
 ---
 week: 1
 day: 1
-title: "Why You're Even Reading This"
-big_idea: "I was you 10 years ago — 21, fresh out of NS, skeptical about financial advisory, perfectly capable of taking the 'safe' path. I didn't. Today I'm writing these 14 days because I wish someone had written them for me."
+title: "Why this program exists"
+big_idea: "Why should I wait 8 to 10 years to earn $10k a month? What if I could do it now, even as a student?"
 author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/module-1-the-perfect-business]]"
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
   - "[[../../finternship-orientation/01-10m-read---module-1-welcome/03-3-why-this-program-exists]]"
-duration_minutes: 15
+duration_minutes: 5
 tags: [first-14-days, week-1, prospect, mindset, career-decision, leo-voice]
 ---
 
-# Day 1 — Why You're Even Reading This
+# Day 1: Why this program exists
 
-> **The one idea for today:** I was you 10 years ago. 21, fresh out of NS, skeptical about financial advisory. Every "safe" option was on the table and I didn't take any of them. I'm writing these 14 days because nobody wrote them for me.
+I've been in your shoes before.
 
-## What you'll walk away with
+Fresh out of national service, with nothing to do and no direction to follow. Everyone just told me that getting good grades and finding a good first job was the way to go.
 
-By the end of today you should be able to:
+![[first-14-days/images/leo-post-ns.webp|Me, fresh out of NS]]
 
-1. Name the actual reason you're looking at this career, not a polite version of it.
-2. Separate two things that get mixed up all the time: low-risk and low-ceiling.
-3. Decide whether the next 13 days are worth 15 minutes each to you.
+But I started to think, why should I even wait 8 to 10 years to earn $10k a month? What if I could do it now, even as a student, without the luxury of time?
 
----
+So I started to think about the path of entrepreneurship. I was interested in finance, so a career in financial consulting looked quite interesting to me.
 
-## 1. I've been where you are
+At that point I could go wherever I wanted, with a perfect score in my A levels and a scholarship to study abroad. And I'd been told that a career in financial consulting would pay well.
 
-Hi, I'm Leo.
+Obviously, like you, I was skeptical.
 
-When I finished NS I had no real plan. The advice from everyone around me was the usual: get good grades, get a stable first job, don't do anything stupid. I had the grades. Straight As from RJC, scholarship offers overseas, a place at NUS Engineering. Doors were open.
+Is this legit? Can I even do well? Won't there be a stigma? Isn't the market saturated?
 
-![[first-14-days/images/leo-post-ns.webp|Leo post-NS]]
+What brought me through was the idea that there was no risk or harm in learning more about the career. Even if it didn't work out, that was totally fine, since I could back out anytime.
 
-But one thing kept bothering me: why should I wait 8 to 10 years to earn $10K a month? Why not try to build that income while I was still a student, when I had nothing to lose and plenty of time to recover if it didn't work?
+![[first-14-days/images/leo-skeptical.webp|Skeptical, but curious]]
 
-So I started looking at businesses. Finance was the area I actually found interesting, so I ended up looking seriously at financial advisory.
+So I took the plunge.
 
-I was skeptical. Same questions you're probably carrying right now.
+But unlike now, there wasn't much of a system back then. I had to devise my own scripts and templates, hire designers, create my own "system", and push, discipline and motivate myself. I didn't "know" whether this career was even right for me.
 
-*Is this legit? Can I even do well at it? Isn't there a stigma? Isn't the market full already?*
+It was simply a "try first, see how it goes later" mindset.
 
-![[first-14-days/images/leo-skeptical.webp|The skeptical moment]]
+And honestly, it was tough. I was juggling a full-time university degree, with just a few hours on weekday evenings to work on this.
 
-What got me past the skepticism wasn't a pitch or a speech. It was just realising that reading about the career cost me nothing, and if I tried it and hated it, I could walk away. That was enough.
+![[first-14-days/images/leo-uni-schedule.webp|My uni timetable]]
 
-So I started. No systems back then. No scripts. No mentors. No community to lean on. I had to figure it all out while also doing NUS Engineering on the Global Engineering Program, which crammed 4 years into 3.
+Ironically, the lack of time was what pushed me. I limited my tasks to the important ones to shorten my work time, and I shortened my work time to force myself to only do the important tasks.
 
-The weird thing is the lack of time is what made me good at this. I had maybe 2–3 hours a night, and I couldn't afford to waste any of them. That pressure turned into habits, and the habits earned me **$145K in my first year as a full-time uni student** and over $400K by the time I graduated.
+Having so little time pushed my desire for efficiency into overtime. It forced me to build a "system", and that system carried me to a total pay of $145k in my first year as a uni student.
 
-![[first-14-days/images/leo-uni-schedule.webp|My uni schedule]]
+It compounded over time. After graduation I opened a few other businesses, and I scaled my income to beyond $400k from this financial advisory business alone.
 
-A decade on, I've closed 1,002 clients, hit MDRT 5×, COT 3×, and built four other companies alongside: Singapore's #1 ranked marketing agency (50 staff), a corporate cleaning business doing $15K/month profit, an outsourcing firm, and a consulting firm. The combined revenue is seven figures.
+And the career has been fun. This work has brought me around the world: Los Angeles in year 1, Berlin in year 2, Athens in year 3, and so on.
 
-Of all five businesses, financial advisory is still the easiest to run, the most scalable, the one with the lowest capital requirement, and the one where someone else already built most of the infrastructure. That's why I'm bothering to write these 14 days.
+![[first-14-days/images/travel-la.jpeg|Los Angeles]]
 
----
+![[first-14-days/images/travel-berlin.jpeg|Berlin]]
 
-## 2. You're not here because things are bad
+![[first-14-days/images/travel-athens.jpeg|Athens]]
 
-A lot of people assume candidates like you are unhappy in your current job or course. Usually that's not true.
+Now I spend my time training others and helping them do the same.
 
-Usually you're doing fine. Salary pays the bills, the course load is manageable, nothing is on fire. But something still nudges you to open a page like this one. Normally it's one of these:
+And recognition has come along too, even though it's not my thing. I've made MDRT five times and COT three times.
 
-- You've actually done the math on your 10-year trajectory and the number doesn't match the life you have in mind.
-- A peer did something entrepreneurial recently and it made you wonder why you're not.
-- You've thought about what it would take to retire your parents, and your current ceiling doesn't get you there.
-- You want control over your time. Not more time off. Control.
+Why I came to love this career is simple. It brings together so many traits of an ideal career at once.
 
-Caution brought you here but didn't stop you from looking. That combination is the profile I'm writing for.
+![[first-14-days/images/ideal-career-framing.webp|What an ideal career looks like]]
 
----
+In one stroke I get job security, high income, flexibility, recognition and work-life balance, without sacrificing anything else.
 
-## 3. What this 14-day read is (and isn't)
+Since graduation I've started 4 other companies. One of them is a digital marketing agency that is now on the first page of Google for the keyword "digital marketing agency". We have 50 staff today.
 
-This is not a recruitment deck. There's no form waiting for you at the end, no one is going to call you unless you ask.
+![[first-14-days/images/business-marketing-agency.webp|My digital marketing agency]]
 
-It's a 14-day reading path that answers two questions honestly:
+I've also bought over a cleaning company and started an outsourcing business and a consulting firm.
 
-1. Is financial advisory structurally the right fit for the life you want?
-2. If yes, is my team the right home for it, and if not, what should you look for at a different agency?
+![[first-14-days/images/four-businesses.webp|The other businesses]]
 
-By Day 14 you should be able to pick one of four answers:
+I've spoken to a few hundred business owners and helped them scale their businesses. I still believe financial advisory is the most scalable, least capital-intensive, simplest, most sustainable and most "done for you" business of them all.
 
-- **Commit** — ready to go, we book an onboarding call.
-- **Delay** — right model, wrong timing, we pick a revisit date.
-- **Keep Exploring** — right model but my team isn't the fit; Day 8 gives you the criteria for picking a different agency.
-- **Honest No** — this isn't the career for you, and you've saved yourself a year of finding out the hard way.
+Just as this career has changed my life, I believe it can change yours too.
 
-A course that can only produce "yes" is a sales funnel. If all four outcomes are on the table, it's a real evaluation. I've tried to write this as the latter.
+I also know that most people need a certain level of conviction, competence and confidence before they take action.
 
----
+So I created the FINternship program, to train young financial entrepreneurs and introduce them to the career in the most risk-free and effective way possible.
 
-## 4. The 9-to-5 isn't the enemy. The ceiling is.
+Some paid programs exist just to make a quick buck, without thinking about your long-term success. I will not ask you to pay me a single cent, and I will not force you to do anything you don't want to do.
 
-There's nothing wrong with a 9-to-5. Income is reliable, expectations are clear, and someone else runs the infrastructure. For many people that's exactly right.
+Think about it this way. If you really want to be a footballer, you need to join a football academy, right? At most academies you pay to join. Here, we are paying you to test your skills and build conviction in this career.
 
-What makes it a bad fit for some people is the ceiling. In most 9-to-5s:
+All I ask of you is patience over the next few months, while we build trust in each other, build your competence, confidence and conviction in this career, and find out whether it suits you.
 
-- Income moves linearly with promotions, which typically happen every 2–4 years.
-- Your calendar is set by someone else.
-- Your earning cap is ultimately someone else's decision, not yours.
-- The learning curve flattens out after year 3 or 4. You stop getting meaningfully better.
+In a way, it's a self-guided and self-motivated mentorship program.
 
-You can trade a ceiling for more uncertainty, or keep the certainty and live with the ceiling. You can't have both at the same time. That's the trade.
+The next few months are a risk-free way for you to see and understand the financial advisory career, using a system that works, with as much guidance as I can give.
 
-Financial advisory is one of the few careers where the ceiling moves as you move. It's also one where the first 12 months are harder than a 9-to-5, and the ten years after that are noticeably easier. Whether that trade makes sense for you specifically is what the next 13 days are for.
+My hope is that we cut your learning curve short and remove as many friction points as possible between you and doing well in this career.
 
----
+There are only a few things I ask of you: be as proactive as you can, attend our training sessions, and above all, complete your financial certifications.
 
-## 5. Why I built FINternship
+## How these 14 days work
 
-After about a decade of running a personal practice, I made a call.
+Each day is one short read. Week 1 looks at the business model itself. Week 2 looks at whether this career, and our team, fit you.
 
-From 2025 onwards I've pulled back from chasing new clients myself. The time I used to spend on prospecting now goes into mentoring the next generation of advisors. My goal is to build something like a sports academy: a small group of high-performance people who raise each other's standard by being in the same room.
-
-That's the mission.
-
-Most "programs" in this space extract money from participants. I'm not doing that. I won't charge you a cent and I won't make you do anything you don't want to do.
-
-The football-academy analogy is the cleanest way I have to put it. If you wanted to play professionally, you'd usually pay to join an academy. We do the reverse: we pay you to try out, so you can test the career with real stakes and decide for yourself.
-
-All I ask is patience. Over the next few months we'll build trust, competence, confidence, and conviction, and we'll work out together whether this is genuinely right for you. Think of it as a self-guided mentorship with me. My job is to cut your learning curve and pull as much friction out of the path as I can.
-
----
-
-## 6. Why your caution is actually useful
-
-Most agencies recruit for volume. They'll tell you the career is easy, that income comes quickly, and that your friends and family will carry you through year one. None of that is quite true.
-
-- It isn't easy. You're building a real business from zero.
-- Income ramps over months, not weeks.
-- Warm market helps in the first few cases. On its own it dries up in 3–6 months, so you also need a cold-market engine running alongside it. Day 10 covers that in detail.
-
-A candidate who takes 14 days to decide is usually the candidate who is still around five years later. Agencies recruiting for headcount don't love candidates like you. Agencies trying to build top producers actively look for you.
-
-So if you've been feeling like you're "too slow" or "thinking about it too much", you're probably not. Keep reading.
-
----
-
-## 7. The paradigm shift
-
-Before you close this tab, sit with this one line:
-
-> **If you want what others don't have — money, freedom, options — you have to be willing to do what others don't want to do.**
-
-Most people want the outcome. Very few are willing to take on the version of work that produces it: the cold outreach, the awkward first conversations, the months where the income hasn't caught up to the effort, the discipline of showing up when no one is watching.
-
-That's the actual trade. Not talent. Not luck. Not timing. Just a willingness to do the unglamorous work that 95% of people quietly opt out of.
-
-If that line makes you uncomfortable, good. It should. It's the exact filter this career runs on, and it's the same filter every one of those four other businesses I built runs on too.
-
-The next 13 days will show you what that work actually looks like — concretely, day by day — so you can decide with your eyes open whether you're the kind of person who's willing to do it.
+On Day 14 you pick one of four answers: commit, delay, keep exploring, or no. A no is a fine answer too. It saves you a year of finding out the hard way.
 
 ---
 

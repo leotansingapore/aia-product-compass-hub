@@ -1,196 +1,76 @@
 ---
 week: 1
 day: 7
-title: "The Three I's: Income, Independence, Impact"
-big_idea: "Most careers promise one of three things — income, independence, or impact. This career delivers all three, structurally. Which one pulls you hardest decides a lot about how you'd build."
+title: "The three I's: income, independence, impact"
+big_idea: "There are three I's of this career: income, independence and impact."
 author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/module-1-the-perfect-business]]"
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
   - "[[../../finternship-orientation/02-10m-read--module-2-the-ideal-business/08-the-three-is-of-the-fa-career]]"
-duration_minutes: 15
+duration_minutes: 3
 tags: [first-14-days, week-1, prospect, three-i's, income, independence, impact, leo-voice]
 ---
 
-# Day 7 — The Three I's: Income, Independence, Impact
+# Day 7: The three I's of the FA career
 
-> **The one idea for today:** Most careers promise one of three things — income, independence, or impact. This career delivers all three, structurally. Which one pulls *you* hardest decides a lot about how you'd build.
+There are three I's of this career.
 
-## What you'll walk away with
+![[first-14-days/images/three-is-mindmap.webp|Income, independence, impact]]
 
-By the end of today you should be able to:
+Income, independence, impact.
 
-1. Tell the three I's apart and see why all three are present in this career by design.
-2. Identify which of the three pulls hardest for you personally. The honest answer, not the socially acceptable one.
-3. Close Week 1 with a clear read on whether the business model fits you.
+## Income
 
----
+The average student advisor earns around $61,198 a year.
 
-## 1. Most jobs promise one, deliver half
+My income as a full-time student and part-time financial advisor crossed $100k in my first year, even though I worked just 20 to 30 hours a week and had no natural market. Most of my clients were complete strangers. Thankfully, I'd built the right systems and processes to make things as efficient as possible.
 
-Most people mentally frame their career around one dominant axis:
+According to salary.sg, the average salary of a financial consultant, manager and insurance director ranks among the top 10.
 
-- Some chase income (corporate finance, tech, medicine)
-- Some chase independence (freelance, small business, creative work)
-- Some chase impact (non-profit, education, medicine, public service)
+The average income of a consultant has also been rising steadily year on year.
 
-What's rare is a role that genuinely offers all three. Most jobs that claim to either lie, or deliver one strongly and the other two weakly.
+And you can be promoted to manager and director and build your own team in the future, with higher income at each level.
 
-The FA career is one of the rare structures where all three show up naturally, as outputs of the business model rather than as marketing claims.
+I earned $145k as a full-time engineering student in Uni Y1, my first year in the career.
 
-![[first-14-days/images/three-is-mindmap.webp|The Three I's: Income, Independence, Impact]]
+![[first-14-days/images/income-y1-145k.webp|$145K as a Uni Y1 full-time engineering student]]
 
-![[first-14-days/images/ideal-career-framing.webp|The ideal career framing]]
+## Independence
 
----
+One of the biggest draws of a financial advisory career is how much control it gives you.
 
-## 2. The first I — Income
+Want to focus on family in the mornings and meet clients in the afternoons? This career gives you the autonomy to shape your day the way you want.
 
-Hard numbers:
-
-- **Average first-year student-advisor income** in Singapore: around $60K annual
-- **Top 10% of first-year advisors** with strong systems and agency support: commonly cross $100K in year one
-- **My own year one** as a full-time NUS Engineering student: $145K
-- **Mid-career consultants** (3–5 years in): $150K to $250K
-- **Top-tier advisors** (MDRT × 5, COT × 3 like me): multiple hundreds of thousands a year, running up to seven figures after 5 to 10 years
-
-My own progression, real income statements year by year as a full-time NUS Engineering student:
-
-- **Year 1:** $145K
-- **Year 2:** $251K
-- **Year 3:** $297K
-- **Year 4:** $327K
-- **Fresh-grad year:** $416K
-
-See Day 5 for the actual screenshots. That's what the income dimension compounds to when you build it right.
-
-The business didn't stop there either. I've since built four other companies on top of the FA practice:
-
-![[first-14-days/images/business-marketing-agency.webp|My digital marketing agency]]
-![[first-14-days/images/business-cleaning.webp|Cleaning business acquired 2023]]
-![[first-14-days/images/business-outsourcing.webp|Outsourcing business 2024]]
-![[first-14-days/images/business-consulting.webp|Consulting firm 2024]]
-
-Combined seven-figure revenue across all four. The income, skills, and network from the FA career are what made that possible.
-
-A couple of honest points on the numbers.
-
-Averages and top percentiles aren't guarantees. You still have to build the book. (Day 13 does cover the $2K/$4K monthly income guarantee we personally stand behind for first-year FINterns, so there is a floor for our own people.)
-
-The distribution is also wider than corporate. In a corporate role, top performer vs average in the same grade is maybe a 20–30% gap. In FA, the gap is often 5 to 10x, because the system rewards real output, not tenure.
-
-For some candidates that variance is exciting. For some it's terrifying. Both reactions are useful data about yourself.
-
----
-
-## 3. The second I — Independence
-
-This is the one most candidates under-value until they experience it.
-
-What independence actually looks like in practice:
-
-- Your calendar is yours. Family in the morning, meetings in the afternoon, or reverse. Travel when you want.
-- You choose your clients. Not every corporate job lets you fire a client. This one does, and sometimes you should.
-- You pick your niche. Young professionals, business owners, doctors, engineers, expats. You shape it.
-- You decide the team shape. Solo, small team, or growing manager. All valid paths.
+Because of how flexible the career is, I can control my time.
 
 ![[first-14-days/images/independence-practice.webp|Independence in practice]]
 
-The truest version of independence is temporal. You can attend your kid's school concert on a Wednesday afternoon because you moved your morning. That small flexibility is worth more than most candidates realise while they're still inside a 9-to-5 rhythm.
+As a student advisor, I was mostly busy with lectures, homework and tutorials during the day. All I had were weekday evenings to work on this business. Unlike a corporate job, this one gives me the freedom to do the things that matter most to me.
 
-My own independence receipts, company-sponsored overseas trips twice a year during my active career:
+I was a full-time engineering student on the Global Engineering Program, which meant cramming and overloading every semester.
 
-- 2017 Los Angeles
-- 2018 Athens
-- 2019 Berlin
-- 2022 Los Angeles
-- 2023 Hawaii
-- 2024 Norway
+I also had no natural market. 99.9% of my leads were cold.
 
-![[first-14-days/images/travel-la.jpeg|Los Angeles 2017]]
-![[first-14-days/images/travel-athens.jpeg|Athens 2018]]
-![[first-14-days/images/travel-berlin.jpeg|Berlin 2019]]
+Most of my time went to prospecting, calling, setting appointments and travelling. But the total was about 20 hours a week, if you don't count travelling time.
 
-Not a flex. Just a demonstration of what "built right" looks like: the book keeps running whether I'm in Singapore or Norway.
+## Impact
 
-> **Money depreciates. Time appreciates.**
+Financial planning isn't taught in schools, so most people are left to figure it out on their own. That's where we come in.
 
-One thing to be clear about: independence doesn't mean less discipline. It means you set the discipline yourself. Advisors who treat freedom as permission to slack off don't last. Advisors who use it to focus on high-leverage work go to the top.
+Our job isn't just to sell insurance or investment products. It's to educate and guide people so they can take control of their financial futures. We help them:
 
----
+- Escape the rat race. By building wealth and passive income, clients can free themselves from the endless cycle of trading time for money.
+- Get real job security. True security comes from financial independence, not from relying only on an employer.
+- Protect their livelihoods. Insurance is a safety net that keeps clients and their families secure whatever life throws at them.
 
-## 4. The third I — Impact
+When you focus on serving others, you start to realise how meaningful this job is.
 
-Financial planning isn't taught in schools. Most adults make major money decisions (insurance, investments, retirement) with minimal training, often under time pressure, sometimes after a crisis.
+The financial solutions we provide sit at the base of everyone's financial portfolio.
 
-An FA's real job is to fix that.
+We also help our clients consolidate and review all their policies in our GoalsMapper financial software.
 
-Practically, I help clients:
-
-- Build a real emergency buffer instead of the vague idea of one
-- Close insurance gaps before they matter, not after
-- Invest consistently instead of in panicked one-off bursts
-- Plan for retirement with actual numbers and proper consolidation
-- Protect dependants with cover that matches real risk
-- Avoid the expensive mistakes most people make (wrong product, wrong amount, wrong timing)
-
-When you handle a claim well, when you're the one who made sure a family had a hospital bill covered, or a widow had enough to send her kids through uni, the meaning of the work stops being abstract. It's specific. Client by client.
-
-> **"To be successful in a profession, to be wealthy, cannot be compared to making the lives of our fellow men better. It can bring immense satisfaction."** — Lee Kuan Yew
-
-That's the sentence that pulled me into this career and keeps me here a decade later. Impact in this career isn't a bumper sticker. It's concrete and you can count it.
-
----
-
-## 5. Which of the three is your pull?
-
-Not every candidate is pulled by the same I. The honest answer matters because it shapes how you'd build.
-
-- If income is your main pull, you'll optimise for high-leverage clients, scale aggressively, probably build a team. The risk is shortcutting relationships and dropping service.
-- If independence is your main pull, you'll optimise for a sustainable practice that fits around life. The risk is under-investing in growth and plateauing early.
-- If impact is your main pull, you'll optimise for deep client relationships and complex cases. The risk is under-charging and burning out.
-
-The best advisors I've trained have a dominant pull and a secondary one that keeps them honest. A pure income-chaser burns relationships. A pure impact-chaser under-earns. A pure independence-chaser plateaus.
-
-Knowing your pull lets you build a practice that reflects it, and it lets your mentor support you in the right way.
-
----
-
-## 6. The Employee vs Business Owner quadrant
-
-One more framing I give every new candidate. This is the honest shape of the choice.
-
-| | **Employee (B-type)** | **Business Owner** |
-|---|---|---|
-| Income | Fixed pay for task performed | Unlimited income you create |
-| Security | Security at start, insecurity at end | Insecurity at start, security at end |
-| Advancement | Opening + time + grade | Your hands and control |
-| Freedom | Restricted | Greater |
-| Who you work for | Employer's vision | Your own vision |
-
-The FA career is basically a business owner path wearing a regulated profession jacket. You get the independence and ownership of running your own thing, alongside the licensing, compliance and institutional support of a profession. That combination is rare.
-
----
-
-## 7. Closing Week 1 — the structural question
-
-You've now seen:
-
-- Day 1, why you're looking at this at all
-- Day 2, the franchise model without the franchise fee
-- Day 3, the three transferable skills
-- Day 4, the asymmetric bet
-- Day 5, the hidden math ($40 vs $667)
-- Day 6, stickiness and scalability
-- Day 7, the three I's
-
-That's a full picture of the business model: what it is, what it economically produces, and what it pays out in non-money terms.
-
-If the model is a clear no for you, stop here. You've saved yourself 12 months of finding out the hard way. Legitimately.
-
-If it's a yes, or a curious yes, Week 2 is where you decide two things: whether this specific agency is right, and whether you have the traits that predict success.
-
-Both have to line up. The model works, but the fit still has to be right.
+That closes Week 1. Before Day 8, ask yourself one question: does this business model fit how you want to live and work?
 
 ---
 

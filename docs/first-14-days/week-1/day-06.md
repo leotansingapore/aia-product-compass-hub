@@ -1,180 +1,99 @@
 ---
 week: 1
 day: 6
-title: "Stickiness and Scalability"
-big_idea: "The best businesses in the world share two traits: clients who stay for decades (stickiness), and growth that doesn't require proportional effort (scalability). Financial advisory has both — built in. That's why year 5 looks nothing like year 1."
+title: "Stickiness and scalability"
+big_idea: "You're not on a treadmill. You're planting an orchard that will bear fruit for years to come."
 author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/module-1-the-perfect-business]]"
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
   - "[[../../finternship-orientation/02-10m-read--module-2-the-ideal-business/06-lesson-6-stickiness-recurring-revenue]]"
   - "[[../../finternship-orientation/02-10m-read--module-2-the-ideal-business/07-lesson-7-scalability]]"
-duration_minutes: 18
+duration_minutes: 5
 tags: [first-14-days, week-1, prospect, stickiness, scalability, compounding, leo-voice]
 ---
 
-# Day 6 — Stickiness and Scalability
+# Day 6: Stickiness and scalability
 
-> **The one idea for today:** The best businesses in the world share two traits: clients who stay for decades (stickiness), and growth that doesn't require proportional effort (scalability). Financial advisory has both — built in. That's why year 5 looks nothing like year 1.
+## Stickiness: why this business model is built to last
 
-## What you'll walk away with
+Yesterday we went through the math behind your hourly rate. But what makes that high lifetime value (LTV) possible in the first place?
 
-By the end of today you should be able to:
+The answer is a concept that separates businesses that fade from businesses that last: stickiness.
 
-1. Define stickiness and explain why it's the biggest single driver of lifetime value.
-2. Explain why this business scales like software, not like a service.
-3. Predict why an advisor's year 5 looks nothing like their year 1, purely because of compounding.
+Look at the most successful companies you deal with every day and you'll notice a pattern. They don't make their money from a single purchase. They build systems for recurring revenue.
 
----
+- Apple sells you an iPhone, then gets you on iCloud subscriptions and convinces you to upgrade every few years.
+- Netflix and Adobe lock you into a monthly subscription.
+- Starbucks turns a one-time coffee purchase into a daily ritual.
 
-## 1. Stickiness — why clients stay
+Successful businesses are good at getting customers to buy and use their services again and again. That stickiness drives up their LTV. To Starbucks, you're not a single $5 coffee. You are every coffee you'll buy for the next decade.
 
-Look at the most successful consumer companies you interact with. Apple, Netflix, Adobe, Starbucks. What they share isn't a single great product. It's stickiness.
+Knowing this, it makes sense for them to spend millions on marketing, on branding and on the coffee itself, because they're paying for a relationship that lasts years.
 
-- Apple: phone, then iCloud subscriptions, then an upgrade every 2–3 years
-- Netflix and Adobe: recurring subscription, cancel-anytime, most people don't
-- Starbucks: one coffee becomes a daily ritual becomes decades of $5 purchases
+### My own struggle with stickiness
 
-To Starbucks, you're not a $5 customer. You're the sum of every coffee you'll buy over the next decade. Once they see customers that way, the economics change:
+I had to learn this the hard way.
 
-- Spending $200 on marketing to acquire a customer worth $5,000 is obvious
-- Paying for a $50/year loyalty program is obvious
-- Heavy investment in product improvement is obvious
+One of the biggest problems I faced building my digital marketing agency was stickiness. With more and more cheaper freelancers and competing agencies, it was very hard to make customers stay. Some clients stayed for years, but most dropped off after 6 to 12 months. I was always on a treadmill, and every month I had to replace the clients I'd lost.
 
-Stickiness drives lifetime value. Lifetime value drives everything else.
+Now compare that with financial advisory.
 
----
+This business model has stickiness built into its DNA.
 
-## 2. My own painful lesson on stickiness
+Most customers stay for decades because insurance and investment policies are long-term. A retirement plan isn't something you buy and cancel in six months. It's a commitment that spans a lifetime.
 
-I learned this the hard way running my digital marketing agency.
+That gives your business a strong base, and it gets better.
 
-Even at 200+ retainers with 40 staff, the stickiness problem was brutal:
+As you keep serving your clients well, they come back to you for new solutions as their lives change. They get married, buy a house, have children or get a promotion, and each of these life events creates a new need and a chance for you to help.
 
-- Clients sign a 6 to 12 month contract
-- Most drop off within a year because cheaper freelancers win on price
-- I'm on a treadmill, always replacing what I just lost
-- Typical client LTV: $20K to $30K before churn
+![[first-14-days/images/recurring-revenue.webp|Recurring vs one-off revenue]]
 
-![[first-14-days/images/four-businesses.webp|Scaling agency pain]]
+You aren't just making a single sale. You're building a portfolio of clients whose value compounds over time through repeat business and referrals. You're not on a treadmill. You're planting an orchard that will bear fruit for years to come.
 
-Every month I was starting partially from zero. Compare that to the insurance client who:
+Here is my own back-end, year by year. This is only passive income (renewals, Career Benefit and APF), not commission from new business that year.
 
-- Buys a policy meant to last decades
-- Stays because switching costs are high (medical underwriting, age-related premium increases)
-- Comes back for new needs as life happens (marriage, baby, home, promotion)
-- Refers family and friends once trust is there
-- Average LTV: around $10,000 per client over the full relationship
+![[first-14-days/images/passive-income-by-year.png|Passive income by year, year 1 to year 6]]
 
-The numbers look similar but the mechanism is completely different. The marketing agency fights churn every month. The FA plants an orchard.
+By year 6, even if I did no new business that year, I would still earn more than $100k in passive income.
 
-I still run the agency, but the FA business is the one I keep pointing young entrepreneurs toward. It's structurally easier to build and sustain.
+This is how you build a real, sustainable business instead of a series of transactions.
 
----
+## Scalability: how to grow without the grind
 
-## 3. Why this business has stickiness built in
+A business that keeps clients forever is useless if you can't handle the growth.
 
-![[first-14-days/images/recurring-revenue.webp|Recurring vs non-recurring revenue]]
+That brings us to one of the most overlooked parts of choosing the right business: scalability.
 
-Stickiness in FA isn't a marketing technique. It comes from the product itself.
+Most businesses, especially service businesses, eventually hit a ceiling. Growth, ironically, becomes the thing that breaks them.
 
-### Product nature
-Insurance is the definition of a multi-decade product. A 25-year endowment doesn't get cancelled for a "better offer." A critical-illness policy gets more expensive to replace every year you age and every diagnosis you pick up. Retirement plans are designed to last 30+ years.
+### The service business trap: more sales, more problems
 
-### Life-event cross-sell
-As a client goes through life (marriage, children, home purchase, promotion, parents aging, health scares, job changes) each event creates new financial needs. Every one is a natural moment to come back to their advisor. Not from sales pressure, from genuine need.
+Let's go back to my interior designer friend from yesterday. Every time he closed a new project, he also added another 50+ hours of draining project management to his plate.
 
-### Trust carryover
-The trust required to share financial details with an advisor is hard-won. Once it's built, clients don't want to rebuild it with someone else. That's a switching cost working in your favour.
+He admitted he couldn't handle more than five projects at once. That created a painful bottleneck: the more he sold one month, the less time he had to sell the next. His income was capped by the number of hours in his day.
 
-### Claims moments
-Counterintuitively, claims events (hospitalisation, critical illness, accident) are some of the stickiest moments. A client whose claim I handled well in their worst week has never left for a better-priced competitor. Ever.
+I learned this myself while scaling my digital marketing agency. With a team of 40 people managing 200 client retainers, I saw that as revenue grew, so did our costs and complexity. Hiring more people led to a logistical nightmare of miscommunication, HR issues and shrinking profit margins.
 
-Put these together and the FA client base is one of the stickiest of any business model. You don't engineer it. You just don't mess it up.
+This is the trap of most businesses that need both sales and delivery. Your success becomes your own bottleneck.
 
----
+### A business that scales like software
 
-## 4. Scalability — growing without the grind
+Financial advisory is designed to break this rule. You can grow your client base without being crushed by the weight of fulfilment.
 
-The second superpower is scalability. Common mistake: people think scalability means handling more customers.
+Here's how.
 
-It doesn't. Scalability means handling more customers without the complexity growing proportionally.
+1. You have a built-in team that you don't pay for: from day one, a large team of specialists works for you: underwriters, fund managers, customer service officers, product managers and brand managers. The company hires and pays them, and you get the benefit. They handle the complex, time-consuming work behind the scenes.
 
-### Why most businesses hit a ceiling
+2. Your product delivery is done for you, because once a policy is in place, your job isn't to "manage the project". The insurance pays out on a claim, and the investment grows because a team of professional fund managers handles it. Your main focus is one thing: getting new customers. You can keep selling, month after month, without hitting a delivery wall. That's why, even with over 1,000 clients, I only need two virtual assistants to help with admin.
 
-The interior designer from Day 5:
+3. It's a SaaS model in disguise, and this career is like a "software as a service" business such as Adobe or Netflix. SaaS companies scale well because the cost of serving one more customer is almost zero. The same software can serve 100, 1,000 or 10,000 customers without a matching rise in cost or complexity.
 
-- Max 5 projects at once
-- 50 post-sale hours each
-- Double the sales, you double the project management
-- To serve 50 clients at once you'd need to hire 10 people, then manage, train and pay them
+![[first-14-days/images/scalability-growth.webp|Your client base grows while the company's team handles fulfilment]]
 
-The more successful he is, the more complex the business gets. Revenue goes up, margins compress. Eventually he's running a small company, not a business. That's the service business trap.
+In this business, the product and the service are delivered by the company's infrastructure. You can add new clients to your portfolio with little extra effort, which frees you to do what you do best: build relationships and grow your business.
 
-### Why FA scales like software
-
-Adding my 200th client didn't add proportional complexity. Here's what actually happens behind the scenes:
-
-- Underwriters process the application, I don't
-- Fund managers grow the money, I don't
-- Claims team pays out, I don't
-- Admin team handles paperwork, I don't
-- Customer service fields routine questions, I don't
-- Product team designs new offerings for me to sell
-
-I effectively have a 200-person team. I don't hire, pay, or manage any of them. AIA does.
-
-That's why a single advisor with 1,000+ clients can run with just 1 or 2 part-time admin helpers. The infrastructure is already there. It's software-as-a-service economics wearing an insurance label.
-
-![[first-14-days/images/scalability-growth.webp|Client base scales while fulfilment team grows for you]]
-
-Your headcount never grows. Your client base does.
-
----
-
-## 5. Compounding — why year 5 looks nothing like year 1
-
-Stickiness and scalability compound together. That's what produces the absurd-looking incomes in year 5 to 10 that new advisors can't quite believe.
-
-Rough sketch, not a promise, just the logic:
-
-**Year 1.** Add 20 clients. Work hard on each. Every relationship is new.
-
-**Year 2.** Add 30 more (50 total). Year 1 clients start generating renewals and cross-sells. A few refer. Less work per client, higher income.
-
-**Year 3.** Add 40 more (90 total). Year 1 clients are deepening, year 2 are cross-selling, year 3 are new. Renewals and referrals start layering. Income is materially higher than year 1 while hours haven't grown.
-
-**Year 5.** 200+ clients. Half your income is renewals, cross-sells and referrals from your own base. New-business time goes into referrals rather than cold prospecting. Income goes from "good" to "excellent."
-
-**Year 10.** The book largely runs on its own trajectory. You can free time for the top-value work: HNW cases, senior mentoring, strategic projects. Income at this point looks nothing like a corporate salary.
-
-This is why leaving in year 2 or 3 is such a common mistake for people who joined for the right reasons. The payoff curve is backloaded. The first 12 to 24 months are the investment. Year 3 onwards is where it starts paying out at a rate that doesn't look remotely like a 9-to-5.
-
----
-
-## 6. Real example — my own back-end
-
-Here's my own back-end, year by year. Just passive income: renewals, Career Benefit, APF. Not including new-business commission from the current year.
-
-![[first-14-days/images/passive-income-by-year.png|Passive income by year — year 1 through year 6]]
-
-By year 6, even if I did zero new business that year, I'd still be earning more than $100K of passive income.
-
-Travel-wise, that's why I've been able to go to LA (2017), Athens (2018), Berlin (2019), LA again (2022), Hawaii (2023), Norway (2024). Twice a year, company-sponsored trips. The book doesn't stop while I'm away.
-
-![[first-14-days/images/travel-la.jpeg|Los Angeles 2017]]
-![[first-14-days/images/travel-athens.jpeg|Athens 2018]]
-![[first-14-days/images/travel-berlin.jpeg|Berlin 2019]]
-
----
-
-## 7. What this means practically
-
-Three takeaways:
-
-1. The model gets easier over time, not harder. Year 1 is the hardest, every year after gets materially easier. That's the opposite of most jobs.
-2. Clients are assets, not transactions. Each one is a decade-long relationship producing compound value, so behave accordingly.
-3. Your only goal in year 1 is to reach year 3. Year 1 is about surviving long enough for compounding to kick in. That's why the six traits in Day 9 matter so much, they predict who reaches year 3.
+That is how you grow without the stress growing at the same rate.
 
 ---
 

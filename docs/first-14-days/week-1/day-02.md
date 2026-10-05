@@ -1,134 +1,72 @@
 ---
 week: 1
 day: 2
-title: "The Franchise Without the $200K Fee"
-big_idea: "A Ya Kun franchise is $200K upfront plus 10% royalty forever. A GP clinic is $650K with a 6-year break-even. This career gives you the same franchise structure — brand, systems, products, infrastructure — without the entry fee, without the royalty, and cash-flow positive from month one."
+title: "The franchise model without the $200,000 fee"
+big_idea: "What if you could access a proven, successful business model without the crippling financial barrier?"
 author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/module-1-the-perfect-business]]"
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
   - "[[../../finternship-orientation/02-10m-read--module-2-the-ideal-business/02-lesson-2-the-franchise-model]]"
-duration_minutes: 15
+duration_minutes: 4
 tags: [first-14-days, week-1, prospect, franchise-model, business-model, leo-voice]
 ---
 
-# Day 2 — The Franchise Without the $200K Fee
+# Day 2: The franchise model without the $200,000 fee
 
-> **The one idea for today:** A Ya Kun franchise is $200K upfront plus 10% royalty forever. A GP clinic is $650K with a 6-year break-even. This career gives you the same franchise structure — brand, systems, products, infrastructure — without the entry fee, without the royalty, and cash-flow positive from month one.
+## The entrepreneur's dilemma
 
-## What you'll walk away with
+You're here because you dream of more than a 9-to-5. You want to build something of your own, call the shots, and create a life of freedom and purpose. That ambition is exactly what sets you apart.
 
-By the end of today you should be able to:
+But you're also cautious. You've heard the stories or seen the statistics: most new businesses fail. You worry about high startup costs, wasting years on trial and error, and the risk of losing everything.
 
-1. Explain why most traditional businesses fail on capital, and why the "safe" small-business options often just buy you a stressful job.
-2. Compare a traditional franchise (Ya Kun, Subway) to the FA career on fee, royalty, risk, and time-to-profit.
-3. Name what's actually handled for you, and what you're still responsible for.
+Your caution is a strength. You're right to be wary. The traditional path to entrepreneurship is full of risks that most people don't see until it's too late.
 
----
+### What "proven" business models really cost
 
-## 1. Three real businesses I nearly bought
+Let's talk about what it really takes to start a "normal" business.
 
-Over the years I've seriously looked at three small businesses. Here's what they actually cost.
+A while ago, a business partner of mine was excited about opening a Ya Kun Kaya Toast franchise. His friend owned several profitable outlets, so it seemed like a sure bet. When he looked into the numbers, the reality was staggering: over $200,000 in startup costs, plus a royalty fee of nearly 10% of his revenue every year. The dream of owning a cool cafe faded quickly once he saw the financial burden.
 
-### Ya Kun Kaya Toast franchise
+Even ventures that seem less complex come with massive upfront capital and risk. I once looked at starting a GP clinic with a friend. The initial investment was $650,000. After running the numbers, we realised that even if the clinic made $1 million in revenue a year, the net profit would only be around $10,000 a month after rent, salaries and other costs. The breakeven period was five to six years, and that's if everything went perfectly.
 
-A business partner was keen on this one. His friend owned several profitable outlets, so it looked like a sure bet.
+### Buying yourself a job
 
-Then we ran the numbers. $200,000 upfront. Around 10% royalty on revenue, forever. Rent, staff, opening hours, supply chain all fell on us. The dream of owning a cool café collapsed about 15 minutes into the spreadsheet.
+Sometimes the risk isn't just financial. It's trading one grind for another, more stressful one.
 
-### GP clinic
+I once considered buying a pain clinic in a prestigious shopping centre. It had revenue of $500,000 a year, but the owner's take-home profit was only $80,000. He wanted to sell the business for $500,000, so it would take over six years just to break even.
 
-I looked at this one with a friend. $650,000 initial investment. Even at $1M revenue a year, net profit after rent and salaries came to roughly $10K a month. Break-even sat at five to six years, and that was only if everything went perfectly.
+The worst part was that the owner did everything himself: front desk, operations, sales and service delivery. If I had taken over, I wouldn't have been a business owner. I would have bought myself a very expensive, high-stress job.
 
-### Pain clinic in a prestige mall
+This is the entrepreneur's dilemma. The path to freedom is often blocked by the need for huge capital, the fear of failure, and the risk of simply building a new cage for yourself.
 
-I considered buying this one over. Revenue $500K a year, owner's take-home $80K, asking price $500K. Over six years just to break even. The kicker: the owner was running front desk, ops, sales and service delivery by himself.
+You are right to hesitate before jumping into that world. But what if there was a different way? A path that gives you the upside of entrepreneurship (the income, the freedom, the impact) without the crippling upfront risk?
 
-If I'd bought it, I wouldn't have been a business owner. I'd have bought myself a very expensive, high-stress job.
+## The franchise model
 
-That's the entrepreneur's dilemma. The path to freedom is usually blocked by either huge capital plus years of risk, or trading one grind for a worse one.
+Think about the most recognisable brands in the world: McDonald's, Subway, Old Chang Kee, Ya Kun. Their products are good, but their real strength is the franchise system. A franchise is a shortcut to becoming a business owner. The frameworks, branding, marketing plans and operations are already built for you. You don't start from scratch. You "buy" a proven model and duplicate its success.
 
-You're right to hesitate. A lot of people don't, and they pay for it.
+The financial advisory career works on the same principle. You don't need to build a financial company from the ground up, create your own insurance or investment products, or spend millions on research and development. The whole business infrastructure has been built for you over decades.
 
----
+You get to use the credibility of a major brand like AIA from day one. It's a "business-in-a-box".
 
-## 2. What a franchise actually does for you
+And here is the difference that sets this apart from every other franchise out there: the risk is reversed.
 
-Take a step back. Why do McDonald's, Subway, Ya Kun franchises exist at all? Because they bypass the hardest parts of entrepreneurship.
+### The traditional franchise vs the financial advisory model
 
-A franchise hands you a recognised brand, so customers already trust you. It hands you proven systems: ops manuals, supply chains, training. It hands you marketing infrastructure paid for by the parent. It hands you R&D — you don't design the menu. And it hands you a product and service that's already built, so your job is to execute.
+![[first-14-days/images/franchise-comparison.webp|Traditional franchise vs financial advisory]]
 
-In return, you pay an enormous upfront fee and a royalty on revenue forever. Expensive, but that's the reason franchisees succeed at much higher rates than independent startups.
+When I first started at 21, I didn't realise it, but I was starting my own business. It just didn't come with the terrifying upfront costs in time and capital. Even if the career didn't work out, the worst case was that I'd walk away with knowledge about personal finance, communication and sales that I could use for life.
 
----
+### Your role: the driver, not the engineer
 
-## 3. The FA career is a franchise without the fee
+The company has already done the heavy lifting. They've handled the decades of hiring, the millions in R&D, and the brand building. Your job isn't to build the car from scratch. It's to get in the driver's seat.
 
-Here's what most people don't realise. A modern tied-agency financial-advisory career is structurally identical to a franchise.
+And to make sure you know how to drive, you get something a traditional franchise doesn't give you: a personal mentor. After nearly a decade in this industry, I've already created the scripts, templates and marketing resources for you. My goal is to share the lessons from my struggles so you don't have to go through them yourself.
 
-| Franchise (Ya Kun, Subway) | Financial Advisory (AIA) |
-|---|---|
-| Brand recognition | Yes — AIA is a trusted brand across Asia |
-| Proven systems | Yes — scripts, processes, CRMs, training |
-| Marketing infrastructure | Yes — brand spend, digital assets, lead platforms |
-| R&D done for you | Yes — product design, actuarial, underwriting |
-| Product/service built | Yes — policies, funds, claims handled centrally |
-| Upfront fee | **No — $0** |
-| Royalty on revenue | **No — you keep your commissions** |
+That is what I mean by a "business-in-a-box": a proven model with minimal risk, so you can get to results faster.
 
-![[first-14-days/images/franchise-comparison.webp|Franchise vs FA comparison]]
-
-You get the upside of a franchise. You don't pay the downside.
-
-Even stranger: the direction of the risk flips. In a traditional franchise, you pay the company upfront. Here, you're supported first — through sponsored exam fees, allowance schemes, subsidised leads, and training. It's like a business-in-a-box where you're supported before you even fully start.
-
----
-
-## 4. "But isn't every MLM saying the same thing?"
-
-Fair objection. Here's where the comparison actually breaks down.
-
-Financial advisors are regulated. You have to pass licensing exams (M5, M9, M9A, HI, CMFAS) supervised by MAS. Not just anyone gets in. The product is real too: insurance and investments solve problems people actually have. Nobody desperately needs another skincare line. Almost everyone needs a claims cheque when something goes wrong.
-
-Your income comes from clients, not recruits. You get paid by the company for work you did for a client, and none of it depends on getting other people to join. The relationships also last. A policy I sold 10 years ago still pays renewal income today. MLM churn is brutal by comparison.
-
-So yes, it's a regulated, institutional-grade business. It just happens to be one you can build without a capital outlay.
-
----
-
-## 5. Your role is driver, not engineer
-
-A franchise owner doesn't design the menu. They don't run corporate marketing or negotiate with suppliers at scale. Their job is to operate well, locally, and consistently.
-
-Same story here. The company has already done the expensive work — decades of underwriting, product design, brand building, R&D. You're not inventing an insurance company. Your job is to find the right people to talk to, understand their situation properly, recommend what fits from products that already exist, and serve them well over the years so they stay, refer, and buy more over time.
-
-That's a craft. It takes training. It also has a ceiling orders of magnitude higher than most corporate roles, because you're paid for the relationship rather than the hours.
-
----
-
-## 6. Cash-flow positive from month one
-
-Here's a detail most candidates miss. This career is cash-flow positive from month one.
-
-There's no upfront capital required, unlike a traditional franchise. There's no monthly overhead either, so no rent, no staff, no inventory. The company takes most of the early risk through sponsored exams, FLEXI allowance, and lead subsidies. Commissions pay out immediately on closed cases.
-
-You start earning from the first closed case without any prior expense to recoup. Break-even is day one. You don't wait 3 to 6 years the way a traditional business does.
-
-Day 13 covers the FLEXI allowance in detail. The short version: you can receive up to $4,200 a month as a FINtern while you're still passing exams, before your first client.
-
----
-
-## 7. So what's the catch?
-
-A few things.
-
-Year 1 is harder than a 9-to-5. You're building a client base from zero, and most of the ramp happens in months 2 to 9. Income ramps, it doesn't arrive in one lump. Your first case might close in month 2, and meaningful monthly income usually stabilises between months 6 and 9.
-
-The agency you pick also matters enormously. A good one provides leads, training and systems. A bad one just signs you up and tells you to call your friends. Day 8 is entirely about picking one that won't waste your year.
-
-And you have to actually be good at the craft. No franchise fee, but no free ride either.
-
-If the structural trade still makes sense with all of that on the table, keep reading. Day 3 is about the skills you build along the way, which matter even if you decide in Year 2 that this isn't forever.
+Tomorrow we look at the high-income skills you'll build, which stay with you for life, wherever your journey takes you.
 
 ---
 

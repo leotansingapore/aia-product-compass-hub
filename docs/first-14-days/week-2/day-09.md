@@ -1,374 +1,148 @@
 ---
 week: 2
 day: 9
-title: "The 6 C's — Honest Self-Assessment"
-big_idea: "I don't screen for experience, connections, or charisma — all of those can be built. I screen for six character traits: Consistency of Actions, Constancy of Emotions, Continuous Improvement, Creativity, Can-do Spirit, CEO Mindset. These predict year-one survival better than any CV."
+title: "The 6 C's: it still starts with you"
+big_idea: "I'm not looking for people who need to be pushed. I'm looking for people who need to be guided."
 author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/module-1-the-perfect-business]]"
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
-duration_minutes: 20
+duration_minutes: 7
 tags: [first-14-days, week-2, prospect, traits, self-assessment, 6-cs, leo-voice]
 ---
 
-# Day 9 — The 6 C's — Honest Self-Assessment
+# Day 9: It still starts with you
 
-> **The one idea for today:** I don't screen for experience, connections, or charisma. All of those can be built. What I screen for are six character traits: Consistency of Actions, Constancy of Emotions, Continuous Improvement, Creativity, Can-do Spirit, CEO Mindset. These predict year-one survival better than any CV.
+## The person at the centre
 
-## What you'll walk away with
+Yesterday you saw the systems. Before you go further, let me be clear about something: no system, however good, can succeed without the right person at the centre.
 
-By the end of today you should be able to:
+The most important questions aren't about what we can do for you. They're about what you're willing to do for yourself:
 
-1. Explain the 6 C's I screen every candidate for, and why each one matters.
-2. Self-assess honestly against each, using specific behavioural tests.
-3. Identify which of the six is your strongest and which is your weakest.
+- Are you taking action, or just consuming information?
+- Are you dreaming big enough to justify the effort?
+- Can you turn short bursts of motivation into firm discipline?
+- Will you form the routines and habits that keep success going?
+- Are you willing to learn how to delegate and automate as you grow?
 
----
+After building four companies, I've learned that every system, organisation and team starts with the individual.
 
-## 1. What I screen for (and what I ignore)
+I'm not looking for people who need to be pushed. I'm looking for people who need to be guided. There's a big difference.
 
-After a decade in this career and training hundreds of people, I've seen the same pattern over and over. The traits that predict year-one survival and year-five excellence are not:
+### Building an elite team
 
-- Intelligence
-- Likability
-- Family connections
-- Charisma
-- Finance degree
-- Sales experience
-- Extroversion
-- Age
+After a decade in financial advisory and entrepreneurship, managing 1,000+ clients across four companies, I made a decision. In 2025 I stepped back from finding new clients myself to focus on what I do best: building and mentoring the next generation of advisors.
 
-All of those correlate weakly. Some are even negatively correlated (sales experience often means bad habits to unlearn).
+I want to build something like an elite sports team, a group of high performers who step up, contribute and push each other to grow. People who dream big, stay disciplined, and know that systems carry you further than hustle alone.
 
-What reliably predicts success is the 6 C's.
+My mission has two parts:
 
-```mermaid
-mindmap
-  root((The 6 C's))
-    Consistency of Actions
-      Show up daily
-      Marathon not sprint
-    Constancy of Emotions
-      Even-keel
-      Survive setbacks
-    Continuous Improvement
-      1% better daily
-      Seek feedback
-    Creativity
-      Resourceful
-      Figure it out
-    Can-Do Spirit
-      Action beats analysis
-      Bias to execute
-    CEO Mindset
-      Extreme ownership
-      No blame no victim
-```
+1. Find the right people, with the hunger and discipline to succeed.
+2. Build the right systems to support them.
 
-1. **Consistency of Actions.** You show up whether you feel like it or not.
-2. **Constancy of Emotions.** Highs and lows don't derail you.
-3. **Continuous Improvement.** You seek feedback and compound 1% a day.
-4. **Creativity.** You're resourceful when there's nothing to work with.
-5. **Can-do Spirit.** You take action. Bias is toward doing, not analysing.
-6. **CEO Mindset.** You take ownership. No blame, no excuses.
+A system without the right people will fail. The best people will struggle in a broken system. You need both.
 
-Let me walk through each one.
+| | Wrong systems | Right systems |
+|---|---|---|
+| Right people | Capable people burn out building everything alone. Most year-one dropouts sit here. | Growth that adds up every year. This is my aim. |
+| Wrong people | They quit before licensing. | The systems sit unused and they still fail. |
 
----
+### What you get when you pass the test
 
-## 2. The 1st C — Consistency of Actions
+If you pass the licensing exams and join the team, you get access to everything I've built over the past decade:
 
-![[first-14-days/images/6c-consistency.webp|Consistency of Actions — The Power of Showing Up Every Day]]
+- Every script I've used to close hundreds of cases
+- All my presentation slides and frameworks
+- Lead generation methods and systems
+- Marketing strategies and materials
+- Operational processes and SOPs
 
-**What it means:** you show up and do the work regardless of how you feel.
+Later, you can use this whole program to build your own team. Everything I used to develop you becomes what you use to develop others.
 
-> **Consistency beats intensity.** The bucket of water dumped at a rock does nothing. The drop landing every day wears a hole through stone. Small efforts, daily, for a long time.
+## The 6 C's
 
-This career is a marathon, not a sprint. Most people treat it like a sprint, burn out, and quit in month 3.
+So what does the right person look like? After training hundreds of people, I don't screen for experience, connections or charisma. Those can all be built. I look for six traits.
 
-### The show-up test
+### 1. Consistency of actions
 
-On a bad day (low motivation, bad mood, tired), do I still do the minimum required work?
+![[first-14-days/images/6c-consistency.webp|Consistency of actions]]
 
-- Yes, every time: high consistency.
-- Usually: average.
-- Only when stakes are immediate: low consistency.
-- No: this is the trait that will break you in this career.
+You show up and do the work whether you feel like it or not. A bucket of water thrown at a rock does nothing, but a drop landing every day wears a hole through it.
 
-### The timeline reframe
+This career is a marathon. Most people set a timeline that's too short and then decide the goal was crazy. Stretch the window from 1 year to 5 and most goals become realistic, as long as you keep going.
 
-Most people set unrealistic timelines and then call the goal crazy. The goal isn't crazy, the timeline is.
+What keeps me going is the game itself. I played tennis at national level, so I know the drive for titles. But if your only goal in Maplestory is to hit level 200, what do you do after you get there? Many players just sell their accounts and move on. I don't work for COT or a certain net worth. I work because I like to build better systems, solve problems and help people improve. If I'd told myself I'd stop at a certain goal, I would have quit long ago.
 
-Most ambitious goals become realistic when you stretch the window from 1 year to 5 or 10. The architecture doesn't get abandoned, it just gets delayed. You just need to keep going.
+### 2. Constancy of emotions
 
-- If you're lost, the answer is education.
-- If you're educated, the answer is execution.
-- If you're executing, the answer is consistency.
+![[first-14-days/images/6c-constancy.webp|Constancy of emotions]]
 
-Consistency is what turns the 5-year plan into a 5-year result.
+You don't let a bad week tank you or a great month go to your head.
 
----
+This career will test you. 100 calls with 95 hang-ups. Three appointments that all cancel. A great meeting that ends in "let me think about it". Some people quit after two bad weeks. Others have one great month, stop prospecting, and panic when the next month is empty.
 
-## 3. The 2nd C — Constancy of Emotions
+Tennis taught me to treat both the same way. Win a match, don't celebrate too long, because there's another match tomorrow. Lose one, don't sulk. Look at what went wrong, adjust, and play the next one.
 
-![[first-14-days/images/6c-constancy.webp|Constancy of Emotions — Controlled Peaks & Valleys]]
+### 3. Continuous improvement
 
-**What it means:** controlled peaks and valleys. You don't let a bad week tank you or a great month inflate you.
+![[first-14-days/images/6c-continuous-improvement.webp|Continuous improvement]]
 
-This career will punch you in the face, repeatedly:
+You get 1% better every day. After every meeting you ask what you could have done better. After every rejection, what you said that turned them off. After every close, what worked.
 
-- Week 1: 100 calls, 95 hang-ups
-- Week 2: finally 3 appointments, all 3 cancel
-- Week 3: great meeting, then "let me think about it"
-- Week 4: first close, then client lapses after 2 months
+During NS, I taught myself to sell on Carousell, joined Toastmasters and started reading seriously. FINternship itself came out of this habit. We launched on 16 July 2024, and within a year we had 200+ community members, 20+ webinars, 150+ pieces of content and 300+ hours of 1-1 mentorship.
 
-What separates the ones who make it is emotional even-keel.
+### 4. Creativity
 
-### The two extremes (both bad)
+![[first-14-days/images/6c-creativity.webp|Creativity]]
 
-**Type A, the quitter:**
-- 2 bad weeks, then "this isn't for me"
-- 10 rejections in a row, then "I'm not good at sales"
+You're resourceful when there's nothing to work with. Most people say "I can't run ads because I don't know Facebook Ads Manager." A resourceful person watches three YouTube videos tonight and figures it out.
 
-**Type B, the burnout:**
-- 1 great month, then "I've figured it out," then stops prospecting
-- Next month: 0 closings, panic, "what happened?"
+When I started my digital marketing agency, I knew nothing about marketing. I learned it from YouTube, by myself, before there was any AI to help. I built the other companies with the same "I don't know, so let me figure it out".
 
-### My tennis mentality
+A simple test: the last time you needed something that wasn't available, did you spend 15 minutes trying before you asked for help?
 
-I played competitive tennis before this career. What tennis taught me:
+### 5. Can-do spirit
 
-- Win a match, don't celebrate too long. There's another match tomorrow. Stay humble, keep training.
-- Lose a match, don't sulk. Analyse, adjust, next match.
-- The only thing that matters is whether you put in the work today, regardless of yesterday's result.
+You take action fast. Picture two new advisors. The first spends two weeks researching the perfect CRM and reading about cold-calling scripts, and starts calling in week 3. Month 1: 50 calls, 2 appointments. The second starts calling on day 1 with the script he was given and adjusts as he goes. Month 1: 500 calls, 15 appointments.
 
-Bad month: "numbers are down, let me analyse and adjust." Great month: "awesome, now what can I improve next month?" Even-keeled. Process-oriented. Not reactive.
+The second one wins because he's willing to look stupid and learn by doing.
 
-### The rejection reframe
+Fear is False Evidence Appearing Real. You don't feel ready before you start. You feel ready once you've started.
 
-Every person doing something meaningful goes through rejection:
-- Jack Ma, rejected from over 30 job applications, including KFC.
-- J.K. Rowling, rejected by 12 publishers before someone said yes.
+### 6. CEO mindset
 
-The single clap in an empty auditorium takes a long time. That's how you know you're on the right path.
+![[first-14-days/images/6c-ceo-mindset.webp|CEO mindset]]
 
-*"Don't let go too soon, but don't hold on too long."*
+You own your results. When something goes wrong, you don't say "the leads were bad" or "the market is down". You say "I didn't qualify the leads properly" or "I need to adjust my pitch".
 
----
+You can be successful, or you can be a victim. You can't be both. There is no such thing as a rich victim.
 
-## 4. The 3rd C — Continuous Improvement
+When you catch yourself complaining, ask three questions. So what? What's the solution? How do I carry it out? By the third question, the complaint has turned into a plan.
 
-![[first-14-days/images/6c-continuous-improvement.webp|Continuous Improvement — 1% Better Every Day]]
+## Rate yourself
 
-**What it means:** 1% better, every day.
-
-Most people plateau after learning the basics. They get comfortable and coast. That's where growth dies.
-
-Continuous improvers never plateau because after every client meeting they ask what they could have done better. After every rejection, what did I say that turned them off. After every close, what worked that I can replicate. Weekly, what's my conversion rate and how do I push it up 5%. Monthly, what new skill should I learn.
-
-### Don't ask price, ask ROI
-
-"What's the cost?" is the wrong question. The right question is "what's the ROI?"
-
-I can pay someone $15/hour because I know my time is worth $300/hour. The math works because I've done the improvement work to know my own value.
-
-### My own examples
-
-During NS, I taught myself on Carousell, joined Toastmasters, started reading books seriously. I couldn't just sit in the routine and let my brain atrophy.
-
-FINternship itself is a result of this trait. Launched July 16, 2024. In less than a year: 200+ community members, 20+ webinars, 200 pages of slides, 150+ pieces of content, 300+ hours of 1-1 mentorship, 50+ hours of recorded video. That's the output speed when continuous improvement is reflex.
-
----
-
-## 5. The 4th C — Creativity (Resourcefulness)
-
-![[first-14-days/images/6c-creativity.webp|Creativity — Being Resourceful When There Is Nothing]]
-
-**What it means:** being resourceful when there's nothing.
-
-Most people say "I can't do X because I don't have Y."
-
-- "I can't run ads because I don't know Facebook Ads Manager."
-- "I can't call leads because I don't have a good script."
-- "I can't close deals because I don't have enough product knowledge."
-
-Creative people say:
-
-- "I don't know Facebook Ads Manager. I'll watch 3 YouTube videos tonight and figure it out."
-- "I don't have a good script. I'll use the template and iterate."
-- "I don't have enough product knowledge. I'll study 2 hours every evening until I'm confident."
-
-### My own example
-
-When I started my digital marketing agency, I knew nothing about marketing. Zero. But I knew it was a core skill worth learning. YouTube videos, self-learning, no AI back then to lean on. I just knew I could learn as I went.
-
-That same resourcefulness is what let me build four companies after the FA business. Not genius, not connections. Just "I don't know, so let me figure it out."
-
-### The initiative test
-
-Last time I needed something at work that wasn't available, what did I do?
-
-- Spent 15+ minutes trying before asking: high creativity.
-- Asked immediately: average.
-- Waited for someone to tell me it was impossible: low creativity.
-- Gave up: low creativity.
-
----
-
-## 6. The 5th C — Can-do Spirit
-
-**What it means:** take risks, take action. Execute at the speed of thought.
-
-Most people:
-1. Have an idea
-2. Think about it for days
-3. Analyse all outcomes
-4. Seek validation
-5. Wait for the "perfect moment"
-6. Never execute
-
-Can-do people:
-1. Have an idea
-2. Take action within 24 hours
-3. Learn and adjust as you go
-
-### The two recruits
-
-Recruit A, the planner. Spends 2 weeks researching "the perfect CRM," reads 10 articles on cold-calling scripts, watches 15 YouTube videos. Starts calling 3 weeks in. Month 1: 50 calls, 2 appointments.
-
-Recruit B, the executor. Day 1 it's "let me just start calling." Uses whatever script was given. Makes mistakes, adjusts on the fly. Month 1: 500 calls, 15 appointments.
-
-Recruit B wins because he's willing to look stupid, fail publicly, and learn through action.
-
-### The three things that stop most people
-
-From my masterclass slide:
-
-- FEAR is False Evidence Appearing Real. You're playing chess against shadows.
-- DISCOMFORT is where courage is built. Diamond under pressure. Sword forged in fire. Pencil sharpened by friction.
-- INCONVENIENCE and PROCRASTINATION work like credit card debt. Feels good swiping, painful paying. Compounds at around 26% a year. Always something for something, never something for nothing.
-
-### Wealthy vs poor mindset
-
-- Wealthy: "I get ready by starting."
-- Poor: "I'll start when ready."
-
-The wealthy already know you don't feel ready before the thing. You feel ready during the thing. Start anyway.
-
-### Life lines I live by
-
-- *"Life is like a camera. If things don't work out, take another shot."*
-- "You don't need more information. You need more momentum."
-- "Courage is action despite fear."
-- "The man who waited for the rain never planted. The man who feared failure never built a thing."
-
----
-
-## 7. The 6th C — CEO Mindset
-
-![[first-14-days/images/6c-ceo-mindset.webp|CEO Mindset — Taking Ownership & Accountability]]
-
-**What it means:** Chief Efficiency Orchestrator. Take ownership. Take accountability. No blame, no excuses, no victim.
-
-When something goes wrong, who do you blame?
-
-**Low CEO mindset:**
-- "The leads were bad"
-- "The market is down"
-- "Clients don't have money"
-- "The training wasn't good enough"
-
-**High CEO mindset:**
-- "I didn't qualify the leads properly"
-- "I need to adjust my pitch for this environment"
-- "I was targeting the wrong demographic"
-- "I didn't use the training materials enough"
-
-### There is no rich victim
-
-> **"You can be successful, or you can be a victim. You cannot be both."**
-
-Blaming feels like relief. It lets you stay stuck. Blame turns into excuses, excuses turn into complaints.
-
-Victim mindset and success are mutually exclusive. You choose one. There is no such thing as a rich victim.
-
-Poor mindset: "Why is this happening to me?"
-Rich mindset: "Who do I need to become?"
-
-### The 3-question drill
-
-When you catch yourself complaining, run this drill:
-
-1. "So?" What's the consequence of this actually being true?
-2. "Then?" What's the solution?
-3. "How?" How do I execute the solution?
-
-By question 3, the complaint has become a plan. That's the switch from victim to CEO.
-
-### The ownership principle
-
-> **"Nothing happens to you, everything happens for you."**
-
-Every difficult experience is a lesson. If you don't learn, it happens again. And again. The universe keeps teaching you the same lesson until you get it.
-
-People complain as though an audience is watching their life. There isn't one. Only you.
-
-### Extreme ownership, extreme honesty
-
-The CEO mindset is three extremes held together:
-
-- Extreme ownership. This is on me.
-- Extreme accountability. I said I'd do it, so I do it.
-- Extreme honesty. With myself first, before anyone else.
-
----
-
-## 8. The honest self-assessment
-
-Rate yourself 1 to 5 on each, with specific recent evidence:
+Give yourself a score from 1 to 5 on each C, with a recent example as evidence.
 
 | C | Score | Evidence |
 |---|:-:|---|
-| Consistency of Actions | __ | |
-| Constancy of Emotions | __ | |
-| Continuous Improvement | __ | |
+| Consistency of actions | __ | |
+| Constancy of emotions | __ | |
+| Continuous improvement | __ | |
 | Creativity | __ | |
-| Can-do Spirit | __ | |
-| CEO Mindset | __ | |
+| Can-do spirit | __ | |
+| CEO mindset | __ | |
 
-- **5 on all six.** You're exactly who I'm looking for. Year-one survival highly probable.
-- **4 to 5 on five out of six.** Strong candidate. Know which is weak, because that's where year-one risk lives.
-- **3 on most.** Average. Possible but harder than it needs to be. Evaluate whether the weaker traits are teachable for you.
-- **2 or lower on any trait.** Be honest. Not all traits are equally teachable. Constancy of Emotions and CEO Mindset are the hardest to build from a low base.
+All six can be built with effort. Track your daily activity and set minimums you never skip. Give yourself 15 minutes to figure something out before you ask for help. Launch at 70% ready. But you can't fake these for long. If you're weak on more than two, this career will show it within 6 months, and it's better to know now.
 
----
+## The reality check
 
-## 9. Can these be developed?
+Not everyone stays convicted, motivated and disciplined over time. The next few months are a test of your skills and of your character.
 
-Yes, all six can be built with intentional effort:
+Some people get excited about the opportunity and fade when the work begins, and others start strong and lose momentum at their first real challenge. I'm looking for the ones who understand that this is a marathon.
 
-- **Consistency:** track daily activities, set non-negotiable minimums, study stoicism.
-- **Constancy of Emotions:** meditation, journaling, Stoic readings (Marcus Aurelius, Epictetus).
-- **Continuous Improvement:** join growth communities, find a mentor who challenges you.
-- **Creativity:** practice figure-it-out time, 15 minutes before you ask for help.
-- **Can-do Spirit:** small commitments with timers, launch at 70% ready.
-- **CEO Mindset:** catch yourself blaming, run the 3-question drill, extreme-ownership reading.
+So let me ask you directly: are you ready for the challenge? Are you ready to commit to executing, and to building, and to finishing what you start?
 
-The catch is you can't fake these long-term. If you're not naturally inclined toward at least four of the six, this career will expose it within 6 months. Better to know now.
-
-If the honest self-assessment says no, that's valuable information. It might not mean "career is wrong." It might just mean "now isn't the right time," and 6 months of deliberate work on these traits would make you a much better fit.
-
----
-
-## 10. The question that matters
-
-All the systems and support in the world won't matter if you're not ready to do the work.
-
-So let me ask directly: are you ready for the challenge?
-
-Ready to commit to executing, not just learning. To building, not just dreaming. To finishing, not just starting.
-
-If yes, everything I've built is waiting for you. The infrastructure is ready, the systems are proven, and the only variable left is you.
+If your answer is yes, everything we've built is waiting for you. The only variable left is you.
 
 ---
 
