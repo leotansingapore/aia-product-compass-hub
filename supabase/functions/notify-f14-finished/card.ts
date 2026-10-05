@@ -12,10 +12,13 @@ export type Learner = {
   tier: string | null;
   isAdmin: boolean;
   finishedAt: string | null;
+  /** Server-only mark (auth app_metadata) that this learner's card was sent. */
+  alertedAt: string | null;
 };
 
 /** Why this finish is not alerted, or null when it should be. */
 export function skipReason(l: Learner, now: number): string | null {
+  if (l.alertedAt) return "already alerted";
   if (!l.finishedAt) return "day 14 not complete";
   if (now - Date.parse(l.finishedAt) > FRESH_MS) return "not a fresh finish";
   if (COMMITTED_TIERS.includes(l.tier ?? "")) return "not an explorer";
@@ -24,10 +27,11 @@ export function skipReason(l: Learner, now: number): string | null {
   return null;
 }
 
-// Learner-typed text: no tags (a Lark <at> pings the whole group).
-const noTags = (s: string) => s.replace(/[<>]/g, "").trim().slice(0, 120);
-// Lark markdown eats these; an email with an underscore must survive.
-const md = (s: string) => s.replace(/[*_~]/g, (c) => "\\" + c);
+// Learner-typed text goes only into plain_text, never markdown, so a name like
+// [Claim](https://...) stays words. Tags go too: in the text fallback an <at>
+// pings the whole group.
+const clean = (s: string) => s.replace(/[<>]/g, "").replace(/\s+/g, " ").trim().slice(0, 120);
+const plain = (content: string) => ({ tag: "div", text: { tag: "plain_text", content } });
 
 export function sgTime(iso: string): string {
   return new Date(iso).toLocaleString("en-SG", {
@@ -41,8 +45,8 @@ export function sgTime(iso: string): string {
 
 /** Card in the lark-notify shape, plus the plain-text fallback. */
 export function buildMessages(l: Learner, adminUrl: string) {
-  const name = noTags(l.name) || "A learner";
-  const email = l.email ? noTags(l.email) : "no email on file";
+  const name = clean(l.name) || "A learner";
+  const email = l.email ? clean(l.email) : "no email on file";
   const when = `${sgTime(l.finishedAt!)} SGT`;
   const head = "FINternship - finished First 14 Days";
   const next = "Next: check whether they booked an onboarding call, and follow up if not.";
@@ -62,8 +66,8 @@ export function buildMessages(l: Learner, adminUrl: string) {
       padding: "12px 12px 20px 12px",
       vertical_spacing: "12px",
       elements: [
-        { tag: "markdown", content: `**${md(name)}** finished Day 14 on ${when}.` },
-        { tag: "markdown", content: md(email) },
+        plain(`${name} finished Day 14 on ${when}.`),
+        plain(email),
         { tag: "markdown", content: next },
         { tag: "markdown", text_size: "notation", content: `[First 14 Days progress](${adminUrl})` },
       ],

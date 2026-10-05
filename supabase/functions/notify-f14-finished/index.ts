@@ -71,11 +71,22 @@ serve(async (req) => {
     tier: tier.data?.tier_level ?? null,
     isAdmin: Boolean(isAdmin.data || isMaster.data),
     finishedAt: progress.data?.quiz_passed_at ?? null,
+    alertedAt: (userRes.user.app_metadata?.f14_alerted_at as string | undefined) ?? null,
   };
-  // ponytail: a learner can re-call this inside the 2-minute window and repost
-  // their own card; add a notified_at column if that ever happens.
   const reason = skipReason(learner, Date.now());
   if (reason) return json({ sent: false, reason });
+
+  // One card per learner. The mark lives in app_metadata because learners can
+  // write their own progress rows but never their app_metadata.
+  // ponytail: read-then-write, so calls fired in the same instant can each post
+  // once; a unique-keyed table would close that if it is ever abused.
+  const { error: markErr } = await db.auth.admin.updateUserById(uid, {
+    app_metadata: { ...userRes.user.app_metadata, f14_alerted_at: new Date().toISOString() },
+  });
+  if (markErr) {
+    console.error("could not record the alert", markErr);
+    return json({ error: "could not record the alert" }, 500);
+  }
 
   const { card, text } = buildMessages(learner, ADMIN_URL);
   const sent =
