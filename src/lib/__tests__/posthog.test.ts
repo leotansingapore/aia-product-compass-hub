@@ -2,8 +2,8 @@ import { describe, expect, it, vi } from 'vitest'
 
 vi.mock('@/integrations/supabase/client', () => ({ supabase: {} }))
 
-import { isProductionHost, isTestEmail, maskAttribute, scrubEvent, scrubUrl } from '@/lib/posthog'
-import type { CaptureResult } from 'posthog-js'
+import { isProductionHost, isTestEmail, maskAttribute, maskNetworkEntry, scrubEvent, scrubUrl } from '@/lib/posthog'
+import type { CaptureResult, CapturedNetworkRequest } from 'posthog-js'
 
 const UUID = '3f2a9c4e-1b7d-4e8a-9c0f-2d5b6a7e8f90'
 
@@ -187,7 +187,15 @@ describe('template v2 (2026-10-05 reviews)', () => {
     expect(src).toMatch(/persistence: 'localStorage'/)
     expect(src).toMatch(/cross_subdomain_cookie: false/)
     expect(src).toMatch(/logs: \{ captureConsoleLogs: false, beforeSend: \(\) => null \}/)
-    expect(src).toMatch(/maskCapturedNetworkRequestFn: \(\) => null/)
+    expect(src).toMatch(/maskCapturedNetworkRequestFn: maskNetworkEntry,/)
     expect(src).toMatch(/mask_all_element_attributes: true/)
+  })
+})
+
+describe('template v3: replay page address', () => {
+  it('keeps a lone page address, scrubbed, and drops every network entry', () => {
+    expect(maskNetworkEntry({ name: 'https://academy.finternship.com/roleplay/feedback/3f2a9c4e-1b7d-4e8a-9c0f-2d5b6a7e8f90?q=John#access_token=x' } as CapturedNetworkRequest)).toEqual({ name: 'https://academy.finternship.com/roleplay/feedback/:id' })
+    expect(maskNetworkEntry({ name: 'https://academy.finternship.com/roleplay/feedback/3f2a9c4e-1b7d-4e8a-9c0f-2d5b6a7e8f90?q=John#access_token=x', entryType: 'resource', initiatorType: 'fetch' } as CapturedNetworkRequest)).toBeNull()
+    expect(maskNetworkEntry({ name: 'https://academy.finternship.com/roleplay/feedback/3f2a9c4e-1b7d-4e8a-9c0f-2d5b6a7e8f90?q=John#access_token=x', method: 'POST' } as CapturedNetworkRequest)).toBeNull()
   })
 })

@@ -34,7 +34,7 @@
 // sits in the entry chunk. Runs only on the production host, never under
 // automation, and drops everything while a demo or test account is signed in.
 
-import posthog, { type CaptureResult } from 'posthog-js'
+import posthog, { type CaptureResult, type CapturedNetworkRequest } from 'posthog-js'
 import { supabase } from '@/integrations/supabase/client'
 
 const KEY = (import.meta.env.VITE_POSTHOG_KEY as string | undefined) || 'phc_ASWcvPVSHR7n7tsss2szQ3kaVFzSMbFbo3dW2DQ9kL4G'
@@ -194,6 +194,18 @@ export function maskAttribute(name: string, value: string): string {
   return '*'.repeat(Math.min(value.length, 12))
 }
 
+/** Replay network hook. recordHeaders/recordBody false lose to the project
+ *  setting (client OR server), so every network entry is dropped here. But
+ *  posthog-js also sends each replay page address through this hook, as
+ *  { name } alone (the Meta event with the URL and window size); dropping
+ *  that broke playback, so a lone name is kept, scrubbed. */
+export function maskNetworkEntry(entry: CapturedNetworkRequest): CapturedNetworkRequest | null {
+  const keys = Object.keys(entry)
+  return keys.length === 1 && keys[0] === 'name' && typeof entry.name === 'string'
+    ? { ...entry, name: scrubUrl(entry.name) }
+    : null
+}
+
 export function isTestEmail(email: string | null | undefined): boolean {
   return TEST_EMAIL.test((email ?? '').trim())
 }
@@ -247,9 +259,7 @@ export async function initPostHog(): Promise<void> {
       maskTextSelector: '*',
       blockSelector: 'img, video, picture, canvas, iframe',
       maskAttributeFn: maskAttribute,
-      // recordHeaders/recordBody false lose to the project setting (client OR server),
-      // so every captured network entry is dropped here.
-      maskCapturedNetworkRequestFn: () => null,
+      maskCapturedNetworkRequestFn: maskNetworkEntry,
     },
     before_send: scrubEvent,
   })
