@@ -457,7 +457,9 @@ export default function First14DaysDay() {
           <Button
             onClick={completeDay}
             disabled={saving}
-            className="group gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
+            // On Day 14 the booking button is the main action, so this one goes quiet.
+            variant={next ? "default" : "outline"}
+            className={cn("group gap-2", next && "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95")}
           >
             <CheckCircle2 className="h-4 w-4" />
             {saving ? "Saving..." : next ? "Mark complete and continue" : `Mark Day ${dayNumber} complete`}
