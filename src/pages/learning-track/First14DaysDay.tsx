@@ -28,9 +28,11 @@ import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProg
 import { useAdmin } from "@/hooks/useAdmin";
 import { useUserTier } from "@/hooks/useUserTier";
 import { DayWorksheet } from "@/components/first-14-days/DayWorksheet";
-
-// Leo's Pick a Time page.
-const ONBOARDING_CALL_URL = "https://www.pick-a-time.app/book/withleo";
+import {
+  lessonMarkdownComponents,
+  ONBOARDING_CALL_URL,
+  trackOnboardingCallClick,
+} from "@/components/first-14-days/lessonMarkdown";
 
 type StatusChipProps = {
   icon: typeof BookOpen;
@@ -397,7 +399,7 @@ export default function First14DaysDay() {
         <TabsContent value="read" className="mt-5">
           <Card className="border-border/60 shadow-card">
             <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
-              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={dayMarkdownComponents}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={lessonMarkdownComponents}>
                 {day.markdown}
               </ReactMarkdown>
             </CardContent>
@@ -415,7 +417,12 @@ export default function First14DaysDay() {
           <CardContent className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <p className="text-sm font-medium text-foreground">Ready to commit? Pick a time for your onboarding call with me.</p>
             <Button asChild className="min-h-11 gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95">
-              <a href={ONBOARDING_CALL_URL} target="_blank" rel="noopener noreferrer">
+              <a
+                href={ONBOARDING_CALL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackOnboardingCallClick("button")}
+              >
                 <CalendarDays className="h-4 w-4" />
                 Book your onboarding call
               </a>
