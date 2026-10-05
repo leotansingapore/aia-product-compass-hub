@@ -117,6 +117,7 @@ export default function First14DaysDay() {
   const [saving, setSaving] = useState(false);
   const {
     isDayComplete,
+    completedCount,
     isUnlocked,
     markRead,
     markDayComplete,
@@ -229,9 +230,9 @@ export default function First14DaysDay() {
   const weekMeta = WEEK_META[day.week];
 
   const hasWorksheet = day.reflection.length > 0;
-  const steps = hasWorksheet ? [true, worksheetStarted, completed] : [true, completed];
-  const progressSteps = steps.filter(Boolean).length;
-  const progressPct = Math.round((progressSteps / steps.length) * 100);
+  // Course-wide, not per day: opening a day already counts as read, so a
+  // per-day ring sat at 50% before anyone had read a word.
+  const progressPct = Math.round((completedCount() / TOTAL_DAYS) * 100);
 
   // Week wrap-up on Day 7 (end of Week 1) and Day 14 (end of Week 2).
   const isLastDayOfWeek = dayNumber === 7 || dayNumber === 14;
@@ -292,7 +293,7 @@ export default function First14DaysDay() {
                 style={{
                   background: `conic-gradient(hsl(var(--primary)) ${progressPct * 3.6}deg, hsl(var(--muted)) 0deg)`,
                 }}
-                aria-label={`${progressPct} percent complete`}
+                aria-label={`${progressPct} percent of the course complete`}
                 role="img"
               >
                 <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-card sm:h-[54px] sm:w-[54px]">
@@ -303,7 +304,7 @@ export default function First14DaysDay() {
                 </div>
               </div>
               <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:tracking-[0.18em]">
-                Done
+                Course
               </span>
             </div>
           </div>
@@ -341,7 +342,6 @@ export default function First14DaysDay() {
                   In progress
                 </Badge>
               )}
-              <StatusChip icon={BookOpen} label="Read" done={true} />
               {hasWorksheet && (
                 <StatusChip
                   icon={NotebookPen}
