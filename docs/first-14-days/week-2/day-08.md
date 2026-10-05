@@ -289,34 +289,6 @@ If you haven't spoken to an agency yet, save this. Use it as your diagnostic whe
 
 ---
 
-## Quiz
-
-**Q1. The most dangerous lie traditional agencies tell new advisors is:**
-- A) "The career is easy"
-- B) "Your warm market alone will carry you" ✓
-- C) "You'll be rich in year one"
-- D) "Everyone passes the licensing exam"
-
-**Why:** Warm market itself isn't the problem — warm is a real, valuable part of a healthy pipeline (see Day 10). The lie is *warm-only* as a complete strategy. It generates quick early sales, which masks the fact that no long-term client-acquisition system exists. Three months in, the advisor is out of names and out of options. Agencies that lead with warm-only are usually hiding that they don't have a real cold-market system to complement it.
-
-**Q2. The three legs of the Tripod Support System (TSS) are:**
-- A) Three managers assigned to every advisor
-- B) Client acquisition, talent acquisition, and nurturing systems ✓
-- C) Three categories of insurance products
-- D) Three phases of training curriculum
-
-**Why:** TSS is the actual infrastructure an advisor plugs into, not a motivational framework. Client acquisition solves "where does my pipeline come from?" Talent acquisition solves "how do I scale when I'm ready?" Nurturing solves "how do clients stay and refer?" All three rest on training and value-adding. This is the scaffolding that prevents year-one burnout.
-
-**Q3. The Right People × Right Systems matrix shows that:**
-- A) Great systems alone drive success
-- B) The right person compensates for weak systems
-- C) Success needs both the right person and the right infrastructure ✓
-- D) Experience matters more than character
-
-**Why:** The matrix is explicit: wrong people × right systems still fails (no motivation). Right people × wrong systems burns out (capable candidates crushed by no infrastructure). Only right people × right systems produces compound growth. So agencies need to screen for character (Day 9) *and* build real infrastructure. Either alone is insufficient.
-
----
-
 ## Related
 
 - Previous: [[../week-1/day-07|Day 7 — The Three I's: Income, Independence, Impact]]

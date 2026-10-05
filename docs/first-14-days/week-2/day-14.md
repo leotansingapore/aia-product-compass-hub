@@ -286,34 +286,6 @@ Whichever outcome you landed on, you decided with your eyes open. That's what th
 
 ---
 
-## Quiz
-
-**Q1. The four valid outcomes of Day 14 are:**
-- A) Yes or no, a simple binary
-- B) Commit now, or commit later
-- C) Commit, Delay, Keep Exploring, or honest No ✓
-- D) Only Commit counts as a real outcome
-
-**Why:** A good evaluation produces whatever answer the evidence supports. Forcing a binary collapses legitimate distinctions — *Delay* (right model, wrong timing) and *Keep Exploring* (right model, wrong agency) are distinct from both *Commit* and *No*. Each points to a different next step. The course is designed to produce honest clarity, not any specific outcome.
-
-**Q2. The correct next step after a *Commit* decision is:**
-- A) Sign every piece of paperwork immediately
-- B) Book a 30-minute onboarding call with Leo ✓
-- C) Take all CMFAS exams the same week
-- D) Submit your resignation before the call
-
-**Why:** *Commit* doesn't mean *sign everything today.* It means *I've decided on direction — now let's do the due diligence that seals the decision.* The onboarding call is exactly that: understand your context, answer residual questions, decide together whether to move forward. Rushing past it is how bad decisions happen on both sides.
-
-**Q3. The biggest Day-14 trap is:**
-- A) Being too cautious about the decision
-- B) Committing out of sunk-cost momentum, not evidence ✓
-- C) Taking too long to finalise the decision
-- D) Writing your answer down instead of keeping it mental
-
-**Why:** Momentum is not evidence. 14 days of reading produces momentum whether or not the underlying case is right. The specific trap is conflating *"I've invested time reading"* with *"I should therefore commit."* Sunk time is irrelevant. Whichever outcome you land on — Commit, Delay, Keep Exploring, or No — should rest on evidence in your worksheets, not on reading effort.
-
----
-
 ## Graduation
 
 You've completed Your First 14 Days.

@@ -321,34 +321,6 @@ Three questions:
 
 ---
 
-## Quiz
-
-**Q1. The FINternship FLEXI Scheme pays candidates:**
-- A) Nothing — you pay tuition to join
-- B) Monthly allowance, exam sponsorship, pass bonus, and licensing bonus ✓
-- C) Only commission once you close a sale
-- D) Just the CMFAS exam fees
-
-**Why:** Most paid programs extract money from participants. FLEXI inverts this — we pay candidates to test the career across three tiers scaling by commitment (0 / 10 / 20 hrs/week). Concretely: up to $4,200/mo on FLEXI 20 HRS, sponsored certifications, $800 per passed paper, and $1,000 on licensing. That only makes sense if our systems produce predictable results — they do.
-
-**Q2. The Income Guarantee means:**
-- A) You're guaranteed $100K in year one
-- B) A minimum monthly floor from month 4 post-licensing, backed by me personally ✓
-- C) AIA pays a fixed salary for your whole career
-- D) A company-funded stipend regardless of activity
-
-**Why:** The guarantee eliminates the biggest fear most candidates have — income uncertainty during ramp. Concretely: from month 4 post-licensing, $2K (student) or $4K (full-time) minimum, with me personally paying the difference if you fall short, conditional on you applying the training. The guarantee only works because the systems produce reliable outcomes — it's put-my-money-where-my-mouth-is commitment.
-
-**Q3. FLEXI and the Income Guarantee together make the career cash-flow positive from day one because:**
-- A) AIA pays a fixed starting salary
-- B) FLEXI covers months 0–3, the guarantee covers month 4 onwards ✓
-- C) Friends and family are guaranteed to buy policies
-- D) Commissions are paid upfront before any case closes
-
-**Why:** Two-stage coverage is the point. FLEXI handles months 0–3 (evaluation, exam study, licensing). The Income Guarantee handles month 4 onwards. Together they eliminate the one risk that kills most advisor careers before they begin — the ramp-up cash-flow gap. Every alternative structure (fixed salary, upfront commissions, family-funded ramp) is either fantasy or unhealthy dependency.
-
----
-
 ## Related
 
 - Previous: [[day-12|Day 12 — "I Don't Have Time / I Need a Big Office / I Need IFA Range"]]

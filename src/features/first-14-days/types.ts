@@ -1,16 +1,3 @@
-export type QuizOption = {
-  key: string;
-  text: string;
-  correct: boolean;
-};
-
-export type QuizQuestion = {
-  index: number;
-  question: string;
-  options: QuizOption[];
-  explanation?: string;
-};
-
 export type ReflectionPrompt = {
   index: number;
   question: string;
@@ -35,7 +22,6 @@ export type Day = {
   path: string;
   frontmatter: DayFrontmatter;
   markdown: string;
-  quiz: QuizQuestion[];
   reflection: ReflectionPrompt[];
 };
 

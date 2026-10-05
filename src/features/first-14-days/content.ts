@@ -1,5 +1,5 @@
 import type { Day, Week } from "./types";
-import { parseFrontmatter, parseQuiz, parseReflection, stripAppendix } from "./parse";
+import { parseFrontmatter, parseReflection, stripAppendix } from "./parse";
 import { convertImageEmbeds } from "../first-60-days/parse";
 import { DAY_SUMMARIES, TOTAL_DAYS, type DaySummary } from "./summaries";
 
@@ -77,7 +77,6 @@ export async function loadDay(dayNumber: number): Promise<Day | undefined> {
     path: `week-${frontmatter.week}/day-${String(frontmatter.day).padStart(2, "0")}.md`,
     frontmatter,
     markdown: convertImageEmbeds(stripAppendix(body)),
-    quiz: parseQuiz(body),
     reflection: parseReflection(body),
   };
   dayCache.set(dayNumber, day);
@@ -102,7 +101,6 @@ export function getWeek(weekNumber: number): Week | undefined {
       big_idea: s.bigIdea,
     },
     markdown: "",
-    quiz: [],
     reflection: [],
   }));
   return { weekNumber, title: meta.title, tagline: meta.tagline, days: weekDays };

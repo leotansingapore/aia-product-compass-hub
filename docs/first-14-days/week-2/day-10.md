@@ -202,34 +202,6 @@ Think honestly:
 
 ---
 
-## Quiz
-
-**Q1. The healthiest pipeline for a new advisor is:**
-- A) 100% warm market — your network is enough
-- B) 100% cold market — warm is a crutch
-- C) Warm + cold together, running in parallel ✓
-- D) Whichever channel feels easier right now
-
-**Why:** Warm-only dries up in 3–6 months. Cold-only is slow to ramp and throws away 50% of your natural advantage. The structurally right answer is *both* — cold engine handled by the agency's systems, warm handled by you with care. Other agencies force you into warm-only, then lose you when the list runs out. We built cold-market infrastructure so you don't have to rely solely on your network — but warm is still your half of the full pipeline.
-
-**Q2. Done right, reaching out to a friend about financial planning is:**
-- A) An awkward imposition to avoid if possible
-- B) A gift — honest advice from someone they trust ✓
-- C) A pushy sales tactic by nature
-- D) Only acceptable when you're desperate for income
-
-**Why:** Your friends are going to work with someone for insurance and retirement planning. If it's not you — a trusted advisor who knows their family situation — it'll be someone less trained, often less ethical, often a stranger. The professional version (low pressure, helping thoroughly, fine with a no) doesn't damage friendships. It strengthens them.
-
-**Q3. An agency that leads with "just sell to your friends and family" is most likely:**
-- A) Being honest about what the career requires forever
-- B) Hiding the absence of a real cold-market system ✓
-- C) Doing what every agency does, which is fine
-- D) Protecting you from wasted cold-outreach effort
-
-**Why:** Warm-market-only is a bridge to nowhere. It generates quick early sales, which masks the fact that no long-term client-acquisition system exists. Three months in, the advisor is out of names and out of options. Well-built agencies teach cold *and* warm in parallel, because that's what sustains an advisor through years 2, 3, and 5. Our answer: cold is settled by our systems, warm is your 50% contribution.
-
----
-
 ## Related
 
 - Previous: [[day-09|Day 9 — The 6 C's — Honest Self-Assessment]]

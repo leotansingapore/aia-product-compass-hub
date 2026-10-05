@@ -128,34 +128,6 @@ The point isn't to justify joining. It's to honestly price what you'd walk away 
 
 ---
 
-## Quiz
-
-**Q1. The working definition of "sales" top advisors actually use is:**
-- A) Persuading people to buy things they don't need
-- B) Understanding decisions well enough to make the right choice obvious ✓
-- C) Closing every lead that comes in
-- D) Building strong rapport so price stops mattering
-
-**Why:** The stereotype describes bad salespeople. Real sales — the kind top advisors practice — is applied human psychology: understanding drivers, communicating value, building conviction through story. It's the exact skill set every founder, CEO and negotiator relies on. Rapport-and-price framing (D) is superficial; real sales works on decision clarity, not charm.
-
-**Q2. Top advisors are disproportionately drawn from people who are:**
-- A) Extroverted and naturally persuasive
-- B) Good listeners, often introverts, who earn trust by asking ✓
-- C) Former athletes or competitive performers
-- D) Already financially successful before they start
-
-**Why:** The surprising pattern across top advisors is that listening beats talking. Clients want to be understood, not sold to — which favours people who ask good questions, hold silence, and reflect back what they've heard. That's often introverts. The myth that sales favours extroverts is one of the main reasons introverts wrongly rule themselves out.
-
-**Q3. "Don't chase the money — master the skills that make money chase you" means:**
-- A) Money doesn't matter early on
-- B) Early-career returns on high-income skills dwarf returns on investing a small portfolio ✓
-- C) Investing is a scam for ordinary earners
-- D) Only rich people should bother learning about money
-
-**Why:** At low portfolio sizes, even a 20% investment return produces negligible absolute dollars. What actually changes your financial trajectory is *earning ability*, which compounds through high-income skills. Build the skills first, earn aggressively, *then* the investing math starts to matter. The order is non-obvious but decisive.
-
----
-
 ## Related
 
 - Previous: [[day-02|Day 2 — The Franchise Without the $200K Fee]]

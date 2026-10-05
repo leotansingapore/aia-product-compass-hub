@@ -1,4 +1,4 @@
-import type { DayFrontmatter, QuizQuestion, QuizOption, ReflectionPrompt } from "./types";
+import type { DayFrontmatter, ReflectionPrompt } from "./types";
 
 const FRONTMATTER_RE = /^---\s*\n([\s\S]*?)\n---\s*\n?/;
 
@@ -59,13 +59,12 @@ function coerceYamlValue(raw: string): unknown {
   return raw;
 }
 
-const QUIZ_HEADING_RE = /^##\s+Quiz\s*$/m;
 const WORKSHEET_HEADING_RE = /^##\s+(Worksheet[^\n]*|The final worksheet)\s*$/m;
 const NEXT_HEADING_RE = /^##\s+\S/m;
-const APPENDIX_CUT_RE = /\n##\s+(Worksheet|The final worksheet|Quiz|Related|Graduation)\b/;
+const APPENDIX_CUT_RE = /\n##\s+(Worksheet|The final worksheet|Related|Graduation)\b/;
 
 /**
- * Remove Worksheet, Quiz, Related and Graduation sections from a day's body
+ * Remove Worksheet, Related and Graduation sections from a day's body
  * markdown. Each lives in its own tab in the UI.
  */
 export function stripAppendix(body: string): string {
@@ -110,78 +109,4 @@ function parseReflectionBlock(block: string, index: number): ReflectionPrompt | 
   }
   const hint = hintLines.join(" ").trim() || undefined;
   return { index, question, hint };
-}
-
-export function parseQuiz(body: string): QuizQuestion[] {
-  const quizMatch = body.match(QUIZ_HEADING_RE);
-  if (!quizMatch || quizMatch.index === undefined) return [];
-  const afterHeading = body.slice(quizMatch.index + quizMatch[0].length);
-  const nextMatch = afterHeading.match(NEXT_HEADING_RE);
-  const section = nextMatch ? afterHeading.slice(0, nextMatch.index) : afterHeading;
-
-  const questions: QuizQuestion[] = [];
-  // Split on question markers: "**Q1. ..."
-  const blocks = section.split(/\n(?=\*\*Q\d+\.\s)/);
-  for (const block of blocks) {
-    const trimmed = block.trim();
-    if (!/^\*\*Q\d+\.\s/.test(trimmed)) continue;
-    const q = parseQuestionBlock(trimmed, questions.length + 1);
-    if (q) questions.push(q);
-  }
-  return questions;
-}
-
-function parseQuestionBlock(block: string, index: number): QuizQuestion | null {
-  const lines = block.split("\n");
-  const header = lines[0] ?? "";
-  // "**Q1. Question text here?**"
-  const questionMatch = header.match(/^\*\*Q\d+\.\s+(.+?)\*\*\s*$/);
-  if (!questionMatch) return null;
-  const question = questionMatch[1].trim();
-
-  const options: QuizOption[] = [];
-  const explanationLines: string[] = [];
-  let inExplanation = false;
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i];
-    // "- A) text" or "- A) text ✓"
-    const optMatch = line.match(/^\s*[-*]\s+([A-Z])\)\s+(.+?)\s*$/);
-    if (optMatch) {
-      inExplanation = false;
-      const key = optMatch[1];
-      let text = optMatch[2];
-      const correct = /\s*✓\s*$/.test(text);
-      if (correct) text = text.replace(/\s*✓\s*$/, "").trim();
-      options.push({ key, text, correct });
-      continue;
-    }
-    // "**Why:** explanation" (possibly multi-line)
-    const whyStart = line.match(/^\s*\*\*Why:\*\*\s*(.*)$/);
-    if (whyStart) {
-      inExplanation = true;
-      if (whyStart[1].trim()) explanationLines.push(whyStart[1].trim());
-      continue;
-    }
-    if (inExplanation) {
-      if (line.trim() === "") {
-        // Blank line within explanation — keep reading; stop on next block marker.
-        continue;
-      }
-      // Stop at next structural element.
-      if (/^\*\*Q\d+\./.test(line) || /^##\s/.test(line)) {
-        inExplanation = false;
-        continue;
-      }
-      explanationLines.push(line.trim());
-    }
-  }
-
-  if (options.length === 0) return null;
-  const explanation = explanationLines.join(" ").trim();
-  return {
-    index,
-    question,
-    options,
-    explanation: explanation.length > 0 ? explanation : undefined,
-  };
 }

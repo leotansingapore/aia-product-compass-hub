@@ -181,34 +181,6 @@ Write both down. Re-read on Day 14.
 
 ---
 
-## Quiz
-
-**Q1. The "I don't have time" objection is best handled by:**
-- A) Pushing through regardless of life context
-- B) Acknowledging part-time ramp works but extends timeline ✓
-- C) Waiting until you have unlimited free time
-- D) Treating the objection as a polite excuse
-
-**Why:** The time objection is legitimate in some life phases — but in most cases, part-time ramping works because the career is self-scheduled. The honest answer respects both sides: yes, it can be done part-time (I did it on 20 hrs/week during NUS GEP), yes, it extends timeline, and yes, some life phases make *not now* a fair answer. Treating the objection seriously — not dismissing it — produces good decisions.
-
-**Q2. The "I need a big office to look credible" objection is usually:**
-- A) A real structural requirement of the career
-- B) A vanity-metric confusion — craft matters, aesthetics don't ✓
-- C) A standard industry expectation
-- D) A compliance requirement from MAS
-
-**Why:** Top advisors work from home offices, co-working spaces, client homes, public meeting spots, and video calls. Office size correlates with overhead burn, not client outcomes. Candidates fixating on office status often fixate on other visible status markers — usually a sign they're not ready for the depth work. This career rewards craft, not projection.
-
-**Q3. For a new advisor, the tied-agency vs IFA decision usually favours tied-agency because:**
-- A) IFAs aren't a real option in Singapore
-- B) Early-career infrastructure outweighs multi-company product range ✓
-- C) IFAs pay poorly on most products
-- D) Tied agencies pay higher commission rates
-
-**Why:** The IFA advantage — multi-company product access — matters in specific cases but rarely dominates in the first 3–5 years. What dominates is training quality, lead infrastructure, systems, mentorship, and ramp speed — all typically stronger at major tied agencies. By year 5+, an experienced advisor can make a different call. Starting IFA before building craft is usually a mistake.
-
----
-
 ## Related
 
 - Previous: [[day-11|Day 11 — "I Have No Experience / I'm Too Introverted"]]

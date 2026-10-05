@@ -144,34 +144,6 @@ If you've already asked yourself these questions and the answers didn't add up, 
 
 ---
 
-## Quiz
-
-**Q1. The closest structural analogy to a tied-agency FA career is:**
-- A) A 9-to-5 with commission on top
-- B) A franchise — minus the entry fee and royalty ✓
-- C) Freelance consulting
-- D) An MLM that pays per recruit
-
-**Why:** All four franchise ingredients are present for an FA — brand, systems, marketing, product — but the two ingredients that usually crush franchisees (upfront fee, royalty on revenue) are absent. MLMs fail the comparison because their economics depend on recruiting. Freelance consulting fails because there's no brand or systems to leverage.
-
-**Q2. What most often blocks ambitious people from traditional entrepreneurship is:**
-- A) A shortage of good ideas
-- B) Upfront capital and multi-year break-even windows ✓
-- C) Fear of success
-- D) Not enough motivation
-
-**Why:** Ya Kun is $200K plus a 10% royalty. A clinic is $650K and 5–6 years to break even. Buying a business is 6 years of recouping while doing every role yourself. The math — not motivation — is what keeps most people employed. Eliminate the math problem and a different decision becomes available.
-
-**Q3. The FA career is cash-flow positive from month one primarily because:**
-- A) AIA pays a starting salary for the first year
-- B) There is no capital outlay and commissions pay out immediately ✓
-- C) New advisors start with high-net-worth clients
-- D) Insurance product margins are extremely high
-
-**Why:** Cash-flow positive means income arrives before any capital needs to be recouped. No capital, no fixed overhead, immediate commissions, plus sponsored exam fees and allowance equals day-one positive. Compare that to a traditional franchise burning capital for 3+ years before break-even. That's structural asymmetry, not a product-margin story.
-
----
-
 ## Related
 
 - Previous: [[day-01|Day 1 — Why You're Even Reading This]]

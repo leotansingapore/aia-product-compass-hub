@@ -190,34 +190,6 @@ Compare that to the ~$667/hour of a well-run FA practice. The gap is the decisio
 
 ---
 
-## Quiz
-
-**Q1. The honest formula for true hourly rate is:**
-- A) Commission on one deal ÷ meeting hours for that deal
-- B) Lifetime value of a client ÷ all hours to acquire and serve them ✓
-- C) Annual income ÷ 2,000 working hours
-- D) Gross revenue ÷ hours in the office
-
-**Why:** Per-case math hides post-sale time and ignores repeat business. Annual-divided math misses compounding. Lifetime-value math captures both acquisition cost *and* the full economic life of a client — the only way to honestly compare businesses of different shapes.
-
-**Q2. The interior designer hits a ~$40/hour rate mainly because of:**
-- A) Pricing each project too low
-- B) 50 post-sale hours per client and no repeat business ✓
-- C) Weak sales skills
-- D) A saturated design market
-
-**Why:** He's a competent professional. What traps him isn't skill — it's the structure: 50 post-sale hours per client plus zero repeat business for 5–10 years. Structural to the model, not a failure of the operator. Changing the *business*, not the *operator*, is what changes the rate.
-
-**Q3. An advisor who knows their true hourly rate is $600+ will rationally:**
-- A) Avoid spending money on their practice
-- B) Hire cheap admin, invest in client experience, wait for slow deals ✓
-- C) Charge every client a fixed consulting fee
-- D) Work 100-hour weeks to maximise income
-
-**Why:** Rational behaviour follows the math. At $600/hour, paying $10/hour for admin help is obvious arbitrage, investing in a referral-driving experience is obvious compounding, and waiting 6 months for a high-value deal is obvious patience. Advisors who haven't done the math behave as if their time is worth $50/hour, and make poor decisions accordingly.
-
----
-
 ## Related
 
 - Previous: [[day-04|Day 4 — The Risk-Reversal Card]]

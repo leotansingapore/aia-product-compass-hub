@@ -35,7 +35,6 @@ This course exists because **I wish I had it when I was 21.** I had to figure it
 - **14 days, ~15 minutes each.** Weekdays, weekends, your pace.
 - **No signup, no form, no one is calling you.** This is just reading.
 - **One worksheet per day, for you only.** Nothing submitted.
-- **A quiz at the end of each day** so the ideas actually stick.
 - **By Day 14, a clear decision:** Commit, Delay, Keep Exploring, or honest No.
 
 ---

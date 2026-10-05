@@ -16,7 +16,7 @@ export default function First14Days() {
   const { completedCount, isDayComplete, isUnlocked } = useFirst14DaysProgress();
   const { isActualAdmin } = useAdmin();
   const { tier } = useUserTier();
-  // Explorers earn each day through the prior day's quiz. Papers-takers and
+  // Explorers unlock each day by completing the one before. Papers-takers and
   // Post-RNF have already committed — First 14 Days is reference material for
   // them, not a gated path.
   const bypassGate = isActualAdmin || tier !== "explorer";

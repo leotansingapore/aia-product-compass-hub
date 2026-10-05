@@ -190,34 +190,6 @@ The difference between year 1 and year 10 isn't about effort. Effort is roughly 
 
 ---
 
-## Quiz
-
-**Q1. *Stickiness* in a business model means:**
-- A) Products that are contractually difficult to cancel
-- B) Customers who keep buying over long horizons, producing high lifetime value ✓
-- C) Aggressive retention marketing
-- D) Complex contracts with penalty clauses
-
-**Why:** Stickiness is about customer behaviour over time, not lock-in tactics. The strongest forms come from products that solve long-horizon problems (insurance, retirement), build high switching costs (trust, underwriting history), and produce natural upsell moments (life events). In FA, all three operate together.
-
-**Q2. *Scalability* in this career means:**
-- A) You can simply work more hours each week
-- B) Adding a new client adds almost no operational work on your side ✓
-- C) You can hire a large sales team to serve more clients
-- D) You can one day sell the practice for a multiple
-
-**Why:** The FA model scales because the marginal cost of a 100th or 500th client is negligible — you're not adding delivery headcount or operational complexity. AIA's underwriting, claims, admin, and fund management teams do the work. That's a software-like cost curve, which is what lets individual advisors run 1,000+ client books with minimal support headcount.
-
-**Q3. Compounding makes year 5 income look radically different from year 1 because:**
-- A) Advisors get tenure-based raises
-- B) The business is front-loaded and naturally gets easier
-- C) Renewals, cross-sells, and referrals from prior years add to new-business income ✓
-- D) AIA pays long-tenure loyalty bonuses
-
-**Why:** Year 1 income = year 1 new business only. Year 5 income = year 5 new business *plus* cross-sells from year 4 *plus* referrals from year 3 *plus* renewals from years 1–2. Each year's work layers under every future year — that layering is compounding. The career isn't linear; it's exponential on a long-enough horizon.
-
----
-
 ## Related
 
 - Previous: [[day-05|Day 5 — The Hidden Math: $40 vs $667 an Hour]]

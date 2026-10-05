@@ -8,7 +8,6 @@ import {
   ArrowRight,
   BookOpen,
   CheckCircle2,
-  ClipboardCheck,
   Lock,
   NotebookPen,
   ShieldCheck,
@@ -27,7 +26,6 @@ import type { Day } from "@/features/first-14-days/types";
 import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProgress";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useUserTier } from "@/hooks/useUserTier";
-import { DayQuiz } from "@/components/first-14-days/DayQuiz";
 import { DayWorksheet } from "@/components/first-14-days/DayWorksheet";
 
 type StatusChipProps = {
@@ -112,21 +110,20 @@ export default function First14DaysDay() {
   const [day, setDay] = useState<Day | undefined>(undefined);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<string>("read");
-  const [showStickyQuiz, setShowStickyQuiz] = useState(false);
+  const [saving, setSaving] = useState(false);
   const {
     isDayComplete,
-    isQuizPassed,
     isUnlocked,
     markRead,
+    markDayComplete,
     getDay,
     isActualAdmin: isProgressAdmin,
-    markDayCompleteAsAdmin,
     unmarkDayCompleteAsAdmin,
     isLoading: progressLoading,
   } = useFirst14DaysProgress();
   const { isActualAdmin } = useAdmin();
   const { tier } = useUserTier();
-  // Explorers (prospects) have to earn each day via the prior day's quiz.
+  // Explorers (prospects) unlock each day by completing the one before.
   // Papers-takers and Post-RNF have already committed — First 14 Days is
   // reference reading for them, so every day is open.
   const bypassGate = isActualAdmin || tier !== "explorer";
@@ -156,7 +153,6 @@ export default function First14DaysDay() {
   }, [dayNumber]);
 
   const completed = isDayComplete(dayNumber);
-  const quizPassed = isQuizPassed(dayNumber);
   const unlocked = bypassGate || isUnlocked(dayNumber);
   useScrollToHash(Boolean(day) && unlocked);
   const persisted = getDay(dayNumber);
@@ -166,37 +162,10 @@ export default function First14DaysDay() {
     if (day && unlocked) markRead(dayNumber);
   }, [day, dayNumber, unlocked, markRead]);
 
-  // Sticky quiz CTA — only when scrolled deep, not on quiz tab, quiz not passed,
-  // and the day has questions.
-  useEffect(() => {
-    if (!day || activeTab === "quiz" || quizPassed || day.quiz.length === 0) {
-      setShowStickyQuiz(false);
-      return;
-    }
-    const onScroll = () => {
-      const docEl = document.documentElement;
-      const total = docEl.scrollHeight - window.innerHeight;
-      if (total <= 0) {
-        setShowStickyQuiz(false);
-        return;
-      }
-      setShowStickyQuiz(window.scrollY / total > 0.55);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [day, activeTab, quizPassed]);
-
-  const goToQuiz = () => {
-    setActiveTab("quiz");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   // Gate on BOTH the markdown chunk AND the progress query. If we render the
   // lock screen on a stale-empty progress map, the user sees a phantom "Day
-  // locked" pointing them back to the previous day — which the previous day's
-  // quiz then reads as unattempted (progress still empty) so they get forced
-  // to redo a quiz they already passed.
+  // locked" pointing them back to the previous day, which then reads as not
+  // done (progress still empty) so they get asked to complete it again.
   if (loading || progressLoading || !day) {
     if (loading || progressLoading) {
       return (
@@ -225,7 +194,7 @@ export default function First14DaysDay() {
           <Lock className="h-8 w-8 text-muted-foreground" />
           <h2 className="text-lg font-semibold">Day {dayNumber} is locked</h2>
           <p className="text-sm text-muted-foreground">
-            Pass the quiz on Day {dayNumber - 1} to unlock this day.
+            Complete Day {dayNumber - 1} to unlock this day.
           </p>
           <Button asChild>
             <Link to={`/learning-track/first-14-days/day/${dayNumber - 1}`}>
@@ -240,11 +209,23 @@ export default function First14DaysDay() {
   const idx = DAY_SUMMARIES.findIndex((d) => d.dayNumber === dayNumber);
   const prev = idx > 0 ? DAY_SUMMARIES[idx - 1] : undefined;
   const next = idx >= 0 && idx < DAY_SUMMARIES.length - 1 ? DAY_SUMMARIES[idx + 1] : undefined;
-  const nextUnlocked = next ? bypassGate || isDayComplete(dayNumber) : false;
+
+  // The hook rolls back and toasts on a failed write; stay on the day then.
+  const completeDay = async () => {
+    setSaving(true);
+    try {
+      await markDayComplete(dayNumber);
+      if (next) navigate(`/learning-track/first-14-days/day/${next.dayNumber}`);
+    } catch {
+      // Already surfaced by the hook's onError toast.
+    } finally {
+      setSaving(false);
+    }
+  };
   const weekMeta = WEEK_META[day.week];
 
   const hasWorksheet = day.reflection.length > 0;
-  const steps = hasWorksheet ? [true, worksheetStarted, quizPassed] : [true, quizPassed];
+  const steps = hasWorksheet ? [true, worksheetStarted, completed] : [true, completed];
   const progressSteps = steps.filter(Boolean).length;
   const progressPct = Math.round((progressSteps / steps.length) * 100);
 
@@ -252,7 +233,7 @@ export default function First14DaysDay() {
   const isLastDayOfWeek = dayNumber === 7 || dayNumber === 14;
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6" data-testid="first-14-days-day">
+    <div className="mx-auto max-w-5xl space-y-6 pb-16 md:pb-0" data-testid="first-14-days-day">
       {/* Breadcrumbs */}
       <nav
         aria-label="Breadcrumb"
@@ -365,38 +346,19 @@ export default function First14DaysDay() {
                   dim={!worksheetStarted}
                 />
               )}
-              <StatusChip
-                icon={ClipboardCheck}
-                label="Quiz"
-                done={quizPassed}
-                dim={!quizPassed}
-              />
             </div>
 
-            {isProgressAdmin && (
+            {isProgressAdmin && completed && (
               <div className="flex flex-wrap items-center gap-2 pt-2">
-                {isDayComplete(dayNumber) ? (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => unmarkDayCompleteAsAdmin(dayNumber)}
-                    className="gap-1.5 border-amber-500/40 bg-amber-500/10 text-amber-700 hover:bg-amber-500/15 dark:text-amber-300"
-                  >
-                    <ShieldCheck className="h-3.5 w-3.5" />
-                    Admin: Unmark day
-                  </Button>
-                ) : (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => markDayCompleteAsAdmin(dayNumber)}
-                    className="gap-1.5 border-primary/40 bg-primary/10 text-primary hover:bg-primary/15"
-                  >
-                    <ShieldCheck className="h-3.5 w-3.5" />
-                    Admin: Mark day as done
-                  </Button>
-                )}
-                <span className="text-[11px] text-muted-foreground">Skips quiz requirement.</span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => unmarkDayCompleteAsAdmin(dayNumber)}
+                  className="gap-1.5 border-amber-500/40 bg-amber-500/10 text-amber-700 hover:bg-amber-500/15 dark:text-amber-300"
+                >
+                  <ShieldCheck className="h-3.5 w-3.5" />
+                  Admin: Unmark day
+                </Button>
               </div>
             )}
           </div>
@@ -405,27 +367,16 @@ export default function First14DaysDay() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="inline-flex h-auto w-full justify-start gap-1 overflow-x-auto rounded-xl border border-border/60 bg-card/80 p-1 shadow-sm backdrop-blur">
-          <TabsTrigger
-            value="read"
-            className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
-          >
-            <BookOpen className="h-4 w-4" />
-            Read
-          </TabsTrigger>
-          <TabsTrigger
-            value="quiz"
-            className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
-          >
-            <ClipboardCheck className="h-4 w-4" />
-            Quiz
-            {day.quiz.length > 0 && (
-              <span className="ml-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-muted-foreground">
-                {day.quiz.length}
-              </span>
-            )}
-          </TabsTrigger>
-          {hasWorksheet && (
+        {/* A lone "Read" tab is noise; the bar only appears when there's a worksheet. */}
+        {hasWorksheet && (
+          <TabsList className="inline-flex h-auto w-full justify-start gap-1 overflow-x-auto rounded-xl border border-border/60 bg-card/80 p-1 shadow-sm backdrop-blur">
+            <TabsTrigger
+              value="read"
+              className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+            >
+              <BookOpen className="h-4 w-4" />
+              Read
+            </TabsTrigger>
             <TabsTrigger
               value="worksheet"
               className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
@@ -436,8 +387,8 @@ export default function First14DaysDay() {
                 {day.reflection.length}
               </span>
             </TabsTrigger>
-          )}
-        </TabsList>
+          </TabsList>
+        )}
 
         <TabsContent value="read" className="mt-5">
           <Card className="border-border/60 shadow-card">
@@ -447,10 +398,6 @@ export default function First14DaysDay() {
               </ReactMarkdown>
             </CardContent>
           </Card>
-        </TabsContent>
-
-        <TabsContent value="quiz" className="mt-5">
-          <DayQuiz dayNumber={dayNumber} questions={day.quiz} />
         </TabsContent>
 
         <TabsContent value="worksheet" className="mt-5">
@@ -480,66 +427,30 @@ export default function First14DaysDay() {
         ) : (
           <span />
         )}
-        {next && (
+        {!completed ? (
           <Button
-            variant={nextUnlocked ? "default" : "secondary"}
-            disabled={!nextUnlocked}
-            aria-label={
-              nextUnlocked
-                ? `Go to Day ${next.dayNumber}`
-                : `Pass today's quiz to unlock Day ${next.dayNumber}`
-            }
-            onClick={() =>
-              nextUnlocked && navigate(`/learning-track/first-14-days/day/${next.dayNumber}`)
-            }
-            className={cn(
-              "group gap-2",
-              nextUnlocked &&
-                "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95",
-            )}
+            onClick={completeDay}
+            disabled={saving}
+            className="group gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
           >
-            {nextUnlocked ? (
-              <>
-                <span className="flex flex-col items-end leading-tight">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-foreground/80">
-                    Up next
-                  </span>
-                  <span className="text-sm font-medium">Day {next.dayNumber}</span>
-                </span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </>
-            ) : (
-              "Pass the quiz to unlock next"
-            )}
+            <CheckCircle2 className="h-4 w-4" />
+            {saving ? "Saving..." : next ? "Mark complete and continue" : `Mark Day ${dayNumber} complete`}
           </Button>
-        )}
+        ) : next ? (
+          <Button
+            onClick={() => navigate(`/learning-track/first-14-days/day/${next.dayNumber}`)}
+            className="group gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
+          >
+            <span className="flex flex-col items-end leading-tight">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-foreground/80">
+                Up next
+              </span>
+              <span className="text-sm font-medium">Day {next.dayNumber}</span>
+            </span>
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </Button>
+        ) : null}
       </div>
-
-      {/* Sticky quiz CTA */}
-      {showStickyQuiz && (
-        <div
-          className="pointer-events-none fixed inset-x-0 bottom-16 z-30 px-3 sm:px-4 md:bottom-4"
-          aria-live="polite"
-        >
-          <div className="pointer-events-auto mx-auto max-w-3xl">
-            <div className="flex items-center gap-3 rounded-2xl border border-primary/30 bg-background/95 p-2 pl-4 shadow-elegant backdrop-blur">
-              <ClipboardCheck className="h-5 w-5 shrink-0 text-primary" />
-              <p className="flex-1 text-sm font-medium leading-snug">
-                <span className="hidden sm:inline">Ready to lock this one in? </span>
-                Take the quiz to check your understanding.
-              </p>
-              <Button
-                size="sm"
-                onClick={goToQuiz}
-                className="shrink-0 gap-1.5 bg-gradient-primary text-primary-foreground hover:opacity-95"
-              >
-                Take the quiz
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

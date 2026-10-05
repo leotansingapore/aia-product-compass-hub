@@ -9,7 +9,7 @@ import { useFirst14DaysProgress } from "./useFirst14DaysProgress";
  * progress to localStorage directly. The hook has since been migrated to
  * Supabase (every write goes through `upsertMutation.mutate` against
  * `first_14_days_progress`, and `if (!userId) return;` short-circuits every
- * mutator when there's no signed-in user — including `recordQuiz`, `saveReflection`,
+ * mutator when there's no signed-in user — including `markDayComplete`, `saveReflection`,
  * and `reset`).
  *
  * The localStorage key is now only consulted for one-shot legacy migration
@@ -63,7 +63,7 @@ describe("useFirst14DaysProgress — unauthenticated boot", () => {
     expect(typeof result.current.isUnlocked).toBe("function");
     expect(typeof result.current.isDayComplete).toBe("function");
     expect(typeof result.current.completedCount).toBe("function");
-    expect(typeof result.current.recordQuiz).toBe("function");
+    expect(typeof result.current.markDayComplete).toBe("function");
   });
 
   it("Day 1 is unlocked by default; days 2–14 are locked until progress comes back from Supabase", () => {
@@ -75,12 +75,12 @@ describe("useFirst14DaysProgress — unauthenticated boot", () => {
     expect(result.current.completedCount()).toBe(0);
   });
 
-  it("recordQuiz / reset are no-ops without auth — guards against accidental anonymous writes", () => {
+  it("markDayComplete is a no-op without auth — guards against accidental anonymous writes", async () => {
     const { result } = renderHook(() => useFirst14DaysProgress(), { wrapper });
-    // Calling these without a user should not throw and should leave state untouched.
-    act(() => {
-      result.current.recordQuiz(1, 100, true);
-      result.current.recordQuiz(2, 100, true);
+    // Calling it without a user should not throw and should leave state untouched.
+    await act(async () => {
+      await result.current.markDayComplete(1);
+      await result.current.markDayComplete(2);
     });
     expect(result.current.completedCount()).toBe(0);
     expect(result.current.isDayComplete(1)).toBe(false);

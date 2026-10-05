@@ -252,10 +252,10 @@ export function useFirst14DaysProgress() {
     onError: (err, _input, ctx) => {
       if (ctx?.prev) qc.setQueryData(["first-14-days-progress", userId], ctx.prev);
       // Silent rollback is what made the original bug invisible — the user
-      // thought they'd passed, then the next day showed locked. Surface it.
+      // thought they'd finished, then the next day showed locked. Surface it.
       const message = err instanceof Error ? err.message : "Couldn't save your progress";
       toast.error("Progress didn't save", {
-        description: `${message}. Check your connection and try the quiz again — your last answer wasn't recorded.`,
+        description: `${message}. Check your connection and try again.`,
       });
     },
     onSettled: () => {
@@ -274,11 +274,6 @@ export function useFirst14DaysProgress() {
 
   const getDay = useCallback(
     (dayNumber: number): DayProgress => daysMap[dayNumber] ?? {},
-    [daysMap],
-  );
-
-  const isQuizPassed = useCallback(
-    (dayNumber: number): boolean => Boolean(daysMap[dayNumber]?.quizPassedAt),
     [daysMap],
   );
 
@@ -323,22 +318,16 @@ export function useFirst14DaysProgress() {
     [userId, daysMap, upsertMutation],
   );
 
-  const recordQuiz = useCallback(
-    (dayNumber: number, score: number, passed: boolean) => {
-      if (!userId) return;
-      const existing = daysMap[dayNumber] ?? {};
-      upsertMutation.mutate({
+  // The quiz is gone; `quiz_passed_at` is still the day's completion stamp
+  // because the leaderboard, team-progress and tracker-export RPCs count it.
+  // Resolves once the write confirms so the caller can open the next day
+  // without a "Day locked" flash.
+  const markDayComplete = useCallback(
+    async (dayNumber: number) => {
+      if (!userId || daysMap[dayNumber]?.quizPassedAt) return;
+      await upsertMutation.mutateAsync({
         dayNumber,
-        patch: {
-          // Keep the best score. The UI invites a casual retry ("Retry for
-          // practice") on a day already passed, and writing the retry score
-          // unconditionally downgraded a 5/5 pass to whatever the practice run
-          // scored — the banner then read "You've already passed this quiz
-          // (2/5)". `quiz_passed_at` was already preserved; the score wasn't.
-          quiz_score: Math.max(score, existing.quizScore ?? 0),
-          quiz_attempts: (existing.quizAttempts ?? 0) + 1,
-          quiz_passed_at: passed ? existing.quizPassedAt ?? new Date().toISOString() : existing.quizPassedAt ?? null,
-        },
+        patch: { quiz_passed_at: new Date().toISOString() },
       });
     },
     [userId, daysMap, upsertMutation],
@@ -379,22 +368,6 @@ export function useFirst14DaysProgress() {
     qc.invalidateQueries({ queryKey: ["first-14-days-progress", userId] });
   }, [userId, qc, daysMap]);
 
-  const markDayCompleteAsAdmin = useCallback(
-    (dayNumber: number) => {
-      if (!userId || !isActualAdmin) return;
-      const existing = daysMap[dayNumber] ?? {};
-      upsertMutation.mutate({
-        dayNumber,
-        patch: {
-          quiz_passed_at: existing.quizPassedAt ?? new Date().toISOString(),
-          quiz_score: existing.quizScore ?? 100,
-          quiz_attempts: existing.quizAttempts ?? 1,
-        },
-      });
-    },
-    [userId, isActualAdmin, daysMap, upsertMutation],
-  );
-
   const unmarkDayCompleteAsAdmin = useCallback(
     (dayNumber: number) => {
       if (!userId || !isActualAdmin) return;
@@ -413,15 +386,13 @@ export function useFirst14DaysProgress() {
     isLoading: progressQuery.isLoading,
     isActualAdmin,
     getDay,
-    isQuizPassed,
     isDayComplete,
     isUnlocked,
     currentDay,
     completedCount,
     markRead,
-    recordQuiz,
+    markDayComplete,
     saveReflection,
-    markDayCompleteAsAdmin,
     unmarkDayCompleteAsAdmin,
     reset,
   };

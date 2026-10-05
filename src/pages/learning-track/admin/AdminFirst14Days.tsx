@@ -191,9 +191,9 @@ export default function AdminFirst14Days() {
       <Card>
         <CardContent className="p-4 text-sm text-muted-foreground">
           One row per prospect. <span className="font-medium text-foreground">Current day</span>{" "}
-          = next day they can unlock (highest quiz passed + 1).{" "}
-          <span className="font-medium text-foreground">Quizzes</span> counts 100%-passed quizzes
-          across all {TOTAL_DAYS} days.{" "}
+          = next day they can unlock (highest day completed + 1).{" "}
+          <span className="font-medium text-foreground">Days done</span> counts days marked complete
+          across all {TOTAL_DAYS}.{" "}
           <span className="font-medium text-foreground">Reflections</span> counts saved reflection
           worksheets.
         </CardContent>
@@ -223,8 +223,8 @@ export default function AdminFirst14Days() {
               <SelectItem value="lastActive:asc">Last active (oldest)</SelectItem>
               <SelectItem value="currentDay:desc">Current day (highest)</SelectItem>
               <SelectItem value="currentDay:asc">Current day (lowest)</SelectItem>
-              <SelectItem value="quizzesPassed:desc">Quizzes (most)</SelectItem>
-              <SelectItem value="quizzesPassed:asc">Quizzes (fewest)</SelectItem>
+              <SelectItem value="quizzesPassed:desc">Days done (most)</SelectItem>
+              <SelectItem value="quizzesPassed:asc">Days done (fewest)</SelectItem>
               <SelectItem value="name:asc">Name (A–Z)</SelectItem>
               <SelectItem value="name:desc">Name (Z–A)</SelectItem>
             </SelectContent>
@@ -259,7 +259,7 @@ export default function AdminFirst14Days() {
                     <div className="font-semibold text-foreground">Day {l.currentDay}</div>
                   </div>
                   <div>
-                    <div className="text-muted-foreground">Quizzes</div>
+                    <div className="text-muted-foreground">Days done</div>
                     <div className="font-semibold text-foreground">
                       {l.quizzesPassed} / {TOTAL_DAYS}
                     </div>
@@ -315,7 +315,7 @@ export default function AdminFirst14Days() {
                   dir={sortDir}
                   onClick={() => toggleSort("quizzesPassed")}
                 >
-                  Quizzes passed
+                  Days done
                 </SortButton>
               </th>
               <th className="px-3 py-2">Progress</th>
