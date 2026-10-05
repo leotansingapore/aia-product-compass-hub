@@ -329,6 +329,13 @@ export function useFirst14DaysProgress() {
         dayNumber,
         patch: { quiz_passed_at: new Date().toISOString() },
       });
+      // Finishing the course pings the recruiting team's Lark group. The
+      // function decides who counts (Explorers only); it never blocks the learner.
+      if (dayNumber === TOTAL_DAYS) {
+        supabase.functions.invoke("notify-f14-finished").then(({ error }) => {
+          if (error) console.warn("notify-f14-finished failed (non-blocking):", error);
+        });
+      }
     },
     [userId, daysMap, upsertMutation],
   );
