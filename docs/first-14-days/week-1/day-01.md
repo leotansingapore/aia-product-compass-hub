@@ -114,7 +114,10 @@ On Day 14 you pick one of four answers: commit, delay, keep exploring, or no. A 
 
 ## Before Day 2
 
-Join our [Telegram group chat](https://t.me/+NINXEZpae0g4YTY9), and our weekly coaching calls and monthly hangouts. You can [add all our events to your calendar](https://bit.ly/finternshiptrainingschedule) in one click.
+1. Read the [welcome kit](https://docs.google.com/document/d/1UnYnOxt_Vqhb6fDadkCdalwVcv86F8LzfO3i0gUTsIg/edit?usp=sharing).
+2. Read the short [intro slide deck](https://docs.google.com/presentation/d/1G3Yleaki9gvt_JDjM0coBWQkSfK5UpLI/edit?usp=sharing).
+3. Connect with me on my [socials](https://linktr.ee/junnysing).
+4. Join our [Telegram group chat](https://t.me/+NINXEZpae0g4YTY9), and our weekly coaching calls and monthly hangouts. You can [add all our events to your calendar](https://bit.ly/finternshiptrainingschedule) in one click.
 
 ## Related
 

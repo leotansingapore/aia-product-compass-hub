@@ -41,6 +41,7 @@ Some common questions:
 - What's the weekly schedule? You're self-employed, so you set your own hours. On the days you work, you send me an end-of-day report with what you did, your hours, what you learned, what got in the way, and what's next.
 - What doesn't count as work hours? Studying for exams, reading or watching course videos, attending training meetings, and attending job-shadowing meetings.
 - Is there a 160-hour scheme? Yes. Ask me about it. It pays $1,600 for each exam you pass.
+- What roles can I do? See the [roles open on the Flexi scheme](https://www.canva.com/design/DAGiCqrnR30/42raJ_S9C885Y52KaRFm-Q/view).
 - Do I have to pay the money back if I decide not to be a financial advisor? No. The Flexi scheme is separate from becoming an advisor. You can be a full-time, part-time or even "no-time" advisor (you hold the licence but don't practise).
 
 ## The income guarantee
