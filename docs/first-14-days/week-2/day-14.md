@@ -115,33 +115,6 @@ The racetrack is built. The car is ready. All you need to do is get behind the w
 
 ---
 
-## Graduation
-
-You've completed Your First 14 Days.
-
-What you have now that you didn't 14 days ago:
-
-- A clear read on whether FA is a real fit for how you want to live
-- Specific criteria to evaluate any agency, not just mine
-- An honest self-assessment against the 6 C's
-- A handled answer for every common objection
-- Full visibility into the FLEXI scheme, income guarantee, and your timeline with us
-- A decision you can defend to yourself: Commit, Delay, Keep Exploring, or No
-
-Whichever one you landed on, you earned it with 14 days of honest reading. That's more due diligence than most people do for their career.
-
-If you're in, book the onboarding call. Details on the Skool community or directly with me.
-
-If you're not, good luck. Come back in 6 months if conditions change.
-
-Either way, thank you for taking this seriously. That's what I built this course for.
-
-See you on the other side.
-
-— Leo
-
----
-
 ## Related
 
 - Previous: [[day-13|Day 13 — The FLEXI Scheme + 15 Rapid-Fire FAQs]]
