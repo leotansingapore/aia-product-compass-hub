@@ -7,6 +7,7 @@ import {
   ArrowLeft,
   ArrowRight,
   BookOpen,
+  CalendarDays,
   CheckCircle2,
   Lock,
   NotebookPen,
@@ -27,6 +28,9 @@ import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProg
 import { useAdmin } from "@/hooks/useAdmin";
 import { useUserTier } from "@/hooks/useUserTier";
 import { DayWorksheet } from "@/components/first-14-days/DayWorksheet";
+
+// Leo's Pick a Time page.
+const ONBOARDING_CALL_URL = "https://www.pick-a-time.app/book/withleo";
 
 type StatusChipProps = {
   icon: typeof BookOpen;
@@ -404,6 +408,21 @@ export default function First14DaysDay() {
           <DayWorksheet dayNumber={dayNumber} prompts={day.reflection} />
         </TabsContent>
       </Tabs>
+
+      {/* Day 14 ends the course: the next step is a call with Leo. */}
+      {dayNumber === TOTAL_DAYS && (
+        <Card className="border-primary/30 shadow-card">
+          <CardContent className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+            <p className="text-sm font-medium text-foreground">Ready to commit? Pick a time for your onboarding call with me.</p>
+            <Button asChild className="min-h-11 gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95">
+              <a href={ONBOARDING_CALL_URL} target="_blank" rel="noopener noreferrer">
+                <CalendarDays className="h-4 w-4" />
+                Book your onboarding call
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Week wrap-up on Day 7 and Day 14 */}
       {isLastDayOfWeek && <WeekWrapup weekNumber={day.week} />}
