@@ -66,7 +66,7 @@ export const HEADING_INDEX: HeadingRow[] = [["f14",1,1,"Day 1: Why this program 
 ["f14",9,3,"4. Creativity","4-creativity"],
 ["f14",9,3,"5. Can-do spirit","5-can-do-spirit"],
 ["f14",9,3,"6. CEO mindset","6-ceo-mindset"],
-["f14",9,2,"Rate yourself","rate-yourself"],
+["f14",9,2,"Can the 6 C's be built?","can-the-6-cs-be-built"],
 ["f14",9,2,"The reality check","the-reality-check"],
 ["f14",10,1,"Day 10: Getting clients without relying on friends","day-10-getting-clients-without-relying-on-friends"],
 ["f14",10,2,"Where the cold leads come from","where-the-cold-leads-come-from"],

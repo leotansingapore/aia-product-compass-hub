@@ -62,16 +62,6 @@ Tomorrow we do the math on what your time is worth in this business.
 
 ---
 
-## Worksheet — your asymmetry check
-
-Answer three questions.
-
-1. **What does "winning" look like specifically for you?** Not a number. A Tuesday morning picture. Where are you? What are you doing at 10 a.m.?
-2. **What would "losing" mean in your case?** Be specific. Financial, social, identity. Name it.
-3. **Is the downside actually worse than your current trajectory if you stayed where you are?** This is the one most people skip. Often the downside of trying is still better than the upside of staying.
-
----
-
 ## Related
 
 - Previous: [[day-03|Day 3 — High-Income Skills You Build Either Way]]

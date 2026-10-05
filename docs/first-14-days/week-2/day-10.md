@@ -47,17 +47,6 @@ If you believe your services can truly help them, then yes, it's a great way to 
 
 ---
 
-## Worksheet — your warm-market reality check
-
-Think honestly:
-
-1. **Who in your warm market would you genuinely be proud to help?** List 5 people. Not "who can I sell to." Ask "who would I feel good being the trusted advisor for?"
-2. **What does the professional version of reaching out look like for each?** A text? A coffee? A message in the family group?
-3. **Are you comfortable with the professional version?** Low pressure, helping thoroughly, fine with no. If not, what's the specific block? That's what to work on.
-4. **What size is your realistic warm network?** Under 20 means you'll lean more on cold. Over 50 means you have a strong warm base. Both are workable.
-
----
-
 ## Related
 
 - Previous: [[day-09|Day 9 — The 6 C's — Honest Self-Assessment]]

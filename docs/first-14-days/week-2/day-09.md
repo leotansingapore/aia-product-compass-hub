@@ -119,18 +119,7 @@ You can be successful, or you can be a victim. You can't be both. There is no su
 
 When you catch yourself complaining, ask three questions. So what? What's the solution? How do I carry it out? By the third question, the complaint has turned into a plan.
 
-## Rate yourself
-
-Give yourself a score from 1 to 5 on each C, with a recent example as evidence.
-
-| C | Score | Evidence |
-|---|:-:|---|
-| Consistency of actions | __ | |
-| Constancy of emotions | __ | |
-| Continuous improvement | __ | |
-| Creativity | __ | |
-| Can-do spirit | __ | |
-| CEO mindset | __ | |
+## Can the 6 C's be built?
 
 All six can be built with effort. Track your daily activity and set minimums you never skip. Give yourself 15 minutes to figure something out before you ask for help. Launch at 70% ready. But you can't fake these for long. If you're weak on more than two, this career will show it within 6 months, and it's better to know now.
 
@@ -143,15 +132,6 @@ Some people get excited about the opportunity and fade when the work begins, and
 So let me ask you directly: are you ready for the challenge? Are you ready to commit to executing, and to building, and to finishing what you start?
 
 If your answer is yes, everything we've built is waiting for you. The only variable left is you.
-
----
-
-## Worksheet — your six-trait plan
-
-1. Which C is your strongest? What's the evidence?
-2. Which is your weakest? What's the evidence?
-3. If you were to join this career tomorrow, which C would be your biggest liability? What could you do in the next 30 days to strengthen it?
-4. If you had to choose not to join, which C's weakness would be the honest reason?
 
 ---
 

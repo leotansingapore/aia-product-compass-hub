@@ -236,20 +236,6 @@ So ask yourself this: do you want to spend the next two years struggling to buil
 
 ---
 
-## Worksheet — the agency you're evaluating
-
-If you've spoken to an agency already (us included), run this audit:
-
-1. What's their concrete answer for where leads come from once warm market is exhausted?
-2. What does their onboarding look like week by week, and can they show it in writing?
-3. What tools do they provide that save you hours per week?
-4. What's their 12-month retention rate for new advisors?
-5. Would you recommend this agency to your smartest friend? Why or why not?
-
-If you haven't spoken to an agency yet, save this. Use it as your diagnostic when you do.
-
----
-
 ## Related
 
 - Previous: [[../week-1/day-07|Day 7 — The Three I's: Income, Independence, Impact]]

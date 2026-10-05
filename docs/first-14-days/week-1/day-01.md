@@ -106,18 +106,6 @@ On Day 14 you pick one of four answers: commit, delay, keep exploring, or no. A 
 
 ---
 
-## Worksheet — your real *why*
-
-One question. Write the answer somewhere only you will see.
-
-**What would need to be true, 10 years from now, for you to look back and say "that was the right move"?**
-
-Not a number. A picture. Where are you living? What does your Tuesday morning look like? Where are your parents? What would you finally be able to say no to?
-
-Put it somewhere you'll re-read on Day 14. The gap between that picture and where your current trajectory actually ends up is the real question this course is trying to help you answer.
-
----
-
 ## Related
 
 - Next: [[day-02|Day 2 — The Franchise Without the $200K Fee]]

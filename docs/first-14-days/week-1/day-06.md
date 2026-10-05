@@ -97,18 +97,6 @@ That is how you grow without the stress growing at the same rate.
 
 ---
 
-## Worksheet — map your own compounding curve
-
-Imagine you started this career next week. Write one sentence for each.
-
-1. What would your year 1 look like, realistically, assuming hard work and honest effort?
-2. What would your year 3 look like, if year 1 and year 2 went reasonably well?
-3. What would your year 10 look like, if you stayed and let compounding do its work?
-
-The difference between year 1 and year 10 isn't about effort. Effort is roughly the same. It's about compounding. Make sure your picture reflects that.
-
----
-
 ## Related
 
 - Previous: [[day-05|Day 5 — The Hidden Math: $40 vs $667 an Hour]]

@@ -70,18 +70,6 @@ Tomorrow we look at the high-income skills you'll build, which stay with you for
 
 ---
 
-## Worksheet — your honest comparison
-
-Write one sentence each.
-
-1. If you wanted to start a traditional business (café, clinic, agency, anything), realistically what would it cost you to try?
-2. What would your actual hourly profit be if you had to run it end-to-end yourself for the first two years?
-3. How much of that risk are you willing to take?
-
-If you've already asked yourself these questions and the answers didn't add up, this career's structure probably already looks interesting. If you haven't, do the math. It clarifies a lot.
-
----
-
 ## Related
 
 - Previous: [[day-01|Day 1 — Why You're Even Reading This]]

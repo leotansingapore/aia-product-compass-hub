@@ -63,17 +63,6 @@ For a new advisor, training, systems and support make a bigger difference than h
 
 ---
 
-## Worksheet — your real objection
-
-Two questions:
-
-1. **Of the three objections today (time, office, product range), which was closest to one you had?** Now that you've read the answer, does it still hold?
-2. **What's the real hesitation underneath?** Use the *"I'm hesitating because…"* drill above. Be honest.
-
-Write both down. Re-read on Day 14.
-
----
-
 ## Related
 
 - Previous: [[day-11|Day 11 — "I Have No Experience / I'm Too Introverted"]]

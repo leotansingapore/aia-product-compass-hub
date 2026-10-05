@@ -88,20 +88,6 @@ In this business, you win by playing the long game. It all starts with choosing 
 
 ---
 
-## Worksheet — your current hourly rate
-
-Run the math on your current work. Honest numbers.
-
-1. What's your annual take-home income (post-tax)?
-2. How many hours per year do you actually work on average, including commute, thinking time, weekends?
-3. Divide. That's your true hourly rate.
-
-Then ask: what's the ceiling in your current role? If you doubled performance, where does the number go? What's the most you could realistically earn per hour in 5 years on your current trajectory?
-
-Compare that to the ~$667/hour of a well-run FA practice. The gap is the decision.
-
----
-
 ## Related
 
 - Previous: [[day-04|Day 4 — The Risk-Reversal Card]]

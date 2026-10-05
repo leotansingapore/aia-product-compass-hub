@@ -14,7 +14,7 @@ Week 1 looked at the business model. Week 2 looks at the agency, and at you.
 ## The 7 days
 
 - [Day 8: Why the agency you join matters](/learning-track/first-14-days/day/8). The three lies most agencies tell new advisors, and the system we built instead.
-- [Day 9: The 6 C's](/learning-track/first-14-days/day/9). The six traits I look for, and a self-rating.
+- [Day 9: The 6 C's](/learning-track/first-14-days/day/9). The six traits I look for.
 - [Day 10: Getting clients without relying on friends](/learning-track/first-14-days/day/10). Your warm market gets you started. The cold market is where you grow.
 - [Day 11: No experience, and not an extrovert](/learning-track/first-14-days/day/11). I started from zero, with a stammer.
 - [Day 12: Limited time, office size and product range](/learning-track/first-14-days/day/12). How I built the business on 2 hours a day during GEP.

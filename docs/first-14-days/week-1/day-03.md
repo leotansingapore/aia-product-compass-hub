@@ -68,18 +68,6 @@ Tomorrow we look at why even the worst case here still leaves you ahead.
 
 ---
 
-## Worksheet — what would it be worth?
-
-Answer honestly, one line each.
-
-1. If you became measurably better at reading people and building trust, what would that be worth in your current or next career?
-2. If you were fluent in personal finance for life, what's the dollar value of not making the big mistakes (bad insurance, bad investments, under-saving for retirement)?
-3. If you learned to sell your ideas to investors, to a team, to future customers, what would that unlock?
-
-The point isn't to justify joining. It's to honestly price what you'd walk away with. That number is your floor. Whatever happens above it is upside.
-
----
-
 ## Related
 
 - Previous: [[day-02|Day 2 — The Franchise Without the $200K Fee]]

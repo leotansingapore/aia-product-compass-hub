@@ -51,16 +51,6 @@ If someone like me, quiet, introverted and once struggling with a stammer, can s
 
 ---
 
-## Worksheet — honest reframe
-
-Three questions. Write the answers down.
-
-1. **After reading this, does "I have no experience" still hold you back? Why?**
-2. **Does "I'm not an extrovert" still hold you back? Why?**
-3. **Underneath both objections, what's the real concern?** Usually something like *"I'm not sure I can handle rejection, variability, or the self-starter nature."* That's a real concern, and it's the one Day 9's 6 C's already surfaced.
-
----
-
 ## Related
 
 - Previous: [[day-10|Day 10 — Warm + Cold Market: Your Full Pipeline]]

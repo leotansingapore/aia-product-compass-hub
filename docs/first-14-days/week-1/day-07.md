@@ -70,21 +70,7 @@ The financial solutions we provide sit at the base of everyone's financial portf
 
 We also help our clients consolidate and review all their policies in our GoalsMapper financial software.
 
-That closes Week 1. Before Day 8, ask yourself one question: does this business model fit how you want to live and work?
-
----
-
-## Worksheet — Week 1 self-check
-
-Take 10 minutes. Honest answers.
-
-1. **Income:** If I built this over 5 years, what income number would I be happy with? What number would make me feel I'd made the right call?
-2. **Independence:** What specifically would I want to do with control over my time? Pick up kids from school? Travel more? Write? Build something else on the side?
-3. **Impact:** Who in my life would be most helped by me having real financial literacy and real money? Who's a phone call I'd want to make that I currently can't?
-4. **Which of the three pulls me hardest?** Not the socially acceptable answer, the honest one.
-5. **Is the business model, as I understand it now, a yes, a no, or a maybe?**
-
-Write this somewhere you'll re-read before Day 14.
+That closes Week 1. Week 2 looks at the agency, and at you.
 
 ---
 

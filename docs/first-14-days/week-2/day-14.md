@@ -117,22 +117,6 @@ The racetrack is built. The car is ready. All you need to do is get behind the w
 
 ---
 
-## The final worksheet
-
-Write one sentence to each, honestly:
-
-1. **My answer is:** *(Commit / Delay / Keep Exploring / No)*
-2. **The strongest evidence for this answer is:**
-3. **The strongest evidence against is:**
-4. **My next step is:**
-5. **My next-step date is:**
-
-Sign it, date it, put it somewhere you'll find it in 3 months.
-
-Whichever outcome you landed on, you decided with your eyes open. That's what the 14 days were for.
-
----
-
 ## Graduation
 
 You've completed Your First 14 Days.

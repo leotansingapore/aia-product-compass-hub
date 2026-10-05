@@ -124,16 +124,6 @@ For $10,000 FYC a month, roughly double the activity.
 
 ---
 
-## Worksheet
-
-Three questions:
-
-1. **Which FAQ answer surprised you most?** (Useful data.)
-2. **Which FAQ answer didn't fully address your concern?** (Bring it up in the onboarding call.)
-3. **Does the FLEXI and Income Guarantee combination materially change your calculation about joining?** (If yes, that's signal.)
-
----
-
 ## Related
 
 - Previous: [[day-12|Day 12 — "I Don't Have Time / I Need a Big Office / I Need IFA Range"]]
