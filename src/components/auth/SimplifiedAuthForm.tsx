@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
+import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import { Eye, EyeOff, Mail, Lock, Loader2 } from 'lucide-react';
 
 type SimplifiedAuthFormProps = {
@@ -16,6 +18,9 @@ export function SimplifiedAuthForm({ hideTitle = false }: SimplifiedAuthFormProp
   const [activeTab, setActiveTab] = useState('signin');
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
+  const [isSendingLink, setIsSendingLink] = useState(false);
+  const [linkSentTo, setLinkSentTo] = useState<string | null>(null);
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -46,12 +51,88 @@ export function SimplifiedAuthForm({ hideTitle = false }: SimplifiedAuthFormProp
     }
   };
 
+  // A sign-in link instead of a password (Leo, 2026-10-05). Existing accounts
+  // only: signups are off for links, so an unknown email answers 422, and the
+  // screen says the same thing either way rather than revealing who has an account.
+  const handleSendLink = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const email = formData.email.trim();
+    if (!email) return;
+    setIsSendingLink(true);
+    try {
+      const { error } = await supabase.auth.signInWithOtp({
+        email,
+        options: { shouldCreateUser: false, emailRedirectTo: `${window.location.origin}/auth` },
+      });
+      if (error && error.status !== 422) {
+        toast({
+          variant: 'destructive',
+          title: 'Could not send the link',
+          description: error.status === 429 ? 'Too many tries. Wait a minute and try again.' : error.message,
+        });
+        return;
+      }
+      setLinkSentTo(email);
+    } finally {
+      setIsSendingLink(false);
+    }
+  };
+
   const switchToForgotPassword = () => {
     if (formData.email) {
       setFormData(prev => ({ ...prev, resetEmail: prev.email }));
     }
     setActiveTab('reset');
   };
+
+  if (activeTab === 'link') {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-2xl font-bold text-foreground font-sans">Sign in with a link</h2>
+          <p className="text-sm text-muted-foreground mt-1">No password needed.</p>
+        </div>
+
+        {linkSentTo ? (
+          <div role="status" className="rounded-lg border bg-muted/40 p-4 text-sm text-foreground" data-testid="link-sent">
+            Check your email. If {linkSentTo} has an account, a sign-in link is on its way.
+          </div>
+        ) : (
+          <form onSubmit={handleSendLink} className="space-y-4">
+            <div className="space-y-1.5">
+              <Label htmlFor="link-email">Email</Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                <Input
+                  id="link-email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
+                  className="pl-10"
+                  autoComplete="email"
+                  autoFocus
+                  required
+                />
+              </div>
+            </div>
+
+            <Button type="submit" className="w-full" disabled={isSendingLink}>
+              {isSendingLink ? (
+                <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Sending…</>
+              ) : 'Email me a sign-in link'}
+            </Button>
+          </form>
+        )}
+
+        <p className="text-center text-xs text-muted-foreground">
+          <button type="button" onClick={() => { setActiveTab('signin'); setLinkSentTo(null); }} className="text-primary hover:underline underline-offset-2">
+            Sign in with a password instead
+          </button>
+        </p>
+      </div>
+    );
+  }
 
   if (activeTab === 'reset') {
     return (
@@ -168,6 +249,12 @@ export function SimplifiedAuthForm({ hideTitle = false }: SimplifiedAuthFormProp
             <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Signing in…</>
           ) : 'Sign In'}
         </Button>
+
+        <p className="text-center text-xs text-muted-foreground">
+          <button type="button" onClick={() => setActiveTab('link')} className="text-primary hover:underline underline-offset-2" data-testid="use-sign-in-link">
+            Email me a sign-in link instead
+          </button>
+        </p>
       </form>
     </div>
   );
