@@ -8,8 +8,10 @@
 //   - the password is always the starter one Leo hands out by hand, so the
 //     caller cannot set anybody's password
 //   - no GrowingAge account (Leo: Academy only)
-//   - an email that already has an account is left exactly as it is: no new
-//     password, no tier change. The answer says so and the caller tells a person.
+//   - an email that already has an account keeps its password and its tier.
+//     The one thing added is the explorer tier when it has NO tier at all (an
+//     account made on another app on this project), or First 14 Days would
+//     stay shut to the FINtern it was sent to.
 
 export const STARTER_PASSWORD = '123456'
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -27,7 +29,8 @@ export interface Admin {
   auth: { admin: { createUser(a: Record<string, unknown>): Promise<{ data: { user: { id: string } | null }; error: { message: string; code?: string } | null }> } }
   from(table: string): {
     insert(row: Record<string, unknown>): PromiseLike<{ error: { message: string } | null }>
-    upsert(row: Record<string, unknown>, o: { onConflict: string }): PromiseLike<{ error: { message: string } | null }>
+    upsert(row: Record<string, unknown>, o: { onConflict: string; ignoreDuplicates?: boolean }): PromiseLike<{ error: { message: string } | null }>
+    select(cols: string): { eq(col: string, v: string): { maybeSingle(): PromiseLike<{ data: { user_id?: string } | null; error: { message: string } | null }> } }
   }
 }
 
@@ -54,7 +57,16 @@ export async function handle(req: Request, deps: { secret: string; admin: () => 
     user_metadata: { first_name: firstName, last_name: lastName, display_name: displayName, source: 'finternship-offer' },
   })
   if (error) {
-    if (error.code === 'email_exists' || /already (been )?registered/i.test(error.message)) return json({ created: false, exists: true })
+    if (error.code === 'email_exists' || /already (been )?registered/i.test(error.message)) {
+      // Profiles carry every account's email, lowercased like this one.
+      const { data: prof } = await admin.from('profiles').select('user_id').eq('email', email).maybeSingle()
+      if (prof?.user_id) {
+        // DO NOTHING on conflict: a tier already there is never touched.
+        const tier = await admin.from('user_access_tiers').upsert({ user_id: prof.user_id, tier_level: 'explorer' }, { onConflict: 'user_id', ignoreDuplicates: true })
+        if (tier.error) console.error('existing account tier:', tier.error.message)
+      }
+      return json({ created: false, exists: true })
+    }
     return json({ error: error.message }, 500)
   }
   const id = data.user?.id

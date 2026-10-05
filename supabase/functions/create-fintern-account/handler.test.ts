@@ -2,8 +2,8 @@
 import { assertEquals } from "https://deno.land/std@0.190.0/testing/asserts.ts";
 import { handle, sameSecret, STARTER_PASSWORD, type Admin } from "./handler.ts";
 
-function fakeAdmin(opts: { exists?: boolean; tierFails?: boolean } = {}) {
-  const calls: { op: string; table?: string; row: Record<string, unknown> }[] = [];
+function fakeAdmin(opts: { exists?: boolean; tierFails?: boolean; profileId?: string } = {}) {
+  const calls: { op: string; table?: string; row: Record<string, unknown>; opts?: Record<string, unknown> }[] = [];
   const admin: Admin = {
     auth: { admin: { createUser: async (a) => {
       calls.push({ op: 'createUser', row: a });
@@ -13,7 +13,11 @@ function fakeAdmin(opts: { exists?: boolean; tierFails?: boolean } = {}) {
     } } },
     from: (table) => ({
       insert: (row) => { calls.push({ op: 'insert', table, row }); return Promise.resolve({ error: null }); },
-      upsert: (row) => { calls.push({ op: 'upsert', table, row }); return Promise.resolve({ error: opts.tierFails ? { message: 'boom' } : null }); },
+      upsert: (row, o) => { calls.push({ op: 'upsert', table, row, opts: o }); return Promise.resolve({ error: opts.tierFails ? { message: 'boom' } : null }); },
+      select: () => ({ eq: (_c, v) => ({ maybeSingle: () => {
+        calls.push({ op: 'select', table, row: { email: v } });
+        return Promise.resolve({ data: opts.profileId ? { user_id: opts.profileId } : null, error: null });
+      } }) }),
     }),
   };
   return { admin, calls };
@@ -49,11 +53,44 @@ Deno.test('a new FINtern: explorer tier, the starter password, the caller cannot
   assertEquals(f.calls.find((c) => c.table === 'user_access_tiers')!.row, { user_id: 'u1', tier_level: 'explorer' });
   assertEquals(f.calls.find((c) => c.table === 'profiles')!.row.first_name, 'Shreyaa');
 });
-Deno.test('an existing account is left exactly as it is', async () => {
-  const f = fakeAdmin({ exists: true });
-  const r = await handle(post({ email: 'a@b.co', name: 'A' }, 's3cret'), { secret: 's3cret', admin: () => f.admin });
+Deno.test('an existing account keeps its password and any tier it has', async () => {
+  const f = fakeAdmin({ exists: true, profileId: 'u9' });
+  const r = await handle(post({ email: 'A@B.co', name: 'A' }, 's3cret'), { secret: 's3cret', admin: () => f.admin });
   assertEquals(await r.json(), { created: false, exists: true });
-  assertEquals(f.calls.filter((c) => c.op !== 'createUser').length, 0);
+  // Found by its lowercased email; the only write is a tier that does nothing on conflict.
+  assertEquals(f.calls.find((c) => c.op === 'select')!.row, { email: 'a@b.co' });
+  const writes = f.calls.filter((c) => c.op === 'insert' || c.op === 'upsert');
+  assertEquals(writes.length, 1);
+  assertEquals(writes[0].table, 'user_access_tiers');
+  assertEquals(writes[0].row, { user_id: 'u9', tier_level: 'explorer' });
+  assertEquals(writes[0].opts, { onConflict: 'user_id', ignoreDuplicates: true });
+  assertEquals(f.calls.filter((c) => c.op === 'createUser').length, 1);
+});
+Deno.test('an existing account with no profile row writes nothing', async () => {
+  const f = fakeAdmin({ exists: true });
+  const r = await handle(post({ email: 'a@b.co' }, 's3cret'), { secret: 's3cret', admin: () => f.admin });
+  assertEquals(await r.json(), { created: false, exists: true });
+  assertEquals(f.calls.filter((c) => c.op === 'insert' || c.op === 'upsert').length, 0);
+});
+Deno.test('only POST', async () => {
+  const f = fakeAdmin();
+  const r = await handle(new Request('https://x/create-fintern-account', { method: 'GET', headers: { 'x-fintern-secret': 's3cret' } }), { secret: 's3cret', admin: () => f.admin });
+  assertEquals(r.status, 405); assertEquals(f.calls.length, 0);
+});
+Deno.test('a body that is not JSON is a bad request, not a crash', async () => {
+  const f = fakeAdmin();
+  const r = await handle(new Request('https://x/create-fintern-account', { method: 'POST', body: 'not json', headers: { 'x-fintern-secret': 's3cret' } }), { secret: 's3cret', admin: () => f.admin });
+  assertEquals(r.status, 400); assertEquals(f.calls.length, 0);
+});
+Deno.test('a very long name is cut to 100 characters', async () => {
+  const f = fakeAdmin();
+  await handle(post({ email: 'a@b.co', name: 'x'.repeat(500) }, 's3cret'), { secret: 's3cret', admin: () => f.admin });
+  const meta = f.calls.find((c) => c.op === 'createUser')!.row.user_metadata as { display_name: string };
+  assertEquals(meta.display_name.length, 100);
+});
+Deno.test('an email with spaces inside is refused', async () => {
+  const f = fakeAdmin();
+  assertEquals((await handle(post({ email: 'a b@c.co' }, 's3cret'), { secret: 's3cret', admin: () => f.admin })).status, 400);
 });
 Deno.test('a tier that cannot be set is an error, not a silent success', async () => {
   const f = fakeAdmin({ tierFails: true });
