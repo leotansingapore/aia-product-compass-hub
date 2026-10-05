@@ -13,8 +13,6 @@ duration_minutes: 3
 tags: [first-14-days, week-2, prospect, objection, experience, introvert, mentees, leo-voice]
 ---
 
-# Day 11: No experience, and not an extrovert
-
 ## Lack of experience
 
 When I started, I knew nothing about sales. Zero. I didn't know how to build a business, handle rejections, create a sales pipeline, or even give a good presentation. Outsourcing, productivity, delegation, sales scripts, frameworks and prospecting were all foreign to me. Over the past nine years I've learned it all, and everything I've learned, I'll teach you.

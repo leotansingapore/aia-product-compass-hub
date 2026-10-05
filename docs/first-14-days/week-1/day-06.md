@@ -13,8 +13,6 @@ duration_minutes: 5
 tags: [first-14-days, week-1, prospect, stickiness, scalability, compounding, leo-voice]
 ---
 
-# Day 6: Stickiness and scalability
-
 ## Stickiness: why this business model is built to last
 
 Yesterday we went through the math behind your hourly rate. But what makes that high lifetime value (LTV) possible in the first place?

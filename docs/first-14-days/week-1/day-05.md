@@ -12,8 +12,6 @@ duration_minutes: 3
 tags: [first-14-days, week-1, prospect, economics, hourly-rate, ltv, leo-voice]
 ---
 
-# Day 5: The hidden math of your hourly rate
-
 One of the most deceptive parts of entrepreneurship is that the promise of flexibility and autonomy can lead to you working more hours for less pay. Not all hustle is equal. Understanding the math behind your time matters more than anything else when you choose which business to build.
 
 Your true hourly rate isn't just your commission divided by the hours you spend in meetings. It's the total value you earn from a customer, divided by the entire time it takes to acquire and serve them.

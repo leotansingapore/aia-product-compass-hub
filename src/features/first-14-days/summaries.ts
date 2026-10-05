@@ -78,7 +78,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     week: 2,
     dayInWeek: 1,
     title: "Why the agency you join matters",
-    duration: 11,
+    duration: 8,
     bigIdea:
       "Do you want to spend the next two years struggling to build a business from scratch, or do you want to plug into a machine that's already working?",
   },
@@ -86,8 +86,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     dayNumber: 9,
     week: 2,
     dayInWeek: 2,
-    title: "The 6 C's: it still starts with you",
-    duration: 7,
+    title: "Our support system and the 6 C's",
+    duration: 8,
     bigIdea:
       "I'm not looking for people who need to be pushed. I'm looking for people who need to be guided.",
   },

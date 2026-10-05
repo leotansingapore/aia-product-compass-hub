@@ -12,8 +12,6 @@ duration_minutes: 3
 tags: [first-14-days, week-1, prospect, risk, asymmetric-bet, leo-voice]
 ---
 
-# Day 4: The risk-reversal card
-
 Life is like a casino.
 
 You enter with a set of cards you can't change: your background, your environment, your natural talents. You use these cards to place bets on the right education, the right job, the right business.

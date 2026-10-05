@@ -12,8 +12,6 @@ duration_minutes: 4
 tags: [first-14-days, week-2, prospect, objection, time, office, ifa, leo-voice]
 ---
 
-# Day 12: Limited time, office size and product range
-
 ## Limited time?
 
 Recently I met a client who ran an acai business while studying full time at university. He runs it as a solopreneur, and it was amazing how he handled operations and sales and juggled his studies at the same time. He was highly motivated, and I could tell he really loved his work. Now he wants to automate operations further with an acai vending machine, which I thought was really cool.
@@ -39,7 +37,11 @@ These are the productivity principles I relied on:
 3. Batching tasks: instead of jumping between different types of work, I grouped similar tasks together. I set aside blocks of time for calls, another for planning and another for paperwork. That kept me focused and saved me the mental drain of switching back and forth.
 4. Elimination: not everything on my to-do list was necessary. By asking "does this really need to be done at all?", I cut out low-value activities like unnecessary meetings and overthinking small tasks. That freed up time and mental energy for what mattered.
 
-And I didn't have a VA back then. Everything was manual, and 80% of it was done without outsourcing. I didn't have a mentor to guide me either, so my scripts, slides and decks were all made from scratch. All meetings were physical, and everything ran on paper, so admin took wayy more time than it does now.
+This was my weekly schedule as a student advisor.
+
+![[first-14-days/images/student-advisor-schedule.webp|My weekly schedule as a student advisor]]
+
+I didn't have a VA back then. Everything was manual, and 80% of it was done without outsourcing. I didn't have a mentor to guide me either, so my scripts, slides and decks were all made from scratch. All meetings were physical, and everything ran on paper, so admin took wayy more time than it does now.
 
 If I could build my business with just two hours a day, I know you can manage your time well too.
 
@@ -55,9 +57,17 @@ The idea is about having a strong franchise and company platform to run your bus
 
 AIA was listed as one of the top 15 MDRT companies in the world in 2024.
 
+![[first-14-days/images/aia-group-facts.webp|About AIA Group]]
+
+![[first-14-days/images/aia-singapore-facts.webp|About AIA Singapore]]
+
 Apart from AIA's own products, we can offer the products of other insurers too.
 
+![[first-14-days/images/other-insurers.webp|Other insurers whose products we can offer]]
+
 AIA also gives you support at every level: products, engagement, activities, training, digital tools, sales support and more.
+
+![[first-14-days/images/aia-support.webp|AIA Singapore's support for advisors]]
 
 For a new advisor, training, systems and support make a bigger difference than having every insurer's product on the shelf. I built my book at AIA, and the top products in each category are very similar across the big insurers anyway.
 

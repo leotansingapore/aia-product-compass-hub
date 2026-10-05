@@ -12,8 +12,6 @@ duration_minutes: 7
 tags: [first-14-days, week-2, prospect, faq, flexi-scheme, income-guarantee, reference, leo-voice]
 ---
 
-# Day 13: The Flexi scheme and 15 common questions
-
 ## The Flexi scheme
 
 ![[first-14-days/images/flexi-scheme-tiers.webp|Flexi scheme tiers]]

@@ -12,8 +12,6 @@ duration_minutes: 4
 tags: [first-14-days, week-1, prospect, franchise-model, business-model, leo-voice]
 ---
 
-# Day 2: The franchise model without the $200,000 fee
-
 ## The entrepreneur's dilemma
 
 You're here because you dream of more than a 9-to-5. You want to build something of your own, call the shots, and create a life of freedom and purpose. That ambition is exactly what sets you apart.

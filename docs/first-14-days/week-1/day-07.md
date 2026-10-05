@@ -12,8 +12,6 @@ duration_minutes: 3
 tags: [first-14-days, week-1, prospect, three-i's, income, independence, impact, leo-voice]
 ---
 
-# Day 7: The three I's of the FA career
-
 There are three I's of this career.
 
 ![[first-14-days/images/three-is-mindmap.webp|Income, independence, impact]]
@@ -24,13 +22,21 @@ Income, independence, impact.
 
 The average student advisor earns around $61,198 a year.
 
+![[first-14-days/images/aia-student-advisor-income.webp|Student and fresh graduate advisors: $61,198 average first-year income]]
+
 My income as a full-time student and part-time financial advisor crossed $100k in my first year, even though I worked just 20 to 30 hours a week and had no natural market. Most of my clients were complete strangers. Thankfully, I'd built the right systems and processes to make things as efficient as possible.
 
-According to salary.sg, the average salary of a financial consultant, manager and insurance director ranks among the top 10.
+On salary.sg's list of the highest-paying jobs, insurance director comes first, financial services manager 14th and financial adviser 21st.
 
-The average income of a consultant has also been rising steadily year on year.
+![[first-14-days/images/salary-top-jobs.webp|Highest-paying jobs in Singapore, from salary.sg]]
+
+The average income of a consultant has also been rising steadily year on year, from $72,000 in 2019 to $80,900 in 2022.
+
+![[first-14-days/images/consultant-income-2019-2022.webp|Average income earned by a consultant, 2019 to 2022]]
 
 And you can be promoted to manager and director and build your own team in the future, with higher income at each level.
+
+![[first-14-days/images/income-by-career-level.webp|Average income by career level]]
 
 I earned $145k as a full-time engineering student in Uni Y1, my first year in the career.
 
@@ -54,6 +60,8 @@ I also had no natural market. 99.9% of my leads were cold.
 
 Most of my time went to prospecting, calling, setting appointments and travelling. But the total was about 20 hours a week, if you don't count travelling time.
 
+![[first-14-days/images/weekly-time-spent.webp|My weekly hours as a student advisor]]
+
 ## Impact
 
 Financial planning isn't taught in schools, so most people are left to figure it out on their own. That's where we come in.
@@ -68,7 +76,11 @@ When you focus on serving others, you start to realise how meaningful this job i
 
 The financial solutions we provide sit at the base of everyone's financial portfolio.
 
+![[first-14-days/images/client-solutions.webp|Protection, investments and savings, health, and affluent and HNW solutions]]
+
 We also help our clients consolidate and review all their policies in our GoalsMapper financial software.
+
+![[first-14-days/images/goalsmapper.webp|GoalsMapper, with a sample client]]
 
 That closes Week 1. Week 2 looks at the agency, and at you.
 

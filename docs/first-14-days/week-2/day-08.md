@@ -10,11 +10,9 @@ primary_sources:
   - "[[../../finternship-orientation/04-module-4---your-unfair-advantage/02-lesson-1what-most-agencies-wont-tell-you-about]]"
   - "[[../../finternship-orientation/04-module-4---your-unfair-advantage/04-lesson-3-systems-vs-culture]]"
   - "[[../../finternship-orientation/04-module-4---your-unfair-advantage/06-lesson-5-tss-the-6-tier-power-pyramid]]"
-duration_minutes: 11
+duration_minutes: 8
 tags: [first-14-days, week-2, prospect, agency-choice, fit-test, tss, leo-voice]
 ---
-
-# Day 8: Why the agency you join matters
 
 You've seen the potential of a financial advisory career, but you've probably also heard the horror stories. The industry has a reputation for being a "sink or swim" environment, and for good reason.
 
@@ -102,7 +100,7 @@ With us, our backend VA team handles your operations and admin. Policy summaries
 
 At a typical agency, a basic website costs you $3,000. For social media content, you find your own graphic designer. To run ads, you figure out Facebook and Google yourself and pray you don't waste your budget.
 
-With us, you get our marketing team: graphic designers, web developers, social media managers and copywriters. We're backed by the #1 ranked digital marketing agency in Singapore. And we subsidise 75% of your ad spend.
+With us, you get our marketing team: graphic designers, web developers, social media managers and copywriters. We're backed by the #1 ranked digital marketing agency in Singapore. And we subsidise 50% of your ad spend.
 
 ### The two philosophies
 
@@ -149,76 +147,6 @@ Culture is fragile. It depends on moods, relationships, and whether the team lea
 Systems get stronger under pressure. They work no matter who's having a bad day, and they keep working as you grow.
 
 That's why I've spent hundreds of thousands of dollars and countless hours building infrastructure instead of throwing pizza parties.
-
-## What the system looks like
-
-We call it the Tripod Support System (TSS).
-
-![[first-14-days/images/tripod-support-system.webp|Tripod Support System: three pillars around the advisor]]
-
-```mermaid
-flowchart TB
-    subgraph Pillars["Three pillars of TSS"]
-        direction LR
-        A["<b>Client Acquisition</b><br/>paid ads, funnels,<br/>appointment setters,<br/>cold scripts"]
-        B["<b>Talent Acquisition</b><br/>recruitment pipeline,<br/>team building when ready"]
-        C["<b>Nurturing</b><br/>iSmart CRM, follow-ups,<br/>reviews, referrals"]
-    end
-    F["<b>Foundation</b><br/>training + value-adding + 1-1 coaching"]
-    D(["<b>YOU</b><br/>time goes to clients,<br/>not infrastructure"])
-    F --> A
-    F --> B
-    F --> C
-    A --> D
-    B --> D
-    C --> D
-    style D fill:#facc15,stroke:#a16207,color:#000
-    style F fill:#e5e7eb,stroke:#6b7280,color:#000
-    style A fill:#dbeafe,stroke:#1d4ed8,color:#000
-    style B fill:#dcfce7,stroke:#15803d,color:#000
-    style C fill:#fce7f3,stroke:#be185d,color:#000
-```
-
-Client acquisition: subsidised ads on Facebook, Instagram and Google, in-house appointment setters who book qualified leads into your calendar, cold-market scripts tested on hundreds of real calls, LinkedIn outreach, and lead magnets like policy reviews, BTO calculators and tax relief guides.
-
-Talent acquisition: a recruitment pipeline that already exists when you're ready to build your own team.
-
-Nurturing: the iSmart CRM, automated follow-ups, birthday and anniversary reminders, review meetings and referral scripts.
-
-Under all three sits the foundation: training, value-adding and 1-1 coaching.
-
-Behind TSS is the 6-tier power pyramid, the layers of support under every meeting you run.
-
-```mermaid
-flowchart TB
-    T6["<b>Tier 6 · Post-sale</b><br/>renewals, referrals, updates, community"]
-    T5["<b>Tier 5 · Frontline tools</b><br/>TWC presenter, DBI calc, retirement calc"]
-    T4["<b>Tier 4 · Infrastructure</b><br/>Lark DB, SOPs, objection library, chatbots"]
-    T3["<b>Tier 3 · Team</b><br/>mentor, VA ops, telemarketer, appointment setter"]
-    T2["<b>Tier 2 · District (WFG)</b><br/>ad subsidy, events, roadshows"]
-    T1["<b>Tier 1 · Company (AIA)</b><br/>EPS, career benefit, products, brand, claims"]
-    YOU(["<b>YOU</b><br/>hunger · discipline · follow-through"])
-    YOU --> T1
-    T1 --> T2
-    T2 --> T3
-    T3 --> T4
-    T4 --> T5
-    T5 --> T6
-    style YOU fill:#facc15,stroke:#a16207,color:#000
-    style T1 fill:#fee2e2,stroke:#b91c1c,color:#000
-    style T2 fill:#ffedd5,stroke:#c2410c,color:#000
-    style T3 fill:#fef9c3,stroke:#a16207,color:#000
-    style T4 fill:#dcfce7,stroke:#15803d,color:#000
-    style T5 fill:#dbeafe,stroke:#1d4ed8,color:#000
-    style T6 fill:#ede9fe,stroke:#6d28d9,color:#000
-```
-
-1. Company (AIA): EPS allowance, career benefit (1.5x in years 2 to 6, APF from year 7), hospitalisation, HNW and corporate products, $1B+ in claims approved a year, and a 50-60% ad subsidy. This answers "my company doesn't back me up".
-2. District (WFG): more ad subsidy on top of AIA's, corporate talks, roadshows and overseas trips. This answers "my district spends its budget on rent, not leads".
-3. Team: weekly 1-1s, VAs for ops, a graphic designer, a content writer, an appointment setter, a telemarketer and an in-house web developer. This answers "I'm doing ops, sales and marketing alone".
-4. Infrastructure: a searchable Lark database, 34 objections with 43 responses, SOPs and chatbots. This answers "I have to figure out every objection from scratch".
-5. Frontline tools: the TWC presenter, the DBI adequacy calculator, and retirement and welcome-bonus calculators. This answers "I have to stop mid-meeting to look things up".
-6. Post-sale: an onboarding kit, monthly market updates, blog content, Telegram communities and an expense tracker. This answers "my client forgot I exist by year 2".
 
 ## What to ask any agency, including us
 

@@ -12,8 +12,6 @@ duration_minutes: 5
 tags: [first-14-days, week-2, prospect, decision, graduation, timeline, leo-voice]
 ---
 
-# Day 14: Your decision and your timeline with us
-
 You've seen the business model, the math, the agency question, the 6 C's, the common worries and the Flexi scheme, so today you decide.
 
 ## Four answers
@@ -22,7 +20,7 @@ By the end of today, pick one.
 
 ### Commit
 
-The career fits and our team fits. The next step is an initial briefing with me. From there the process has five stages, and it usually takes 2 to 4 weeks:
+The career fits and our team fits. The next step is an [onboarding call with me](https://www.pick-a-time.app/book/withleo). From there the process has five stages, and it usually takes 2 to 4 weeks:
 
 ```mermaid
 flowchart TD
@@ -60,7 +58,7 @@ It's going to be exciting!
 
 ### Introduction: what you do today
 
-1. Book your onboarding call with me.
+1. [Book your onboarding call with me](https://www.pick-a-time.app/book/withleo).
 2. Register for the CMFAS exams and get access to our exam resources.
 3. Book a second onboarding call, where I take you through the whole program in much more detail and connect you with some existing FINterns so you can ask them more questions.
 

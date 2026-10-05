@@ -12,8 +12,6 @@ duration_minutes: 3
 tags: [first-14-days, week-2, prospect, objection, warm-market, cold-market, pride, leo-voice]
 ---
 
-# Day 10: Getting clients without relying on friends
-
 Yes, selling to your friends can give you a quick start. Your friends are more likely to trust you because they already know your character and intentions. Many advisors find early success with their warm market, because those relationships let them refine their pitch, build confidence and get their first few clients.
 
 That said, relying only on your warm market isn't sustainable in the long run. Eventually you'll run out of friends and family to approach. That's why we put so much weight on spreading your lead sources and prospecting methods. Cold prospecting takes more hustle and grit, but it opens up an unlimited pool of potential clients. It means more rejections, but with the right frameworks and mentorship it becomes manageable, and even rewarding.

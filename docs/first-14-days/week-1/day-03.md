@@ -12,8 +12,6 @@ duration_minutes: 3
 tags: [first-14-days, week-1, prospect, skills, transferable, leo-voice]
 ---
 
-# Day 3: More than a job
-
 So, we've established that this career is a "business-in-a-box", a proven franchise model without the crippling financial risk.
 
 But there's more to it than a low-risk business model. This career is one of the most accessible places to develop the high-income skills that any form of entrepreneurship needs.

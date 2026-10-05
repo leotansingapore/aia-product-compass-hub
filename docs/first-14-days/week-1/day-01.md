@@ -12,8 +12,6 @@ duration_minutes: 5
 tags: [first-14-days, week-1, prospect, mindset, career-decision, leo-voice]
 ---
 
-# Day 1: Why this program exists
-
 I've been in your shoes before.
 
 Fresh out of national service, with nothing to do and no direction to follow. Everyone just told me that getting good grades and finding a good first job was the way to go.
@@ -60,7 +58,15 @@ And the career has been fun. This work has brought me around the world: Los Ange
 
 Now I spend my time training others and helping them do the same.
 
+![[first-14-days/images/leo-training-room.webp|Training a room of new advisors]]
+
+![[first-14-days/images/leo-training-closing.webp|Teaching closing techniques and the referral script]]
+
 And recognition has come along too, even though it's not my thing. I've made MDRT five times and COT three times.
+
+![[first-14-days/images/leo-award-top-life-fyc.webp|Top Life FYC award]]
+
+![[first-14-days/images/leo-singapore-flag.webp|Carrying the Singapore flag overseas]]
 
 Why I came to love this career is simple. It brings together so many traits of an ideal career at once.
 
@@ -68,7 +74,7 @@ Why I came to love this career is simple. It brings together so many traits of a
 
 In one stroke I get job security, high income, flexibility, recognition and work-life balance, without sacrificing anything else.
 
-Since graduation I've started 4 other companies. One of them is a digital marketing agency that is now on the first page of Google for the keyword "digital marketing agency". We have 50 staff today.
+Since graduation I've started 4 other companies. One of them is a digital marketing agency that is now on the first page of Google for the keyword "digital marketing agency". We have 40 staff.
 
 ![[first-14-days/images/business-marketing-agency.webp|My digital marketing agency]]
 
@@ -105,6 +111,10 @@ Each day is one short read. Week 1 looks at the business model itself. Week 2 lo
 On Day 14 you pick one of four answers: commit, delay, keep exploring, or no. A no is a fine answer too. It saves you a year of finding out the hard way.
 
 ---
+
+## Before Day 2
+
+Join our [Telegram group chat](https://t.me/+NINXEZpae0g4YTY9), and our weekly coaching calls and monthly hangouts. You can [add all our events to your calendar](https://bit.ly/finternshiptrainingschedule) in one click.
 
 ## Related
 
