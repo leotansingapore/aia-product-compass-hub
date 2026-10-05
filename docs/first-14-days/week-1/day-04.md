@@ -50,7 +50,7 @@ So let me ask you: if the worst case leaves you with a real education and a stro
 
 This is what makes the opportunity an asymmetrical bet. The upside can change your life, and the downside is still a big win.
 
-There are no contractual obligations that lock you in. There are no financial penalties. You can quit anytime if it doesn't work out.
+There are no contractual obligations that lock you in. The one cost to know about: if we sponsor your exams and you then decide not to contract, you repay those exam fees. Pass and contract, and you keep everything, even if you leave later. You can quit anytime if it doesn't work out.
 
 The only real risk is not trying.
 

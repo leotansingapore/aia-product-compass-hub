@@ -84,7 +84,7 @@ You choose your pay scheme and receive a $1,000 onboarding incentive.
 
 Here is what the first months usually look like once you start.
 
-In months 1 and 2, we sponsor your CMFAS exams, which normally cost you $500+. You clear your papers with our study materials and support, start role-play sessions with our scripts, and shadow live client meetings to see the system in action. You earn no commission yet because you're not licensed, but you may qualify for the Flexi scheme while you study.
+In months 1 and 2, we sponsor your CMFAS exams, which normally cost you $500+ (you repay them only if you decide not to contract). You clear your papers with our study materials and support, start role-play sessions with our scripts, and shadow live client meetings to see the system in action. You earn no commission yet because you're not licensed, but you may qualify for the Flexi scheme while you study.
 
 In month 3, you're added to our CRM and get your own dashboard. Our appointment team books 2 to 3 appointments a week into your calendar, and you run your first client meetings with coaching and a debrief after each one, while our VAs handle the paperwork. As your confidence grows, it goes up to 3 to 4 appointments a week, and you close your first cases.
 
