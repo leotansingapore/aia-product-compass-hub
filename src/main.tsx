@@ -34,3 +34,6 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </RuntimeErrorOverlay>
 );
+
+// Analytics after the first render: its bytes never compete with the app's.
+void import('./lib/posthog').then((m) => m.initPostHog()).catch(() => {})
