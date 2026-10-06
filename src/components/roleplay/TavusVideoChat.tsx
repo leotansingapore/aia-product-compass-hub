@@ -664,8 +664,17 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
               </div>
             </div>
 
-            {/* Start Button */}
-            <div className="flex justify-center pt-1 sm:pt-2">
+            {/* Start Button, with the recording notice read before it.
+                Keep the notice true to the code: tavus-webhook saves the
+                transcript to roleplay_sessions + conversation_transcripts
+                (RLS: only the learner reads them in the app; the academy
+                team can via the database). No video is saved:
+                enable_recording only allows recording, and no
+                recording_storage is set, so nothing is delivered. */}
+            <div className="flex flex-col items-center gap-2 pt-1 sm:pt-2">
+              <p className="text-center text-xs sm:text-sm text-muted-foreground">
+                We save a written transcript of this roleplay, not a video. You and the academy team can read it.
+              </p>
               <Button
                 onClick={handleStartSession}
                 disabled={isLoading || !user}
