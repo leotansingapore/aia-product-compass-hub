@@ -1,5 +1,8 @@
 import * as Sentry from '@sentry/react';
 
+import { scrubSentryBreadcrumb, scrubSentryEvent } from './sentryScrub';
+import { withPostHogSession } from './telemetryLink';
+
 // Public by design (it only lets a browser send events in), but read from the
 // build env so this file is the same in every app and a project can be pointed
 // at Sentry without a code change. No DSN, nothing runs: sentry-boot.ts checks
@@ -58,6 +61,13 @@ export function initSentry(pending: unknown[] = []): void {
       /error loading dynamically imported module/,
       /Loading (CSS )?chunk \S+ failed/,
     ],
+    // Page addresses carry magic-link and reset tokens (#access_token=, ?code=) and
+    // playbook share links are bearer tokens. sentryScrub.ts cleans them the way
+    // PostHog's are. The PostHog session id goes on first, so a fixer can read what
+    // led up to the error.
+    beforeSend: (event) => scrubSentryEvent(withPostHogSession(event)),
+    beforeSendTransaction: (event) => scrubSentryEvent(event),
+    beforeBreadcrumb: (breadcrumb) => scrubSentryBreadcrumb(breadcrumb),
   });
 
   ready = true;
