@@ -48,10 +48,22 @@ export function scrubSentryUrl(raw: string): string {
   return scrubUrl(unescaped)
 }
 
+function redactPersonal(text: string): string {
+  return text.replace(JWT, ':jwt').replace(EMAIL, ':email').replace(NRIC, ':nric').replace(SG_PHONE, '$1:phone')
+}
+
+function decodeAll(text: string): string {
+  try {
+    return decodeURIComponent(text)
+  } catch {
+    return text // a malformed escape: keep the raw text, it is still redacted below
+  }
+}
+
 /** The fail-closed pass. Only strings that could hold a URL part are touched, so
  *  Sentry's own ids (event_id, trace_id, span_id: bare hex) pass through. */
 function scrubRemnants(text: string): string {
-  const personal = text.replace(JWT, ':jwt').replace(EMAIL, ':email').replace(NRIC, ':nric').replace(SG_PHONE, '$1:phone')
+  const personal = redactPersonal(text)
   if (!/[/?=#]/.test(personal)) return personal
   return personal
     .replace(FRAGMENT_PARAM, '')
@@ -62,7 +74,13 @@ function scrubRemnants(text: string): string {
 }
 
 function scrubString(value: string): string {
-  const urls = value.startsWith('/') ? scrubUrl(value) : value.replace(URL_IN_TEXT, scrubSentryUrl)
+  // Personal details go first, on decoded text: URL parsing re-encodes spaces as %20,
+  // and after that the \b and non-word guards in these patterns no longer match.
+  const personal = redactPersonal(decodeAll(value))
+  // Only a lone path is cleaned as one URL; a path followed by text (and maybe a
+  // third-party URL) has its URLs found and cleaned one by one.
+  const single = personal.startsWith('/') && !/\s/.test(personal)
+  const urls = single ? scrubUrl(personal) : personal.replace(URL_IN_TEXT, scrubSentryUrl)
   return scrubRemnants(urls)
 }
 

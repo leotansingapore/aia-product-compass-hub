@@ -71,6 +71,15 @@ describe('Sentry events leave without login tokens, share tokens or learner deta
     expect(click?.message).toBe('div.card > button.open')
   })
 
+  it('cleans a path followed by text: later URLs and encoded personal details do not escape', () => {
+    const out = scrubSentryValue({
+      linkedin: '/report failed: https://www.linkedin.com/in/maria-santos',
+      phone: '/report failed for 9123 4567 S1234567D and eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ4In0.sig-part_1',
+      encoded: '/x/report/john%40gmail.com',
+    })
+    expect(JSON.stringify(out)).not.toMatch(/maria-santos|9123|S1234567D|eyJhbGci|john/)
+  })
+
   it("leaves Sentry's own ids alone", () => {
     const ids = { event_id: '3f2a9c4e1b7d4e8a9c0f2d5b6a7e8f90', trace_id: 'a1b2c3d4e5f60718293a4b5c6d7e8f90', span_id: '1a2b3c4d5e6f7081' }
     expect(scrubSentryValue(ids)).toEqual(ids)
