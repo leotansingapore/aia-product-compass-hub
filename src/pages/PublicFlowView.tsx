@@ -187,6 +187,12 @@ function PublicFlowViewInner() {
 export default function PublicFlowView() {
   return (
     <ReactFlowProvider>
+      {/* Shared by link, not for search engines. Set here so it holds in the
+          loading, not-found and loaded states. vercel.json also sends
+          X-Robots-Tag for /flows/view/* for crawlers that skip JS. */}
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <PublicFlowViewInner />
     </ReactFlowProvider>
   );

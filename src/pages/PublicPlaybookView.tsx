@@ -109,6 +109,20 @@ function InlineEditor({ initialValue, onSave, onCancel }: { initialValue: string
 }
 
 export default function PublicPlaybookView() {
+  return (
+    <>
+      {/* Shared by link, not for search engines. Set here so it holds in the
+          loading, not-found and loaded states. vercel.json also sends
+          X-Robots-Tag for /playbooks/share/* for crawlers that skip JS. */}
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+      <PublicPlaybookViewInner />
+    </>
+  );
+}
+
+function PublicPlaybookViewInner() {
   const { shareToken } = useParams();
   const queryClient = useQueryClient();
   const didScrollRef = useRef(false);
