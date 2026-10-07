@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
-import { scrubSentryBreadcrumb, scrubSentryEvent, scrubSentryValue } from '@/lib/sentryScrub'
+import { cleanUrl, scrubSentryBreadcrumb, scrubSentryEvent, scrubSentryValue } from '@/lib/sentryScrub'
 
 // v8 reference test, ported: academy.finternship.com and this app's routes (/playbooks/share/).
 const HOST = 'https://academy.finternship.com'
@@ -113,6 +113,10 @@ describe('Sentry events leave without client figures, bearer links or personal d
       'Duplicate clients: ["Maria","John"]',
       'received ["Maria Santos"]',
       '{"handle":"@maria","name":"Maria Santos"}',
+      // round 12 findings: single quotes, object literals, spaced lists
+      "Duplicate clients: ['Maria','John']",
+      "{'name':'Maria Santos'}",
+      'clients "Maria", "John" clash',
     ]
     for (const c of cases) expect(scrubSentryValue(c), c).not.toMatch(PII)
     expect(scrubSentryValue('domain=clientco.com&name=Tan')).not.toMatch(/clientco/)
@@ -143,6 +147,33 @@ describe('Sentry events leave without client figures, bearer links or personal d
     expect(Date.now() - t).toBeLessThan(200)
     expect(scrubSentryValue('name=tan then John Tan')).not.toMatch(/John|Tan\b/)
     expect(scrubSentryValue('retry at 2026-10-07T01:13:00Z after 3 tries, v9.1.0')).toBe('retry at 2026-10-07T01:13:00Z after 3 tries, v9.1.0')
+  })
+
+  it('rebuilds the event from allowlists: unlisted fields never leave', () => {
+    const out = scrubSentryEvent({
+      fingerprint: ['{{ default }}', 'client John Tan'],
+      threads: { values: [{ name: 'John Tan' }] },
+      modules: { react: '18.3.1' },
+      server_name: 'john-macbook',
+      exception: { values: [{ type: 'Error', value: 'boom', mechanism: { type: 'generic', handled: true, data: { client: 'John Tan' } }, stacktrace: { frames: [{ function: 'f', vars: { name: 'John Tan' } }] } }] },
+      breadcrumbs: [{ category: 'nav', message: { text: 'John Tan' }, extraField: 'John Tan' }],
+      futureSdkField: { name: 'John Tan' },
+    } as Record<string, unknown>)
+    expect(JSON.stringify(out)).not.toMatch(/John|john/)
+    expect((out as { exception: { values: { mechanism: unknown }[] } }).exception.values[0].mechanism).toEqual({ type: 'generic', handled: true })
+    expect(scrubSentryEvent({ fingerprint: ['{{ default }}'] }).fingerprint).toEqual(['{{ default }}'])
+    for (const part of ['S1234567D', '91234567', 'john-tan-ab12cd34ef56', 'maria.santos']) {
+      expect(scrubSentryEvent({ fingerprint: ['{{ default }}', part] }).fingerprint).toBeUndefined()
+    }
+    const frame = { function: 'f', filename: `${HOST}/playbooks/share/0123456789abcdef`, context_line: 'self.__next_f.push([1,"Maria Santos"])', pre_context: ['x'], post_context: ['y'] }
+    const cleaned = scrubSentryEvent({ exception: { values: [{ type: 'E', stacktrace: { frames: [frame] } }] } })
+    expect(JSON.stringify(cleaned)).not.toMatch(/Maria|john|context/)
+    expect(cleanUrl('app:///_next/static/chunks/app/page-AbC123.js')).toBe('app:///_next/static/chunks/app/page-AbC123.js')
+    expect(cleanUrl('app:///playbooks/share/0123456789abcdef')).toBe('app:///playbooks/share/:id')
+    expect(cleanUrl('app:///tracker/crm/Maria_Santos/maria@clientco.com')).not.toMatch(/Maria|maria/)
+    for (const v of ['app:///\\maria_santos/x', 'app:////maria_santos/x', 'app:///a\\maria_santos']) expect(cleanUrl(v)).not.toMatch(/maria/)
+    expect(scrubSentryEvent({ fingerprint: ['{{ maria.santos }}'] }).fingerprint).toBeUndefined()
+    expect(scrubSentryEvent({ fingerprint: ['{{ error.type }}', '{{ transaction }}'] }).fingerprint).toEqual(['{{ error.type }}', '{{ transaction }}'])
   })
 
   it('drops the response context and cleans the React component stack', () => {

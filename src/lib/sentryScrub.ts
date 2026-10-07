@@ -92,6 +92,15 @@ function strictPath(cleaned: string): string {
 
 /** One URL value (request.url, breadcrumb url/from/to): everything after ; = & ? # goes. */
 export function cleanUrl(value: string): string {
+  // @sentry/nextjs rewrites every frame's origin to app://, page documents included, so an
+  // app:/// value is an own-host path: a build file keeps it, anything else is cleaned.
+  if (value.startsWith('app:///')) {
+    const path = value.slice('app://'.length).split(/[;=&?#\s]/)[0]
+    // Only a plain path: a backslash or a second slash would be read as a host.
+    if (!/^\/(?![/\\])/.test(path) || path.includes('\\')) return ':path'
+    if (/^\/_next\/(?:static|server)\/(?:[\w-]+\/)*[\w.-]+\.(?:js|mjs|cjs|map)$/.test(path)) return `app://${path}`
+    return /%[0-9A-Fa-f]{2}/.test(path) ? ':enc' : `app://${strictPath(scrubUrl(path))}`
+  }
   if (!ABSOLUTE.test(value) && !/^\/(?![/\\])/.test(value)) return scrubText(value)
   const head = value.split(/[;=&?#\s]/)[0]
   // An escape in the path itself (not the query) is never decoded or read: the address goes.
@@ -123,9 +132,10 @@ function scrubWord(word: string): { out: string; cut: boolean } {
   if (ABSOLUTE.test(core) || /^\/(?![/\\])/.test(core)) return wrap(cleanUrl(core), true)
   // An encoded word may hide a query at any depth (%253F), so the rest goes too.
   if (/%[0-9A-Fa-f]{2}/.test(core)) return wrap(':enc', true)
-  // JSON or a quoted list first, judged on the whole word with its brackets: ["Maria","John"],
-  // {"handle":"@maria",...}. The rest of the string goes with it.
-  if (/":|:"|[[{]"|"[\]}]|","/.test(word)) return wrap(':json', true)
+  // JSON, a quoted list or an object literal first, judged on the whole word with its
+  // brackets, in either quote style: ["Maria","John"], ['Maria','John'], {'name':'x'},
+  // {"handle":"@maria",...}, "Maria", "John". The rest of the string goes with it.
+  if (/['"]:|:['"]|[[{]['"]|['"][\]}]|['"],/.test(word)) return wrap(':json', true)
   if (core.includes('@')) return wrap(':email')
   if (/[=?&#]/.test(core)) return wrap(':param', true)
   if (/[/\\]/.test(core)) return wrap(':path')
@@ -181,60 +191,99 @@ export function scrubSentryValue<T>(value: T, depth = 0, key = ''): T {
   return out as T
 }
 
+// The event is rebuilt from allowlists at every level: a field Sentry or an
+// integration adds later, or one app code sets (fingerprint, mechanism.data, threads),
+// never leaves unless it is listed here. Strings in listed user-content fields are
+// cleaned; Sentry's own fields pass as they are.
+type Obj = Record<string, unknown>
+const isObj = (v: unknown): v is Obj => !!v && typeof v === 'object' && !Array.isArray(v)
+
+// Passed through as they are: Sentry's own fields.
+const EVENT_PLAIN = ['event_id', 'timestamp', 'start_timestamp', 'platform', 'level', 'logger', 'release', 'dist',
+  'environment', 'sdk', 'type', 'measurements', 'transaction_info', 'sdkProcessingMetadata']
 // SDK-generated contexts. 'response' is not kept: it holds response headers and cookies.
 const KEEP_CONTEXTS = new Set(['trace', 'browser', 'os', 'device', 'runtime', 'app', 'culture', 'react'])
 const KEEP_BREADCRUMB_DATA = new Set(['url', 'from', 'to', 'method', 'status_code', 'reason', 'request_body_size', 'response_body_size'])
 const URL_FIELDS = new Set(['url', 'from', 'to'])
+// Source lines (context_line, pre_context, post_context) are not kept: a frame in an inline
+// script reads them from the page's own HTML, which can hold its data (Next's RSC payload).
+// Sentry shows source context from the uploaded source maps instead.
+const FRAME_PLAIN = ['function', 'module', 'lineno', 'colno', 'in_app', 'platform', 'instruction_addr']
+// Fixed fingerprint labels this app's own code sets (e.g. 'noise'). Empty by default.
+const FINGERPRINT_LABELS = new Set<string>([])
+// Sentry's own fingerprint variables, by exact name: {{ maria.santos }} is not one.
+const SENTRY_FINGERPRINT_VARS = new Set(['default', 'transaction', 'type', 'function', 'module', 'package', 'level', 'logger', 'message', 'error.type', 'error.value', 'stack.function', 'stack.module', 'stack.package', 'stack.abs_path'])
 
-type Obj = Record<string, unknown>
-const isObj = (v: unknown): v is Obj => !!v && typeof v === 'object' && !Array.isArray(v)
+const SPAN_PLAIN = ['span_id', 'trace_id', 'parent_span_id', 'segment_id', 'op', 'status', 'origin', 'start_timestamp',
+  'timestamp', 'exclusive_time', 'is_segment', 'measurements']
 
-/** A breadcrumb, cleaned, or null to drop it. Console breadcrumbs go: the app logs
- *  client records to the console, and Sentry attaches recent console output to errors. */
-export function scrubSentryBreadcrumb<T extends { category?: string; message?: unknown; data?: unknown }>(breadcrumb: T): T | null {
-  if (breadcrumb.category === 'console') return null
-  const out: Obj = { ...breadcrumb }
-  if (typeof out.message === 'string') out.message = scrubText(out.message)
-  if (isObj(out.data)) {
+function copy(src: Obj, keys: string[]): Obj {
+  const out: Obj = {}
+  for (const k of keys) if (src[k] !== undefined) out[k] = src[k]
+  return out
+}
+
+/** A breadcrumb, rebuilt and cleaned, or null to drop it. Console breadcrumbs go: the app
+ *  logs client records to the console, and Sentry attaches recent console output to errors. */
+export function scrubSentryBreadcrumb<T extends object>(breadcrumb: T): T | null {
+  const b = breadcrumb as Obj
+  if (b.category === 'console') return null
+  const out = copy(b, ['type', 'category', 'level', 'timestamp', 'event_id'])
+  if (typeof b.message === 'string') out.message = scrubText(b.message)
+  if (isObj(b.data)) {
     const data: Obj = {}
-    for (const [k, v] of Object.entries(out.data)) {
+    for (const [k, v] of Object.entries(b.data)) {
       if (!KEEP_BREADCRUMB_DATA.has(k)) continue
-      data[k] = typeof v === 'string' ? (URL_FIELDS.has(k) ? cleanUrl(v) : scrubText(v)) : v
+      if (typeof v === 'string') data[k] = URL_FIELDS.has(k) ? cleanUrl(v) : scrubText(v)
+      else if (typeof v === 'number' || typeof v === 'boolean') data[k] = v
     }
     out.data = data
-  } else if (out.data !== undefined) {
-    delete out.data
   }
   return out as T
 }
 
-function cleanFrames(frames: unknown): unknown {
-  if (!Array.isArray(frames)) return frames
-  return frames.map((f) => {
-    if (!isObj(f)) return f
-    const frame: Obj = { ...f }
-    delete frame.vars // local variables are app data
-    for (const k of ['filename', 'abs_path']) if (typeof frame[k] === 'string') frame[k] = cleanUrl(frame[k] as string)
-    return frame
-  })
+function cleanFrame(f: unknown): unknown {
+  if (!isObj(f)) return undefined
+  const frame = copy(f, FRAME_PLAIN)
+  for (const k of ['filename', 'abs_path']) if (typeof f[k] === 'string') frame[k] = cleanUrl(f[k] as string)
+  return frame
 }
 
-/** An error or transaction event: user-content fields cleaned, app data dropped, Sentry's
- *  own fields untouched. */
+function cleanException(v: unknown): unknown {
+  if (!isObj(v)) return undefined
+  const ex = copy(v, ['type', 'module', 'thread_id'])
+  if (typeof v.value === 'string') ex.value = scrubText(v.value)
+  if (isObj(v.mechanism)) ex.mechanism = copy(v.mechanism, ['type', 'handled', 'synthetic', 'source', 'exception_id', 'parent_id', 'is_exception_group'])
+  if (isObj(v.stacktrace) && Array.isArray(v.stacktrace.frames)) ex.stacktrace = { frames: v.stacktrace.frames.map(cleanFrame).filter(Boolean) }
+  return ex
+}
+
+function cleanSpan(s: unknown): unknown {
+  if (!isObj(s)) return undefined
+  const span = copy(s, SPAN_PLAIN)
+  if (typeof s.description === 'string') span.description = scrubText(s.description)
+  if (s.data !== undefined) span.data = scrubSentryValue(s.data)
+  if (isObj(s.tags)) span.tags = scrubSentryValue(s.tags)
+  return span
+}
+
+/** An error or transaction event, rebuilt from allowlists: user-content fields cleaned,
+ *  Sentry's own fields untouched, everything else (extra, user, threads, modules,
+ *  fingerprint, unknown contexts, other headers, cookies, bodies) dropped. */
 export function scrubSentryEvent<T extends object>(event: T): T {
-  const e: Obj = { ...(event as Obj) }
-  delete e.extra
-  delete e.user
-  if (typeof e.message === 'string') e.message = scrubText(e.message)
-  if (isObj(e.logentry)) {
-    const log: Obj = { ...e.logentry }
-    if (typeof log.message === 'string') log.message = scrubText(log.message)
-    delete log.params
-    e.logentry = log
+  const src = event as Obj
+  const e = copy(src, EVENT_PLAIN)
+  if (typeof src.message === 'string') e.message = scrubText(src.message)
+  if (isObj(src.logentry) && typeof src.logentry.message === 'string') e.logentry = { message: scrubText(src.logentry.message) }
+  if (typeof src.transaction === 'string') e.transaction = cleanTransaction(src.transaction)
+  // A fingerprint is app-set grouping, and no pattern can tell a fixed label from a name or
+  // a token written into it. It is kept only when every part is a Sentry variable
+  // ({{ default }}) or one of this app's own fixed labels (FINGERPRINT_LABELS).
+  if (Array.isArray(src.fingerprint) && src.fingerprint.every((f) => typeof f === 'string' && (SENTRY_FINGERPRINT_VARS.has(f.replace(/^\{\{ ?| ?\}\}$/g, '')) && /^\{\{ ?[a-z_.]+ ?\}\}$/.test(f) || FINGERPRINT_LABELS.has(f)))) {
+    e.fingerprint = src.fingerprint
   }
-  if (typeof e.transaction === 'string') e.transaction = cleanTransaction(e.transaction)
-  if (isObj(e.request)) {
-    const r = e.request
+  if (isObj(src.request)) {
+    const r = src.request
     const ua = isObj(r.headers) ? (r.headers['User-Agent'] ?? r.headers['user-agent']) : undefined
     e.request = {
       ...(typeof r.url === 'string' ? { url: cleanUrl(r.url) } : {}),
@@ -242,43 +291,34 @@ export function scrubSentryEvent<T extends object>(event: T): T {
       ...(typeof ua === 'string' ? { headers: { 'User-Agent': ua } } : {}),
     }
   }
-  if (isObj(e.exception) && Array.isArray(e.exception.values)) {
-    e.exception = {
-      ...e.exception,
-      values: e.exception.values.map((v) => {
-        if (!isObj(v)) return v
-        const ex: Obj = { ...v }
-        if (typeof ex.value === 'string') ex.value = scrubText(ex.value)
-        if (isObj(ex.stacktrace)) ex.stacktrace = { ...ex.stacktrace, frames: cleanFrames(ex.stacktrace.frames) }
-        return ex
-      }),
-    }
+  if (isObj(src.exception) && Array.isArray(src.exception.values)) {
+    e.exception = { values: src.exception.values.map(cleanException).filter(Boolean) }
   }
-  if (Array.isArray(e.breadcrumbs)) {
-    e.breadcrumbs = e.breadcrumbs.flatMap((b) => {
+  if (Array.isArray(src.breadcrumbs)) {
+    e.breadcrumbs = src.breadcrumbs.flatMap((b) => {
       const c = isObj(b) ? scrubSentryBreadcrumb(b) : null
       return c ? [c] : []
     })
   }
-  if (isObj(e.tags)) e.tags = scrubSentryValue(e.tags)
-  if (isObj(e.contexts)) {
+  if (isObj(src.tags)) e.tags = scrubSentryValue(src.tags)
+  if (isObj(src.contexts)) {
     const kept: Obj = {}
-    for (const [k, v] of Object.entries(e.contexts)) if (KEEP_CONTEXTS.has(k)) kept[k] = v
+    for (const [k, v] of Object.entries(src.contexts)) if (KEEP_CONTEXTS.has(k)) kept[k] = v
     if (isObj(kept.trace) && kept.trace.data !== undefined) kept.trace = { ...kept.trace, data: scrubSentryValue(kept.trace.data) }
     // The React component stack is app-supplied: cleaned line by line so it stays readable.
     if (isObj(kept.react) && typeof kept.react.componentStack === 'string') {
-      kept.react = { ...kept.react, componentStack: kept.react.componentStack.split('\n').map((l) => scrubText(l)).join('\n') }
+      kept.react = { componentStack: kept.react.componentStack.split('\n').map((l) => scrubText(l)).join('\n') }
     }
     e.contexts = kept
   }
-  if (Array.isArray(e.spans)) {
-    e.spans = e.spans.map((s) => {
-      if (!isObj(s)) return s
-      const span: Obj = { ...s }
-      if (typeof span.description === 'string') span.description = scrubText(span.description)
-      if (span.data !== undefined) span.data = scrubSentryValue(span.data)
-      return span
-    })
+  if (Array.isArray(src.spans)) e.spans = src.spans.map(cleanSpan).filter(Boolean)
+  if (isObj(src.debug_meta) && Array.isArray(src.debug_meta.images)) {
+    // Source maps resolve by debug_id; code_file is a build-file URL.
+    e.debug_meta = {
+      images: src.debug_meta.images.flatMap((im) => (isObj(im)
+        ? [{ ...copy(im, ['type', 'debug_id', 'code_id']), ...(typeof im.code_file === 'string' ? { code_file: cleanUrl(im.code_file) } : {}) }]
+        : [])),
+    }
   }
   return e as T
 }
