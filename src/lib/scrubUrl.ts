@@ -12,8 +12,11 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
  *  name. Slugs are lowercase words joined by hyphens, so a run of 6+ digits
  *  (wa.me/6591234567), a long mixed-case segment (base64) or a digit with no
  *  hyphen (hex) is not one. */
-function isIdSegment(seg: string): boolean {
+export function isIdSegment(seg: string): boolean {
   if (UUID.test(seg)) return true
+  // A slug that ENDS in a token is a token too: /doc/q3-payroll-<uuid>, /sheet/report-<hex>.
+  if (/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(seg)) return true
+  if (/[0-9a-f]{24,}/i.test(seg)) return true
   if (/\d{6,}/.test(seg)) return true
   if (seg.length >= 8 && /\d/.test(seg) && !seg.includes('-')) return true
   return seg.length >= 16 && /[A-Z]/.test(seg) && /[a-z]/.test(seg)
