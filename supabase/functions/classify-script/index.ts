@@ -1,15 +1,11 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { openaiFetch } from "../_shared/openaiChat.ts";
+import { applyJev, askScriptJev, CATEGORIES } from "./jev.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
-
-const CATEGORIES = [
-  "cold-calling", "initial-text", "post-call-text", "callback", "follow-up", "ad-campaign",
-  "referral", "confirmation", "faq", "tips"
-];
 
 const TARGET_AUDIENCES = [
   "general", "warm-market", "young-adult", "nsf", "working-adult",
@@ -124,6 +120,9 @@ Given a servicing script's title and content, determine:
           additionalProperties: false,
         };
 
+    // Jev reads the same text while the LLM writes; it never delays an answer past its own timeout.
+    const jevAnswers = askScriptJev(title, content, isServicing, existingCatList);
+
     const response = await openaiFetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
       method: "POST",
       headers: {
@@ -168,7 +167,7 @@ Given a servicing script's title and content, determine:
     const toolCall = data.choices?.[0]?.message?.tool_calls?.[0];
     if (!toolCall?.function?.arguments) throw new Error("No classification result");
 
-    const result = JSON.parse(toolCall.function.arguments);
+    const result = applyJev(JSON.parse(toolCall.function.arguments), await jevAnswers, isServicing, existingCatList);
     return new Response(JSON.stringify(result), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });

@@ -1,14 +1,11 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { openaiFetch } from "../_shared/openaiChat.ts";
+import { applyJev, askObjectionJev, CATEGORIES } from "./jev.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
-
-const CATEGORIES = [
-  "generic", "tactical", "product", "pricing", "trust", "timing"
-];
 
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
@@ -110,6 +107,9 @@ Return an array of objection objects. If the text clearly describes just one obj
     if (!toolCall?.function?.arguments) throw new Error("No classification result");
 
     const result = JSON.parse(toolCall.function.arguments);
+    if (Array.isArray(result.objections)) {
+      result.objections = applyJev(result.objections, await askObjectionJev(content, result.objections));
+    }
     return new Response(JSON.stringify(result), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
