@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { openaiFetch } from "../_shared/openaiChat.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -26,7 +27,7 @@ serve(async (req) => {
       image_url: { url },
     }));
 
-    const response = await fetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
+    const response = await openaiFetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
       method: "POST",
       headers: {
         Authorization: `Bearer ${useOwnKey ? OPENAI_API_KEY : LOVABLE_API_KEY}`,

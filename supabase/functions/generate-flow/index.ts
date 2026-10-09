@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { openaiFetch } from "../_shared/openaiChat.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -47,7 +48,7 @@ Make the flow practical and specific to the financial advisory context in Singap
 
 Generate a practical, actionable flow.`;
 
-    const response = await fetch(
+    const response = await openaiFetch(
       (useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"),
       {
         method: "POST",

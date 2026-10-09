@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { FEEDBACK_DOORS_PROMPT } from "../_shared/feedback-doors.ts";
+import { openaiFetch } from "../_shared/openaiChat.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -331,7 +332,7 @@ serve(async (req) => {
     }
 
     const useOwnKey = !!OPENAI_API_KEY;
-    const response = await fetch(
+    const response = await openaiFetch(
       useOwnKey
         ? "https://api.openai.com/v1/chat/completions"
         : "https://ai.gateway.lovable.dev/v1/chat/completions",
@@ -342,7 +343,7 @@ serve(async (req) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          // gpt-4o-mini: cheap, fast, and reads the pasted screenshots.
+          // gpt-4o-mini is the fallback: openaiFetch asks OPENAI_MODEL (gpt-6-luna) first.
           model: useOwnKey ? "gpt-4o-mini" : "google/gemini-3-flash-preview",
           messages: [
             { role: "system", content: systemPrompt },

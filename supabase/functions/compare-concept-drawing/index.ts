@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { identifyCaller, denied } from "../_shared/caller-auth.ts";
+import { openaiFetch } from "../_shared/openaiChat.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -39,7 +40,7 @@ Score from 0–100:
 - 30–49: Partial — some relevant content but significant gaps
 - 0–29: Needs work — significantly different from reference`;
 
-    const aiResponse = await fetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
+    const aiResponse = await openaiFetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
       method: "POST",
       headers: {
         Authorization: `Bearer ${useOwnKey ? OPENAI_API_KEY : LOVABLE_API_KEY}`,

@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { openaiFetch } from "../_shared/openaiChat.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -43,7 +44,7 @@ The text may contain one or multiple objections. For each objection found, deter
 
 Return an array of objection objects. If the text clearly describes just one objection, return an array with one item.`;
 
-    const response = await fetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
+    const response = await openaiFetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
       method: "POST",
       headers: {
         Authorization: `Bearer ${useOwnKey ? OPENAI_API_KEY : LOVABLE_API_KEY}`,

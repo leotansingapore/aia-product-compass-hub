@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { identifyCaller, denied } from "../_shared/caller-auth.ts";
+import { openaiFetch } from "../_shared/openaiChat.ts";
 
 /** Hard ceiling on the per-request LLM fan-out. */
 const MAX_TEXTS_PER_REQUEST = 64;
@@ -89,7 +90,7 @@ async function extractKeywords(text: string, apiKey: string): Promise<string[]> 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 15000);
 
-    const response = await fetch(
+    const response = await openaiFetch(
       (useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"),
       {
         method: "POST",

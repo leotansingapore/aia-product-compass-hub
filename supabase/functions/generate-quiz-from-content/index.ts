@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { openaiFetch } from "../_shared/openaiChat.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -34,7 +35,7 @@ serve(async (req) => {
 
     const systemPrompt = `You are creating quiz questions for financial advisory trainees studying '${product_title}'. Generate exactly ${num_questions} multiple-choice questions that test comprehension of the lesson content. Each question must have exactly 4 options, one correct answer (as correct_index 0-3), and a brief explanation. Return JSON: { "questions": [{ "question": "...", "options": ["A", "B", "C", "D"], "correct_index": 0, "explanation": "..." }] }`;
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await openaiFetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${OPENAI_API_KEY}`,
