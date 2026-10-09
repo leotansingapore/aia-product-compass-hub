@@ -32,6 +32,22 @@ const SERVICING_DESCRIPTIONS: Record<string, string> = {
   "general-education": "General financial education or market updates for clients",
 };
 
+// Production had 130 servicing slugs on 2026-10-09, all this shape and at most 28 characters.
+const SLUG = /^[a-z0-9][a-z0-9-]{0,59}$/;
+// shortcut: past 200 slugs the rest are not offered; 200 + 10 standard + none-fits stays under Jev's 255-option cap.
+const MAX_EXISTING = 200;
+
+/** The caller's existingCategories cut to unique slug-shaped strings, at most MAX_EXISTING. */
+export function cleanCategories(list: unknown): string[] {
+  if (!Array.isArray(list)) return [];
+  const out = new Set<string>();
+  for (const v of list) {
+    if (out.size >= MAX_EXISTING) break;
+    if (typeof v === "string" && SLUG.test(v)) out.add(v);
+  }
+  return [...out];
+}
+
 const servicingOptions = (existing: string[]) => [...new Set([...existing, ...STANDARD_SERVICING])];
 
 export function scriptQuestions(isServicing: boolean, existingCategories: string[]): Record<string, JevQuestion> {

@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { openaiFetch } from "../_shared/openaiChat.ts";
-import { applyJev, askScriptJev, CATEGORIES } from "./jev.ts";
+import { applyJev, askScriptJev, CATEGORIES, cleanCategories } from "./jev.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -18,7 +18,9 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { title, content, context, existingCategories } = await req.json();
+    const { title: rawTitle, content, context, existingCategories } = await req.json();
+    // Caller-supplied with no JWT check: bounded before it reaches the LLM prompt or Jev.
+    const title = typeof rawTitle === "string" ? rawTitle.slice(0, 200) : "";
     if (!content?.trim()) {
       return new Response(JSON.stringify({ error: "Content is required" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -33,7 +35,7 @@ serve(async (req) => {
     // ── Servicing context: specialized classification ──────────────────────────
     const isServicing = context === "servicing";
 
-    const existingCatList: string[] = Array.isArray(existingCategories) ? existingCategories : [];
+    const existingCatList = cleanCategories(existingCategories);
 
     const systemPrompt = isServicing
       ? `You are a classifier for a financial advisory CLIENT SERVICING scripts database. These are templates used to communicate with existing clients — NOT for prospecting new ones.

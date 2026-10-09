@@ -1,7 +1,7 @@
 // deno test --allow-env supabase/functions/_shared/jev_test.ts
 // Jev's pick replaces the LLM's only when confident, offered and English; the output shape never changes.
 import { mostlyLatin, type JevAnswer } from "./jev.ts";
-import { applyJev as applyScript } from "../classify-script/jev.ts";
+import { applyJev as applyScript, cleanCategories } from "../classify-script/jev.ts";
 import { applyJev as applyObjection } from "../classify-objection/jev.ts";
 
 const eq = (a: unknown, b: unknown, m: string) => {
@@ -40,4 +40,11 @@ Deno.test("mostlyLatin: English and Singlish pass, Chinese does not", () => {
   eq(mostlyLatin("你好，我想了解一下你的保险计划"), false, "chinese");
   eq(mostlyLatin("Hi 你好，我想了解一下你的保险计划"), false, "mostly chinese");
   eq(mostlyLatin("👋 123"), false, "no letters");
+});
+
+Deno.test("existingCategories from the caller: only unique slugs, at most 200", () => {
+  const huge = Array.from({ length: 10_000 }, (_, i) => `slug-${i}`);
+  eq(cleanCategories(huge).length, 200, "10,000 cut to 200");
+  eq(cleanCategories([1, null, { a: 1 }, "Premium Payments", "x".repeat(61), "claims", "claims", "gift-set"]), ["claims", "gift-set"], "non-strings, non-slugs, overlong, dupes");
+  eq(cleanCategories("premium-payments"), [], "not an array");
 });
