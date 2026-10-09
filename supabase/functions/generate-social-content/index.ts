@@ -112,12 +112,12 @@ const HOOK_NUDGES = [
 
 // With noInvention, these replace the nudges (by index) that ask for a client moment or a number.
 const NO_INVENTION_VARIANTS: Record<number, string> = {
-  1: "Variant tone: lean toward client-story framing - the first line is this placeholder, copied exactly with its square brackets: [A real client moment, in one line]. Never write the client moment, a quote or a conversation yourself; the FC fills it in. Then teach.",
-  3: "Variant tone: lean toward number-led framing - the first line uses this placeholder, copied exactly with its square brackets, where the number goes: [your number]. Never write the number yourself; the FC fills it in. Then unpack it.",
+  1: "Variant tone: lean toward client-story framing - open with a blank the FC fills with a real client moment, like '[a client asked me ...]', then teach.",
+  3: "Variant tone: lean toward number-led framing - open with a blank the FC fills with a real Singapore number, like '[your number]', then unpack it.",
 };
 const NO_INVENTION_HOOKS: Record<number, string> = {
-  2: "Hook style: a reframing Singapore number, with the number written as the placeholder [your number], copied exactly; never write a number yourself.",
-  3: "Hook style: a client moment, written as the placeholder [A real client moment, in one line], copied exactly; never write a moment, quote or conversation yourself.",
+  2: "Hook style: a reframing Singapore number, left as a blank like [your number] for the FC to fill.",
+  3: "Hook style: a client moment in one line, left as a blank like [a real client moment] for the FC to fill.",
 };
 const variantNudge = (body: RequestBody, i: number) =>
   (body.noInvention === true && NO_INVENTION_VARIANTS[i % VARIANT_NUDGES.length]) || VARIANT_NUDGES[i % VARIANT_NUDGES.length];
@@ -139,7 +139,7 @@ function basePromptLines(body: RequestBody): string[] {
     "- Singapore-specific where relevant (CPF, MAS, SGD, local context).",
     "- No political opinions. No religious proselytising. No claims of guaranteed returns. No naming specific competitor products in a disparaging way.",
     body.noInvention === true
-      ? "- Concrete > abstract, but never invent: no made-up numbers, results, statistics, client stories, conversations or personal experiences. That includes prices, costs, bill sizes, premiums, payouts, ages, percentages and dollar examples: any figure the FC did not give you is written as [your number]. Where a story or result would help, leave a blank like [a real client moment] or [your result]. Every blank is in square brackets for the FC to fill. Avoid platitudes ('investment is important for your future')."
+      ? "- Concrete > abstract, but never invent: no made-up numbers, results, statistics, client stories, conversations or personal experiences. Where one would help, leave a blank in square brackets for the FC to fill, like [your number], [a real client moment] or [your result]. Avoid platitudes ('investment is important for your future')."
       : "- Concrete > abstract. Use real numbers, real ratios, real situations. Avoid platitudes ('investment is important for your future').",
     "- The FC's voice should sound human, not corporate. Match the platform.",
     "- Output the draft as ready-to-paste copy. No preamble, no 'Here is your post:'. Just the post. If multiple slides/frames, label them clearly.",
