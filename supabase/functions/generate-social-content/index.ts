@@ -31,6 +31,8 @@ interface RequestBody {
   singlish?: boolean;
   posts?: string[];
   draft?: string;
+  // Content Studio sets this: leave blanks instead of inventing numbers or stories. Other callers are unchanged.
+  noInvention?: boolean;
 }
 
 const PILLAR_GUIDE: Record<Pillar, string> = {
@@ -108,6 +110,20 @@ const HOOK_NUDGES = [
   "Hook style: a contrarian take on popular advice.",
 ];
 
+// With noInvention, these replace the nudges (by index) that ask for a client moment or a number.
+const NO_INVENTION_VARIANTS: Record<number, string> = {
+  1: "Variant tone: lean toward client-story framing - open with a blank the FC fills with a real client moment, like '[a client asked me ...]', then teach.",
+  3: "Variant tone: lean toward number-led framing - open with a blank the FC fills with a real Singapore number, like '[your number]', then unpack it.",
+};
+const NO_INVENTION_HOOKS: Record<number, string> = {
+  2: "Hook style: a reframing Singapore number, left as a blank like [your number] for the FC to fill.",
+  3: "Hook style: a client moment in one line, left as a blank like [a real client moment] for the FC to fill.",
+};
+const variantNudge = (body: RequestBody, i: number) =>
+  (body.noInvention === true && NO_INVENTION_VARIANTS[i % VARIANT_NUDGES.length]) || VARIANT_NUDGES[i % VARIANT_NUDGES.length];
+const hookNudge = (body: RequestBody, i: number) =>
+  (body.noInvention === true && NO_INVENTION_HOOKS[i % HOOK_NUDGES.length]) || HOOK_NUDGES[i % HOOK_NUDGES.length];
+
 function audienceLine(audience?: Audience): string {
   if (!audience || audience === "general") return AUDIENCE_GUIDE.general;
   return AUDIENCE_GUIDE[audience];
@@ -122,7 +138,9 @@ function basePromptLines(body: RequestBody): string[] {
     "- Audience starts as a 'Skeptical Stranger'. The post's job is to move them one step toward 'Curious Follower' or 'Trusted Choice'. No hard pitches.",
     "- Singapore-specific where relevant (CPF, MAS, SGD, local context).",
     "- No political opinions. No religious proselytising. No claims of guaranteed returns. No naming specific competitor products in a disparaging way.",
-    "- Concrete > abstract. Use real numbers, real ratios, real situations. Avoid platitudes ('investment is important for your future').",
+    body.noInvention === true
+      ? "- Concrete > abstract, but never invent: no made-up numbers, results, statistics, client stories, conversations or personal experiences. Where one would help, leave a blank in square brackets for the FC to fill, like [your number], [a real client moment] or [your result]. Avoid platitudes ('investment is important for your future')."
+      : "- Concrete > abstract. Use real numbers, real ratios, real situations. Avoid platitudes ('investment is important for your future').",
     "- The FC's voice should sound human, not corporate. Match the platform.",
     "- Output the draft as ready-to-paste copy. No preamble, no 'Here is your post:'. Just the post. If multiple slides/frames, label them clearly.",
     "",
@@ -168,14 +186,14 @@ function basePromptLines(body: RequestBody): string[] {
 
 function postSystemPrompt(body: RequestBody, variantIndex: number): string {
   const lines = basePromptLines(body);
-  const nudge = VARIANT_NUDGES[variantIndex % VARIANT_NUDGES.length];
+  const nudge = variantNudge(body, variantIndex);
   lines.push("", `## ${nudge}`, "", "Now produce the draft.");
   return lines.filter(Boolean).join("\n");
 }
 
 function hooksSystemPrompt(body: RequestBody, variantIndex: number): string {
   const lines = basePromptLines(body);
-  const nudge = HOOK_NUDGES[variantIndex % HOOK_NUDGES.length];
+  const nudge = hookNudge(body, variantIndex);
   lines.push(
     "",
     "## Output mode: HOOK ONLY",
@@ -189,7 +207,7 @@ function hooksSystemPrompt(body: RequestBody, variantIndex: number): string {
 
 function bodySystemPrompt(body: RequestBody, variantIndex: number, chosenHook: string): string {
   const lines = basePromptLines(body);
-  const nudge = VARIANT_NUDGES[variantIndex % VARIANT_NUDGES.length];
+  const nudge = variantNudge(body, variantIndex);
   lines.push(
     "",
     "## Required opening",
