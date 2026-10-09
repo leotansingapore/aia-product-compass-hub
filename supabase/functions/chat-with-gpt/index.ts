@@ -1,5 +1,6 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { openaiFetch } from "../_shared/openaiChat.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -57,7 +58,7 @@ ${customInstructions || 'Provide helpful, accurate information about this financ
 Always be professional, accurate, and helpful. If you're unsure about specific product details, acknowledge the limitation and suggest consulting official product documentation.`;
     }
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await openaiFetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${openAIApiKey}`,
