@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { identifyCaller, denied } from "../_shared/caller-auth.ts";
+import { sha256hex } from "../_shared/crypto.ts";
 import { openaiFetch } from "../_shared/openaiChat.ts";
 
 /** Hard ceiling on the per-request LLM fan-out. */
@@ -133,6 +134,15 @@ async function extractKeywords(text: string, apiKey: string): Promise<string[]> 
   return fallbackKeywords(truncated);
 }
 
+// product-knowledge-chat, analyze-pitch-video and process-knowledge call this with the
+// service-role key, which is not a user, so the admin check alone answered them 401.
+// Hashes are compared so the comparison time says nothing about the key.
+async function isServiceRoleKey(req: Request): Promise<boolean> {
+  const key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  const token = (req.headers.get("Authorization") ?? "").replace(/^Bearer\s+/i, "").trim();
+  return !!key && !!token && (await sha256hex(token)) === (await sha256hex(key));
+}
+
 function isValidEmbedding(emb: number[]): boolean {
   if (!emb || emb.length !== 768) return false;
   return emb.some(v => v !== 0 && !isNaN(v));
@@ -146,9 +156,11 @@ serve(async (req) => {
   try {
     // Fans out one LLM call per array element on the team's own API key, so an
     // unauthenticated caller could drain the account with a single request.
-    const caller = await identifyCaller(req);
-    if (!caller.userId) return denied(corsHeaders, "Sign in to generate embeddings", 401);
-    if (!caller.isAdmin) return denied(corsHeaders, "Only admins can generate embeddings");
+    if (!(await isServiceRoleKey(req))) {
+      const caller = await identifyCaller(req);
+      if (!caller.userId) return denied(corsHeaders, "Sign in to generate embeddings", 401);
+      if (!caller.isAdmin) return denied(corsHeaders, "Only admins can generate embeddings");
+    }
 
     const { texts } = await req.json();
     if (Array.isArray(texts) && texts.length > MAX_TEXTS_PER_REQUEST) {
