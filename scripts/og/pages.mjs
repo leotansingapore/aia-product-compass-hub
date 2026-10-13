@@ -8,8 +8,7 @@ export default {
   "/admin": {
     "title": "Admin",
     "description": "Admin tools for the FINternship Learning Platform.",
-    "card": "admin",
-    "leaf": false
+    "card": "admin"
   },
   "/appointment-flows": {
     "title": "Appointment flows",
@@ -29,8 +28,7 @@ export default {
   "/case-vault": {
     "title": "Case vault",
     "description": "Client cases to study before you build your own.",
-    "card": "case-vault",
-    "leaf": false
+    "card": "case-vault"
   },
   "/categories": {
     "title": "Products",
@@ -355,14 +353,12 @@ export default {
   "/cmfas-exams/today": {
     "title": "Get ready for CMFAS",
     "description": "Step by step, from registering for the papers to exam day.",
-    "card": "cmfas-exams-today",
-    "leaf": false
+    "card": "cmfas-exams-today"
   },
   "/cmfas/chat": {
     "title": "CMFAS AI tutor",
     "description": "Ask the AI tutor about any CMFAS paper.",
-    "card": "cmfas-chat",
-    "leaf": false
+    "card": "cmfas-chat"
   },
   "/cmfas/module/hi": {
     "title": "CMFAS HI Module",
@@ -507,14 +503,12 @@ export default {
   "/flows": {
     "title": "Script flows",
     "description": "Branching scripts: what to say next, based on how the client answers.",
-    "card": "flows",
-    "leaf": false
+    "card": "flows"
   },
   "/flows/view": {
     "title": "Shared script flow",
     "description": "A script flow shared from the FINternship Learning Platform.",
-    "card": "flows-view",
-    "leaf": false
+    "card": "flows-view"
   },
   "/how-to-use": {
     "title": "How to use the platform",
@@ -1314,26 +1308,22 @@ export default {
   "/learning-track/post-rnf/aia-training": {
     "title": "AIA Training Directory",
     "description": "AIA's training courses, roadmaps and session dates for the year, in one place.",
-    "card": "learning-track-post-rnf-aia-training",
-    "leaf": false
+    "card": "learning-track-post-rnf-aia-training"
   },
   "/learning-track/post-rnf/aia-training/calendar": {
     "title": "AIA training calendar",
     "description": "AIA's training sessions by month.",
-    "card": "learning-track-post-rnf-aia-training-calendar",
-    "leaf": false
+    "card": "learning-track-post-rnf-aia-training-calendar"
   },
   "/learning-track/post-rnf/aia-training/courses": {
     "title": "AIA training courses",
     "description": "Every AIA training course, laid out like the directory's contents pages.",
-    "card": "learning-track-post-rnf-aia-training-courses",
-    "leaf": false
+    "card": "learning-track-post-rnf-aia-training-courses"
   },
   "/learning-track/post-rnf/aia-training/roadmaps": {
     "title": "AIA training roadmaps",
     "description": "The course roadmap for each stage of an AIA career.",
-    "card": "learning-track-post-rnf-aia-training-roadmaps",
-    "leaf": false
+    "card": "learning-track-post-rnf-aia-training-roadmaps"
   },
   "/learning-track/post-rnf/assignments": {
     "title": "Post-RNF assignments",
@@ -1798,14 +1788,12 @@ export default {
   "/playbooks": {
     "title": "Script playbooks",
     "description": "Collections of scripts for each stage of a sale.",
-    "card": "playbooks",
-    "leaf": false
+    "card": "playbooks"
   },
   "/playbooks/share": {
     "title": "Shared script playbook",
     "description": "A script playbook shared from the FINternship Learning Platform.",
-    "card": "playbooks-share",
-    "leaf": false
+    "card": "playbooks-share"
   },
   "/product": {
     "title": "Product training",
@@ -6035,8 +6023,7 @@ export default {
   "/roleplay/feedback": {
     "title": "Roleplay feedback",
     "description": "Scored feedback on a roleplay session.",
-    "card": "roleplay-feedback",
-    "leaf": false
+    "card": "roleplay-feedback"
   },
   "/roleplay/pitch-analysis": {
     "title": "AI roleplay training",
@@ -6051,8 +6038,7 @@ export default {
   "/scripts": {
     "title": "Scripts and objections",
     "description": "Reference scripts for cold calls, follow-up messages, referrals, appointment confirmations and common objections.",
-    "card": "scripts",
-    "leaf": false
+    "card": "scripts"
   },
   "/scripts/course": {
     "title": "Scripts fundamentals",
@@ -6062,14 +6048,12 @@ export default {
   "/servicing": {
     "title": "Servicing templates",
     "description": "Text templates for servicing and keeping in touch with clients.",
-    "card": "servicing",
-    "leaf": false
+    "card": "servicing"
   },
   "/team-progress": {
     "title": "Team progress",
     "description": "How each trainee is moving through the learning track.",
-    "card": "team-progress",
-    "leaf": false
+    "card": "team-progress"
   },
   "/tools": {
     "title": "Tools",

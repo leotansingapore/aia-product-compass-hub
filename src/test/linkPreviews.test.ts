@@ -4,13 +4,13 @@ import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import PAGES from '../../scripts/og/pages.mjs';
-import { humanize, resolvePage } from '../../scripts/og/resolve.mjs';
+import { resolvePage } from '../../scripts/og/resolve.mjs';
 import { appRoutes } from '../../scripts/og/content.mjs';
 import { IGNORED, SECTIONS } from '../../scripts/og/routes.mjs';
 import { previewFor } from '../../api/page-og';
 
 const ROOT = path.resolve(__dirname, '../..');
-type Page = { title: string; description: string; card: string; leaf?: false };
+type Page = { title: string; description: string; card: string };
 const pages = PAGES as Record<string, Page>;
 
 describe('link preview table', () => {
@@ -68,24 +68,19 @@ describe('link preview table', () => {
 });
 
 describe('resolvePage', () => {
-  it('names a lesson newer than the table from its slug, under its product', () => {
-    const product = pages['/product/core-pro-achiever'];
-    expect(resolvePage('/product/core-pro-achiever/medical-underwriting-basics', pages)).toEqual({
-      ...product,
-      title: `Medical underwriting basics | ${product.title}`,
-    });
+  it('gives a lesson newer than the table its product, word for word', () => {
+    expect(resolvePage('/product/core-pro-achiever/medical-underwriting-basics', pages)).toBe(pages['/product/core-pro-achiever']);
   });
 
   it('falls back to the section for a product id it has never seen', () => {
-    expect(resolvePage('/product/brand-new-plan', pages).title).toBe('Brand new plan | Product training');
+    expect(resolvePage('/product/brand-new-plan', pages).title).toBe('Product training');
   });
 
-  it('never turns an id, a number or a token into words', () => {
-    expect(humanize('3f2b1c9a-1111-4222-8333-444455556666')).toBeNull();
-    expect(humanize('12')).toBeNull();
-    expect(humanize('video-1753260837645-pv20w65hv')).toBeNull();
-    expect(humanize('ab')).toBeNull();
-    expect(humanize('pitch-analysis')).toBe('Pitch analysis');
+  it('never puts words from the URL on a preview', () => {
+    for (const p of ['/product/your-account-is-locked-call-now', '/learning-track/send-your-password', '/library/free-money-here']) {
+      const page = resolvePage(p, pages);
+      expect(`${page.title} ${page.description}`.toLowerCase(), p).not.toMatch(/locked|password|money/);
+    }
   });
 
   it('ignores a trailing slash, a query and doubled slashes', () => {

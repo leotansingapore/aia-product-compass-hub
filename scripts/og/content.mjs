@@ -8,11 +8,11 @@ import { ROOT } from './card.mjs';
 /** ASCII only on a card or in a preview: dashes and quotes mapped, emoji and the rest dropped. */
 export const clean = (s) =>
   String(s ?? '')
-    .replace(/\s+[–—]\s+/g, ', ')
-    .replace(/[–—]/g, '-')
-    .replace(/[‘’]/g, "'")
-    .replace(/[“”]/g, '"')
-    .replace(/…/g, '...')
+    .replace(/\s+[\u2013\u2014]\s+/g, ', ')
+    .replace(/[\u2013\u2014]/g, '-')
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201c\u201d]/g, '"')
+    .replace(/\u2026/g, '...')
     .replace(/[^\x20-\x7e]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();

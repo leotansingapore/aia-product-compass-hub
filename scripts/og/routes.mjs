@@ -5,7 +5,7 @@
 // reference, CMFAS module and lesson, product, lesson and category, read from docs/ and the
 // products table, and points every <Navigate> route in App.tsx at its target's entry.
 //
-// `leaf: false` stops resolvePage naming an unlisted child from its URL: case vault cases,
+// A path with no entry takes its nearest listed parent's words exactly, so case vault cases,
 // shared playbooks and AIA's internal course catalogue keep their section card only.
 // `virtual` rows are not pages; they only catch children (/product/<new-id>).
 
@@ -24,8 +24,8 @@ export const SECTIONS = [
   { path: '/bookmarks', title: 'My bookmarks', pill: 'Saved', description: 'The products and training you saved, in one place.' },
   { path: '/my-account', title: 'My account', pill: 'Account', description: 'Your profile, password and access.' },
   { path: '/feedback', title: 'Feedback', pill: 'Help us improve', description: 'Tell the team what to fix or build next.' },
-  { path: '/admin', title: 'Admin', pill: 'Admin', leaf: false, description: 'Admin tools for the FINternship Learning Platform.' },
-  { path: '/team-progress', title: 'Team progress', pill: 'Admin', leaf: false, description: 'How each trainee is moving through the learning track.' },
+  { path: '/admin', title: 'Admin', pill: 'Admin', description: 'Admin tools for the FINternship Learning Platform.' },
+  { path: '/team-progress', title: 'Team progress', pill: 'Admin', description: 'How each trainee is moving through the learning track.' },
 
   { path: '/learning-track', title: 'Learning track', pill: 'Learning track', bar: 'Your training path',
     description: 'Your training path in order: First 14 Days, then First 60 Days and the pre-RNF assignments, then the Next 60 Days.' },
@@ -46,13 +46,13 @@ export const SECTIONS = [
   { path: '/learning-track/post-rnf/assignments', title: 'Post-RNF assignments', pill: 'Next 60 Days', bar: '{n} deliverables',
     description: '{n} deliverables that turn the first 60 days of your real business into a compounding practice.' },
   // AIA marks the catalogue internal use only: section words only, never a course name.
-  { path: '/learning-track/post-rnf/aia-training', title: 'AIA Training Directory', pill: 'Next 60 Days', bar: 'Courses and dates', leaf: false,
+  { path: '/learning-track/post-rnf/aia-training', title: 'AIA Training Directory', pill: 'Next 60 Days', bar: 'Courses and dates',
     description: "AIA's training courses, roadmaps and session dates for the year, in one place." },
-  { path: '/learning-track/post-rnf/aia-training/courses', title: 'AIA training courses', pill: 'AIA Training Directory', leaf: false,
+  { path: '/learning-track/post-rnf/aia-training/courses', title: 'AIA training courses', pill: 'AIA Training Directory',
     description: "Every AIA training course, laid out like the directory's contents pages." },
-  { path: '/learning-track/post-rnf/aia-training/calendar', title: 'AIA training calendar', pill: 'AIA Training Directory', leaf: false,
+  { path: '/learning-track/post-rnf/aia-training/calendar', title: 'AIA training calendar', pill: 'AIA Training Directory',
     description: "AIA's training sessions by month." },
-  { path: '/learning-track/post-rnf/aia-training/roadmaps', title: 'AIA training roadmaps', pill: 'AIA Training Directory', leaf: false,
+  { path: '/learning-track/post-rnf/aia-training/roadmaps', title: 'AIA training roadmaps', pill: 'AIA Training Directory',
     description: 'The course roadmap for each stage of an AIA career.' },
   { path: '/learning-track/resources', title: 'Resources', pill: 'Learning track', description: 'Reference reading for the learning track.' },
   { path: '/learning-track/resources/competitor-products', title: 'Competitor products', pill: 'Resources',
@@ -73,37 +73,37 @@ export const SECTIONS = [
 
   { path: '/cmfas-exams', title: 'CMFAS exams', pill: 'CMFAS', bar: 'M9, M9A, HI, RES5',
     description: 'Prepare for your CMFAS exams with lecture videos, a question bank, study tips and the syllabus.' },
-  { path: '/cmfas-exams/today', title: 'Get ready for CMFAS', pill: 'CMFAS', leaf: false, description: 'Step by step, from registering for the papers to exam day.' },
+  { path: '/cmfas-exams/today', title: 'Get ready for CMFAS', pill: 'CMFAS', description: 'Step by step, from registering for the papers to exam day.' },
   { path: '/cmfas-exams/lecture-videos', title: 'CMFAS lecture videos', pill: 'CMFAS', description: 'Pick your next paper. Most people start with M9.' },
   { path: '/cmfas-exams/practice', title: 'CMFAS question bank', pill: 'CMFAS', description: 'Learn by doing: practice questions for each paper.' },
   { path: '/cmfas-exams/study-tips', title: 'CMFAS study tips', pill: 'CMFAS', description: 'Pass M9, M9A and HI in a month.' },
   { path: '/cmfas-exams/syllabus', title: 'CMFAS syllabus and format', pill: 'CMFAS', description: "Know what you're being tested on." },
   { path: '/cmfas-exams/papers', alias: '/cmfas-exams/lecture-videos' },
   { path: '/cmfas', virtual: true, title: 'CMFAS exams', pill: 'CMFAS', description: 'Prepare for your CMFAS exams with lecture videos, a question bank and an AI tutor.' },
-  { path: '/cmfas/chat', title: 'CMFAS AI tutor', pill: 'CMFAS', leaf: false, description: 'Ask the AI tutor about any CMFAS paper.' },
+  { path: '/cmfas/chat', title: 'CMFAS AI tutor', pill: 'CMFAS', description: 'Ask the AI tutor about any CMFAS paper.' },
 
   { path: '/roleplay', title: 'AI roleplay training', pill: 'Practice', bar: 'Video roleplay',
     description: 'Practise sales, objection handling and consultation skills with AI video avatars.' },
-  { path: '/roleplay/feedback', virtual: true, leaf: false, title: 'Roleplay feedback', pill: 'Practice', description: 'Scored feedback on a roleplay session.' },
+  { path: '/roleplay/feedback', virtual: true, title: 'Roleplay feedback', pill: 'Practice', description: 'Scored feedback on a roleplay session.' },
   { path: '/question-banks', title: 'Question banks', pill: 'Practice', description: 'Study each AIA product, sit a mock exam and track your progress.' },
   { path: '/review-bank', title: 'Review bank', pill: 'Practice', description: 'Practise the questions you saved again.' },
   { path: '/review-all', title: 'All questions and answers', pill: 'Practice', description: 'Every product mastery question and answer in one place.' },
   { path: '/leaderboard', title: 'Leaderboard', pill: 'Learning track', description: 'Rankings across the learning track, and the assignment tracker.' },
   { path: '/leaderboard/tracker', title: 'Assignment tracker', pill: 'Leaderboard', description: 'Who has handed in which assignment.' },
 
-  { path: '/scripts', title: 'Scripts and objections', pill: 'Sales scripts', leaf: false, bar: 'Word for word',
+  { path: '/scripts', title: 'Scripts and objections', pill: 'Sales scripts', bar: 'Word for word',
     description: 'Reference scripts for cold calls, follow-up messages, referrals, appointment confirmations and common objections.' },
   { path: '/scripts/course', title: 'Scripts fundamentals', pill: 'Sales scripts', description: 'What to read before you use the sales scripts.' },
   { path: '/objections', title: 'Scripts and objections', pill: 'Sales scripts', description: 'Answers to the objections clients raise, with the scripts around them.' },
-  { path: '/servicing', title: 'Servicing templates', pill: 'Sales scripts', leaf: false, description: 'Text templates for servicing and keeping in touch with clients.' },
-  { path: '/playbooks', title: 'Script playbooks', pill: 'Sales scripts', leaf: false, description: 'Collections of scripts for each stage of a sale.' },
-  { path: '/playbooks/share', virtual: true, leaf: false, title: 'Shared script playbook', pill: 'Sales scripts', description: 'A script playbook shared from the FINternship Learning Platform.' },
-  { path: '/flows', title: 'Script flows', pill: 'Sales scripts', leaf: false, description: 'Branching scripts: what to say next, based on how the client answers.' },
-  { path: '/flows/view', virtual: true, leaf: false, title: 'Shared script flow', pill: 'Sales scripts', description: 'A script flow shared from the FINternship Learning Platform.' },
+  { path: '/servicing', title: 'Servicing templates', pill: 'Sales scripts', description: 'Text templates for servicing and keeping in touch with clients.' },
+  { path: '/playbooks', title: 'Script playbooks', pill: 'Sales scripts', description: 'Collections of scripts for each stage of a sale.' },
+  { path: '/playbooks/share', virtual: true, title: 'Shared script playbook', pill: 'Sales scripts', description: 'A script playbook shared from the FINternship Learning Platform.' },
+  { path: '/flows', title: 'Script flows', pill: 'Sales scripts', description: 'Branching scripts: what to say next, based on how the client answers.' },
+  { path: '/flows/view', virtual: true, title: 'Shared script flow', pill: 'Sales scripts', description: 'A script flow shared from the FINternship Learning Platform.' },
   { path: '/concept-cards', title: 'Concept cards', pill: 'Sales tools', description: 'Visual concept flashcards for financial advisers.' },
   { path: '/appointment-flows', title: 'Appointment flows', pill: 'Sales tools', bar: '5 tracks',
     description: '5 appointment tracks drawn from 258 real recorded appointments. Pick a track at the opening, then run the branches.' },
-  { path: '/case-vault', title: 'Case vault', pill: 'Sales tools', leaf: false, description: 'Client cases to study before you build your own.' },
+  { path: '/case-vault', title: 'Case vault', pill: 'Sales tools', description: 'Client cases to study before you build your own.' },
   { path: '/drawings-playbook', title: 'Drawings playbook', pill: 'Sales tools', bar: '30+ drawings',
     description: 'The 30+ diagrams that close cases: method, scripts and drills for every drawing in the APA appointment flow.' },
 ];
@@ -140,7 +140,7 @@ export function collectPages({ products, categories, previous }) {
   const cards = {};
   const add = (p, page, card) => {
     const slug = card === undefined ? page.card : cardSlug(p);
-    pages[p] = { title: clean(page.title), description: summary(page.description), card: slug, ...(page.leaf === false ? { leaf: false } : {}) };
+    pages[p] = { title: clean(page.title), description: summary(page.description), card: slug };
     // A spaced hyphen wraps onto its own line in a poster headline; the first one reads as a colon.
     if (card) cards[slug] = { ...card, headline: clean(card.headline).replace(/\s+-\s+/, ': ') };
   };
