@@ -31,4 +31,21 @@ describe("First 14 Days lesson markdown", () => {
     expect(capture).toHaveBeenCalledTimes(1);
     expect(capture).toHaveBeenCalledWith("onboarding_call_clicked", { source: "link" });
   });
+
+  it("draws a layers fence as cards, side by side where a row splits on ||", () => {
+    const { container } = renderLesson(
+      "```layers\nYou | time goes to clients\nA | one || B | two, three || C | x | y\nBase | under all\n```",
+    );
+    expect(container.querySelector("pre, code")).toBeNull();
+    const rows = container.querySelectorAll("figure > div");
+    expect(Array.from(rows, (r) => r.children.length)).toEqual([1, 3, 1]);
+    expect(screen.getByText("two, three")).toBeTruthy();
+    expect(screen.getByText("x | y").previousSibling?.textContent).toBe("C");
+  });
+
+  it("widens pyramid rows from the top down", () => {
+    const { container } = renderLesson("```pyramid\nYou\nTier 1 | a\nTier 2 | b\n```");
+    const widths = Array.from(container.querySelectorAll<HTMLElement>("figure > div"), (r) => r.style.getPropertyValue("--row-w"));
+    expect(widths).toEqual(["40%", "70%", "100%"]);
+  });
 });

@@ -1,5 +1,7 @@
+import { Children, isValidElement } from "react";
 import type { Components } from "react-markdown";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
+import { LayersDiagram } from "./LayersDiagram";
 
 // Leo's Pick a Time page, where a candidate books the onboarding call.
 export const ONBOARDING_CALL_URL = "https://www.pick-a-time.app/book/withleo";
@@ -15,8 +17,13 @@ export function trackOnboardingCallClick(source: "button" | "link") {
 
 const BaseImg = dayMarkdownComponents.img as any;
 const BaseLink = dayMarkdownComponents.a as any;
+const BaseCode = dayMarkdownComponents.code as any;
+const BasePre = dayMarkdownComponents.pre as any;
+const fenceLang = (className: unknown) => (typeof className === "string" ? className.replace("language-", "") : "");
+const isDiagram = (lang: string) => lang === "layers" || lang === "pyramid";
 
-// Day markdown for the First 14 Days: an image opens full size in a new tab,
+// Day markdown for the First 14 Days: ```layers and ```pyramid fences draw
+// diagrams (LayersDiagram), an image opens full size in a new tab,
 // where a phone can pinch-zoom a dense slide; booking links are counted.
 export const lessonMarkdownComponents: Components = {
   ...dayMarkdownComponents,
@@ -31,6 +38,16 @@ export const lessonMarkdownComponents: Components = {
       <BaseImg {...props} />
     </a>
   ),
+  code: (props) => {
+    const lang = fenceLang(props.className);
+    if (!isDiagram(lang)) return <BaseCode {...props} />;
+    return <LayersDiagram code={[props.children].flat().join("")} pyramid={lang === "pyramid"} />;
+  },
+  pre: (props) => {
+    const child = Children.toArray(props.children)[0];
+    const lang = isValidElement<{ className?: string }>(child) ? fenceLang(child.props.className) : "";
+    return isDiagram(lang) ? <>{props.children}</> : <BasePre {...props} />;
+  },
   a: (props: any) =>
     props.href === ONBOARDING_CALL_URL ? (
       <span onClick={() => trackOnboardingCallClick("link")}>

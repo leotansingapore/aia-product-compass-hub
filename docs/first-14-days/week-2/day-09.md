@@ -15,29 +15,10 @@ tags: [first-14-days, week-2, prospect, traits, self-assessment, 6-cs, leo-voice
 
 Yesterday you saw why the agency matters. Here is the system we built. We call it the Tripod Support System (TSS).
 
-![[first-14-days/images/tripod-support-system.webp|Tripod Support System: three pillars around the advisor]]
-
-```mermaid
-flowchart TB
-    subgraph Pillars["Three pillars of TSS"]
-        direction LR
-        A["<b>Client Acquisition</b><br/>paid ads, funnels,<br/>appointment setters,<br/>cold scripts"]
-        B["<b>Talent Acquisition</b><br/>recruitment pipeline,<br/>team building when ready"]
-        C["<b>Nurturing</b><br/>iSmart CRM, follow-ups,<br/>reviews, referrals"]
-    end
-    F["<b>Foundation</b><br/>training + value-adding + 1-1 coaching"]
-    D(["<b>YOU</b><br/>time goes to clients,<br/>not infrastructure"])
-    F --> A
-    F --> B
-    F --> C
-    A --> D
-    B --> D
-    C --> D
-    style D fill:#facc15,stroke:#a16207,color:#000
-    style F fill:#e5e7eb,stroke:#6b7280,color:#000
-    style A fill:#dbeafe,stroke:#1d4ed8,color:#000
-    style B fill:#dcfce7,stroke:#15803d,color:#000
-    style C fill:#fce7f3,stroke:#be185d,color:#000
+```layers
+You | time goes to clients, not infrastructure
+Client acquisition | paid ads, funnels, appointment setters, cold scripts || Talent acquisition | recruitment pipeline, team building when ready || Nurturing | iSmart CRM, follow-ups, reviews, referrals
+Foundation | training, value-adding, 1-1 coaching
 ```
 
 Client acquisition: subsidised ads on Facebook, Instagram and Google, in-house appointment setters who book qualified leads into your calendar, cold-market scripts tested on hundreds of real calls, LinkedIn outreach, and lead magnets like policy reviews, BTO calculators and tax relief guides.
@@ -50,28 +31,14 @@ Under all three sits the foundation: training, value-adding and 1-1 coaching.
 
 Behind TSS is the 6-tier power pyramid, the layers of support under every meeting you run.
 
-```mermaid
-flowchart TB
-    T6["<b>Tier 6 · Post-sale</b><br/>renewals, referrals, updates, community"]
-    T5["<b>Tier 5 · Frontline tools</b><br/>TWC presenter, DBI calc, retirement calc"]
-    T4["<b>Tier 4 · Infrastructure</b><br/>Lark DB, SOPs, objection library, chatbots"]
-    T3["<b>Tier 3 · Team</b><br/>mentor, VA ops, telemarketer, appointment setter"]
-    T2["<b>Tier 2 · District (WFG)</b><br/>ad subsidy, events, roadshows"]
-    T1["<b>Tier 1 · Company (AIA)</b><br/>EPS, career benefit, products, brand, claims"]
-    YOU(["<b>YOU</b><br/>hunger · discipline · follow-through"])
-    YOU --> T1
-    T1 --> T2
-    T2 --> T3
-    T3 --> T4
-    T4 --> T5
-    T5 --> T6
-    style YOU fill:#facc15,stroke:#a16207,color:#000
-    style T1 fill:#fee2e2,stroke:#b91c1c,color:#000
-    style T2 fill:#ffedd5,stroke:#c2410c,color:#000
-    style T3 fill:#fef9c3,stroke:#a16207,color:#000
-    style T4 fill:#dcfce7,stroke:#15803d,color:#000
-    style T5 fill:#dbeafe,stroke:#1d4ed8,color:#000
-    style T6 fill:#ede9fe,stroke:#6d28d9,color:#000
+```pyramid
+You | hunger, discipline, follow-through
+Tier 1 · Company (AIA) | EPS, career benefit, products, brand, claims
+Tier 2 · District (WFG) | ad subsidy, events, roadshows
+Tier 3 · Team | mentor, VA ops, telemarketer, appointment setter
+Tier 4 · Infrastructure | Lark DB, SOPs, objection library, chatbots
+Tier 5 · Frontline tools | TWC presenter, DBI calc, retirement calc
+Tier 6 · Post-sale | renewals, referrals, updates, community
 ```
 
 1. Company (AIA): EPS allowance, career benefit (1.5x in years 2 to 6, APF from year 7), hospitalisation, HNW and corporate products, $1B+ in claims approved a year, and a 50% ad subsidy. This answers "my company doesn't back me up".
