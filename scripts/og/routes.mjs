@@ -188,7 +188,7 @@ export function collectPages({ products, categories, previous }) {
       const min = Number(fm.duration_minutes) || null;
       add(
         `${t.base}/day/${n}`,
-        { title: `Day ${n}: ${fm.title}`, description: fm.big_idea || `Day ${n} of ${total} in ${t.name}.${min ? ` About ${min} minutes.` : ''}` },
+        { title: /^day \d+\b/i.test(fm.title) ? fm.title : `Day ${n}: ${fm.title}`, description: fm.big_idea || `Day ${n} of ${total} in ${t.name}.${min ? ` About ${min} minutes.` : ''}` },
         { headline: fm.title, pill: t.name, bar: `Day ${n} of ${total}`, badges: min ? [{ big: String(min), small: 'minutes' }] : [] },
       );
     }

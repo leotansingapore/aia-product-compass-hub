@@ -1002,7 +1002,7 @@ export default {
     "card": "learning-track-next-60-days"
   },
   "/learning-track/next-60-days/day/1": {
-    "title": "Day 1: Day 1 of your real career: what changes now you're licensed",
+    "title": "Day 1 of your real career: what changes now you're licensed",
     "description": "Facts tell, stories sell. Before you pitch anything, the prospect has already asked: why should I give you a chance?",
     "card": "learning-track-next-60-days-day-1"
   },
