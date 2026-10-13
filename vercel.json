@@ -1,7 +1,18 @@
 {
   "rewrites": [
     {
-      "source": "/((?!\\.well-known).*)",
+      "source": "/:path((?!api/|og/|assets/|\\.well-known).*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(facebookexternalhit|WhatsApp|TelegramBot|Twitterbot|Slackbot|LinkedInBot|Discordbot|SkypeUriPreview|MicrosoftPreview|Google-PageRenderer|redditbot|Embedly|Iframely|Pinterestbot).*"
+        }
+      ],
+      "destination": "/api/page-og?path=:path"
+    },
+    {
+      "source": "/((?!\\.well-known|api/).*)",
       "destination": "/index.html"
     }
   ],
