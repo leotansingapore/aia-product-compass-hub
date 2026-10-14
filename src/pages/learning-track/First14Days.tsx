@@ -65,8 +65,7 @@ export default function First14Days() {
               Decide if this career (and this team) is right for you.
             </h1>
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-              14 short reads, one a day. On Day 14 you pick one of four answers: commit, delay, keep
-              exploring, or no.
+              14 short reads, one a day.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3 pt-2">

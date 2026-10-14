@@ -1,64 +1,16 @@
 ---
 week: 2
 day: 14
-title: "Your decision and your timeline with us"
+title: "Your timeline with us"
 big_idea: "I didn't have a crystal ball. I joined with the mindset that I had everything to gain and nothing to lose."
 author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
   - "[[../../finternship-orientation/04-module-4---your-unfair-advantage/09-8-your-timeline-with-us]]"
   - "[[../../finternship-orientation/04-module-4---your-unfair-advantage/05-lesson-4-your-first-90-days]]"
-duration_minutes: 5
-tags: [first-14-days, week-2, prospect, decision, graduation, timeline, leo-voice]
+duration_minutes: 4
+tags: [first-14-days, week-2, prospect, graduation, timeline, leo-voice]
 ---
-
-You've seen the business model, the math, the agency question, the 6 C's, the common worries and my answers to your questions, so today you decide.
-
-## Four answers
-
-By the end of today, pick one.
-
-```layers
-title: Four | answers
-art: /first-14-days/diagrams/signpost.webp
-Commit | the career fits and our team fits || Delay | the career fits, the timing doesn't
-Keep exploring | the career fits, our team is the question || No | this career isn't for you, and that's fine
-```
-
-
-### Commit
-
-The career fits and our team fits. The next step is an [onboarding call with me](https://www.pick-a-time.app/book/withleo). From there the process has five stages, and it usually takes 2 to 4 weeks:
-
-```steps
-title: Five stages | 2 to 4 weeks
-art: /first-14-days/diagrams/steps.webp
-Initial briefing | 30 min, two-way overview
-Character test | 6 C's alignment
-1-1 round | 4Rs framework
-HR round | Flexi tier + CMFAS plan
-Final interview | sign offer, commit both sides
-```
-
-1. Initial briefing: 30 minutes where I walk you through the program and answer your questions.
-2. Character test: a short conversation and a self-check against the 6 C's from Day 9.
-3. 1-1 round: your strengths, your situation and what you want from the next 12 months. We agree on your role title, responsibilities, mission and results.
-4. HR round: your working hours, your Flexi scheme and your CMFAS exam plan.
-5. Final interview: you sign the Flexi offer, and I sign my side of the income guarantee.
-
-Along the way you'll meet 2 or 3 current FINterns, so you can ask them what the work is really like.
-
-### Delay
-
-The career fits, but the timing doesn't. Maybe your job is too demanding right now, or you need to work on one of the 6 C's first. Pick a date 3, 6 or 12 months from now, write down what needs to be true by then, and put it in your calendar.
-
-### Keep exploring
-
-The career fits, but you're not sure about our team. Take the questions from Day 8 to 2 or 3 other agencies, and speak to the advisors who work there as well as the recruiters.
-
-### No
-
-This career isn't for you, and that's a fine answer. You've saved yourself a year of finding out the hard way. If things change, come back in 6 months.
 
 ## Your timeline with us
 
@@ -110,15 +62,6 @@ In months 1 and 2, we sponsor your CMFAS exams, which normally cost you $500+ (y
 In month 3, you're added to our CRM and get your own dashboard. Our appointment team books 2 to 3 appointments a week into your calendar, and you run your first client meetings with coaching and a debrief after each one, while our VAs handle the paperwork. As your confidence grows, it goes up to 3 to 4 appointments a week, and you close your first cases.
 
 From month 4, you handle 4 to 5 appointments a week, your closing rate improves, and referrals start coming from happy clients.
-
-The math for a $10,000 month:
-
-- Average commission per case: $2,000 (a conservative estimate)
-- Cases needed a month: 5
-- Appointments needed a month: 25, at a 20% closing rate
-- Appointments a week: about 6
-
-Our system books the appointments, gives you scripts that make a 20%+ closing rate achievable, and handles the backend. Your job is to show up to the appointments, follow the presentation framework and close.
 
 ## How much do you need to commit?
 

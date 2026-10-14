@@ -131,8 +131,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     dayNumber: 14,
     week: 2,
     dayInWeek: 7,
-    title: "Your decision and your timeline with us",
-    duration: 5,
+    title: "Your timeline with us",
+    duration: 4,
     bigIdea:
       "I didn't have a crystal ball. I joined with the mindset that I had everything to gain and nothing to lose.",
   },

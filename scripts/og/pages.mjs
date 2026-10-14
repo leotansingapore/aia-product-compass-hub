@@ -576,7 +576,7 @@ export default {
     "card": "learning-track-first-14-days-day-13"
   },
   "/learning-track/first-14-days/day/14": {
-    "title": "Day 14: Your decision and your timeline with us",
+    "title": "Day 14: Your timeline with us",
     "description": "I didn't have a crystal ball. I joined with the mindset that I had everything to gain and nothing to lose.",
     "card": "learning-track-first-14-days-day-14"
   },

@@ -108,8 +108,6 @@ There are only a few things I ask of you: be as proactive as you can, attend our
 
 Each day is one short read. Week 1 looks at the business model itself. Week 2 looks at whether this career, and our team, fit you.
 
-On Day 14 you pick one of four answers: commit, delay, keep exploring, or no. A no is a fine answer too. It saves you a year of finding out the hard way.
-
 ---
 
 ## Before Day 2

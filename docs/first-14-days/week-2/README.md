@@ -2,7 +2,7 @@
 week: 2
 title: "Week 2: The fit test"
 author: "Leo Tan"
-kpi: "By the end of Day 14, you have picked one answer: commit, delay, keep exploring or no."
+kpi: "By the end of Day 14, you know if this career and our team fit you."
 unlocks: null
 tags: [first-14-days, week-2, week-overview, fit, agency-choice, decision, leo-voice]
 ---
@@ -19,8 +19,4 @@ Week 1 looked at the business model. Week 2 looks at the agency, and at you.
 - [Day 11: No experience, and not an extrovert](/learning-track/first-14-days/day/11). I started from zero, with a stammer.
 - [Day 12: Limited time, office size and product range](/learning-track/first-14-days/day/12). How I built the business on 2 hours a day during GEP.
 - [Day 13: Your questions answered](/learning-track/first-14-days/day/13). My answers to the questions candidates ask most.
-- [Day 14: Your decision and your timeline with us](/learning-track/first-14-days/day/14). Pick your answer, and see what happens next.
-
-## Four answers
-
-On Day 14 you pick one: commit, delay, keep exploring, or no. All four are fine answers.
+- [Day 14: Your timeline with us](/learning-track/first-14-days/day/14). What happens next, and how much you need to commit.
