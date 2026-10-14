@@ -39,7 +39,10 @@ These are the productivity principles I relied on:
 
 This was my weekly schedule as a student advisor.
 
-![[first-14-days/images/student-advisor-schedule.webp|My weekly schedule as a student advisor]]
+- Monday: travel to the office at 9am, then admin from 9.30am to 12pm and 1 to 2pm.
+- Tuesday to Friday, with one day off: text prospects from 9 to 9.30am.
+- Weekday evenings: travel to the office at 7pm, calls and appointments from 7.30 to 9.30pm, then back to NUS by 10.30pm, texting prospects on the bus.
+- Saturday and Sunday: appointments from 9am to 7pm.
 
 I didn't have a VA back then. Everything was manual, and 80% of it was done without outsourcing. I didn't have a mentor to guide me either, so my scripts, slides and decks were all made from scratch. All meetings were physical, and everything ran on paper, so admin took wayy more time than it does now.
 

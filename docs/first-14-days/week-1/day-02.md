@@ -52,7 +52,12 @@ And here is the difference that sets this apart from every other franchise out t
 
 ### The traditional franchise vs the financial advisory model
 
-![[first-14-days/images/franchise-comparison.webp|Traditional franchise vs financial advisory]]
+| | Traditional franchise (e.g. Ya Kun) | The financial advisory model |
+|---|---|---|
+| Upfront cost | $200,000+ just to get started. | $0. In fact, we sponsor your certifications and even provide an allowance while you learn. |
+| Break-even period | 5-6 years (if you're lucky). | You can be cash-flow positive from your first month. |
+| Royalty fees | A hefty percentage of your revenue (e.g. 10%) is paid back to the franchisor, cutting into your profits. | None. Your revenue is your income. |
+| Risk | You bear all the financial risk. If the business fails, you lose your entire investment. | The risk is on us. We invest in your training, licensing and development. |
 
 When I first started at 21, I didn't realise it, but I was starting my own business. It just didn't come with the terrifying upfront costs in time and capital. Even if the career didn't work out, the worst case was that I'd walk away with knowledge about personal finance, communication and sales that I could use for life.
 
