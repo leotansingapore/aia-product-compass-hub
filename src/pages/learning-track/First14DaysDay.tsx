@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useSearchParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
@@ -24,6 +24,7 @@ import { convertImageEmbeds } from "@/features/first-60-days/parse";
 import { fileChangedSinceEdit, shownSource } from "@/features/first-14-days/edits";
 import { useDayEdits } from "@/hooks/first-14-days/useDayEdits";
 import { DayEditor } from "@/components/first-14-days/DayEditor";
+import { InlineLessonEditor } from "@/components/first-14-days/InlineLessonEditor";
 import { DAY_SUMMARIES, TOTAL_DAYS } from "@/features/first-14-days/summaries";
 import type { Day } from "@/features/first-14-days/types";
 import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProgress";
@@ -105,8 +106,21 @@ export default function First14DaysDay() {
   const { isActualAdmin, isAdmin } = useAdmin();
   // Admin edits made in the app override the lesson file; a failed read falls back to the file.
   const { edits, isLoading: editsLoading } = useDayEdits(dayNumber);
-  const [editing, setEditing] = useState(false);
-  useEffect(() => setEditing(false), [dayNumber]);
+  // Admin editing, inline on the page or as markdown with version history. It lives in the
+  // URL (?edit=inline|markdown) so a reload or a phone/desktop layout switch keeps it open.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const editParam = searchParams.get("edit");
+  const editMode = isAdmin && (editParam === "inline" || editParam === "markdown") ? editParam : null;
+  const editing = editMode !== null;
+  const setEditMode = (mode: "inline" | "markdown" | null) =>
+    setSearchParams(
+      (p) => {
+        if (mode) p.set("edit", mode);
+        else p.delete("edit");
+        return p;
+      },
+      { replace: true },
+    );
   const { tier } = useUserTier();
   // Explorers (prospects) unlock each day by completing the one before.
   // Papers-takers and Post-RNF have already committed — First 14 Days is
@@ -320,7 +334,7 @@ export default function First14DaysDay() {
 
             {isAdmin && !editing && (
               <div className="flex flex-wrap items-center gap-2 pt-1">
-                <Button variant="outline" size="sm" onClick={() => setEditing(true)} className="gap-1.5">
+                <Button variant="outline" size="sm" onClick={() => setEditMode("inline")} className="gap-1.5">
                   <Pencil className="h-3.5 w-3.5" />
                   Edit lesson
                 </Button>
@@ -352,14 +366,21 @@ export default function First14DaysDay() {
       {isAdmin && !editing && fileChangedSinceEdit(edits, day.source) && (
         <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-amber-500/40 bg-amber-500/10 p-3 text-sm">
           <span>The lesson file changed in the code after this day was edited in the app. Learners still see the app edit.</span>
-          <Button size="sm" variant="outline" onClick={() => setEditing(true)}>
+          <Button size="sm" variant="outline" onClick={() => setEditMode("markdown")}>
             Review in the editor
           </Button>
         </div>
       )}
 
-      {editing ? (
-        <DayEditor dayNumber={dayNumber} fileSource={day.source} onClose={() => setEditing(false)} />
+      {editMode === "inline" ? (
+        <InlineLessonEditor
+          dayNumber={dayNumber}
+          fileSource={day.source}
+          onExit={() => setEditMode(null)}
+          onOpenMarkdown={() => setEditMode("markdown")}
+        />
+      ) : editMode === "markdown" ? (
+        <DayEditor dayNumber={dayNumber} fileSource={day.source} onClose={() => setEditMode(null)} />
       ) : (
         <Card className="border-border/60 shadow-card">
           <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
