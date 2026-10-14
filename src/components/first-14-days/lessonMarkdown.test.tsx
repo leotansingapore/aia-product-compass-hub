@@ -3,7 +3,8 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { lessonMarkdownComponents, ONBOARDING_CALL_URL } from "./lessonMarkdown";
-import { parseDiagram } from "./LayersDiagram";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { DIAGRAM_KINDS, parseDiagram } from "./LayersDiagram";
 
 const capture = vi.fn();
 vi.mock("posthog-js", () => ({ default: { capture: (...args: unknown[]) => capture(...args) } }));
@@ -68,9 +69,47 @@ describe("First 14 Days lesson markdown", () => {
     expect(screen.getByText("District").closest(".flex-1")?.textContent).toMatch(/^2District/);
   });
 
+  it("draws a stats fence as big numbers, with a single-cell last row as the base bar", () => {
+    renderLesson("```stats\n$200K+ | franchise || $650K | clinic\n$0 upfront | our model\n```");
+    expect(screen.getByText("$200K+").className).toMatch(/Anton/);
+    expect(screen.getByText("$650K").nextSibling?.textContent).toBe("clinic");
+    expect(screen.getByText("$0 upfront").closest(".-rotate-1")).toBeTruthy();
+    expect(screen.queryByText("YOU")).toBeNull();
+  });
+
+  it("draws a compare fence as rows of topic, them and us, naming each side on a phone", () => {
+    renderLesson("```compare\n|| Typical agency || With us\nLeads || buy your own || booked for you\nAdmin || on your desk || our VA team\n```");
+    const row = screen.getByText("Leads").parentElement!;
+    expect(row.children).toHaveLength(3);
+    expect(row.children[1].textContent).toBe("Typical agencybuy your own");
+    expect(row.children[2].textContent).toBe("With usbooked for you");
+    expect(screen.getByText("Admin").parentElement?.children[2].textContent).toBe("With usour VA team");
+  });
+
+  it("puts a row of four or more cells under the headline, two to a line on a phone", () => {
+    const { container } = renderLesson("```layers\ntitle: Ideal | career\nart: /a.webp\nA || B || C || D || E\n```");
+    const row = screen.getByText("A").closest(".grid");
+    expect(row?.className).toMatch(/grid-cols-2/);
+    expect(row?.children).toHaveLength(5);
+    expect(container.querySelector(".sm\\:grid-cols-\\[3fr_2fr\\]")).toBeTruthy();
+  });
+
   it("lays a steps fence out as a numbered road", () => {
     renderLesson("```steps\nBrief | 30 min\nTest | fit\nOffer | sign\n```");
     const steps = screen.getAllByRole("listitem");
     expect(steps.map((li) => li.textContent)).toEqual(["1Brief30 min", "2Testfit", "3Offersign"]);
+  });
+  it("every fence in a First 14 Days lesson is a diagram kind, and its art file exists", () => {
+    const days = readdirSync("docs/first-14-days", { recursive: true, encoding: "utf8" }).filter((f) => /day-\d+\.md$/.test(f));
+    expect(days).toHaveLength(14);
+    for (const day of days) {
+      const md = readFileSync(`docs/first-14-days/${day}`, "utf8");
+      for (const [, lang, body] of md.matchAll(/^```(\w*)\n([\s\S]*?)^```$/gm)) {
+        expect(DIAGRAM_KINDS, `${day}: \`\`\`${lang}`).toContain(lang);
+        const { art, rows } = parseDiagram(body);
+        expect(rows.length, `${day}: ${lang} has no rows`).toBeGreaterThan(0);
+        if (art) expect(existsSync(`public${art}`), `${day}: missing ${art}`).toBe(true);
+      }
+    }
   });
 });

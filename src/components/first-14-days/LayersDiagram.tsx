@@ -2,7 +2,8 @@ import { cn } from "@/lib/utils";
 
 type Cell = { title: string; detail: string };
 
-export type DiagramKind = "layers" | "pyramid" | "steps";
+export const DIAGRAM_KINDS = ["layers", "pyramid", "steps", "stats", "compare"] as const;
+export type DiagramKind = (typeof DIAGRAM_KINDS)[number];
 
 export type Diagram = { title: string; art: string; rows: Cell[][] };
 
@@ -116,22 +117,106 @@ function Steps({ cells }: { cells: Cell[] }) {
   );
 }
 
+// Big numbers in a row; two to a line on a phone, an odd last one full width.
+function Stats({ cells }: { cells: Cell[] }) {
+  return (
+    <div className="grid grid-cols-2 gap-2 max-sm:[&>*:last-child:nth-child(odd)]:col-span-2 sm:auto-cols-fr sm:grid-flow-col">
+      {cells.map((cell, i) => (
+        <div key={cell.title} className="overflow-hidden rounded-2xl bg-white shadow-sm">
+          <span className="block h-1.5" style={{ background: SERIES[i % SERIES.length] }} />
+          <div className="px-3 pb-3 pt-2">
+            <p className={cn(anton, "text-[1.9rem] leading-none sm:text-[2.2rem]")} style={{ color: SERIES[i % SERIES.length] }}>
+              {cell.title}
+            </p>
+            {cell.detail && <p className="mt-1 text-[13px] leading-snug text-[color:var(--p-muted)]">{cell.detail}</p>}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// First row names the two columns ("|| Them || Us"); each row after is
+// "Topic || them || us". On a phone each side carries its column name.
+function Compare({ rows }: { rows: Cell[][] }) {
+  const [head, ...body] = rows;
+  const [them, us] = [head[1]?.title ?? "", head[2]?.title ?? ""];
+  const grid = "sm:grid sm:grid-cols-[9rem_1fr_1fr] sm:items-stretch sm:gap-2";
+  return (
+    <div className="flex flex-col gap-2">
+      <div className={cn(grid, "hidden px-3 text-xs font-bold uppercase tracking-wide text-[color:var(--p-navy)]")}>
+        <span />
+        <span>{them}</span>
+        <span>{us}</span>
+      </div>
+      {body.map(([topic, a, b]) => (
+        <div key={topic.title} className={cn(grid, "flex flex-col gap-2 rounded-2xl bg-white p-3 shadow-sm")}>
+          <p className={cn(anton, "self-center text-lg leading-tight text-[color:var(--p-navy)]")}>{topic.title}</p>
+          <p className="rounded-xl bg-[color:var(--p-card)] px-3 py-2 text-[13px] leading-snug text-[color:var(--p-muted)]">
+            <span className="block text-[11px] font-bold uppercase tracking-wide sm:hidden">{them}</span>
+            {a?.title}
+          </p>
+          <p className="rounded-xl border-2 border-[color:var(--p-green)] bg-[#ecfdf5] px-3 py-2 text-[13px] font-semibold leading-snug text-[color:var(--p-navy)]">
+            <span className="block text-[11px] font-bold uppercase tracking-wide text-[#0f8a5a] sm:hidden">{us}</span>
+            {b?.title}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // A poster panel in the themoneybees.co/finternship style: Higgsfield art with
 // no words in it, and every label as page text, so it stays sharp, correct and
 // readable on a phone (a scaled-down Mermaid SVG shrank to ~5px).
 // A single-cell first row is the reader (the YOU card). layers: a single-cell
 // last row is the base bar, rows between sit side by side. pyramid: numbered
 // tiers. steps: one step per line, across on a wide screen, down on a phone.
+// stats: big numbers (a single-cell last row is the base bar). compare: see
+// Compare. Wide content (steps, stats, compare, a row of 4+) sits under the
+// headline instead of beside the art.
 export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: DiagramKind }) {
   const { title, art, rows } = parseDiagram(code);
-  const steps = kind === "steps";
-  const you = rows.length > 1 && rows[0].length === 1 ? rows[0][0] : undefined;
+  const you = (kind === "layers" || kind === "pyramid") && rows.length > 1 && rows[0].length === 1 ? rows[0][0] : undefined;
   const last = rows[rows.length - 1];
-  const base = kind === "layers" && rows.length > (you ? 2 : 1) && last.length === 1 ? last[0] : undefined;
+  const base = (kind === "layers" || kind === "stats") && rows.length > (you ? 2 : 1) && last.length === 1 ? last[0] : undefined;
   const middle = rows.slice(you ? 1 : 0, base ? -1 : undefined);
+  const wide = kind === "steps" || kind === "stats" || kind === "compare" || middle.some((cells) => cells.length > 3);
+
+  const content =
+    kind === "steps" ? (
+      <Steps cells={rows.flat()} />
+    ) : kind === "stats" ? (
+      <Stats cells={middle.flat()} />
+    ) : kind === "compare" ? (
+      <Compare rows={rows} />
+    ) : (
+      middle.map((cells, i) => (
+        <div
+          key={i}
+          // Title-only cells (a list of words) sit two to a line on a phone.
+          className={cn("grid gap-2 sm:auto-cols-fr sm:grid-flow-col", cells.length > 2 && cells.every((c) => !c.detail) && "grid-cols-2 max-sm:[&>*:last-child:nth-child(odd)]:col-span-2")}
+        >
+          {cells.map((cell, j) =>
+            kind === "pyramid" ? (
+              <Card key={cell.title} cell={cell} color={SERIES[i % SERIES.length]} n={i + 1} />
+            ) : (
+              <Card key={cell.title} cell={cell} color={PILLARS[j % PILLARS.length]} />
+            ),
+          )}
+        </div>
+      ))
+    );
 
   const artImg = art && (
-    <img src={art} alt="" aria-hidden loading="lazy" className="mx-auto block max-h-56 w-auto drop-shadow-xl sm:max-h-[26rem]" />
+    <img
+      src={art}
+      alt=""
+      aria-hidden
+      loading="lazy"
+      // Beside a headline the art stays small; beside the cards it can fill the column.
+      className={cn("mx-auto block max-h-56 w-auto drop-shadow-xl", wide ? "sm:max-h-60" : "sm:max-h-[26rem]")}
+    />
   );
 
   return (
@@ -140,14 +225,16 @@ export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: 
       className="f14-poster not-prose relative my-8 overflow-hidden rounded-3xl bg-[color:var(--p-yellow)] p-4 sm:p-7"
     >
       <span aria-hidden className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[color:var(--p-yellow-soft)]" />
-      {steps ? (
+      {wide ? (
         <div className="relative">
-          <div className="grid items-center gap-3 sm:grid-cols-[3fr_2fr]">
+          <div className={cn("grid items-center gap-3", art && "sm:grid-cols-[3fr_2fr]")}>
             {title ? <Headline title={title} /> : <span />}
             {artImg}
           </div>
-          <div className="mt-4">
-            <Steps cells={rows.flat()} />
+          <div className="mt-4 flex flex-col gap-2">
+            {you && <You cell={you} />}
+            {content}
+            {base && <div className="pt-1"><Base cell={base} /></div>}
           </div>
         </div>
       ) : (
@@ -157,22 +244,8 @@ export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: 
             {title && <Headline title={title} />}
             <div className="flex flex-col gap-2">
               {you && <You cell={you} />}
-              {middle.map((cells, i) => (
-                <div key={i} className="flex flex-col gap-2 sm:flex-row">
-                  {cells.map((cell, j) =>
-                    kind === "pyramid" ? (
-                      <Card key={cell.title} cell={cell} color={SERIES[i % SERIES.length]} n={i + 1} />
-                    ) : (
-                      <Card key={cell.title} cell={cell} color={PILLARS[j % PILLARS.length]} />
-                    ),
-                  )}
-                </div>
-              ))}
-              {base && (
-                <div className="pt-1">
-                  <Base cell={base} />
-                </div>
-              )}
+              {content}
+              {base && <div className="pt-1"><Base cell={base} /></div>}
             </div>
           </div>
         </div>
