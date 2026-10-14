@@ -132,7 +132,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     week: 2,
     dayInWeek: 7,
     title: "Your timeline with us",
-    duration: 4,
+    duration: 3,
     bigIdea:
       "Promotion goes on your results, not how long you've been here.",
   },
