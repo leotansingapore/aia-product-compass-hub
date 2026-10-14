@@ -99,12 +99,13 @@ describe("First 14 Days lesson markdown", () => {
     const steps = screen.getAllByRole("listitem");
     expect(steps.map((li) => li.textContent)).toEqual(["1Brief30 min", "2Testfit", "3Offersign"]);
   });
-  it("every fence in a First 14 Days lesson is a diagram kind, and its art file exists", () => {
+  it("every fence in a First 14 Days lesson is the income calculator or a diagram kind, and its art file exists", () => {
     const days = readdirSync("docs/first-14-days", { recursive: true, encoding: "utf8" }).filter((f) => /day-\d+\.md$/.test(f));
     expect(days).toHaveLength(14);
     for (const day of days) {
       const md = readFileSync(`docs/first-14-days/${day}`, "utf8");
-      for (const [, lang, body] of md.matchAll(/^```(\w*)\n([\s\S]*?)^```$/gm)) {
+      for (const [, lang, body] of md.matchAll(/^```([\w-]*)\n([\s\S]*?)^```$/gm)) {
+        if (lang === "income-calculator") continue;
         expect(DIAGRAM_KINDS, `${day}: \`\`\`${lang}`).toContain(lang);
         const { art, rows } = parseDiagram(body);
         expect(rows.length, `${day}: ${lang} has no rows`).toBeGreaterThan(0);

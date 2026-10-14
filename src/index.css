@@ -759,3 +759,13 @@
   --p-5: #2f5bff;
   --p-6: #7c3aed;
 }
+
+/* First 14 Days income calculator series (Day 6), checked with the dataviz
+   validator against the card surface in each mode. */
+.f14-income {
+  --inc-active: #2f5bff;
+  --inc-passive: #16a34a;
+}
+.dark .f14-income {
+  --inc-active: #5b7fff;
+}

@@ -55,6 +55,9 @@ Here is my own back-end, year by year. This is only passive income (renewals, Ca
 
 By year 6, even if I did no new business that year, I would still earn more than $100k in passive income.
 
+```income-calculator
+```
+
 This is how you build a real, sustainable business instead of a series of transactions.
 
 ## Scalability: how to grow without the grind

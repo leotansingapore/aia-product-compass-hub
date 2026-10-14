@@ -1,4 +1,4 @@
-import { Children, isValidElement } from "react";
+import { Children, isValidElement, lazy, Suspense } from "react";
 import type { Components } from "react-markdown";
 import { ZoomIn } from "lucide-react";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
@@ -22,9 +22,13 @@ const BaseCode = dayMarkdownComponents.code as any;
 const BasePre = dayMarkdownComponents.pre as any;
 const fenceLang = (className: unknown) => (typeof className === "string" ? className.replace("language-", "") : "");
 const isDiagram = (lang: string): lang is DiagramKind => (DIAGRAM_KINDS as readonly string[]).includes(lang);
+// Lazy: recharts only loads on the day that uses the calculator (Day 6).
+const IncomeCalculator = lazy(() => import("./IncomeCalculator"));
+const isBlock = (lang: string) => isDiagram(lang) || lang === "income-calculator";
 
 // Day markdown for the First 14 Days: ```layers, ```pyramid, ```steps, ```stats
-// and ```compare fences draw diagrams (LayersDiagram), an image opens full size in a new tab, where a
+// and ```compare fences draw diagrams (LayersDiagram), ```income-calculator embeds the
+// income calculator, an image opens full size in a new tab, where a
 // phone can pinch-zoom a dense slide, and booking links are counted.
 export const lessonMarkdownComponents: Components = {
   ...dayMarkdownComponents,
@@ -49,13 +53,19 @@ export const lessonMarkdownComponents: Components = {
   ),
   code: (props) => {
     const lang = fenceLang(props.className);
+    if (lang === "income-calculator")
+      return (
+        <Suspense fallback={<div className="my-8 h-[40rem] animate-pulse rounded-2xl bg-muted" />}>
+          <IncomeCalculator />
+        </Suspense>
+      );
     if (!isDiagram(lang)) return <BaseCode {...props} />;
     return <LayersDiagram code={[props.children].flat().join("")} kind={lang} />;
   },
   pre: (props) => {
     const child = Children.toArray(props.children)[0];
     const lang = isValidElement<{ className?: string }>(child) ? fenceLang(child.props.className) : "";
-    return isDiagram(lang) ? <>{props.children}</> : <BasePre {...props} />;
+    return isBlock(lang) ? <>{props.children}</> : <BasePre {...props} />;
   },
   // The shared li is text-sm, a size below the lesson's paragraphs.
   li: ({ children }) => <li className="pl-1 leading-relaxed text-foreground">{children}</li>,
