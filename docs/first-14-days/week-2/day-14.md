@@ -61,7 +61,6 @@ You choose your pay scheme and receive a $1,000 onboarding incentive.
 ```steps
 title: Your career | path
 Financial services consultant | build your own client book
-Financial services manager | start your own team and coach new advisors
 Associate director | lead several teams of advisors, from year 2
 Director | run your own agency
 Senior director
