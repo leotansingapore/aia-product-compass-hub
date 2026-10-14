@@ -1,5 +1,6 @@
 import { Children, isValidElement } from "react";
 import type { Components } from "react-markdown";
+import { ZoomIn } from "lucide-react";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
 import { DIAGRAM_KINDS, LayersDiagram, type DiagramKind } from "./LayersDiagram";
 
@@ -34,9 +35,16 @@ export const lessonMarkdownComponents: Components = {
       rel="noopener noreferrer"
       aria-label={`Open full size: ${props.alt || "image"}`}
       // A portrait photo at natural size ran ~960px tall on desktop.
-      className="block cursor-zoom-in [&_img]:max-h-[70vh] [&_img]:max-w-full [&_img]:!w-auto"
+      className="relative block cursor-zoom-in [&_img]:max-h-[70vh] [&_img]:max-w-full [&_img]:!w-auto"
     >
       <BaseImg {...props} />
+      {/* A dense slide is unreadable at phone width; say it opens full size. */}
+      <span
+        aria-hidden
+        className="absolute bottom-4 right-2 grid h-8 w-8 place-items-center rounded-full bg-background/90 text-foreground shadow sm:hidden"
+      >
+        <ZoomIn className="h-4 w-4" />
+      </span>
     </a>
   ),
   code: (props) => {
