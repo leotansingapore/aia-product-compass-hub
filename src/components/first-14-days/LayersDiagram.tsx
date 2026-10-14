@@ -110,7 +110,8 @@ function Steps({ cells }: { cells: Cell[] }) {
         <li key={cell.title} className="relative flex gap-3 sm:flex-1 sm:flex-col sm:items-center sm:text-center">
           <span
             className={cn(anton, "grid h-10 w-10 shrink-0 place-items-center rounded-full border-[3px] border-white text-lg text-white shadow")}
-            style={{ background: done ? "var(--p-green)" : SERIES[i % SERIES.length] }}
+            // Navy, not green: step 4 of the road is already green and would read as done too.
+            style={{ background: done ? "var(--p-navy)" : SERIES[i % SERIES.length] }}
           >
             {done ? <Check aria-label="Done" className="h-5 w-5" strokeWidth={3} /> : i + 1}
           </span>
