@@ -1,9 +1,13 @@
+import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Cell = { title: string; detail: string };
 
+export type DiagramKind = "layers" | "pyramid" | "steps";
+
 // Body of a ```layers or ```pyramid fence: one row per line, cells side by side
 // split by "||", each cell "Title | detail". The first row is the reader.
+// A ```steps fence is one step per line, in a row on a wide screen.
 export function parseLayers(code: string): Cell[][] {
   return code
     .split("\n")
@@ -19,8 +23,10 @@ export function parseLayers(code: string): Cell[][] {
 
 // Plain HTML instead of Mermaid: the text stays page-sized on a phone, where a
 // scaled-down SVG of three side-by-side boxes shrank to ~5px.
-export function LayersDiagram({ code, pyramid = false }: { code: string; pyramid?: boolean }) {
-  const rows = parseLayers(code);
+export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: DiagramKind }) {
+  const steps = kind === "steps";
+  const pyramid = kind === "pyramid";
+  const rows = steps ? [parseLayers(code).flat()] : parseLayers(code);
   return (
     <figure className="not-prose my-6 flex flex-col items-center gap-1.5">
       {rows.map((cells, i) => (
@@ -30,19 +36,22 @@ export function LayersDiagram({ code, pyramid = false }: { code: string; pyramid
           // Pyramid rows widen from 40% at the top to the full width at the base.
           style={pyramid ? ({ "--row-w": `${40 + (60 * i) / Math.max(rows.length - 1, 1)}%` } as React.CSSProperties) : undefined}
         >
-          {cells.map((cell) => (
+          {cells.flatMap((cell, j) => [
+            steps && j > 0 && (
+              <ChevronRight key={`arrow-${j}`} aria-hidden className="h-4 w-4 shrink-0 rotate-90 self-center text-muted-foreground sm:rotate-0" />
+            ),
             <div
               key={cell.title}
               className={cn(
                 "flex-1 rounded-xl border px-4 py-2.5 text-center",
-                i === 0 ? "border-primary-glow/60 bg-primary-glow/15" : "border-border bg-muted/40",
+                i === 0 && !steps ? "border-primary-glow/60 bg-primary-glow/15" : "border-border bg-muted/40",
                 cells.length > 1 && "sm:py-5",
               )}
             >
-              <p className={cn("text-sm text-foreground", i === 0 ? "font-bold" : "font-semibold")}>{cell.title}</p>
+              <p className={cn("text-sm text-foreground", i === 0 && !steps ? "font-bold" : "font-semibold")}>{cell.title}</p>
               {cell.detail && <p className="mt-0.5 text-[13px] leading-snug text-muted-foreground">{cell.detail}</p>}
-            </div>
-          ))}
+            </div>,
+          ])}
         </div>
       ))}
     </figure>

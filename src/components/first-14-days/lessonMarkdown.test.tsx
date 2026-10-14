@@ -43,6 +43,15 @@ describe("First 14 Days lesson markdown", () => {
     expect(screen.getByText("x | y").previousSibling?.textContent).toBe("C");
   });
 
+  it("lays a steps fence out as one row of steps, none highlighted", () => {
+    const { container } = renderLesson("```steps\n1 · Brief | 30 min\n2 · Test | fit\n3 · Offer | sign\n```");
+    const row = container.querySelectorAll("figure > div");
+    expect(row).toHaveLength(1);
+    expect(row[0].querySelectorAll(":scope > div")).toHaveLength(3);
+    expect(row[0].querySelectorAll(":scope > svg")).toHaveLength(2);
+    expect(container.querySelector(".bg-primary-glow\\/15")).toBeNull();
+  });
+
   it("widens pyramid rows from the top down", () => {
     const { container } = renderLesson("```pyramid\nYou\nTier 1 | a\nTier 2 | b\n```");
     const widths = Array.from(container.querySelectorAll<HTMLElement>("figure > div"), (r) => r.style.getPropertyValue("--row-w"));

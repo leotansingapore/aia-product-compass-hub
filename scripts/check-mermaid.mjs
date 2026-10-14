@@ -5,7 +5,7 @@ const BASE = "http://localhost:8080";
 const EMAIL = process.env.AUDIT_EMAIL ?? "tanjunsing@gmail.com";
 const PASSWORD = process.env.AUDIT_PASSWORD ?? "Leotantemppass1";
 
-const DAYS_WITH_MERMAID = [14]; // the only First 14 day left with a mermaid block
+const DAYS_WITH_MERMAID = []; // no First 14 day has a mermaid block since Day 14 moved to a steps fence
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
