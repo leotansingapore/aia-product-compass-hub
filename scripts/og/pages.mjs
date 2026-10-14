@@ -577,7 +577,7 @@ export default {
   },
   "/learning-track/first-14-days/day/14": {
     "title": "Day 14: Your timeline with us",
-    "description": "I didn't have a crystal ball. I joined with the mindset that I had everything to gain and nothing to lose.",
+    "description": "Promotion goes on your results, not how long you've been here.",
     "card": "learning-track-first-14-days-day-14"
   },
   "/learning-track/first-14-days/day/2": {

@@ -134,6 +134,6 @@ export const DAY_SUMMARIES: DaySummary[] = [
     title: "Your timeline with us",
     duration: 4,
     bigIdea:
-      "I didn't have a crystal ball. I joined with the mindset that I had everything to gain and nothing to lose.",
+      "Promotion goes on your results, not how long you've been here.",
   },
 ];

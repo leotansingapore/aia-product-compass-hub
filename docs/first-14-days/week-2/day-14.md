@@ -2,7 +2,7 @@
 week: 2
 day: 14
 title: "Your timeline with us"
-big_idea: "I didn't have a crystal ball. I joined with the mindset that I had everything to gain and nothing to lose."
+big_idea: "Promotion goes on your results, not how long you've been here."
 author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
@@ -63,19 +63,21 @@ In month 3, you're added to our CRM and get your own dashboard. Our appointment 
 
 From month 4, you handle 4 to 5 appointments a week, your closing rate improves, and referrals start coming from happy clients.
 
-## How much do you need to commit?
+## Your career path
 
-When I joined as a student advisor, I had no clue whether this would work out. There wasn't even any support to help me pass my exams, and none of the training programs we have now. I joined with the mindset that I had everything to gain and nothing to lose.
+```steps
+title: Your career | path
+Financial services consultant | build your own client book
+Financial services manager | start your own team and coach new advisors
+Associate director | lead several teams of advisors
+Director | run your own agency
+```
 
-I didn't have a crystal ball to know whether it would work. At the very least, I'd gain income, knowledge, communication skills and work experience.
+Along the way:
 
-And even if it didn't work out, I could still pursue many other career paths after graduation.
-
-Did I need to quit my degree? Nope. Could I still do other things? Yes. Many advisors join us while still in full-time jobs or degrees.
-
-There was no opportunity cost and no contractual obligation. I could quit anytime if it didn't work out, I had no fixed hours, and I chose my working hours fully.
-
-The racetrack is built. The car is ready. All you need to do is get behind the wheel.
+- Before you're licensed: our 12 weeks of training, papers and practice.
+- Your first year: AIA's year-long BTS programme for new advisors, plus the new advisor bonus (EPS).
+- After a year: a study group for advisors aiming for MDRT, the industry's top-producer standard.
 
 ---
 
