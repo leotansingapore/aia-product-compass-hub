@@ -208,15 +208,25 @@ export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: 
       ))
     );
 
-  const artImg = art && (
-    <img
-      src={art}
-      alt=""
-      aria-hidden
-      loading="lazy"
-      // Beside a headline the art stays small; beside the cards it can fill the column.
-      className={cn("mx-auto block max-h-56 w-auto drop-shadow-xl", wide ? "sm:max-h-60" : "sm:max-h-[26rem]")}
-    />
+  // The art fills a box as tall as the text beside it, so it never pads the
+  // panel with empty yellow; on a phone it gets a fixed band above the cards.
+  const artBox = art && (
+    <div
+      className={cn(
+        "relative h-56 w-full sm:h-auto sm:min-h-[13rem] sm:self-stretch",
+        wide && "sm:col-start-2 sm:row-span-2 sm:row-start-1",
+      )}
+    >
+      <img src={art} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full object-contain drop-shadow-xl" />
+    </div>
+  );
+
+  const body = (
+    <div className="flex flex-col gap-2">
+      {you && <You cell={you} />}
+      {content}
+      {base && <div className="pt-1"><Base cell={base} /></div>}
+    </div>
   );
 
   return (
@@ -226,27 +236,18 @@ export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: 
     >
       <span aria-hidden className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[color:var(--p-yellow-soft)]" />
       {wide ? (
-        <div className="relative">
-          <div className={cn("grid items-center gap-3", art && "sm:grid-cols-[3fr_2fr]")}>
-            {title ? <Headline title={title} /> : <span />}
-            {artImg}
-          </div>
-          <div className="mt-4 flex flex-col gap-2">
-            {you && <You cell={you} />}
-            {content}
-            {base && <div className="pt-1"><Base cell={base} /></div>}
-          </div>
+        // Headline, then art, then cards on a phone; the art takes a right column beside both on a wide screen.
+        <div className={cn("relative grid gap-x-6 gap-y-3", art && "sm:grid-cols-[minmax(0,1fr)_14rem] sm:grid-rows-[auto_1fr]")}>
+          {title && <Headline title={title} />}
+          {artBox}
+          <div className="sm:col-start-1">{body}</div>
         </div>
       ) : (
-        <div className={cn("relative grid items-center gap-5", art && "sm:grid-cols-[2fr_3fr]")}>
-          {artImg}
-          <div>
+        <div className={cn("relative grid gap-5", art && "sm:grid-cols-[2fr_3fr]")}>
+          {artBox}
+          <div className="self-center">
             {title && <Headline title={title} />}
-            <div className="flex flex-col gap-2">
-              {you && <You cell={you} />}
-              {content}
-              {base && <div className="pt-1"><Base cell={base} /></div>}
-            </div>
+            {body}
           </div>
         </div>
       )}

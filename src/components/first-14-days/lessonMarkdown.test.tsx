@@ -91,7 +91,7 @@ describe("First 14 Days lesson markdown", () => {
     const row = screen.getByText("A").closest(".grid");
     expect(row?.className).toMatch(/grid-cols-2/);
     expect(row?.children).toHaveLength(5);
-    expect(container.querySelector(".sm\\:grid-cols-\\[3fr_2fr\\]")).toBeTruthy();
+    expect(container.querySelector("img")?.parentElement?.className).toMatch(/sm:col-start-2/);
   });
 
   it("lays a steps fence out as a numbered road", () => {
