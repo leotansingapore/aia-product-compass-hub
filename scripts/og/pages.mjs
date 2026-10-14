@@ -571,8 +571,8 @@ export default {
     "card": "learning-track-first-14-days-day-12"
   },
   "/learning-track/first-14-days/day/13": {
-    "title": "Day 13: The Flexi scheme and your questions answered",
-    "description": "By default, everyone is on the zero-hour scheme with no commitment needed. The 40-hour and 80-hour schemes let you earn extra money while you complete your exams.",
+    "title": "Day 13: Your questions answered",
+    "description": "Reaching out to friends and family is not required. In fact, 99.9% of my clients were strangers.",
     "card": "learning-track-first-14-days-day-13"
   },
   "/learning-track/first-14-days/day/14": {

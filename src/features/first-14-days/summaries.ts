@@ -122,10 +122,10 @@ export const DAY_SUMMARIES: DaySummary[] = [
     dayNumber: 13,
     week: 2,
     dayInWeek: 6,
-    title: "The Flexi scheme and your questions answered",
-    duration: 9,
+    title: "Your questions answered",
+    duration: 6,
     bigIdea:
-      "By default, everyone is on the zero-hour scheme with no commitment needed. The 40-hour and 80-hour schemes let you earn extra money while you complete your exams.",
+      "Reaching out to friends and family is not required. In fact, 99.9% of my clients were strangers.",
   },
   {
     dayNumber: 14,

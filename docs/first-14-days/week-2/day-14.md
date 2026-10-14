@@ -12,7 +12,7 @@ duration_minutes: 5
 tags: [first-14-days, week-2, prospect, decision, graduation, timeline, leo-voice]
 ---
 
-You've seen the business model, the math, the agency question, the 6 C's, the common worries and the Flexi scheme, so today you decide.
+You've seen the business model, the math, the agency question, the 6 C's, the common worries and my answers to your questions, so today you decide.
 
 ## Four answers
 
@@ -83,7 +83,7 @@ Over the next few months you'll mainly focus on clearing the CMFAS papers, atten
 
 Commit at least 2 to 3 hours a day to studying for the CMFAS papers. Be proactive in asking the right questions and reaching out for help. If you clear the exams quickly, you get a fast-completion reward.
 
-If you need some allowance, ask us about the Flexi scheme from Day 13, where you're paid for helping me with business development work.
+If you need some allowance, ask us about the Flexi scheme, where you're paid for helping me with business development work.
 
 It's optional, but you can also register for the AIA Internship Programme to earn extra money.
 
