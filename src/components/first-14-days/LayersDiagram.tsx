@@ -1,59 +1,182 @@
-import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Cell = { title: string; detail: string };
 
 export type DiagramKind = "layers" | "pyramid" | "steps";
 
-// Body of a ```layers or ```pyramid fence: one row per line, cells side by side
-// split by "||", each cell "Title | detail". The first row is the reader.
-// A ```steps fence is one step per line, in a row on a wide screen.
-export function parseLayers(code: string): Cell[][] {
-  return code
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line) =>
+export type Diagram = { title: string; art: string; rows: Cell[][] };
+
+// Body of a ```layers, ```pyramid or ```steps fence. Optional `title:` and `art:`
+// lines come first (a "|" in the title starts the navy bar). Then one row per
+// line, cells side by side split by "||", each cell "Title | detail".
+export function parseDiagram(code: string): Diagram {
+  const diagram: Diagram = { title: "", art: "", rows: [] };
+  for (const line of code.split("\n").map((l) => l.trim()).filter(Boolean)) {
+    const meta = line.match(/^(title|art):\s*(.+)$/);
+    if (meta) {
+      diagram[meta[1] as "title" | "art"] = meta[2];
+      continue;
+    }
+    diagram.rows.push(
       line.split("||").map((cell) => {
         const [title, ...detail] = cell.split("|");
         return { title: title.trim(), detail: detail.join("|").trim() };
       }),
     );
+  }
+  return diagram;
 }
 
-// Plain HTML instead of Mermaid: the text stays page-sized on a phone, where a
-// scaled-down SVG of three side-by-side boxes shrank to ~5px.
-export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: DiagramKind }) {
-  const steps = kind === "steps";
-  const pyramid = kind === "pyramid";
-  const rows = steps ? [parseLayers(code).flat()] : parseLayers(code);
+// Colours of the pieces in each piece of art, in order: the TSS emblem's three
+// pillars, and the pyramid's slabs and the stair's steps from the top.
+const PILLARS = ["var(--p-pink)", "var(--p-blue)", "var(--p-green)"];
+const SERIES = ["var(--p-1)", "var(--p-2)", "var(--p-3)", "var(--p-4)", "var(--p-5)", "var(--p-6)"];
+
+const anton = "font-['Anton',Impact,sans-serif] uppercase";
+
+function Headline({ title }: { title: string }) {
+  const [lead, bar] = title.split("|").map((s) => s.trim());
   return (
-    <figure className="not-prose my-6 flex flex-col items-center gap-1.5">
-      {rows.map((cells, i) => (
-        <div
-          key={i}
-          className={cn("flex w-full flex-col gap-1.5 sm:flex-row", pyramid && "sm:w-[var(--row-w)]")}
-          // Pyramid rows widen from 40% at the top to the full width at the base.
-          style={pyramid ? ({ "--row-w": `${40 + (60 * i) / Math.max(rows.length - 1, 1)}%` } as React.CSSProperties) : undefined}
-        >
-          {cells.flatMap((cell, j) => [
-            steps && j > 0 && (
-              <ChevronRight key={`arrow-${j}`} aria-hidden className="h-4 w-4 shrink-0 rotate-90 self-center text-muted-foreground sm:rotate-0" />
-            ),
-            <div
-              key={cell.title}
-              className={cn(
-                "flex-1 rounded-xl border px-4 py-2.5 text-center",
-                i === 0 && !steps ? "border-primary-glow/60 bg-primary-glow/15" : "border-border bg-muted/40",
-                cells.length > 1 && "sm:py-5",
-              )}
-            >
-              <p className={cn("text-sm text-foreground", i === 0 && !steps ? "font-bold" : "font-semibold")}>{cell.title}</p>
-              {cell.detail && <p className="mt-0.5 text-[13px] leading-snug text-muted-foreground">{cell.detail}</p>}
-            </div>,
-          ])}
-        </div>
+    <div className={cn(anton, "mb-4 leading-[0.95] text-[color:var(--p-navy)]")}>
+      <p className="text-[1.9rem] sm:text-[2.4rem]">{lead}</p>
+      {bar && (
+        <p className="mt-1.5 inline-block -rotate-[1.5deg] rounded-sm bg-[color:var(--p-navy)] px-3 py-1 text-[1.6rem] text-[color:var(--p-yellow)] sm:text-[2rem]">
+          {bar}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function You({ cell }: { cell: Cell }) {
+  return (
+    <div className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-sm">
+      <span className={cn(anton, "grid h-14 w-14 shrink-0 -rotate-6 place-items-center rounded-full border-[3px] border-white bg-[color:var(--p-pink)] text-lg text-white shadow-md")}>
+        {cell.title}
+      </span>
+      <p className="text-sm font-semibold leading-snug text-[color:var(--p-navy)]">{cell.detail}</p>
+    </div>
+  );
+}
+
+function Card({ cell, color, n }: { cell: Cell; color: string; n?: number }) {
+  return (
+    <div className="flex flex-1 overflow-hidden rounded-2xl bg-white shadow-sm">
+      {n ? (
+        <span className={cn(anton, "grid w-11 shrink-0 place-items-center text-2xl text-white")} style={{ background: color }}>
+          {n}
+        </span>
+      ) : (
+        <span className="w-2 shrink-0" style={{ background: color }} />
+      )}
+      <div className="px-3 py-2.5">
+        <p className="text-sm font-bold leading-snug text-[color:var(--p-navy)]">{cell.title}</p>
+        {cell.detail && <p className="mt-0.5 text-[13px] leading-snug text-[color:var(--p-muted)]">{cell.detail}</p>}
+      </div>
+    </div>
+  );
+}
+
+function Base({ cell }: { cell: Cell }) {
+  return (
+    <div className="-rotate-1 rounded-xl bg-[color:var(--p-navy)] px-4 py-3 text-center shadow-md">
+      <p className={cn(anton, "text-xl tracking-wide text-[color:var(--p-yellow)]")}>{cell.title}</p>
+      {cell.detail && <p className="text-[13px] text-white/85">{cell.detail}</p>}
+    </div>
+  );
+}
+
+function Steps({ cells }: { cells: Cell[] }) {
+  const n = cells.length;
+  return (
+    <ol
+      className="relative flex flex-col gap-4 rounded-2xl bg-white p-4 shadow-sm sm:flex-row sm:gap-3 sm:p-5"
+      // On a wide screen the road runs from the first circle's centre to the last's.
+      style={{ "--edge": `calc(1.25rem + (100% - 2.5rem - ${(n - 1) * 0.75}rem) / ${2 * n})` } as React.CSSProperties}
+    >
+      <span
+        aria-hidden
+        className="absolute bottom-9 left-9 top-9 w-1 rounded-full bg-gradient-to-b from-[color:var(--p-1)] to-[color:var(--p-5)] sm:bottom-auto sm:left-[var(--edge)] sm:right-[var(--edge)] sm:top-[2.4rem] sm:h-1 sm:w-auto sm:bg-gradient-to-r"
+      />
+      {cells.map((cell, i) => (
+        <li key={cell.title} className="relative flex gap-3 sm:flex-1 sm:flex-col sm:items-center sm:text-center">
+          <span
+            className={cn(anton, "grid h-10 w-10 shrink-0 place-items-center rounded-full border-[3px] border-white text-lg text-white shadow")}
+            style={{ background: SERIES[i % SERIES.length] }}
+          >
+            {i + 1}
+          </span>
+          <div>
+            <p className="text-sm font-bold leading-snug text-[color:var(--p-navy)]">{cell.title}</p>
+            {cell.detail && <p className="mt-0.5 text-[13px] leading-snug text-[color:var(--p-muted)]">{cell.detail}</p>}
+          </div>
+        </li>
       ))}
+    </ol>
+  );
+}
+
+// A poster panel in the themoneybees.co/finternship style: Higgsfield art with
+// no words in it, and every label as page text, so it stays sharp, correct and
+// readable on a phone (a scaled-down Mermaid SVG shrank to ~5px).
+// A single-cell first row is the reader (the YOU card). layers: a single-cell
+// last row is the base bar, rows between sit side by side. pyramid: numbered
+// tiers. steps: one step per line, across on a wide screen, down on a phone.
+export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: DiagramKind }) {
+  const { title, art, rows } = parseDiagram(code);
+  const steps = kind === "steps";
+  const you = rows.length > 1 && rows[0].length === 1 ? rows[0][0] : undefined;
+  const last = rows[rows.length - 1];
+  const base = kind === "layers" && rows.length > (you ? 2 : 1) && last.length === 1 ? last[0] : undefined;
+  const middle = rows.slice(you ? 1 : 0, base ? -1 : undefined);
+
+  const artImg = art && (
+    <img src={art} alt="" aria-hidden loading="lazy" className="mx-auto block max-h-56 w-auto drop-shadow-xl sm:max-h-[26rem]" />
+  );
+
+  return (
+    <figure
+      aria-label={title.replace("|", " ") || undefined}
+      className="f14-poster not-prose relative my-8 overflow-hidden rounded-3xl bg-[color:var(--p-yellow)] p-4 sm:p-7"
+    >
+      <span aria-hidden className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[color:var(--p-yellow-soft)]" />
+      {steps ? (
+        <div className="relative">
+          <div className="grid items-center gap-3 sm:grid-cols-[3fr_2fr]">
+            {title ? <Headline title={title} /> : <span />}
+            {artImg}
+          </div>
+          <div className="mt-4">
+            <Steps cells={rows.flat()} />
+          </div>
+        </div>
+      ) : (
+        <div className={cn("relative grid items-center gap-5", art && "sm:grid-cols-[2fr_3fr]")}>
+          {artImg}
+          <div>
+            {title && <Headline title={title} />}
+            <div className="flex flex-col gap-2">
+              {you && <You cell={you} />}
+              {middle.map((cells, i) => (
+                <div key={i} className="flex flex-col gap-2 sm:flex-row">
+                  {cells.map((cell, j) =>
+                    kind === "pyramid" ? (
+                      <Card key={cell.title} cell={cell} color={SERIES[i % SERIES.length]} n={i + 1} />
+                    ) : (
+                      <Card key={cell.title} cell={cell} color={PILLARS[j % PILLARS.length]} />
+                    ),
+                  )}
+                </div>
+              ))}
+              {base && (
+                <div className="pt-1">
+                  <Base cell={base} />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </figure>
   );
 }

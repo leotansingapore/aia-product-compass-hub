@@ -23,11 +23,13 @@ By the end of today, pick one.
 The career fits and our team fits. The next step is an [onboarding call with me](https://www.pick-a-time.app/book/withleo). From there the process has five stages, and it usually takes 2 to 4 weeks:
 
 ```steps
-1 · Initial briefing | 30 min, two-way overview
-2 · Character test | 6 C's alignment
-3 · 1-1 round | 4Rs framework
-4 · HR round | Flexi tier + CMFAS plan
-5 · Final interview | sign offer, commit both sides
+title: Five stages | 2 to 4 weeks
+art: /first-14-days/diagrams/steps.webp
+Initial briefing | 30 min, two-way overview
+Character test | 6 C's alignment
+1-1 round | 4Rs framework
+HR round | Flexi tier + CMFAS plan
+Final interview | sign offer, commit both sides
 ```
 
 1. Initial briefing: 30 minutes where I walk you through the program and answer your questions.

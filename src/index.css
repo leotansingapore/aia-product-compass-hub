@@ -738,3 +738,23 @@
   --heat-4: #6da7ec;
   --heat-5: #9ec5f4;
 }
+
+/* First 14 Days poster diagrams, in the themoneybees.co/finternship palette.
+   A poster keeps its brand colours in dark mode, like a picture does.
+   --p-1..6 match the pyramid slabs and stair steps in the Higgsfield art
+   (public/first-14-days/diagrams), top to bottom. */
+.f14-poster {
+  --p-navy: #121a4b;
+  --p-yellow: #ffc21a;
+  --p-yellow-soft: #ffd95c;
+  --p-pink: #ff4d7d;
+  --p-blue: #2f5bff;
+  --p-green: #16c47f;
+  --p-muted: #555d78;
+  --p-1: #e11d48;
+  --p-2: #ea580c;
+  --p-3: #d97706;
+  --p-4: #16a34a;
+  --p-5: #2f5bff;
+  --p-6: #7c3aed;
+}

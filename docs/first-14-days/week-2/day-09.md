@@ -16,6 +16,8 @@ tags: [first-14-days, week-2, prospect, traits, self-assessment, 6-cs, leo-voice
 Yesterday you saw why the agency matters. Here is the system we built. We call it the Tripod Support System (TSS).
 
 ```layers
+title: Tripod support | system
+art: /first-14-days/diagrams/tss.webp
 You | time goes to clients, not infrastructure
 Client acquisition | paid ads, funnels, appointment setters, cold scripts || Talent acquisition | recruitment pipeline, team building when ready || Nurturing | iSmart CRM, follow-ups, reviews, referrals
 Foundation | training, value-adding, 1-1 coaching
@@ -32,13 +34,15 @@ Under all three sits the foundation: training, value-adding and 1-1 coaching.
 Behind TSS is the 6-tier power pyramid, the layers of support under every meeting you run.
 
 ```pyramid
+title: The 6-tier | power pyramid
+art: /first-14-days/diagrams/pyramid.webp
 You | hunger, discipline, follow-through
-Tier 1 · Company (AIA) | EPS, career benefit, products, brand, claims
-Tier 2 · District (WFG) | ad subsidy, events, roadshows
-Tier 3 · Team | mentor, VA ops, telemarketer, appointment setter
-Tier 4 · Infrastructure | Lark DB, SOPs, objection library, chatbots
-Tier 5 · Frontline tools | TWC presenter, DBI calc, retirement calc
-Tier 6 · Post-sale | renewals, referrals, updates, community
+Company (AIA) | EPS, career benefit, products, brand, claims
+District (WFG) | ad subsidy, events, roadshows
+Team | mentor, VA ops, telemarketer, appointment setter
+Infrastructure | Lark DB, SOPs, objection library, chatbots
+Frontline tools | TWC presenter, DBI calc, retirement calc
+Post-sale | renewals, referrals, updates, community
 ```
 
 1. Company (AIA): EPS allowance, career benefit (1.5x in years 2 to 6, APF from year 7), hospitalisation, HNW and corporate products, $1B+ in claims approved a year, and a 50% ad subsidy. This answers "my company doesn't back me up".

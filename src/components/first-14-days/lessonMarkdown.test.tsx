@@ -3,6 +3,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { lessonMarkdownComponents, ONBOARDING_CALL_URL } from "./lessonMarkdown";
+import { parseDiagram } from "./LayersDiagram";
 
 const capture = vi.fn();
 vi.mock("posthog-js", () => ({ default: { capture: (...args: unknown[]) => capture(...args) } }));
@@ -32,29 +33,44 @@ describe("First 14 Days lesson markdown", () => {
     expect(capture).toHaveBeenCalledWith("onboarding_call_clicked", { source: "link" });
   });
 
-  it("draws a layers fence as cards, side by side where a row splits on ||", () => {
+  it("reads a diagram fence: title and art lines first, then rows of Title | detail cells", () => {
+    expect(parseDiagram("title: Lead | bar\nart: /a.webp\nYou | me\nA | one || B | x | y\n")).toEqual({
+      title: "Lead | bar",
+      art: "/a.webp",
+      rows: [[{ title: "You", detail: "me" }], [{ title: "A", detail: "one" }, { title: "B", detail: "x | y" }]],
+    });
+  });
+
+  it("draws a layers fence as a poster: reader on top, cards side by side, base bar last", () => {
     const { container } = renderLesson(
-      "```layers\nYou | time goes to clients\nA | one || B | two, three || C | x | y\nBase | under all\n```",
+      "```layers\ntitle: Tripod | system\nart: /first-14-days/diagrams/tss.webp\nYou | clients first\nA | one || B | two || C | three\nBase | under all\n```",
     );
     expect(container.querySelector("pre, code")).toBeNull();
-    const rows = container.querySelectorAll("figure > div");
-    expect(Array.from(rows, (r) => r.children.length)).toEqual([1, 3, 1]);
-    expect(screen.getByText("two, three")).toBeTruthy();
-    expect(screen.getByText("x | y").previousSibling?.textContent).toBe("C");
+    expect(screen.getByText("Tripod")).toBeTruthy();
+    expect(screen.getByText("system")).toBeTruthy();
+    expect(container.querySelector("img")?.getAttribute("src")).toBe("/first-14-days/diagrams/tss.webp");
+    expect(screen.getByText("You").classList.contains("-rotate-6")).toBe(true);
+    const card = (t: string) => screen.getByText(t).closest(".flex-1");
+    expect(card("A")?.parentElement).toBe(card("C")?.parentElement);
+    expect(screen.getByText("Base").closest(".-rotate-1")).toBeTruthy();
   });
 
-  it("lays a steps fence out as one row of steps, none highlighted", () => {
-    const { container } = renderLesson("```steps\n1 · Brief | 30 min\n2 · Test | fit\n3 · Offer | sign\n```");
-    const row = container.querySelectorAll("figure > div");
-    expect(row).toHaveLength(1);
-    expect(row[0].querySelectorAll(":scope > div")).toHaveLength(3);
-    expect(row[0].querySelectorAll(":scope > svg")).toHaveLength(2);
-    expect(container.querySelector(".bg-primary-glow\\/15")).toBeNull();
+  it("draws a one-row layers fence as plain cards, with no reader and no base", () => {
+    const { container } = renderLesson("```layers\nIncome | a || Independence | b || Impact | c\n```");
+    expect(container.querySelector(".-rotate-6, .-rotate-1")).toBeNull();
+    expect(screen.getByText("Income").closest(".flex-1")?.parentElement?.children).toHaveLength(3);
   });
 
-  it("widens pyramid rows from the top down", () => {
-    const { container } = renderLesson("```pyramid\nYou\nTier 1 | a\nTier 2 | b\n```");
-    const widths = Array.from(container.querySelectorAll<HTMLElement>("figure > div"), (r) => r.style.getPropertyValue("--row-w"));
-    expect(widths).toEqual(["40%", "70%", "100%"]);
+  it("numbers pyramid tiers under the reader", () => {
+    renderLesson("```pyramid\nYou | me\nCompany | a\nDistrict | b\n```");
+    expect(screen.getByText("You").classList.contains("-rotate-6")).toBe(true);
+    expect(screen.getByText("Company").closest(".flex-1")?.textContent).toMatch(/^1Company/);
+    expect(screen.getByText("District").closest(".flex-1")?.textContent).toMatch(/^2District/);
+  });
+
+  it("lays a steps fence out as a numbered road", () => {
+    renderLesson("```steps\nBrief | 30 min\nTest | fit\nOffer | sign\n```");
+    const steps = screen.getAllByRole("listitem");
+    expect(steps.map((li) => li.textContent)).toEqual(["1Brief30 min", "2Testfit", "3Offersign"]);
   });
 });
