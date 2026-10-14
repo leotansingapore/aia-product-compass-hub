@@ -944,6 +944,31 @@ export type Database = {
           },
         ]
       }
+      first_14_days_day_edits: {
+        Row: {
+          base_hash: string
+          created_at: string
+          created_by: string | null
+          day_number: number
+          id: number
+          markdown: string | null
+        }
+        Insert: {
+          base_hash: string
+          created_at?: string
+          created_by?: string | null
+          day_number: number
+          markdown?: string | null
+        }
+        Update: {
+          base_hash?: string
+          created_at?: string
+          created_by?: string | null
+          day_number?: number
+          markdown?: string | null
+        }
+        Relationships: []
+      }
       first_14_days_progress: {
         Row: {
           day_number: number

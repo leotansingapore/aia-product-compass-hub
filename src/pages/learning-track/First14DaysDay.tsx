@@ -9,6 +9,7 @@ import {
   CalendarDays,
   CheckCircle2,
   Lock,
+  Pencil,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
@@ -19,6 +20,10 @@ import { cn } from "@/lib/utils";
 import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
 import { loadDay, loadWeekReadme, WEEK_META } from "@/features/first-14-days/content";
+import { convertImageEmbeds } from "@/features/first-60-days/parse";
+import { fileChangedSinceEdit, shownSource } from "@/features/first-14-days/edits";
+import { useDayEdits } from "@/hooks/first-14-days/useDayEdits";
+import { DayEditor } from "@/components/first-14-days/DayEditor";
 import { DAY_SUMMARIES, TOTAL_DAYS } from "@/features/first-14-days/summaries";
 import type { Day } from "@/features/first-14-days/types";
 import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProgress";
@@ -97,7 +102,11 @@ export default function First14DaysDay() {
     unmarkDayCompleteAsAdmin,
     isLoading: progressLoading,
   } = useFirst14DaysProgress();
-  const { isActualAdmin } = useAdmin();
+  const { isActualAdmin, isAdmin } = useAdmin();
+  // Admin edits made in the app override the lesson file; a failed read falls back to the file.
+  const { edits, isLoading: editsLoading } = useDayEdits(dayNumber);
+  const [editing, setEditing] = useState(false);
+  useEffect(() => setEditing(false), [dayNumber]);
   const { tier } = useUserTier();
   // Explorers (prospects) unlock each day by completing the one before.
   // Papers-takers and Post-RNF have already committed — First 14 Days is
@@ -135,8 +144,8 @@ export default function First14DaysDay() {
   // lock screen on a stale-empty progress map, the user sees a phantom "Day
   // locked" pointing them back to the previous day, which then reads as not
   // done (progress still empty) so they get asked to complete it again.
-  if (loading || progressLoading || !day) {
-    if (loading || progressLoading) {
+  if (loading || progressLoading || editsLoading || !day) {
+    if (loading || progressLoading || editsLoading) {
       return (
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="h-4 w-40 animate-pulse rounded bg-muted" />
@@ -192,6 +201,8 @@ export default function First14DaysDay() {
     }
   };
   const weekMeta = WEEK_META[day.week];
+  const lessonMarkdown = edits.length ? convertImageEmbeds(shownSource(edits, day.source)) : day.markdown;
+  const appEdit = edits[0]?.markdown != null ? edits[0] : undefined;
 
   // Course-wide, not per day: opening a day already counts as read, so a
   // per-day ring sat at 50% before anyone had read a word.
@@ -307,6 +318,20 @@ export default function First14DaysDay() {
               )}
             </div>
 
+            {isAdmin && !editing && (
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                <Button variant="outline" size="sm" onClick={() => setEditing(true)} className="gap-1.5">
+                  <Pencil className="h-3.5 w-3.5" />
+                  Edit lesson
+                </Button>
+                {appEdit && (
+                  <span className="text-xs text-muted-foreground">
+                    Edited in the app, {new Date(appEdit.created_at).toLocaleDateString("en-SG", { day: "numeric", month: "short" })}
+                  </span>
+                )}
+              </div>
+            )}
+
             {isProgressAdmin && completed && (
               <div className="flex flex-wrap items-center gap-2 pt-2">
                 <Button
@@ -324,13 +349,26 @@ export default function First14DaysDay() {
         </div>
       </section>
 
-      <Card className="border-border/60 shadow-card">
-        <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={lessonMarkdownComponents}>
-            {day.markdown}
-          </ReactMarkdown>
-        </CardContent>
-      </Card>
+      {isAdmin && !editing && fileChangedSinceEdit(edits, day.source) && (
+        <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-amber-500/40 bg-amber-500/10 p-3 text-sm">
+          <span>The lesson file changed in the code after this day was edited in the app. Learners still see the app edit.</span>
+          <Button size="sm" variant="outline" onClick={() => setEditing(true)}>
+            Review in the editor
+          </Button>
+        </div>
+      )}
+
+      {editing ? (
+        <DayEditor dayNumber={dayNumber} fileSource={day.source} onClose={() => setEditing(false)} />
+      ) : (
+        <Card className="border-border/60 shadow-card">
+          <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={lessonMarkdownComponents}>
+              {lessonMarkdown}
+            </ReactMarkdown>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Day 14 ends the course: the next step is a call with Leo. */}
       {dayNumber === TOTAL_DAYS && (

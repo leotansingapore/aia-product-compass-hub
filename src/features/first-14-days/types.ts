@@ -16,6 +16,8 @@ export type Day = {
   path: string;
   frontmatter: DayFrontmatter;
   markdown: string;
+  /** The lesson file's body as written (Obsidian image embeds unconverted): what admins edit. */
+  source: string;
 };
 
 export type Week = {
