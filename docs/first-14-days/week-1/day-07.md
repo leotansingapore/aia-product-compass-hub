@@ -14,7 +14,11 @@ tags: [first-14-days, week-1, prospect, three-i's, income, independence, impact,
 
 There are three I's of this career.
 
-![[first-14-days/images/three-is-mindmap.webp|Income, independence, impact]]
+```layers
+title: The three | I's
+art: /first-14-days/diagrams/three-is.webp
+Income | uncapped ceiling, Year 1 $145K real, renewals compound || Independence | self-scheduled, pick your niche, work from anywhere || Impact | real family security, handle claims moments, meaningful work
+```
 
 Income, independence, impact.
 

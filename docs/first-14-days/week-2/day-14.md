@@ -78,7 +78,13 @@ It's optional, but you can also register for the AIA Internship Programme to ear
 
 Congratulations! You're now qualified to join us as a financial advisor. At this point you lodge your RNF (Representatives Notification Framework). Then you go through a series of onboarding training programmes: FTS (Foundation To Success), the EPS Training Programme and the BTS Training Programme.
 
-![[first-14-days/images/induction-post-exam.webp|After your exams]]
+```steps
+title: New consultants | onboarding programme
+CMFAS tutorial and exams | monthly online tutorials, LMS e-learning videos and mock questions while you prepare
+Foundation to Success | 2 full days on regulation, compliance and the AIA sales advisory process, with AIA's digital tools
+EPS Training Programme | 7 intensive weeks of practical modules and eModules
+BTS Training Programme | 12 months of monthly training on mindset, soft and technical skills, towards Premier Advisor and MDRT
+```
 
 You choose your pay scheme and receive a $1,000 onboarding incentive.
 

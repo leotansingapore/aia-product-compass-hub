@@ -20,7 +20,12 @@ Think of it this way. A 9-to-5 job pays you to perform a function. This career p
 
 Even if you decide this isn't your forever path, the skills you learn stay with you for life. Here are the top three.
 
-![[first-14-days/images/three-skills-stacked.webp|Sales and influence, communication and trust, financial IQ]]
+```layers
+title: The three skills | stacked
+art: /first-14-days/diagrams/three-skills.webp
+You | builder, operator, owner: the modern entrepreneur
+Sales and influence | move people to act || Communication and trust | earn the room || Financial IQ | see money clearly
+```
 
 ## Skill #1: sales and influence (it's not what you think)
 
