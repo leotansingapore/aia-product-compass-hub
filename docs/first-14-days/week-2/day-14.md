@@ -24,19 +24,6 @@ AIA company training | after 1 year as an advisor
 Associate director | from year 2, then director, senior director and executive director
 ```
 
-Once you're licensed, the Next 60 Days training runs for 10 weeks:
-
-1. Reset and activate
-2. Your voice: intent and positioning
-3. Your voice: content and digital trust
-4. Prospecting at volume
-5. Referrals from day one
-6. Reading people with DISC
-7. Hot buttons and pitch mechanics
-8. The pitch
-9. The close
-10. After the close, and graduation
-
 It's going to be exciting!
 
 ### Introduction: what you do today
