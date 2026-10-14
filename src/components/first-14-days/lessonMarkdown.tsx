@@ -33,7 +33,8 @@ export const lessonMarkdownComponents: Components = {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Open full size: ${props.alt || "image"}`}
-      className="block cursor-zoom-in"
+      // A portrait photo at natural size ran ~960px tall on desktop.
+      className="block cursor-zoom-in [&_img]:max-h-[70vh] [&_img]:max-w-full [&_img]:!w-auto"
     >
       <BaseImg {...props} />
     </a>
@@ -48,6 +49,8 @@ export const lessonMarkdownComponents: Components = {
     const lang = isValidElement<{ className?: string }>(child) ? fenceLang(child.props.className) : "";
     return isDiagram(lang) ? <>{props.children}</> : <BasePre {...props} />;
   },
+  // The shared li is text-sm, a size below the lesson's paragraphs.
+  li: ({ children }) => <li className="pl-1 leading-relaxed text-foreground">{children}</li>,
   a: (props: any) =>
     props.href === ONBOARDING_CALL_URL ? (
       <span onClick={() => trackOnboardingCallClick("link")}>
