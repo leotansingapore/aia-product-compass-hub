@@ -99,6 +99,16 @@ describe("First 14 Days lesson markdown", () => {
     const steps = screen.getAllByRole("listitem");
     expect(steps.map((li) => li.textContent)).toEqual(["1Brief30 min", "2Testfit", "3Offersign"]);
   });
+  it("draws a press fence as linked article cards, and drops a non-http link", () => {
+    renderLesson("```press\nThe Paper, 1 Jan 2026 | Big headline | One fact. | https://example.com/a\nOther, 2026 | Second | Fact two. | https://example.com/b | See the ranking\nBad, 2026 | Third | Fact three. | javascript:alert(1)\n```");
+    expect(screen.getAllByRole("article")).toHaveLength(3);
+    const links = screen.getAllByRole("link");
+    expect(links.map((a) => [a.textContent, a.getAttribute("href"), a.getAttribute("target")])).toEqual([
+      ["Read the article", "https://example.com/a", "_blank"],
+      ["See the ranking", "https://example.com/b", "_blank"],
+    ]);
+    expect(screen.getByText("The Paper, 1 Jan 2026")).toBeTruthy();
+  });
   it("shows a step titled '(done)' with a tick instead of its number", () => {
     renderLesson("```steps\nOrientation (done) | First 14 Days\nPapers | next\n```");
     const steps = screen.getAllByRole("listitem");

@@ -74,6 +74,14 @@ Work-life balance || Recognition || Autonomy and flexibility || Income || Job se
 
 In one stroke I get job security, high income, flexibility, recognition and work-life balance, without sacrificing anything else.
 
+```press
+title: Is this a job | worth having?
+The Independent Singapore, 25 Feb 2026 | Indeed's 2026 Best Jobs in Singapore: #1 Financial Advisor | Indeed ranked financial advisor the best job in Singapore for 2026, ahead of sales manager, project manager and IT analyst, picking jobs best placed to keep their demand, stability and mobility. | https://theindependent.sg/piano-teachers-rank-second-in-best-jobs-in-singapore-2026-indeed/
+U.S. News & World Report, 2026 | Financial Advisor: #3 in Best Business Jobs | Ranked the third-best business job in the US for 2026, and 16th of its 100 best jobs overall. | https://careers.usnews.com/best-jobs/financial-advisor | See the ranking
+Insurance Business Asia, 12 Aug 2026 | Financial adviser channel claws back Singapore's premium lead from banks | Advisers at financial advisory firms brought in 37.3% of new life insurance business in the first half of 2026, more than any other channel. | https://www.insurancebusinessmag.com/asia/news/life-insurance/financial-adviser-channel-claws-back-singapores-premium-lead-from-banks-585871.aspx
+Insurance Business Asia, 31 Jul 2026 | Singapore regulators and insurers move to protect human financial advice | "AI is only as effective as the information it receives. It may not identify gaps in our thinking or ask follow-up questions that uncover important aspects of our financial situation." Laura Hoi, MDRT member for 22 years | https://www.insurancebusinessmag.com/asia/news/technology/singapore-regulators-and-insurers-move-to-protect-human-financial-advice-584392.aspx
+```
+
 Since graduation I've started 4 other companies. One of them is a digital marketing agency that is now on the first page of Google for the keyword "digital marketing agency". We have 40 staff.
 
 ![[first-14-days/images/business-marketing-agency.webp|My digital marketing agency]]

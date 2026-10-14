@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 type Cell = { title: string; detail: string };
 
-export const DIAGRAM_KINDS = ["layers", "pyramid", "steps", "stats", "compare"] as const;
+export const DIAGRAM_KINDS = ["layers", "pyramid", "steps", "stats", "compare", "press"] as const;
 export type DiagramKind = (typeof DIAGRAM_KINDS)[number];
 
 export type Diagram = { title: string; art: string; rows: Cell[][] };
@@ -147,6 +147,31 @@ function Stats({ cells }: { cells: Cell[] }) {
 
 // First row names the two columns ("|| Them || Us"); each row after is
 // "Topic || them || us". On a phone each side carries its column name.
+// Press cards, one per line: "Outlet, date | Headline | One fact | https://link | Link text".
+// The link text is optional ("Read the article"); only http(s) links are drawn.
+function Press({ cells }: { cells: Cell[] }) {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2">
+      {cells.map((cell) => {
+        const [headline, fact, url, linkText] = cell.detail.split("|").map((p) => p.trim());
+        return (
+          <article key={headline} className="relative rounded-2xl bg-white px-4 pb-4 pt-5 shadow-sm">
+            <span aria-hidden className="absolute -top-2 left-1/2 h-4 w-16 -translate-x-1/2 -rotate-2 rounded-sm bg-[color:var(--p-yellow-soft)]" />
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-[color:var(--p-muted)]">{cell.title}</p>
+            <p className="mt-1 font-serif text-base font-bold leading-snug text-[color:var(--p-navy)]">{headline}</p>
+            {fact && <p className="mt-1.5 text-[13px] leading-snug text-[color:var(--p-muted)]">{fact}</p>}
+            {url && /^https?:\/\//.test(url) && (
+              <a href={url} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-sm font-semibold text-[color:var(--p-blue)] underline-offset-2 hover:underline">
+                {linkText || "Read the article"}
+              </a>
+            )}
+          </article>
+        );
+      })}
+    </div>
+  );
+}
+
 function Compare({ rows }: { rows: Cell[][] }) {
   const [head, ...body] = rows;
   const [them, us] = [head[1]?.title ?? "", head[2]?.title ?? ""];
@@ -190,13 +215,15 @@ export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: 
   const last = rows[rows.length - 1];
   const base = (kind === "layers" || kind === "stats") && rows.length > (you ? 2 : 1) && last.length === 1 ? last[0] : undefined;
   const middle = rows.slice(you ? 1 : 0, base ? -1 : undefined);
-  const wide = kind === "steps" || kind === "stats" || kind === "compare" || middle.some((cells) => cells.length > 3);
+  const wide = kind === "steps" || kind === "stats" || kind === "compare" || kind === "press" || middle.some((cells) => cells.length > 3);
 
   const content =
     kind === "steps" ? (
       <Steps cells={rows.flat()} />
     ) : kind === "stats" ? (
       <Stats cells={middle.flat()} />
+    ) : kind === "press" ? (
+      <Press cells={rows.flat()} />
     ) : kind === "compare" ? (
       <Compare rows={rows} />
     ) : (
