@@ -42,7 +42,7 @@ It's going to be exciting!
 
 ### Introduction: what you do today
 
-1. [Book your onboarding call with me](https://www.pick-a-time.app/book/withleo).
+1. [Book your review call with me](https://www.pick-a-time.app/book/withleo), and set it to repeat every 2 weeks.
 2. Register for the CMFAS exams and get access to our exam resources.
 3. Book a second onboarding call, where I take you through the whole program in much more detail and connect you with some existing FINterns so you can ask them more questions.
 

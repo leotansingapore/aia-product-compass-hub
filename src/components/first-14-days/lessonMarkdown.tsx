@@ -4,7 +4,8 @@ import { ZoomIn } from "lucide-react";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
 import { DIAGRAM_KINDS, LayersDiagram, type DiagramKind } from "./LayersDiagram";
 
-// Leo's Pick a Time page, where a candidate books the onboarding call.
+// Leo's Pick a Time page, where a candidate books the review call (every 2 weeks).
+// The constant and the onboarding_call_clicked event keep their old names so the counts stay comparable.
 export const ONBOARDING_CALL_URL = "https://www.pick-a-time.app/book/withleo";
 
 // Autocapture keeps no link text or targets (see lib/posthog.ts), so a booking

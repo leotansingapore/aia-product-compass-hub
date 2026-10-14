@@ -374,7 +374,7 @@ export default function First14DaysDay() {
       {dayNumber === TOTAL_DAYS && (
         <Card className="border-primary/30 shadow-card">
           <CardContent className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-            <p className="text-sm font-medium text-foreground">Ready to commit? Pick a time for your onboarding call with me.</p>
+            <p className="text-sm font-medium text-foreground">Ready to commit? Book your review call with me, and set it to repeat every 2 weeks.</p>
             <Button asChild className="min-h-11 gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95">
               <a
                 href={ONBOARDING_CALL_URL}
@@ -383,7 +383,7 @@ export default function First14DaysDay() {
                 onClick={() => trackOnboardingCallClick("button")}
               >
                 <CalendarDays className="h-4 w-4" />
-                Book your onboarding call
+                Book your review call
               </a>
             </Button>
           </CardContent>
