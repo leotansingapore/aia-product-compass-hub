@@ -21,7 +21,7 @@ First 60 Days | your training, which unlocks next
 13 assignments | finished before you're licensed
 Licensed (RNF) | Product Mastery and the Next 60 Days training
 AIA company training | after 1 year as an advisor
-Associate director | from year 2, then director, senior director and executive director
+Moving up | associate director from year 2
 ```
 
 It's going to be exciting!
@@ -55,6 +55,18 @@ BTS Training Programme | 12 months of monthly training on mindset, soft and tech
 ```
 
 You choose your pay scheme and receive a $1,000 onboarding incentive.
+
+## Your career path
+
+```steps
+title: Your career | path
+Financial services consultant | build your own client book
+Financial services manager | start your own team and coach new advisors
+Associate director | lead several teams of advisors, from year 2
+Director | run your own agency
+Senior director
+Executive director
+```
 
 ---
 
