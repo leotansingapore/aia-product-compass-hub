@@ -50,8 +50,6 @@ Want to focus on family in the mornings and meet clients in the afternoons? This
 
 Because of how flexible the career is, I can control my time.
 
-![[first-14-days/images/independence-practice.webp|Independence in practice]]
-
 As a student advisor, I was mostly busy with lectures, homework and tutorials during the day. All I had were weekday evenings to work on this business. Unlike a corporate job, this one gives me the freedom to do the things that matter most to me.
 
 I was a full-time engineering student on the Global Engineering Program, which meant cramming and overloading every semester.

@@ -50,10 +50,6 @@ It compounded over time. After graduation I opened a few other businesses, and I
 
 And the career has been fun. This work has brought me around the world: Los Angeles in year 1, Berlin in year 2, Athens in year 3, and so on.
 
-![[first-14-days/images/travel-la.jpeg|Los Angeles]]
-
-![[first-14-days/images/travel-berlin.jpeg|Berlin]]
-
 ![[first-14-days/images/travel-athens.jpeg|Athens]]
 
 Now I spend my time training others and helping them do the same.
