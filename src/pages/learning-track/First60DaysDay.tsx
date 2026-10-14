@@ -25,7 +25,8 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
 import { detectVideoEmbed } from "@/lib/video-embed-utils";
-import { loadDay, loadWeekReadme, prefetchDay, WEEK_META } from "@/features/first-60-days/content";
+import { loadDay, loadWeekReadme, prefetchDay, WEEK_META, WEEKS_WITH_RECAP } from "@/features/first-60-days/content";
+import { nextStop } from "@/features/first-60-days/nextStop";
 import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 import type { Day } from "@/features/first-60-days/types";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
@@ -334,7 +335,14 @@ export default function First60DaysDay() {
   const idx = DAY_SUMMARIES.findIndex((d) => d.dayNumber === dayNumber);
   const prev = idx > 0 ? DAY_SUMMARIES[idx - 1] : undefined;
   const next = idx >= 0 && idx < DAY_SUMMARIES.length - 1 ? DAY_SUMMARIES[idx + 1] : undefined;
-  const nextUnlocked = next ? isDayComplete(dayNumber) : false;
+  // The last day of a week with a recap leads to that recap; the recap page then leads to the next week.
+  const stop = nextStop(DAY_SUMMARIES, dayNumber, WEEKS_WITH_RECAP);
+  const stopLabel = stop?.kind === "recap" ? `Week ${stop.week} recap` : `Day ${stop?.dayNumber}`;
+  const stopHref =
+    stop?.kind === "recap"
+      ? `/learning-track/first-60-days/recap/${stop.week}`
+      : `/learning-track/first-60-days/day/${stop?.dayNumber}`;
+  const nextUnlocked = stop ? isDayComplete(dayNumber) : false;
   const weekMeta = WEEK_META[day.week];
 
   const hasReflection = day.reflection.length > 0;
@@ -643,20 +651,20 @@ export default function First60DaysDay() {
         ) : (
           <span />
         )}
-        {next && (
+        {stop && (
           <Button
             variant={nextUnlocked ? "default" : "secondary"}
             size="sm"
             disabled={!nextUnlocked}
             aria-label={
               nextUnlocked
-                ? `Go to Day ${next.dayNumber}`
-                : `Complete today's ${hasReflection ? "quiz and reflection" : "quiz"} to unlock Day ${next.dayNumber}`
+                ? `Go to ${stopLabel}`
+                : `Complete today's ${hasReflection ? "quiz and reflection" : "quiz"} to unlock ${stopLabel}`
             }
-            onClick={() => nextUnlocked && navigate(`/learning-track/first-60-days/day/${next.dayNumber}`)}
-            onMouseEnter={() => nextUnlocked && prefetchDay(next.dayNumber)}
-            onFocus={() => nextUnlocked && prefetchDay(next.dayNumber)}
-            onTouchStart={() => nextUnlocked && prefetchDay(next.dayNumber)}
+            onClick={() => nextUnlocked && navigate(stopHref)}
+            onMouseEnter={() => nextUnlocked && next && prefetchDay(next.dayNumber)}
+            onFocus={() => nextUnlocked && next && prefetchDay(next.dayNumber)}
+            onTouchStart={() => nextUnlocked && next && prefetchDay(next.dayNumber)}
             className={cn(
               "group gap-2 whitespace-normal text-left",
               nextUnlocked
@@ -670,7 +678,7 @@ export default function First60DaysDay() {
                   <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-foreground/80">
                     Up next
                   </span>
-                  <span className="text-sm font-medium">Day {next.dayNumber}</span>
+                  <span className="text-sm font-medium">{stopLabel}</span>
                 </span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </>
