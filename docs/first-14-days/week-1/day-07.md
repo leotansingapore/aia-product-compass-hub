@@ -78,7 +78,11 @@ When you focus on serving others, you start to realise how meaningful this job i
 
 The financial solutions we provide sit at the base of everyone's financial portfolio.
 
-![[first-14-days/images/client-solutions.webp|Protection, investments and savings, health, and affluent and HNW solutions]]
+```layers
+title: Solutions for | our clients
+art: /first-14-days/diagrams/shelter.webp
+Protection || Investments and savings || Health || Affluent and HNW
+```
 
 We also help our clients consolidate and review all their policies in our GoalsMapper financial software.
 

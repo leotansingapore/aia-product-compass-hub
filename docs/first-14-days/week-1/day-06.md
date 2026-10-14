@@ -87,7 +87,12 @@ Here's how.
 
 3. It's a SaaS model in disguise, and this career is like a "software as a service" business such as Adobe or Netflix. SaaS companies scale well because the cost of serving one more customer is almost zero. The same software can serve 100, 1,000 or 10,000 customers without a matching rise in cost or complexity.
 
-![[first-14-days/images/scalability-growth.webp|Your client base grows while the company's team handles fulfilment]]
+```stats
+title: Grow without | the grind
+art: /first-14-days/diagrams/orchard.webp
+20 | clients in year 1 || 100 | clients by year 3 || 300 | clients by year 5 || 1,000+ | clients by year 10
+The company's team | underwriting, claims, admin and funds scale for you
+```
 
 In this business, the product and the service are delivered by the company's infrastructure. You can add new clients to your portfolio with little extra effort, which frees you to do what you do best: build relationships and grow your business.
 

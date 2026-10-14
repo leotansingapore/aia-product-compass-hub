@@ -18,6 +18,14 @@ You've seen the business model, the math, the agency question, the 6 C's, the co
 
 By the end of today, pick one.
 
+```layers
+title: Four | answers
+art: /first-14-days/diagrams/signpost.webp
+Commit | the career fits and our team fits || Delay | the career fits, the timing doesn't
+Keep exploring | the career fits, our team is the question || No | this career isn't for you, and that's fine
+```
+
+
 ### Commit
 
 The career fits and our team fits. The next step is an [onboarding call with me](https://www.pick-a-time.app/book/withleo). From there the process has five stages, and it usually takes 2 to 4 weeks:
@@ -54,7 +62,12 @@ This career isn't for you, and that's a fine answer. You've saved yourself a yea
 
 ## Your timeline with us
 
-![[first-14-days/images/timeline-with-us.webp|Your timeline with us]]
+```steps
+title: Your timeline | with us
+Introduction | today: interview selection, your Skool and student accounts, all modules, exam resources, the Telegram group and the onboarding call
+Incubation | the next few months: Thursday 8pm weekly trainings, monthly hangouts, 1-1 coaching, sponsored CMFAS papers, job shadowing, an allowance, and the AIA Internship Programme (optional)
+Induction | after your exams: RNF licensing, the $1,000 onboarding incentive, on-the-job training and shadowing, your pay scheme, a 3-day crash course, and 2 months of post-onboarding training (full-timers)
+```
 
 It's going to be exciting!
 

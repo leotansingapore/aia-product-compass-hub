@@ -14,7 +14,11 @@ tags: [first-14-days, week-2, prospect, faq, flexi-scheme, income-guarantee, ref
 
 ## The Flexi scheme
 
-![[first-14-days/images/flexi-scheme-tiers.webp|Flexi scheme tiers]]
+```stats
+title: The Flexi | scheme
+art: /first-14-days/diagrams/flexi.webp
+$1,000 | zero-hour scheme: no commitment, paid when you sign your contract || $2,600 | 40-hour scheme: $400 for each paper you pass, plus the $1,000 || $4,200 | 80-hour scheme: $800 for each paper you pass, plus the $1,000
+```
 
 By default, everyone is on the zero-hour scheme, with no commitment needed. The 40-hour and 80-hour schemes give you a chance to earn some extra money while you complete the required exams.
 

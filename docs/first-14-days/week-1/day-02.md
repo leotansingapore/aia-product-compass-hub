@@ -36,6 +36,14 @@ I once considered buying a pain clinic in a prestigious shopping centre. It had 
 
 The worst part was that the owner did everything himself: front desk, operations, sales and service delivery. If I had taken over, I wouldn't have been a business owner. I would have bought myself a very expensive, high-stress job.
 
+```stats
+title: What proven | businesses cost
+art: /first-14-days/diagrams/costs.webp
+$200K+ | to open a Ya Kun Kaya Toast franchise, plus a royalty of nearly 10% a year || $650K | to start a GP clinic, then 5 to 6 years to break even || $500K | to buy a pain clinic that took home $80,000 a year
+$0 upfront | the financial advisory model
+```
+
+
 This is the entrepreneur's dilemma. The path to freedom is often blocked by the need for huge capital, the fear of failure, and the risk of simply building a new cage for yourself.
 
 You are right to hesitate before jumping into that world. But what if there was a different way? A path that gives you the upside of entrepreneurship (the income, the freedom, the impact) without the crippling upfront risk?

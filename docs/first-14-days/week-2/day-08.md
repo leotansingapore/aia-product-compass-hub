@@ -80,6 +80,16 @@ The result is what we call the Advisor OS, a complete operating system that hand
 
 I'm not here to sell you dreams. Let's look at what you're actually choosing between.
 
+```compare
+title: The old way | vs our way
+art: /first-14-days/diagrams/boat.webp
+|| Typical agency || With us
+Lead generation || your friends and family list, then bought leads already sold to other advisors || 3 to 5 qualified meetings booked into your calendar every week
+Admin and operations || 20+ hours a week of paperwork and follow-ups on your desk || our VA team does the paperwork, and follow-ups are automated
+Marketing support || a $3,000 website, your own designer, and ads you figure out alone || our marketing team, and 50% of your ad spend subsidised
+```
+
+
 ### Lead generation
 
 At a typical agency, they hand you a list of your friends and family, maybe throw in some outdated cold-calling techniques, and send you on your way. When that runs out, you're expected to buy leads from vendors. These are often recycled, low-quality prospects that have already been sold to five other advisors.

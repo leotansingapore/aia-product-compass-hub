@@ -50,6 +50,13 @@ So let me ask you: if the worst case leaves you with a real education and a stro
 
 This is what makes the opportunity an asymmetrical bet. The upside can change your life, and the downside is still a big win.
 
+```layers
+title: The risk-reversal | card
+art: /first-14-days/diagrams/card.webp
+You win | the career of your dreams, financial freedom and a life of impact || You "lose" | personal finance know-how, sales and communication skills, and real discipline and grit
+```
+
+
 There are no contractual obligations that lock you in. The one cost to know about: if we sponsor your exams and you then decide not to contract, you repay those exam fees. Pass and contract, and you keep everything, even if you leave later. You can quit anytime if it doesn't work out.
 
 The only real risk is not trying.

@@ -18,9 +18,11 @@ That said, relying only on your warm market isn't sustainable in the long run. E
 
 As someone I mentor, you'll have extra support to get started. I run a digital marketing agency, so it's easy for me to give you some initial leads to work with, and to guide you in generating leads from other sources. That gives you a spread of sources to start from:
 
-1. Warm market leads, to build trust and confidence.
-2. Cold prospecting methods, for growth that scales.
-3. Leads and systems I'll provide, to give you a boost while you build your pipeline.
+```layers
+title: Three lead | sources
+art: /first-14-days/diagrams/magnet.webp
+Warm market | leads to build trust and confidence || Cold prospecting | methods for growth that scales || Leads and systems I provide | a boost while you build your pipeline
+```
 
 The goal is a steady, balanced flow of opportunities from several channels. I'll teach you proven methods for cold prospecting, and help you build a personal brand that attracts prospects to you. With the right branding, marketing and tools, you'll build a pipeline that grows without depending on your warm market.
 

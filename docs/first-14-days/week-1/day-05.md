@@ -56,9 +56,22 @@ You spend 15 hours of work to earn a lifetime commission of $10,000. Your effect
 
 (That doesn't include time for upskilling and training, but the gap is still huge.)
 
+```stats
+title: Your true | hourly rate
+art: /first-14-days/diagrams/hourglass.webp
+$40 | an hour as an interior designer: 75 hours of work for a $3,000 commission || $667 | an hour as a financial advisor: 15 hours of work for $10,000 lifetime value
+```
+
+
 ## What the math looked like for me
 
 These are my income statements from the AIA system, year by year, from my first year at NUS to my first year after graduation.
+
+```stats
+title: My income | year by year
+$145K | Year 1 at NUS || $251K | Year 2 || $297K | Year 3 || $327K | Year 4 || $416K | first year after graduating
+```
+
 
 ![[first-14-days/images/income-y1-145k.webp|Year 1: $145K as a Uni Y1 full-time engineering student]]
 

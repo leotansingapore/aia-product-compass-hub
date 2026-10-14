@@ -66,7 +66,11 @@ And recognition has come along too, even though it's not my thing. I've made MDR
 
 Why I came to love this career is simple. It brings together so many traits of an ideal career at once.
 
-![[first-14-days/images/ideal-career-framing.webp|What an ideal career looks like]]
+```layers
+title: An ideal | career
+art: /first-14-days/diagrams/career.webp
+Work-life balance || Recognition || Autonomy and flexibility || Income || Job security
+```
 
 In one stroke I get job security, high income, flexibility, recognition and work-life balance, without sacrificing anything else.
 
