@@ -99,6 +99,12 @@ describe("First 14 Days lesson markdown", () => {
     const steps = screen.getAllByRole("listitem");
     expect(steps.map((li) => li.textContent)).toEqual(["1Brief30 min", "2Testfit", "3Offersign"]);
   });
+  it("shows a step titled '(done)' with a tick instead of its number", () => {
+    renderLesson("```steps\nOrientation (done) | First 14 Days\nPapers | next\n```");
+    const steps = screen.getAllByRole("listitem");
+    expect(steps.map((li) => li.textContent)).toEqual(["OrientationFirst 14 Days", "2Papersnext"]);
+    expect(screen.getByLabelText("Done")).toBeTruthy();
+  });
   it("every fence in a First 14 Days lesson is the income calculator or a diagram kind, and its art file exists", () => {
     const days = readdirSync("docs/first-14-days", { recursive: true, encoding: "utf8" }).filter((f) => /day-\d+\.md$/.test(f));
     expect(days).toHaveLength(14);

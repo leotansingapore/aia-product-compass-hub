@@ -16,10 +16,27 @@ tags: [first-14-days, week-2, prospect, graduation, timeline, leo-voice]
 
 ```steps
 title: Your timeline | with us
-Introduction | today: interview selection, your Skool and student accounts, all modules, exam resources, the Telegram group and the onboarding call
-Incubation | the next few months: Thursday 8pm weekly trainings, monthly hangouts, 1-1 coaching, sponsored CMFAS papers, job shadowing, an allowance, and the AIA Internship Programme (optional)
-Induction | after your exams: RNF licensing, the $1,000 onboarding incentive, on-the-job training and shadowing, your pay scheme, a 3-day crash course, and 2 months of post-onboarding training (full-timers)
+Orientation (done) | the First 14 Days
+CMFAS papers | over the next 2 to 3 months
+First 60 Days | your training, which unlocks next
+13 assignments | finished before you're licensed
+Licensed (RNF) | Product Mastery and the Next 60 Days training
+AIA company training | after 1 year as an advisor
+Associate director | from year 2, then director, senior director and executive director
 ```
+
+Once you're licensed, the Next 60 Days training runs for 10 weeks:
+
+1. Reset and activate
+2. Your voice: intent and positioning
+3. Your voice: content and digital trust
+4. Prospecting at volume
+5. Referrals from day one
+6. Reading people with DISC
+7. Hot buttons and pitch mechanics
+8. The pitch
+9. The close
+10. After the close, and graduation
 
 It's going to be exciting!
 
@@ -62,22 +79,6 @@ In months 1 and 2, we sponsor your CMFAS exams, which normally cost you $500+ (y
 In month 3, you're added to our CRM and get your own dashboard. Our appointment team books 2 to 3 appointments a week into your calendar, and you run your first client meetings with coaching and a debrief after each one, while our VAs handle the paperwork. As your confidence grows, it goes up to 3 to 4 appointments a week, and you close your first cases.
 
 From month 4, you handle 4 to 5 appointments a week, your closing rate improves, and referrals start coming from happy clients.
-
-## Your career path
-
-```steps
-title: Your career | path
-Financial services consultant | build your own client book
-Financial services manager | start your own team and coach new advisors
-Associate director | lead several teams of advisors
-Director | run your own agency
-```
-
-Along the way:
-
-- Before you're licensed: our 12 weeks of training, papers and practice.
-- Your first year: AIA's year-long BTS programme for new advisors, plus the new advisor bonus (EPS).
-- After a year: a study group for advisors aiming for MDRT, the industry's top-producer standard.
 
 ---
 

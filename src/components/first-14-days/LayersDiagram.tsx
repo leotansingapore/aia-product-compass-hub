@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Cell = { title: string; detail: string };
@@ -87,6 +88,8 @@ function Base({ cell }: { cell: Cell }) {
   );
 }
 
+const DONE_RE = /\s*\(done\)$/i;
+
 function Steps({ cells }: { cells: Cell[] }) {
   const n = cells.length;
   return (
@@ -99,20 +102,25 @@ function Steps({ cells }: { cells: Cell[] }) {
         aria-hidden
         className="absolute bottom-9 left-9 top-9 w-1 rounded-full bg-gradient-to-b from-[color:var(--p-1)] to-[color:var(--p-5)] sm:bottom-auto sm:left-[var(--edge)] sm:right-[var(--edge)] sm:top-[2.4rem] sm:h-1 sm:w-auto sm:bg-gradient-to-r"
       />
-      {cells.map((cell, i) => (
+      {cells.map((cell, i) => {
+        // A step titled "... (done)" is one the reader has finished: a tick instead of its number.
+        const done = DONE_RE.test(cell.title);
+        const title = cell.title.replace(DONE_RE, "");
+        return (
         <li key={cell.title} className="relative flex gap-3 sm:flex-1 sm:flex-col sm:items-center sm:text-center">
           <span
             className={cn(anton, "grid h-10 w-10 shrink-0 place-items-center rounded-full border-[3px] border-white text-lg text-white shadow")}
-            style={{ background: SERIES[i % SERIES.length] }}
+            style={{ background: done ? "var(--p-green)" : SERIES[i % SERIES.length] }}
           >
-            {i + 1}
+            {done ? <Check aria-label="Done" className="h-5 w-5" strokeWidth={3} /> : i + 1}
           </span>
           <div>
-            <p className="text-sm font-bold leading-snug text-[color:var(--p-navy)]">{cell.title}</p>
+            <p className="text-sm font-bold leading-snug text-[color:var(--p-navy)]">{title}</p>
             {cell.detail && <p className="mt-0.5 text-[13px] leading-snug text-[color:var(--p-muted)]">{cell.detail}</p>}
           </div>
         </li>
-      ))}
+        );
+      })}
     </ol>
   );
 }

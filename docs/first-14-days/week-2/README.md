@@ -19,4 +19,4 @@ Week 1 looked at the business model. Week 2 looks at the agency, and at you.
 - [Day 11: No experience, and not an extrovert](/learning-track/first-14-days/day/11). I started from zero, with a stammer.
 - [Day 12: Limited time, office size and product range](/learning-track/first-14-days/day/12). How I built the business on 2 hours a day during GEP.
 - [Day 13: Your questions answered](/learning-track/first-14-days/day/13). My answers to the questions candidates ask most.
-- [Day 14: Your timeline with us](/learning-track/first-14-days/day/14). What happens next, from your first call to running your own agency.
+- [Day 14: Your timeline with us](/learning-track/first-14-days/day/14). What happens next, from your CMFAS papers to director.
