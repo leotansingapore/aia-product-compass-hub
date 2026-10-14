@@ -115,10 +115,10 @@ The math for a $10,000 month:
 
 - Average commission per case: $2,000 (a conservative estimate)
 - Cases needed a month: 5
-- Appointments needed a month: 20, at a 25% closing rate
-- Appointments a week: 5
+- Appointments needed a month: 25, at a 20% closing rate
+- Appointments a week: about 6
 
-Our system books the appointments, gives you scripts that make a 25%+ closing rate achievable, and handles the backend. Your job is to show up to the appointments, follow the presentation framework and close.
+Our system books the appointments, gives you scripts that make a 20%+ closing rate achievable, and handles the backend. Your job is to show up to the appointments, follow the presentation framework and close.
 
 ## How much do you need to commit?
 
