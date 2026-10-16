@@ -137,6 +137,23 @@ function extractFirstStreamableVideoUrlFromRich(rich: string | undefined): strin
   return null;
 }
 
+/** Scroll the lesson list (never the window) so the open lesson's row sits in
+ *  view. A link to an older lesson otherwise opened with its row thousands of
+ *  pixels below the fold. Returns the row, or null when it is not rendered. */
+function revealCurrentLesson(list: HTMLElement | null): HTMLElement | null {
+  const row = list?.querySelector<HTMLElement>("[data-current-lesson]");
+  if (!list || !row) return null;
+  // Only the part of the list on screen counts: before the page scrolls, the
+  // sticky sidebar starts below the hero and runs past the fold.
+  const l = list.getBoundingClientRect();
+  const top = Math.max(l.top, 0);
+  const bottom = Math.min(l.bottom, window.innerHeight);
+  const r = row.getBoundingClientRect();
+  if (r.top >= top && r.bottom <= bottom) return row;
+  list.scrollTop += r.top - top - (bottom - top - r.height) / 2;
+  return row;
+}
+
 export interface ProductExtraTab {
   /** Stable tab value used by the underlying Tabs primitive. Should be a slug. */
   value: string;
@@ -201,6 +218,8 @@ export function ProductModuleCourseLayout({
   const [shouldAutoplay, setShouldAutoplay] = useState(false);
   const [activeTab, setActiveTab] = useState<string>(defaultTab);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const sidebarRef = useRef<HTMLElement>(null);
+  const outlineSheetRef = useRef<HTMLDivElement>(null);
   const extraTabsList = extraTabs ?? [];
   const totalTabs = 3 + extraTabsList.length;
   // Static class strings keep Tailwind's content scanner happy.
@@ -282,6 +301,12 @@ export function ProductModuleCourseLayout({
       return next === prev ? prev : next;
     });
   }, [activeLessonSlug, processedVideos]);
+
+  // Keep the open lesson's row in view in the desktop sidebar (deep links,
+  // Prev/Next). A row already on screen is left where it is.
+  useEffect(() => {
+    if (!isTabletOrMobile) revealCurrentLesson(sidebarRef.current);
+  }, [currentVideo?.id, isTabletOrMobile]);
 
   const resolvedLessonStreamUrl = useMemo(() => {
     const fromField = sanitizeLessonMediaUrl(currentVideo?.url);
@@ -838,7 +863,9 @@ export function ProductModuleCourseLayout({
   );
 
   return (
-    <div className={cn("min-w-0 overflow-x-hidden", className)}>
+    // Desktop clips instead of hiding: overflow-x-hidden makes this div a scroll
+    // container, which stops the sidebar from sticking.
+    <div className={cn("min-w-0", isTabletOrMobile ? "overflow-x-hidden" : "overflow-x-clip", className)}>
       {/* Reading-progress bar — portals to <body> so it stays viewport-pinned
           even though our ancestor uses `transform` for page transitions. */}
       <LessonReadingProgress resetKey={currentVideoIndex} />
@@ -850,14 +877,21 @@ export function ProductModuleCourseLayout({
       {!isTabletOrMobile && (
       <div className="flex min-h-[calc(100vh-120px)]">
         {/* ── Left sidebar ── */}
-        <aside className="w-72 xl:w-80 shrink-0 border-r bg-muted/30 overflow-y-auto">
+        {/* Sticky under the 56px top nav with its own scroll, so the lesson
+            list stays beside the lesson and can scroll to the open row. */}
+        <aside
+          ref={sidebarRef}
+          className="sticky top-14 self-start h-[calc(100vh-3.5rem)] w-72 xl:w-80 shrink-0 border-r bg-muted/30 overflow-y-auto overscroll-contain"
+        >
           <div className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur px-4 py-3">
             <p className="text-xs text-muted-foreground truncate">{productTitle}</p>
             <h2 className="text-sm font-semibold truncate mt-0.5">
               {currentVideo?.title ?? (processedVideos.length === 0 ? "No lessons yet" : "Select a lesson")}
             </h2>
           </div>
-          <div className="p-3">
+          {/* pb-52 matches the page header above the sidebar, so the last
+              lessons can still scroll above the fold before the page scrolls. */}
+          <div className="p-3 pb-52">
             {sidebarContent}
           </div>
         </aside>
@@ -1137,9 +1171,18 @@ export function ProductModuleCourseLayout({
         {/* Mobile outline drawer */}
         <Sheet open={outlineOpen} onOpenChange={setOutlineOpen}>
           <SheetContent
+            ref={outlineSheetRef}
             side="right"
             className="flex h-full w-full max-w-[100vw] flex-col gap-0 overflow-y-auto p-4 pt-6 sm:max-w-md sm:p-6"
             id={OUTLINE_SHEET_ID}
+            onOpenAutoFocus={(e) => {
+              // Open on the current lesson, not the search box: a focused search
+              // pops the phone keyboard over the list.
+              e.preventDefault();
+              const row = revealCurrentLesson(outlineSheetRef.current);
+              const target = row?.querySelector<HTMLElement>('[role="button"]') ?? outlineSheetRef.current;
+              target?.focus({ preventScroll: true });
+            }}
           >
             <SheetHeader>
               <SheetTitle className="flex items-center gap-2">

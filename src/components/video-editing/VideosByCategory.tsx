@@ -51,6 +51,8 @@ const VideoItem = memo(function VideoItem({
 
   return (
     <div
+      data-current-lesson={isCurrentVideo || undefined}
+      aria-current={isCurrentVideo ? 'true' : undefined}
       className={`group flex items-stretch gap-0 border rounded-lg overflow-hidden transition-all ${
         isCurrentVideo
           ? 'border-primary shadow-sm bg-primary/[0.03]'
@@ -245,8 +247,10 @@ export const VideosByCategory = memo(function VideosByCategory({
         // Categories named "Old …" or "Archive …" are deprecated content — collapse
         // by default and visually deprioritise so learners hit the current curriculum first.
         const isLegacy = /^old\b/i.test(category) || /\barchive/i.test(category);
-        // Auto-expand all groups while searching so the user can see hits in archived sections.
-        const defaultOpen = trimmedQuery ? true : !isLegacy;
+        // Auto-expand all groups while searching so the user can see hits in archived sections,
+        // and the group holding the open lesson so a link to an archived lesson shows where it is.
+        const holdsCurrent = !!currentVideoId && videoItems.some(({ video }) => video.id === currentVideoId);
+        const defaultOpen = trimmedQuery || holdsCurrent ? true : !isLegacy;
         const isOpen = openCategories[category] !== undefined ? openCategories[category] : defaultOpen;
         const pct = progress.total > 0 ? Math.round((progress.completed / progress.total) * 100) : 0;
 
