@@ -241,6 +241,23 @@ export function ProductModuleCourseLayout({
       ),
     [defaultTab, setSearchParams],
   );
+  // Lesson search lives in ?q= too, so a filtered list can be linked.
+  const lessonQuery = searchParams.get("q") ?? "";
+  const setLessonQuery = useCallback(
+    (q: string) => {
+      if (q === lessonQuery) return;
+      setSearchParams(
+        (prev) => {
+          const next = new URLSearchParams(prev);
+          if (q) next.set("q", q);
+          else next.delete("q");
+          return next;
+        },
+        { replace: true },
+      );
+    },
+    [lessonQuery, setSearchParams],
+  );
   const totalTabs = 3 + extraTabsList.length;
   // Static class strings keep Tailwind's content scanner happy.
   const tabsGridColsClass =
@@ -506,6 +523,8 @@ export function ProductModuleCourseLayout({
         currentVideoId={currentVideo?.id}
         moduleId={productId}
         moduleType="product"
+        initialQuery={lessonQuery}
+        onQueryChange={setLessonQuery}
       />
 
       {/* Study & Exam shortcuts */}
@@ -600,6 +619,8 @@ export function ProductModuleCourseLayout({
     </div>
   ), [
     processedVideos,
+    lessonQuery,
+    setLessonQuery,
     completedCount,
     courseProgressPct,
     totalDuration,

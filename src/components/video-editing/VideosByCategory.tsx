@@ -1,4 +1,4 @@
-import { useState, useMemo, memo, useCallback } from 'react';
+import { useState, useMemo, memo, useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -17,6 +17,10 @@ interface VideosByCategoryProps {
   currentVideoId?: string;
   moduleId?: string;
   moduleType?: 'product' | 'cmfas';
+  /** Search text to start with, e.g. from ?q= in the page URL. */
+  initialQuery?: string;
+  /** Called with the trimmed search text 300ms after typing stops. */
+  onQueryChange?: (query: string) => void;
 }
 
 /**
@@ -154,10 +158,18 @@ export const VideosByCategory = memo(function VideosByCategory({
   useIndividualPages = false,
   currentVideoId,
   moduleId,
-  moduleType = 'product'
+  moduleType = 'product',
+  initialQuery,
+  onQueryChange,
 }: VideosByCategoryProps) {
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(initialQuery ?? '');
+
+  useEffect(() => {
+    if (!onQueryChange) return;
+    const t = setTimeout(() => onQueryChange(query.trim()), 300);
+    return () => clearTimeout(t);
+  }, [query, onQueryChange]);
   const navigate = useNavigate();
   const { productSlugOrId } = useParams();
 
