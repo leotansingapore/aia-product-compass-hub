@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Heading face (OFL, public/fonts/Excalifont-OFL.txt). One weight only: the
+   100-900 range stops browsers faking bold; size-adjust matches Nunito's size. */
+@font-face {
+  font-family: "Excalifont";
+  src: url("/fonts/excalifont-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+  size-adjust: 112%;
+}
+
 /* FINternship Learning Platform Design System */
 
 @layer base {
@@ -391,7 +401,7 @@
 
   .rich-content-editor .ProseMirror {
     @apply p-6 min-h-[400px] outline-none;
-    font-family: var(--font-sans, 'Montserrat', ui-sans-serif, system-ui, sans-serif);
+    font-family: var(--font-sans, 'Nunito', ui-sans-serif, system-ui, sans-serif);
   }
 
   .rich-content-editor .ProseMirror p.is-editor-empty:first-child::before {

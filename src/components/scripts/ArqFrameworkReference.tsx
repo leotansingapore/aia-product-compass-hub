@@ -22,7 +22,7 @@ function FrameworkBlock({ letter, name, tagline, steps, useFor, example, watchOu
   return (
     <div className={`rounded-xl border-l-4 ${accent} bg-card/60 p-4 sm:p-5 shadow-sm`}>
       <div className="flex items-start gap-3">
-        <div className="font-serif text-2xl sm:text-3xl font-bold leading-none tabular-nums text-foreground/80">
+        <div className="font-sans text-2xl sm:text-3xl font-bold leading-none tabular-nums text-foreground/80">
           {letter}
         </div>
         <div className="min-w-0 flex-1 space-y-2">

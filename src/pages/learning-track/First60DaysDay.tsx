@@ -399,7 +399,7 @@ export default function First60DaysDay() {
               <span className="mb-1 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:absolute sm:left-0 sm:top-0 sm:mb-0 sm:px-2.5 sm:tracking-[0.2em]">
                 <Sparkles className="h-2.5 w-2.5" /> Day
               </span>
-              <div className="font-serif text-[clamp(2.25rem,9vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
+              <div className="font-sans text-[clamp(2.25rem,9vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
                 {String(day.dayNumber).padStart(2, "0")}
               </div>
             </div>
@@ -413,7 +413,7 @@ export default function First60DaysDay() {
                 role="img"
               >
                 <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-card sm:h-[54px] sm:w-[54px]">
-                  <span className="font-serif text-xs font-semibold tabular-nums text-foreground sm:text-base">
+                  <span className="font-sans text-xs font-semibold tabular-nums text-foreground sm:text-base">
                     {progressPct}
                     <span className="text-[8px] text-muted-foreground sm:text-[10px]">%</span>
                   </span>

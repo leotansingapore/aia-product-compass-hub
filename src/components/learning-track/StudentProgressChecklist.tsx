@@ -333,7 +333,7 @@ export default function StudentProgressChecklist() {
             </h2>
           </div>
           <div className="shrink-0 rounded-full border bg-background/80 px-4 py-2 text-center backdrop-blur">
-            <div className="text-2xl font-serif font-bold tabular-nums">{overallPct}%</div>
+            <div className="text-2xl font-sans font-bold tabular-nums">{overallPct}%</div>
             <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
               Complete
             </div>

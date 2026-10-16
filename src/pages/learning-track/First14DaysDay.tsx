@@ -268,7 +268,7 @@ export default function First14DaysDay() {
           {/* Day numeral + progress ring */}
           <div className="flex items-center gap-4 sm:gap-5">
             <div className="relative">
-              <div className="font-serif text-[clamp(3.75rem,14vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
+              <div className="font-sans text-[clamp(3.75rem,14vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
                 {String(day.dayNumber).padStart(2, "0")}
               </div>
               <span className="absolute -top-1.5 left-0 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:-top-2 sm:px-2 sm:tracking-[0.2em]">
@@ -285,7 +285,7 @@ export default function First14DaysDay() {
                 role="img"
               >
                 <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-card sm:h-[54px] sm:w-[54px]">
-                  <span className="font-serif text-sm font-semibold tabular-nums text-foreground sm:text-base">
+                  <span className="font-sans text-sm font-semibold tabular-nums text-foreground sm:text-base">
                     {progressPct}
                     <span className="text-[9px] text-muted-foreground sm:text-[10px]">%</span>
                   </span>

@@ -154,7 +154,7 @@ export default function Next60DaysAssignments() {
             </h1>
           </div>
           <div className="hidden sm:block rounded-full bg-background/80 backdrop-blur px-4 py-2 border text-center shrink-0">
-            <div className="text-2xl font-serif font-bold tabular-nums text-foreground">
+            <div className="text-2xl font-sans font-bold tabular-nums text-foreground">
               {completedCount}/{assignments.length}
             </div>
             <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">

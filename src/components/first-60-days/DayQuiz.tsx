@@ -498,7 +498,7 @@ function ResultCard({
             aria-label={`${pct} percent`}
           >
             <div className="grid h-[54px] w-[54px] place-items-center rounded-full bg-card sm:h-[82px] sm:w-[82px]">
-              <span className="font-serif text-base font-bold tabular-nums text-foreground sm:text-2xl">
+              <span className="font-sans text-base font-bold tabular-nums text-foreground sm:text-2xl">
                 {pct}
                 <span className="text-[10px] text-muted-foreground sm:text-sm">%</span>
               </span>

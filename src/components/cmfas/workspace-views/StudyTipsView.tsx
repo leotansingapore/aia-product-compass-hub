@@ -518,7 +518,7 @@ export function StudyTipsView() {
               <p className={cn('text-[10px] font-bold uppercase tracking-[0.15em]', cmfasRoom.brassText)}>
                 {k.label}
               </p>
-              <p className={cn('mt-1 font-serif text-2xl font-bold tabular-nums', cmfasRoom.text)}>
+              <p className={cn('mt-1 font-sans text-2xl font-bold tabular-nums', cmfasRoom.text)}>
                 {k.value}
               </p>
               <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>{k.hint}</p>

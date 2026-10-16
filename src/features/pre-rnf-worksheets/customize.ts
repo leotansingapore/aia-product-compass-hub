@@ -50,8 +50,7 @@ export function schemeFor(values: WorksheetValues): ColorScheme {
 // plain block/inline text, table cells, backgrounds and borders exactly — so
 // themes only vary those. All fonts here are loaded app-wide (index.html) or
 // system stacks, so the rasteriser can draw them.
-const MONT = `'Montserrat', 'Helvetica Neue', Arial, sans-serif`;
-const RSERIF = `'Roboto Serif', Georgia, 'Times New Roman', serif`;
+const NUNITO = `'Nunito', 'Helvetica Neue', Arial, sans-serif`;
 const HELV = `'Helvetica Neue', Helvetica, Arial, sans-serif`;
 const GEORGIA = `Georgia, 'Times New Roman', serif`;
 
@@ -115,7 +114,7 @@ export const PRINT_THEMES: PrintTheme[] = [
     key: "editorial",
     label: "Editorial",
     blurb: "Serif headings and fine rules, like a magazine",
-    headFont: RSERIF,
+    headFont: GEORGIA,
     bodyFont: GEORGIA,
     headWeight: 700,
     headCase: "none",
@@ -136,7 +135,7 @@ export const PRINT_THEMES: PrintTheme[] = [
     key: "bold",
     label: "Bold",
     blurb: "Heavy caps and solid colour, pitch-deck energy",
-    headFont: MONT,
+    headFont: NUNITO,
     bodyFont: HELV,
     headWeight: 800,
     headCase: "uppercase",
@@ -178,7 +177,7 @@ export const PRINT_THEMES: PrintTheme[] = [
     key: "executive",
     label: "Executive",
     blurb: "Dark bands and serif body, boardroom formal",
-    headFont: MONT,
+    headFont: NUNITO,
     bodyFont: GEORGIA,
     headWeight: 700,
     headCase: "uppercase",

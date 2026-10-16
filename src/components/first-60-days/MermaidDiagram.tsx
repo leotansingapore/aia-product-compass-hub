@@ -103,7 +103,7 @@ const LIGHT_THEME_VARS = {
   clusterBorder: "#bfd0f5",
   titleColor: "#0b1220",
   labelBackground: "#ffffff",
-  fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
+  fontFamily: "Nunito, ui-sans-serif, system-ui, sans-serif",
   fontSize: "14px",
   // Quadrant chart specifics
   quadrant1Fill: "#dcfce7",
@@ -157,7 +157,7 @@ const DARK_THEME_VARS = {
   clusterBorder: "#3a4258",
   titleColor: "#f1f5fb",
   labelBackground: "#2e3d5c",
-  fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
+  fontFamily: "Nunito, ui-sans-serif, system-ui, sans-serif",
   fontSize: "14px",
   // Quadrant chart specifics — translucent washes that read on slate canvas
   quadrant1Fill: "#14532d",

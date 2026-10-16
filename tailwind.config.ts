@@ -19,8 +19,9 @@ export default {
     	},
     	extend: {
     		fontFamily: {
-    			sans: ['Montserrat', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-    			serif: ['Roboto Serif', 'ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif']
+    			sans: ['Nunito', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+    			// `font-serif` is the heading face: Excalidraw's hand-drawn Excalifont (self-hosted, src/index.css), Nunito for glyphs it lacks
+    			serif: ['Excalifont', 'Nunito', 'ui-sans-serif', 'system-ui', 'sans-serif']
     		},
     		fontSize: {
     			micro: ['0.875rem', { lineHeight: '1.5' }],

@@ -68,7 +68,7 @@ function applyTheme(mermaid: MermaidApi, dark: boolean) {
         lineColor: "#94a3b8",
         edgeLabelBackground: "#2e3d5c",
         nodeBorder: "#7ea8ff",
-        fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
+        fontFamily: "Nunito, ui-sans-serif, system-ui, sans-serif",
         fontSize: "14px",
       }
     : {
@@ -80,7 +80,7 @@ function applyTheme(mermaid: MermaidApi, dark: boolean) {
         lineColor: "#64748b",
         edgeLabelBackground: "#ffffff",
         nodeBorder: "#1e40af",
-        fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
+        fontFamily: "Nunito, ui-sans-serif, system-ui, sans-serif",
         fontSize: "14px",
       };
   mermaid.initialize({

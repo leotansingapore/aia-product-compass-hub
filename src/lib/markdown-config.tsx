@@ -173,17 +173,17 @@ export const markdownComponents: Components = {
   // `node` is dropped explicitly — react-markdown passes it, and React warns
   // about unknown props on DOM elements.
   h1: ({ children, node, ...rest }: any) => (
-    <h1 {...rest} className="text-xl font-bold mb-3 mt-4 first:mt-0 text-foreground border-b pb-2 scroll-mt-24">
+    <h1 {...rest} className="font-serif text-xl font-bold mb-3 mt-4 first:mt-0 text-foreground border-b pb-2 scroll-mt-24">
       {children}
     </h1>
   ),
   h2: ({ children, node, ...rest }: any) => (
-    <h2 {...rest} className="text-lg font-semibold mb-2 mt-3 first:mt-0 text-foreground scroll-mt-24">
+    <h2 {...rest} className="font-serif text-lg font-semibold mb-2 mt-3 first:mt-0 text-foreground scroll-mt-24">
       {children}
     </h2>
   ),
   h3: ({ children, node, ...rest }: any) => (
-    <h3 {...rest} className="text-base font-semibold mb-2 mt-2 first:mt-0 text-foreground scroll-mt-24">
+    <h3 {...rest} className="font-serif text-base font-semibold mb-2 mt-2 first:mt-0 text-foreground scroll-mt-24">
       {children}
     </h3>
   ),
