@@ -35,7 +35,7 @@ const LessonRichMarkdown = lazy(() =>
   import("./LessonRichMarkdown").then((m) => ({ default: m.LessonRichMarkdown })),
 );
 import { cn } from "@/lib/utils";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useIsTabletOrMobile } from "@/hooks/use-mobile";
 
 const OUTLINE_SHEET_ID = "product-course-outline";
@@ -216,11 +216,31 @@ export function ProductModuleCourseLayout({
   const [outlineOpen, setOutlineOpen] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [shouldAutoplay, setShouldAutoplay] = useState(false);
-  const [activeTab, setActiveTab] = useState<string>(defaultTab);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const sidebarRef = useRef<HTMLElement>(null);
   const outlineSheetRef = useRef<HTMLDivElement>(null);
   const extraTabsList = extraTabs ?? [];
+  // The tab lives in the URL (?tab=resources) so a link opens on it; the
+  // default tab stays out of the address and unknown values fall back to it.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlTab = searchParams.get("tab");
+  const activeTab =
+    urlTab && ["course-content", "resources", "my-notes", ...extraTabsList.map((t) => t.value)].includes(urlTab)
+      ? urlTab
+      : defaultTab;
+  const setActiveTab = useCallback(
+    (tab: string) =>
+      setSearchParams(
+        (prev) => {
+          const next = new URLSearchParams(prev);
+          if (tab === defaultTab) next.delete("tab");
+          else next.set("tab", tab);
+          return next;
+        },
+        { replace: true },
+      ),
+    [defaultTab, setSearchParams],
+  );
   const totalTabs = 3 + extraTabsList.length;
   // Static class strings keep Tailwind's content scanner happy.
   const tabsGridColsClass =

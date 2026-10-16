@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { ProductHeader } from "@/components/product-detail/ProductHeader";
@@ -107,6 +107,7 @@ export default function ProductDetail() {
 
   const { productSlugOrId, pageId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { isAdmin } = useAdmin();
   const isAdminMode = isAdmin;
 
@@ -341,7 +342,8 @@ export default function ProductDetail() {
                   activeLessonSlug={pageId}
                   onActiveLessonChange={(slug) => {
                     if (slug && slug !== pageId) {
-                      navigate(`/product/${productSlugOrId}/${slug}`, { replace: true });
+                      // Keep ?tab= and ?q= when moving between lessons.
+                      navigate(`/product/${productSlugOrId}/${slug}${location.search}`, { replace: true });
                     }
                   }}
                   tabResources={
