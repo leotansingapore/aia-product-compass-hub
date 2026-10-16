@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useAllProducts } from './useProducts';
+import { useProducts } from './useProducts';
 
 interface RecentItem {
   id: string;
@@ -17,7 +17,10 @@ interface RecentProduct {
 
 export function useRecentlyViewed() {
   const [recentItems, setRecentItems] = useState<RecentItem[]>([]);
-  const { allProducts } = useAllProducts();
+  // Recent items need only id, title, description and category name. The
+  // listing query carries those (~9 KB); useAllProducts pulled every lesson and
+  // transcript in the catalogue (~6 MB gzipped) on every product page load.
+  const { products: allProducts } = useProducts();
 
   useEffect(() => {
     // Load from localStorage

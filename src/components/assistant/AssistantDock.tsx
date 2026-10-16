@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 import { FeedbackModal } from "@/components/FeedbackButton";
 import { cn } from "@/lib/utils";
 import { streamAiChat, type AiChatMessage } from "@/lib/aiChatStream";
-import { useAllProducts, useProductBySlugOrId } from "@/hooks/useProducts";
+import { useProducts, useProductBySlugOrId } from "@/hooks/useProducts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { parseDoors, stripDoors } from "@/lib/feedbackDoors";
 import { DoorCards } from "@/components/feedback/DoorCards";
@@ -142,7 +142,9 @@ export function AssistantDock() {
   // raw `data` — destructuring `data` here silently left the picker empty.
   const routeSlug = productSlugFromPath(location.pathname);
   const { product: routeProduct } = useProductBySlugOrId(routeSlug);
-  const { allProducts } = useAllProducts();
+  // The picker needs only ids and titles: the listing query is ~9 KB, the
+  // full catalogue (every lesson and transcript) ~6 MB on every page load.
+  const { products: allProducts } = useProducts();
 
   useEffect(() => {
     setThreads(loadThreads());
