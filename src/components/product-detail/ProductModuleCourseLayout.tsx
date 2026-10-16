@@ -241,6 +241,20 @@ export function ProductModuleCourseLayout({
       ),
     [defaultTab, setSearchParams],
   );
+  // Desktop: switching tab while the tab bar is pinned starts the new tab at
+  // its top, not mid-page where a short tab would show nothing.
+  const tabBarRef = useRef<HTMLDivElement>(null);
+  const onDesktopTabChange = useCallback(
+    (tab: string) => {
+      setActiveTab(tab);
+      const bar = tabBarRef.current;
+      const panels = bar?.nextElementSibling;
+      if (!bar || !panels) return;
+      const top = panels.getBoundingClientRect().top + window.scrollY - bar.offsetHeight - 56; // 56 = top nav
+      if (window.scrollY > top) window.scrollTo({ top });
+    },
+    [setActiveTab],
+  );
   // Lesson search lives in ?q= too, so a filtered list can be linked.
   const lessonQuery = searchParams.get("q") ?? "";
   const setLessonQuery = useCallback(
@@ -939,57 +953,39 @@ export function ProductModuleCourseLayout({
 
         {/* ── Right main content ── */}
         <main className="relative flex-1 min-w-0">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full min-w-0">
+          <Tabs value={activeTab} onValueChange={onDesktopTabChange} className="w-full min-w-0">
             {useZincLessonChrome ? (
               <div className="bg-zinc-950">
                 <div className="p-4">{lessonHeroMain}</div>
                 {renderLessonNav("dark")}
-                <div className="sticky top-0 z-10 border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-                  <div className="overflow-x-auto overflow-y-hidden px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                    <TabsList className={cn("inline-flex h-auto w-full grid gap-1 bg-muted/50 p-1", tabsGridColsClass)}>
-                      <TabsTrigger value="course-content" className="min-h-10 text-sm">
-                        Course content
-                      </TabsTrigger>
-                      <TabsTrigger value="resources" className="min-h-10 text-sm">
-                        {resourcesLabel}
-                      </TabsTrigger>
-                      <TabsTrigger value="my-notes" className="min-h-10 text-sm">
-                        My notes
-                      </TabsTrigger>
-                      {extraTabsList.map((t) => (
-                        <TabsTrigger key={t.value} value={t.value} className="min-h-10 text-sm">
-                          {t.label}
-                        </TabsTrigger>
-                      ))}
-                    </TabsList>
-                  </div>
-                </div>
               </div>
             ) : (
               <div className="min-w-0 w-full">
                 {renderLessonNav("light")}
-                <div className="sticky top-0 z-10 border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-                  <div className="overflow-x-auto overflow-y-hidden px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                    <TabsList className={cn("inline-flex h-auto w-full grid gap-1 bg-muted/50 p-1", tabsGridColsClass)}>
-                      <TabsTrigger value="course-content" className="min-h-10 text-sm">
-                        Course content
-                      </TabsTrigger>
-                      <TabsTrigger value="resources" className="min-h-10 text-sm">
-                        {resourcesLabel}
-                      </TabsTrigger>
-                      <TabsTrigger value="my-notes" className="min-h-10 text-sm">
-                        My notes
-                      </TabsTrigger>
-                      {extraTabsList.map((t) => (
-                        <TabsTrigger key={t.value} value={t.value} className="min-h-10 text-sm">
-                          {t.label}
-                        </TabsTrigger>
-                      ))}
-                    </TabsList>
-                  </div>
-                </div>
               </div>
             )}
+            {/* A sibling of the panels, not inside the hero wrapper, so it stays
+                pinned under the 56px top nav while the lesson scrolls. */}
+            <div ref={tabBarRef} className="sticky top-14 z-10 border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+              <div className="overflow-x-auto overflow-y-hidden px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <TabsList className={cn("inline-flex h-auto w-full grid gap-1 bg-muted/50 p-1", tabsGridColsClass)}>
+                  <TabsTrigger value="course-content" className="min-h-10 text-sm">
+                    Course content
+                  </TabsTrigger>
+                  <TabsTrigger value="resources" className="min-h-10 text-sm">
+                    {resourcesLabel}
+                  </TabsTrigger>
+                  <TabsTrigger value="my-notes" className="min-h-10 text-sm">
+                    My notes
+                  </TabsTrigger>
+                  {extraTabsList.map((t) => (
+                    <TabsTrigger key={t.value} value={t.value} className="min-h-10 text-sm">
+                      {t.label}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+              </div>
+            </div>
 
             <div className="min-w-0 border-t border-border bg-background">
               <div className="px-4 py-6 pb-[max(6rem,calc(4.5rem+env(safe-area-inset-bottom,0px)))]">
