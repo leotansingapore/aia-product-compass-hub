@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useAllProducts } from './useProducts';
+import { useProducts } from './useProducts';
 import { useSemanticSearch } from './useSemanticSearch';
 import { countUsefulLinks } from '@/lib/useful-links';
 
@@ -26,7 +26,8 @@ export function useSearch() {
   const [filters, setFilters] = useState<SearchFilters>({});
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
-  const { allProducts, loading } = useAllProducts();
+  // Listing query (~17 KB): useAllProducts pulls every lesson and transcript (~6 MB gzipped).
+  const { products: allProducts, loading } = useProducts();
   const { performSemanticSearch, addToSearchHistory, getSearchSuggestions } = useSemanticSearch();
 
   useEffect(() => {
@@ -59,9 +60,7 @@ export function useSearch() {
       }
 
       if (filters.hasVideos) {
-        filtered = filtered.filter(product => 
-          product.training_videos && Array.isArray(product.training_videos) && product.training_videos.length > 0
-        );
+        filtered = filtered.filter(product => (product.training_videos_count ?? 0) > 0);
       }
 
       if (filters.hasLinks) {
@@ -100,8 +99,7 @@ export function useSearch() {
           let hasRequiredContent = true;
           
           if (filters.hasVideos) {
-            hasRequiredContent = hasRequiredContent && 
-              product.training_videos && Array.isArray(product.training_videos) && product.training_videos.length > 0;
+            hasRequiredContent = hasRequiredContent && (product.training_videos_count ?? 0) > 0;
           }
           
           if (filters.hasLinks) {

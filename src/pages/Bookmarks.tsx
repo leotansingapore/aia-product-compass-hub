@@ -1,5 +1,5 @@
 import { useBookmarks } from "@/hooks/useBookmarks";
-import { useAllProducts } from "@/hooks/useProducts";
+import { useProducts } from "@/hooks/useProducts";
 import { ProductCard } from "@/components/ProductCard";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
@@ -18,7 +18,8 @@ export default function Bookmarks() {
     error: bookmarksError,
     refetch: refetchBookmarks,
   } = useBookmarks();
-  const { allProducts, loading: productsLoading, error: productsError } = useAllProducts();
+  // Listing query (~17 KB): useAllProducts pulls every lesson and transcript (~6 MB gzipped).
+  const { products: allProducts, loading: productsLoading, error: productsError } = useProducts();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -30,7 +31,7 @@ export default function Bookmarks() {
   // Either half can be the one that failed, so retry re-runs both.
   const handleRetry = () => {
     void refetchBookmarks();
-    void queryClient.invalidateQueries({ queryKey: ['products', 'all'] });
+    void queryClient.invalidateQueries({ queryKey: ['products', 'listing'] });
   };
 
   // Get bookmarked products

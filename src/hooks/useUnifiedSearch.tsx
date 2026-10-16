@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { useAllProducts } from './useProducts';
+import { useProducts } from './useProducts';
 import { supabase } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
 import { getCMFASModuleName } from '@/data/cmfasModuleData';
@@ -148,7 +148,8 @@ const EMPTY_SCRIPTS: any[] = [];
 export function useUnifiedSearch() {
   const [query, setQuery] = useState('');
   const [filters, setFilters] = useState<UnifiedSearchFilters>({});
-  const { allProducts, loading: productsLoading } = useAllProducts();
+  // Listing query (~17 KB): useAllProducts pulls every lesson and transcript (~6 MB gzipped).
+  const { products: allProducts, loading: productsLoading } = useProducts();
 
   // Fetch scripts for search
   const { data: scriptsData } = useQuery({

@@ -1,10 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useAllProducts } from './useProducts';
+import { useProducts } from './useProducts';
 import { SearchResult } from './useSearch';
 
 // Enhanced semantic search with NLP-like capabilities
 export function useSemanticSearch() {
-  const { allProducts, loading } = useAllProducts();
+  // Listing query (~17 KB): useAllProducts pulls every lesson and transcript (~6 MB gzipped).
+  const { products: allProducts, loading } = useProducts();
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
   // Load search history. Guarded because a corrupt or legacy value (a truncated

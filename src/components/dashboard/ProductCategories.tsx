@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { getCategorySlugFromId } from "@/utils/slugUtils";
-import { useAllProducts } from "@/hooks/useProducts";
+import { useProducts } from "@/hooks/useProducts";
 import { useFeatureAccess } from "@/hooks/useFeatureAccess";
 import { FEATURES } from "@/lib/tiers";
 import { useMemo } from "react";
@@ -20,7 +20,8 @@ interface QuickLink {
 
 export function ProductCategories() {
   const navigate = useNavigate();
-  const { allProducts, loading } = useAllProducts();
+  // Listing query (~17 KB): useAllProducts pulls every lesson and transcript (~6 MB gzipped).
+  const { products: allProducts, loading } = useProducts();
   const { can } = useFeatureAccess();
 
   const categoryCounts = useMemo(() => {

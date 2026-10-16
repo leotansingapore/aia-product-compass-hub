@@ -64,7 +64,7 @@ import { useScripts } from "@/hooks/useScripts";
 import { usePlaybooks } from "@/hooks/usePlaybooks";
 import { useScriptFlows } from "@/hooks/useScriptFlows";
 import { useConceptCards } from "@/hooks/useConceptCards";
-import { useAllProducts } from "@/hooks/useProducts";
+import { useProducts } from "@/hooks/useProducts";
 import { useFeatureAccess } from "@/hooks/useFeatureAccess";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
@@ -232,7 +232,8 @@ export function GlobalSearchDialog({
   const { playbooks } = usePlaybooks();
   const { flows } = useScriptFlows();
   const { cards } = useConceptCards();
-  const { allProducts } = useAllProducts();
+  // Listing query (~17 KB): useAllProducts pulls every lesson and transcript (~6 MB gzipped).
+  const { products: allProducts } = useProducts();
 
   // Question-bank deep search — server-side, debounced, only for real queries.
   const [questionHits, setQuestionHits] = useState<QuestionHit[]>([]);

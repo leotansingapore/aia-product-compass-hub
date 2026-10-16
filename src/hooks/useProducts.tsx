@@ -174,6 +174,7 @@ const PRODUCTS_LISTING_SELECT = `
   title,
   description,
   category_id,
+  useful_links,
   tags,
   highlights,
   published,
