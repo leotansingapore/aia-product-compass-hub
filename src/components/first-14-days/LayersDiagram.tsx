@@ -88,6 +88,57 @@ function Base({ cell }: { cell: Cell }) {
   );
 }
 
+type Box = [left: number, top: number, width: number, height: number];
+type Spots = { you: Box; pillars: Box[]; base: Box; ink: string[] };
+
+// Art with room for words on its pieces: where each piece sits as a % box of
+// the image, and the text colour that reads on it. A layers fence with this art,
+// a reader, one row of pillars and a base prints its labels on the art.
+const ON_ART: Record<string, Spots> = {
+  // TSS emblem: gold ball, pink top, blue left, green right, navy base.
+  // Navy reads on pink and green, white on blue (contrast measured on the art).
+  "/first-14-days/diagrams/tss.webp": {
+    you: [41, 38, 18, 19],
+    pillars: [[34, 13.5, 34, 21], [10, 59, 37.5, 16.5], [53, 59, 37.5, 15]],
+    base: [10, 78.5, 80, 17],
+    ink: ["text-[color:var(--p-navy)]", "text-white [text-shadow:0_1px_3px_rgb(0_0_0/0.35)]", "text-[color:var(--p-navy)]"],
+  },
+};
+
+const at = ([left, top, width, height]: Box) => ({ left: `${left}%`, top: `${top}%`, width: `${width}%`, height: `${height}%` });
+
+// Labels scale with the art. The details fit on it from 30rem wide; narrower,
+// the pieces keep their names and the details are listed under the art.
+function OnArt({ art, spots, you, pillars, base }: { art: string; spots: Spots; you: Cell; pillars: Cell[]; base: Cell }) {
+  const detail = "mt-0.5 hidden text-[length:clamp(0.7rem,2.5cqw,0.85rem)] leading-snug [@container_(min-width:30rem)]:block";
+  return (
+    <div className="[container-type:inline-size]">
+      <div className="relative mx-auto aspect-[720/695] w-full max-w-[34rem] [container-type:inline-size]">
+        <img src={art} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full drop-shadow-xl" />
+        <p aria-hidden style={at(spots.you)} className={cn(anton, "absolute grid place-items-center text-[length:clamp(1rem,5.5cqw,2rem)] text-[color:var(--p-navy)]")}>
+          {you.title}
+        </p>
+        {pillars.map((cell, i) => (
+          <div key={cell.title} style={at(spots.pillars[i])} className={cn("absolute flex flex-col items-center justify-center text-center", spots.ink[i])}>
+            <p className="text-[length:clamp(0.7rem,3.1cqw,1.05rem)] font-extrabold leading-tight">{cell.title}</p>
+            {cell.detail && <p className={cn(detail, "font-semibold")}>{cell.detail}</p>}
+          </div>
+        ))}
+        <div style={at(spots.base)} className="absolute flex flex-col items-center justify-center text-center">
+          <p className={cn(anton, "text-[length:clamp(1rem,4.4cqw,1.6rem)] leading-none tracking-wide text-[color:var(--p-yellow)]")}>{base.title}</p>
+          {base.detail && <p className={cn(detail, "text-white/90")}>{base.detail}</p>}
+        </div>
+      </div>
+      <div className="mt-3 flex flex-col gap-2 [@container_(min-width:30rem)]:hidden">
+        {pillars.map((cell, i) => (
+          <Card key={cell.title} cell={cell} color={PILLARS[i % PILLARS.length]} />
+        ))}
+        <Card cell={base} color="var(--p-navy)" />
+      </div>
+    </div>
+  );
+}
+
 const DONE_RE = /\s*\(done\)$/i;
 
 function Steps({ cells }: { cells: Cell[] }) {
@@ -216,6 +267,11 @@ export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: 
   const base = (kind === "layers" || kind === "stats") && rows.length > (you ? 2 : 1) && last.length === 1 ? last[0] : undefined;
   const middle = rows.slice(you ? 1 : 0, base ? -1 : undefined);
   const wide = kind === "steps" || kind === "stats" || kind === "compare" || kind === "press" || middle.some((cells) => cells.length > 3);
+  const spots = ON_ART[art];
+  const labelled =
+    kind === "layers" && spots && you && base && middle.length === 1 && middle[0].length === spots.pillars.length
+      ? { spots, you, base, pillars: middle[0] }
+      : undefined;
 
   const content =
     kind === "steps" ? (
@@ -271,7 +327,20 @@ export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: 
       className="f14-poster not-prose relative my-8 overflow-hidden rounded-3xl bg-[color:var(--p-yellow)] p-4 sm:p-7"
     >
       <span aria-hidden className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[color:var(--p-yellow-soft)]" />
-      {wide ? (
+      {labelled ? (
+        // Headline and the reader's line, then the art with every label on its pieces.
+        <div className="relative grid items-center gap-5 sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+          <div>
+            {title && <Headline title={title} />}
+            {labelled.you.detail && (
+              <p className="text-base font-semibold leading-snug text-[color:var(--p-navy)]">
+                {labelled.you.title}: {labelled.you.detail}
+              </p>
+            )}
+          </div>
+          <OnArt art={art} {...labelled} />
+        </div>
+      ) : wide ? (
         // Headline, then art, then cards on a phone; the art takes a right column beside both on a wide screen.
         <div className={cn("relative grid gap-x-6 gap-y-3", art && "sm:grid-cols-[minmax(0,1fr)_14rem] sm:grid-rows-[auto_1fr]")}>
           {title && <Headline title={title} />}

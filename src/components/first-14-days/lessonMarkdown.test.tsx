@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { lessonMarkdownComponents, ONBOARDING_CALL_URL } from "./lessonMarkdown";
@@ -44,16 +44,31 @@ describe("First 14 Days lesson markdown", () => {
 
   it("draws a layers fence as a poster: reader on top, cards side by side, base bar last", () => {
     const { container } = renderLesson(
-      "```layers\ntitle: Tripod | system\nart: /first-14-days/diagrams/tss.webp\nYou | clients first\nA | one || B | two || C | three\nBase | under all\n```",
+      "```layers\ntitle: Tripod | system\nart: /a.webp\nYou | clients first\nA | one || B | two || C | three\nBase | under all\n```",
     );
     expect(container.querySelector("pre, code")).toBeNull();
     expect(screen.getByText("Tripod")).toBeTruthy();
     expect(screen.getByText("system")).toBeTruthy();
-    expect(container.querySelector("img")?.getAttribute("src")).toBe("/first-14-days/diagrams/tss.webp");
+    expect(container.querySelector("img")?.getAttribute("src")).toBe("/a.webp");
     expect(screen.getByText("You").classList.contains("-rotate-6")).toBe(true);
     const card = (t: string) => screen.getByText(t).closest(".flex-1");
     expect(card("A")?.parentElement).toBe(card("C")?.parentElement);
     expect(screen.getByText("Base").closest(".-rotate-1")).toBeTruthy();
+  });
+
+  it("prints the labels on the TSS emblem's pieces, and lists the details under it for a narrow art", () => {
+    const { container } = renderLesson(
+      "```layers\ntitle: Tripod | system\nart: /first-14-days/diagrams/tss.webp\nYou | clients first\nA | one || B | two || C | three\nBase | under all\n```",
+    );
+    const art = container.querySelector("img")!.parentElement!;
+    expect(screen.getByText("You: clients first")).toBeTruthy();
+    expect(within(art).getByText("You")).toBeTruthy();
+    expect(within(art).getByText("B").parentElement?.style.left).toBe("10%");
+    expect(within(art).getByText("two")).toBeTruthy();
+    expect(within(art).getByText("Base").nextSibling?.textContent).toBe("under all");
+    const list = art.nextElementSibling as HTMLElement;
+    expect(within(list).getAllByText(/^(A|B|C|Base)$/).map((p) => p.textContent)).toEqual(["A", "B", "C", "Base"]);
+    expect(container.querySelector(".-rotate-6")).toBeNull();
   });
 
   it("draws a one-row layers fence as plain cards, with no reader and no base", () => {
