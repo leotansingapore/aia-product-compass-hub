@@ -2,7 +2,7 @@
 week: 1
 recap: true
 title: "Week 1 Recap - Foundation & Identity Shift"
-duration_minutes: 57
+duration_minutes: 53
 tags: [first-60-days, week-1, recap]
 ---
 
@@ -44,18 +44,18 @@ Pick three warm contacts this week. Send a simple message - "hey, I've started l
 
 </details>
 
-## Day 2 . Why financial planning matters (10 min)
+## Day 2 . Why financial planning matters (9 min)
 
 <video src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w1-d2" poster="/first-60-days/recap/recap-w1-d2.jpg" controls playsinline preload="metadata" crossorigin="anonymous" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;">
   <track kind="subtitles" srclang="en" label="English" default src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w1-d2.vtt" />
 </video>
 
 - [`00:00`](#t=0) The one-third rule
-- [`01:51`](#t=111) Temporary vs permanent risk
-- [`02:47`](#t=167) Three ways to manage risk
-- [`04:25`](#t=265) How much cover is enough
-- [`06:20`](#t=380) When to buy
-- [`09:36`](#t=576) The financial planning pyramid
+- [`01:47`](#t=107) Temporary vs permanent risk
+- [`02:38`](#t=158) Three ways to manage risk
+- [`04:07`](#t=247) How much cover is enough
+- [`05:51`](#t=351) When to buy
+- [`08:45`](#t=525) The financial planning pyramid
 
 <details>
 <summary><strong>Lecture notes for Day 2</strong></summary>
@@ -88,18 +88,18 @@ A client who jumps to layer 2 without layer 1 is investing on a foundation that 
 
 </details>
 
-## Day 3 . Four assurances of this career (11 min)
+## Day 3 . Four assurances of this career (10 min)
 
 <video src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w1-d3" poster="/first-60-days/recap/recap-w1-d3.jpg" controls playsinline preload="metadata" crossorigin="anonymous" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;">
   <track kind="subtitles" srclang="en" label="English" default src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w1-d3.vtt" />
 </video>
 
 - [`00:00`](#t=0) Autonomy, with responsibility
-- [`01:49`](#t=109) Personal development
-- [`02:26`](#t=146) Job security and passive income
-- [`07:01`](#t=421) Lifetime value of a client
-- [`08:17`](#t=497) Fulfilment
-- [`10:01`](#t=601) The year-1 trap
+- [`01:43`](#t=103) Personal development
+- [`02:16`](#t=136) Job security and passive income
+- [`06:26`](#t=386) Lifetime value of a client
+- [`07:36`](#t=456) Fulfilment
+- [`09:10`](#t=550) The year-1 trap
 
 <details>
 <summary><strong>Lecture notes for Day 3</strong></summary>
@@ -113,18 +113,18 @@ Why FCs stay despite the hard first year:
 
 </details>
 
-## Day 4 . Growth vs fixed mindset (9 min)
+## Day 4 . Growth vs fixed mindset (8 min)
 
 <video src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w1-d4" poster="/first-60-days/recap/recap-w1-d4.jpg" controls playsinline preload="metadata" crossorigin="anonymous" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;">
   <track kind="subtitles" srclang="en" label="English" default src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w1-d4.vtt" />
 </video>
 
 - [`00:00`](#t=0) The two mindsets
-- [`00:52`](#t=52) Add the word yet
-- [`01:46`](#t=106) Sales is a marathon
-- [`03:54`](#t=234) The obstacle is the way
-- [`06:09`](#t=369) Do what others won't
-- [`07:31`](#t=451) Step out of your comfort zone
+- [`00:55`](#t=55) Add the word yet
+- [`01:43`](#t=103) Sales is a marathon
+- [`03:40`](#t=220) The obstacle is the way
+- [`05:41`](#t=341) Do what others won't
+- [`06:49`](#t=409) Step out of your comfort zone
 
 <details>
 <summary><strong>Lecture notes for Day 4</strong></summary>
@@ -144,11 +144,11 @@ The discomfort itself is the path, not a roadblock. Rejections, slow days, compl
 </video>
 
 - [`00:00`](#t=0) Why this career matters
-- [`01:08`](#t=68) Come back to your why
-- [`02:34`](#t=154) Pre-frame with your why
-- [`03:12`](#t=192) The underdog advantage
-- [`04:59`](#t=299) Who your friends buy from
-- [`07:29`](#t=449) The moral compass
+- [`01:07`](#t=67) Come back to your why
+- [`02:25`](#t=145) Pre-frame with your why
+- [`03:00`](#t=180) The underdog advantage
+- [`04:37`](#t=277) Who your friends buy from
+- [`06:52`](#t=412) The moral compass
 
 <details>
 <summary><strong>Lecture notes for Day 5</strong></summary>
@@ -158,18 +158,18 @@ The advisor stereotype - "the random caller from a roadshow" - exists because mo
 
 </details>
 
-## Day 6 . Forming habits that compound (10 min)
+## Day 6 . Forming habits that compound (9 min)
 
 <video src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w1-d6" poster="/first-60-days/recap/recap-w1-d6.jpg" controls playsinline preload="metadata" crossorigin="anonymous" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;">
   <track kind="subtitles" srclang="en" label="English" default src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w1-d6.vtt" />
 </video>
 
 - [`00:00`](#t=0) Why 1% a day beats heroics
-- [`00:53`](#t=53) Systems beat goals
-- [`01:21`](#t=81) The habit loop
-- [`02:44`](#t=164) Identity-based habits
-- [`04:07`](#t=247) Success habits: ASK
-- [`07:31`](#t=451) Week 1 wrap-up
+- [`00:52`](#t=52) Systems beat goals
+- [`01:17`](#t=77) The habit loop
+- [`02:32`](#t=152) Identity-based habits
+- [`03:48`](#t=228) Success habits: ASK
+- [`06:51`](#t=411) Week 1 wrap-up
 
 <details>
 <summary><strong>Lecture notes for Day 6</strong></summary>
