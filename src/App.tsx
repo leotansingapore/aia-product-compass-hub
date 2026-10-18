@@ -30,7 +30,6 @@ import { RouteTracker } from "@/components/RouteTracker";
 import { QuestionBankSync } from "@/components/QuestionBankSync";
 import { PageErrorBoundary } from "@/components/PageErrorBoundary";
 import { PerfOverlay } from "@/components/PerfOverlay";
-import PublicRoadmap from "@/pages/PublicRoadmap";
 
 const OnboardingTutorial = lazyWithRetry(() => import("@/components/onboarding/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
 const OnboardingHelpButton = lazyWithRetry(() => import("@/components/onboarding/OnboardingHelpButton").then(m => ({ default: m.OnboardingHelpButton })));
@@ -73,6 +72,7 @@ const ScriptsDatabase = lazyWithRetry(() => import("./pages/ScriptsDatabase"));
 const ScriptsCourse = lazyWithRetry(() => import("./pages/ScriptsCourse"));
 const Changelog = lazyWithRetry(() => import("./pages/Changelog"));
 const Feedback = lazyWithRetry(() => import("./pages/Feedback"));
+const PublicRoadmap = lazyWithRetry(() => import("./pages/PublicRoadmap"));
 const ServicingPage = lazyWithRetry(() => import("./pages/ServicingPage"));
 const Playbooks = lazyWithRetry(() => import("./pages/Playbooks"));
 const PlaybookDetail = lazyWithRetry(() => import("./pages/PlaybookDetail"));
