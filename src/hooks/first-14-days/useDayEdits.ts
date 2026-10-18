@@ -20,25 +20,30 @@ type SaveArgs = {
 };
 
 // Admin edits for one First 14 Days day, newest first (the last 10 saves).
+// Shared with routePrefetch, which starts it before the page has rendered.
+export const dayEditsQuery = (dayNumber: number) => ({
+  queryKey: ["first-14-days-day-edits", dayNumber],
+  queryFn: async (): Promise<DayEdit[]> => {
+    const { data, error } = await supabase
+      .from(TABLE)
+      .select("id, markdown, base_hash, created_at")
+      .eq("day_number", dayNumber)
+      .order("id", { ascending: false })
+      .limit(10);
+    if (error) throw error;
+    return data;
+  },
+  staleTime: 60_000,
+  retry: 1,
+});
+
 export function useDayEdits(dayNumber: number) {
   const qc = useQueryClient();
-  const queryKey = ["first-14-days-day-edits", dayNumber];
+  const { queryKey } = dayEditsQuery(dayNumber);
 
   const query = useQuery({
-    queryKey,
-    queryFn: async (): Promise<DayEdit[]> => {
-      const { data, error } = await supabase
-        .from(TABLE)
-        .select("id, markdown, base_hash, created_at")
-        .eq("day_number", dayNumber)
-        .order("id", { ascending: false })
-        .limit(10);
-      if (error) throw error;
-      return data;
-    },
+    ...dayEditsQuery(dayNumber),
     enabled: Number.isInteger(dayNumber) && dayNumber >= 1 && dayNumber <= 14,
-    staleTime: 60_000,
-    retry: 1,
   });
 
   const save = useMutation({

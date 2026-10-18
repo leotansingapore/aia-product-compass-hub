@@ -4,7 +4,8 @@ import { lazyWithRetry } from "@/utils/lazyWithRetry";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@/lib/queryClient";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { FeatureTracking } from "@/hooks/useFeatureTracking";
 import { HelmetProvider } from "react-helmet-async";
@@ -139,17 +140,6 @@ const ProLifetimeProtectorStudy = lazyWithRetry(() => import("./pages/ProLifetim
 const SolitairePaStudy = lazyWithRetry(() => import("./pages/SolitairePaStudy"));
 const UltimateCriticalCoverStudy = lazyWithRetry(() => import("./pages/UltimateCriticalCoverStudy"));
 const GuaranteedProtectPlusStudy = lazyWithRetry(() => import("./pages/GuaranteedProtectPlusStudy"));
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 2 * 60 * 1000,      // 2 min — avoid refetch on every navigation
-      gcTime: 10 * 60 * 1000,         // 10 min — keep unused data in cache longer
-      refetchOnWindowFocus: false,    // don't refetch when user switches tabs
-      retry: 1,                       // single retry instead of default 3
-    },
-  },
-});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
