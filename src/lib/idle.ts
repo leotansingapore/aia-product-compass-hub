@@ -23,3 +23,15 @@ export function scheduleIdle(cb: () => void, timeoutMs = 1500): () => void {
   const handle = window.setTimeout(cb, 200);
   return () => window.clearTimeout(handle);
 }
+
+/**
+ * After the load event, then `ms`, then the next idle moment. requestIdleCallback's
+ * timeout is a deadline, not a delay: while a page waits on the network the thread
+ * is idle, so scheduleIdle alone fires at once and competes with that page's
+ * requests. In this app `load` fires long before a lesson shows, hence the wait.
+ */
+export function scheduleAfterLoad(ms: number, cb: () => void): void {
+  const go = () => window.setTimeout(() => scheduleIdle(cb), ms);
+  if (document.readyState === 'complete') go();
+  else window.addEventListener('load', go, { once: true });
+}

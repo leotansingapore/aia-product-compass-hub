@@ -1,6 +1,7 @@
 // Deliberately free of any @sentry import: main.tsx pulls this in statically,
 // and the SDK (~50kB gzip) is fetched only after the page has loaded,
 // from ./sentry. That file says what is and is not collected.
+import { scheduleAfterLoad } from './idle';
 const dsn = import.meta.env.VITE_SENTRY_DSN as string | undefined;
 
 export function bootErrorReporting(): void {
@@ -23,6 +24,7 @@ export function bootErrorReporting(): void {
       pending.length = 0;
     });
   };
-  if (document.readyState === 'complete') start();
-  else window.addEventListener('load', start, { once: true });
+  // 3s past load: `load` fires before the first page's own chunks and queries
+  // are done, and errors before then are held above.
+  scheduleAfterLoad(3000, start);
 }

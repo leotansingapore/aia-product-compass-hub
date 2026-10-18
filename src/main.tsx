@@ -9,6 +9,7 @@ import {
 } from './utils/staleChunkRecovery'
 import { bootErrorReporting } from './lib/sentry-boot'
 import { prefetchRoute } from './utils/routePrefetch'
+import { scheduleAfterLoad } from './lib/idle'
 
 resetStaleChunkRecovery()
 installStaleChunkRecovery()
@@ -40,5 +41,10 @@ createRoot(document.getElementById("root")!).render(
   </RuntimeErrorOverlay>
 );
 
-// Analytics after the first render: its bytes never compete with the app's.
-void import('./lib/posthog').then((m) => m.initPostHog()).catch(() => {})
+// Analytics after the first render. A learning-track page waits 3s past load
+// too: PostHog with replay is ~100kB gzip plus a page snapshot, and a learner
+// there is signed in, so no ad tags or referrer are lost by waiting. Elsewhere
+// it starts at once, before a redirect (/ to /auth) drops the utm tags.
+const startAnalytics = () => void import('./lib/posthog').then((m) => m.initPostHog()).catch(() => {})
+if (window.location.pathname.startsWith('/learning-track/')) scheduleAfterLoad(3000, startAnalytics)
+else startAnalytics()

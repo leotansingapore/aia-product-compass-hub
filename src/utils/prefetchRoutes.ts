@@ -1,9 +1,4 @@
-import { scheduleIdle } from "@/lib/idle";
-
-// requestIdleCallback's timeout is a deadline, not a delay: while the first
-// page waits on the network the thread is idle, so without the setTimeout both
-// waves fired at once and competed with that page's own chunks and queries.
-const after = (ms: number, cb: () => void) => window.setTimeout(() => scheduleIdle(cb), ms);
+import { scheduleAfterLoad } from "@/lib/idle";
 
 /**
  * Warm the network/cache for the most frequently-navigated learner routes
@@ -16,7 +11,7 @@ const after = (ms: number, cb: () => void) => window.setTimeout(() => scheduleId
  */
 export function prefetchCommonRoutes(): void {
   // First wave (3s, then idle): the routes ~every learner visits.
-  after(3000, () => {
+  scheduleAfterLoad(3000, () => {
     void import("@/pages/learning-track/PreRnf");
     void import("@/pages/learning-track/First60Days");
     void import("@/pages/learning-track/First14Days");
@@ -26,7 +21,7 @@ export function prefetchCommonRoutes(): void {
 
   // Second wave (8s, then idle): commonly visited but not on the critical path.
   // Spread further out so we never compete with the user's first interaction.
-  after(8000, () => {
+  scheduleAfterLoad(8000, () => {
     void import("@/pages/Leaderboard");
     void import("@/pages/Library");
     void import("@/pages/Categories");
