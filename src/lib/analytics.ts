@@ -25,8 +25,11 @@ export function trackEvent(event: EventName, props: Record<string, string | numb
     try {
       const host = window.location.hostname
       if (host === 'localhost' || host === '127.0.0.1' || host.endsWith('.local')) return
-      const { data } = await supabase.auth.getUser()
-      const uid = data?.user?.id
+      // getSession, not getUser: getUser is a round trip to Supabase Auth made
+      // under the client's auth lock, so every query on the page waited on it.
+      // RLS still checks the insert against the token's user.
+      const { data } = await supabase.auth.getSession()
+      const uid = data?.session?.user?.id
       if (!uid) return // signed-in only; a share-link viewer without a session is not tracked
       // The generated types do not carry app_events; the cast keeps the insert
       // honest without regenerating a large file for one table.
