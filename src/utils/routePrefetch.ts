@@ -53,8 +53,9 @@ const lessonLoaders: [RegExp, (n: number) => Promise<unknown>][] = [
     // The page waits on this query before showing the lesson. Signed-in only:
     // anon reads come back empty, and that empty cache would hide an admin
     // edit for a minute after signing in.
-    supabase.auth.getSession().then(({ data }) => data.session &&
-      import("@/hooks/first-14-days/useDayEdits").then((m) => queryClient.prefetchQuery(m.dayEditsQuery(n)))),
+    Promise.all([supabase.auth.getSession(), import("@/hooks/first-14-days/useDayEdits")]).then(
+      ([{ data }, m]) => data.session && queryClient.prefetchQuery(m.dayEditsQuery(n)),
+    ),
   ])],
   [/^\/learning-track\/first-60-days\/day\/(\d+)$/, (n) => Promise.all([
     import("@/pages/learning-track/First60DaysDay"),
