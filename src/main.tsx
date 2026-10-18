@@ -8,6 +8,7 @@ import {
   resetStaleChunkRecovery,
 } from './utils/staleChunkRecovery'
 import { bootErrorReporting } from './lib/sentry-boot'
+import { prefetchRoute } from './utils/routePrefetch'
 
 resetStaleChunkRecovery()
 installStaleChunkRecovery()
@@ -28,6 +29,10 @@ if (typeof window !== 'undefined') {
     }
   })
 }
+
+// Start a learning-track page's chunks now, not after the auth and tier checks
+// let its route render. Not "/": learners there are redirected to their track.
+if (window.location.pathname.startsWith('/learning-track/')) prefetchRoute(window.location.pathname)
 
 createRoot(document.getElementById("root")!).render(
   <RuntimeErrorOverlay>

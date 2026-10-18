@@ -92,6 +92,11 @@ export function prefetchDay(dayNumber: number): void {
   loader().catch(() => undefined);
 }
 
+// Same idea for a week recap: the recap page's own glob resolves to this chunk.
+export function prefetchRecap(weekNumber: number): void {
+  recapPaths[`/docs/first-60-days/week-${weekNumber}/recap.md`]?.().catch(() => undefined);
+}
+
 // Detects raw HTML tags in a day's markdown body. rehype-raw is the heaviest
 // plugin in the markdown pipeline; days without embedded HTML can skip it.
 // Only matches a conservative set of common block elements used by authors.

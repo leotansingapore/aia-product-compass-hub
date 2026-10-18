@@ -41,6 +41,31 @@ const loaders: Record<string, Loader> = {
   "/how-to-use": () => import("@/pages/ConsultantLanding"),
 };
 
+// Lesson pages: the page chunk and that day's markdown chunk, fetched together
+// instead of one after the other.
+const lessonLoaders: [RegExp, (n: number) => Promise<unknown>][] = [
+  [/^\/learning-track\/first-14-days\/day\/(\d+)$/, (n) => Promise.all([
+    import("@/pages/learning-track/First14DaysDay"),
+    import("@/features/first-14-days/content").then((m) => m.loadDay(n)),
+  ])],
+  [/^\/learning-track\/first-60-days\/day\/(\d+)$/, (n) => Promise.all([
+    import("@/pages/learning-track/First60DaysDay"),
+    import("@/features/first-60-days/content").then((m) => m.prefetchDay(n)),
+  ])],
+  [/^\/learning-track\/first-60-days\/recap\/(\d+)$/, (n) => Promise.all([
+    import("@/pages/learning-track/First60DaysWeekRecap"),
+    import("@/features/first-60-days/content").then((m) => { m.prefetchRecap(n); return m.loadWeekReadme(n); }),
+  ])],
+  [/^\/learning-track\/next-60-days\/day\/(\d+)$/, (n) => Promise.all([
+    import("@/pages/learning-track/Next60DaysDay"),
+    import("@/features/next-60-days/content").then((m) => m.loadDay(n)),
+  ])],
+  [/^\/learning-track\/product-mastery\/day\/(\d+)$/, (n) => Promise.all([
+    import("@/pages/learning-track/ProductMasteryDay"),
+    import("@/features/product-mastery-track/content").then((m) => m.prefetchDay(n)),
+  ])],
+];
+
 const fired = new Set<string>();
 
 /**
@@ -53,6 +78,13 @@ const fired = new Set<string>();
 export function prefetchRoute(path: string): void {
   if (!path || fired.has(path)) return;
   let loader = loaders[path];
+
+  if (!loader) {
+    for (const [re, load] of lessonLoaders) {
+      const m = path.match(re);
+      if (m) loader = () => load(Number(m[1]));
+    }
+  }
 
   if (!loader) {
     if (path.startsWith("/product/")) {
