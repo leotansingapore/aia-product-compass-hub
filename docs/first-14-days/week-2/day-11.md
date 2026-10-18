@@ -25,13 +25,9 @@ Remember, I started from zero too. If I can do it, so can you.
 
 ## Two FINterns who started from zero
 
-![[first-14-days/images/mentee-gabriel-kow.webp|Gabriel Kow, FINtern, joined after ORD]]
-
 Gabriel Kow joined FINternship right after his ORD. He had no finance background and no big network. In his words:
 
 > "As an NSF, life was mundane, and I was only expecting a full-time job paying me $2-3k per month. With the FINternship program, I was able to earn $10k per month in my first month and reshape my mindset for the better."
-
-![[first-14-days/images/mentee-benjamin-gnoh.webp|Benjamin Gnoh, FINtern, entering NTU Maritime Studies]]
 
 Benjamin Gnoh joined just before starting Maritime Studies at NTU, with barely any warm market:
 
