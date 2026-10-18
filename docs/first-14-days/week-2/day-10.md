@@ -41,6 +41,35 @@ These are the cold-market channels we run for you and teach you:
 
 When I started, my own warm network was small. I was on GEP at NUS with no real social circle, so most of my 1,000+ clients came through cold prospecting. If your network is small too, you'll lean more on cold, maybe 70 to 80% of your pipeline. If your network is big, that's an advantage you bring with you.
 
+## Where will my first clients come from?
+
+Finding clients is one of three jobs, and each one feeds the next. Clients you look after send you their friends, and one day some of those people join your team. It all starts with you.
+
+```layers
+title: How the work | fits together
+You | it starts with you
+Finding clients | a full calendar without leaning on your friends || Keeping clients | clients who stay with you and send their friends || Building a team | a team of your own when you're ready to lead
+```
+
+To find clients, you get:
+
+- Funnels and free guides that bring people to you
+- Half the cost of approved ad campaigns covered
+- Ads and branding done by our digital marketing agency
+- Pitch decks and scripts that are ready to use
+
+To keep them:
+
+- Gifts and touchpoints so they remember you
+- Webinars and courses they can learn from
+- A CRM that tells you who to follow up
+
+When you're ready to lead:
+
+- Bootcamps that train your new joiners for you
+- Recorded lessons and an exam chatbot they can use any time
+- Onboarding handled from start to finish
+
 ## What happened with my own family and friends
 
 People often ask me two things about this.
@@ -63,6 +92,6 @@ If you believe your services can truly help them, then yes, it's a great way to 
 
 ## Related
 
-- Previous: [[day-09|Day 9 — The 6 C's — Honest Self-Assessment]]
-- Next: [[day-11|Day 11 — "I Have No Experience / I'm Too Introverted"]]
-- Week 2 overview: [[README|Week 2 — The Fit Test]]
+- Previous: [[day-09|Day 9: The 6 C's: Honest Self-Assessment]]
+- Next: [[day-11|Day 11: "I Have No Experience / I'm Too Introverted"]]
+- Week 2 overview: [[README|Week 2: The Fit Test]]
