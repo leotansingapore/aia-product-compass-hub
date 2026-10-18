@@ -61,6 +61,12 @@ Later, you can use this whole program to build your own team. Everything I used 
 
 So what does the right person look like? After training hundreds of people, I don't screen for experience, connections or charisma. Those can all be built. I look for six traits.
 
+```layers
+title: What we | look for
+Consistency of actions | you show up, every time || Constancy of emotions | a bad week won't sink you || Continuous improvement | you want feedback, and you use it
+Creativity | you figure things out || Can-do spirit | you start before you're ready || CEO mindset | you own your results
+```
+
 ### 1. Consistency of actions
 
 ![[first-14-days/images/6c-consistency.webp|Consistency of actions]]
@@ -128,6 +134,14 @@ Not everyone stays convicted, motivated and disciplined over time. The next few 
 Some people get excited about the opportunity and fade when the work begins, and others start strong and lose momentum at their first real challenge. I'm looking for the ones who understand that this is a marathon.
 
 So let me ask you directly: are you ready for the challenge? Are you ready to commit to executing, and to building, and to finishing what you start?
+
+From you, I ask for three things.
+
+```layers
+title: What we | ask of you
+Make the first move. || Turn up to training. || Pass your CMFAS papers. That's the big one.
+Do those three. We'll handle the rest.
+```
 
 If your answer is yes, everything we've built is waiting for you. The only variable left is you.
 
