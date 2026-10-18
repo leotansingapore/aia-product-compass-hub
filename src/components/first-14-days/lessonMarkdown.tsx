@@ -27,8 +27,8 @@ const isDiagram = (lang: string): lang is DiagramKind => (DIAGRAM_KINDS as reado
 const IncomeCalculator = lazy(() => import("./IncomeCalculator"));
 const isBlock = (lang: string) => isDiagram(lang) || lang === "income-calculator";
 
-// Day markdown for the First 14 Days: ```layers, ```pyramid, ```steps, ```stats
-// and ```compare fences draw diagrams (LayersDiagram), ```income-calculator embeds the
+// Day markdown for the First 14 Days: ```layers, ```pyramid, ```steps, ```stats,
+// ```compare, ```press and ```house fences draw diagrams (LayersDiagram), ```income-calculator embeds the
 // income calculator, an image opens full size in a new tab, where a
 // phone can pinch-zoom a dense slide, and booking links are counted.
 export const lessonMarkdownComponents: Components = {

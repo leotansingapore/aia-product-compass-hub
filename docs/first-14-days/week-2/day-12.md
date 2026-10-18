@@ -84,7 +84,18 @@ Apart from AIA's own products, we can offer the products of other insurers too.
 
 AIA also gives you support at every level: products, engagement, activities, training, digital tools, sales support and more.
 
-![[first-14-days/images/aia-support.webp|AIA Singapore's support for advisors]]
+```house
+title: What AIA puts behind you
+For your clients | Plans to offer young families, professionals and business owners | Group cover you can offer to employers | A wellness programme that rewards your clients for staying healthy | Claims your clients can file on an app
+Events | Client events you can invite people to | AIA venues to host your own | Loyalty rewards for clients who stay
+Training | Help preparing for your CMFAS papers | A certification to advise high net worth clients | A leadership programme when you want to build a team
+Tools | An app to manage your clients | Proposals and applications done on a tablet | Online sign-up for people who join your team
+Sales support | AIA campaigns you can join | Leads to follow up | Half of approved marketing costs covered
+Recognition | Team kick-offs and sprints | Awards and overseas trips
+Your career | A career benefit that grows with your years | A provident fund | A bonus when you're promoted | A business allowance
+Where you work | A desk at AIA's offices | Or work from anywhere
+Built on technology and data
+```
 
 For a new advisor, training, systems and support make a bigger difference than having every insurer's product on the shelf. I built my book at AIA, and the top products in each category are very similar across the big insurers anyway.
 

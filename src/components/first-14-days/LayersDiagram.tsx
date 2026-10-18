@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 type Cell = { title: string; detail: string };
 
-export const DIAGRAM_KINDS = ["layers", "pyramid", "steps", "stats", "compare", "press"] as const;
+export const DIAGRAM_KINDS = ["layers", "pyramid", "steps", "stats", "compare", "press", "house"] as const;
 export type DiagramKind = (typeof DIAGRAM_KINDS)[number];
 
 export type Diagram = { title: string; art: string; rows: Cell[][] };
@@ -223,6 +223,40 @@ function Press({ cells }: { cells: Cell[] }) {
   );
 }
 
+// The title is the roof, each "Label | tile | tile" line a floor, and a last
+// line with no tiles the ground the house stands on.
+function House({ roof, cells }: { roof: string; cells: Cell[] }) {
+  const last = cells[cells.length - 1];
+  const ground = cells.length > 1 && !last.detail ? last : undefined;
+  const floors = ground ? cells.slice(0, -1) : cells;
+  return (
+    <div className="flex flex-col gap-2">
+      {roof && (
+        <div className="grid min-h-24 place-items-center bg-[color:var(--p-navy)] px-4 pb-3 pt-10 text-center [clip-path:polygon(50%_0,100%_55%,100%_100%,0_100%,0_55%)]">
+          <p className={cn(anton, "text-xl leading-tight text-[color:var(--p-yellow)] sm:text-2xl")}>{roof}</p>
+        </div>
+      )}
+      {floors.map((floor) => (
+        <div key={floor.title} className="grid gap-2 sm:grid-cols-[9rem_minmax(0,1fr)]">
+          <p className="grid place-items-center rounded-xl bg-[color:var(--p-navy)] px-3 py-2 text-center text-xs font-bold uppercase tracking-wide text-white">
+            {floor.title}
+          </p>
+          <div className="grid grid-cols-2 gap-2 max-sm:[&>*:last-child:nth-child(odd)]:col-span-2 sm:auto-cols-fr sm:grid-flow-col sm:grid-cols-none">
+            {floor.detail.split("|").map((tile) => (
+              <p key={tile} className="grid place-items-center rounded-xl bg-white px-3 py-2 text-center text-[13px] font-semibold leading-snug text-[color:var(--p-navy)] shadow-sm">
+                {tile.trim()}
+              </p>
+            ))}
+          </div>
+        </div>
+      ))}
+      {ground && (
+        <p className="rounded-xl bg-[color:var(--p-navy)] px-4 py-3 text-center text-xs font-bold uppercase tracking-widest text-white">{ground.title}</p>
+      )}
+    </div>
+  );
+}
+
 function Compare({ rows }: { rows: Cell[][] }) {
   const [head, ...body] = rows;
   const [them, us] = [head[1]?.title ?? "", head[2]?.title ?? ""];
@@ -258,15 +292,15 @@ function Compare({ rows }: { rows: Cell[][] }) {
 // last row is the base bar, rows between sit side by side. pyramid: numbered
 // tiers. steps: one step per line, across on a wide screen, down on a phone.
 // stats: big numbers (a single-cell last row is the base bar). compare: see
-// Compare. Wide content (steps, stats, compare, a row of 4+) sits under the
-// headline instead of beside the art.
+// Compare. house: see House. Wide content (steps, stats, compare, house, a row
+// of 4+) sits under the headline instead of beside the art.
 export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: DiagramKind }) {
   const { title, art, rows } = parseDiagram(code);
   const you = (kind === "layers" || kind === "pyramid") && rows.length > 1 && rows[0].length === 1 ? rows[0][0] : undefined;
   const last = rows[rows.length - 1];
   const base = (kind === "layers" || kind === "stats") && rows.length > (you ? 2 : 1) && last.length === 1 ? last[0] : undefined;
   const middle = rows.slice(you ? 1 : 0, base ? -1 : undefined);
-  const wide = kind === "steps" || kind === "stats" || kind === "compare" || kind === "press" || middle.some((cells) => cells.length > 3);
+  const wide = kind === "steps" || kind === "stats" || kind === "compare" || kind === "press" || kind === "house" || middle.some((cells) => cells.length > 3);
   const spots = ON_ART[art];
   const labelled =
     kind === "layers" && spots && you && base && middle.length === 1 && middle[0].length === spots.pillars.length
@@ -280,6 +314,8 @@ export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: 
       <Stats cells={middle.flat()} />
     ) : kind === "press" ? (
       <Press cells={rows.flat()} />
+    ) : kind === "house" ? (
+      <House roof={title} cells={rows.flat()} />
     ) : kind === "compare" ? (
       <Compare rows={rows} />
     ) : (
@@ -343,7 +379,7 @@ export function LayersDiagram({ code, kind = "layers" }: { code: string; kind?: 
       ) : wide ? (
         // Headline, then art, then cards on a phone; the art takes a right column beside both on a wide screen.
         <div className={cn("relative grid gap-x-6 gap-y-3", art && "sm:grid-cols-[minmax(0,1fr)_14rem] sm:grid-rows-[auto_1fr]")}>
-          {title && <Headline title={title} />}
+          {title && kind !== "house" && <Headline title={title} />}
           {artBox}
           <div className="sm:col-start-1">{body}</div>
         </div>

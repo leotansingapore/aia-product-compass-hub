@@ -124,6 +124,13 @@ describe("First 14 Days lesson markdown", () => {
     ]);
     expect(screen.getByText("The Paper, 1 Jan 2026")).toBeTruthy();
   });
+  it("draws a house fence: the title as the roof, a floor of tiles per line, a tile-less last line as the ground", () => {
+    renderLesson("```house\ntitle: What AIA puts behind you\nTools | An app | A tablet\nWhere you work | An office | Anywhere\nBuilt on data\n```");
+    expect(screen.getAllByText("What AIA puts behind you")).toHaveLength(1);
+    expect(screen.getByText("Tools").nextElementSibling?.textContent).toBe("An appA tablet");
+    expect(screen.getByText("Anywhere").parentElement?.previousElementSibling?.textContent).toBe("Where you work");
+    expect(screen.getByText("Built on data").parentElement?.children).toHaveLength(4);
+  });
   it("shows a step titled '(done)' with a tick instead of its number", () => {
     renderLesson("```steps\nOrientation (done) | First 14 Days\nPapers | next\n```");
     const steps = screen.getAllByRole("listitem");
