@@ -20,8 +20,8 @@ export default {
     	extend: {
     		fontFamily: {
     			sans: ['Nunito', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-    			// `font-serif` is the heading face: Excalidraw's hand-drawn Excalifont (self-hosted, src/index.css), Nunito for glyphs it lacks
-    			serif: ['Excalifont', 'Nunito', 'ui-sans-serif', 'system-ui', 'sans-serif']
+    			// `font-serif` is the heading face; Leo wants headings in the body's Nunito (2026-10-18)
+    			serif: ['Nunito', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif']
     		},
     		fontSize: {
     			micro: ['0.875rem', { lineHeight: '1.5' }],

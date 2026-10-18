@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Heading face (OFL, public/fonts/Excalifont-OFL.txt). One weight only: the
-   100-900 range stops browsers faking bold; size-adjust matches Nunito's size. */
-@font-face {
-  font-family: "Excalifont";
-  src: url("/fonts/excalifont-latin.woff2") format("woff2");
-  font-weight: 100 900;
-  font-display: swap;
-  size-adjust: 112%;
-}
-
 /* FINternship Learning Platform Design System */
 
 @layer base {
