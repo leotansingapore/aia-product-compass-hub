@@ -50,6 +50,16 @@ I earned $145k as a full-time engineering student in Uni Y1, my first year in th
 
 One of the biggest draws of a financial advisory career is how much control it gives you.
 
+```compare
+title: A normal job | vs your own business
+|| A normal job || Your own business
+Pay || Fixed pay for the hours you put in || Grows with your client book, with no cap
+Security || Secure at the start, less certain later on || Harder at the start, more secure as renewals build up
+Promotion || Waits for an opening, your years and your grade || Moves as fast as you do
+Freedom || Your hours and leave are set for you || You set your own hours
+Goals || You work towards your employer's goals || You work towards your own
+```
+
 Want to focus on family in the mornings and meet clients in the afternoons? This career gives you the autonomy to shape your day the way you want.
 
 Because of how flexible the career is, I can control my time.
