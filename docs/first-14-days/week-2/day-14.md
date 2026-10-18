@@ -7,7 +7,7 @@ author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
   - "[[../../finternship-orientation/04-module-4---your-unfair-advantage/09-8-your-timeline-with-us]]"
-duration_minutes: 3
+duration_minutes: 4
 tags: [first-14-days, week-2, prospect, graduation, timeline, leo-voice]
 ---
 
@@ -42,6 +42,34 @@ If you need some allowance, ask us about the Flexi scheme, where you're paid for
 
 It's optional, but you can also register for the AIA Internship Programme to earn extra money.
 
+Here are all 12 weeks. Every week there's a face-to-face session with the team: role-play with our scripts, a short talk in front of the team, an AI lab and a check-in with your mentor.
+
+```steps
+title: Month 1 | Foundations and your first papers
+Orientation | plan your first year and the habits that get you there
+How the industry works | how insurance works in Singapore, explained the way you'd explain it to your parents
+Wealth principles | why income that keeps coming back beats one-off sales
+Exam sprint | sit your first CMFAS papers after working through our mock tests
+```
+
+```steps
+title: Month 2 | Money skills and your system
+Your operating system | plan your week like a business owner and track what's working
+Financial fundamentals | get comfortable with the money maths clients ask about, like CPF and compounding
+Finding clients | list everyone you could help, and set up a profile that gets strangers messaging you
+Conversations | write your opener and practise handling objections
+```
+
+```steps
+title: Month 3 | In the field
+Needs discovery | ask the questions that get clients to tell you what they need
+Products and proposals | learn the core plans, then write your first proposal
+Shadowing | sit in on real client meetings and talk each one through with your mentor
+Your first meetings | our team books your first appointments, and a coach goes through each one with you after
+```
+
+Most people clear all four CMFAS papers within the first two months.
+
 ### Induction: after you pass all your exams
 
 Congratulations! You're now qualified to join us as a financial advisor. At this point you lodge your RNF (Representatives Notification Framework). Then you go through a series of onboarding training programmes: FTS (Foundation To Success), the EPS Training Programme and the BTS Training Programme.
@@ -56,7 +84,16 @@ BTS Training Programme | 12 months of monthly training on mindset, soft and tech
 
 You choose your pay scheme and receive a $1,000 onboarding incentive.
 
+After month 3, you learn on real client cases.
+
+```layers
+title: After month 3 | real client cases
+Next 60 Days | record your pitch, get feedback on it, and learn to ask for referrals without feeling pushy || Product Mastery | learn each core plan well enough to explain it in one sentence and compare it with other insurers' plans || AIA's training roadmap | from month 13, choose where to grow: becoming a top producer, working with business owners and high net worth clients, or leading a team || Sales playbooks | scripts for every stage of a meeting, plus the presentation I've used and improved for 7 years
+```
+
 ## Your career path
+
+Promotion goes on your results, not how long you've been here.
 
 ```steps
 title: Your career | path
@@ -65,6 +102,11 @@ Associate director | lead a team of 6 advisors, from year 2
 Director | lead a team of 8 advisors
 Senior director | lead a team of 12 advisors
 Executive director | lead an organisation of your own with several teams
+```
+
+```layers
+title: Support at | every stage
+Before you're licensed | our 12 weeks of training, papers and practice || Your first year | AIA's year-long programme for new advisors, plus the new advisor bonus || After a year | a study group for advisors aiming for MDRT, the industry's top-producer standard
 ```
 
 ---
