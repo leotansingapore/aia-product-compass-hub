@@ -30,11 +30,14 @@ interface MinimalRichEditorProps {
   placeholder?: string;
   autoFocus?: boolean;
   showToolbar?: boolean;
+  toolbarClassName?: string;
 }
 
 /** Call before persisting: flushes debounced edits and returns markdown from the live editor HTML. */
 export type MinimalRichEditorHandle = {
   getMarkdownForSave: () => Promise<string>;
+  /** Cursor after the n-th non-space character, scrolled to sit at `clientY` (where a click on the rendered text landed). */
+  focusAtChars: (n: number, clientY?: number) => void;
 };
 
 // Configure turndown for clean markdown output — loaded on first use
@@ -282,6 +285,7 @@ export const MinimalRichEditor = forwardRef<MinimalRichEditorHandle, MinimalRich
   placeholder = "Start typing...",
   autoFocus = false,
   showToolbar = true,
+  toolbarClassName,
 }, ref) {
   const isUpdatingRef = useRef(false);
   const lastValueRef = useRef(value);
@@ -524,6 +528,22 @@ export const MinimalRichEditor = forwardRef<MinimalRichEditorHandle, MinimalRich
         dirtyRef.current = false;
         return md;
       },
+      focusAtChars: (n, clientY) => {
+        const ed = editorInstanceRef.current;
+        if (!ed || ed.isDestroyed) return;
+        // Non-space characters only: rendered markdown and the editor space blocks differently.
+        let pos: number | null = null;
+        let seen = 0;
+        ed.state.doc.descendants((node, at) => {
+          if (pos !== null) return false;
+          if (!node.isText) return true;
+          const t = node.text ?? '';
+          for (let i = 0; i < t.length && pos === null; i++) if (!/\s/.test(t[i]) && ++seen === n) pos = at + i + 1;
+          return false;
+        });
+        ed.commands.focus(n <= 0 ? 'start' : (pos ?? 'end'), { scrollIntoView: clientY === undefined });
+        if (clientY !== undefined) window.scrollBy(0, ed.view.coordsAtPos(ed.state.selection.from).top - clientY);
+      },
     }),
     []
   );
@@ -619,7 +639,7 @@ export const MinimalRichEditor = forwardRef<MinimalRichEditorHandle, MinimalRich
   return (
     <div className="space-y-0" ref={editorWrapperRef}>
       {showToolbar && (
-        <div className="flex items-center gap-0.5 p-1.5 border-b border-border/40 flex-wrap">
+        <div className={cn("flex items-center gap-0.5 p-1.5 border-b border-border/40 flex-wrap", toolbarClassName)}>
           <Button
             variant="ghost"
             size="sm"

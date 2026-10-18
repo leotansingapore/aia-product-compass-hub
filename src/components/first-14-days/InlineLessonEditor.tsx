@@ -4,10 +4,10 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { MinimalRichEditor, type MinimalRichEditorHandle } from "@/components/MinimalRichEditor";
+import { MinimalRichEditor, mdToHtml, type MinimalRichEditorHandle } from "@/components/MinimalRichEditor";
 import { cn } from "@/lib/utils";
 import { convertImageEmbeds } from "@/features/first-60-days/parse";
-import { blockKind, replaceBlock, splitBlocks } from "@/features/first-14-days/blocks";
+import { groupParts, replaceBlocks, splitBlocks, tidyRichMarkdown, type Part } from "@/features/first-14-days/blocks";
 import { hashSource, MAX_EDIT_CHARS, shownSource } from "@/features/first-14-days/edits";
 import { EditConflictError, useDayEdits } from "@/hooks/first-14-days/useDayEdits";
 import { lessonMarkdownComponents } from "./lessonMarkdown";
@@ -33,34 +33,63 @@ const writeDraft = (day: number, text: string | null) => {
 const when = (iso: string) =>
   new Date(iso).toLocaleString("en-SG", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
 
-// A trailing empty paragraph comes back from the rich-text editor as "&nbsp;".
-const cleanRich = (md: string) => md.replace(/(\n\s*&nbsp;\s*)+$/g, "").replace(/^\s*&nbsp;\s*\n+/, "").trim();
+/** Non-space characters of `el`'s text before the point (x, y), or null when the point misses its text. */
+function charsBefore(el: HTMLElement, x: number, y: number): number | null {
+  const d = document as Document & { caretPositionFromPoint?: (x: number, y: number) => { offsetNode: Node; offset: number } | null };
+  const p = d.caretPositionFromPoint?.(x, y);
+  const r = p ? null : document.caretRangeFromPoint?.(x, y);
+  const node = p?.offsetNode ?? r?.startContainer;
+  if (!node || !el.contains(node)) return null;
+  const range = document.createRange();
+  range.setStart(el, 0);
+  range.setEnd(node, p ? p.offset : r!.startOffset);
+  return range.toString().replace(/\s/g, "").length;
+}
 
-function BlockEditor({ text, onDone, onCancel }: { text: string; onDone: (next: string) => void; onCancel: () => void }) {
-  const rich = blockKind(text) === "rich";
-  const editorRef = useRef<MinimalRichEditorHandle>(null);
-  const touched = useRef(false);
+type Opened = { part: number; chars: number | null; clientY?: number };
+
+function PartEditor({
+  text,
+  rich,
+  at,
+  editorRef,
+  onChange,
+  onDone,
+  onCancel,
+}: {
+  text: string;
+  rich: boolean;
+  at: Opened;
+  editorRef: React.RefObject<MinimalRichEditorHandle>;
+  onChange: (text: string) => void;
+  onDone: () => void;
+  onCancel: () => void;
+}) {
   const [raw, setRaw] = useState(text);
 
-  const done = async () => {
-    if (!rich) return onDone(raw);
-    // An untouched rich block keeps its exact markdown: the editor's round trip may respace lists.
-    if (!touched.current) return onCancel();
-    onDone(cleanRich((await editorRef.current?.getMarkdownForSave()) ?? text));
-  };
+  // Once, as the part opens: the cursor goes where the click landed, at the same spot on screen.
+  useEffect(() => {
+    if (rich) editorRef.current?.focusAtChars(at.chars ?? 0, at.chars === null ? undefined : at.clientY);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <div className="not-prose my-3 space-y-2 rounded-xl border-2 border-primary/50 bg-background p-2 shadow-sm">
+    <div
+      className={cn(
+        "not-prose my-3 space-y-2 rounded-xl border-2 border-primary/50 bg-background p-2 shadow-sm",
+        // Paragraph and list spacing as the lesson has it, so a whole section doesn't read as one block of text.
+        "[&_.ProseMirror>ol]:mb-3 [&_.ProseMirror>p]:mb-3 [&_.ProseMirror>ul]:mb-3",
+      )}
+    >
       {rich ? (
         <MinimalRichEditor
           ref={editorRef}
           value={text}
-          onChange={() => {
-            touched.current = true;
-          }}
-          onSave={done}
+          onChange={onChange}
+          onSave={onDone}
           onCancel={onCancel}
-          autoFocus
+          // A section can run for screens; the toolbar stays in reach under the top nav (one scrolling row on phones).
+          toolbarClassName="sticky top-14 z-10 rounded-t-lg bg-background max-md:flex-nowrap max-md:overflow-x-auto"
         />
       ) : (
         <textarea
@@ -68,10 +97,13 @@ function BlockEditor({ text, onDone, onCancel }: { text: string; onDone: (next: 
           value={raw}
           autoFocus
           rows={Math.min(24, raw.split("\n").length + 1)}
-          onChange={(e) => setRaw(e.target.value)}
+          onChange={(e) => {
+            setRaw(e.target.value);
+            onChange(e.target.value);
+          }}
           onKeyDown={(e) => {
             if (e.key === "Escape") onCancel();
-            if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) void done();
+            if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) onDone();
           }}
           className="w-full resize-y rounded-lg border bg-background p-2 font-mono text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-ring"
         />
@@ -81,7 +113,7 @@ function BlockEditor({ text, onDone, onCancel }: { text: string; onDone: (next: 
         <Button size="sm" variant="ghost" onClick={onCancel}>
           Cancel
         </Button>
-        <Button size="sm" onClick={() => void done()}>
+        <Button size="sm" onClick={onDone}>
           Done
         </Button>
       </div>
@@ -90,8 +122,10 @@ function BlockEditor({ text, onDone, onCancel }: { text: string; onDone: (next: 
 }
 
 // Admin inline editing of one First 14 Days lesson: the lesson as learners see
-// it, where clicking any part opens it for editing in place. Changes collect
-// in a draft (kept across reloads) until Publish puts them live.
+// it, where a click opens that part for editing in place: all the prose between
+// two images or diagrams at once, or the one image or diagram. Clicking another
+// part keeps the edit and moves on. Changes collect in a draft (kept across
+// reloads) until Publish puts them live.
 export function InlineLessonEditor({
   dayNumber,
   fileSource,
@@ -111,17 +145,62 @@ export function InlineLessonEditor({
     return d !== null && d !== live ? d : null;
   });
   const [draft, setDraft] = useState(draftBack ?? live);
-  const [editing, setEditing] = useState<number | null>(null);
+  const [open, setOpen] = useState<Opened | null>(null);
+  // Latest text of the open part, so the draft and the unsaved state include what's being typed.
+  const [pending, setPending] = useState<string | null>(null);
   const [conflictAt, setConflictAt] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const editorRef = useRef<MinimalRichEditorHandle>(null);
 
   const { blocks } = useMemo(() => splitBlocks(draft), [draft]);
-  const dirty = draft !== live;
-  const tooLong = draft.length > MAX_EDIT_CHARS;
+  const parts = useMemo(() => groupParts(blocks), [blocks]);
+  const partText = (p: Part) =>
+    blocks
+      .slice(p.start, p.end)
+      .map((b) => b.text)
+      .join("\n\n");
+  const apply = (source: string, p: Part, text: string) =>
+    replaceBlocks(source, p.start, p.end, p.rich ? tidyRichMarkdown(text) : text, p.rich ? mdToHtml : undefined);
+  const openPart = open ? (parts[open.part] ?? null) : null;
+  const current = useMemo(
+    () => (openPart && pending !== null ? apply(draft, openPart, pending) : draft),
+    [draft, openPart, pending],
+  );
+  const dirty = current !== live;
+  const tooLong = current.length > MAX_EDIT_CHARS;
 
   useEffect(() => {
-    writeDraft(dayNumber, dirty ? draft : null);
-  }, [dayNumber, draft, dirty]);
+    writeDraft(dayNumber, dirty ? current : null);
+  }, [dayNumber, current, dirty]);
+
+  /** Folds the open part into the draft and closes it; returns the new draft. */
+  const commit = async () => {
+    if (!openPart) return draft;
+    const text = openPart.rich ? await editorRef.current?.getMarkdownForSave() : pending;
+    const next = text == null ? draft : apply(draft, openPart, text);
+    setDraft(next);
+    setOpen(null);
+    setPending(null);
+    // Written now as well: Close and Markdown unmount this view before the effect would run.
+    writeDraft(dayNumber, next !== live ? next : null);
+    return next;
+  };
+
+  const openAt = async (i: number, e?: React.MouseEvent<HTMLElement>) => {
+    if (open?.part === i) return;
+    const at = e ? { chars: charsBefore(e.currentTarget, e.clientX, e.clientY), clientY: e.clientY } : { chars: null };
+    const before = parts.length;
+    const next = await commit();
+    // An edit can split its section (a pasted image), shifting the parts after it.
+    const shift = open && i > open.part ? groupParts(splitBlocks(next).blocks).length - before : 0;
+    setOpen({ part: i + shift, ...at });
+  };
+
+  const discard = () => {
+    setDraft(live);
+    setOpen(null);
+    setPending(null);
+  };
 
   useEffect(() => {
     if (!dirty) return;
@@ -133,8 +212,13 @@ export function InlineLessonEditor({
   const publish = async (force = false) => {
     setError(null);
     setConflictAt(null);
+    const markdown = await commit();
+    if (markdown === live) {
+      toast.info("No changes to publish.");
+      return;
+    }
     try {
-      await save.mutateAsync({ markdown: draft, baseHash: hashSource(fileSource), expectedLatestId: openedAt, force });
+      await save.mutateAsync({ markdown, baseHash: hashSource(fileSource), expectedLatestId: openedAt, force });
       writeDraft(dayNumber, null);
       toast.success(`Day ${dayNumber} published. Learners see it now.`);
       onExit();
@@ -151,7 +235,7 @@ export function InlineLessonEditor({
         {draftBack !== null && dirty && (
           <span className="text-muted-foreground">
             Your unsaved draft is back.{" "}
-            <button type="button" className="underline" onClick={() => setDraft(live)}>
+            <button type="button" className="underline" onClick={discard}>
               Discard it
             </button>
           </span>
@@ -159,20 +243,24 @@ export function InlineLessonEditor({
       </div>
 
       <div className="prose prose-sm max-w-none rounded-2xl border border-border/60 bg-card px-5 py-6 shadow-card dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
-        {blocks.map((block, i) =>
-          i === editing ? (
-            <BlockEditor
-              key={`edit-${i}`}
-              text={block.text}
-              onCancel={() => setEditing(null)}
-              onDone={(next) => {
-                setDraft((d) => replaceBlock(d, i, next));
-                setEditing(null);
+        {parts.map((p, i) =>
+          i === open?.part ? (
+            <PartEditor
+              key={`open-${i}`}
+              text={partText(p)}
+              rich={p.rich}
+              at={open}
+              editorRef={editorRef}
+              onChange={setPending}
+              onDone={() => void commit()}
+              onCancel={() => {
+                setOpen(null);
+                setPending(null);
               }}
             />
           ) : (
             <div
-              key={`${i}-${block.text.length}`}
+              key={`${i}-${p.start}-${p.end}`}
               role="button"
               tabIndex={0}
               aria-label={`Edit part ${i + 1} of the lesson`}
@@ -180,18 +268,15 @@ export function InlineLessonEditor({
               onClickCapture={(e) => {
                 if ((e.target as HTMLElement).closest("a")) e.preventDefault();
               }}
-              onClick={() => editing === null && setEditing(i)}
+              onClick={(e) => void openAt(i, e)}
               onKeyDown={(e) => {
-                if (e.key === "Enter" && e.target === e.currentTarget && editing === null) setEditing(i);
+                if (e.key === "Enter" && e.target === e.currentTarget) void openAt(i);
               }}
-              className={cn(
-                // Each part renders alone, so the lesson's first/last-child margin reset would close every gap.
-                "-mx-2 my-4 rounded-lg px-2 transition-shadow first:mt-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
-                editing === null ? "cursor-text hover:ring-2 hover:ring-primary/30" : "opacity-60",
-              )}
+              // Each part renders alone, so the lesson's first/last-child margin reset would close every gap.
+              className="-mx-2 my-4 cursor-text rounded-lg px-2 transition-shadow first:mt-0 hover:ring-2 hover:ring-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
             >
               <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={lessonMarkdownComponents}>
-                {convertImageEmbeds(block.text)}
+                {convertImageEmbeds(partText(p))}
               </ReactMarkdown>
             </div>
           ),
@@ -213,15 +298,13 @@ export function InlineLessonEditor({
             Not published: {error} Your changes are still here, try again.
           </p>
         )}
-        {tooLong && <p className="mb-2 text-sm text-destructive">Too long to publish: {draft.length.toLocaleString()} of {MAX_EDIT_CHARS.toLocaleString()} characters.</p>}
+        {tooLong && <p className="mb-2 text-sm text-destructive">Too long to publish: {current.length.toLocaleString()} of {MAX_EDIT_CHARS.toLocaleString()} characters.</p>}
         <div className="flex flex-wrap items-center gap-2">
           <span className="mr-auto w-full text-sm sm:w-auto">
-            {editing !== null ? (
-              "Click Done on the part you're editing"
-            ) : dirty ? (
+            {dirty ? (
               <>
                 Unsaved changes.{" "}
-                <button type="button" className="text-muted-foreground underline" onClick={() => setDraft(live)}>
+                <button type="button" className="text-muted-foreground underline" onClick={discard}>
                   Discard
                 </button>
               </>
@@ -229,14 +312,14 @@ export function InlineLessonEditor({
               <span className="text-muted-foreground">No changes yet</span>
             )}
           </span>
-          <Button size="sm" variant="ghost" onClick={onOpenMarkdown} disabled={editing !== null} aria-label="Markdown and history">
+          <Button size="sm" variant="ghost" onClick={() => void commit().then(onOpenMarkdown)} aria-label="Markdown and history">
             <span className="sm:hidden">Markdown</span>
             <span className="hidden sm:inline">Markdown and history</span>
           </Button>
-          <Button size="sm" variant="outline" onClick={onExit} disabled={save.isPending}>
+          <Button size="sm" variant="outline" onClick={() => void commit().then(onExit)} disabled={save.isPending}>
             Close
           </Button>
-          <Button size="sm" onClick={() => void publish()} disabled={!dirty || editing !== null || tooLong || save.isPending}>
+          <Button size="sm" onClick={() => void publish()} disabled={(!dirty && !open) || tooLong || save.isPending}>
             {save.isPending ? "Publishing..." : "Publish"}
           </Button>
         </div>
