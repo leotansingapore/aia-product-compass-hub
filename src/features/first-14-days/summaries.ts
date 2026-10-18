@@ -24,7 +24,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     week: 1,
     dayInWeek: 2,
     title: "The franchise model without the $200,000 fee",
-    duration: 4,
+    duration: 5,
     bigIdea:
       "What if you could access a proven, successful business model without the crippling financial barrier?",
   },

@@ -8,7 +8,7 @@ primary_sources:
   - "[[../../explorer/_source-articles/module-1-the-perfect-business]]"
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
   - "[[../../finternship-orientation/02-10m-read--module-2-the-ideal-business/02-lesson-2-the-franchise-model]]"
-duration_minutes: 4
+duration_minutes: 5
 tags: [first-14-days, week-1, prospect, franchise-model, business-model, leo-voice]
 ---
 
@@ -76,6 +76,25 @@ The company has already done the heavy lifting. They've handled the decades of h
 And to make sure you know how to drive, you get something a traditional franchise doesn't give you: a personal mentor. After nearly a decade in this industry, I've already created the scripts, templates and marketing resources for you. My goal is to share the lessons from my struggles so you don't have to go through them yourself.
 
 That is what I mean by a "business-in-a-box": a proven model with minimal risk, so you can get to results faster.
+
+## What the job looks like, day to day
+
+Most of the job is sitting down with people who want their money sorted. They usually arrive knowing something feels off, not what to fix. You ask questions, listen, and work out what they actually need.
+
+Then you build a plan around their goals, and you take them through every option before they decide. Nobody should sign up for something they don't understand.
+
+After that, you're the person they call when life changes: a new job, a flat, a wedding, a baby. Each of those changes what they need, and you're the one who sees the whole picture across their insurance, investments, CPF and retirement.
+
+The part that makes it matter is protection. When the worst happens, a serious illness or losing an income, the plan you put in place is what keeps a family going. And over decades, you help your clients grow their wealth and pass it on.
+
+### Your week
+
+```layers
+title: Your | week
+Once a week | a face-to-face session with the team: role-play, a short talk, an AI lab and a check-in with your mentor || Most weeks | client meetings our team books into your calendar || In between | you post, follow up and look after the clients you already have || The rest | your hours are yours to plan, around a job, school or family
+```
+
+You can do this full-time or part-time, from an office or from anywhere, and you don't need any experience to start. Lots of people start part-time with no quota and set their own hours. I started as a full-time engineering student, with about 20 hours a week for the business. On Day 12 I'll show you how I fit it in.
 
 Tomorrow we look at the high-income skills you'll build, which stay with you for life, wherever your journey takes you.
 
