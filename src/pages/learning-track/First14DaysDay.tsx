@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Link, useParams, useNavigate, useSearchParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -23,8 +23,7 @@ import { loadDay, loadWeekReadme, WEEK_META } from "@/features/first-14-days/con
 import { convertImageEmbeds } from "@/features/first-60-days/parse";
 import { fileChangedSinceEdit, shownSource } from "@/features/first-14-days/edits";
 import { useDayEdits } from "@/hooks/first-14-days/useDayEdits";
-import { DayEditor } from "@/components/first-14-days/DayEditor";
-import { InlineLessonEditor } from "@/components/first-14-days/InlineLessonEditor";
+import { lazyWithRetry } from "@/utils/lazyWithRetry";
 import { DAY_SUMMARIES, TOTAL_DAYS } from "@/features/first-14-days/summaries";
 import type { Day } from "@/features/first-14-days/types";
 import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProgress";
@@ -35,6 +34,12 @@ import {
   ONBOARDING_CALL_URL,
   trackOnboardingCallClick,
 } from "@/components/first-14-days/lessonMarkdown";
+
+// Admin-only editors (tiptap is ~140 KB gzip): learners never download them.
+const DayEditor = lazyWithRetry(() => import("@/components/first-14-days/DayEditor").then((m) => ({ default: m.DayEditor })));
+const InlineLessonEditor = lazyWithRetry(() =>
+  import("@/components/first-14-days/InlineLessonEditor").then((m) => ({ default: m.InlineLessonEditor })),
+);
 
 function WeekWrapup({ weekNumber }: { weekNumber: number }) {
   const [body, setBody] = useState<string | null>(null);
@@ -373,14 +378,18 @@ export default function First14DaysDay() {
       )}
 
       {editMode === "inline" ? (
-        <InlineLessonEditor
-          dayNumber={dayNumber}
-          fileSource={day.source}
-          onExit={() => setEditMode(null)}
-          onOpenMarkdown={() => setEditMode("markdown")}
-        />
+        <Suspense fallback={<div className="h-64 animate-pulse rounded-2xl bg-muted/30" />}>
+          <InlineLessonEditor
+            dayNumber={dayNumber}
+            fileSource={day.source}
+            onExit={() => setEditMode(null)}
+            onOpenMarkdown={() => setEditMode("markdown")}
+          />
+        </Suspense>
       ) : editMode === "markdown" ? (
-        <DayEditor dayNumber={dayNumber} fileSource={day.source} onClose={() => setEditMode(null)} />
+        <Suspense fallback={<div className="h-64 animate-pulse rounded-2xl bg-muted/30" />}>
+          <DayEditor dayNumber={dayNumber} fileSource={day.source} onClose={() => setEditMode(null)} />
+        </Suspense>
       ) : (
         <Card className="border-border/60 shadow-card">
           <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
