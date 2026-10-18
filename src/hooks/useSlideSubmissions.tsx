@@ -12,11 +12,6 @@ import { useAuth } from './useAuth';
 import { useChecklistProgress } from './useChecklistProgress';
 import { supabase } from '@/integrations/supabase/client';
 import { scheduleIdle } from '@/lib/idle';
-import {
-  GET_READY_SLIDES,
-  getSlideById,
-  getSlidesForSection,
-} from '@/components/cmfas/workspace-views/getReadySlideContent';
 import type { ReadyStepId } from '@/components/cmfas/workspace-views/getReadyData';
 
 /**
@@ -175,6 +170,9 @@ export function SlideSubmissionsProvider({ children }: { children: ReactNode }) 
 
   const submitSlide = useCallback(
     async (slideId: string, payload: SubmitSlidePayload) => {
+      // Loaded here, not at the top: this provider sits in the entry chunk and the
+      // slide text is ~30 KB that only the Study Desk (which already has it) needs.
+      const { getSlideById, getSlidesForSection } = await import('@/components/cmfas/workspace-views/getReadySlideContent');
       const slide = getSlideById(slideId);
       if (!slide) {
         console.warn('[useSlideSubmissions] submitSlide called with unknown slideId', slideId);
@@ -279,7 +277,5 @@ export const useSlideSubmissions = () => {
   return context;
 };
 
-// Re-export the slide list so consumers that only care about the schema can
-// import from a single place alongside the hook.
-export { GET_READY_SLIDES } from '@/components/cmfas/workspace-views/getReadySlideContent';
+// The slide list itself lives in getReadySlideContent; only its step id type rides along here.
 export type { ReadyStepId };
