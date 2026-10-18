@@ -33,6 +33,9 @@ verify_jwt = false
 [functions.create-fintern-account]
 verify_jwt = false
 
+[functions.fintern-progress]
+verify_jwt = false
+
 [functions.provision-financial-user]
 verify_jwt = false
 
