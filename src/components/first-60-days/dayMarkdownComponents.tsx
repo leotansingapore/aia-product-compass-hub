@@ -49,7 +49,12 @@ export const dayMarkdownComponents: Components = {
           className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors font-mono text-[0.95em]"
           onClick={(e) => {
             e.preventDefault();
-            const video = document.querySelector("video");
+            // A recap page has one video per day: seek the nearest one above the link.
+            const link = e.currentTarget;
+            const videos = Array.from(document.querySelectorAll("video"));
+            const video =
+              videos.filter((v) => v.compareDocumentPosition(link) & Node.DOCUMENT_POSITION_FOLLOWING).pop() ??
+              videos[0];
             if (video instanceof HTMLVideoElement) {
               video.currentTime = seconds;
               video.play().catch(() => {

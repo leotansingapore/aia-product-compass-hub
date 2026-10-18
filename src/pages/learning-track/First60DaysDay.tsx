@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useSearchParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 // rehype-slug auto-generates id="..." on every heading so #anchor deep links
@@ -24,7 +24,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
-import { detectVideoEmbed } from "@/lib/video-embed-utils";
+import { detectVideoEmbed, recapProxyVideo } from "@/lib/video-embed-utils";
 import { loadDay, loadWeekReadme, prefetchDay, WEEK_META, WEEKS_WITH_RECAP } from "@/features/first-60-days/content";
 import { nextStop } from "@/features/first-60-days/nextStop";
 import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
@@ -191,7 +191,20 @@ export default function First60DaysDay() {
 
   const [day, setDay] = useState<Day | undefined>(undefined);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<string>("read");
+  // The tab lives in the URL (?tab=video) so a link can open a day on its video; Read is the plain URL.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tabParam = searchParams.get("tab");
+  const activeTab = tabParam === "video" || tabParam === "reflection" || tabParam === "quiz" ? tabParam : "read";
+  const setActiveTab = (tab: string) =>
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        if (tab === "read") next.delete("tab");
+        else next.set("tab", tab);
+        return next;
+      },
+      { replace: true },
+    );
   const [showStickyQuiz, setShowStickyQuiz] = useState(false);
   const {
     isUnlocked,
@@ -204,11 +217,6 @@ export default function First60DaysDay() {
     unmarkDayCompleteAsAdmin,
     isLoading: progressLoading,
   } = useFirst60DaysProgress();
-
-  // Reset to the Read tab when navigating between days.
-  useEffect(() => {
-    setActiveTab("read");
-  }, [dayNumber]);
 
   useEffect(() => {
     let cancelled = false;
@@ -516,6 +524,11 @@ export default function First60DaysDay() {
           >
             <Film className="h-4 w-4 shrink-0" />
             <span>Video</span>
+            {dayMeta?.video_url && dayMeta.video_duration_sec ? (
+              <span className="ml-0.5 hidden sm:inline-flex h-5 items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-muted-foreground">
+                {Math.round(dayMeta.video_duration_sec / 60)} min
+              </span>
+            ) : null}
           </TabsTrigger>
           {hasReflection && (
             <TabsTrigger
@@ -567,6 +580,22 @@ export default function First60DaysDay() {
             <Card className="overflow-hidden border-border/60 shadow-card">
               <CardContent className="p-0">
                 {(() => {
+                  const recap = recapProxyVideo(dayMeta.video_url);
+                  if (recap) {
+                    return (
+                      <video
+                        src={recap.src}
+                        poster={recap.poster}
+                        controls
+                        playsInline
+                        preload="metadata"
+                        crossOrigin="anonymous"
+                        className="block aspect-video w-full bg-black"
+                      >
+                        <track kind="subtitles" srcLang="en" label="English" default src={recap.vtt} />
+                      </video>
+                    );
+                  }
                   const info = detectVideoEmbed(dayMeta.video_url);
                   if (info.embedUrl) {
                     return (

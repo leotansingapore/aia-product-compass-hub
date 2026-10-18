@@ -71,9 +71,10 @@ const ASSET_MAP: Record<string, Asset> = {
 // need a redeploy every week. Convention: key `team-training-2026-08-26` means
 // release tag `team-training-2026-08-26` holding
 // `team-training-2026-08-26-preview.mp4` and `...-preview.en.vtt`.
+// First 60 recaps cut into one video per day use `recap-w1-d3` (week 1, day 3).
 const RELEASE_BASE =
   "https://github.com/leotansingapore/aia-product-compass-hub/releases/download";
-const CONVENTION_PREFIXES = ["team-training-"];
+const CONVENTION_PREFIXES = ["team-training-", "recap-w"];
 
 function resolveByConvention(key: string): Asset | null {
   if (!/^[a-z0-9][a-z0-9-]{0,63}$/.test(key)) return null;
