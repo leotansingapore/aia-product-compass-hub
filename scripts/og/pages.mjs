@@ -616,7 +616,7 @@ export default {
     "card": "learning-track-first-14-days-day-8"
   },
   "/learning-track/first-14-days/day/9": {
-    "title": "Day 9: Our support system and the 6 C's",
+    "title": "Day 9: The person at the centre and the 6 C's",
     "description": "I'm not looking for people who need to be pushed. I'm looking for people who need to be guided.",
     "card": "learning-track-first-14-days-day-9"
   },

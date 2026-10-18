@@ -10,7 +10,7 @@ primary_sources:
   - "[[../../finternship-orientation/04-module-4---your-unfair-advantage/02-lesson-1what-most-agencies-wont-tell-you-about]]"
   - "[[../../finternship-orientation/04-module-4---your-unfair-advantage/04-lesson-3-systems-vs-culture]]"
   - "[[../../finternship-orientation/04-module-4---your-unfair-advantage/06-lesson-5-tss-the-6-tier-power-pyramid]]"
-duration_minutes: 8
+duration_minutes: 10
 tags: [first-14-days, week-2, prospect, agency-choice, fit-test, tss, leo-voice]
 ---
 
@@ -96,7 +96,7 @@ At a typical agency, they hand you a list of your friends and family, maybe thro
 
 I've watched talented people burn through thousands of dollars on garbage leads and blame themselves when nothing converted. The system was rigged against them from the start.
 
-With us, our in-house telemarketers and appointment setters book 3 to 5 qualified meetings for you every week. They are people who have already asked about financial planning and are ready to have a conversation.
+With us, our in-house ads specialists, telemarketers and AI appointment setters book 3 to 5 qualified meetings for you every week.
 
 You don't chase leads. You serve them.
 
@@ -157,6 +157,49 @@ Culture is fragile. It depends on moods, relationships, and whether the team lea
 Systems get stronger under pressure. They work no matter who's having a bad day, and they keep working as you grow.
 
 That's why I've spent hundreds of thousands of dollars and countless hours building infrastructure instead of throwing pizza parties.
+
+## What the system looks like
+
+So what does that infrastructure look like? Here is what we've built around you. We call it the Tripod Support System, or TSS.
+
+```layers
+title: Tripod support | system
+art: /first-14-days/diagrams/tss.webp
+You | time goes to clients, not infrastructure
+Client acquisition | paid ads, funnels, appointment setters, cold scripts || Talent acquisition | recruitment pipeline, team building when ready || Nurturing | iSmart CRM, follow-ups, reviews, referrals
+Foundation | training, value-adding, 1-1 coaching
+```
+
+When I started, none of this existed. As I told you on Day 1, I wrote my own scripts, made my own templates and hired my own designers. TSS is the system I had to build for myself, so you can start with it on day one.
+
+The first leg is finding clients. We subsidise your ads on Facebook, Instagram and Google, and our appointment setters book qualified leads straight into your calendar. If you'd rather go cold, you get scripts we've tested on hundreds of real calls, LinkedIn outreach, and lead magnets like policy reviews, BTO calculators and tax relief guides that give people a reason to meet you.
+
+The second leg is looking after the clients you have. They all sit in the iSmart CRM, which sends your follow-ups and reminds you of birthdays and anniversaries. Review meetings and referral scripts do the rest.
+
+The third leg is building a team. You won't need it for a while, but when you're ready to lead, the recruitment pipeline is already running.
+
+All three legs stand on the same base: training, value-adding and 1-1 coaching.
+
+Behind TSS is the 6-tier power pyramid. These are the layers of support behind you in every meeting you run, and each one fixes something that makes advisors give up.
+
+```pyramid
+title: The 6-tier | power pyramid
+art: /first-14-days/diagrams/pyramid.webp
+You | hunger, discipline, follow-through
+Company (AIA) | EPS, career benefit, products, brand, claims
+District (WFG) | ad subsidy, events, roadshows
+Team | mentor, VA ops, telemarketer, appointment setter
+Infrastructure | Lark DB, SOPs, objection library, chatbots
+Frontline tools | TWC presenter, DBI calc, retirement calc
+Post-sale | renewals, referrals, updates, community
+```
+
+1. Company (AIA): A lot of advisors feel their company doesn't back them up. AIA gives you the EPS allowance, Career Benefit (1.5x in years 2 to 6) and APF from year 7. You can offer hospitalisation, high-net-worth and corporate plans, AIA approves over $1B in claims a year, and it pays for half your ads.
+2. District (WFG): Some districts spend their budget on rent instead of leads. WFG adds its own ad subsidy on top of AIA's, and runs corporate talks, roadshows and overseas trips.
+3. Team: Doing ops, sales and marketing alone wears people out fast. You get weekly 1-1s, VAs to handle the admin, a graphic designer, a content writer, an appointment setter, a telemarketer and an in-house web developer.
+4. Infrastructure: Nobody should have to work out every objection from scratch. Our Lark database is searchable and holds 34 objections with 43 responses, along with our SOPs and chatbots.
+5. Frontline tools: When a client asks a question mid-meeting, the answer should already be on your screen. That's what the TWC presenter and the DBI adequacy, retirement and welcome-bonus calculators are for.
+6. Post-sale: A client who hasn't heard from you in two years forgets you exist. The onboarding kit, monthly market updates, blog content, Telegram communities and expense tracker keep you in their life after the sale.
 
 ## What to ask any agency, including us
 

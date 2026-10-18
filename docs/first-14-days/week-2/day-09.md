@@ -1,62 +1,19 @@
 ---
 week: 2
 day: 9
-title: "Our support system and the 6 C's"
+title: "The person at the centre and the 6 C's"
 big_idea: "I'm not looking for people who need to be pushed. I'm looking for people who need to be guided."
 author: "Leo Tan"
 primary_sources:
   - "[[../../explorer/_source-articles/module-1-the-perfect-business]]"
   - "[[../../explorer/_source-articles/financial-iq-masterclass-slides]]"
-duration_minutes: 8
+duration_minutes: 6
 tags: [first-14-days, week-2, prospect, traits, self-assessment, 6-cs, leo-voice]
 ---
 
-## What the system looks like
-
-Yesterday you saw why the agency matters. Now let me show you what we've built around you. We call it the Tripod Support System, or TSS.
-
-```layers
-title: Tripod support | system
-art: /first-14-days/diagrams/tss.webp
-You | time goes to clients, not infrastructure
-Client acquisition | paid ads, funnels, appointment setters, cold scripts || Talent acquisition | recruitment pipeline, team building when ready || Nurturing | iSmart CRM, follow-ups, reviews, referrals
-Foundation | training, value-adding, 1-1 coaching
-```
-
-When I started, none of this existed. As I told you on Day 1, I wrote my own scripts, made my own templates and hired my own designers. TSS is the system I had to build for myself, so you can start with it on day one.
-
-The first leg is finding clients. We subsidise your ads on Facebook, Instagram and Google, and our appointment setters book qualified leads straight into your calendar. If you'd rather go cold, you get scripts we've tested on hundreds of real calls, LinkedIn outreach, and lead magnets like policy reviews, BTO calculators and tax relief guides that give people a reason to meet you.
-
-The second leg is looking after the clients you have. They all sit in the iSmart CRM, which sends your follow-ups and reminds you of birthdays and anniversaries. Review meetings and referral scripts do the rest.
-
-The third leg is building a team. You won't need it for a while, but when you're ready to lead, the recruitment pipeline is already running.
-
-All three legs stand on the same base: training, value-adding and 1-1 coaching.
-
-Behind TSS is the 6-tier power pyramid. These are the layers of support behind you in every meeting you run, and each one fixes something that makes advisors give up.
-
-```pyramid
-title: The 6-tier | power pyramid
-art: /first-14-days/diagrams/pyramid.webp
-You | hunger, discipline, follow-through
-Company (AIA) | EPS, career benefit, products, brand, claims
-District (WFG) | ad subsidy, events, roadshows
-Team | mentor, VA ops, telemarketer, appointment setter
-Infrastructure | Lark DB, SOPs, objection library, chatbots
-Frontline tools | TWC presenter, DBI calc, retirement calc
-Post-sale | renewals, referrals, updates, community
-```
-
-1. Company (AIA): A lot of advisors feel their company doesn't back them up. AIA gives you the EPS allowance, Career Benefit (1.5x in years 2 to 6) and APF from year 7. You can offer hospitalisation, high-net-worth and corporate plans, AIA approves over $1B in claims a year, and it pays for half your ads.
-2. District (WFG): Some districts spend their budget on rent instead of leads. WFG adds its own ad subsidy on top of AIA's, and runs corporate talks, roadshows and overseas trips.
-3. Team: Doing ops, sales and marketing alone wears people out fast. You get weekly 1-1s, VAs to handle the admin, a graphic designer, a content writer, an appointment setter, a telemarketer and an in-house web developer.
-4. Infrastructure: Nobody should have to work out every objection from scratch. Our Lark database is searchable and holds 34 objections with 43 responses, along with our SOPs and chatbots.
-5. Frontline tools: When a client asks a question mid-meeting, the answer should already be on your screen. That's what the TWC presenter and the DBI adequacy, retirement and welcome-bonus calculators are for.
-6. Post-sale: A client who hasn't heard from you in two years forgets you exist. The onboarding kit, monthly market updates, blog content, Telegram communities and expense tracker keep you in their life after the sale.
-
 ## The person at the centre
 
-That's the system. Before you go further, let me be clear about something: no system, however good, can succeed without the right person at the centre.
+Yesterday you saw the system behind you. Before you go further, let me be clear about something: no system, however good, can succeed without the right person at the centre.
 
 The most important questions aren't about what we can do for you. They're about what you're willing to do for yourself:
 
