@@ -2,7 +2,7 @@
 week: 1
 recap: true
 title: "Week 1 Recap - Foundation & Identity Shift"
-duration_minutes: 58
+duration_minutes: 57
 tags: [first-60-days, week-1, recap]
 ---
 
@@ -10,18 +10,18 @@ tags: [first-60-days, week-1, recap]
 
 > Leo's live recap call, cut into one video per day. Each one is also in its day's Video tab.
 
-## Day 1 . Welcome: the journey begins (10 min)
+## Day 1 . Welcome: the journey begins (9 min)
 
 <video src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w1-d1" poster="/first-60-days/recap/recap-w1-d1.jpg" controls playsinline preload="metadata" crossorigin="anonymous" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;">
   <track kind="subtitles" srclang="en" label="English" default src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w1-d1.vtt" />
 </video>
 
 - [`00:00`](#t=0) Why this career
-- [`02:29`](#t=149) Every life is worth planning for
-- [`04:05`](#t=245) Our values
-- [`05:44`](#t=344) Reconnect with your friends
-- [`07:48`](#t=468) Protection first
-- [`08:28`](#t=508) The close is only the start
+- [`02:20`](#t=140) Every life is worth planning for
+- [`03:44`](#t=224) Our values
+- [`05:13`](#t=313) Reconnect with your friends
+- [`07:07`](#t=427) Protection first
+- [`07:43`](#t=463) The close is only the start
 
 <details>
 <summary><strong>Lecture notes for Day 1</strong></summary>

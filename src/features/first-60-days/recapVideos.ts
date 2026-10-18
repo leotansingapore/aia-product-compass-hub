@@ -5,11 +5,11 @@ import type { RecapChapter } from "@/components/first-60-days/RecapVideo";
 export const RECAP_CHAPTERS: Record<string, RecapChapter[]> = {
   "recap-w1-d1": [
     ["Why this career", 0],
-    ["Every life is worth planning for", 149],
-    ["Our values", 245],
-    ["Reconnect with your friends", 344],
-    ["Protection first", 468],
-    ["The close is only the start", 508],
+    ["Every life is worth planning for", 140],
+    ["Our values", 224],
+    ["Reconnect with your friends", 313],
+    ["Protection first", 427],
+    ["The close is only the start", 463],
   ],
   "recap-w1-d2": [
     ["The one-third rule", 0],
