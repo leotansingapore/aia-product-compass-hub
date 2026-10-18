@@ -25,6 +25,18 @@ const inflightAdminRole = new Map<string, Promise<string>>();
 const SILENT_REFRESH_COOLDOWN_MS = 5 * 60 * 1000;
 const lastSilentRefreshByUser = new Map<string, number>();
 
+// The last role a successful lookup returned for a user, so RequireTier can open a
+// page before the RPC answers (Leo, 2026-10-18). Never written on a failed lookup,
+// which falls back to 'user' and would otherwise stick an admin as a learner.
+const roleCacheKey = (userId: string) => `admin-role-cache:${userId}:v${PERMISSIONS_VERSION}`;
+function readCachedRole(userId: string): string | null {
+  try {
+    return localStorage.getItem(roleCacheKey(userId));
+  } catch {
+    return null;
+  }
+}
+
 async function fetchAdminRoleDeduped(userId: string): Promise<string> {
   const cached = permissionsCache.get(userId);
   if (cached && Date.now() - cached.timestamp < CACHE_DURATION && cached.version === PERMISSIONS_VERSION) {
@@ -46,6 +58,11 @@ async function fetchAdminRoleDeduped(userId: string): Promise<string> {
         timestamp: Date.now(),
         version: PERMISSIONS_VERSION,
       });
+      try {
+        localStorage.setItem(roleCacheKey(userId), role);
+      } catch {
+        /* storage blocked: next visit just waits for the lookup */
+      }
       return role;
     } finally {
       inflightAdminRole.delete(userId);
@@ -81,8 +98,11 @@ const useSimplifiedAuthSafe = () => {
 
 export function usePermissions() {
   const { user, loading: authLoading } = useSimplifiedAuthSafe();
-  const [userAdminRole, setUserAdminRole] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  // Seeded on mount, not in an effect: guards mount after sign-in, and an effect
+  // would paint one "Loading access" frame before reading the remembered role.
+  const [userAdminRole, setUserAdminRole] = useState<string | null>(() => (user ? readCachedRole(user.id) : null));
+  const [loading, setLoading] = useState(() => userAdminRole === null);
+  const [roleFromCache, setRoleFromCache] = useState(() => userAdminRole !== null);
   const hasInitialized = useRef(false);
 
   const fetchUserPermissions = useCallback(async () => {
@@ -96,7 +116,15 @@ export function usePermissions() {
       permissionsCache.delete(user.id);
     }
 
-    setLoading(true);
+    // Answer from the remembered role at once; the lookup below replaces it.
+    const remembered = readCachedRole(user.id);
+    if (remembered) {
+      setUserAdminRole(remembered);
+      setRoleFromCache(true);
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
     try {
       const role = await fetchAdminRoleDeduped(user.id);
       setUserAdminRole(role);
@@ -104,6 +132,7 @@ export function usePermissions() {
       console.error('Error in fetchUserPermissions:', error);
       setUserAdminRole('user');
     } finally {
+      setRoleFromCache(false);
       setLoading(false);
     }
   }, [user]);
@@ -264,6 +293,8 @@ export function usePermissions() {
   return {
     userAdminRole,
     loading,
+    /** True while `userAdminRole` is the remembered one and the lookup is still out. */
+    roleFromCache,
     hasRole,
     isMasterAdmin,
     isAdmin,

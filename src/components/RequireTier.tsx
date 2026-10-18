@@ -31,12 +31,14 @@ interface RequireTierProps {
  * Waits for loading to settle before making a decision, like `RequireAuth`.
  */
 export function RequireTier({ feature, children, redirectTo = '/' }: RequireTierProps) {
-  const { can, lowestTierFor, tier, isAdminBypass, permissionsLoading, accessError, retryAccess } =
+  const { can, lowestTierFor, tier, isAdminBypass, permissionsLoading, accessFromCache, accessError, retryAccess } =
     useFeatureAccess();
 
   const allowed = isAdminBypass || can(feature);
 
-  if (permissionsLoading) {
+  // A remembered tier or role may open a page early, never lock one: someone
+  // upgraded since their last visit would otherwise see a false "locked" screen.
+  if (permissionsLoading || (accessFromCache && !allowed)) {
     return (
       <div className="flex min-h-[40vh] items-center justify-center py-12" aria-busy="true" aria-label="Loading access">
         <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />

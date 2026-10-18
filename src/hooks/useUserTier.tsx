@@ -11,6 +11,19 @@ export function userTierQueryKey(userId: string | undefined) {
   return ['user-tier', userId] as const;
 }
 
+// The last tier this browser saw for a user. Pages render from it while the real
+// lookup runs (Leo, 2026-10-18), and RequireTier never LOCKS a page on it, only
+// opens one early. Written after every successful lookup.
+const tierCacheKey = (userId: string) => `user-tier-cache:${userId}`;
+function readCachedTier(userId: string): TierLevel | undefined {
+  try {
+    const v = localStorage.getItem(tierCacheKey(userId));
+    return v ? normalizeTier(v) : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 /**
  * Returns the current user's Academy tier (Explorer / Papers-taker / Post-RNF).
  *
@@ -33,9 +46,16 @@ export function useUserTier() {
         .eq('user_id', user.id)
         .maybeSingle();
       if (error) throw error;
-      return normalizeTier(data?.tier_level);
+      const tier = normalizeTier(data?.tier_level);
+      try {
+        localStorage.setItem(tierCacheKey(user.id), tier);
+      } catch {
+        /* storage blocked: next visit just waits for the lookup */
+      }
+      return tier;
     },
     enabled: !!user?.id,
+    placeholderData: user?.id ? readCachedTier(user.id) : undefined,
     // 15 min — tier rarely changes mid-session, and the realtime channel
     // below invalidates this query immediately on any update.
     staleTime: 15 * 60_000,
@@ -108,6 +128,8 @@ export function useUserTier() {
   return {
     tier: effectiveTier,
     isLoading: query.isLoading,
+    /** True while `tier` is the remembered one and the real lookup is still out. */
+    fromCache: viewAsTier === null && query.isPlaceholderData,
     /** True when the tier lookup failed — `tier` is a fallback, not the truth. */
     isError,
     error: query.error,

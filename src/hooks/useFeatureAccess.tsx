@@ -39,8 +39,8 @@ interface TierPermissionRow {
  * never accidentally permissive during app startup.
  */
 export function useFeatureAccess() {
-  const { tier, isLoading: tierLoading, isError: tierError, refetch: refetchTier } = useUserTier();
-  const { hasRole, isMasterAdmin, loading: permissionsLoading } = usePermissions();
+  const { tier, isLoading: tierLoading, isError: tierError, refetch: refetchTier, fromCache: tierFromCache } = useUserTier();
+  const { hasRole, isMasterAdmin, loading: permissionsLoading, roleFromCache } = usePermissions();
   const { viewAsTier } = useViewMode();
   // Admin bypass is suppressed while impersonating a tier so gating reflects
   // what a real user with that tier would see.
@@ -143,6 +143,8 @@ export function useFeatureAccess() {
     isAdminBypass,
     /** True while admin role OR user tier is in flight — tier route guards must wait (see RequireTier). */
     permissionsLoading: permissionsLoading || tierLoading,
+    /** True while the answer rests on the remembered tier or role, not a fresh lookup. */
+    accessFromCache: tierFromCache || roleFromCache,
     /**
      * True when the tier lookup failed, so `can()` answers are guesses based
      * on the Explorer fallback. Route guards must show a retry state instead
