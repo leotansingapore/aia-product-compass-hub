@@ -24,6 +24,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
+import { RecapVideo } from "@/components/first-60-days/RecapVideo";
+import { RECAP_CHAPTERS } from "@/features/first-60-days/recapVideos";
 import { detectVideoEmbed, recapProxyVideo } from "@/lib/video-embed-utils";
 import { loadDay, loadWeekReadme, prefetchDay, WEEK_META, WEEKS_WITH_RECAP } from "@/features/first-60-days/content";
 import { nextStop } from "@/features/first-60-days/nextStop";
@@ -583,17 +585,15 @@ export default function First60DaysDay() {
                   const recap = recapProxyVideo(dayMeta.video_url);
                   if (recap) {
                     return (
-                      <video
+                      <RecapVideo
                         src={recap.src}
                         poster={recap.poster}
-                        controls
-                        playsInline
-                        preload="metadata"
-                        crossOrigin="anonymous"
-                        className="block aspect-video w-full bg-black"
-                      >
-                        <track kind="subtitles" srcLang="en" label="English" default src={recap.vtt} />
-                      </video>
+                        vtt={recap.vtt}
+                        videoKey={recap.key}
+                        day={dayNumber}
+                        chapters={RECAP_CHAPTERS[recap.key]}
+                        onEnded={day.quiz.length > 0 && !quizPassed ? goToQuiz : undefined}
+                      />
                     );
                   }
                   const info = detectVideoEmbed(dayMeta.video_url);

@@ -117,9 +117,9 @@ export function areSameVideoEmbedSource(urlA: string, urlB: string): boolean {
  * A recap video served by our recap-video-proxy edge function (`...recap-video-proxy?key=recap-w1-d3`):
  * plays in a native <video> with its captions (`key=<key>.vtt`) and the poster in public/first-60-days/recap/.
  */
-export function recapProxyVideo(url: string): { src: string; vtt: string; poster: string } | null {
+export function recapProxyVideo(url: string): { key: string; src: string; vtt: string; poster: string } | null {
   const m = url.match(/^https:\/\/[a-z0-9]+\.supabase\.co\/functions\/v1\/recap-video-proxy\?key=([a-z0-9-]+)$/);
   if (!m) return null;
-  return { src: url, vtt: `${url}.vtt`, poster: `/first-60-days/recap/${m[1]}.jpg` };
+  return { key: m[1], src: url, vtt: `${url}.vtt`, poster: `/first-60-days/recap/${m[1]}.jpg` };
 }
 

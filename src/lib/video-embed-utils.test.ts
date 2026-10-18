@@ -6,6 +6,7 @@ const PROXY = "https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video
 describe("recapProxyVideo", () => {
   it("gives a recap proxy video its captions and poster", () => {
     expect(recapProxyVideo(`${PROXY}?key=recap-w1-d3`)).toEqual({
+      key: "recap-w1-d3",
       src: `${PROXY}?key=recap-w1-d3`,
       vtt: `${PROXY}?key=recap-w1-d3.vtt`,
       poster: "/first-60-days/recap/recap-w1-d3.jpg",
