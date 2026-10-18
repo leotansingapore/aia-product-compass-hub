@@ -12,8 +12,12 @@
 //     The one thing added is the explorer tier when it has NO tier at all (an
 //     account made on another app on this project), or First 14 Days would
 //     stay shut to the FINtern it was sent to.
+//   - every FINtern, new or existing, gets CMFAS Prep (on this project, same
+//     login) for all papers, six months from the first time they come through
+//     (Leo, 2026-10-19). Keyed fintern:<user id>, so a second call adds nothing.
 
 export const STARTER_PASSWORD = '123456'
+export const CMFAS_MONTHS = 6
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 /** Equal strings in the same time whatever they hold. */
@@ -37,7 +41,18 @@ export interface Admin {
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } })
 
-export async function handle(req: Request, deps: { secret: string; admin: () => Admin }): Promise<Response> {
+/** The CMFAS Prep grant, once per FINtern. Logged, not fatal: the Academy account works without it. */
+async function grantCmfas(admin: Admin, userId: string, now: Date) {
+  const until = new Date(now)
+  until.setUTCMonth(until.getUTCMonth() + CMFAS_MONTHS)
+  const { error } = await admin.from('cmfas_entitlements').upsert(
+    { user_id: userId, scope: 'all', exams: [], source: 'compass_hub', expires_at: until.toISOString(), stripe_session_id: `fintern:${userId}` },
+    { onConflict: 'stripe_session_id', ignoreDuplicates: true },
+  )
+  if (error) console.error('cmfas grant:', error.message)
+}
+
+export async function handle(req: Request, deps: { secret: string; admin: () => Admin; now?: () => Date }): Promise<Response> {
   if (req.method !== 'POST') return json({ error: 'Method not allowed' }, 405)
   // No secret configured is a refusal, never an open door.
   if (!deps.secret || !sameSecret(req.headers.get('x-fintern-secret') ?? '', deps.secret)) {
@@ -64,6 +79,7 @@ export async function handle(req: Request, deps: { secret: string; admin: () => 
         // DO NOTHING on conflict: a tier already there is never touched.
         const tier = await admin.from('user_access_tiers').upsert({ user_id: prof.user_id, tier_level: 'explorer' }, { onConflict: 'user_id', ignoreDuplicates: true })
         if (tier.error) console.error('existing account tier:', tier.error.message)
+        await grantCmfas(admin, prof.user_id, deps.now?.() ?? new Date())
       }
       return json({ created: false, exists: true })
     }
@@ -80,5 +96,6 @@ export async function handle(req: Request, deps: { secret: string; admin: () => 
   if (role.error) console.error('user_roles insert:', role.error.message)
   const tier = await admin.from('user_access_tiers').upsert({ user_id: id, tier_level: 'explorer' }, { onConflict: 'user_id' })
   if (tier.error) return json({ error: `Account made, tier not set: ${tier.error.message}` }, 500)
+  await grantCmfas(admin, id, deps.now?.() ?? new Date())
   return json({ created: true })
 }

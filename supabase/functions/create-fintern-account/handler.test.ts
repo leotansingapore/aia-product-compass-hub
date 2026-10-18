@@ -60,10 +60,13 @@ Deno.test('an existing account keeps its password and any tier it has', async ()
   // Found by its lowercased email; the only write is a tier that does nothing on conflict.
   assertEquals(f.calls.find((c) => c.op === 'select')!.row, { email: 'a@b.co' });
   const writes = f.calls.filter((c) => c.op === 'insert' || c.op === 'upsert');
-  assertEquals(writes.length, 1);
+  assertEquals(writes.length, 2);
   assertEquals(writes[0].table, 'user_access_tiers');
   assertEquals(writes[0].row, { user_id: 'u9', tier_level: 'explorer' });
   assertEquals(writes[0].opts, { onConflict: 'user_id', ignoreDuplicates: true });
+  // The other is the FINtern's CMFAS Prep grant, which adds beside anything they hold.
+  assertEquals(writes[1].table, 'cmfas_entitlements');
+  assertEquals(writes[1].opts, { onConflict: 'stripe_session_id', ignoreDuplicates: true });
   assertEquals(f.calls.filter((c) => c.op === 'createUser').length, 1);
 });
 Deno.test('an existing account with no profile row writes nothing', async () => {
@@ -71,6 +74,14 @@ Deno.test('an existing account with no profile row writes nothing', async () => 
   const r = await handle(post({ email: 'a@b.co' }, 's3cret'), { secret: 's3cret', admin: () => f.admin });
   assertEquals(await r.json(), { created: false, exists: true });
   assertEquals(f.calls.filter((c) => c.op === 'insert' || c.op === 'upsert').length, 0);
+});
+Deno.test('a new FINtern gets CMFAS Prep for all papers for six months, once', async () => {
+  const f = fakeAdmin();
+  await handle(post({ email: 'a@b.co' }, 's3cret'), { secret: 's3cret', admin: () => f.admin, now: () => new Date('2026-10-19T03:00:00Z') });
+  const grant = f.calls.find((c) => c.table === 'cmfas_entitlements')!;
+  assertEquals(grant.row, { user_id: 'u1', scope: 'all', exams: [], source: 'compass_hub', expires_at: '2027-04-19T03:00:00.000Z', stripe_session_id: 'fintern:u1' });
+  // Keyed per person and never overwritten, so a second signing neither doubles nor extends it.
+  assertEquals(grant.opts, { onConflict: 'stripe_session_id', ignoreDuplicates: true });
 });
 Deno.test('only POST', async () => {
   const f = fakeAdmin();
