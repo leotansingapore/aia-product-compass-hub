@@ -223,6 +223,18 @@ function Press({ cells }: { cells: Cell[] }) {
   );
 }
 
+// Each floor of a house in its own colour, with the label ink that reads on it
+// at 4.5:1 or better. Amber and mint are left out: they wash into the yellow poster.
+const FLOORS = [
+  { bg: "var(--p-1)", ink: "#fff" },
+  { bg: "var(--p-5)", ink: "#fff" },
+  { bg: "var(--p-2)", ink: "var(--p-navy)" },
+  { bg: "var(--p-6)", ink: "#fff" },
+  { bg: "var(--p-pink)", ink: "var(--p-navy)" },
+  // Green last: next to the first colour (rose) when the floors wrap, where pink would look the same.
+  { bg: "var(--p-4)", ink: "var(--p-navy)" },
+];
+
 // The title is the roof, each "Label | tile | tile" line a floor, and a last
 // line with no tiles the ground the house stands on.
 function House({ roof, cells }: { roof: string; cells: Cell[] }) {
@@ -236,20 +248,27 @@ function House({ roof, cells }: { roof: string; cells: Cell[] }) {
           <p className={cn(anton, "text-xl leading-tight text-[color:var(--p-yellow)] sm:text-2xl")}>{roof}</p>
         </div>
       )}
-      {floors.map((floor) => (
-        <div key={floor.title} className="grid gap-2 sm:grid-cols-[9rem_minmax(0,1fr)]">
-          <p className="grid place-items-center rounded-xl bg-[color:var(--p-navy)] px-3 py-2 text-center text-xs font-bold uppercase tracking-wide text-white">
-            {floor.title}
-          </p>
-          <div className="grid grid-cols-2 gap-2 max-sm:[&>*:last-child:nth-child(odd)]:col-span-2 sm:auto-cols-fr sm:grid-flow-col sm:grid-cols-none">
-            {floor.detail.split("|").map((tile) => (
-              <p key={tile} className="grid place-items-center rounded-xl bg-white px-3 py-2 text-center text-[13px] font-semibold leading-snug text-[color:var(--p-navy)] shadow-sm">
-                {tile.trim()}
-              </p>
-            ))}
+      {floors.map((floor, i) => {
+        const { bg, ink } = FLOORS[i % FLOORS.length];
+        return (
+          <div key={floor.title} className="grid gap-2 sm:grid-cols-[9rem_minmax(0,1fr)]">
+            <p className="grid place-items-center rounded-xl px-3 py-2 text-center text-xs font-bold uppercase tracking-wide" style={{ background: bg, color: ink }}>
+              {floor.title}
+            </p>
+            <div className="grid grid-cols-2 gap-2 max-sm:[&>*:last-child:nth-child(odd)]:col-span-2 sm:auto-cols-fr sm:grid-flow-col sm:grid-cols-none">
+              {floor.detail.split("|").map((tile) => (
+                <p
+                  key={tile}
+                  className="grid place-items-center rounded-xl px-3 py-2 text-center text-[13px] font-semibold leading-snug text-[color:var(--p-navy)] shadow-sm"
+                  style={{ background: `color-mix(in srgb, ${bg} 14%, white)` }}
+                >
+                  {tile.trim()}
+                </p>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
       {ground && (
         <p className="rounded-xl bg-[color:var(--p-navy)] px-4 py-3 text-center text-xs font-bold uppercase tracking-widest text-white">{ground.title}</p>
       )}
