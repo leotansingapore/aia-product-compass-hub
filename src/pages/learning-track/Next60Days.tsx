@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { cn } from "@/lib/utils";
 import { getAllWeeks, TOTAL_DAYS } from "@/features/next-60-days/content";
 import { useNext60DaysProgress } from "@/hooks/next-60-days/useNext60DaysProgress";
+import { prefetchHandlers } from "@/utils/routePrefetch";
 
 export default function Next60Days() {
   const weeks = getAllWeeks();
@@ -92,6 +93,7 @@ export default function Next60Days() {
                         {unlocked ? (
                           <Link
                             to={`/learning-track/next-60-days/day/${d.dayNumber}`}
+                            {...prefetchHandlers(`/learning-track/next-60-days/day/${d.dayNumber}`)}
                             className="hover:text-primary transition-colors line-clamp-1"
                           >
                             <span className="text-muted-foreground tabular-nums mr-2">
@@ -128,7 +130,7 @@ export default function Next60Days() {
                         <ChevronRight className="h-3.5 w-3.5" />
                       </span>
                     ) : (
-                      <Link to={href}>
+                      <Link to={href} {...prefetchHandlers(href)}>
                         {allDone ? "Review" : inProgress ? "Continue" : "Start"}
                         <ChevronRight className="h-3.5 w-3.5" />
                       </Link>

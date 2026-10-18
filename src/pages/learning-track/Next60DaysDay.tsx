@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import { prefetchRoute } from "@/utils/routePrefetch";
 import remarkGfm from "remark-gfm";
 // rehype-slug gives every heading an id so #anchor deep links (global search
 // "Inside lessons" hits, shared section URLs) can land here.
@@ -104,6 +105,13 @@ export default function Next60DaysDay() {
   const reflectionSubmitted = isReflectionSubmitted(dayNumber);
 
   useEffect(() => { if (day && unlocked) markRead(dayNumber); }, [day, dayNumber, unlocked, markRead]);
+
+  // Warm the next day while this one is read, so "Up next" opens it from cache.
+  useEffect(() => {
+    if (!day || dayNumber >= TOTAL_DAYS) return;
+    const handle = window.setTimeout(() => prefetchRoute(`${BASE}/day/${dayNumber + 1}`), 1200);
+    return () => window.clearTimeout(handle);
+  }, [day, dayNumber]);
 
   useEffect(() => {
     if (!day || activeTab === "quiz" || quizPassed || day.quiz.length === 0) { setShowStickyQuiz(false); return; }

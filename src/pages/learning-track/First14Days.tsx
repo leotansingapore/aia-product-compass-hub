@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { CheckCircle2, ChevronRight, Compass, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,7 @@ import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProg
 import { useAdmin } from "@/hooks/useAdmin";
 import { useUserTier } from "@/hooks/useUserTier";
 import { LeaderboardRankCard } from "@/components/leaderboard/LeaderboardRankCard";
+import { prefetchHandlers, prefetchRoute } from "@/utils/routePrefetch";
 
 export default function First14Days() {
   const weeks = getAllWeeks();
@@ -29,6 +30,12 @@ export default function First14Days() {
     for (let d = 1; d <= TOTAL_DAYS; d++) if (!isDayComplete(d)) return d;
     return 1;
   })();
+
+  // Warm the day the main button opens, so it renders from cache.
+  useEffect(() => {
+    const handle = window.setTimeout(() => prefetchRoute(`/learning-track/first-14-days/day/${firstIncomplete}`), 1200);
+    return () => window.clearTimeout(handle);
+  }, [firstIncomplete]);
 
   // Pre-compute per-week stats once per progress change instead of running
   // 7 day-lookups × 2 weeks (~28 isDayComplete/find calls) inside the JSX
@@ -135,6 +142,7 @@ export default function First14Days() {
                         {unlocked ? (
                           <Link
                             to={`/learning-track/first-14-days/day/${d.dayNumber}`}
+                            {...prefetchHandlers(`/learning-track/first-14-days/day/${d.dayNumber}`)}
                             className="hover:text-primary transition-colors line-clamp-1"
                           >
                             <span className="text-muted-foreground tabular-nums mr-2">
@@ -159,7 +167,7 @@ export default function First14Days() {
                     {weekDone} of {totalDays} days
                   </span>
                   <Button asChild variant="outline" size="sm" className="gap-1.5 text-xs">
-                    <Link to={href}>
+                    <Link to={href} {...prefetchHandlers(href)}>
                       {allDone ? "Review" : inProgress ? "Continue" : "Start"}
                       <ChevronRight className="h-3.5 w-3.5" />
                     </Link>

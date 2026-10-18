@@ -24,6 +24,7 @@ import { convertImageEmbeds } from "@/features/first-60-days/parse";
 import { fileChangedSinceEdit, shownSource } from "@/features/first-14-days/edits";
 import { useDayEdits } from "@/hooks/first-14-days/useDayEdits";
 import { lazyWithRetry } from "@/utils/lazyWithRetry";
+import { prefetchRoute } from "@/utils/routePrefetch";
 import { DAY_SUMMARIES, TOTAL_DAYS } from "@/features/first-14-days/summaries";
 import type { Day } from "@/features/first-14-days/types";
 import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProgress";
@@ -158,6 +159,14 @@ export default function First14DaysDay() {
   useEffect(() => {
     if (day && unlocked) markRead(dayNumber);
   }, [day, dayNumber, unlocked, markRead]);
+
+  // Warm the next day (lesson text and edit check) while this one is read, so
+  // "Mark complete and continue" opens it from cache. First 60 does the same.
+  useEffect(() => {
+    if (!day || dayNumber >= TOTAL_DAYS) return;
+    const handle = window.setTimeout(() => prefetchRoute(`/learning-track/first-14-days/day/${dayNumber + 1}`), 1200);
+    return () => window.clearTimeout(handle);
+  }, [day, dayNumber]);
 
   // Gate on BOTH the markdown chunk AND the progress query. If we render the
   // lock screen on a stale-empty progress map, the user sees a phantom "Day
