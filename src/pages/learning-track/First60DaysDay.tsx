@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate, useSearchParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -208,6 +208,7 @@ export default function First60DaysDay() {
       { replace: true },
     );
   const [showStickyQuiz, setShowStickyQuiz] = useState(false);
+  const tabsRef = useRef<HTMLDivElement>(null);
   const {
     isUnlocked,
     isDayComplete,
@@ -240,6 +241,9 @@ export default function First60DaysDay() {
   }, [dayNumber]);
   const dayMetaQuery = useFirst60DaysDayMeta(dayNumber);
   const dayMeta = dayMetaQuery.data;
+  // with the video above the tabs there is no Video tab; old ?tab=video links land on Read under it
+  const showVideoTab = dayMetaQuery.isSuccess && !dayMeta?.video_url;
+  const shownTab = activeTab === "video" && !showVideoTab ? "read" : activeTab;
   const { plugins: dayRehypePlugins, ready: dayRehypeReady } = useRehypePlugins(
     Boolean(day?.hasRawHtml),
   );
@@ -294,7 +298,9 @@ export default function First60DaysDay() {
 
   const goToQuiz = () => {
     setActiveTab("quiz");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // the day's video sits above the tabs, so the top of the page is no longer where the quiz opens
+    if (tabsRef.current) tabsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    else window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // Gate on BOTH the markdown chunk AND the progress query. If we render the
@@ -510,8 +516,56 @@ export default function First60DaysDay() {
         </div>
       </section>
 
+      {/* The day's video leads the page, so nobody misses it behind a tab */}
+      {dayMeta?.video_url ? (
+        <div className="mb-5">
+          <Card className="overflow-hidden border-border/60 shadow-card">
+            <CardContent className="p-0">
+              {(() => {
+                const recap = recapProxyVideo(dayMeta.video_url);
+                if (recap) {
+                  return (
+                    <RecapVideo
+                      src={recap.src}
+                      poster={recap.poster}
+                      vtt={recap.vtt}
+                      videoKey={recap.key}
+                      day={dayNumber}
+                      chapters={RECAP_CHAPTERS[recap.key]}
+                      onEnded={day.quiz.length > 0 && !quizPassed ? goToQuiz : undefined}
+                    />
+                  );
+                }
+                const info = detectVideoEmbed(dayMeta.video_url);
+                if (info.embedUrl) {
+                  return (
+                    <Suspense fallback={<TabFallback />}>
+                      <VideoEmbed embedUrl={info.embedUrl} platform={info.platform ?? "video"} />
+                    </Suspense>
+                  );
+                }
+                return (
+                  <div className="p-6 text-sm text-muted-foreground">
+                    Video URL stored but not recognised by the player.{" "}
+                    <a
+                      href={dayMeta.video_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-primary underline underline-offset-2"
+                    >
+                      Open in new tab
+                    </a>
+                    .
+                  </div>
+                );
+              })()}
+            </CardContent>
+          </Card>
+        </div>
+      ) : null}
+
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+      <Tabs ref={tabsRef} value={shownTab} onValueChange={setActiveTab} className="w-full scroll-mt-4">
         <TabsList className="grid h-auto w-full auto-cols-fr grid-flow-col gap-1 rounded-xl border border-border/60 bg-card/80 p-1 shadow-sm backdrop-blur">
           <TabsTrigger
             value="read"
@@ -520,18 +574,20 @@ export default function First60DaysDay() {
             <BookOpen className="h-4 w-4 shrink-0" />
             <span>Read</span>
           </TabsTrigger>
-          <TabsTrigger
-            value="video"
-            className="gap-1 rounded-lg px-2 py-2 min-h-11 sm:min-h-0 sm:px-3.5 text-xs sm:text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
-          >
-            <Film className="h-4 w-4 shrink-0" />
-            <span>Video</span>
-            {dayMeta?.video_url && dayMeta.video_duration_sec ? (
-              <span className="ml-0.5 hidden sm:inline-flex h-5 items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-muted-foreground">
-                {Math.round(dayMeta.video_duration_sec / 60)} min
-              </span>
-            ) : null}
-          </TabsTrigger>
+          {showVideoTab && (
+            <TabsTrigger
+              value="video"
+              className="gap-1 rounded-lg px-2 py-2 min-h-11 sm:min-h-0 sm:px-3.5 text-xs sm:text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+            >
+              <Film className="h-4 w-4 shrink-0" />
+              <span>Video</span>
+              {dayMeta?.video_url && dayMeta.video_duration_sec ? (
+                <span className="ml-0.5 hidden sm:inline-flex h-5 items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-muted-foreground">
+                  {Math.round(dayMeta.video_duration_sec / 60)} min
+                </span>
+              ) : null}
+            </TabsTrigger>
+          )}
           {hasReflection && (
             <TabsTrigger
               value="reflection"
@@ -578,50 +634,7 @@ export default function First60DaysDay() {
         </TabsContent>
 
         <TabsContent value="video" className="mt-5">
-          {dayMeta?.video_url ? (
-            <Card className="overflow-hidden border-border/60 shadow-card">
-              <CardContent className="p-0">
-                {(() => {
-                  const recap = recapProxyVideo(dayMeta.video_url);
-                  if (recap) {
-                    return (
-                      <RecapVideo
-                        src={recap.src}
-                        poster={recap.poster}
-                        vtt={recap.vtt}
-                        videoKey={recap.key}
-                        day={dayNumber}
-                        chapters={RECAP_CHAPTERS[recap.key]}
-                        onEnded={day.quiz.length > 0 && !quizPassed ? goToQuiz : undefined}
-                      />
-                    );
-                  }
-                  const info = detectVideoEmbed(dayMeta.video_url);
-                  if (info.embedUrl) {
-                    return (
-                      <Suspense fallback={<TabFallback />}>
-                        <VideoEmbed embedUrl={info.embedUrl} platform={info.platform ?? "video"} />
-                      </Suspense>
-                    );
-                  }
-                  return (
-                    <div className="p-6 text-sm text-muted-foreground">
-                      Video URL stored but not recognised by the player.{" "}
-                      <a
-                        href={dayMeta.video_url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-primary underline underline-offset-2"
-                      >
-                        Open in new tab
-                      </a>
-                      .
-                    </div>
-                  );
-                })()}
-              </CardContent>
-            </Card>
-          ) : (
+          {!dayMeta?.video_url ? (
             <Card className="border-dashed border-border/80 bg-muted/20">
               <CardContent className="flex flex-col items-center gap-3 p-12 text-center">
                 <div className="grid h-12 w-12 place-items-center rounded-full bg-muted">
@@ -633,7 +646,7 @@ export default function First60DaysDay() {
                 </p>
               </CardContent>
             </Card>
-          )}
+          ) : null}
         </TabsContent>
 
         <TabsContent value="reflection" className="mt-5">

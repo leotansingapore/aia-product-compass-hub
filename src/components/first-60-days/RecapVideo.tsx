@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Play } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export type RecapChapter = [label: string, at: number];
@@ -28,6 +29,7 @@ export function RecapVideo({
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [now, setNow] = useState(0);
+  const [started, setStarted] = useState(false);
   const sent = useRef(new Set<string>());
   const ended = useRef(onEnded);
   ended.current = onEnded;
@@ -59,7 +61,7 @@ export function RecapVideo({
           capture("recap_video_progress", { percent: m });
         }
       }
-      if (Math.abs(v.currentTime - lastSave) >= 5) {
+      if (v.currentTime < v.duration - 15 && Math.abs(v.currentTime - lastSave) >= 5) {   // the last seconds never resume, so never keep them
         lastSave = v.currentTime;
         try {
           localStorage.setItem(posKey, String(Math.floor(v.currentTime)));
@@ -69,6 +71,7 @@ export function RecapVideo({
       }
     };
     const onPlay = () => {
+      setStarted(true);
       if (!sent.current.has("start")) {
         sent.current.add("start");
         capture("recap_video_started", { from: Math.floor(v.currentTime) });
@@ -107,18 +110,32 @@ export function RecapVideo({
 
   return (
     <div>
-      <video
-        ref={ref}
-        src={src}
-        poster={poster}
-        controls
-        playsInline
-        preload="metadata"
-        crossOrigin="anonymous"
-        className="block aspect-video w-full bg-black"
-      >
-        <track kind="subtitles" srcLang="en" label="English" default src={vtt} />
-      </video>
+      <div className="relative">
+        <video
+          ref={ref}
+          src={src}
+          poster={poster}
+          controls
+          playsInline
+          preload="metadata"
+          crossOrigin="anonymous"
+          className="block aspect-video w-full bg-black"
+        >
+          <track kind="subtitles" srcLang="en" label="English" default src={vtt} />
+        </video>
+        {!started && (
+          <button
+            type="button"
+            onClick={() => void ref.current?.play().catch(() => undefined)}
+            aria-label="Play video"
+            className="group absolute inset-0 grid place-items-center bg-black/30 transition-colors hover:bg-black/20"
+          >
+            <span className="grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-lg ring-4 ring-white/40 transition-transform group-hover:scale-105 sm:h-20 sm:w-20">
+              <Play className="ml-1 h-7 w-7 fill-current sm:h-9 sm:w-9" />
+            </span>
+          </button>
+        )}
+      </div>
       {chapters.length > 0 && (
         <ol className="divide-y divide-border/60 border-t border-border/60">
           {chapters.map(([label, at], i) => {

@@ -66,6 +66,15 @@ describe("RecapVideo", () => {
     expect(video.currentTime).toBe(300);
   });
 
+  it("shows a big play button until the video starts, and it starts the video", () => {
+    const { video } = mount();
+    video.play = vi.fn(() => Promise.resolve());
+    fireEvent.click(screen.getByRole("button", { name: "Play video" }));
+    expect(video.play).toHaveBeenCalledTimes(1);
+    fireEvent(video, new Event("play"));
+    expect(screen.queryByRole("button", { name: "Play video" })).toBeNull();
+  });
+
   it("at the end: forgets the position, reports 100% and hands over", async () => {
     localStorage.setItem("recap-pos:recap-w1-d2", "580");
     const { video, onEnded } = mount();

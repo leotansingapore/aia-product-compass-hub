@@ -47,6 +47,6 @@ Found by the deep-links audit on 2026-10-16. Values are whatever the page code a
 | Scripts and objections | `/scripts/:scriptId`, `/objections` | `v`, `q`, `category`, `audience`, `role`, `tag` |
 | Servicing | `/servicing/:scriptId` | `q`, `category`, `audience`, `role`, `tag` |
 | First 14 Days | `/learning-track/first-14-days/day/:dayNumber` | `edit` (admins) |
-| First 60 Days | `/learning-track/first-60-days/day/:dayNumber` | `tab` (`video`, `reflection`, `quiz`; none = Read) |
+| First 60 Days | `/learning-track/first-60-days/day/:dayNumber` | `tab` (`reflection`, `quiz`; none = Read). A day with a video shows it above the tabs, so `video` opens Read; it is a tab only on days still waiting for one |
 | Worksheets | `/learning-track/pre-rnf/worksheets/:slug` | `user` |
 | AIA training directory | `/learning-track/post-rnf/aia-training/:view/:itemId` | `section`, `day`, `month`, plus the courses filters `q`, `stage`, `sort`, `mandatory`, `essential`, `new`, `upcoming` |
