@@ -5787,97 +5787,117 @@ export default {
   },
   "/product/training-meetings/12th-jun-project-200-gifting-and-hall-sponsorship-review": {
     "title": "12th Jun - Project 200, gifting, and hall sponsorship review | Training Meetings",
-    "description": "Lesson 7 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 17 of 23 in Training Meetings. Weekly Training Calls",
+    "card": "product-training-meetings"
+  },
+  "/product/training-meetings/14th-oct-plp-training-intent-statements-objection-handling-sales-mindset": {
+    "title": "14th Oct - PLP training, intent statements, objection handling, sales mindset | Training Meetings",
+    "description": "Lesson 1 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/15th-jul-policy-summary-builder-rework-and-benjamins-nsf-close": {
     "title": "15th Jul - Policy summary builder rework and Benjamin's NSF close | Training Meetings",
-    "description": "Lesson 10 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 14 of 23 in Training Meetings. Weekly Training Calls",
+    "card": "product-training-meetings"
+  },
+  "/product/training-meetings/16th-sep-referral-asking-and-referral-phone-script-training": {
+    "title": "16th Sep - Referral asking and referral phone script training | Training Meetings",
+    "description": "Lesson 6 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/19th-aug-client-case-study-practice-and-routines-rollout": {
     "title": "19th Aug - Client case study practice and routines rollout | Training Meetings",
-    "description": "Lesson 14 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 10 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/1st-may-retirement-restructuring-bto-planning-and-agent-training-standards": {
     "title": "1st May - Retirement restructuring, BTO planning, and agent training standards | Training Meetings",
-    "description": "Lesson 4 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 20 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/20th-feb-pwv-illustrator-walkthrough-and-competitor-comparison-training": {
     "title": "20th Feb - PWV illustrator walkthrough and competitor comparison training | Training Meetings",
-    "description": "Lesson 1 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 23 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/22nd-jul-conviction-building-activity-habits-and-aia-competitive-positioning": {
     "title": "22nd Jul - Conviction building, activity habits, and AIA competitive positioning | Training Meetings",
-    "description": "Lesson 11 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 13 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/23rd-sep-policy-summary-builder-ai-agent-and-crm-updates": {
     "title": "23rd Sep - Policy summary builder, AI agent, and CRM updates | Training Meetings",
-    "description": "Lesson 17 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 5 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/26th-aug-activity-tracker-features-routines-leads-and-closing-scripts": {
     "title": "26th Aug - Activity tracker features, routines, leads, and closing scripts | Training Meetings",
-    "description": "Lesson 15 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 9 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/26th-jun-rnf-training-progress-tvm-compounding-and-objection-handling": {
     "title": "26th Jun - RNF training progress, TVM, compounding, and objection handling | Training Meetings",
-    "description": "Lesson 8 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 16 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/27th-feb-lead-follow-up-rules-scripts-database-and-ai-tools": {
     "title": "27th Feb - Lead follow-up rules, scripts database, and AI tools | Training Meetings",
-    "description": "Lesson 2 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 22 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/27th-mar-retirement-gap-calculator-and-pwv-dividend-plan-training": {
     "title": "27th Mar - Retirement gap calculator and PWV dividend plan training | Training Meetings",
-    "description": "Lesson 3 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 21 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/29th-jul-case-study-assignments-budgeting-tools-and-lead-follow-up": {
     "title": "29th Jul - Case study assignments, budgeting tools, and lead follow-up | Training Meetings",
-    "description": "Lesson 12 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 12 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/29th-may-pipeline-review-case-closes-and-new-sales-tools": {
     "title": "29th May - Pipeline review, case closes, and new sales tools | Training Meetings",
-    "description": "Lesson 5 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 19 of 23 in Training Meetings. Weekly Training Calls",
+    "card": "product-training-meetings"
+  },
+  "/product/training-meetings/2nd-sep-advanced-fact-finding-call-flow-for-retirement-planning": {
+    "title": "2nd Sep - Advanced fact-finding call flow for retirement planning | Training Meetings",
+    "description": "Lesson 8 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/30th-sep-ai-agent-crm-fyc-targets-and-district-plan": {
     "title": "30th Sep - AI agent, CRM, FYC targets and district plan | Training Meetings",
-    "description": "Lesson 19 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 4 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/30th-sep-post-rnf-training-prospecting-story-tonality-and-ismart": {
     "title": "30th Sep - Post-RNF training, prospecting, story, tonality and iSmart | Training Meetings",
-    "description": "Lesson 18 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 3 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/5th-aug-cpf-life-mechanics-and-adviser-mindset-training": {
     "title": "5th Aug - CPF Life mechanics and adviser mindset training | Training Meetings",
-    "description": "Lesson 13 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 11 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/5th-jun-weekly-pipeline-review-and-financial-planning-tools-training": {
     "title": "5th Jun - Weekly pipeline review and financial planning tools training | Training Meetings",
-    "description": "Lesson 6 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 18 of 23 in Training Meetings. Weekly Training Calls",
+    "card": "product-training-meetings"
+  },
+  "/product/training-meetings/7th-oct-cold-call-structure-for-retirement-planning-appointments": {
+    "title": "7th Oct - Cold call structure for retirement planning appointments | Training Meetings",
+    "description": "Lesson 2 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/8th-jul-presenter-app-booking-system-and-sales-mindset-session": {
     "title": "8th Jul - Presenter app, booking system, and sales mindset session | Training Meetings",
-    "description": "Lesson 9 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 15 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/training-meetings/9th-sep-team-training-call-on-leads-ads-and-recruitment": {
     "title": "9th Sep - Team training call on leads, ads, and recruitment | Training Meetings",
-    "description": "Lesson 16 of 19 in Training Meetings. Weekly Training Calls",
+    "description": "Lesson 7 of 23 in Training Meetings. Weekly Training Calls",
     "card": "product-training-meetings"
   },
   "/product/ultimate-critical-cover": {
