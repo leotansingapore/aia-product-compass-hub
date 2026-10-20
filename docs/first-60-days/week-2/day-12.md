@@ -132,7 +132,7 @@ The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) pr
 
 ## 8. Week 2 recap - live session
 
-Leo walks through Days 7 to 12 with the team in a recap call. The full recording with timestamped lecture notes lives on the [Week 2 Recap](/learning-track/first-60-days/recap/2) page.
+Leo walks through Days 7 to 12 in a recap call, cut into one video per day at the top of each day's page. All six, with lecture notes, are on the [Week 2 Recap](/learning-track/first-60-days/recap/2) page.
 
 ## Quick quiz
 
