@@ -13,7 +13,7 @@ tags: [first-60-days, week-3, skills]
 
 > **The one idea for today:** A client's wealth has two forms - **Financial Capital** (the money they already have) and **Human Capital** (their future ability to earn). Your job as an FC is to help them convert one into the other, on loop, while protecting the engine that makes it possible.
 
-> **Watch the live training:** **[Module 1 - New FC Training (David)](https://youtu.be/EtAo1of4h8U)**. The first half of Module 1 is the live walk-through of the CST structure (Why / What / How Much) with the rules-of-thumb table for coverage levels - this lesson is the slower, written version of what David delivers. The video is also available in the **Video** tab of this day. Companion videos: **[Warm Market Flow](https://www.loom.com/share/defd2115fa4a46bb98c9a75113b12343)** and **[Canned Sales Track](https://youtu.be/TAsMoWdXLyg)**.
+> **Watch the live training:** **[Module 1 - New FC Training (David)](https://youtu.be/EtAo1of4h8U)**. The first half of Module 1 is the live walk-through of the CST structure (Why / What / How Much) with the rules-of-thumb table for coverage levels - this lesson is the slower, written version of what David delivers. Companion videos: **[Warm Market Flow](https://www.loom.com/share/defd2115fa4a46bb98c9a75113b12343)** and **[Canned Sales Track](https://youtu.be/TAsMoWdXLyg)**.
 >
 > **The delivery script:** the Total Wealth concept on this page is the *teaching* version. The 2-page slide artefact you actually deliver in front of a prospect is the **[Canned Sales Track - Full Reference](/learning-track/first-60-days/reference/cst-risks-script-full)**. Read both - Day 14 gives you the *why*, the CST gives you the *exact words and pace*.
 
