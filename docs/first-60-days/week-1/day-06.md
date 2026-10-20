@@ -138,7 +138,7 @@ Which group you end up in is largely decided in the first 60 days.
 
 ## 6. Week 1 recap - live session
 
-Leo walks through Days 1 to 6 in a recap call, cut into one video per day in each day's Video tab. All six, with lecture notes, are on the [Week 1 Recap](/learning-track/first-60-days/recap/1) page.
+Leo walks through Days 1 to 6 in a recap call, cut into one video per day at the top of each day's page. All six, with lecture notes, are on the [Week 1 Recap](/learning-track/first-60-days/recap/1) page.
 
 ## Quick quiz
 

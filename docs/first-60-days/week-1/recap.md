@@ -17,11 +17,11 @@ tags: [first-60-days, week-1, recap]
 </video>
 
 - [`00:00`](#t=0) Why this career
-- [`02:20`](#t=140) Every life is worth planning for
-- [`03:44`](#t=224) Our values
-- [`05:13`](#t=313) Reconnect with your friends
-- [`07:07`](#t=427) Protection first
-- [`07:43`](#t=463) The close is only the start
+- [`02:17`](#t=137) Every life is worth planning for
+- [`03:41`](#t=221) Our values
+- [`05:11`](#t=311) Reconnect with your friends
+- [`07:04`](#t=424) Protection first
+- [`07:40`](#t=460) The close is only the start
 
 <details>
 <summary><strong>Lecture notes for Day 1</strong></summary>
@@ -97,9 +97,9 @@ A client who jumps to layer 2 without layer 1 is investing on a foundation that 
 - [`00:00`](#t=0) Autonomy, with responsibility
 - [`01:43`](#t=103) Personal development
 - [`02:16`](#t=136) Job security and passive income
-- [`06:26`](#t=386) Lifetime value of a client
-- [`07:36`](#t=456) Fulfilment
-- [`09:10`](#t=550) The year-1 trap
+- [`06:23`](#t=383) Lifetime value of a client
+- [`07:33`](#t=453) Fulfilment
+- [`09:07`](#t=547) The year-1 trap
 
 <details>
 <summary><strong>Lecture notes for Day 3</strong></summary>
@@ -144,11 +144,11 @@ The discomfort itself is the path, not a roadblock. Rejections, slow days, compl
 </video>
 
 - [`00:00`](#t=0) Why this career matters
-- [`01:07`](#t=67) Come back to your why
-- [`02:25`](#t=145) Pre-frame with your why
-- [`03:00`](#t=180) The underdog advantage
-- [`04:37`](#t=277) Who your friends buy from
-- [`06:52`](#t=412) The moral compass
+- [`01:06`](#t=66) Come back to your why
+- [`02:24`](#t=144) Pre-frame with your why
+- [`02:59`](#t=179) The underdog advantage
+- [`04:36`](#t=276) Who your friends buy from
+- [`06:51`](#t=411) The moral compass
 
 <details>
 <summary><strong>Lecture notes for Day 5</strong></summary>
@@ -165,11 +165,11 @@ The advisor stereotype - "the random caller from a roadshow" - exists because mo
 </video>
 
 - [`00:00`](#t=0) Why 1% a day beats heroics
-- [`00:52`](#t=52) Systems beat goals
-- [`01:17`](#t=77) The habit loop
-- [`02:32`](#t=152) Identity-based habits
-- [`03:48`](#t=228) Success habits: ASK
-- [`06:51`](#t=411) Week 1 wrap-up
+- [`00:50`](#t=50) Systems beat goals
+- [`01:16`](#t=76) The habit loop
+- [`02:31`](#t=151) Identity-based habits
+- [`03:46`](#t=226) Success habits: ASK
+- [`06:48`](#t=408) Week 1 wrap-up
 
 <details>
 <summary><strong>Lecture notes for Day 6</strong></summary>
