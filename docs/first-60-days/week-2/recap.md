@@ -2,7 +2,7 @@
 week: 2
 recap: true
 title: "Week 2 Recap - Industry Context & The Freedom Business"
-duration_minutes: 57
+duration_minutes: 58
 tags: [first-60-days, week-2, recap]
 ---
 
@@ -17,12 +17,12 @@ tags: [first-60-days, week-2, recap]
 </video>
 
 - [`00:00`](#t=0) The five insurance segments
-- [`07:26`](#t=446) A simple starter package
-- [`08:54`](#t=534) Hospital versus accident plans
-- [`10:28`](#t=628) Tied agency versus IFAs
-- [`12:50`](#t=770) Tied agents versus bankers
-- [`15:18`](#t=918) Your digital toolkit
-- [`15:51`](#t=951) Segments in every meeting
+- [`07:32`](#t=452) A simple starter package
+- [`09:00`](#t=540) Hospital versus accident plans
+- [`10:34`](#t=634) Tied agency versus IFAs
+- [`12:56`](#t=776) Tied agents versus bankers
+- [`15:25`](#t=925) Your digital toolkit
+- [`15:59`](#t=959) Segments in every meeting
 
 <details>
 <summary><strong>Lecture notes for Day 7</strong></summary>
@@ -57,19 +57,19 @@ Bankers sell insurance (DBS = Manulife, OCBC = Great Eastern, UOB = Prudential, 
 
 </details>
 
-## Day 8 . Career sharing: the path ahead (6 min)
+## Day 8 . Career sharing: the path ahead (7 min)
 
 <video src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w2-d8" poster="/first-60-days/recap/recap-w2-d8.jpg" controls playsinline preload="metadata" crossorigin="anonymous" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;">
   <track kind="subtitles" srclang="en" label="English" default src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w2-d8.vtt" />
 </video>
 
 - [`00:00`](#t=0) Income that compounds
-- [`00:46`](#t=46) Five factors of an ideal career
-- [`01:35`](#t=95) Why year three matters
-- [`02:30`](#t=150) What income guarantees really are
-- [`03:57`](#t=237) Building your infrastructure
-- [`04:53`](#t=293) Big rocks first
-- [`05:49`](#t=349) Impact no one talks about
+- [`00:47`](#t=47) Five factors of an ideal career
+- [`01:38`](#t=98) Why year three matters
+- [`02:38`](#t=158) What income guarantees really are
+- [`04:11`](#t=251) Building your infrastructure
+- [`05:06`](#t=306) Big rocks first
+- [`06:05`](#t=365) Impact no one talks about
 
 <details>
 <summary><strong>Lecture notes for Day 8</strong></summary>
@@ -89,10 +89,10 @@ Salaried careers are linear (hours × rate). This one is compounding - by Year 5
 </video>
 
 - [`00:00`](#t=0) Three classes by cash flow
-- [`01:15`](#t=75) Asset or liability
-- [`02:02`](#t=122) Recurring commissions as assets
-- [`03:29`](#t=209) Net worth and building assets
-- [`04:33`](#t=273) Insurance for every class
+- [`01:17`](#t=77) Asset or liability
+- [`02:04`](#t=124) Recurring commissions as assets
+- [`03:34`](#t=214) Net worth and building assets
+- [`04:39`](#t=279) Insurance for every class
 
 <details>
 <summary><strong>Lecture notes for Day 9</strong></summary>
@@ -114,10 +114,10 @@ The poor accumulate **liabilities** (cars, designer goods, lifestyle creep). The
 </video>
 
 - [`00:00`](#t=0) The formula for freedom
-- [`00:55`](#t=55) Calculating a freedom number
-- [`03:21`](#t=201) The pyramid and the income gap
-- [`04:54`](#t=294) The client conversation frame
-- [`06:36`](#t=396) Pay long-term first
+- [`00:56`](#t=56) Calculating a freedom number
+- [`03:24`](#t=204) The pyramid and the income gap
+- [`04:57`](#t=297) The client conversation frame
+- [`06:40`](#t=400) Pay long-term first
 
 <details>
 <summary><strong>Lecture notes for Day 10</strong></summary>
@@ -127,19 +127,19 @@ The poor accumulate **liabilities** (cars, designer goods, lifestyle creep). The
 
 </details>
 
-## Day 11 . The cashflow quadrant: beyond 9 to 5 (8 min)
+## Day 11 . The cashflow quadrant: beyond 9 to 5 (9 min)
 
 <video src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w2-d11" poster="/first-60-days/recap/recap-w2-d11.jpg" controls playsinline preload="metadata" crossorigin="anonymous" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;">
   <track kind="subtitles" srclang="en" label="English" default src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w2-d11.vtt" />
 </video>
 
 - [`00:00`](#t=0) Where this career lives
-- [`01:39`](#t=99) Three ways to earn wealth
-- [`02:46`](#t=166) Investing, not spending
-- [`04:41`](#t=281) From hours to recurring income
-- [`05:20`](#t=320) Building a team
-- [`06:00`](#t=360) When to start recruiting
-- [`07:30`](#t=450) Why most people stay employees
+- [`01:41`](#t=101) Three ways to earn wealth
+- [`02:50`](#t=170) Investing, not spending
+- [`04:46`](#t=286) From hours to recurring income
+- [`05:26`](#t=326) Building a team
+- [`06:06`](#t=366) When to start recruiting
+- [`07:37`](#t=457) Why most people stay employees
 
 <details>
 <summary><strong>Lecture notes for Day 11</strong></summary>
@@ -157,19 +157,19 @@ Day-1 referrals matter because every month delayed is a year of compounded team 
 
 </details>
 
-## Day 12 . The financial freedom pyramid (10 min)
+## Day 12 . The financial freedom pyramid (11 min)
 
 <video src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w2-d12" poster="/first-60-days/recap/recap-w2-d12.jpg" controls playsinline preload="metadata" crossorigin="anonymous" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;">
   <track kind="subtitles" srclang="en" label="English" default src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w2-d12.vtt" />
 </video>
 
 - [`00:00`](#t=0) The four-level pyramid
-- [`00:49`](#t=49) Insurance as the foundation
-- [`01:56`](#t=116) CPF and SRS investing
-- [`02:57`](#t=177) Partner insurers and licences
-- [`04:13`](#t=253) Legacy and policy summaries
-- [`04:54`](#t=294) Restructuring a client portfolio
-- [`07:49`](#t=469) Why invest systematically
+- [`00:50`](#t=50) Insurance as the foundation
+- [`01:59`](#t=119) CPF and SRS investing
+- [`03:00`](#t=180) Partner insurers and licences
+- [`04:19`](#t=259) Legacy and policy summaries
+- [`05:01`](#t=301) Restructuring a client portfolio
+- [`07:58`](#t=478) Why invest systematically
 
 <details>
 <summary><strong>Lecture notes for Day 12</strong></summary>

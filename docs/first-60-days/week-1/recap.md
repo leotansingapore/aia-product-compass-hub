@@ -2,7 +2,7 @@
 week: 1
 recap: true
 title: "Week 1 Recap - Foundation & Identity Shift"
-duration_minutes: 53
+duration_minutes: 54
 tags: [first-60-days, week-1, recap]
 ---
 
@@ -18,10 +18,10 @@ tags: [first-60-days, week-1, recap]
 
 - [`00:00`](#t=0) Why this career
 - [`02:17`](#t=137) Every life is worth planning for
-- [`03:41`](#t=221) Our values
-- [`05:11`](#t=311) Reconnect with your friends
-- [`07:04`](#t=424) Protection first
-- [`07:40`](#t=460) The close is only the start
+- [`03:42`](#t=222) Our values
+- [`05:15`](#t=315) Reconnect with your friends
+- [`07:11`](#t=431) Protection first
+- [`07:49`](#t=469) The close is only the start
 
 <details>
 <summary><strong>Lecture notes for Day 1</strong></summary>
@@ -52,10 +52,10 @@ Pick three warm contacts this week. Send a simple message - "hey, I've started l
 
 - [`00:00`](#t=0) The one-third rule
 - [`01:47`](#t=107) Temporary vs permanent risk
-- [`02:38`](#t=158) Three ways to manage risk
-- [`04:07`](#t=247) How much cover is enough
-- [`05:51`](#t=351) When to buy
-- [`08:45`](#t=525) The financial planning pyramid
+- [`02:41`](#t=161) Three ways to manage risk
+- [`04:10`](#t=250) How much cover is enough
+- [`05:57`](#t=357) When to buy
+- [`08:51`](#t=531) The financial planning pyramid
 
 <details>
 <summary><strong>Lecture notes for Day 2</strong></summary>
@@ -95,11 +95,11 @@ A client who jumps to layer 2 without layer 1 is investing on a foundation that 
 </video>
 
 - [`00:00`](#t=0) Autonomy, with responsibility
-- [`01:43`](#t=103) Personal development
-- [`02:16`](#t=136) Job security and passive income
-- [`06:23`](#t=383) Lifetime value of a client
-- [`07:33`](#t=453) Fulfilment
-- [`09:07`](#t=547) The year-1 trap
+- [`01:49`](#t=109) Personal development
+- [`02:23`](#t=143) Job security and passive income
+- [`06:35`](#t=395) Lifetime value of a client
+- [`07:45`](#t=465) Fulfilment
+- [`09:21`](#t=561) The year-1 trap
 
 <details>
 <summary><strong>Lecture notes for Day 3</strong></summary>
@@ -121,10 +121,10 @@ Why FCs stay despite the hard first year:
 
 - [`00:00`](#t=0) The two mindsets
 - [`00:55`](#t=55) Add the word yet
-- [`01:43`](#t=103) Sales is a marathon
-- [`03:40`](#t=220) The obstacle is the way
-- [`05:41`](#t=341) Do what others won't
-- [`06:49`](#t=409) Step out of your comfort zone
+- [`01:45`](#t=105) Sales is a marathon
+- [`03:42`](#t=222) The obstacle is the way
+- [`05:45`](#t=345) Do what others won't
+- [`06:54`](#t=414) Step out of your comfort zone
 
 <details>
 <summary><strong>Lecture notes for Day 4</strong></summary>
@@ -145,10 +145,10 @@ The discomfort itself is the path, not a roadblock. Rejections, slow days, compl
 
 - [`00:00`](#t=0) Why this career matters
 - [`01:06`](#t=66) Come back to your why
-- [`02:24`](#t=144) Pre-frame with your why
-- [`02:59`](#t=179) The underdog advantage
-- [`04:36`](#t=276) Who your friends buy from
-- [`06:51`](#t=411) The moral compass
+- [`02:28`](#t=148) Pre-frame with your why
+- [`03:04`](#t=184) The underdog advantage
+- [`04:42`](#t=282) Who your friends buy from
+- [`07:00`](#t=420) The moral compass
 
 <details>
 <summary><strong>Lecture notes for Day 5</strong></summary>
@@ -165,11 +165,11 @@ The advisor stereotype - "the random caller from a roadshow" - exists because mo
 </video>
 
 - [`00:00`](#t=0) Why 1% a day beats heroics
-- [`00:50`](#t=50) Systems beat goals
-- [`01:16`](#t=76) The habit loop
-- [`02:31`](#t=151) Identity-based habits
-- [`03:46`](#t=226) Success habits: ASK
-- [`06:48`](#t=408) Week 1 wrap-up
+- [`00:53`](#t=53) Systems beat goals
+- [`01:19`](#t=79) The habit loop
+- [`02:36`](#t=156) Identity-based habits
+- [`03:53`](#t=233) Success habits: ASK
+- [`07:01`](#t=421) Week 1 wrap-up
 
 <details>
 <summary><strong>Lecture notes for Day 6</strong></summary>

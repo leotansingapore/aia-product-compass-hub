@@ -2,7 +2,7 @@
 week: 3
 recap: true
 title: "Week 3 Recap - Wealth Building Principles"
-duration_minutes: 56
+duration_minutes: 58
 tags: [first-60-days, week-3, recap]
 ---
 
@@ -17,9 +17,9 @@ tags: [first-60-days, week-3, recap]
 </video>
 
 - [`00:00`](#t=0) The story: Job A vs Job B
-- [`01:04`](#t=64) What you're really selling
-- [`02:15`](#t=135) But my company covers me
-- [`03:43`](#t=223) Job B, benefit by benefit
+- [`01:09`](#t=69) What you're really selling
+- [`02:21`](#t=141) But my company covers me
+- [`03:52`](#t=232) Job B, benefit by benefit
 
 <details>
 <summary><strong>Lecture notes for Day 13</strong></summary>
@@ -35,20 +35,20 @@ Two ways company cover fails the client. **(1)** Lose the job, lose the cover - 
 
 </details>
 
-## Day 14 . The total wealth concept (24 min)
+## Day 14 . The total wealth concept (25 min)
 
 <video src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w3-d14" poster="/first-60-days/recap/recap-w3-d14.jpg" controls playsinline preload="metadata" crossorigin="anonymous" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;">
   <track kind="subtitles" srclang="en" label="English" default src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w3-d14.vtt" />
 </video>
 
 - [`00:00`](#t=0) Your two capitals
-- [`03:26`](#t=206) The four quadrants
-- [`06:32`](#t=392) Hospital plan first
-- [`07:37`](#t=457) The accident plan
-- [`11:26`](#t=686) CI vs hospital plan
-- [`15:06`](#t=906) The wasting money objection
-- [`16:42`](#t=1002) TPD, dismemberment and DII
-- [`19:43`](#t=1183) Budget, anchoring, urgency
+- [`03:30`](#t=210) The four quadrants
+- [`06:40`](#t=400) Hospital plan first
+- [`07:46`](#t=466) The accident plan
+- [`11:37`](#t=697) CI vs hospital plan
+- [`15:21`](#t=921) The wasting money objection
+- [`16:57`](#t=1017) TPD, dismemberment and DII
+- [`20:03`](#t=1203) Budget, anchoring, urgency
 
 <details>
 <summary><strong>Lecture notes for Day 14</strong></summary>
@@ -99,8 +99,8 @@ Three moves stacked, in this order:
 </video>
 
 - [`00:00`](#t=0) Accumulate, then preserve
-- [`00:51`](#t=51) Why starting early matters
-- [`02:12`](#t=132) Their retirement number
+- [`00:52`](#t=52) Why starting early matters
+- [`02:14`](#t=134) Their retirement number
 
 <details>
 <summary><strong>Lecture notes for Day 15</strong></summary>
@@ -120,11 +120,11 @@ Live demo on the retirement-lifestyle calculator. Desired lifestyle income today
 </video>
 
 - [`00:00`](#t=0) One-off vs recurring
-- [`01:14`](#t=74) Your renewal income, the math
-- [`02:26`](#t=146) Survive the first two years
-- [`03:18`](#t=198) One client, a lifetime cash flow
-- [`05:35`](#t=335) Don't oversell, keep serving
-- [`06:12`](#t=372) Touch points through life
+- [`01:15`](#t=75) Your renewal income, the math
+- [`02:29`](#t=149) Survive the first two years
+- [`03:22`](#t=202) One client, a lifetime cash flow
+- [`05:42`](#t=342) Don't oversell, keep serving
+- [`06:20`](#t=380) Touch points through life
 
 <details>
 <summary><strong>Lecture notes for Day 16</strong></summary>
@@ -146,18 +146,18 @@ This is B2C, not B2B - sell-and-disappear quietly destroys the asset you just bu
 
 </details>
 
-## Day 17 . The wealth-builder's mindset (9 min)
+## Day 17 . The wealth-builder's mindset (10 min)
 
 <video src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w3-d17" poster="/first-60-days/recap/recap-w3-d17.jpg" controls playsinline preload="metadata" crossorigin="anonymous" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;">
   <track kind="subtitles" srclang="en" label="English" default src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=recap-w3-d17.vtt" />
 </video>
 
 - [`00:00`](#t=0) Where mindset comes from
-- [`01:37`](#t=97) From interest to obsession
-- [`04:19`](#t=259) Total accountability
-- [`05:04`](#t=304) Control what you can control
-- [`05:38`](#t=338) Choose discomfort
-- [`07:21`](#t=441) Peaks and valleys
+- [`01:44`](#t=104) From interest to obsession
+- [`04:38`](#t=278) Total accountability
+- [`05:24`](#t=324) Control what you can control
+- [`05:57`](#t=357) Choose discomfort
+- [`07:44`](#t=464) Peaks and valleys
 
 <details>
 <summary><strong>Lecture notes for Day 17</strong></summary>
@@ -181,9 +181,9 @@ Two failure modes that look opposite but produce the same cold pipeline. **Wins 
 
 - [`00:00`](#t=0) Put a zero on your goals
 - [`01:00`](#t=60) The 0.05-second difference
-- [`02:14`](#t=134) Lower your expectations
-- [`02:50`](#t=170) Expect failure, keep the target
-- [`03:34`](#t=214) Act first, track your inputs
+- [`02:20`](#t=140) Lower your expectations
+- [`02:56`](#t=176) Expect failure, keep the target
+- [`03:41`](#t=221) Act first, track your inputs
 
 <details>
 <summary><strong>Lecture notes for Day 18</strong></summary>
