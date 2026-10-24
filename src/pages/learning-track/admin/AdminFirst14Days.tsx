@@ -15,6 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { InfoTip } from "@/components/InfoTip";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { TOTAL_DAYS } from "@/features/first-14-days/summaries";
 
@@ -184,15 +185,6 @@ export default function AdminFirst14Days() {
 
   return (
     <div className="space-y-3" data-testid="admin-first-14-days-hub">
-      <Card>
-        <CardContent className="p-4 text-sm text-muted-foreground">
-          One row per prospect. <span className="font-medium text-foreground">Current day</span>{" "}
-          = next day they can unlock (highest day completed + 1).{" "}
-          <span className="font-medium text-foreground">Days done</span> counts days marked complete
-          across all {TOTAL_DAYS}.
-        </CardContent>
-      </Card>
-
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
         <Input
           placeholder="Filter by name or email…"
@@ -201,28 +193,31 @@ export default function AdminFirst14Days() {
           className="w-full sm:max-w-sm"
         />
         {isMobile && (
-          <Select
-            value={`${sortKey}:${sortDir}`}
-            onValueChange={(v) => {
-              const [k, d] = v.split(":") as [SortKey, "asc" | "desc"];
-              setSortKey(k);
-              setSortDir(d);
-            }}
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Sort" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="lastActive:desc">Last active (newest)</SelectItem>
-              <SelectItem value="lastActive:asc">Last active (oldest)</SelectItem>
-              <SelectItem value="currentDay:desc">Current day (highest)</SelectItem>
-              <SelectItem value="currentDay:asc">Current day (lowest)</SelectItem>
-              <SelectItem value="quizzesPassed:desc">Days done (most)</SelectItem>
-              <SelectItem value="quizzesPassed:asc">Days done (fewest)</SelectItem>
-              <SelectItem value="name:asc">Name (A–Z)</SelectItem>
-              <SelectItem value="name:desc">Name (Z–A)</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="flex items-center gap-1">
+            <Select
+              value={`${sortKey}:${sortDir}`}
+              onValueChange={(v) => {
+                const [k, d] = v.split(":") as [SortKey, "asc" | "desc"];
+                setSortKey(k);
+                setSortDir(d);
+              }}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Sort" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="lastActive:desc">Last active (newest)</SelectItem>
+                <SelectItem value="lastActive:asc">Last active (oldest)</SelectItem>
+                <SelectItem value="currentDay:desc">Current day (highest)</SelectItem>
+                <SelectItem value="currentDay:asc">Current day (lowest)</SelectItem>
+                <SelectItem value="quizzesPassed:desc">Days done (most)</SelectItem>
+                <SelectItem value="quizzesPassed:asc">Days done (fewest)</SelectItem>
+                <SelectItem value="name:asc">Name (A–Z)</SelectItem>
+                <SelectItem value="name:desc">Name (Z–A)</SelectItem>
+              </SelectContent>
+            </Select>
+            {currentDayTip}
+          </div>
         )}
       </div>
 
@@ -298,6 +293,7 @@ export default function AdminFirst14Days() {
                 >
                   Current day
                 </SortButton>
+                {currentDayTip}
               </th>
               <th className="px-3 py-2">
                 <SortButton
@@ -370,6 +366,10 @@ export default function AdminFirst14Days() {
     </div>
   );
 }
+
+const currentDayTip = (
+  <InfoTip label="About Current day">Current day: the next day they can unlock, highest completed plus one.</InfoTip>
+);
 
 function SortButton({
   active,
