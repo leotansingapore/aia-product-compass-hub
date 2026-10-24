@@ -147,12 +147,9 @@ function CareerLine({ dir, onOpenSection }: { dir: Directory; onOpenSection: (id
 
   return (
     <section className="space-y-5 rounded-2xl border bg-card p-5 sm:p-6" aria-labelledby="aia-career-line">
-      <div className="space-y-1">
-        <h3 id="aia-career-line" className="font-serif text-lg font-bold">
-          Your career line
-        </h3>
-        <p className="text-sm text-muted-foreground">Everyone starts on Foundation. From month 13, pick the paths that suit you.</p>
-      </div>
+      <h3 id="aia-career-line" className="font-serif text-lg font-bold">
+        Your career line
+      </h3>
 
       <div className="space-y-2.5">
         <div
@@ -463,7 +460,7 @@ export default function AiaTrainingOverview({
       <section aria-label="At a glance" className="rounded-2xl border bg-card p-4 sm:p-5">
         <div className="flex items-end gap-3">
           <p className="shrink-0 text-5xl font-semibold leading-none tracking-tight">{dir.courses.length}</p>
-          <p className="pb-1 text-sm leading-snug text-muted-foreground">courses, from getting licensed to leading an agency</p>
+          <p className="pb-1 text-sm leading-snug text-muted-foreground">courses</p>
         </div>
         <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 border-t pt-4 sm:grid-cols-4">
           {stats.map((s) => (
