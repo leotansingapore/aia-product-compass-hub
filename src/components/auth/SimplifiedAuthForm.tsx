@@ -88,10 +88,7 @@ export function SimplifiedAuthForm({ hideTitle = false }: SimplifiedAuthFormProp
   if (activeTab === 'link') {
     return (
       <div className="space-y-6">
-        <div>
-          <h2 className="text-2xl font-bold text-foreground font-sans">Sign in with a link</h2>
-          <p className="text-sm text-muted-foreground mt-1">No password needed.</p>
-        </div>
+        <h2 className="text-2xl font-bold text-foreground font-sans">Sign in with a link</h2>
 
         {linkSentTo ? (
           <div role="status" className="rounded-lg border bg-muted/40 p-4 text-sm text-foreground" data-testid="link-sent">
@@ -137,12 +134,7 @@ export function SimplifiedAuthForm({ hideTitle = false }: SimplifiedAuthFormProp
   if (activeTab === 'reset') {
     return (
       <div className="space-y-6">
-        <div>
-          <h2 className="text-2xl font-bold text-foreground font-sans">Reset password</h2>
-          <p className="text-sm text-muted-foreground mt-1">
-            Enter your email and we'll send you a link to reset your password.
-          </p>
-        </div>
+        <h2 className="text-2xl font-bold text-foreground font-sans">Reset password</h2>
 
         <form onSubmit={handleResetPassword} className="space-y-4">
           <div className="space-y-1.5">
