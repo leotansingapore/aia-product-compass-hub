@@ -345,7 +345,7 @@ export default function StudentProgressChecklist() {
       <Section
         icon={CalendarDays}
         title="First 60 Days + quizzes"
-        subtitle="Day-by-day curriculum. Each day unlocks after its quiz passes."
+        subtitle="Each day unlocks after its quiz passes."
         done={f60.done}
         total={f60.total}
         rows={f60.rows}
@@ -374,7 +374,7 @@ export default function StudentProgressChecklist() {
       <Section
         icon={GraduationCap}
         title="CMFAS Exams"
-        subtitle="M9, M9A, RES5, HI — clear all four papers to get licensed."
+        subtitle="Clear all four papers to get licensed."
         done={cmfas.done}
         total={cmfas.total}
         rows={cmfas.rows}
