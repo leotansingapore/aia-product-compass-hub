@@ -16,6 +16,10 @@ import { toast } from "sonner";
 // api_keys table live). Hardcoded because the client reads no VITE_SUPABASE_URL.
 const FUNCTIONS_BASE = "https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1";
 
+// api_keys, oauth_tokens and their RPCs are not in the generated types yet.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const db = supabase as any;
+
 type ApiKeyRow = {
   id: string;
   name: string;
@@ -66,14 +70,14 @@ export function AgentAccessCard() {
 
   async function load() {
     setLoading(true);
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from("api_keys")
       .select("id, name, prefix, scopes, last_used_at, created_at, expires_at")
       .is("revoked_at", null)
       .order("created_at", { ascending: false });
     if (error) toast.error("Could not load API keys");
     setKeys((data as ApiKeyRow[]) ?? []);
-    const { data: appData } = await supabase
+    const { data: appData } = await db
       .from("oauth_tokens")
       .select("id, client_name, scope, created_at, last_used_at")
       .is("revoked_at", null)
@@ -83,7 +87,7 @@ export function AgentAccessCard() {
   }
 
   async function revokeApp(id: string, name: string) {
-    const { error } = await supabase.rpc("oauth_revoke_token", { p_id: id });
+    const { error } = await db.rpc("oauth_revoke_token", { p_id: id });
     if (error) { toast.error(error.message); return; }
     toast.success(`Disconnected "${name}"`);
     load();
@@ -95,7 +99,7 @@ export function AgentAccessCard() {
     if (!newName.trim()) { toast.error("Give the key a name"); return; }
     setCreating(true);
     const scopes = allowWrite ? ["read", "write"] : ["read"];
-    const { data, error } = await supabase.rpc("api_create_key", {
+    const { data, error } = await db.rpc("api_create_key", {
       p_name: newName.trim(),
       p_scopes: scopes,
       p_expires_in_days: expiryDays === "never" ? null : Number(expiryDays),
@@ -112,7 +116,7 @@ export function AgentAccessCard() {
   }
 
   async function revokeKey(id: string, name: string) {
-    const { error } = await supabase.rpc("api_revoke_key", { p_id: id });
+    const { error } = await db.rpc("api_revoke_key", { p_id: id });
     if (error) { toast.error(error.message); return; }
     toast.success(`Revoked "${name}"`);
     load();
