@@ -160,9 +160,7 @@ export function AgentAccessCard() {
           {loading ? (
             <p className="text-sm text-muted-foreground">Loading…</p>
           ) : keys.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
-              No keys yet. Create one to connect an agent.
-            </p>
+            <p className="text-sm text-muted-foreground">No keys yet.</p>
           ) : (
             <div className="space-y-2">
               {keys.map((k) => (
@@ -229,7 +227,6 @@ export function AgentAccessCard() {
               <Badge className="text-xs">Easiest</Badge>
               <p className="font-medium">Connect Claude in one click</p>
             </div>
-            <p className="text-muted-foreground text-xs">No key to copy — you approve it in your browser.</p>
             <ol className="list-decimal pl-5 space-y-2.5 text-muted-foreground marker:text-foreground/40">
               <li>In Claude (claude.ai or the desktop app), open <span className="text-foreground">Settings → Connectors → Add custom connector</span>.</li>
               <li>
@@ -273,7 +270,6 @@ export function AgentAccessCard() {
                 </div>
               </li>
             </ol>
-            <p className="text-muted-foreground text-xs">Prefer the one-click option above unless you need a key for a script or a non-Claude client.</p>
           </div>
 
           {/* What you can ask it */}
@@ -295,7 +291,7 @@ export function AgentAccessCard() {
                 </li>
               ))}
             </ul>
-            <p className="text-muted-foreground text-xs">Read-only keys can do everything except save notes — great if you just want insights.</p>
+            <p className="text-muted-foreground text-xs">Read-only keys can do everything except save notes.</p>
           </div>
         </div>
       </CardContent>
