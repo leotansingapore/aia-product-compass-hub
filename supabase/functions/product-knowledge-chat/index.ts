@@ -2,6 +2,7 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { FEEDBACK_DOORS_PROMPT } from "../_shared/feedback-doors.ts";
 import { openaiFetch } from "../_shared/openaiChat.ts";
+import { aliasFilter, retrieveChunks, termFilter, type ChunkStore } from "./retrieval.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -10,31 +11,6 @@ const corsHeaders = {
 };
 
 const MAX_HISTORY_MESSAGES = 10;
-
-async function embedQuery(text: string, supabaseUrl: string): Promise<number[] | null> {
-  try {
-    const response = await fetch(
-      `${supabaseUrl}/functions/v1/generate-embeddings`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")}`,
-        },
-        body: JSON.stringify({ texts: [text] }),
-      }
-    );
-
-    if (!response.ok) return null;
-    const data = await response.json();
-    const emb = data.embeddings?.[0];
-    // Validate: not all zeros
-    if (emb && emb.length === 768 && emb.some((v: number) => v !== 0)) return emb;
-    return null;
-  } catch {
-    return null;
-  }
-}
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -74,78 +50,24 @@ serve(async (req) => {
         ? latestUserMessage.content.find((c: any) => c.type === "text")?.text || ""
         : "";
 
-    // Hybrid search: combines vector similarity with keyword matching
-    let relevantChunks: { content: string; source_type: string; similarity: number; keyword_rank?: number; combined_score?: number; metadata: any }[] = [];
-    
-    const queryEmbedding = await embedQuery(queryText, supabaseUrl);
-    
-    if (queryEmbedding) {
-      const embeddingStr = `[${queryEmbedding.join(",")}]`;
-      const { data: matches, error: matchError } = await supabase.rpc(
-        "hybrid_search_knowledge_chunks",
-        {
-          query_embedding: embeddingStr,
-          query_text: queryText,
-          match_count: 10,
-          filter_product_id: productId,
-          // The stored "embeddings" are NOT semantic embeddings: keywordToVector
-          // in generate-embeddings seeds a PRNG from a string hash, so two
-          // synonyms produce statistically orthogonal vectors. Weighting that
-          // signal at 0.6 was actively displacing the keyword ranking that does
-          // work — a query about "stops paying" would miss the premium-holiday
-          // chunk because no surface word matched AND the vector score was
-          // noise. Keyword-only until a real embedding model is wired up.
-          vector_weight: 0,
-          keyword_weight: 1,
-        }
-      );
-
-      if (!matchError && matches && matches.length > 0) {
-        relevantChunks = matches;
-        console.log(`Hybrid search returned ${matches.length} results (top combined_score: ${matches[0]?.combined_score?.toFixed(4)})`);
-      } else if (matchError) {
-        console.error("Hybrid search error, falling back to vector-only:", matchError.message);
-        // Fallback to original vector-only search
-        const { data: vecMatches } = await supabase.rpc("match_knowledge_chunks", {
-          query_embedding: embeddingStr,
-          match_count: 10,
-          filter_product_id: productId,
-        });
-        if (vecMatches) relevantChunks = vecMatches;
-      }
-    }
-
-    // If no vector results (embedding failed), try keyword-only search
-    if (relevantChunks.length === 0 && queryText.trim()) {
-      const words = queryText.toLowerCase().split(/\s+/).filter((w: string) => w.length > 2);
-      if (words.length > 0) {
-        const ilikeFilters = words.map((w: string) => `content.ilike.%${w}%`).join(",");
-        const { data: keywordChunks } = await supabase
-          .from("knowledge_chunks")
-          .select("content, source_type, source_id, metadata")
-          .or(`source_id.eq.${productId},product_id.eq.${productId}`)
-          .or(ilikeFilters)
-          .limit(10);
-
-        if (keywordChunks && keywordChunks.length > 0) {
-          relevantChunks = keywordChunks.map(c => ({ ...c, similarity: 0 }));
-          console.log(`Keyword-only fallback returned ${keywordChunks.length} results`);
-        }
-      }
-    }
-
-    // Final fallback: fetch recent chunks by product_id
-    if (relevantChunks.length === 0) {
-      const { data: fallbackChunks } = await supabase
-        .from("knowledge_chunks")
-        .select("content, source_type, metadata")
-        .or(`source_id.eq.${productId},product_id.eq.${productId}`)
-        .limit(15);
-
-      if (fallbackChunks) {
-        relevantChunks = fallbackChunks.map(c => ({ ...c, similarity: 0 }));
-      }
-    }
+    // No generate-embeddings call: its vectors are hashed keywords, not meaning,
+    // and the search weighted them 0, so each turn paid an LLM call for nothing.
+    const cols = "content, source_type, source_id, metadata";
+    const store: ChunkStore = {
+      productChunks: async (id, terms, cap) => {
+        let q = supabase.from("knowledge_chunks").select(cols).or(`source_id.eq.${id},product_id.eq.${id}`);
+        if (terms.length) q = q.or(termFilter(terms));
+        const { data, error } = await q.order("created_at", { ascending: true }).limit(cap);
+        return { rows: data ?? [], error: error?.message ?? null };
+      },
+      curriculumChunks: async (aliases, terms, cap) => {
+        let q = supabase.from("knowledge_chunks").select(cols).eq("source_type", "curriculum").or(aliasFilter(aliases));
+        if (terms.length) q = q.or(termFilter(terms));
+        const { data, error } = await q.order("source_id", { ascending: true }).limit(cap);
+        return { rows: data ?? [], error: error?.message ?? null };
+      },
+    };
+    const relevantChunks = await retrieveChunks(store, product, queryText);
 
     // Build context from relevant chunks
     const chunkContext = relevantChunks
@@ -154,9 +76,10 @@ serve(async (req) => {
           ? `Lecture: ${c.metadata?.video_title || "Unknown"}`
           : c.source_type === "document"
             ? `Document: ${c.metadata?.title || "Unknown"}`
-            : `Source: ${c.source_type}`;
-        const sim = c.similarity > 0 ? ` (relevance: ${(c.similarity * 100).toFixed(0)}%)` : "";
-        return `--- ${source}${sim} ---\n${c.content}`;
+            : c.source_type === "curriculum"
+              ? "Curriculum (track, day and Link are in the first lines)"
+              : `Source: ${c.source_type}`;
+        return `--- ${source} ---\n${c.content}`;
       })
       .join("\n\n");
 
@@ -243,8 +166,8 @@ You help financial advisors and sales consultants:
 - **Description:** ${product.description || "N/A"}
 - **Key Highlights:** ${product.highlights?.join(", ") || "N/A"}
 
-## RELEVANT KNOWLEDGE (Hybrid Search: Vector Similarity + Keyword Matching)
-The following are the most relevant sections from training materials, transcripts, and documents based on the user's question. Use these as your primary source of truth.
+## RELEVANT KNOWLEDGE
+The following are the most relevant sections from the curriculum, lecture transcripts and documents based on the user's question. Use these as your primary source of truth.
 
 ${chunkContext || "No specific knowledge chunks found for this query. Use the product overview to answer."}
 
