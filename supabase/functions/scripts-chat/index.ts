@@ -2,6 +2,8 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { FEEDBACK_DOORS_PROMPT } from "../_shared/feedback-doors.ts";
 import { openaiFetch } from "../_shared/openaiChat.ts";
+import { termFilter } from "../_shared/rank-chunks.ts";
+import { type KnowledgeStore, rankedSearch, retrieveLessons } from "./retrieval.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -75,49 +77,60 @@ Where to read this: [Day 19 — Project 1000](/learning-track/first-60-days/day/
 
 Take the day number, title and path verbatim from the chunk's header and Link line. Never invent a day number or a URL — if a chunk has no Link, leave it out of the list.`;
 
+/** knowledge_chunks reads for retrieval.ts, which ranks every candidate before the cut. */
+function knowledgeStore(supabase: any): KnowledgeStore {
+  const cols = "content, source_type, source_id, metadata";
+  return {
+    search: async (types, terms, cap) => {
+      const { data, error } = await supabase
+        .from("knowledge_chunks")
+        .select(cols)
+        .in("source_type", types)
+        .or(termFilter(terms))
+        .order("source_id", { ascending: true })
+        .limit(cap);
+      return { rows: data ?? [], error: error?.message ?? null };
+    },
+    count: async (types, term) => {
+      const { count, error } = await supabase
+        .from("knowledge_chunks")
+        .select("id", { count: "exact", head: true })
+        .in("source_type", types)
+        .ilike("content", `%${term}%`);
+      if (error) console.error("scripts-chat count error:", error.message);
+      return error ? null : count ?? 0;
+    },
+    lessonsAt: async (hrefs, cap) => {
+      const { data, error } = await supabase
+        .from("knowledge_chunks")
+        .select(cols)
+        .eq("source_type", "curriculum")
+        .in("metadata->>href", hrefs)
+        .order("source_id", { ascending: true })
+        .limit(cap);
+      return { rows: data ?? [], error: error?.message ?? null };
+    },
+  };
+}
+
 async function getRAGContext(supabase: any, userQuery: string): Promise<string> {
   try {
-    const searchTerms = userQuery
-      .toLowerCase()
-      .replace(/[^\w\s]/g, "")
-      .split(/\s+/)
-      .filter(w => w.length > 2)
-      .slice(0, 8);
-
-    if (searchTerms.length === 0) {
-      return await getAllScriptsContext(supabase);
-    }
-
-    const tsQuery = searchTerms.join(" | ");
-    
-    const { data: chunks, error } = await supabase
-      .from("knowledge_chunks")
-      .select("content, source_type, metadata")
-      .textSearch("content", tsQuery, { type: "plain" })
-      .limit(15);
-
-    if (error || !chunks || chunks.length === 0) {
+    // Scripts and uploaded documents only. Every mode reads the curriculum on its
+    // own (getCurriculumContext), so lessons here were duplicates, and transcripts
+    // were fetched only to be dropped.
+    const chunks = await rankedSearch(knowledgeStore(supabase), ["script", "document"], userQuery, 15);
+    if (chunks.length === 0) {
       return await getAllScriptsContext(supabase);
     }
 
     let context = "\n--- RELEVANT KNOWLEDGE ---\n\n";
 
-    const scriptChunks = chunks.filter((c: any) => c.source_type === "script");
-    const docChunks = chunks.filter((c: any) => c.source_type === "document");
-    // Curriculum chunks used to be fetched by the search above and then thrown
-    // away by this filter, so the assistant could never answer from a lesson.
-    const lessonChunks = chunks.filter((c: any) => c.source_type === "curriculum");
+    const scriptChunks = chunks.filter((c) => c.source_type === "script");
+    const docChunks = chunks.filter((c) => c.source_type === "document");
 
     if (scriptChunks.length > 0) {
       context += "## From Scripts:\n\n";
       for (const chunk of scriptChunks) {
-        context += chunk.content + "\n\n";
-      }
-    }
-
-    if (lessonChunks.length > 0) {
-      context += "## From the Curriculum (cite the day and its Link when you use these):\n\n";
-      for (const chunk of lessonChunks) {
         context += chunk.content + "\n\n";
       }
     }
@@ -139,32 +152,20 @@ async function getRAGContext(supabase: any, userQuery: string): Promise<string> 
 }
 
 /**
- * Curriculum-only retrieval. The shared search above competes across ~6,700
- * chunks, most of them video transcripts, so a lesson question could come back
- * with no lesson in it at all. Lessons mode searches the curriculum directly.
+ * Curriculum-only retrieval. The shared search competes across ~6,700 chunks,
+ * most of them video transcripts, so a lesson question could come back with no
+ * lesson in it at all. Lessons mode (byLink) also reads a day or week the
+ * question names ("week 1 of the Product Mastery track") by its Link.
  */
 async function getCurriculumContext(
   supabase: any,
   userQuery: string,
   limit = 12,
+  byLink = false,
 ): Promise<string> {
-  const searchTerms = userQuery
-    .toLowerCase()
-    .replace(/[^\w\s]/g, " ")
-    .split(/\s+/)
-    .filter((w) => w.length > 2)
-    .slice(0, 8);
-  if (searchTerms.length === 0) return "";
-
   try {
-    const { data: chunks, error } = await supabase
-      .from("knowledge_chunks")
-      .select("content, metadata")
-      .eq("source_type", "curriculum")
-      .textSearch("content", searchTerms.join(" | "), { type: "plain" })
-      .limit(limit);
-
-    if (error || !chunks || chunks.length === 0) return "";
+    const chunks = await retrieveLessons(knowledgeStore(supabase), userQuery, limit, { byLink });
+    if (chunks.length === 0) return "";
 
     let out = "\n--- FROM THE CURRICULUM ---\n\n";
     for (const c of chunks) out += c.content + "\n\n";
@@ -315,7 +316,7 @@ serve(async (req) => {
       // Lessons answers come from the curriculum, with a few script chunks
       // behind them for "what do I actually say" follow-ups.
       const [lessons, scripts] = await Promise.all([
-        getCurriculumContext(supabase, userQuery, 12),
+        getCurriculumContext(supabase, userQuery, 12, true),
         getRAGContext(supabase, userQuery),
       ]);
       systemPrompt = basePrompt + lessons + scripts + FEEDBACK_DOORS_PROMPT;
