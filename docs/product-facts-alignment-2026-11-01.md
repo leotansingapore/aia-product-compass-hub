@@ -2,7 +2,9 @@
 
 Leo chose the Financial Presenter's product data (repo growing-age-calculator) as the single source of truth for product facts. This report lists every hub change made to match it, the figures replaced with "check the current AIA product summary" because the Presenter disagrees with itself, proposed SQL for stale `products` rows (not applied), and what `scripts/sync-curriculum-knowledge.mjs` does when run.
 
-Seven local commits made the changes, one per product (AIA Wealth Venture needed none): 404bf5be (Platinum Wealth Venture), 61939524 (HealthShield Gold Max), 74033cc9 (Pro Achiever), 6815edb1 (Solitaire PA), c0d30a3e (Ultimate Critical Cover), f952cf2d (Guaranteed Protect Plus), 57f64bdc (Pro Lifetime Protector). `npm run build` and `npx vitest run` (1477 tests) pass.
+Seven local commits made the changes, one per product (AIA Wealth Venture needed none): 404bf5be (Platinum Wealth Venture), 61939524 (HealthShield Gold Max), 74033cc9 (Pro Achiever), 6815edb1 (Solitaire PA), c0d30a3e (Ultimate Critical Cover), f952cf2d (Guaranteed Protect Plus), 57f64bdc (Pro Lifetime Protector). After Leo's rulings, cd5c5331 (Pro Achiever special bonus) and f8a90153 (HSG Max A limit, MediShield Life pro-ration) put three groups of figures back; section 2 has the details. `npm run build` and `npx vitest run` (1477 tests) pass.
+
+The live database changes Leo approved are prepared, not run. They run after the knowledge re-sync; section 5 has the order.
 
 How to read the paths:
 - Hub paths are relative to this repo. Line numbers are as of each product's commit; in files several products touched they may be off by a few lines.
@@ -10,7 +12,7 @@ How to read the paths:
 
 ## The in-app quizzes read the database, not the bank files
 
-The study page loads its questions from the live table `question_bank_questions` (`src/hooks/useQuestionBank.tsx:36`), not from the `src/data/*StudyBank.ts` and `src/data/*ExamQuestions.ts` files changed here. Those rows were seeded once from these files by `scripts/seed-question-bank.ts`. Learners keep seeing the old questions and answers until the rows are updated with the service role, the way `scripts/update-cross-product-audit-fixes.ts` updates rows. That script was not run. Many questions were reworded, so matching rows by question text will miss some; whether `sort_order` equals the array index was not checked.
+The study page loads its questions from the live table `question_bank_questions` (`src/hooks/useQuestionBank.tsx:36`), not from the `src/data/*StudyBank.ts` and `src/data/*ExamQuestions.ts` files changed here. Those rows were seeded once from these files by `scripts/seed-question-bank.ts`. Learners keep seeing the old questions and answers until the rows are updated. `scripts/update-question-bank-product-facts.mjs` does that (section 5); it has not been run.
 
 ## 1. Change list
 
@@ -293,30 +295,37 @@ Study bank: `src/data/proLifetimeProtectorStudyBank.ts`. Exam questions: `src/da
 
 ## 2. Figures replaced with "check the current AIA product summary"
 
-These are places where the Presenter disagrees with itself, so the hub now tells the adviser to check the current AIA product summary instead of giving a figure.
+These are places where the Presenter disagrees with itself. The first commits replaced each figure with a line telling the adviser to check the current AIA product summary. Leo then ruled on three of the six groups, and those figures are back in the hub; the other three still carry the check line.
 
-- **Pro Achiever special bonus start year (about 70 places).** The comparison says the 10th premium (`src/data/proAchieverFeatureComparison.ts`:128, `src/lib/translations/tenYearOtherDetailsTab.ts`:86,95). The calculator pays from year 11 (`src/hooks/useTenYearPlanCalculation.ts`:564-566).
-  - Replaced across `docs/product-mastery-track/week-1/day-01.md` to `day-05.md`, `docs/cheat-sheets/product-mastery/week-01.md`, `docs/cheat-sheets/core-training/concept-drawings.md`, `docs/cheat-sheets/core-training/financial-presenter-walkthrough.md`, `docs/first-60-days/week-10/day-57.md`, `docs/product-mastery-track/_drawings-playbook.md`, `src/data/caseNarratives.ts`, `src/data/proAchieverStudyBank.ts` and `src/data/proAchieverExamQuestions.ts`.
-  - Quizzes now test only the rates both agree on (5%, then 8% from the 21st): `src/data/proAchieverStudyBank.ts`:86, `src/data/proAchieverExamQuestions.ts`:53.
-  - Fixing the Presenter's calculator or its comparison would let these be put back as a figure.
+### Ruled by Leo and restored
+
+- **Pro Achiever special bonus: 5% from policy year 11 to 20, 8% from year 21.** The Presenter's calculator (`src/hooks/useTenYearPlanCalculation.ts`:564-566) is right; its comparison data (`src/data/proAchieverFeatureComparison.ts`:128, "10th premium") is being fixed. Commit cd5c5331.
+  - Restored in about 60 places: `docs/product-mastery-track/week-1/day-01.md` to `day-05.md`, `docs/cheat-sheets/product-mastery/week-01.md`, `docs/cheat-sheets/core-training/concept-drawings.md`, `docs/cheat-sheets/core-training/financial-presenter-walkthrough.md`, `docs/first-60-days/week-10/day-57.md`, `docs/product-mastery-track/_drawings-playbook.md`, `src/data/caseNarratives.ts`, `src/data/proAchieverStudyBank.ts` and `src/data/proAchieverExamQuestions.ts`.
+  - Quizzes test the start year again: `src/data/proAchieverStudyBank.ts`:86 ("from year 11 onwards"), `src/data/proAchieverExamQuestions.ts`:53 ("When does the 5% special bonus kick in", correct option "from receipt of the 11th annual premium").
+  - The day-03 heading is "Q3: How does the Special Bonus pay out from Year 11 onwards?"; `src/features/global-search/headingIndex.ts` was regenerated.
+  - Not changed: the verbatim quote at `docs/product-mastery-track/week-1/day-01.md`:239 ("5% special bonus from year 10") and the image alt text at `docs/product-mastery-track/week-1/day-02.md`:60,670 ("5% Y10-20"), which describes a hand-drawn picture.
+- **HSG Max A annual limit is tiered: S$1,000,000 a policy year, up to S$1,350,000 at an Extended Partner Facility, up to S$2,000,000 at an AIA Partner Facility.** Commit f8a90153.
+  - Restored at:
+    - `docs/product-mastery-track/week-5/day-21.md`:81,102,154,164,241,269
+    - `docs/product-mastery-track/week-5/day-22.md`:127,142
+    - `docs/product-mastery-track/week-5/day-23.md`:146-147,162
+    - `docs/product-mastery-track/week-5/day-25.md`:135,305,313
+    - `docs/cheat-sheets/product-mastery/week-05.md`:33,61,93
+    - `docs/cheat-sheets/index.md`:71
+    - `docs/competitor-products-singapore.md`:74
+    - `src/data/caseNarratives.ts`:1606,1628
+    - `src/data/healthshieldGoldMaxStudyBank.ts`:24,784,826,896,952,1036,1232,1236
+    - `src/data/healthshieldGoldMaxExamQuestions.ts`:18,204,282
+  - Quizzes test the tiers: the "highest limit" items (`docs/product-mastery-track/week-5/day-21.md`:235-241, `src/data/healthshieldGoldMaxStudyBank.ts`:16-24, `src/data/healthshieldGoldMaxExamQuestions.ts`:10-18) keep S$2M as the answer and now explain the S$1M / S$1.35M / S$2M tiers.
+  - Also qualified where a flat "$2M/year" stood for Max A: `docs/first-60-days/week-2/recap.md`:47, `docs/first-60-days/week-3/recap.md`:70, `docs/first-60-days/week-3/day-14.md`:89.
+- **MediShield Life pro-ration at a private hospital, Singapore Citizens: 16% of ward charges, 10% of surgical charges.** Commit f8a90153.
+  - Restored at `docs/product-mastery-track/week-5/day-23.md`:119 and `docs/product-mastery-track/week-5/day-24.md`:244. No other hub file states this figure.
+
+### Still "check the current AIA product summary" (not ruled)
+
 - **Pro Achiever surrender charge rates.** `src/data/proAchieverFeatureComparison.ts`:187 vs `src/components/TenYearPlan/OtherDetailsTab.tsx`:3193-3202.
   - Replaced at `docs/product-mastery-track/week-1/day-01.md`:334, `docs/product-mastery-track/week-1/day-03.md`:168, `docs/cheat-sheets/product-mastery/week-01.md`:39, `docs/product-mastery-track/week-1/day-04.md`:203 and `docs/_competitor-pricing-reference.md`:78.
   - The day-03 quiz (:451-457) now tests "0% from year 11", which both agree on.
-- **HSG Max A annual limit.** $2M (`src/lib/hsgClaims.ts`:26, `src/components/twfps/hospitalPlanPresets.ts`:75, `src/components/twfps/planKnowledge.data.ts`:54) vs $1M base, $1.35M at an Extended Partner Facility and $2M at an AIA Partner Facility (`src/data/ipFeatureComparison.ts`:173, `src/components/HealthshieldGoldMax/MedicalPlanComparisonContent.tsx`:684).
-  - Replaced at:
-    - `docs/product-mastery-track/week-5/day-21.md`:81,102,154,164,269
-    - `docs/product-mastery-track/week-5/day-22.md`:127,142
-    - `docs/product-mastery-track/week-5/day-23.md`:146-147,162
-    - `docs/product-mastery-track/week-5/day-25.md`:135,304,313
-    - `docs/cheat-sheets/product-mastery/week-05.md`:33,61,93
-    - `docs/cheat-sheets/product-mastery/index.md`:71
-    - `docs/competitor-products-singapore.md`:74
-    - `src/data/caseNarratives.ts`:1605,1628
-    - `src/data/healthshieldGoldMaxStudyBank.ts`:826,896,1036,1232,1236
-    - `src/data/healthshieldGoldMaxExamQuestions.ts`:204
-  - Quizzes now test "the highest limit is S$2M", which both sides support: `docs/product-mastery-track/week-5/day-21.md`:235-241, `src/data/healthshieldGoldMaxStudyBank.ts`:16-24, `src/data/healthshieldGoldMaxExamQuestions.ts`:10-18.
-- **MediShield Life pro-ration at a private hospital.** 16% / 10% (`src/components/HealthshieldGoldMax/MedicalPlanComparisonContent.tsx`:740) vs 25% (`src/lib/translations/hsgMaxTranslations.ts`:123,243). The hub said 35%.
-  - Replaced at `docs/product-mastery-track/week-5/day-23.md`:119 and `docs/product-mastery-track/week-5/day-24.md`:244.
 - **Max B Lite pro-ration at a private hospital.** 50% (`src/components/HealthshieldGoldMax/MedicalPlanComparisonContent.tsx`:744) vs "HSG B plans 70%" (`src/lib/translations/hsgMaxTranslations.ts`:123,244).
   - Replaced at `docs/product-mastery-track/week-5/day-23.md`:125.
   - `src/data/healthshieldGoldMaxStudyBank.ts`:198-206 now asks about Plan B, where both say 70%.
@@ -360,6 +369,8 @@ The HSG cancer totals of 21x and 15x match the Presenter. Only the rider names a
 - **Duplicate quiz option:** `src/data/platinumWealthVentureStudyBank.ts` Q17 (:240-246) has two identical options, a defect that predates this work.
 
 ## 3. Proposed SQL for products rows (not applied)
+
+The same SQL is in `scripts/product-facts-2026-11-01-products.sql`. Leo's rulings change none of it.
 
 Migration `20260412070148` copied these products into `core-*` rows, and `20260423154824` then unpublished the originals, so each update covers both ids. Each update only fires while the old text is still there, because the live rows may have been edited since the 2025 seed (`supabase/migrations/20250708030731-aa6b093c-2012-4c6a-8018-513e00aee64e.sql`:55-93). Run the select first.
 
@@ -435,3 +446,25 @@ Seed claims the Presenter says nothing about, so there is no SQL for them; they 
 - **Safe order:** run with `--dry-run`, then for real, then compare the per-source counts it prints at the end.
 
 Also stale outside the sync: `tools/seed-concept-cards.ts` skips cards that already exist, so the live "GPP vs UCC comparison" concept card keeps its old text.
+
+## 5. Live database updates Leo approved (prepared, not run)
+
+Run these after the knowledge re-sync, in this order. Nothing here has been run, including the dry run.
+
+1. **Quiz rows, `scripts/update-question-bank-product-facts.mjs`.**
+   - It changes the 188 questions listed in `scripts/question-bank-product-facts-2026-11-01.json`: every study-bank and exam question that differs between d2b8ec41 (before these commits) and f8a90153.
+   - By bank, the counts are: Platinum Wealth Venture 39 study / 14 exam, HealthShield Gold Max 23 / 7, Ultimate Critical Cover 30 / 10, Pro Achiever 13 / 5, Guaranteed Protect Plus 13 / 8, Pro Lifetime Protector 10 / 2, Solitaire PA 8 / 6.
+   - Changed fields: explanation 159, options 124, question 68, answer key 4.
+   - **Matching:** a live row is updated only if it has the same `product_slug` and `bank_type` and still holds the old question, options, `correct_answer` and explanation exactly. The UPDATE repeats that guard.
+     - Rows already holding the new text are skipped.
+     - Anything else is printed as UNMATCHED, with the nearest row and the fields that differ.
+     - Identical duplicate rows are all updated.
+     - Ids are kept, so learner progress still points at its questions.
+   - **How it connects:** through the Supabase Management API SQL endpoint, with the token at `~/.local/state/va-watchdog/token` and a browser User-Agent. It never uses the service-role key.
+   - **Run:**
+     - `node scripts/update-question-bank-product-facts.mjs --self-test` checks the matcher offline.
+     - `node scripts/update-question-bank-product-facts.mjs --dry-run > /tmp/qb-dry-run.txt` only selects and prints old vs new for every change.
+     - Read the UNMATCHED lines, then run `node scripts/update-question-bank-product-facts.mjs --apply`.
+   - **Expected:** 188 questions update if the live rows still match the bank files at d2b8ec41. Rows edited in the admin since then, or seeded from an older version of the files, show as UNMATCHED. Which ones they are is only known after the dry run.
+   - **Progress note:** for the 4 questions whose answer key changed, a learner's earlier answer keeps its old right or wrong mark.
+2. **Products and objection rows, `scripts/product-facts-2026-11-01-products.sql`.** This is the section 3 SQL. Run the select first.
