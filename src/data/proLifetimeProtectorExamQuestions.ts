@@ -19,7 +19,7 @@ export const proLifetimeProtectorExamQuestions: ExamQuestion[] = [
     category: 'product-facts'
   },
   {
-    question: "What is the premium allocation rate progression for PLP from Year 1 to Year 5?",
+    question: "What is the premium charge progression for PLP from Year 1 to Year 5?",
     options: [
       "100%, 95%, 90%, 85%, 80%",
       "80%, 55%, 50%, 8%, 0%",
@@ -27,7 +27,7 @@ export const proLifetimeProtectorExamQuestions: ExamQuestion[] = [
       "75%, 60%, 45%, 30%, 15%"
     ],
     correct: 1,
-    explanation: "PLP's premium allocation decreases from Year 1 (80%) through Year 4 (8%) to Year 5 (0%). After Year 6, the allocation jumps to 100%, rewarding long-term policyholders.",
+    explanation: "PLP's premium charge decreases from Year 1 (80%) through Year 4 (8%) to Year 5 (0%). From Year 5, 100% of premiums are allocated, rising to 102% from Year 10, rewarding long-term policyholders.",
     category: 'product-facts'
   },
   {
@@ -46,12 +46,12 @@ export const proLifetimeProtectorExamQuestions: ExamQuestion[] = [
     question: "What are the key parameters of the LCC (Lifetime Critical Cover) Rider?",
     options: [
       "100 conditions, 200% IA cap, 2 claims, 10 special conditions",
-      "150 conditions, 300% of Insured Amount lifetime cap on Medical Condition Benefits, up to 3 claims, plus 15 special conditions at 20% payout each (max S$25,000 per special claim, up to 10 special claims)",
+      "150 conditions, 300% of Insured Amount lifetime cap on Medical Condition Benefits, multiple claims up to that cap, plus 15 special conditions at 20% payout each (max S$25,000 per special claim, up to 10 special claims)",
       "200 conditions, $500,000 fixed cap, 5 claims, 20 special conditions",
       "150 conditions, $350,000 fixed cap, 3 claims, 10 special conditions at 25% payout each"
     ],
     correct: 1,
-    explanation: "LCC covers 150 conditions with a lifetime cap of 300% of the Insured Amount on Medical Condition Benefits [PS section 3.1 of LCC] -- it is not a fixed dollar amount. Up to 3 Medical Condition claims, plus 15 special conditions at 20% payout each (max S$25,000 per special claim, up to 10 special claims) [Day 3 cheat-sheet].",
+    explanation: "LCC covers 150 conditions with a lifetime cap of 300% of the Insured Amount on Medical Condition Benefits [PS section 3.1 of LCC] -- it is not a fixed dollar amount. Multiple Medical Condition claims up to that cap, plus 15 special conditions at 20% payout each (max S$25,000 per special claim, up to 10 special claims) [Day 3 cheat-sheet].",
     category: 'product-facts'
   },
   {

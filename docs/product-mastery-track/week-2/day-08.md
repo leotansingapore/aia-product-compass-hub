@@ -179,7 +179,7 @@ The verbatim:
 
 [Product Summary p.2, Brochure p.1]
 
-Eligible milestones: marriage, birth/adoption of child.
+Eligible milestones: 5 life events, including marriage and birth/adoption of a child.
 
 ## AIA Vitality PowerUp Dollar
 

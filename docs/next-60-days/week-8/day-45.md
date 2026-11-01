@@ -104,7 +104,7 @@ AIA plans that lead with Risk:
 
 - AIA Beyond Critical Care (major-stage critical illness cover, with a premium refund at the end of the term)
 - AIA Absolute Critical Cover (multi-stage critical illness and other conditions)
-- AIA Pro Lifetime Protector (II) (whole life cover for death, disability and multi-stage critical illness)
+- AIA Pro Lifetime Protector (II) (whole life cover for death and multi-stage critical illness, disability to age 70)
 - AIA HealthShield Gold Max (an Integrated Shield Plan that sits on top of MediShield Life)
 
 > You: "Let's start with the worst case. If you were diagnosed with a serious critical illness in the next 3 years, here's what your family's finances would look like with what you have now, and here's what they'd look like with the cover we're discussing. I'm not trying to scare you. It's just two scenarios side by side, so you can see the difference. Which one would you rather your family be in?"

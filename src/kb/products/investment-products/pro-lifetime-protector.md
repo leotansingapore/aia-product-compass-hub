@@ -5,7 +5,7 @@ Hybrid ILP with strong protection focus, suitable for clients wanting coverage +
 
 ## 📊 Key Highlights  
 - Adjustable sum assured with riders  
-- Booster options for early years  
+- No early-years booster; 102% of premiums invested from year 10  
 - Flexibility to reallocate funds and adjust premiums  
 
 ## 🔗 Useful Links  

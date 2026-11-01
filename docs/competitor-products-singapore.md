@@ -44,7 +44,7 @@ Product names get renamed and rebranded faster than the brochures get updated, s
 ### LIFE
 **Whole life**
 - **AIA Guaranteed Protect Plus (IV)** — flagship par whole life; multiplier up to 5x to a chosen age; death + TPD; builds cash value.
-- **AIA Pro Lifetime Protector (II)** — dual-classified plan (Whole Life AND ILP on aia.com.sg). Lifelong death/TPD/multi-stage CI via ILP wrapper with 10-year no-lapse guarantee. Sold as either depending on conversation.
+- **AIA Pro Lifetime Protector (II)** — dual-classified plan (Whole Life AND ILP on aia.com.sg). Lifelong death/multi-stage CI (TPD to 70) via ILP wrapper with 10-year no-lapse guarantee. Sold as either depending on conversation.
 - **AIA Life Dividends** — older-style limited-pay par whole life; death/TPD ceases at age 100/70 respectively.
 - **Direct - AIA Whole Life Cover (II)** — DPI, no commission, sold direct.
 

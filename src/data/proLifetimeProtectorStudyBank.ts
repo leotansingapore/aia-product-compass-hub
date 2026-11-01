@@ -49,7 +49,7 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
 
   // Q4 -- correct: 3
   {
-    question: "How many conditions does the Multi-Pay Critical Illness Rider cover?",
+    question: "How many conditions does the Lifetime Critical Cover (LCC) rider cover?",
     options: [
       "100 conditions",
       "120 conditions",
@@ -57,41 +57,41 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
       "150 conditions"
     ],
     correct: 3,
-    explanation: "The Multi-Pay Critical Illness Rider covers 150 conditions and includes a reset feature with multiple claims up to 3 times.",
+    explanation: "The Lifetime Critical Cover (LCC) rider covers 150 multi-stage conditions and includes a reset feature (Power Reset), with multiple claims up to 300% of cover.",
     category: 'product-facts'
   },
 
   // Q5 -- correct: 2
   {
-    question: "How many times can the Multi-Pay Critical Illness Rider pay out?",
+    question: "How many times can the Lifetime Critical Cover (LCC) rider pay out?",
     options: [
       "1 time only",
       "2 times",
-      "Up to 3 times",
+      "Several times, until total payouts reach 300% of cover",
       "Up to 5 times"
     ],
     correct: 2,
-    explanation: "The Multi-Pay Critical Illness Rider allows multiple claims up to 3 times, providing ongoing critical illness protection.",
+    explanation: "The LCC rider allows multiple claims until total payouts reach 300% of its cover, and Power Reset restores cover to 100% 12 months after a claim, providing ongoing critical illness protection.",
     category: 'product-facts'
   },
 
   // Q6 -- correct: 1
   {
-    question: "Approximately how many early-stage conditions does the Early Critical Illness rider cover?",
+    question: "Which PLP rider covers early-stage critical illnesses, and across how many conditions?",
     options: [
-      "About 10 conditions",
-      "About 20 conditions",
-      "About 30 conditions",
-      "About 50 conditions"
+      "A separate Early Critical Illness rider covering about 20 conditions",
+      "Lifetime Critical Cover (LCC): 150 multi-stage critical illnesses, as separate cover",
+      "The base plan, with no rider needed",
+      "No PLP rider covers early-stage critical illness"
     ],
     correct: 1,
-    explanation: "The Early Critical Illness rider covers approximately 20 early-stage conditions and includes a reset feature.",
+    explanation: "Early-stage cover on PLP sits in the Lifetime Critical Cover (LCC) rider: 150 multi-stage critical illnesses as separate cover, to age 100. The 73-condition rider covers major-stage CIs only and draws on basic cover.",
     category: 'product-facts'
   },
 
   // Q7 -- correct: 0
   {
-    question: "What is the premium allocation rate in Year 1 of PLP?",
+    question: "What is the premium charge in Year 1 of PLP?",
     options: [
       "80%",
       "55%",
@@ -99,13 +99,13 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
       "100%"
     ],
     correct: 0,
-    explanation: "In Year 1, 80% of the premium is allocated to the investment component. This decreases to 55% in Year 2.",
+    explanation: "In Year 1, the premium charge is 80%, so 20% of the premium is allocated to the investment component. The charge decreases to 55% in Year 2.",
     category: 'product-facts'
   },
 
   // Q8 -- correct: 3
   {
-    question: "What is the premium allocation rate in Year 2 of PLP?",
+    question: "What is the premium charge in Year 2 of PLP?",
     options: [
       "80%",
       "100%",
@@ -113,13 +113,13 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
       "55%"
     ],
     correct: 3,
-    explanation: "In Year 2, the premium allocation rate is 55%, down from 80% in Year 1.",
+    explanation: "In Year 2, the premium charge is 55% (45% allocated), down from 80% in Year 1.",
     category: 'product-facts'
   },
 
   // Q9 -- correct: 1
   {
-    question: "What is the premium allocation rate in Year 3 of PLP?",
+    question: "What is the premium charge in Year 3 of PLP?",
     options: [
       "55%",
       "50%",
@@ -127,13 +127,13 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
       "8%"
     ],
     correct: 1,
-    explanation: "In Year 3, 50% of premiums are allocated. The allocation drops significantly to 8% in Year 4.",
+    explanation: "In Year 3, the premium charge is 50%, so 50% of premiums are allocated. The charge drops significantly to 8% in Year 4.",
     category: 'product-facts'
   },
 
   // Q10 -- correct: 2
   {
-    question: "What is the premium allocation rate in Year 4 of PLP?",
+    question: "What is the premium charge in Year 4 of PLP?",
     options: [
       "50%",
       "15%",
@@ -141,7 +141,7 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
       "0%"
     ],
     correct: 2,
-    explanation: "Year 4 has an 8% allocation rate. From Year 5 onwards, the allocation drops to 0%.",
+    explanation: "Year 4 has an 8% premium charge (92% allocated). From Year 5 onwards, the charge drops to 0% and 100% of premiums are allocated.",
     category: 'product-facts'
   },
 
@@ -444,12 +444,12 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
     question: "Until what age does the LCC Rider provide coverage?",
     options: [
       "75th birthday anniversary",
-      "85th birthday anniversary",
+      "Age 100 (the policy's maturity age)",
       "90th birthday anniversary",
       "99th birthday anniversary"
     ],
     correct: 1,
-    explanation: "The LCC Rider provides coverage until the policyholder's 85th birthday anniversary.",
+    explanation: "The LCC Rider covers its 150 multi-stage critical illnesses to age 100, the policy's maturity age. Only its 15 special conditions stop earlier, at age 85.",
     category: 'product-facts'
   },
 
@@ -1207,13 +1207,13 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
   {
     question: "A client asks: 'What if I need the money before age 62?' How do you respond?",
     options: [
-      "While regular withdrawals are available after age 62 or 20 years, you can take a premium holiday if needed, and partial withdrawals may be possible depending on your policy terms.",
+      "Partial withdrawals are allowed any time after policy year 2 with no charges, and you can take a premium holiday if needed.",
       "You cannot access your money at all before age 62.",
       "You can withdraw freely at any time.",
       "Surrender the policy and get a full refund."
     ],
     correct: 0,
-    explanation: "Explain the withdrawal rules honestly while highlighting the premium holiday as an alternative for short-term financial needs.",
+    explanation: "Explain the withdrawal rules honestly: partial withdrawals open after the end of policy year 2 with no charges, and the premium holiday is the alternative for short-term financial needs.",
     category: 'objection-handling'
   },
 
@@ -1261,15 +1261,15 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
 
   // Q90 -- correct: 0
   {
-    question: "A client says: 'The 80% allocation in Year 1 means 20% is wasted.' How do you reframe this?",
+    question: "A client says: 'The 80% premium charge in Year 1 means most of my first premium is wasted.' How do you reframe this?",
     options: [
-      "The 20% covers your insurance protection charges and administration costs. Think of it as paying for immediate coverage from day one, while the 80% starts building your investment. After Year 6, you get 100% allocation.",
-      "That 20% is pure profit for AIA.",
-      "You are right, that 20% is wasted.",
-      "All insurance products take 50% in Year 1, so 80% is actually generous."
+      "The charge is front-loaded, like buying a laptop: high cost upfront, then it drops away. The remaining 20% starts building your investment, and from Year 5 you get 100% allocation.",
+      "That 80% is pure profit for AIA.",
+      "You are right, that 80% is wasted.",
+      "All insurance products charge 90% in Year 1, so 80% is actually generous."
     ],
     correct: 0,
-    explanation: "Reframe the 20% as covering insurance costs (immediate value) and highlight the 100% allocation after Year 6 as a long-term benefit.",
+    explanation: "Reframe the Year-1 premium charge as front-loading (the laptop analogy) and highlight the 100% allocation from Year 5 as a long-term benefit.",
     category: 'objection-handling'
   },
 
