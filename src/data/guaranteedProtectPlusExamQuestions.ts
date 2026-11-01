@@ -43,7 +43,7 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
     category: 'product-facts'
   },
   {
-    question: "Walk through the exact eligibility chain for the Premium Pause Option.",
+    question: "Walk through the exact eligibility chain for the Premium Pass Option.",
     options: [
       "Must have paid premiums for 1 year, on voluntary resignation, and have been employed for at least 1 month before separation.",
       "Available immediately on policy inception with no employment history needed.",
@@ -70,12 +70,12 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
     question: "Which entry-age caps apply by GPP premium term, and what is the minimum sum assured on the 2x multiplier?",
     options: [
       "25-yr term max age 60, 20-yr max 65, 15-yr max 70; minimum SA $50,000",
-      "25-yr term max age 50, 20-yr max 55, 15-yr max 60; minimum SA $25,000 on 2x (~$50-60/month minimum premium)",
+      "25-yr term max age 50, 20-yr max 63, 15-yr max 65; minimum SA $25,000 on 2x (~$50-60/month minimum premium)",
       "All terms allow up to age 75; minimum SA $10,000",
       "25-yr term max age 30, 20-yr max 40, 15-yr max 50; minimum SA $100,000"
     ],
     correct: 1,
-    explanation: "Entry caps: 50/55/60 for 25/20/15-year terms. Minimum SA on 2x is $25,000 with approximately $50-60/month minimum premium.",
+    explanation: "Entry caps: 50/63/65 for 25/20/15-year terms. Minimum SA on 2x is $25,000 with approximately $50-60/month minimum premium.",
     category: 'product-facts'
   },
   {
@@ -130,12 +130,12 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
     question: "What waiting periods, exclusions and free-look terms apply across the GPP base plan and its CI riders at policy inception?",
     options: [
       "30-day waiting on all conditions; no survival period; 7-day free-look",
-      "Under the Critical Protector Life / Early Critical Protector Life riders: 90 days waiting period for most CI conditions, 1 year for ADHD-caused conditions, 7-day survival period after diagnosis. Under the GPP base plan: 14-day free-look from policy receipt, suicide excluded in the first policy year, pre-existing conditions/surgeries excluded, TPD not covered if from deliberate self-endangerment/suicide/war, Premium Pause not available to full-time MPs.",
+      "Under the Critical Protector Life / Early Critical Protector Life riders: 90 days waiting period for most CI conditions, 1 year for ADHD-caused conditions, 7-day survival period after diagnosis. Under the GPP base plan: 14-day free-look from policy receipt, suicide excluded in the first policy year, pre-existing conditions/surgeries excluded, TPD not covered if from deliberate self-endangerment/suicide/war, Premium Pass Option not available to full-time MPs.",
       "180-day waiting; 30-day survival; 60-day free-look",
       "No waiting period or exclusions"
     ],
     correct: 1,
-    explanation: "Split by where the rule lives. CI riders (Critical Protector Life / Early Critical Protector Life): 90-day waiting (1-year for ADHD) + 7-day survival. GPP base: 14-day free-look, year-1 suicide exclusion, pre-existing exclusion, TPD exclusions for self-endangerment/war, and no Premium Pause for full-time MPs. The base PS does not specify a CI waiting period -- that's a rider-level rule.",
+    explanation: "Split by where the rule lives. CI riders (Critical Protector Life / Early Critical Protector Life): 90-day waiting (1-year for ADHD) + 7-day survival. GPP base: 14-day free-look, year-1 suicide exclusion, pre-existing exclusion, TPD exclusions for self-endangerment/war, and no Premium Pass Option for full-time MPs. The base PS does not specify a CI waiting period -- that's a rider-level rule.",
     category: 'product-facts'
   },
   {
@@ -320,9 +320,9 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
     question: "A client says: 'What if I lose my job and can't afford GPP?' How do you respond accurately?",
     options: [
       "AIA permanently waives premiums.",
-      "The Premium Pause Option allows up to 12 months of paused premiums after 3 years of premiums paid, on involuntary retrenchment, with at least 6 months prior employment + 2-month deferment + documentation within 2 months. CRITICALLY: this is an interest-free LOAN not a waiver. The client must repay over the next 12 months, after which interest accrues. Outstanding loan is deducted from death benefit if claim happens during the period.",
+      "The Premium Pass Option allows up to 12 months of paused premiums after 3 years of premiums paid, on involuntary retrenchment, with at least 6 months prior employment + 2-month deferment + documentation within 2 months. CRITICALLY: this is an interest-free LOAN not a waiver. The client must repay over the next 12 months, after which interest accrues. Outstanding loan is deducted from death benefit if claim happens during the period.",
       "The policy auto-cancels.",
-      "Premium Pause is unlimited."
+      "The Premium Pass Option is unlimited."
     ],
     correct: 1,
     explanation: "Be precise: 3 years paid + involuntary retrenchment + 6 months prior employment + 2-month deferment. It is an interest-free loan, not a waiver -- repaid in 12 months, interest after.",
@@ -410,7 +410,7 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
     options: [
       "Cancel both existing plans.",
       "Walk away.",
-      "Run CST: 5x his $180k income = $900k CI need. He's short ~$700k. Position GPP as a TOP-UP, not replacement: $500-700k coverage, 3x multiplier, 20-year term (max entry age 55 still allows it), half-half Early CI of ~$150k. Frame the gap quantitatively. If his cashflow can't sustain the top-up, propose the Phase 6 'GPP + UCC' split to keep total premium manageable.",
+      "Run CST: 5x his $180k income = $900k CI need. He's short ~$700k. Position GPP as a TOP-UP, not replacement: $500-700k coverage, 3x multiplier, 20-year term (max entry age 63 still allows it), half-half Early CI of ~$150k. Frame the gap quantitatively. If his cashflow can't sustain the top-up, propose the Phase 6 'GPP + UCC' split to keep total premium manageable.",
       "Recommend he cancel his term plans."
     ],
     correct: 2,
@@ -421,7 +421,7 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
     question: "A 38-year-old self-employed contractor with variable income asks: 'Can GPP flex with my cashflow?' How do you respond honestly?",
     options: [
       "Promise full flexibility.",
-      "Be honest: GPP premiums are level and fixed -- not flexible like an ILP. The relief tools are: (1) Premium Pause -- but only for involuntary retrenchment from employment, which may not apply to self-employed; (2) Reduce sum assured anytime (but this also reduces coverage and returns); (3) Right-size at minimum SA on 2x (~$50-60/month) so missed payments are less likely. For genuine premium flexibility, recommend an ILP like APA or PLP instead.",
+      "Be honest: GPP premiums are level and fixed -- not flexible like an ILP. The relief tools are: (1) Premium Pass Option -- but only for involuntary retrenchment from employment, which may not apply to self-employed; (2) Reduce sum assured anytime (but this also reduces coverage and returns); (3) Right-size at minimum SA on 2x (~$50-60/month) so missed payments are less likely. For genuine premium flexibility, recommend an ILP like APA or PLP instead.",
       "Tell them GPP premiums auto-adjust.",
       "Sell maximum coverage anyway."
     ],
@@ -553,12 +553,12 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
     question: "Per Day 5, which FOUR disclosures must be delivered as a single recited block before the iPOS+ binary close?",
     options: [
       "Cover amount, premium, pay term, multiplier",
-      "Bonuses are non-guaranteed; early-year cash value sits below premiums paid; accelerated CI claims reduce the death benefit; Premium Pause is a 12-month interest-free LOAN, not a waiver",
+      "Bonuses are non-guaranteed; early-year cash value sits below premiums paid; accelerated CI claims reduce the death benefit; Premium Pass Option is a 12-month interest-free LOAN, not a waiver",
       "Free-look period, GIRO date, Vitality enrolment, FHR signature",
       "Suicide year-1 exclusion, pre-existing exclusion, 90-day waiting, war exclusion"
     ],
     correct: 1,
-    explanation: "The RNF-clean closing block is: (1) bonuses non-guaranteed, (2) early-year cash value below premiums, (3) accelerated CI reduces death benefit, (4) Premium Pause is a loan not a waiver. Delivering all four as a single recited block before iPOS+ submission is the standard FC discipline taught in Day 5.",
+    explanation: "The RNF-clean closing block is: (1) bonuses non-guaranteed, (2) early-year cash value below premiums, (3) accelerated CI reduces death benefit, (4) Premium Pass Option is a loan not a waiver. Delivering all four as a single recited block before iPOS+ submission is the standard FC discipline taught in Day 5.",
     category: 'compliance'
   },
 
@@ -578,7 +578,7 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
 
   // Q45
   {
-    question: "Which of the following clients is explicitly excluded by the GPP Product Summary from exercising the Premium Pause Option?",
+    question: "Which of the following clients is explicitly excluded by the GPP Product Summary from exercising the Premium Pass Option?",
     options: [
       "Anyone earning under S$50,000/year",
       "Self-employed, family-business employees, voluntary resignation/retirement, AND full-time Members of Parliament",
@@ -586,7 +586,7 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
       "Clients on a 25-year premium term"
     ],
     correct: 1,
-    explanation: "PS Page 7 Premium Pause exclusions: self-employed, family-business employees, voluntary resignation/retirement and other voluntary terminations are excluded. Day 5 also names full-time MPs explicitly. The compliance discipline is to confirm employment type at fact-find before promising the Premium Pause Option.",
+    explanation: "PS Page 7 Premium Pass Option exclusions: self-employed, family-business employees, voluntary resignation/retirement and other voluntary terminations are excluded. Day 5 also names full-time MPs explicitly. The compliance discipline is to confirm employment type at fact-find before promising the Premium Pass Option.",
     category: 'compliance'
   },
 

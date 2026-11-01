@@ -1197,7 +1197,7 @@ A 38-year-old client. Bought GPP at 25, around 13 years ago. Solid Major CI cove
 
 ### What they had
 
-- $300K GPP term plan, Major CI accelerated
+- $300K GPP plan, Major CI accelerated
 - No Early CI layer
 - No multi-claim depth — single Major CI claim ends the cover
 

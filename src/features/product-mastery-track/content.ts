@@ -27,7 +27,7 @@ export { TOTAL_DAYS };
 export const WEEK_META: Record<number, { title: string; tagline: string; productSlug: string }> = {
   1: { title: "Pro Achiever 3.0", tagline: "Savings-as-investment foundation. Master the IIP frame.", productSlug: "pro-achiever" },
   2: { title: "Pro Lifetime Protector", tagline: "Whole-life flagship. Lifetime protection with cash value.", productSlug: "pro-lifetime-protector" },
-  3: { title: "Guaranteed Protect Plus", tagline: "Term protection with Vitality. Builds the protection muscle.", productSlug: "guaranteed-protect-plus" },
+  3: { title: "Guaranteed Protect Plus", tagline: "Whole life protection with Vitality. Builds the protection muscle.", productSlug: "guaranteed-protect-plus" },
   4: { title: "Ultimate Critical Cover", tagline: "73 CIs across 150 condition-stages. The CI workhorse.", productSlug: "ultimate-critical-cover" },
   5: { title: "HealthShield Gold Max", tagline: "Integrated Shield Plan. Hospital + outpatient cancer.", productSlug: "healthshield-gold-max" },
   6: { title: "Solitaire PA", tagline: "Personal accident at scale. Schedule of indemnity mastery.", productSlug: "solitaire-pa" },

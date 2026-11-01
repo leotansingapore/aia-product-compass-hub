@@ -245,7 +245,7 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
 
   // Q18 -- correct: 1
   {
-    question: "When is the GPP Premium Pause Option available, and what is its core eligibility rule?",
+    question: "When is the GPP Premium Pass Option available, and what is its core eligibility rule?",
     options: [
       "Anytime after the first policy year, no work history required",
       "After 3 years of premiums paid, on involuntary retrenchment, with at least 6 months of prior employment",
@@ -253,13 +253,13 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
       "Whenever the policyholder requests it"
     ],
     correct: 1,
-    explanation: "Premium Pause requires 3 years of premiums paid, involuntary retrenchment, and at least 6 months of prior employment, plus a 2-month deferment period.",
+    explanation: "The Premium Pass Option requires 3 years of premiums paid, involuntary retrenchment, and at least 6 months of prior employment, plus a 2-month deferment period.",
     category: 'product-facts'
   },
 
   // Q19 -- correct: 2
   {
-    question: "How does the Premium Pause Option actually work financially?",
+    question: "How does the Premium Pass Option actually work financially?",
     options: [
       "Premiums are waived permanently with no repayment",
       "AIA pays premiums on the client's behalf and writes them off",
@@ -449,7 +449,7 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
       "Age 65"
     ],
     correct: 0,
-    explanation: "Per AIA's internal underwriting guide (NOT in the canonical Product Summary or Brochure): 25-year term max entry age 50, 20-year max 55, 15-year max 60. The Product Summary's Terminal Bonus tables only segment by entry age 0-20 and 21-70.",
+    explanation: "Per SQS quoting rules (NOT in the canonical Product Summary or Brochure): 25-year term max entry age 50, 20-year max 63, 15-year max 65. The Product Summary's Terminal Bonus tables only segment by entry age 0-20 and 21-70.",
     category: 'product-facts'
   },
 
@@ -458,12 +458,12 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
     question: "What is the maximum entry age for the GPP 20-year premium term?",
     options: [
       "Age 50",
-      "Age 55",
+      "Age 63",
       "Age 60",
       "Age 65"
     ],
     correct: 1,
-    explanation: "Per AIA's internal underwriting guide (NOT in the canonical Product Summary or Brochure), the 20-year term caps entry at age 55.",
+    explanation: "Per SQS quoting rules (NOT in the canonical Product Summary or Brochure), the 20-year term caps entry at age 63.",
     category: 'product-facts'
   },
 
@@ -473,11 +473,11 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
     options: [
       "Age 50",
       "Age 55",
-      "Age 60",
+      "Age 65",
       "Age 70"
     ],
     correct: 2,
-    explanation: "Per AIA's internal underwriting guide (NOT in the canonical Product Summary or Brochure), the 15-year term caps entry at age 60 -- the longest age window of the three.",
+    explanation: "Per SQS quoting rules (NOT in the canonical Product Summary or Brochure), the 15-year term caps entry at age 65 -- the longest age window of the three.",
     category: 'product-facts'
   },
 
@@ -1109,13 +1109,13 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
   {
     question: "Client objects: 'What if I lose my job and cannot pay premiums?' How do you handle it?",
     options: [
-      "After 3 years, the Premium Pause Option lets you pause for up to 12 months on involuntary retrenchment -- it is an interest-free loan, repaid in the next 12 months, then interest accrues on the unpaid balance.",
+      "After 3 years, the Premium Pass Option lets you pause for up to 12 months on involuntary retrenchment -- it is an interest-free loan, repaid in the next 12 months, then interest accrues on the unpaid balance.",
       "AIA permanently waives premiums on retrenchment.",
       "The policy will auto-cancel.",
       "You should never buy GPP if you have job-loss risk."
     ],
     correct: 0,
-    explanation: "Be precise: Premium Pause is a 12-month interest-free loan, not a waiver, and it requires 3 years of premiums + 6 months prior employment + 2-month deferment.",
+    explanation: "Be precise: the Premium Pass Option is a 12-month interest-free loan, not a waiver, and it requires 3 years of premiums + 6 months prior employment + 2-month deferment.",
     category: 'objection-handling'
   },
 
@@ -1348,12 +1348,12 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
     question: "Client says: 'I am 50 -- am I too old for GPP?'",
     options: [
       "Yes, GPP is only for under-30s.",
-      "Not necessarily. The 25-year term caps at age 50, the 20-year at 55, the 15-year at 60. So at 50, all three terms are still possible -- but premiums are noticeably higher than for a 25-year-old. Run the numbers honestly.",
+      "Not necessarily. The 25-year term caps at age 50, the 20-year at 63, the 15-year at 65. So at 50, all three terms are still possible -- but premiums are noticeably higher than for a 25-year-old. Run the numbers honestly.",
       "Force them onto a 5-year term.",
       "Refuse to quote."
     ],
     correct: 1,
-    explanation: "Entry-age caps: 50/55/60 for 25/20/15-year terms. A 50-year-old can still take GPP -- just expect a higher premium and likely shorter term.",
+    explanation: "Entry-age caps: 50/63/65 for 25/20/15-year terms. A 50-year-old can still take GPP -- just expect a higher premium and likely shorter term.",
     category: 'objection-handling'
   },
 
@@ -1404,7 +1404,7 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
     question: "Client says: 'My income is variable -- can GPP flex with me like an ILP?'",
     options: [
       "Yes, premiums on GPP are fully flexible like ILPs.",
-      "GPP premiums are fixed and level -- not flexible. The relief tools are: Premium Pause (12-month interest-free loan after 3 years on involuntary retrenchment), reducing sum assured (allowed anytime), and OPAI for one-time increase. For genuine premium flexibility, an ILP like PLP or APA is a better fit.",
+      "GPP premiums are fixed and level -- not flexible. The relief tools are: Premium Pass Option (12-month interest-free loan after 3 years on involuntary retrenchment), reducing sum assured (allowed anytime), and OPAI for one-time increase. For genuine premium flexibility, an ILP like PLP or APA is a better fit.",
       "GPP can be paused indefinitely.",
       "GPP automatically adjusts to your income."
     ],
@@ -1477,13 +1477,13 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
   {
     question: "A 38-year-old self-employed contractor says: 'My income is unstable -- I might miss premiums.' How do you address this?",
     options: [
-      "Be honest: GPP premiums are level and fixed (not flexible). Walk through Premium Pause (after 3 years, on involuntary retrenchment -- but does it apply to self-employed?). For variable income, suggest an ILP like APA/PLP for premium flexibility, or right-size GPP at the minimum sum assured (~$50-60/month).",
+      "Be honest: GPP premiums are level and fixed (not flexible). Walk through the Premium Pass Option (after 3 years, on involuntary retrenchment -- but does it apply to self-employed?). For variable income, suggest an ILP like APA/PLP for premium flexibility, or right-size GPP at the minimum sum assured (~$50-60/month).",
       "Tell them GPP premiums are flexible.",
       "Promise auto-pause anytime.",
       "Sell maximum coverage anyway."
     ],
     correct: 0,
-    explanation: "Be honest: GPP is fixed, and Premium Pause is for involuntary retrenchment from employment. For genuinely variable income, recommend an ILP for flexibility, or size GPP minimally.",
+    explanation: "Be honest: GPP is fixed, and the Premium Pass Option is for involuntary retrenchment from employment. For genuinely variable income, recommend an ILP for flexibility, or size GPP minimally.",
     category: 'roleplay'
   },
 
@@ -1493,7 +1493,7 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
     options: [
       "No -- only for under-30s.",
       "Yes, but quote only 5x for cheapness.",
-      "Yes -- 15-year term still works (max entry 60), 20-year still works (max 55). Premiums will be higher, but the cash value is still useful as retirement supplement via IDF or partial withdrawal after 65. Default to 2x or 3x; avoid 5x since post-65 base would be tiny.",
+      "Yes -- 15-year term still works (max entry 65), 20-year still works (max 63). Premiums will be higher, but the cash value is still useful as retirement supplement via IDF or partial withdrawal after 65. Default to 2x or 3x; avoid 5x since post-65 base would be tiny.",
       "Refuse to quote."
     ],
     correct: 2,
@@ -1645,13 +1645,13 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
   {
     question: "A client compares GPP to a Prudential whole-life plan they were quoted. What is the right approach?",
     options: [
-      "Don't trash the competitor. Highlight GPP's specific strengths in the client's case: 73 vs 37 LIA-standard CI conditions on Major CI rider, ~150 conditions on Early CI rider, the IDF flexibility, Premium Pause for retrenchment, AIA Vitality integration, and OPAI without further underwriting. Anchor on the BI numbers.",
+      "Don't trash the competitor. Highlight GPP's specific strengths in the client's case: 73 vs 37 LIA-standard CI conditions on Major CI rider, ~150 conditions on Early CI rider, the IDF flexibility, Premium Pass Option for retrenchment, AIA Vitality integration, and OPAI without further underwriting. Anchor on the BI numbers.",
       "Tell the client Prudential is fraudulent.",
       "Match Prudential's quote regardless of profitability.",
       "Refuse to discuss the competitor."
     ],
     correct: 0,
-    explanation: "Never trash competitors. Anchor on GPP's specific strengths (CI count, IDF, Premium Pause, Vitality, OPAI) and let the BI numbers speak.",
+    explanation: "Never trash competitors. Anchor on GPP's specific strengths (CI count, IDF, Premium Pass Option, Vitality, OPAI) and let the BI numbers speak.",
     category: 'roleplay'
   },
 
@@ -1745,7 +1745,7 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
 
   // Q124 -- correct: 1
   {
-    question: "Which group of clients is explicitly excluded from exercising the Premium Pause Option?",
+    question: "Which group of clients is explicitly excluded from exercising the Premium Pass Option?",
     options: [
       "Anyone earning under S$50,000/year",
       "Self-employed or family-business employees, those who resigned or retired voluntarily, and full-time MPs (Members of Parliament)",
@@ -1804,12 +1804,12 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
     question: "Per Day 5 compliance, which FOUR disclosures must be delivered as a single recited block before the iPOS+ binary close?",
     options: [
       "Cover amount / premium / pay term / multiplier",
-      "Bonuses non-guaranteed / early-year cash value below premiums paid / accelerated CI reduces death benefit / Premium Pause is a 12-month interest-free loan, not a waiver",
+      "Bonuses non-guaranteed / early-year cash value below premiums paid / accelerated CI reduces death benefit / Premium Pass Option is a 12-month interest-free loan, not a waiver",
       "Free-look / GIRO date / Vitality enrolment / FHR",
       "Suicide / pre-existing / 90-day wait / war exclusion"
     ],
     correct: 1,
-    explanation: "Day 5 Part 1 prescribes the RNF-clean closing block: non-guaranteed bonus, early cash-value gap, accelerated CI mechanic, Premium Pause as loan.",
+    explanation: "Day 5 Part 1 prescribes the RNF-clean closing block: non-guaranteed bonus, early cash-value gap, accelerated CI mechanic, Premium Pass Option as loan.",
     category: 'compliance'
   },
 

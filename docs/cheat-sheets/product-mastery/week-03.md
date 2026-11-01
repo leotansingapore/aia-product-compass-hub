@@ -69,7 +69,7 @@ The sure-win close (verbatim):
 | "Whole life is overkill - I just want pure protection" | *"The booster IS pure protection - high-cover, temporary, drops at 65 like term would. The difference is GPP layers it on top of a permanent base. Base makes the cash refund possible. Without the base, term expires with nothing back."* |
 | "I already have CI cover" | *"What's the sum-assured on your existing CI? At your income the benchmark is 5 years of income for CI. Shortfall is $X. We layer GPP only for the gap, not as a full restart. Sound fair?"* |
 | "Why pay for cover I might never use?" | *"Three outcomes - claim CI and 100% pays out, pass away and death benefit pays the family, live long and the premiums plus bonuses come back at 65. Whichever path, you get something. Sure-win."* |
-| "I'd rather BTID - Buy Term and Invest the Difference" | *"Mathematically defensible IF you actually invest the difference AND outperform GPP's 2% guaranteed-floor yield AND maintain discipline for 25 years. Even if you do - 100% of your protection budget is tied to market performance. Layer GPP and you get a guaranteed-return floor underneath the investment risk. Diversification, not either/or."* |
+| "I'd rather BTID - Buy Term and Invest the Difference" | *"Mathematically defensible IF you actually invest the difference AND outperform GPP's ~2% illustrated yield AND maintain discipline for 25 years. Even if you do - 100% of your protection budget is tied to market performance. Layer GPP and you get a guaranteed-return floor underneath the investment risk. Diversification, not either/or."* |
 
 ## Cross-sell / sequencing
 

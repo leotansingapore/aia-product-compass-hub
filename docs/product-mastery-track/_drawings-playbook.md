@@ -380,19 +380,19 @@ Annotate: *"You can always step down (B-plan holder can stay C). You can never s
 ### GPP vs UCC comparison
 
 **What to draw:** Two columns:
-- **GPP (Guaranteed Protect Plus — term plan):**
+- **GPP (Guaranteed Protect Plus — whole life plan):**
   - Cheaper premium
-  - Coverage until specified age (e.g., 65, 75, 85)
-  - 3X or 2X multiplier
+  - Multiplier cover until 65 or 75, then basic cover to 100
+  - 2X, 3X or 5X multiplier
   - Optional ECI rider
-  - No cash value
+  - Cash value with non-guaranteed bonuses
 - **UCC (Ultimate Critical Cover — CI to age 65, 75 or 85):**
   - More expensive premium
   - Coverage to whichever age you choose (65, 75 or 85)
   - Cash value
   - Multi-claim across 73 CIs / 150 condition-stages
 
-Annotate: *"GPP for term protection at lowest cost. UCC for CI cash value + multi-claim depth."*
+Annotate: *"GPP for booster protection at lowest cost. UCC for CI cash value + multi-claim depth."*
 
 ### Early CI vs Major CI definitions
 

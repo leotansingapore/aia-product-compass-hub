@@ -62,7 +62,7 @@ Each session is ~2 hours with a 5-minute break at the midpoint. Recorded. Watch-
 |---|---|---|---|
 | ProAchiever | **APA** | Investment-linked | Pure investment, dividend mode at 65 |
 | Premier Life Protector | **PLP** | Investment-linked | Hybrid (protection + investment) |
-| Guaranteed Protect Plus | **GPP** | Whole life | Protection-focused, ~2.3-3% guaranteed |
+| Guaranteed Protect Plus | **GPP** | Whole life | Protection-focused, ~2.3-3% illustrated (bonuses not guaranteed) |
 | Secure Flexi Term | **SFT** | Term | Protection only, no cash value |
 | HealthShield Gold Max | **HSG** | Hospitalisation | Medical / hospital coverage |
 | Ultimate Critical Cover | **UCC** | Critical illness | Multi-pay reset CI |

@@ -59,7 +59,7 @@ This is where most FCs fumble. Internalise the structure cold:
 
 - Pays **20% of SA**, capped at **$25k each**
 - Max **5 claims**
-- End at age 21
+- End at age 85
 
 ### Aggregate cap
 
@@ -186,7 +186,7 @@ Print this, laminate it, keep it in your folio.
 | 5 | Major CI conditions | 73 |
 | 6 | Early CI conditions | ~150 + 15 special |
 | 7 | Early CI per-episode cap | $350k |
-| 8 | Special-condition payout | 20% of SA, max $25k each, max 5 claims, ends at 21 |
+| 8 | Special-condition payout | 20% of SA, max $25k each, max 5 claims, ends at 85 |
 | 9 | Total CI cap (across all AIA CI policies) | $3M aggregate |
 | 10 | Standard $200k / 3x / 25yo / drop-off 65 | ~$1,946/yr |
 | 11 | Standard $300k / 3x / 25yo / 25-yr | ~$2,600/yr |
@@ -287,7 +287,7 @@ The verbatim:
 
 The answer:
 
-> *"There's a feature called Premium Pause. After you've paid premiums for at least 3 years, if you lose your job, you can pause payments for up to 12 months.*
+> *"There's a feature called Premium Pass Option. After you've paid premiums for at least 3 years, if you lose your job, you can pause payments for up to 12 months.*
 >
 > *But — important — it's not free money. It's an interest-free loan for the first 12 months. After that, you have 12 months to pay it back interest-free. Beyond that, interest accrues.*
 >
@@ -299,7 +299,7 @@ The verbatim:
 
 The numbers cheat sheet:
 
-| Premium Pause requirement | Detail |
+| Premium Pass Option requirement | Detail |
 |---|---|
 | Minimum premium history | 3 years paid |
 | Prior employment requirement | At least 6 months |
@@ -346,7 +346,7 @@ The verbatim:
 
 ### "What about Vitality?"
 
-> *"Vitality Platinum optional enrolment maintains the Power-Up Dollar bonus declining schedule — without it, the first-year boost (e.g. +15% on 3x) reduces yearly. With Vitality Platinum, the boost stays. Worth setting up; we'll cover it at delivery."*
+> *"Vitality Platinum optional enrolment maintains the Power-Up Dollar bonus declining schedule — without it, the first-year boost (e.g. +15% on 3x) reduces yearly. With Vitality Platinum, the boost grows (up to 37.5% of basic cover on 5x). Worth setting up; we'll cover it at delivery."*
 
 ---
 

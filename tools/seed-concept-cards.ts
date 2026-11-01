@@ -296,7 +296,7 @@ const cards: SeedCard[] = [
   {
     title: "GPP vs UCC comparison",
     description:
-      "Coverage. Two columns. GPP (term): cheaper premium, coverage till specified age (65/75/85), 3X or 2X multiplier, optional ECI rider, no cash value. UCC (whole-life CI): more expensive, coverage to chosen age or lifelong, cash value, multi-claim across 73 CIs / 150 condition-stages.\n\nAnnotate: \"GPP for term protection at lowest cost. UCC for CI cash value + multi-claim depth.\"",
+      "Coverage. Two columns. GPP (whole life): cheaper premium, multiplier cover till 65 or 75 then basic cover to 100, 2X, 3X or 5X multiplier, optional ECI rider, cash value with non-guaranteed bonuses. UCC (whole-life CI): more expensive, coverage to chosen age or lifelong, cash value, multi-claim across 73 CIs / 150 condition-stages.\n\nAnnotate: \"GPP for booster protection at lowest cost. UCC for CI cash value + multi-claim depth.\"",
     audience: ["General"],
     product_type: ["Term", "Critical Illness"],
     tags: ["tier-3", "coverage", "ci", "comparison"],

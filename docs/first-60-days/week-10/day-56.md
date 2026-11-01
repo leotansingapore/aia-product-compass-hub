@@ -142,8 +142,8 @@ At qualifying milestones (marriage, child, mortgage), client can increase sum as
 
 ### CI riders on GPP
 
-- **CPL (Critical Payment of Lump Sum)** - 42 major CIs, **non-participating, no cash value** (state this clearly)
-- **Early Critical Protector** rider - early-stage conditions (carcinoma in situ, stage 0-1 cancers). This is a *rider on GPP*, not a standalone product - don't confuse it with the older Enhanced Critical Protector standalone plan, which is no longer in the core map.
+- **CPL (Critical Protector Life (IV))** - 73 major-stage CIs, **non-participating, no cash value** (state this clearly)
+- **Early Critical Protector Life (IV)** rider - early-stage conditions (carcinoma in situ, stage 0-1 cancers). This is a *rider on GPP*, not a standalone product - don't confuse it with the older Enhanced Critical Protector standalone plan, which is no longer in the core map.
 - **Waiver rider** - waives premiums on CI / early CI diagnosis
 - **Payer benefit** (child policies) - waives premium if policy owner / parent gets CI
 

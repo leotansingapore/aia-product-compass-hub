@@ -64,7 +64,7 @@ This is the most common objection. The buying-vs-renting frame handles 80% of it
 
 > *"If you stop paying for your term policy, it lapses immediately. But for GPP, even if you stop paying, if there is cash value, the plan still continues and does not lapse for a period of time."*
 
-This is the answer to the *"what if I lose my job"* hesitation — even if Premium Pause isn't activated, the plan doesn't immediately collapse like term does.
+This is the answer to the *"what if I lose my job"* hesitation — even if the Premium Pass Option isn't activated, the plan doesn't immediately collapse like term does.
 
 ---
 
@@ -138,7 +138,7 @@ This is the most sophisticated objection — usually from prospects who've read 
 
 ### The script
 
-> *"BTID is mathematically defensible — IF you actually invest the difference, AND your investments outperform GPP's ~2% guaranteed-floor yield, AND you maintain the discipline for 25+ years.*
+> *"BTID is mathematically defensible — IF you actually invest the difference, AND your investments outperform GPP's ~2% illustrated yield, AND you maintain the discipline for 25+ years.*
 >
 > *Most BTID adherents fail on at least one of those. But let's say you're disciplined.*
 >
@@ -279,7 +279,7 @@ The script:
 
 > *"Are you pregnant or planning soon? There's a rider called Mum-to-Baby — covers complications during pregnancy AND guarantees your child's insurability with no medical underwriting later. Even if your child develops a condition at age 5 that would normally lock them out of cover — if we set this up before birth, they're covered for life. Worth setting up before any health questions come up later."*
 
-### Payer Benefit (CPWP) — for child policies
+### Payer Benefit (Early Critical Protector Payor (II)) — for child policies
 
 For when the parent is paying for a child's GPP/APA/etc.
 
@@ -300,7 +300,7 @@ Lets the policyholder buy further cover with **no underwriting** at certain life
 Conditions:
 - Must exercise within 90 days of the event
 - Expires at age 55
-- One-time use per event
+- One-time use (once per policy)
 
 This is a long-tail benefit — plant the seed at delivery, not at the close.
 
@@ -414,7 +414,7 @@ This is a 2-product play for clients with $200k+ household income or significant
 - A) OPAI on the prospect
 - B) Mum-to-Baby Protect rider — covers pregnancy complications and locks in the child's insurability with no medical underwriting ✓
 - C) Vitality Platinum
-- D) Premium Pause activation
+- D) Premium Pass Option activation
 
 **Why:** Day 4 Part 2 calls Mum-to-Baby the highest-leverage rider in AIA's stack for expectant clients — covers pregnancy complications and guarantees the child's future cover with no underwriting.
 

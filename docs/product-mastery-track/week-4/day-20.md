@@ -370,7 +370,7 @@ If just the $800/yr savings is redirected (the lower-commitment version): $800/y
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=ucc-u3) · 🎨 [Drill the drawings used](/concept-cards)
 
 > **TLDR**
-> - 38-yo client with existing GPP term plan, **no Early CI rider**, no multi-claim feature
+> - 38-yo client with existing GPP plan, **no Early CI rider**, no multi-claim feature
 > - Has good Major CI cover, but Early CI (carcinoma in situ, mild stroke, Stage 0 cancer) not covered
 > - Upsell: add **$300K Early CI via UCC**, recurring multi-claim, until 65 or 75
 > - Pricing: **$1,852-2,185/yr** depending on coverage term

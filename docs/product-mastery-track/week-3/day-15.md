@@ -41,7 +41,7 @@ The reframe:
 
 > *"Yes — accelerated CI means the CI claim draws from your death benefit, not on top of it. So if death cover is $500K and you claim $100K for early-stage cancer, the remaining death benefit is $400K. That's the trade-off — accelerated CI keeps the premium meaningfully lower than a fully-stacked structure. If you want CI fully on top of death, that's a different product and a higher premium. For most prospects, accelerated is the right balance of cover-per-dollar."*
 
-### Disclosure 4 — "Premium Pause is a loan, not a waiver"
+### Disclosure 4 — "Premium Pass Option is a loan, not a waiver"
 
 Anticipated objection: *"If I lose my job, can I just pause without consequence?"*
 
@@ -74,13 +74,13 @@ The verbatim:
 | ADHD-related conditions | 1 year |
 | Survival required after diagnosis | 7 days |
 
-### Premium Pause restrictions
+### Premium Pass Option restrictions
 
 - Minimum 3 years of premiums paid
 - 6-month prior employment required
 - 2-month deferment when unemployed
 - 12-month pause + 12-month interest-free repayment then interest accrues
-- **Self-employed persons and independent contractors cannot exercise Premium Pause** — it requires involuntary retrenchment from full-time employment (Product Summary s.4(f))
+- **Self-employed persons and independent contractors cannot exercise the Premium Pass Option** — it requires involuntary retrenchment from full-time employment (Product Summary s.4(f))
 
 ---
 
@@ -230,7 +230,7 @@ Walk through the Financial Health Review. Get signature.
 
 ### Step 5 — Vitality enrolment (if applicable)
 
-If the prospect has Vitality Platinum status, the Power-Up Dollar bonus boost stays at the higher rate. If not, encourage enrolment as a separate step:
+If the prospect has Vitality Platinum status, the Power-Up Dollar bonus boost grows (up to 37.5% of basic cover on 5x). If not, encourage enrolment as a separate step:
 
 > *"Optional but worth it — Vitality Platinum keeps your first-year bonus boost from declining over time. Enrolment takes 10 minutes through the AIA app. Want me to walk you through it?"*
 
@@ -242,7 +242,7 @@ This is the most-skipped step. **Don't skip.** Use specific anchors:
 |---|---|
 | 3-month policy review | UCC cross-sell (Early CI / multi-claim) |
 | Next family milestone (engagement, marriage, pregnancy) | Mum-to-Baby + spouse cross-sell |
-| Job change | Premium Pause review, salary update |
+| Job change | Premium Pass Option review, salary update |
 | 30 / 35 / 40 birthday | Mid-term protection review, top-up |
 
 Set the calendar entry **in front of the prospect.** They see you do it. Trust signal compounds.
@@ -483,7 +483,7 @@ MINDEF Singlife plans are a **subsidised entry-level cover** designed for the NS
 
 **Why:** Product Summary Section 16 (Page 11) states the free-look period is 14 days from receipt of policy documents.
 
-6. **Per Day 5 and the Product Summary, what is the structure of Premium Pause repayment?**
+6. **Per Day 5 and the Product Summary, what is the structure of Premium Pass Option repayment?**
 - A) Free waiver, no repayment required
 - B) 12-month interest-free pause, then 12-month interest-free repayment via interest-free loan; interest accrues thereafter ✓
 - C) Interest charged from day 1 of pause
@@ -509,11 +509,11 @@ MINDEF Singlife plans are a **subsidised entry-level cover** designed for the NS
 
 9. **The four GPP disclosures, treated as objection reframes, are:**
 - A) Cover amount / premium / pay term / multiplier
-- B) Bonuses non-guaranteed / early cash value below premiums paid / accelerated CI reduces death benefit / Premium Pause is a loan ✓
+- B) Bonuses non-guaranteed / early cash value below premiums paid / accelerated CI reduces death benefit / Premium Pass Option is a loan ✓
 - C) Free-look / GIRO / Vitality / FHR
 - D) Suicide / pre-existing / waiting period / war exclusion
 
-**Why:** Each one — bonuses, early-year cash value gap, accelerated CI, Premium Pause — is an objection the prospect is already thinking, and each one has a reframe that converts the objection into conviction.
+**Why:** Each one — bonuses, early-year cash value gap, accelerated CI, Premium Pass Option — is an objection the prospect is already thinking, and each one has a reframe that converts the objection into conviction.
 
 10. **Scenario: A 28-year-old prospect says they "might need the money back within 5 years if anything comes up." Per Day 5, the right move is:**
 - A) Decline the case and walk away
