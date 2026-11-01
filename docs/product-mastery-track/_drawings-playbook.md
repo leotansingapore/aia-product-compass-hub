@@ -214,7 +214,7 @@ These are the drawings every FC must be able to produce from memory on a blank w
 1. Draw a horizontal timeline from Y1 to Y30+.
 2. Above Y1, Y2, Y3 — three bars labelled with the prospect's tier bonus: e.g., **15% | 18% | 20%** for $12K+/yr premium.
 3. Below the bars, write the dollar values: "$1,800 + $2,160 + $2,400 = **$6,360 in Y1-3 alone**".
-4. From Y11 to Y20 — a continuous bar labelled **5% Special Bonus per year of annualised premium**.
+4. From Y10 to Y20 — a continuous bar labelled **5% Special Bonus per year of annualised premium**.
 5. From Y21 onwards — a continuous bar labelled **8% Special Bonus per year**.
 6. Below the entire timeline, write the cumulative totals: e.g., **$18,000 / $23,000 total bonus stack across the policy life** (with verified numbers from iPOS).
 7. Above the timeline, draw the supplementary charge curve: **3.9% Y1-10, then drops to 0% from Y11**.
@@ -223,7 +223,7 @@ These are the drawings every FC must be able to produce from memory on a blank w
 **The script:**
 > *"There's a structural offset to the 3.9% supplementary charge that most prospects don't see. In year 1, you get a 15% Welcome Bonus on your premium. Year 2 it's 18%. Year 3 it's 20%. That's 53% of your annualised premium credited as a bonus across the first three years — $6,360 of bonus at your premium tier, before compounding even starts.*
 >
-> *Then from year 11 onwards, the Special Bonus credits 5% of your annualised premium every year you keep paying — going to 8% from year 21. Over a 25-30 year hold, that totals roughly $18,000 - $23,000 of bonus stack from iPOS.*
+> *Then from year 10 onwards, the Special Bonus credits 5% of your annualised premium every year you keep paying — going to 8% from year 21. Over a 25-30 year hold, that totals roughly $18,000 - $23,000 of bonus stack from iPOS.*
 >
 > *Net effective fee over the policy life is materially lower than competitors who have a 'low headline charge but perpetual deduction' curve. APA's structure: heavy in Y1-10, zero from Y11, with bonus credits accumulating the whole way. Different category of fee math."*
 

@@ -270,7 +270,7 @@ For ProAchiever (APA) and similar wealth plans, the bonus structure typically lo
 | Year 2 | 18% of annual premium | $2,160 |
 | Year 3 | 20% of annual premium | $2,400 |
 | **Years 1-3 welcome bonus total** | | **~$6,360** (some illustrations show $6,000) |
-| Years 11-20 (every year) | 5% of annual premium | +$600/year |
+| Years 10-20 (every year) | 5% of annual premium | +$600/year |
 | Year 21 onwards (every year) | 8% of annual premium | +$960/year |
 
 > **The lifetime-bonus question to ask the client:** *"What seems bigger to you - the $6,360 welcome bonus in the first three years, or the $600 + $960 every year for life?"*

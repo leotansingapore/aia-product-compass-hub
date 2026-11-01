@@ -218,16 +218,16 @@ Two bonus mechanics, both calculated on **annualised regular premium** (not poli
 - Y3: 20% × $12,000 = $2,400
 - **Total over 3 years: $6,360**
 
-#### Special Bonus — loyalty bonus from Year 11 onwards
+#### Special Bonus — loyalty bonus from Year 10 onwards
 
 | Policy Year (annual premium) | Special Bonus (% of annualised regular premium) |
 |---|---|
-| Years 11-20 | **5%** |
+| Years 10-20 | **5%** |
 | Years 21 onwards | **8%** |
 
 Per-tier annual dollar amounts:
 
-| Annualised premium | Year 11-20 Special Bonus | Year 21+ Special Bonus |
+| Annualised premium | Year 10-20 Special Bonus | Year 21+ Special Bonus |
 |---|---|---|
 | $6,000/yr ($500/mo) | $300/yr | $480/yr |
 | $7,200/yr ($600/mo) | $360/yr | $576/yr |
@@ -318,7 +318,7 @@ The reframe is simple: **AIA only earns money on the charges if you break the ru
 ### Supplementary Charge — the real one
 **3.9% p.a. of the regular premium policy value, deducted monthly, for the first 10 policy years only.** Drops to **0% from Year 11 onwards.**
 
-The reframe: yes there's a charge early — but it's time-limited, and the Welcome Bonus (up to 53% over Y1-Y3 at $12K+ premium / 10-yr IIP) plus the Special Bonus (5% from Y11, 8% from Y21) more than compensate for it over the policy life. Compare to most competitor ILPs which carry a **perpetual** 1%-ish platform fee — on a $1M portfolio that's $10K/yr forever. APA's curve is "high early, then nothing." Competitors' curve is "low early, then bleeding for 40 years."
+The reframe: yes there's a charge early — but it's time-limited, and the Welcome Bonus (up to 53% over Y1-Y3 at $12K+ premium / 10-yr IIP) plus the Special Bonus (5% from Y10, 8% from Y21) more than compensate for it over the policy life. Compare to most competitor ILPs which carry a **perpetual** 1%-ish platform fee — on a $1M portfolio that's $10K/yr forever. APA's curve is "high early, then nothing." Competitors' curve is "low early, then bleeding for 40 years."
 
 ### Top-Up Premium Charge — 5%
 You can add lump sums of $1,000+ at any time. **5% of each top-up is deducted as a premium charge**; the rest buys units at NAV.
@@ -425,11 +425,11 @@ Day 5 covers each of these reframes in full as objection-handling. The point on 
 
 6. **What is the Special Bonus structure?**
 - A) 3% per year for the first 10 years
-- B) 5% per year from Year 11 to Year 20; 8% per year from Year 21 onwards (on annualised premium) ✓
+- B) 5% per year from Year 10 to Year 20; 8% per year from Year 21 onwards (on annualised premium) ✓
 - C) 8% per year for the entire policy term
 - D) One-time 10% bonus at Year 10
 
-**Why:** The Special Bonus is a loyalty bonus that runs for the rest of the policy from Year 11, calculated on annualised regular premium (not policy value).
+**Why:** The Special Bonus is a loyalty bonus that runs for the rest of the policy from Year 10, calculated on annualised regular premium (not policy value).
 
 7. **The Secondary Insured option means:**
 - A) The beneficiary inherits cash equal to the policy value

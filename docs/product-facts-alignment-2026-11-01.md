@@ -299,11 +299,17 @@ These are places where the Presenter disagrees with itself. The first commits re
 
 ### Ruled by Leo and restored
 
-- **Pro Achiever special bonus: 5% from policy year 11 to 20, 8% from year 21.** The Presenter's calculator (`src/hooks/useTenYearPlanCalculation.ts`:564-566) is right; its comparison data (`src/data/proAchieverFeatureComparison.ts`:128, "10th premium") is being fixed. Commit cd5c5331.
-  - Restored in about 60 places: `docs/product-mastery-track/week-1/day-01.md` to `day-05.md`, `docs/cheat-sheets/product-mastery/week-01.md`, `docs/cheat-sheets/core-training/concept-drawings.md`, `docs/cheat-sheets/core-training/financial-presenter-walkthrough.md`, `docs/first-60-days/week-10/day-57.md`, `docs/product-mastery-track/_drawings-playbook.md`, `src/data/caseNarratives.ts`, `src/data/proAchieverStudyBank.ts` and `src/data/proAchieverExamQuestions.ts`.
-  - Quizzes test the start year again: `src/data/proAchieverStudyBank.ts`:86 ("from year 11 onwards"), `src/data/proAchieverExamQuestions.ts`:53 ("When does the 5% special bonus kick in", correct option "from receipt of the 11th annual premium").
-  - The day-03 heading is "Q3: How does the Special Bonus pay out from Year 11 onwards?"; `src/features/global-search/headingIndex.ts` was regenerated.
-  - Not changed: the verbatim quote at `docs/product-mastery-track/week-1/day-01.md`:239 ("5% special bonus from year 10") and the image alt text at `docs/product-mastery-track/week-1/day-02.md`:60,670 ("5% Y10-20"), which describes a hand-drawn picture.
+- **Pro Achiever special bonus: 5% of the annualised regular premium upon receipt of each regular premium from the 10th annual premium onwards, increasing to 8% from the 21st annual premium.** This is the Product Summary p.2 section 3.4 wording, matching the Presenter's comparison data (`src/data/proAchieverFeatureComparison.ts`:128).
+  - Leo first ruled "from policy year 11", following the Presenter's calculator (`src/hooks/useTenYearPlanCalculation.ts`:564-566, which pays from year 11). Commit cd5c5331 taught that.
+  - He re-ruled after reading the Product Summary quote. The later commit changes the same 61 places to the 10th annual premium, or "from policy year 10" / "Y10" where a lesson counts in years.
+  - Files: `docs/product-mastery-track/week-1/day-01.md` to `day-05.md`, `docs/cheat-sheets/product-mastery/week-01.md`, `docs/cheat-sheets/core-training/concept-drawings.md`, `docs/cheat-sheets/core-training/financial-presenter-walkthrough.md`, `docs/first-60-days/week-10/day-57.md`, `docs/product-mastery-track/_drawings-playbook.md`, `src/data/caseNarratives.ts`, `src/data/proAchieverStudyBank.ts` and `src/data/proAchieverExamQuestions.ts`.
+  - Quizzes test the start again: `src/data/proAchieverStudyBank.ts`:86 ("from year 10 onwards"), `src/data/proAchieverExamQuestions.ts`:53 ("When does the 5% special bonus kick in", correct option "from receipt of the 10th annual premium").
+  - The day-03 heading is "Q3: How does the Special Bonus pay out from Year 10 onwards?"; `src/features/global-search/headingIndex.ts` was regenerated.
+  - Two sentences that tied the bonus to year 11 now say year 10:
+    - `docs/product-mastery-track/week-1/day-04.md`:395 reads "From the 10th year the Special Bonus kicks in". The supplementary charge's end at year 11 is unchanged.
+    - `src/data/caseNarratives.ts`:330 reads "the Special Bonus, which started at Year 10".
+  - The verbatim quote at `docs/product-mastery-track/week-1/day-01.md`:239 and the image alt text at `docs/product-mastery-track/week-1/day-02.md`:60,670 already say year 10 and are unchanged.
+  - The Presenter's calculator still pays from year 11 and needs the matching fix.
 - **HSG Max A annual limit is tiered: S$1,000,000 a policy year, up to S$1,350,000 at an Extended Partner Facility, up to S$2,000,000 at an AIA Partner Facility.** Commit f8a90153.
   - Restored at:
     - `docs/product-mastery-track/week-5/day-21.md`:81,102,154,164,241,269
