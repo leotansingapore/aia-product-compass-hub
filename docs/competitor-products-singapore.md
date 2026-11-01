@@ -98,7 +98,7 @@ AIA does NOT currently underwrite a standalone CareShield Life supplement.
 - **AIA Pro Lifetime Protector (II)** — protection-led regular-premium ILP (also classified as Whole Life).
 
 **Single-premium / Platinum range**
-- **AIA Platinum Wealth Venture 2.0 (PWV 2.0)** — single-premium ILP for wealth creation. *Replaces AIA Wealth Venture 1.0, which is closed to new business. PWV 2.0 brochure dated Oct 2025 is canonical.*
+- **AIA Platinum Wealth Venture 3.0 (PWV 3.0)** — ILP for wealth creation with a 5-year premium term (a 2-year term and a 1-year single premium paid from SRS are also offered). *Replaces AIA Wealth Venture 1.0, which is closed to new business. PWV 3.0 brochure correct as at 12 Oct 2026 is canonical.*
 - **AIA Platinum Wealth Elite 2.0** — single or 5-10-yr regular-premium ILP; ETFs + index funds; free legacy cover in first 3 yrs; SGD/USD.
 - **AIA Platinum Wealth Legacy** — single-premium ILP for legacy/estate planning; large death benefit multiplier.
 - **AIA Platinum Retirement Elite** — Platinum-tier ILP for retirement income.

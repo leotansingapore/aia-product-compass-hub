@@ -77,7 +77,7 @@ The fourth answer is the one you build the pitch around, and you keep the chain 
 
 | Angle | What drives them | AIA plans that lead with it |
 |---|---|---|
-| Wealth | Growth, compounding | AIA Pro Achiever 3.0, AIA Platinum Wealth Venture 2.0 (both ILPs) |
+| Wealth | Growth, compounding | AIA Pro Achiever 3.0, AIA Platinum Wealth Venture 3.0 (both ILPs) |
 | Risk | Protection, a safety net for the worst case | AIA Beyond Critical Care, AIA Absolute Critical Cover, AIA Pro Lifetime Protector (II), AIA HealthShield Gold Max |
 | Legacy | Passing things on | AIA Platinum Indexed Legacy (III), AIA Pro Lifetime Protector (II), whole life with a large sum assured |
 | Lifestyle | A specific dream | AIA Platinum Retirement Elite (income not guaranteed), on top of the CPF LIFE floor |

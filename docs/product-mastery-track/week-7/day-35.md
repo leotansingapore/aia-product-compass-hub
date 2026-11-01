@@ -25,7 +25,7 @@ By the end of Part 1 you should be able to deliver the critical risk disclosures
 
 ### Pillar 1 — Capital not guaranteed
 
-> *"AIA Platinum Wealth Venture 2.0 is an Investment-Linked Plan. Investments in this plan are subject to investment risks including the possible loss of the principal amount invested."*
+> *"AIA Platinum Wealth Venture 3.0 is an Investment-Linked Plan. Investments in this plan are subject to investment risks including the possible loss of the principal amount invested."*
 
 > *"The performance of the ILP sub-funds is not guaranteed. The value of the units may fall or rise. Past performance is not necessarily indicative of future performance."*
 
@@ -53,7 +53,7 @@ The discipline: ALWAYS use 6% in client conversation. Never 7%, never 8%. The br
 | 4 | 14-day free-look period from receipt of documents | [PS p.8, Section 7.3] |
 | 5 | Bonuses (Welcome, Investment, Performance) conditional on regular premiums paid up to date and policy not on Premium Holiday | [PS p.2, Sections 3.3-3.5; Brochure p.10] |
 | 6 | Premium Holiday Charge applies if regular premium not paid by due date | [PS p.4-5, Section 5.4] |
-| 7 | Surrender and partial withdrawal charges apply in policy years 1-10 | [PS p.5, Sections 5.5-5.6] |
+| 7 | Surrender and partial withdrawal charges apply in policy years 1-7 | [PS p.5, Sections 5.5-5.6] |
 | 8 | Fees and charges are not guaranteed — AIA may revise with not less than 1 month written notice | [PS p.13, Important Notes] |
 | 9 | Risk associated with dividend distribution — investee entities may suffer unexpected losses | [PS p.13, Section 9] |
 | 10 | Free-look refund subject to market value adjustment of underlying assets | [PS p.8, Section 7.3] |
@@ -63,7 +63,7 @@ The discipline: ALWAYS use 6% in client conversation. Never 7%, never 8%. The br
 | Item | Value |
 |---|---|
 | Free-look period | **14 days** from receipt of policy documents [PS p.8] |
-| Premium Holiday Charge | 60% (early years) tapering to 0% from year 8 [PS p.5, Section 5.4] |
+| Premium Holiday Charge | 60% (early years) tapering, none once the 5 years of regular premiums are paid [PS p.5, Section 5.4] |
 | Suicide clause | Liability limited to 100% of policy value if within 1 year of issue/reinstatement [PS p.9, Section 7.6] |
 | Material misrepresentation clause | 2-year window from issue/reinstatement [PS p.9, Section 7.6] |
 | Reinstatement window | Within 5 years from policy lapse [PS p.9, Section 7.4] |
@@ -413,7 +413,7 @@ Using the Drawings Playbook → Drawing 4 (Retirement-gap calculation):
 | Option | $200K committed | Monthly income at 65 | Liquidity | Inheritance |
 |---|---|---|---|---|
 | **CPF ERS top-up** | $200K (RA top-up) | ~$1,500/mo additional CPF Life | Zero (locked in RA) | Zero bequest after age 80-ish (CPF Life Standard payout pattern) |
-| **AIA PWV (SGD)** | $200K single-premium / phased | ~$1,000-1,100/mo dividends at 6% yield | Full (surrender any time after Y11) | Full bequest + dividend continuation via secondary insured |
+| **AIA PWV (SGD)** | $200K single-premium (from SRS) / phased | ~$1,000-1,100/mo dividends at 6% yield | Full (surrender any time after Y7) | Full bequest + dividend continuation via secondary insured |
 | **DIY (S&P 500 + dividend ETFs)** | $200K | Variable, USD-denominated, ~$700-900/mo at 5% yield after taxes | Full | 40% US estate tax + 30% dividend withholding tax — heirs inherit 60-70% |
 
 ERS top-up gives slightly higher absolute income but at the cost of total liquidity and zero bequest. PWV delivers comparable income with full flexibility and a 3-generation legacy structure.
@@ -495,7 +495,7 @@ ERS top-up gives slightly higher absolute income but at the cost of total liquid
 
 9. **The four PWV risk items that should be reframed as objection-handling are:**
 - A) Premium amount, fund choice, beneficiary, address
-- B) Capital and dividends not guaranteed; surrender/withdrawal charges in years 1-10 + Premium Holiday Charge; fees not guaranteed (1 month notice for changes); 14-day free-look (used as a closing tool, not a defensive disclosure) ✓
+- B) Capital and dividends not guaranteed; surrender/withdrawal charges in years 1-7 + Premium Holiday Charge; fees not guaranteed (1 month notice for changes); 14-day free-look (used as a closing tool, not a defensive disclosure) ✓
 - C) Age, health, occupation, income
 - D) SingPass, PayNow, GIRO, witnesses
 

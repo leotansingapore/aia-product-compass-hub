@@ -15,7 +15,7 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
       "3.60% p.a. for the first 7 policy years, deducted monthly even during Premium Holiday"
     ],
     correct: 3,
-    explanation: "PS Section 5.2 (p.4): PWV's Supplementary Charge is 3.60% p.a. of Regular Premium Policy Value, deducted monthly for the first 7 policy years (including during Premium Holiday). Pro Achiever runs 3.9% p.a. for the same 10-year duration, so PWV has the lower rate at the same duration.",
+    explanation: "PS Section 5.2 (p.4): PWV's Supplementary Charge is 3.60% p.a. of Regular Premium Policy Value, deducted monthly for the first 7 policy years (including during Premium Holiday). Pro Achiever runs 3.9% p.a. for 10 years, so PWV has the lower rate and the shorter duration.",
     category: 'product-facts'
   },
 
@@ -24,24 +24,24 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
     options: [
       "80%, 70%, 60%, 50%, 45%",
       "90%, 80%, 70%, 60%, 50%",
-      "60%, 55%, 50%, 40%, 30%",
+      "50%, 40%, 30%, 20%, 10%",
       "80%, 60%, 40%, 20%, 10%"
     ],
     correct: 2,
-    explanation: "PS Section 5.5 (p.5) Full Surrender Charge schedule: Y1: 70% / Y2: 65% / Y3: 60% / Y4: 55% / Y5: 50% / Y6: 40% / Y7: 30% / Y8: 20% / Y9: 10% / Y10: 5% / Y11+: 0%. The Years 3-7 sequence is therefore 60%, 55%, 50%, 40%, 30%.",
+    explanation: "PS Section 5.5 (p.5) Full Surrender Charge schedule: Y1: 60% / Y2: 60% / Y3: 50% / Y4: 40% / Y5: 30% / Y6: 20% / Y7: 10% / Y8+: 0%. The Years 3-7 sequence is therefore 50%, 40%, 30%, 20%, 10%.",
     category: 'product-facts'
   },
 
   {
     question: "How does the Investment Bonus work in PWV per the canonical Product Summary?",
     options: [
-      "2.5% of annualised regular premium credited at the beginning of each of policy years 9, 10, 11 and 12 (10% cumulative), provided premiums are paid and the policy is not on Premium Holiday",
+      "2.5% of annualised regular premium credited at the beginning of each of policy years 8, 9, 10 and 11 (10% cumulative), provided premiums are paid and the policy is not on Premium Holiday",
       "10% of annualised premium paid once at Year 10",
       "5% of annualised premium paid annually from Year 5 onwards",
       "7% of annualised premium spread equally across Years 6 to 8"
     ],
     correct: 0,
-    explanation: "PS Section 3.4 (p.2): the Investment Bonus is 2.5% of annualised regular premium credited at the beginning of each of policy years 9, 10, 11 and 12, totalling 10% cumulative. The bonus is paid as regular premium units, provided the policy is in force and not on Premium Holiday.",
+    explanation: "PS Section 3.4 (p.2): the Investment Bonus is 2.5% of annualised regular premium credited at the beginning of each of policy years 8, 9, 10 and 11, totalling 10% cumulative. The bonus is paid as regular premium units, provided the policy is in force and not on Premium Holiday.",
     category: 'product-facts'
   },
 
@@ -67,7 +67,7 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
       "0% — no charge after paying 2 premiums"
     ],
     correct: 1,
-    explanation: "PS Section 5.4 (p.5) Premium Holiday Charge Annual Rate: 1st premium = 60%, 2nd = 30%, 3rd = 20%, 4th = 20%, 5th = 10%, 6th = 10%, 7th = 5%, 8th onwards = 0%. After 2 annual premiums paid, the applicable annual rate is 30% (charged monthly as 30%/12 of annualised regular premium).",
+    explanation: "PS Section 5.4 (p.5) Premium Holiday Charge Annual Rate: 1st premium = 60%, 2nd = 30%, 3rd = 20%, 4th = 20%; the charge applies only while the policy is on Premium Holiday before the 5 years of regular premiums are paid. After 2 annual premiums paid, the applicable annual rate is 30% (charged monthly as 30%/12 of annualised regular premium).",
     category: 'product-facts'
   },
 
@@ -119,20 +119,20 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
       "An annual bonus equal to the fund's actual performance minus a benchmark"
     ],
     correct: 1,
-    explanation: "PS Section 3.5: Performance Bonus is 0.40% p.a. of Regular Premium Policy Value, payable yearly from the beginning of the 8th policy year onwards (provided all regular premiums paid). Per PWV 2.0 PS v1.0 042025.",
+    explanation: "PS Section 3.5: Performance Bonus is 0.40% p.a. of Regular Premium Policy Value, payable yearly from the beginning of the 8th policy year onwards (provided all regular premiums paid). Per PWV 3.0 PS ver 1.0 (Oct 2026).",
     category: 'product-facts'
   },
 
   {
-    question: "What methods of premium payment does PWV accept?",
+    question: "Which PWV 3.0 premium option is paid from SRS?",
     options: [
-      "Cash and CPF OA contributions",
-      "Cash and SRS contributions",
-      "Cash, CPF, and SRS contributions",
-      "Cash only -- no CPF or SRS"
+      "Only the 5-year regular premium",
+      "Only the 2-year premium",
+      "None, PWV does not accept SRS",
+      "The 1-year single premium, paid from SRS only, not cash"
     ],
     correct: 3,
-    explanation: "PWV premiums are payable using cash only. Neither CPF nor SRS contributions are accepted. This means all premiums come from the policyholder's liquid assets.",
+    explanation: "PWV 3.0's 1-year single premium (minimum S$15,000) is paid from SRS only, not cash. The 5-year and 2-year plans are paid as regular premiums.",
     category: 'product-facts'
   },
 
@@ -214,7 +214,7 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
       "Show a timeline: Welcome Bonus in Years 1-3 (max 12%), Investment Bonus at Years 8-11 (2.5%×4), Performance Bonus from Year 8 (0.40%), Performance Bonus annually from Year 8 onwards"
     ],
     correct: 3,
-    explanation: "Numbers-oriented clients respond best to a clear, visual timeline showing when each bonus activates and how they compound. The three distinct layers (upfront, one-time at Year 8, and recurring from Year 8) demonstrate how the policy rewards long-term commitment.",
+    explanation: "Numbers-oriented clients respond best to a clear, visual timeline showing when each bonus activates and how they compound. The three distinct layers (upfront, Years 8 to 11, and recurring from Year 8) demonstrate how the policy rewards long-term commitment.",
     category: 'sales-angles'
   },
 
@@ -227,7 +227,7 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
       "Suggest they wait for fixed deposit rates to drop further"
     ],
     correct: 0,
-    explanation: "Never push all-in. Show the opportunity cost: a portion earning 6% via PWV dividends produces significantly more income than the same amount at 1.5% FD. Keeping some in FDs for liquidity makes the recommendation balanced and trustworthy. PS Section 5.5 (p.5): full liquidity (0% surrender charge) is reached from policy year 11.",
+    explanation: "Never push all-in. Show the opportunity cost: a portion earning 6% via PWV dividends produces significantly more income than the same amount at 1.5% FD. Keeping some in FDs for liquidity makes the recommendation balanced and trustworthy. PS Section 5.5 (p.5): full liquidity (0% surrender charge) is reached from policy year 8.",
     category: 'sales-angles'
   },
 
@@ -236,11 +236,11 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
     options: [
       "Offer to waive the minimum premium requirement",
       "Suggest they wait until their income doubles before starting",
-      "Cite PS Section 6.1 (p.6) — minimum is S$18,000/year (S$650/month) — and reframe a flagship S$42,000/year structure as S$1,000/month to compare to their discretionary spending and to longer-term commitments",
+      "Cite PS Section 6.1 (p.6) — minimum is S$18,000/year (S$1,500/month) — and reframe a flagship S$42,000/year structure as S$3,500/month to compare to their discretionary spending and to longer-term commitments",
       "Recommend Pro Achiever instead since PWV is only for wealthy clients"
     ],
     correct: 2,
-    explanation: "PS Section 6.1 (p.6): minimum regular premium is S$18,000 annual / S$650 monthly. Reframing a flagship S$42,000/year structure as S$1,000/month (qualifying for the 12% Welcome Bonus band (top tier) per PS Section 3.3) makes the amount manageable and lands the long-vs-short-commitment comparison.",
+    explanation: "PS Section 6.1 (p.6): minimum regular premium is S$18,000 annual / S$1,500 monthly. Reframing a flagship S$42,000/year structure as S$3,500/month (qualifying for the 12% Welcome Bonus band (top tier) per PS Section 3.3) makes the amount manageable and lands the long-vs-short-commitment comparison.",
     category: 'sales-angles'
   },
 
@@ -274,7 +274,7 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
     question: "How should you present PWV's supplementary charge versus Pro Achiever per the canonical Product Summary?",
     options: [
       "Tell them the charges are identical between both products",
-      "Highlight that PWV has a lower rate (3.60% vs 3.9%) for the same 10-year duration on Regular Premium Policy Value",
+      "Highlight that PWV has a lower rate (3.60% vs 3.9%) and a shorter duration (7 vs 10 years) on Regular Premium Policy Value",
       "Explain that Pro Achiever has higher charges because it offers better fund performance",
       "Suggest clients should ignore charges entirely and focus only on returns"
     ],
@@ -319,10 +319,10 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
       "Deny that surrender charges exist",
       "Agree and suggest a savings account instead",
       "Tell them surrender charges are identical across all insurance products",
-      "Be transparent about the canonical taper (Y1 70%, Y5 50%, Y10 5%, Y11+ 0%) and frame Year 11 as the full-liquidity milestone, while noting dividend withdrawals are always charge-free"
+      "Be transparent about the canonical taper (Y1 60%, Y5 30%, Y7 10%, Y8+ 0%) and frame Year 8 as the full-liquidity milestone, while noting dividend withdrawals are always charge-free"
     ],
     correct: 3,
-    explanation: "PS Section 5.5 (p.5): the surrender taper runs Y1 70% / Y2 65% / Y3 60% / Y4 55% / Y5 50% / Y6 40% / Y7 30% / Y8 20% / Y9 10% / Y10 5% / Y11+ 0%. Dividends and reinvested-dividend unit withdrawals are always exempt from partial-withdrawal charges per PS Section 8.4.",
+    explanation: "PS Section 5.5 (p.5): the surrender taper runs Y1 60% / Y2 60% / Y3 50% / Y4 40% / Y5 30% / Y6 20% / Y7 10% / Y8+ 0%. Dividends and reinvested-dividend unit withdrawals are always exempt from partial-withdrawal charges per PS Section 8.4.",
     category: 'objection-handling'
   },
 
@@ -366,9 +366,9 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "A client says: 'I'll wait for Version 3.0 -- maybe the bonuses will be better.' What is your best response?",
+    question: "A client says: 'I'll wait for the next version -- maybe the bonuses will be better.' What is your best response?",
     options: [
-      "Confirm that Version 3.0 is coming soon with improved features",
+      "Confirm that a new version is coming soon with improved features",
       "Tell them this is the final version with no future updates",
       "Every year of delay means missing welcome bonus credits, pushing back the Investment Bonus timeline, and losing compound growth time",
       "Offer a free upgrade to the next version as a special arrangement"
@@ -382,12 +382,12 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
     question: "A prospect says: 'I'm worried about locking up multi-year premiums in one product.' How do you reassure them per the canonical Product Summary?",
     options: [
       "Tell them the amount is small and should not worry them",
-      "Reframe to a monthly figure (PS Section 6.1 minimum is S$650/month) over the 5-year flagship structure, walk through the canonical surrender taper (PS Section 5.5: Y1 70% to Y11+ 0%), and note dividend withdrawals are always charge-free",
+      "Reframe to a monthly figure (PS Section 6.1 minimum is S$1,500/month) over the 5-year flagship structure, walk through the canonical surrender taper (PS Section 5.5: Y1 60% to Y8+ 0%), and note dividend withdrawals are always charge-free",
       "Suggest they invest only half the amount in PWV",
       "Agree it is a significant lock-up and recommend they reconsider"
     ],
     correct: 1,
-    explanation: "Reframing to monthly (PS Section 6.1: S$650/month minimum) plus walking through the canonical surrender taper (PS Section 5.5: 70% in Y1 down to 0% from Y11) addresses the lock-up directly. Dividend and reinvested-dividend unit withdrawals are exempt from partial-withdrawal charges (PS Section 8.4).",
+    explanation: "Reframing to monthly (PS Section 6.1: S$1,500/month minimum) plus walking through the canonical surrender taper (PS Section 5.5: 60% in Y1 down to 0% from Y8) addresses the lock-up directly. Dividend and reinvested-dividend unit withdrawals are exempt from partial-withdrawal charges (PS Section 8.4).",
     category: 'objection-handling'
   },
 
@@ -448,15 +448,15 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "In a roleplay, a retiree asks: 'I need access to some funds before full liquidity at Year 11. What are my options?' What should you explain per the canonical Product Summary?",
+    question: "In a roleplay, a retiree asks: 'I need access to some funds before full liquidity at Year 8. What are my options?' What should you explain per the canonical Product Summary?",
     options: [
-      "'You have no access to any funds until Year 11.'",
+      "'You have no access to any funds until Year 8.'",
       "'You can surrender the full policy at any time with no charges.'",
-      "'Partial withdrawals are allowed from policy year 1 with a declining Charge Factor (Y1: 2.333; Y5: 1.000; Y10: 0.053; Y11+: 0). Dividend and reinvested-dividend unit withdrawals are always charge-free. A minimum policy value of S$10,000 must remain after any withdrawal, with a S$1,000 minimum withdrawal amount.'",
-      "'Only top-up withdrawals are available before Year 11.'"
+      "'Partial withdrawals are allowed from policy year 1, with a Partial Withdrawal Charge in the first 7 policy years and none from Year 8. Dividend and reinvested-dividend unit withdrawals are always charge-free. A minimum policy value of S$10,000 must remain after any withdrawal, with a S$1,000 minimum withdrawal amount.'",
+      "'Only top-up withdrawals are available before Year 8.'"
     ],
     correct: 2,
-    explanation: "PS Sections 5.6 (p.4) and 6.4 (pp.6-7): partial withdrawals are allowed from policy year 1, with the Partial Withdrawal Charge Factor declining each year and reaching 0 from Year 11. Minimum withdrawal is S$1,000 with S$10,000 minimum policy value remaining. Dividend distributions and reinvested-dividend unit withdrawals are exempt per PS Section 8.4.",
+    explanation: "PS Sections 5.6 (p.4) and 6.4 (pp.6-7): partial withdrawals are allowed from policy year 1, with a Partial Withdrawal Charge in the first 7 policy years and none from Year 8. Minimum withdrawal is S$1,000 with S$10,000 minimum policy value remaining. Dividend distributions and reinvested-dividend unit withdrawals are exempt per PS Section 8.4.",
     category: 'roleplay'
   },
 

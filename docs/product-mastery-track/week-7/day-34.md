@@ -260,16 +260,16 @@ The compliance discipline. Don't restructure if:
 
 Respect any case where the math says hold. The FC who acknowledges this earns more trust than the FC who always recommends surrender.
 
-## The full surrender charge schedule (PWV 2.0 — for comparison purposes)
+## The full surrender charge schedule (PWV 3.0 — for comparison purposes)
 
 | Policy Year | Charge (illustrative) |
 |---|---|
-| 1 | 70% |
-| 5 | 50% |
-| 7 | 30% |
-| 11+ | **0%** |
+| 1 | 60% |
+| 5 | 30% |
+| 7 | 10% |
+| 8+ | **0%** |
 
-[PS v1.0 042025 Section 5.5. Verify the exact year-by-year tapering schedule in iPOS or the policy contract.]
+[PS ver 1.0 (Oct 2026) Section 5.5. Verify the exact year-by-year tapering schedule in iPOS or the policy contract.]
 
 The legacy ILP's surrender schedule will differ — pull it from its policy contract. Compare both schedules side-by-side before recommending surrender.
 

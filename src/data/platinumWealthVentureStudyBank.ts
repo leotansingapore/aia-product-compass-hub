@@ -25,31 +25,31 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     category: 'product-facts'
   },
 
-  // Q2 — correct: 3
+  // Q2 — correct: 0
   {
-    question: "How many years of premium payments are required for AIA Platinum Wealth Venture 2.0 per the canonical Product Summary v1.0 042025?",
+    question: "How many years of premium payments are required for the main plan of AIA Platinum Wealth Venture 3.0 per the canonical Product Summary ver 1.0 (Oct 2026)?",
     options: [
       "5 years of regular premium payments (contractual)",
       "10 years of regular premium payments",
       "3 years of regular premium payments",
-      "8 years per the Product Summary; 5-year structure is field practice"
+      "8 years of regular premium payments"
     ],
-    correct: 3,
-    explanation: "Per PS Section 2 (p.1), AIA Platinum Wealth Venture 2.0 has a 5-year premium term per PS v1.0 042025 Section 2.",
+    correct: 0,
+    explanation: "Per PS Section 2 (p.1), the main plan of AIA Platinum Wealth Venture 3.0 has a 5-year premium term per PS ver 1.0 (Oct 2026) Section 2. A 2-year term and a 1-year single premium paid from SRS are also offered.",
     category: 'product-facts'
   },
 
   // Q3 — correct: 0
   {
-    question: "What is the minimum annual premium for AIA Platinum Wealth Venture 2.0 per the canonical PS v1.0 042025?",
+    question: "What is the minimum annual premium for the 5-year plan of AIA Platinum Wealth Venture 3.0 per the canonical PS ver 1.0 (Oct 2026)?",
     options: [
-      "S$18,000 annual (S$3,900 semi-annual / S$1,950 quarterly / S$650 monthly)",
+      "S$18,000 annual (S$9,000 semi-annual / S$4,500 quarterly / S$1,500 monthly)",
       "S$12,000 per year",
       "S$24,000 per year",
-      "S$18,000 per year"
+      "S$30,000 per year"
     ],
     correct: 0,
-    explanation: "PS Section 6.1 (p.6) sets the minimum regular premium at S$18,000 annual / S$3,900 semi-annual / S$1,950 quarterly / S$650 monthly. AIA reserves the right to revise.",
+    explanation: "PS Section 6.1 (p.6) sets the minimum regular premium on the 5-year plan at S$18,000 annual / S$9,000 semi-annual / S$4,500 quarterly / S$1,500 monthly (2-year plan: S$48,000 a year; 1-year single premium: S$15,000). AIA reserves the right to revise.",
     category: 'product-facts'
   },
 
@@ -69,10 +69,10 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
 
   // Q5 — correct: 1
   {
-    question: "What is the total Welcome Bonus for a PWV policy with annualised regular premium of S$12,000 or above per the canonical Product Summary?",
+    question: "What is the total Welcome Bonus for a PWV policy with annualised regular premium of S$42,000 or above per the canonical Product Summary?",
     options: [
       "10% over Years 1-2",
-      "35% cumulative across years 1-3 (3% / 5% / 7% / 9% / 11%)",
+      "12% cumulative across years 1-3 (3% / 4% / 5%)",
       "15% over Years 1-3 (5% each year)",
       "20% over Years 1-4"
     ],
@@ -83,7 +83,7 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
 
   // Q6 — correct: 2
   {
-    question: "What is the Welcome Bonus structure for a PWV policy with annualised regular premium between S$9,000 and S$11,999?",
+    question: "What is the Welcome Bonus structure for a PWV policy with annualised regular premium between S$24,000 and S$41,999?",
     options: [
       "5% in Year 1 and 5% in Year 2, totaling 10%",
       "10% in Year 1 only",
@@ -91,7 +91,7 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "3% per year for 5 years, totaling 15%"
     ],
     correct: 2,
-    explanation: "PS Section 3.3 (p.2): premiums in the S$24,000-S$41,999 band earn Welcome Bonus rates of 3%, 4%, 5%, 7%, 7% in policy years 1-3, totalling 3% (Year 1 only). The lowest band (S$18,000-S$23,999) totals 16%.",
+    explanation: "PS Section 3.3 (p.2): premiums in the S$24,000-S$41,999 band earn a Welcome Bonus of 3% in policy year 1 only (0% in years 2 and 3), totalling 3%. Below S$24,000 there is no Welcome Bonus.",
     category: 'product-facts'
   },
 
@@ -99,13 +99,13 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
   {
     question: "When is the Investment Bonus paid in PWV per the canonical Product Summary?",
     options: [
-      "At the beginning of policy years 9, 10, 11 and 12 (four credits)",
+      "At the beginning of policy years 8, 9, 10 and 11 (four credits)",
       "At the start of Year 10 only",
       "At the end of the surrender charge period",
       "At the beginning of the 8th policy year only"
     ],
     correct: 0,
-    explanation: "PS Section 3.4 (p.2): Investment Bonus is paid as four separate credits at the beginning of policy years 9, 10, 11 and 12, provided the basic policy is in force and not on Premium Holiday.",
+    explanation: "PS Section 3.4 (p.2): Investment Bonus is paid as four separate credits at the beginning of policy years 8, 9, 10 and 11, provided the basic policy is in force and not on Premium Holiday.",
     category: 'product-facts'
   },
 
@@ -115,11 +115,11 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     options: [
       "5% one-time of annualised regular premium",
       "7% one-time of annualised regular premium at Year 8",
-      "2.5% of annualised regular premium each at Years 9, 10, 11, 12 (10% cumulative)",
+      "2.5% of annualised regular premium each at Years 8, 9, 10, 11 (10% cumulative)",
       "3% of annualised regular premium one-time"
     ],
     correct: 2,
-    explanation: "PS Section 3.4 (p.2): Investment Bonus is 2.5% of annualised regular premium credited at the beginning of each of policy years 9, 10, 11 and 12, totalling 10% cumulative.",
+    explanation: "PS Section 3.4 (p.2): Investment Bonus is 2.5% of annualised regular premium credited at the beginning of each of policy years 8, 9, 10 and 11, totalling 10% cumulative.",
     category: 'product-facts'
   },
 
@@ -133,25 +133,25 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "2.00% p.a. of fund value from Year 8 onwards"
     ],
     correct: 0,
-    explanation: "PS v1.0 042025 Section 3.5: Performance Bonus is 0.40% p.a. of Regular Premium Policy Value, payable yearly from the beginning of the 8th policy year onwards (provided all regular premiums paid).",
+    explanation: "PS ver 1.0 (Oct 2026) Section 3.5: Performance Bonus is 0.40% p.a. of Regular Premium Policy Value, payable yearly from the beginning of the 8th policy year onwards (provided all regular premiums paid).",
     category: 'product-facts'
   },
 
   // Q10 — correct: 0
   {
-    question: "What is the supplementary charge rate and duration in PWV per the canonical Product Summary?",
+    question: "What is the supplementary charge rate and duration on the PWV 5-year plan per the canonical Product Summary?",
     options: [
       "3.60% p.a. of Regular Premium Policy Value for the first 7 policy years, deducted monthly even during Premium Holiday",
       "2.5% p.a. for the first 5 years",
-      "3.6% p.a. for the first 7 years",
+      "3.6% p.a. for the first 5 years",
       "3.9% p.a. for the first 10 years"
     ],
     correct: 0,
-    explanation: "PS Section 5.2 (p.4): Supplementary Charge is 3.60% p.a. of Regular Premium Policy Value, deducted monthly for the first 7 policy years, including during Premium Holiday.",
+    explanation: "PS Section 5.2 (p.4): Supplementary Charge is 3.60% p.a. of Regular Premium Policy Value, deducted monthly for the first 7 policy years, including during Premium Holiday. The 2-year and 1-year plans charge 2.9% p.a. over the same 7 years.",
     category: 'product-facts'
   },
 
-  // Q11 — correct: 1
+  // Q11 — correct: 3
   {
     question: "After which policy year do supplementary charges drop to zero in PWV per the canonical Product Summary?",
     options: [
@@ -160,7 +160,7 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "After Year 8 when bonuses begin",
       "After Year 7 of the policy"
     ],
-    correct: 1,
+    correct: 3,
     explanation: "PS Section 5.2 (p.4): the 3.60% p.a. Supplementary Charge applies for the first 7 policy years, then drops to zero permanently.",
     category: 'product-facts'
   },
@@ -172,14 +172,14 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "80% of Regular Premium Policy Value",
       "100% of Regular Premium Policy Value",
       "50% of Regular Premium Policy Value",
-      "70% of Regular Premium Policy Value"
+      "60% of Regular Premium Policy Value"
     ],
     correct: 3,
-    explanation: "PS Section 5.5 (p.5): Year 1 Full Surrender Charge is 70% of Regular Premium Policy Value (Year 2: 65%). The schedule slides down each year and reaches 0% from policy year 11 onwards.",
+    explanation: "PS Section 5.5 (p.5): Year 1 Full Surrender Charge is 60% of Regular Premium Policy Value (Year 2: 60%). The schedule slides down each year and reaches 0% from policy year 8 onwards.",
     category: 'product-facts'
   },
 
-  // Q13 — correct: 1
+  // Q13 — correct: 0
   {
     question: "From which policy year onwards are there no surrender charges in PWV per the canonical Product Summary?",
     options: [
@@ -188,8 +188,8 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "From Year 5 onwards when premiums stop",
       "From Year 6 onwards after the minimum holding period"
     ],
-    correct: 1,
-    explanation: "PS Section 5.5 (p.5) schedule: Y1: 70% / Y2: 65% / Y3: 60% / Y4: 55% / Y5: 50% / Y6: 40% / Y7: 30% / Y8: 20% / Y9: 10% / Y10: 5% / Y11 onwards: 0%.",
+    correct: 0,
+    explanation: "PS Section 5.5 (p.5) schedule: Y1: 60% / Y2: 60% / Y3: 50% / Y4: 40% / Y5: 30% / Y6: 20% / Y7: 10% / Y8 onwards: 0%.",
     category: 'product-facts'
   },
 
@@ -307,15 +307,15 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
 
   // Q22 — correct: 2
   {
-    question: "What payment methods are accepted for PWV premiums?",
+    question: "Which PWV 3.0 premium option is paid from SRS?",
     options: [
-      "Cash, CPF, and SRS contributions",
-      "Cash and SRS only",
-      "Cash only — no CPF or SRS",
-      "Cash, CPF, SRS, and Medisave"
+      "Only the 5-year regular premium",
+      "None, PWV does not accept SRS",
+      "The 1-year single premium, paid from SRS only, not cash",
+      "Only the 2-year premium"
     ],
     correct: 2,
-    explanation: "PWV premiums are payable using cash only. CPF and SRS contributions are not accepted.",
+    explanation: "PWV 3.0's 1-year single premium (minimum S$15,000) is paid from SRS only, not cash. The 5-year and 2-year plans are paid as regular premiums.",
     category: 'product-facts'
   },
 
@@ -339,11 +339,11 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     options: [
       "No, partial withdrawals are not allowed until Year 3",
       "No, withdrawals are blocked entirely until Year 8",
-      "Yes, allowed from policy year 1 with a Partial Withdrawal Charge Factor of 2.333 in Year 1, declining yearly to 0 from Year 11",
+      "Yes, allowed from policy year 1, with a Partial Withdrawal Charge in the first 7 policy years and none from Year 8",
       "Only withdrawals from top-up units are allowed"
     ],
     correct: 2,
-    explanation: "PS Sections 5.6 (p.4) and 6.4 (pp.6-7): partial withdrawals are allowed from policy year 1, subject to a Partial Withdrawal Charge Factor that starts at 2.333 in Year 1 and declines each year (Y2: 1.857, Y5: 1.000, Y10: 0.053, Y11+: 0). Minimum withdrawal is S$1,000 with S$10,000 minimum policy value remaining.",
+    explanation: "PS Sections 5.6 (p.4) and 6.4 (pp.6-7): partial withdrawals are allowed from policy year 1. A Partial Withdrawal Charge applies to withdrawals from regular premium units in the first 7 policy years, with none from Year 8, and it does not apply to top-ups or reinvested dividends. Minimum withdrawal is S$1,000 with S$10,000 minimum policy value remaining.",
     category: 'product-facts'
   },
 
@@ -491,13 +491,13 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
   {
     question: "What is the total minimum premium commitment for a PWV policy over 5 years at the canonical minimum annual premium?",
     options: [
-      "S$39,000 total over 5 years (S$18,000 annual minimum x 5)",
-      "S$90,000 total over 5 years",
+      "S$90,000 total over 5 years (S$18,000 annual minimum x 5)",
+      "S$39,000 total over 5 years",
       "S$120,000 total over 5 years",
       "S$50,000 total over 5 years"
     ],
     correct: 0,
-    explanation: "PS Section 6.1 (p.6): minimum annual premium is S$18,000. Over a 5-year flagship structure that totals S$39,000. The contractual term is 8 years (PS Section 2 p.1), so 8 x S$18,000 = S$62,400 if held to the full PS term.",
+    explanation: "PS Section 6.1 (p.6): minimum annual premium on the 5-year plan is S$18,000. Over the 5-year premium term that totals 5 x S$18,000 = S$90,000.",
     category: 'product-facts'
   },
 
@@ -539,7 +539,7 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "100% annual rate of annualised regular premium"
     ],
     correct: 0,
-    explanation: "PS Section 5.4 (p.5) Premium Holiday Charge Annual Rate by number of regular premiums paid: 1st = 60%, 2nd = 30%, 3rd = 20%, 4th = 20%, 5th = 10%, 6th = 10%, 7th = 5%, 8th onwards = 0%. The charge ceases from the 8th annual / 16th semi-annual / 32nd quarterly / 96th monthly premium.",
+    explanation: "PS Section 5.4 (p.5) Premium Holiday Charge Annual Rate by number of regular premiums paid: 1st = 60%, 2nd = 30%, 3rd = 20%, 4th = 20%. The charge applies only while the policy is on Premium Holiday before the 5 years of regular premiums are paid.",
     category: 'product-facts'
   },
 
@@ -635,13 +635,13 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
   {
     question: "How should you position the triple bonus structure (Welcome + Investment + Performance)?",
     options: [
-      "As three layers of rewards that compound over time — upfront, at Year 8, and annually thereafter",
+      "As three layers of rewards that compound over time — upfront, in Years 8 to 11, and annually from Year 8",
       "As guaranteed returns that make PWV a risk-free investment",
       "As replacements for the supplementary charges paid in the first 7 years",
       "As bonuses that are only meaningful for policies above S$50,000/year"
     ],
     correct: 0,
-    explanation: "Present the three bonuses as distinct layers: Welcome Bonus upfront (Years 1-3), Investment Bonus one-time at Year 8, and Performance Bonus annually from Year 8.",
+    explanation: "Present the three bonuses as distinct layers: Welcome Bonus upfront (Years 1-3), Investment Bonus at the start of each of Years 8 to 11, and Performance Bonus annually from Year 8.",
     category: 'sales-angles'
   },
 
@@ -703,15 +703,15 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
 
   // Q50 — correct: 3
   {
-    question: "How do you position the 0% surrender charge from Year 11 onwards to a commitment-averse client?",
+    question: "How do you position the 0% surrender charge from Year 8 onwards to a commitment-averse client?",
     options: [
       "Tell them they can surrender penalty-free from Year 5 when premiums end",
       "Explain that surrender charges are waived for hardship cases at any time",
       "Say that AIA guarantees no loss upon surrender at any point",
-      "Highlight the gradual taper to zero (Y1 70%, Y5 50%, Y10 5%, Y11+ 0%) and frame Year 11 as the full-liquidity milestone"
+      "Highlight the gradual taper to zero (Y1 60%, Y5 30%, Y7 10%, Y8+ 0%) and frame Year 8 as the full-liquidity milestone"
     ],
     correct: 3,
-    explanation: "PS Section 5.5 (p.5): full surrender charge tapers from 70% (Y1) down to 5% (Y10) and reaches 0% from policy year 11 onwards. Frame the schedule as a gradual return of capital with full-liquidity from Y11.",
+    explanation: "PS Section 5.5 (p.5): full surrender charge tapers from 60% (Y1) down to 10% (Y7) and reaches 0% from policy year 8 onwards. Frame the schedule as a gradual return of capital with full-liquidity from Y8.",
     category: 'sales-angles'
   },
 
@@ -720,7 +720,7 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     question: "A client compares PWV's 3.60% supplementary charge to Pro Achiever's 3.9%. How do you frame this per the canonical Product Summary?",
     options: [
       "Tell them the charges are not comparable since they apply to different policy values",
-      "Highlight that PWV's rate is lower (3.60% vs 3.9%) for the same 10-year duration on Regular Premium Policy Value",
+      "Highlight that PWV's rate is lower (3.60% vs 3.9%) and runs for a shorter period (7 vs 10 years) on Regular Premium Policy Value",
       "Explain that Pro Achiever's higher charge means better fund performance",
       "Suggest they ignore charges entirely and focus on returns"
     ],
@@ -820,7 +820,7 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "Focus only on the welcome bonus since it is paid first",
       "Avoid specific numbers and talk about the emotional security benefits",
       "Compare the bonus rates to fixed deposit interest rates only",
-      "Show a timeline: Welcome Bonus Years 1-3, Investment Bonus Year 8, Performance Bonus Year 8 onwards"
+      "Show a timeline: Welcome Bonus Years 1-3, Investment Bonus Years 8-11, Performance Bonus Year 8 onwards"
     ],
     correct: 3,
     explanation: "Numbers-oriented clients respond best to a clear timeline showing when each bonus kicks in and how they compound over the policy duration.",
@@ -832,12 +832,12 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     question: "How should you address a client who says PWV's minimum premium feels too high?",
     options: [
       "Suggest they split the premium with a family member",
-      "Reframe the canonical minimum (S$18,000 annual = S$650/month) and compare to discretionary spending",
+      "Reframe the canonical minimum (S$18,000 annual = S$1,500/month) and compare to discretionary spending",
       "Offer to waive the minimum premium requirement",
       "Recommend they wait until their income doubles"
     ],
     correct: 1,
-    explanation: "PS Section 6.1 (p.6) sets the minimum at S$18,000 annual / S$650 monthly. Reframing the headline figure into a monthly lifestyle number is the right play; field flagship structures often start higher (e.g. S$12,000/year tier for the 12% Welcome Bonus (top tier) band).",
+    explanation: "PS Section 6.1 (p.6) sets the minimum at S$18,000 annual / S$1,500 monthly. Reframing the headline figure into a monthly lifestyle number is the right play; field flagship structures often start higher (e.g. S$42,000/year tier for the 12% Welcome Bonus (top tier) band).",
     category: 'sales-angles'
   },
 
@@ -885,15 +885,15 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
 
   // Q63 — correct: 1
   {
-    question: "How should you present the difference between PWV Version 1.0 and 2.0 to a new prospect?",
+    question: "How should you present the difference between PWV Version 2.0 and 3.0 to a new prospect?",
     options: [
-      "Version 2.0 has higher bonuses and lower charges across the board",
-      "Focus on Version 2.0's current terms without dwelling on version differences — present what's available now",
-      "Explain that Version 1.0 was much better and they missed out",
-      "Tell them Version 3.0 is coming soon and they should wait"
+      "Version 3.0 has higher bonuses and lower charges across the board",
+      "Focus on Version 3.0's current terms without dwelling on version differences — present what's available now",
+      "Explain that Version 2.0 was much better and they missed out",
+      "Tell them Version 4.0 is coming soon and they should wait"
     ],
     correct: 1,
-    explanation: "Present the current offering (Version 2.0) confidently. Dwelling on past versions creates confusion and potential regret rather than forward momentum.",
+    explanation: "Present the current offering (Version 3.0) confidently. Dwelling on past versions creates confusion and potential regret rather than forward momentum.",
     category: 'sales-angles'
   },
 
@@ -915,13 +915,13 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
   {
     question: "How should you present the multi-year premium commitment to a prospect hesitant about the amount?",
     options: [
-      "Break it into a monthly figure (e.g. S$1,000/month for 5 years on a S$42,000/year structure) and contrast with longer 10-20 year commitments",
+      "Break it into a monthly figure (e.g. S$3,500/month for 5 years on a S$42,000/year structure) and contrast with longer 10-20 year commitments",
       "Guarantee that they will get back the total premium within 8 years",
       "Offer a payment plan that extends beyond the 5-year structure to reduce monthly amounts",
       "Suggest they borrow money to meet the minimum premium"
     ],
     correct: 0,
-    explanation: "Reframe the headline total into a monthly figure over the 5-year flagship structure (e.g. S$12,000/year = S$1,000/month). The 5-year flagship is field practice; PS contractual term is 8 years (Section 2 p.1).",
+    explanation: "Reframe the headline total into a monthly figure over the 5-year flagship structure (e.g. S$42,000/year = S$3,500/month). The 5-year term is the contractual premium term of the main plan (PS Section 2 p.1).",
     category: 'sales-angles'
   },
 
@@ -935,11 +935,11 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     options: [
       "Agree and suggest a cheaper product like Pro Achiever instead",
       "Tell them the minimum is negotiable if they sign up today",
-      "Reframe PWV as a wealth accumulation ILP, not insurance — and remind them the canonical PS minimum is S$18,000/year (S$650/month) per PS Section 6.1",
+      "Reframe PWV as a wealth accumulation ILP, not insurance — and remind them the canonical PS minimum is S$18,000/year (S$1,500/month) per PS Section 6.1",
       "Say that all high-net-worth products require S$18,000/year"
     ],
     correct: 2,
-    explanation: "Reframe the conversation: PWV is primarily a wealth-building ILP with bonus structure and death benefit. PS Section 6.1 (p.6) sets the minimum regular premium at S$18,000 annual / S$650 monthly — entry-level is more accessible than many prospects assume.",
+    explanation: "Reframe the conversation: PWV is primarily a wealth-building ILP with bonus structure and death benefit. PS Section 6.1 (p.6) sets the minimum regular premium at S$18,000 annual / S$1,500 monthly — entry-level is more accessible than many prospects assume.",
     category: 'objection-handling'
   },
 
@@ -964,10 +964,10 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "Deny that surrender charges exist",
       "Agree and suggest they consider a savings account instead",
       "Say surrender charges are the same across all insurance products",
-      "Walk them through the canonical taper (Y1 70%, Y5 50%, Y10 5%, Y11+ 0%) and frame Year 11 as the full-liquidity milestone"
+      "Walk them through the canonical taper (Y1 60%, Y5 30%, Y7 10%, Y8+ 0%) and frame Year 8 as the full-liquidity milestone"
     ],
     correct: 3,
-    explanation: "Be transparent. PS Section 5.5 (p.5) schedule: Y1 70% / Y2 65% / Y3 60% / Y4 55% / Y5 50% / Y6 40% / Y7 30% / Y8 20% / Y9 10% / Y10 5% / Y11+ 0%. The taper rewards holding power.",
+    explanation: "Be transparent. PS Section 5.5 (p.5) schedule: Y1 60% / Y2 60% / Y3 50% / Y4 40% / Y5 30% / Y6 20% / Y7 10% / Y8+ 0%. The taper rewards holding power.",
     category: 'objection-handling'
   },
 
@@ -1057,10 +1057,10 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
 
   // Q75 — correct: 0
   {
-    question: "A client objects: 'The welcome bonus is lower in Version 2.0 than 1.0.' How do you handle this?",
+    question: "A client objects: 'The welcome bonus is lower now than in Version 1.0.' How do you handle this?",
     options: [
       "Focus on the current value proposition — the triple bonus structure still provides significant value over the policy lifetime",
-      "Agree and promise that Version 3.0 will restore the higher bonuses",
+      "Agree and promise that the next version will restore the higher bonuses",
       "Tell them the Version 1.0 bonuses were a promotional gimmick",
       "Offer to match the Version 1.0 bonus rates as a special exception"
     ],
@@ -1076,10 +1076,10 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "Tell them they will never need the money before Year 8",
       "Guarantee that AIA will waive surrender charges in emergencies",
       "Say the money can be accessed penalty-free at any time",
-      "Explain that partial withdrawals are available from Year 3 (with charges), and dividend withdrawals are always charge-free"
+      "Explain that partial withdrawals are available from Year 1 (with charges in the first 7 policy years), and dividend withdrawals are always charge-free"
     ],
     correct: 3,
-    explanation: "Partial withdrawals start from Year 3 (with reducing charges). Dividend and reinvested dividend withdrawals are exempt from charges at any time.",
+    explanation: "Partial withdrawals are available from Year 1 (with a charge in the first 7 policy years). Dividend and reinvested dividend withdrawals are exempt from charges at any time.",
     category: 'objection-handling'
   },
 
@@ -1088,12 +1088,12 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     question: "A client says: 'I'm worried about locking up multi-year premiums in one product.' How do you respond?",
     options: [
       "Tell them the amount is small and should not worry them",
-      "Reframe to a monthly figure (PS minimum is S$650/month at the S$18,000 entry tier per PS Section 6.1) and walk through the canonical surrender taper to Y11 0%",
+      "Reframe to a monthly figure (PS minimum is S$1,500/month at the S$18,000 entry tier per PS Section 6.1) and walk through the canonical surrender taper to Y8 0%",
       "Suggest they split the premium across two unrelated products",
       "Agree it's a lot of money and they should probably choose a cheaper plan"
     ],
     correct: 1,
-    explanation: "Reframe to a manageable monthly figure (PS Section 6.1 minimum is S$650/month) and walk through the canonical surrender schedule (PS Section 5.5): the charge tapers from 70% in Y1 down to 5% in Y10 and 0% from Y11 onwards. Partial withdrawals are also available from Y1 with a declining charge factor.",
+    explanation: "Reframe to a manageable monthly figure (PS Section 6.1 minimum is S$1,500/month) and walk through the canonical surrender schedule (PS Section 5.5): the charge tapers from 60% in Y1 down to 10% in Y7 and 0% from Y8 onwards. Partial withdrawals are also available from Y1 with a declining charge factor.",
     category: 'objection-handling'
   },
 
@@ -1127,9 +1127,9 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
 
   // Q80 — correct: 3
   {
-    question: "A prospect says: 'I'll wait for the next version — maybe Version 3.0 will be better.' What do you say?",
+    question: "A prospect says: 'I'll wait for the next version — maybe it will be better.' What do you say?",
     options: [
-      "Confirm that Version 3.0 is coming soon with better features",
+      "Confirm that a new version is coming soon with better features",
       "Tell them this is the final version and no updates are planned",
       "Offer a free upgrade to the next version if they sign up now",
       "Explain that every year they delay means missing welcome bonus credits, pushing back the Investment Bonus, and losing compound growth time"
@@ -1197,15 +1197,15 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
 
   // Q85 — correct: 1
   {
-    question: "A client objects: 'Cash-only payment means I can't use CPF or SRS.' How do you address this?",
+    question: "A client objects: 'I want to use my SRS savings, not cash.' How do you address this?",
     options: [
-      "Agree and recommend they choose a CPF-eligible product instead",
-      "Explain that cash funding preserves their CPF/SRS for other uses, and PWV's bonuses compensate for the cash outlay",
-      "Say AIA plans to add CPF/SRS eligibility in a future version",
-      "Tell them CPF and SRS are inefficient anyway"
+      "Agree and say PWV never accepts SRS",
+      "Explain the 1-year single premium option, which is paid from SRS only, from S$15,000",
+      "Say AIA plans to add SRS eligibility in a future version",
+      "Tell them SRS is inefficient anyway"
     ],
     correct: 1,
-    explanation: "Reframe: using cash preserves their CPF/SRS balances for housing, healthcare, and retirement. PWV's triple bonus structure and exclusive funds provide value that justifies cash funding.",
+    explanation: "PWV 3.0 offers a 1-year single premium paid from SRS only, not cash, from S$15,000. It has no Welcome Bonus, a 2.9% p.a. supplementary charge in the first 7 policy years and a 0.5% Investment Bonus in years 8 to 11.",
     category: 'objection-handling'
   },
 
@@ -1248,10 +1248,10 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "'You can withdraw penalty-free from Year 5 when premiums end.'",
       "'Withdrawals are always free regardless of policy year.'",
       "'From Year 3, but with a small administrative fee.'",
-      "'Partial withdrawals are allowed from Year 1 with a declining charge factor (Y1: 2.333; Y10: 0.053). The charge factor drops to 0 from Year 11 onwards. Dividend and reinvested-dividend withdrawals are always charge-free.'"
+      "'Partial withdrawals are allowed from Year 1, with a Partial Withdrawal Charge in the first 7 policy years and no charge from Year 8 onwards. Dividend and reinvested-dividend withdrawals are always charge-free.'"
     ],
     correct: 3,
-    explanation: "PS Sections 5.6 and 6.4: partial withdrawals are allowed from policy year 1, with a Partial Withdrawal Charge Factor that declines yearly (Y1 2.333, Y5 1.000, Y10 0.053, Y11+ 0). Dividend distributions and reinvested-dividend unit withdrawals are exempt from the charge.",
+    explanation: "PS Sections 5.6 and 6.4: partial withdrawals are allowed from policy year 1, with a Partial Withdrawal Charge in the first 7 policy years and none from Year 8 onwards. Dividend distributions and reinvested-dividend unit withdrawals are exempt from the charge.",
     category: 'roleplay'
   },
 
@@ -1287,13 +1287,13 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
   {
     question: "A roleplay client asks: 'How do I get the Investment Bonus?' What do you tell them per the canonical Product Summary?",
     options: [
-      "'Keep the policy in force and not on Premium Holiday — 2.5% of annualised regular premium is credited at the beginning of policy years 9, 10, 11 and 12 (10% cumulative).'",
+      "'Keep the policy in force and not on Premium Holiday — 2.5% of annualised regular premium is credited at the beginning of policy years 8, 9, 10 and 11 (10% cumulative).'",
       "'You need to apply separately for the Investment Bonus after Year 7.'",
       "'The Investment Bonus is paid monthly from Year 5 onwards at 7% p.a.'",
       "'You receive it immediately upon policy inception as part of the welcome bonus.'"
     ],
     correct: 0,
-    explanation: "PS Section 3.4 (p.2): Investment Bonus is 2.5% of annualised regular premium, credited at the beginning of each of policy years 9, 10, 11 and 12 (10% cumulative), provided the policy is in force and not on Premium Holiday.",
+    explanation: "PS Section 3.4 (p.2): Investment Bonus is 2.5% of annualised regular premium, credited at the beginning of each of policy years 8, 9, 10 and 11 (10% cumulative), provided the policy is in force and not on Premium Holiday.",
     category: 'roleplay'
   },
 
@@ -1316,12 +1316,12 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     question: "A roleplay client asks: 'Can I use CPF to pay for PWV?' What is the correct answer?",
     options: [
       "'Yes, CPF OA can be used for all AIA investment products including PWV.'",
-      "'No, PWV premiums are payable using cash only. CPF and SRS are not accepted.'",
+      "'No, CPF is not accepted for PWV. If you want to use SRS, the 1-year single premium is paid from SRS.'",
       "'CPF can be used but only for the first year's premium.'",
-      "'SRS is accepted but CPF is not for this particular product.'"
+      "'CPF can be used once you turn 55.'"
     ],
     correct: 1,
-    explanation: "PWV premiums are payable using cash only. Neither CPF nor SRS contributions are accepted for this product.",
+    explanation: "PWV does not accept CPF. The 1-year single premium of PWV 3.0 is paid from SRS only, not cash.",
     category: 'roleplay'
   },
 
@@ -1349,7 +1349,7 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "'AIA waives all charges for missed payments after Year 2.'"
     ],
     correct: 0,
-    explanation: "PS Section 5.4 (p.5) Premium Holiday Charge Annual Rate by number of regular premiums paid: 1st = 60%, 2nd = 30%, 3rd = 20%, 4th = 20%, 5th = 10%, 6th = 10%, 7th = 5%, 8th onwards = 0%. Charged monthly as annual rate / 12 of annualised regular premium.",
+    explanation: "PS Section 5.4 (p.5) Premium Holiday Charge Annual Rate by number of regular premiums paid: 1st = 60%, 2nd = 30%, 3rd = 20%, 4th = 20%. It applies only before the 5 years of regular premiums are paid. Charged monthly as annual rate / 12 of annualised regular premium.",
     category: 'roleplay'
   },
 
@@ -1372,7 +1372,7 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     question: "A roleplay client asks: 'How does PWV compare to Pro Achiever on supplementary charges?' What is accurate per the canonical Product Summary?",
     options: [
       "'Both products have identical charge structures.'",
-      "'PWV charges 3.60% p.a. for 10 years vs Pro Achiever's 3.9% p.a. for 10 years — same duration, but PWV is at a lower rate.'",
+      "'PWV charges 3.60% p.a. for 7 years vs Pro Achiever's 3.9% p.a. for 10 years, so PWV is at a lower rate and for a shorter period.'",
       "'Pro Achiever has no charges while PWV charges 3% for 10 years.'",
       "'PWV charges 5% but for only 3 years, making it cheaper overall.'"
     ],
@@ -1494,7 +1494,7 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "Say PWV accepts CPF OA direct contributions with no restrictions"
     ],
     correct: 0,
-    explanation: "PWV is cash-only — CPF cannot be paid directly. But CPF OA funds can be withdrawn to a bank account (subject to CPF rules) and the cash used to fund PWV premiums. The staged approach lets money work harder at 6% vs CPF OA's 2.5%.",
+    explanation: "CPF cannot be paid directly into PWV. But CPF OA funds can be withdrawn to a bank account (subject to CPF rules) and the cash used to fund PWV premiums. The staged approach lets money work harder at 6% vs CPF OA's 2.5%.",
     category: 'sales-angles'
   },
 
@@ -1536,7 +1536,7 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "Suggest they keep all money in FDs since they're guaranteed by SDIC"
     ],
     correct: 0,
-    explanation: "Don't push all-in. Show the opportunity cost: $1M at 1.5% FD = $15K/year vs portion in PWV at 6% = significantly more. Propose reallocating a portion while keeping FD for liquidity. Note that PS Section 5.5 (p.5) means surrender taper runs through Year 10 (0% from Year 11), so size the reallocation to capital the client doesn't need before Year 11.",
+    explanation: "Don't push all-in. Show the opportunity cost: $1M at 1.5% FD = $15K/year vs portion in PWV at 6% = significantly more. Propose reallocating a portion while keeping FD for liquidity. Note that PS Section 5.5 (p.5) means surrender taper runs through Year 7 (0% from Year 8), so size the reallocation to capital the client doesn't need before Year 8.",
     category: 'objection-handling'
   },
 
@@ -1710,20 +1710,20 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
 
   // ============================================================
   // SECTION D ADDITIONS (10 questions) — Q121-Q130
-  // Anchored to canonical PS v1.0 (012026) and 5-day curriculum
+  // Anchored to canonical PS ver 1.0 (Oct 2026) and 5-day curriculum
   // ============================================================
 
   // Q121 — correct: 1
   {
-    question: "What is the supplementary charge structure under the canonical Product Summary v1.0?",
+    question: "What is the supplementary charge structure on the 5-year plan under the canonical Product Summary ver 1.0 (Oct 2026)?",
     options: [
-      "3.60% p.a. of Regular Premium Policy Value, monthly, for the first 7 policy years",
+      "3.60% p.a. of Regular Premium Policy Value, monthly, for the first 10 policy years",
       "3.60% p.a. of Regular Premium Policy Value, monthly, for the first 7 policy years, deducted even during Premium Holiday",
       "3.90% p.a. for 10 years",
       "0% — there is no supplementary charge on PWV"
     ],
     correct: 1,
-    explanation: "PS Section 5.2 (p.4): Supplementary Charge is 3.60% p.a. of Regular Premium Policy Value, deducted monthly for the first 7 policy years, including during Premium Holiday. Day 3 line 134 confirms 'first 10 years only.'",
+    explanation: "PS Section 5.2 (p.4): Supplementary Charge is 3.60% p.a. of Regular Premium Policy Value, deducted monthly for the first 7 policy years, including during Premium Holiday. The charge is zero from Year 8.",
     category: 'product-facts'
   },
 
@@ -1732,26 +1732,26 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     question: "The Investment Bonus on PWV is paid as:",
     options: [
       "A single 7% credit at the start of Year 8",
-      "2.5% of annualised regular premium at the start of Years 9, 10, 11 and 12 (10% cumulative), provided all premiums are paid up to date",
+      "2.5% of annualised regular premium at the start of Years 8, 9, 10 and 11 (10% cumulative), provided all premiums are paid up to date",
       "0.40% p.a. from Year 8 onwards",
       "5% one-time at maturity"
     ],
     correct: 1,
-    explanation: "PS Section 3.4 (p.2): Investment Bonus is 2.5% of annualised regular premium at the beginning of each of policy years 9, 10, 11 and 12, totalling 10% cumulative.",
+    explanation: "PS Section 3.4 (p.2): Investment Bonus is 2.5% of annualised regular premium at the beginning of each of policy years 8, 9, 10 and 11, totalling 10% cumulative.",
     category: 'product-facts'
   },
 
   // Q123 — correct: 2
   {
-    question: "Welcome Bonus for a policy with $12,000+ annualised regular premium totals:",
+    question: "Welcome Bonus for a policy with $42,000+ annualised regular premium totals:",
     options: [
       "10% over 2 years",
       "15% over 3 years",
-      "35% cumulative across years 1-3",
-      "12% in the first 3 years (brochure summary only)"
+      "12% across years 1-3 (3% / 4% / 5%)",
+      "35% cumulative across years 1-5"
     ],
     correct: 2,
-    explanation: "PS Section 3.3 (p.2): for annualised regular premium S$42,000 and above, Welcome Bonus rates per policy year are 3% / 5% / 7% / 9% / 11%, totalling 12% (3% Y1 + 4% Y2 + 5% Y3) across policy years 1 to 5.",
+    explanation: "PS Section 3.3 (p.2): for annualised regular premium S$42,000 and above, Welcome Bonus rates per policy year are 3% / 4% / 5% in policy years 1 to 3, totalling 12% (3% Y1 + 4% Y2 + 5% Y3).",
     category: 'product-facts'
   },
 

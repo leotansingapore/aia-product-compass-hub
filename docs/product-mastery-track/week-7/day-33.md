@@ -117,14 +117,14 @@ The reframe script:
 
 ## The PWV fee architecture (worth memorising)
 
-Memorise these from PS Section 5 of PWV 2.0 PS v1.0 042025:
+Memorise these from PS Section 5 of PWV 3.0 PS ver 1.0 (Oct 2026):
 
 | Charge | Value | Duration |
 |---|---|---|
 | **Top-up Premium Charge** | **3%** of top-up | Per top-up [PS Section 5.1] |
-| **Supplementary Charge** | **3.60% p.a.** of Regular Premium Policy Value | Monthly, **first 7 policy years only** (charged even during Premium Holiday) [PS v1.0 042025 Section 5.2] |
-| **Premium Holiday Charge** | Tapering schedule (high in early years, 0% from year 8) | If regular premium not paid by due date [PS Section 5.4] |
-| **Full Surrender Charge** | 70% Y1 / 50% Y5 / 30% Y7 / 0% Y11+ | [PS Section 5.5] |
+| **Supplementary Charge** | **3.60% p.a.** of Regular Premium Policy Value | Monthly, **first 7 policy years only** (charged even during Premium Holiday) [PS ver 1.0 (Oct 2026) Section 5.2] |
+| **Premium Holiday Charge** | Tapering schedule (high in early years, none once the 5 years of regular premiums are paid) | If regular premium not paid by due date [PS Section 5.4] |
+| **Full Surrender Charge** | 60% Y1 / 30% Y5 / 10% Y7 / 0% Y8+ | [PS Section 5.5] |
 | **Partial Withdrawal Charge factor** | Allowed from Year 1 with a **declining charge factor** | [PS Section 5.6] |
 | **Benefit Charge** | Per Sum-at-Risk per year | Age/gender-rated [PS Appendix A] |
 
@@ -142,10 +142,10 @@ Sample Benefit Charges (per S$1,000 SAR, annual):
 
 | Bonus | Value | Trigger |
 |---|---|---|
-| **Welcome Bonus** | Tiered: max **12% cumulative** at $42K+ band (3% / 4% / 5% across Y1 / Y2 / Y3) | Premium tier ($18K-$23.99K / $24K-$41.99K / $42K+) [PS v1.0 042025 Section 3.3] |
-| **Investment Bonus** | **2.5% × 4 years = 10% cumulative** | At start of policy years **8, 9, 10, 11** [PS v1.0 042025 Section 3.4] |
-| **Performance Bonus** | **0.40% p.a.** of Regular Premium Policy Value | From year 8 onwards [PS v1.0 042025 Section 3.5] |
-| **Supplementary Charge drop-off** | 3.60% p.a. → **0%** | After year 7 [PS v1.0 042025 Section 5.2] |
+| **Welcome Bonus** | Tiered: max **12% cumulative** at $42K+ band (3% / 4% / 5% across Y1 / Y2 / Y3) | Premium tier ($18K-$23.99K / $24K-$41.99K / $42K+) [PS ver 1.0 (Oct 2026) Section 3.3] |
+| **Investment Bonus** | **2.5% × 4 years = 10% cumulative** | At start of policy years **8, 9, 10, 11** [PS ver 1.0 (Oct 2026) Section 3.4] |
+| **Performance Bonus** | **0.40% p.a.** of Regular Premium Policy Value | From year 8 onwards [PS ver 1.0 (Oct 2026) Section 3.5] |
+| **Supplementary Charge drop-off** | 3.60% p.a. → **0%** | After year 7 [PS ver 1.0 (Oct 2026) Section 5.2] |
 
 ## Partial withdrawal mechanics
 
@@ -154,7 +154,7 @@ Sample Benefit Charges (per S$1,000 SAR, annual):
 | Minimum partial withdrawal | S$1,000 |
 | Minimum policy value remaining after | S$10,000 |
 | Availability | **From Year 1** |
-| Withdrawal charge factor | **Declining** — highest in early years, scaling to 0 from Year 11+ |
+| Withdrawal charge factor | **Declining** — highest in early years, scaling to 0 from Year 8+ |
 
 [PS Section 6.4. Verify the exact year-by-year factor in iPOS at quote time.]
 
@@ -168,8 +168,8 @@ Sample Benefit Charges (per S$1,000 SAR, annual):
 | 4 | Welcome Bonus (top tier, $42K+) | 12% cumulative (3% / 4% / 5% across Y1 / Y2 / Y3) |
 | 5 | Investment Bonus | 2.5% × 4 years (Y8, Y9, Y10, Y11) = 10% cumulative |
 | 6 | Performance Bonus | 0.40% p.a. from year 8 |
-| 7 | Full Surrender Y1 charge | 70% |
-| 8 | Full Surrender Y11+ charge | 0% |
+| 7 | Full Surrender Y1 charge | 60% |
+| 8 | Full Surrender Y8+ charge | 0% |
 | 9 | Partial Withdrawal | Allowed from Year 1, declining charge factor |
 | 10 | Free-look | 14 days |
 | 11 | Min regular premium | S$18,000/year annual (S$9K semi / S$4.5K qtr / S$1.5K mo) |
@@ -222,10 +222,10 @@ This is the single most reassuring fact about PWV. Always emphasise.
 
 | Layer | Mechanic |
 |---|---|
-| **Partial withdrawal** | Allowed from Year 1, declining charge factor over time, zero from Year 11+ |
-| **Full surrender** | Charge tapers from 70% Y1 → 50% Y5 → 30% Y7 → 0% Y11+ |
+| **Partial withdrawal** | Allowed from Year 1, declining charge factor over time, zero from Year 8+ |
+| **Full surrender** | Charge tapers from 60% Y1 → 30% Y5 → 10% Y7 → 0% Y8+ |
 
-> *"The plan is built to be fully liquid after year 11 on a full surrender. You can also take partial withdrawals from Year 1 — the charge factor declines each year. So if you need access in years 1-10, you have it — you just pay a charge. Most of my clients never need to trigger it."*
+> *"The plan is built to be fully liquid after year 7 on a full surrender. You can also take partial withdrawals from Year 1 — the charge factor declines each year. So if you need access in years 1-7, you have it — you just pay a charge. Most of my clients never need to trigger it."*
 
 [Sources: PS Section 5.5, PS Section 6.4. Verify the exact partial-withdrawal year-by-year factor in iPOS at quote time.]
 
@@ -250,7 +250,7 @@ This is the single most reassuring fact about PWV. Always emphasise.
 **A:** Three to know:
 
 ### 1. Supplementary Charge — 3.60% p.a.
-On Regular Premium Policy Value, deducted monthly, **first 7 policy years only**. **Zero from year 8 onwards.** Charged even during Premium Holiday. [PS v1.0 042025 Section 5.2]
+On Regular Premium Policy Value, deducted monthly, **first 7 policy years only**. **Zero from year 8 onwards.** Charged even during Premium Holiday. [PS ver 1.0 (Oct 2026) Section 5.2]
 
 ### 2. Top-up Premium Charge — 3%
 On any top-up premiums you make. [PS Section 5.1]
@@ -334,13 +334,13 @@ But if they push:
 
 **Why:** PS p.4 Section 5.2 (cited in Day 3): Supplementary Charge is 3.60% p.a. of Regular Premium Policy Value, deducted monthly, first 7 policy years only.
 
-6. **According to Day 3's fee architecture, what is the Full Surrender Charge in Year 1 and Year 11+?**
-- A) Y1 = 50%, Y11+ = 5%
-- B) Y1 = 70%, Y11+ = 0% ✓
-- C) Y1 = 100%, Y11+ = 10%
-- D) Y1 = 30%, Y11+ = 0%
+6. **According to Day 3's fee architecture, what is the Full Surrender Charge in Year 1 and Year 8+?**
+- A) Y1 = 50%, Y8+ = 5%
+- B) Y1 = 60%, Y8+ = 0% ✓
+- C) Y1 = 100%, Y8+ = 10%
+- D) Y1 = 30%, Y8+ = 0%
 
-**Why:** PS p.5 Section 5.5 (cited in Day 3): Full Surrender Charge is 70% in Y1, sliding down to 0% from Y11 onwards.
+**Why:** PS p.5 Section 5.5 (cited in Day 3): Full Surrender Charge is 60% in Y1, sliding down to 0% from Y8 onwards.
 
 7. **What is the minimum partial withdrawal amount and the minimum policy value remaining after withdrawal?**
 - A) Min S$500 withdrawal; min S$5,000 remaining

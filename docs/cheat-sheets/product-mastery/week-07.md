@@ -4,11 +4,11 @@ course: product-mastery
 type: cheatsheet
 week: 7
 product: platinum-wealth-venture
-audience: "FCs preparing to pitch Platinum Wealth Venture 2.0 (PWV)"
+audience: "FCs preparing to pitch Platinum Wealth Venture 3.0 (PWV)"
 tags: [product-mastery, week-7, platinum-wealth-venture, cheatsheet]
 ---
 
-# Week 7: Platinum Wealth Venture (PWV) 2.0 - Cheat Sheet
+# Week 7: Platinum Wealth Venture (PWV) 3.0 - Cheat Sheet
 
 > **The one idea:** PWV is a 5-year-pay ILP for pre-retirees that converts accumulated wealth (CPF OA excess, maturing endowments, lazy cash) into a quarterly dividend stream while preserving capital - the income engine that closes the gap CPF Life leaves open after 65 (no interest), after 81 (no bequest), and at any age (no liquidity).
 
@@ -34,11 +34,11 @@ A SGD 5-year premium-paying Investment-Linked Plan issued by AIA. 100% of regula
 | Performance Bonus | **0.40% p.a.** of Regular Premium Policy Value from Year 8 |
 | Supplementary Charge | **3.60% p.a.** on Regular Premium Policy Value, monthly, **first 7 policy years only** (zero from Y8) |
 | Top-up Premium Charge | 3% flat |
-| Full Surrender Charge | 70% Y1 / 50% Y5 / 30% Y7 / **0% Y11+** |
+| Full Surrender Charge | 60% Y1 / 30% Y5 / 10% Y7 / **0% Y8+** |
 | Partial Withdrawal | Allowed from Year 1, declining charge factor, **S$1,000 min, S$10,000 min policy value remaining** |
 | Free-look | 14 days |
 | Secondary Insured max age at appointment | 75 |
-| Premium-paying term | **5 years** (canonical per PWV 2.0 PS v1.0 042025 Section 2) |
+| Premium-paying term | **5 years** for the main plan, also a 2-year term and a 1-year single premium paid from SRS (canonical per PWV 3.0 PS ver 1.0 (Oct 2026) Section 2) |
 
 ## The pitch angle - opener stems
 
@@ -100,7 +100,7 @@ The Healthcare Cost angle (loss-aversion hook):
 - **Skip the Drawing Concept and pitch from slides.** PWV's irreplaceable asset is the 7-panel whiteboard sequence built live using the prospect's OWN CPF numbers. By Panel 7 the client has invested 25 minutes of attention and the conclusion feels like theirs. Slides feel generic.
 - **Pitch PWV to under-50 prospects without accumulated wealth.** Wrong product. Anti-market is explicit - no 5-year capacity, no accumulated wealth, needs liquidity Y1-7. Pivot to APA.
 - **Project at 7% or 8% with the client.** Discipline is 6% in client conversations - actual fund history is ~7%. Underpromise, overdeliver. Brochure case studies showing 8% are for FC reference only.
-- **Quote PWV 1.0 numbers.** Always cite from **PWV 2.0 PS v1.0 042025** - canonical bonus structure (Welcome 3/4/5 = 12%, Investment 2.5% x 4 years), 7-year supplementary charge, 5-year premium term.
+- **Quote PWV 1.0 or 2.0 numbers.** Always cite from **PWV 3.0 PS ver 1.0 (Oct 2026)** - canonical bonus structure (Welcome 3/4/5 = 12%, Investment 2.5% x 4 years), 7-year supplementary charge, 5-year premium term.
 - **Recommend surrender of a legacy policy without documenting both scenarios in writing.** The FC who restructures cleanly earns trust that compounds. Audit via SingPass, quantify true yield, compare PWV alternative, document, then recommend.
 - **Collapse the close into one big decision.** Always Two Never Three. Build micro-yeses throughout - by the close, the prospect has said yes ~15 times. *"$30K or $42K annually? Quarterly to wallet or reinvest for first 3 years?"*
 - **Leave paperwork for a follow-up appointment.** Every follow-up is a future cancellation in disguise. Run the full 12-item checklist in one ~89-minute session.

@@ -74,7 +74,7 @@ The newest-generation ILP. Breaks the traditional ILP convention of long lock-in
 
 | Feature | PWV | Traditional ILP |
 |---|---|---|
-| Premium payment | **5 years only** | 10-25 years |
+| Premium payment | **5 years** (also a 2-year term, or a 1-year single premium from SRS) | 10-25 years |
 | Holding period | 7-8 years | 15-25 years |
 | First returns | **After ~3 months** (dividends) | After many years |
 | Lock-in feel | Very short commitment | Long-term commitment |
@@ -120,7 +120,7 @@ Fixed deposit rates are falling. Conservative investors and elderly clients are 
 - Add CPF LIFE FRS payout of $1,730/month
 - **Total retirement income: ~$5,100/month**
 
-PWV minimum: **$18,000/year**. Strongest opener-product because of the 5-year-only commitment and visible-within-3-months returns.
+PWV minimum: **$18,000/year**. Strongest opener-product because of the short 5-year commitment and visible-within-3-months returns.
 
 ## 0c. Product deep-dive - PRE (Platinum Retirement Elite)
 

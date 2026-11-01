@@ -967,7 +967,7 @@ ERS makes sense for prospects who need *maximum income certainty* and have *no l
 | Option | $200K committed | Monthly income at 65 | Liquidity | Inheritance |
 |---|---|---|---|---|
 | **CPF ERS top-up** | $200K to RA | ~$1,500/mo CPF Life | Zero (locked in RA) | Zero bequest after age 80-ish (Standard payout pattern) |
-| **AIA PWV (SGD)** | $200K single-premium or phased | ~$1,000-1,100/mo dividends @ 6% yield | Full (surrender any time after Y11) | Full bequest + dividend continuation via secondary insured |
+| **AIA PWV (SGD)** | $200K single-premium (from SRS) or phased | ~$1,000-1,100/mo dividends @ 6% yield | Full (surrender any time after Y7) | Full bequest + dividend continuation via secondary insured |
 | **DIY (S&P 500 + dividend ETFs)** | $200K | ~$700-900/mo at 5% yield after taxes | Full | 40% US estate tax + 30% dividend withholding — heirs inherit 60-70% |
 
 ERS gives ~50% more monthly income than PWV — but zero bequest after the payout window and zero liquidity. PWV gives slightly lower monthly income with full bequest, full liquidity, and the secondary-insured continuation. Net total benefit over 30 years (income + bequest combined) favours PWV materially.
@@ -976,7 +976,7 @@ ERS gives ~50% more monthly income than PWV — but zero bequest after the payou
 
 > *"If you top up to ERS, you're committing $200K to CPF for a marginal $1,500/mo income lift. That money is locked, illiquid, and once CPF Life Standard pays out for 30 years, the bequest stops. You've effectively given $200K to CPF.*
 >
-> *The PWV alternative: same $200K, generates $1,000-1,100/mo of dividends — slightly less monthly than ERS, but the capital stays intact, and your spouse inherits a working dividend engine. Net total benefit over 30 years: meaningfully larger when you include the bequest. Net total flexibility: vastly larger because you can surrender / withdraw / restructure at any point from Y11.*
+> *The PWV alternative: same $200K, generates $1,000-1,100/mo of dividends — slightly less monthly than ERS, but the capital stays intact, and your spouse inherits a working dividend engine. Net total benefit over 30 years: meaningfully larger when you include the bequest. Net total flexibility: vastly larger because you can surrender / withdraw / restructure at any point from Y8.*
 >
 > *ERS makes sense for prospects who need maximum income certainty and have no legacy goals. PWV makes sense for prospects who want comparable income, full flexibility, and a structured inheritance. Different jobs. Pick the one that matches what you want this $200K to actually do."*
 

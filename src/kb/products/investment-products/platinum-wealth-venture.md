@@ -4,7 +4,7 @@
 HNW-focused ILP offering curated funds and enhanced benefits for larger premiums.
 
 ## 📊 Key Highlights  
-- Preferential charges at premium tiers  
+- Welcome bonus tiered by premium size  
 - Access to specialist funds; concierge servicing  
 - Liquidity features with partial withdrawals  
 

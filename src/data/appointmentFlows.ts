@@ -271,16 +271,16 @@ Head-to-head with the bigger competitors, the Pro Achiever projects about $200,0
         condition: "Lump sum + monthly available",
         productStack: ["APA", "PWV"],
         receiptPattern:
-          "APA $500-1,000/mo for compounding + PWV single-premium for retirement income angle. Or CPF-OA into CPFIS global equity fund.",
+          "APA $500-1,000/mo for compounding + PWV single-premium (paid from SRS only) for retirement income angle. Or CPF-OA into CPFIS global equity fund.",
         body: `**The shape of this branch**
-Two engines run in parallel: a monthly compounding engine (APA) and a lump-sum engine (PWV single-premium, or CPF-OA deployed through CPFIS). The monthly handles the slow build; the lump sum is the head start.
+Two engines run in parallel: a monthly compounding engine (APA) and a lump-sum engine (PWV single-premium paid from SRS, or CPF-OA deployed through CPFIS). The monthly handles the slow build; the lump sum is the head start.
 
 **Discovery before you price**
 "How much is sitting in the bank right now that's just there - not your emergency fund, not the next six months of expenses, but money you couldn't tell me the purpose of?" That number is the lump-sum side. Most professionals in their late 20s have $20K-$100K answering it, earning sub-inflation in a savings account.
 
 **The two engines**
 - APA $500-1,000/month - monthly compounding, 10-year minimum
-- The lump sum: PWV single-premium if they want a retirement income angle, or CPF-OA into CPFIS global equity if the lump is in CPF
+- The lump sum: PWV single-premium (paid from SRS only) if they want a retirement income angle, or CPF-OA into CPFIS global equity if the lump is in CPF
 
 **Real case - the CPF-OA angle**
 A client had $40K in CPF-OA earning 2.5%. We reframed his "conservative" 70/30 bond-heavy mix as its own risk, then moved the bulk into global equity via CPFIS, keeping a $16,500 buffer rebalanced.
@@ -290,7 +290,7 @@ A client on a $500/month plan from another insurer at higher fees. Side by side,
 
 **Receipt to leave with**
 - APA $500-1,000/month started
-- Lump sum deployed (PWV single-premium, or CPF-OA via CPFIS)
+- Lump sum deployed (PWV single-premium from SRS, or CPF-OA via CPFIS)
 - Annual review locked
 
 **If they say "I'd rather wait for the market to drop"**
@@ -587,7 +587,7 @@ For someone hitting FRS at 55 with 10+ years of work left, the lump doesn't all 
 CPF FRS is done. There's a lump - usually $100K-$1M+ - sitting in fixed deposits or low-yield bonds. They don't need it to grow aggressively; they need it to start paying.
 
 **The product choice is simple**
-PWV single-premium for most cases. SPA at the conservative end (capital-guaranteed, lower yield). The call is yield appetite versus guarantee.
+PWV single-premium (paid from SRS only) for most cases. SPA at the conservative end (capital-guaranteed, lower yield). The call is yield appetite versus guarantee.
 
 **Real case - the dividend engine**
 A $58,000-$60,000 lump into an income portfolio at 6% annual dividends, structured to offset projected parental hospitalisation premiums. The capital stayed intact and the dividend covered the parents' hospital plan effectively for free.

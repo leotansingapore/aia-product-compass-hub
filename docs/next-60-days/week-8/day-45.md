@@ -72,7 +72,7 @@ Language that fits:
 AIA plans that lead with Wealth:
 
 - AIA Pro Achiever 3.0, a regular-premium investment-linked plan (ILP)
-- AIA Platinum Wealth Venture 2.0, an ILP with a 5-year premium term
+- AIA Platinum Wealth Venture 3.0, an ILP with a 5-year premium term
 
 Two rules for this angle. You need CMFAS M9 and M9A to recommend an ILP, whose value rises and falls with its funds. For a participating (par) plan, the illustration uses two rates capped under Life Insurance Association (LIA) guidelines, currently 4.25% and 3.00% a year, and neither is guaranteed.
 

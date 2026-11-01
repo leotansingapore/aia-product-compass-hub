@@ -9,7 +9,7 @@ tags: [product-mastery-track, week-7, platinum-wealth-venture]
 ---
 # Day 1 — PWV Foundations: 5-Min Intro + THE PWV Drawing Concept
 
-> **Today's frame:** PWV 2.0 is the pre-retiree spine product. The 7-panel Drawing Concept is its irreplaceable asset — built live on whiteboard or iPad using the prospect's OWN CPF balances and existing policies. Master this single move and the rest of the curriculum is application; skip it and you're reading a brochure.
+> **Today's frame:** PWV 3.0 is the pre-retiree spine product. The 7-panel Drawing Concept is its irreplaceable asset — built live on whiteboard or iPad using the prospect's OWN CPF balances and existing policies. Master this single move and the rest of the curriculum is application; skip it and you're reading a brochure.
 
 Part 1 covers what PWV is. Part 2 covers the Drawing Concept (the 7-panel signature whiteboard).
 
@@ -17,7 +17,7 @@ Part 1 covers what PWV is. Part 2 covers the Drawing Concept (the 7-panel signat
 
 # Part 1 — PWV in 5 Minutes: What It Is, Who It's For, Why It Exists
 
-PWV 2.0 is a 5-year premium-paying ILP designed for pre-retirees converting accumulated wealth (CPF excess, maturing endowments, lazy cash) into a quarterly dividend income stream while preserving capital. The first 5 minutes aren't a product pitch — they're permission to have the rest of the conversation.
+PWV 3.0 is a 5-year premium-paying ILP designed for pre-retirees converting accumulated wealth (CPF excess, maturing endowments, lazy cash) into a quarterly dividend income stream while preserving capital. The first 5 minutes aren't a product pitch — they're permission to have the rest of the conversation.
 
 By the end of Part 1 you should be able to: describe PWV in two sentences, name the three structural "moats" vs CPF Life, recite the four bonus mechanisms, and recognise the personas most likely to push back on PWV (under-50 prospects, no accumulated wealth) — and the reframes for each.
 
@@ -27,7 +27,7 @@ By the end of Part 1 you should be able to: describe PWV in two sentences, name 
 
 A SGD-denominated, **5-year premium-paying Investment-Linked Plan** issued by AIA. 100% of regular premium invested from day 1 (no upfront sales load) [Brochure p.2, PS p.1].
 
-Canonical premium term per PWV 2.0 PS v1.0 042025 Section 2: **5 years**. Designed for pre-retirees aged 50-65 who have:
+Canonical premium term per PWV 3.0 PS ver 1.0 (Oct 2026) Section 2: **5 years** for the main plan (a 2-year term and a 1-year single premium paid from SRS are also offered). Designed for pre-retirees aged 50-65 who have:
 - CPF OA excess (after FRS at 55)
 - Maturing endowments
 - Existing legacy ILPs underperforming
@@ -67,19 +67,19 @@ The bridge:
 
 | Bonus | Value | Trigger |
 |---|---|---|
-| **Welcome Bonus** | Tiered: max **12% cumulative** at $42K+ band (3% / 4% / 5% across Y1 / Y2 / Y3) | Premium band: $18K-$23.99K / $24K-$41.99K / $42K+ [PS v1.0 042025 Section 3.3] |
-| **Investment Bonus** | **2.5% × 4 years = 10% cumulative** | At start of policy years 8, 9, 10, 11 [PS v1.0 042025 Section 3.4] |
-| **Performance Bonus** | **0.40% p.a.** of Regular Premium Policy Value | From year 8 onwards, payable yearly [PS v1.0 042025 Section 3.5] |
-| **Supplementary Charge stops** | 3.60% p.a. charge runs for **first 7 policy years only** | From year 8 the charge drops to zero [PS v1.0 042025 Section 5.2] |
+| **Welcome Bonus** | Tiered: max **12% cumulative** at $42K+ band (3% / 4% / 5% across Y1 / Y2 / Y3) | Premium band: $18K-$23.99K / $24K-$41.99K / $42K+ [PS ver 1.0 (Oct 2026) Section 3.3] |
+| **Investment Bonus** | **2.5% × 4 years = 10% cumulative** | At start of policy years 8, 9, 10, 11 [PS ver 1.0 (Oct 2026) Section 3.4] |
+| **Performance Bonus** | **0.40% p.a.** of Regular Premium Policy Value | From year 8 onwards, payable yearly [PS ver 1.0 (Oct 2026) Section 3.5] |
+| **Supplementary Charge stops** | 3.60% p.a. charge runs for **first 7 policy years only** | From year 8 the charge drops to zero [PS ver 1.0 (Oct 2026) Section 5.2] |
 
 ## Numbers worth memorising
 
 | # | Number | What it means |
 |---|---|---|
-| 1 | **S$18,000/year** | Minimum annual regular premium (S$9,000 semi / S$4,500 quarterly / S$1,500 monthly) [PS v1.0 042025 Section 6.1] |
-| 2 | **3.60% p.a.** | Supplementary Charge on Regular Premium Policy Value, monthly, **first 7 policy years only** (charged even during Premium Holiday) [PS v1.0 042025 Section 5.2] |
+| 1 | **S$18,000/year** | Minimum annual regular premium (S$9,000 semi / S$4,500 quarterly / S$1,500 monthly) [PS ver 1.0 (Oct 2026) Section 6.1] |
+| 2 | **3.60% p.a.** | Supplementary Charge on Regular Premium Policy Value, monthly, **first 7 policy years only** (charged even during Premium Holiday) [PS ver 1.0 (Oct 2026) Section 5.2] |
 | 3 | **14 days** | Free-look period from receipt of policy documents [PS p.8, Section 7.3] |
-| 4 | **5 years** | Premium-paying term [PS v1.0 042025 Section 2] |
+| 4 | **5 years** | Premium-paying term [PS ver 1.0 (Oct 2026) Section 2] |
 | 5 | **6% / 7%** | Project at 6% with client (underpromise); fund history around 7% on AIA Global Adventurous Income Fund [Brochure p.5] |
 
 ## Target client profile
@@ -101,7 +101,7 @@ Three points, in order:
 
 1. **Capital preservation.** The death benefit is the higher of total regular premiums paid plus top-ups (less withdrawals) or current policy value. Your family never receives less than what you put in.
 2. **Quarterly dividends.** From the time the fund declares dividends, you choose each quarter — cash payout via PayNow, or reinvestment. Switchable.
-3. **Liquidity after year 7.** Full access to cash value with no surrender charges from year 11. Partial withdrawals are available from year 1 with a declining charge factor.
+3. **Liquidity after year 7.** Full access to cash value with no surrender charges from year 8. Partial withdrawals are available from year 1 with a declining charge factor.
 
 Then the permission close into the Drawing Concept:
 
@@ -313,7 +313,7 @@ For a fresh, normal pre-retiree, all 7 panels at full delivery in 25 minutes.
 ---
 
 ## Quiz
-1. **According to Day 1, what kind of plan is AIA Platinum Wealth Venture 2.0?**
+1. **According to Day 1, what kind of plan is AIA Platinum Wealth Venture 3.0?**
 - A) A 5-year participating endowment with guaranteed returns
 - B) A 5-year premium-paying Investment-Linked Plan (ILP) with 100% of premium invested from day 1 ✓
 - C) A whole-life par plan with annual cash bonuses
@@ -345,13 +345,13 @@ For a fresh, normal pre-retiree, all 7 panels at full delivery in 25 minutes.
 
 **Why:** Day 1 says PWV is wrong for prospects under 50 without accumulated wealth or those needing short-term liquidity in years 1-7.
 
-5. **What is the minimum regular premium for PWV 2.0?**
+5. **What is the minimum regular premium for PWV 3.0?**
 - A) S$3,900/year (S$325/month)
 - B) S$5,400/year (S$450/month)
 - C) S$18,000/year (S$1,500/month) ✓
 - D) S$12,000/year (S$1,000/month)
 
-**Why:** Per PWV 2.0 PS v1.0 042025 Section 6.1, the minimum annual regular premium is S$18,000 (S$9,000 semi / S$4,500 quarterly / S$1,500 monthly).
+**Why:** Per PWV 3.0 PS ver 1.0 (Oct 2026) Section 6.1, the minimum annual regular premium is S$18,000 (S$9,000 semi / S$4,500 quarterly / S$1,500 monthly).
 
 6. **According to Day 1, the Welcome Bonus tiers are based on what?**
 - A) The fund chosen for allocation
@@ -359,7 +359,7 @@ For a fresh, normal pre-retiree, all 7 panels at full delivery in 25 minutes.
 - C) The age of the policyholder
 - D) Whether the policy uses cash or SRS
 
-**Why:** The 4 bonus types table cites premium bands per PWV 2.0 PS v1.0 042025 Section 3.3: $18K-$23.99K (0% total), $24K-$41.99K (3% Y1 only), $42K+ (3%/4%/5% across Y1/Y2/Y3 = 12% total).
+**Why:** The 4 bonus types table cites premium bands per PWV 3.0 PS ver 1.0 (Oct 2026) Section 3.3: $18K-$23.99K (0% total), $24K-$41.99K (3% Y1 only), $42K+ (3%/4%/5% across Y1/Y2/Y3 = 12% total).
 
 7. **In the Cynthia case, what is the FRS amount used and what is the resulting OA excess?**
 - A) FRS $213,000; excess $167,000

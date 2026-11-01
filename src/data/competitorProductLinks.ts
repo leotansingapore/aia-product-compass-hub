@@ -143,9 +143,9 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
       website: "https://www.aia.com.sg/en/our-products/save-and-invest/investment-linked/aia-pro-achiever-iii",
       brochure: "https://www.aia.com.sg/content/dam/sg-wise/en/docs/our-products/en/aia-pro-achiever-3.0.pdf",
     },
-    "AIA Platinum Wealth Venture 2.0 (PWV 2.0)": {
+    "AIA Platinum Wealth Venture 3.0 (PWV 3.0)": {
       website: "https://www.aia.com.sg/en/our-products/platinum/wealth-accumulation/aia-platinum-wealth-venture-ii",
-      brochure: "https://www.aia.com.sg/content/dam/sg-wise/en/docs/our-products/en/aia-platinum-wealth-venture-ii.pdf",
+      brochure: "https://www.aia.com.sg/content/dam/sg-wise/en/docs/our-products/en/aia-platinum-wealth-venture-iii.pdf",
     },
     "AIA Platinum Wealth Elite 2.0": {
       website: "https://www.aia.com.sg/en/our-products/save-and-invest/investment-linked/aia-platinum-wealth-elite-ii",
