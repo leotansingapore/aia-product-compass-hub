@@ -94,7 +94,7 @@ AIA does NOT currently underwrite a standalone CareShield Life supplement.
 
 ### INVESTMENT-LINKED
 **Regular-premium**
-- **AIA Pro Achiever 3.0** — mass-market accumulation ILP from S$300/mth; capital-guaranteed; no medical questions; welcome bonus up to 75% in first 3 yrs; IIP 10/15/20 yrs.
+- **AIA Pro Achiever 3.0** — mass-market accumulation ILP from S$200/mth; capital-guaranteed; no medical questions; welcome bonus up to 75% in first 3 yrs; IIP 10/15/20 yrs.
 - **AIA Pro Lifetime Protector (II)** — protection-led regular-premium ILP (also classified as Whole Life).
 
 **Single-premium / Platinum range**

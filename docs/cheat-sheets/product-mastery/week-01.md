@@ -16,7 +16,7 @@ tags: [product-mastery, week-1, pro-achiever, cheatsheet]
 
 ## What this product is + who it is FOR
 
-A regular-premium Investment-Linked Policy issued by AIA, SGD-denominated, matures at age 100 of the original insured, no medical underwriting. Premium buys units in chosen sub-funds; returns are not guaranteed. The prospect is buying a long-term retirement vehicle, not a trading account.
+A regular-premium Investment-Linked Policy issued by AIA, SGD-denominated, whole life policy term, no medical underwriting. Premium buys units in chosen sub-funds; returns are not guaranteed. The prospect is buying a long-term retirement vehicle, not a trading account.
 
 **Ideal client (3 markers):**
 - Age 25-50, $4.8K-$6K annual premium band, 20-40 year horizon
@@ -27,17 +27,17 @@ A regular-premium Investment-Linked Policy issued by AIA, SGD-denominated, matur
 
 | Item | Value |
 |---|---|
-| Structure | SGD regular-premium ILP, matures age 100 |
+| Structure | SGD regular-premium ILP, whole life |
 | Underwriting | None - guaranteed issue |
 | Entry age | 1 month to 70 |
 | Min annual premium / top-up / withdrawal | $2,400 / $1,000 / $500 |
 | IIP options (locked at issue) | 10 / 15 / 20 years - sell 10-yr by default |
 | Premium allocation | 100% from day 1 (zero allocation charge) |
 | Welcome Bonus (10-yr IIP, $12K+ tier) | 15% / 18% / 20% across Y1/Y2/Y3 = 53% total = $6,360 |
-| Special Bonus | 5% of annualised premium Y10-20, 8% Y21+, perpetual |
-| Supplementary charge | 3.9% p.a. on policy value, first 10 years only, 0% from Y11 |
-| Surrender charge | 100% Y1-2, taper to 0% by Y11 |
-| Top-up / switch / partial-withdrawal charge | 0% / 0% / 0% from Y11 |
+| Special Bonus | 5% of annualised premium to Y20 (check the current AIA product summary for the start year), 8% Y21+, perpetual |
+| Supplementary charge | 3.9% p.a. on regular premium policy value, first 10 years only, 0% from Y11 |
+| Surrender charge | Tapers during the IIP to 0% by Y11 (check the current AIA product summary for the exact rates) |
+| Top-up / switch / partial-withdrawal charge | 5% / 0% / 0% from Y11 |
 | Default fund (99% of cases) | 100% Self-Select Adventurous Index Fund (lowest FMC ~1%) |
 | Free-look | 14 days |
 
@@ -51,14 +51,14 @@ Open with a discovery question, not a feature dump. Three verbatim starts:
 
 > *"I'm not here to replace what you're doing on Tiger or IBKR - that's your trading account. I'm here for the retirement bucket. Mind if I show you how the two fit together?"*
 
-Then sketch the curve on paper - charges front-loaded for 10 years, bonuses perpetual from Y10. The prospect sees the structure, not the slide deck.
+Then sketch the curve on paper - charges front-loaded for 10 years, bonuses perpetual (check the current AIA product summary for the Special Bonus start year). The prospect sees the structure, not the slide deck.
 
 ## Objection cluster
 
 | Objection | Cushion -> reframe -> close-to-action |
 |---|---|
 | "I'll just buy S&P 500" | *"Totally fair - I started there too. Honest question: would you bet your retirement on US equities outperforming every other geography for the next 40 years? Over 40 years a 1-in-20-year drawdown happens roughly twice. S&P 500 vol is ~21%; APA's international portfolio is ~11%. Same equity exposure, half the volatility. Does that change how you'd think about the concentration?"* |
-| "Fees are too high - 3.9% is a lot" | *"Fair, 3.9% is real and I won't dress it up. At Year 11 the charge goes to zero permanently. The 5% Special Bonus from Y10 plus 8% from Y21 are perpetual. At $12K/year premium, cumulative bonuses pass cumulative charges by Year 34. After that AIA is effectively paying you. Compare to iFAST at 1% perpetual - on a $1M portfolio that's $10K/year forever."* |
+| "Fees are too high - 3.9% is a lot" | *"Fair, 3.9% is real and I won't dress it up. At Year 11 the charge goes to zero permanently. The 5% Special Bonus (check the current AIA product summary for the start year) plus 8% from Y21 are perpetual. At $12K/year premium, cumulative bonuses pass cumulative charges by Year 34. After that AIA is effectively paying you. Compare to iFAST at 1% perpetual - on a $1M portfolio that's $10K/year forever."* |
 | "I want guaranteed cash values" | *"Honest reframe - do you want to guarantee a loss to inflation instead? Fixed-return options cap at 2-3%; bank cash loses ~2.75%/year to inflation. APA's structural guarantee is the capital-guaranteed death-benefit floor - your family never receives less than what you paid in."* |
 | "I'll just DIY ETFs" | *"ETFs are a great tool, my own portfolio has them. The two pieces an ETF can't replicate: the Welcome + Special Bonus stack ($45K+ extra over a 40-year hold at $12K premium), and the Secondary Insured. If you go first, your spouse inherits a managed policy that AIA keeps running - not a Tiger login she has to figure out."* |
 | "I want dividends now" | *"Fair. The flip - would you rather have dividends landing now when you don't need them, or 25 years from now when monthly income is the difference between working and not working? APA accumulates till retirement, then switches into GDIF for ~5% dividend yield with capital preserved. $2.4M pot at retirement throws off ~$10K/month and the capital stays for the kids."* |

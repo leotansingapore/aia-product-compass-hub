@@ -214,7 +214,7 @@ These are the drawings every FC must be able to produce from memory on a blank w
 1. Draw a horizontal timeline from Y1 to Y30+.
 2. Above Y1, Y2, Y3 — three bars labelled with the prospect's tier bonus: e.g., **15% | 18% | 20%** for $12K+/yr premium.
 3. Below the bars, write the dollar values: "$1,800 + $2,160 + $2,400 = **$6,360 in Y1-3 alone**".
-4. From Y10 to Y20 — a continuous bar labelled **5% Special Bonus per year of annualised premium**.
+4. From the start year to Y20 (check the current AIA product summary for the start year) — a continuous bar labelled **5% Special Bonus per year of annualised premium**.
 5. From Y21 onwards — a continuous bar labelled **8% Special Bonus per year**.
 6. Below the entire timeline, write the cumulative totals: e.g., **$18,000 / $23,000 total bonus stack across the policy life** (with verified numbers from iPOS).
 7. Above the timeline, draw the supplementary charge curve: **3.9% Y1-10, then drops to 0% from Y11**.
@@ -223,7 +223,7 @@ These are the drawings every FC must be able to produce from memory on a blank w
 **The script:**
 > *"There's a structural offset to the 3.9% supplementary charge that most prospects don't see. In year 1, you get a 15% Welcome Bonus on your premium. Year 2 it's 18%. Year 3 it's 20%. That's 53% of your annualised premium credited as a bonus across the first three years — $6,360 of bonus at your premium tier, before compounding even starts.*
 >
-> *Then from year 10 onwards, the Special Bonus credits 5% of your annualised premium every year you keep paying — going to 8% from year 21. Over a 25-30 year hold, that totals roughly $18,000 - $23,000 of bonus stack from iPOS.*
+> *Then the Special Bonus credits 5% of your annualised premium every year you keep paying (check the current AIA product summary for the start year) — going to 8% from year 21. Over a 25-30 year hold, that totals roughly $18,000 - $23,000 of bonus stack from iPOS.*
 >
 > *Net effective fee over the policy life is materially lower than competitors who have a 'low headline charge but perpetual deduction' curve. APA's structure: heavy in Y1-10, zero from Y11, with bonus credits accumulating the whole way. Different category of fee math."*
 
@@ -311,9 +311,9 @@ These are the drawings every FC must be able to produce from memory on a blank w
 
 **What to draw:** Same as the procrastination curve above, but specifically applied to APA's bonus stack — start at 25 vs start at 30 vs start at 35, showing the cumulative bonus stack difference at 65.
 
-### Premium holiday / limited-pay variant
+### Premium holiday after the IIP
 
-**What to draw:** Two scenarios side-by-side. Scenario A: pay $600/mo for 10 years (10-yr IIP), then stop. Scenario B: pay $600/mo continuously to 65. Show the cash value at 65 for both. Annotate: *"10-yr IIP is the minimum. Most clients elect to continue paying for the Special Bonus stack."*
+**What to draw:** Two scenarios side-by-side. Scenario A: pay $600/mo for 10 years (10-yr IIP), then stop on a premium holiday (APA has no limited-pay option; there is no Premium Holiday Charge after the IIP). Scenario B: pay $600/mo continuously to 65. Show the cash value at 65 for both. Annotate: *"10-yr IIP is the minimum. Most clients elect to continue paying for the Special Bonus stack."*
 
 ### Dividend mode mechanic
 
@@ -443,7 +443,7 @@ Annotate: *"Drawdown is finite. Dividends are infinite. Same starting capital, d
 **What to draw:**
 1. Draw the existing whole-life policy as a box on the left. Inside, label "Cash value: $50K (paid-up)". Below: "Monthly premium: $400/mo".
 2. Draw two arrows pointing right:
-   - Arrow 1 (cash value): point to a new APA box with "Lump-sum top-up: $48,500 (after 3% top-up charge)"
+   - Arrow 1 (cash value): point to a new APA box with "Lump-sum top-up: $47,500 (after 5% top-up charge)"
    - Arrow 2 (monthly premium): point to the same new APA box with "Regular premium: $400/mo continuous"
 3. Inside the new APA box, project the combined value at 65. Annotate: *"~$256K at 65 (8%), vs the old whole-life's ~$120K cash value at 70."*
 

@@ -240,7 +240,7 @@ When the original life assured dies, the policy does not terminate. No death ben
 
 ## 0f. The supplementary-charge sub-pitch
 
-Most other major insurers (GE, Manulife, SingLife, Prudential, HSBC, etc.) charge a **supplementary fee of 0.6% to 1% per year** on policy value, perpetually. **AIA does not have this charge after 65.**
+Most other major insurers (GE, Manulife, SingLife, Prudential, HSBC, etc.) charge a **supplementary fee of 0.6% to 1% per year** on policy value, perpetually. **AIA does not have this charge once the 11th annual premium is paid.**
 
 The math on a $2M retirement portfolio: **0.7% x $2M = $14,000 per year** removed from the policy, every year, forever. Over a 30-year retirement, that's **$420K leaving the portfolio just to fees**.
 
@@ -266,12 +266,12 @@ For ProAchiever (APA) and similar wealth plans, the bonus structure typically lo
 
 | When | Bonus | On $12K/yr premium |
 |---|---|---|
-| Year 1 | 10% of annual premium | $1,200 |
-| Year 2 | 10% of annual premium | $1,200 |
-| Year 3 | 15% of annual premium | $1,800 |
+| Year 1 | 15% of annual premium | $1,800 |
+| Year 2 | 18% of annual premium | $2,160 |
+| Year 3 | 20% of annual premium | $2,400 |
 | **Years 1-3 welcome bonus total** | | **~$6,360** (some illustrations show $6,000) |
-| Year 10 onwards (every year) | 5% of annual premium | +$600/year |
-| Year 20 onwards (every year) | 8% of annual premium | +$960/year |
+| To Year 20, every year (check the current AIA product summary for the start year) | 5% of annual premium | +$600/year |
+| Year 21 onwards (every year) | 8% of annual premium | +$960/year |
 
 > **The lifetime-bonus question to ask the client:** *"What seems bigger to you - the $6,360 welcome bonus in the first three years, or the $600 + $960 every year for life?"*
 >

@@ -50,15 +50,15 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     category: 'product-facts'
   },
   {
-    question: "When does the 5% special bonus kick in, and what happens from year 21 onwards?",
+    question: "What are the Pro Achiever 3.0 special bonus rates, and what happens from year 21 onwards?",
     options: [
       "5% from year 5, increasing to 10% from year 15",
-      "5% of annualised premium from receipt of the 10th annual premium, increasing to 8% from receipt of the 21st annual premium onwards",
+      "5% of annualised premium, increasing to 8% from receipt of the 21st annual premium onwards (check the current AIA product summary for the year the 5% starts)",
       "8% from year 10 onwards, no change after that",
       "A one-time 5% bonus paid at the 10th anniversary only"
     ],
     correct: 1,
-    explanation: "Per Product Summary p.2 Section 3.4, the Special Bonus is 5% of the annualised regular premium upon receipt of each regular premium from the 10th annual premium onwards, increasing to 8% from the 21st annual premium onwards. Calculated on annualised premium - NOT on account value. For example, on a $10,000/year premium, the client gets an extra $500/year from year 10 and $800/year from year 21.",
+    explanation: "Per Product Summary p.2 Section 3.4, the Special Bonus is 5% of the annualised regular premium upon receipt of each regular premium (check the current AIA product summary for the start year), increasing to 8% from the 21st annual premium onwards. Calculated on annualised premium - NOT on account value. For example, on a $10,000/year premium, the client gets an extra $500/year while the 5% applies and $800/year from year 21.",
     category: 'product-facts'
   },
   {
@@ -106,7 +106,7 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
       "It is an emerging market equity fund available since 2018"
     ],
     correct: 2,
-    explanation: "The AIA Global Dynamic Income Fund pays dividends every quarter and is only available for Pro Achiever 3.0. It is designed for clients who want regular income from their investment alongside the growth potential of an ILP.",
+    explanation: "The AIA Global Dynamic Income Fund pays dividends every quarter and is only available for Pro Achiever 3.0. It is designed for clients who want regular income from their investment alongside the growth potential of an ILP; during the IIP the dividends are reinvested, and after the IIP they can be taken as cash.",
     category: 'product-facts'
   },
   {
@@ -330,12 +330,12 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     question: "A client says: 'What if I need the money before 10 years?' What is the correct response?",
     options: [
       "Tell them they will lose all their money if they withdraw early",
-      "Explain that they can make partial withdrawals after the lock-in, and that within the first 10 years, Premium Holiday is available if they face financial difficulty — though charges apply if used in the early years",
+      "Explain that they can make partial withdrawals from policy year 3 (with a charge during the IIP), and that within the first 10 years, Premium Holiday is available if they face financial difficulty — though charges apply if used in the early years",
       "Advise them to put only money they don't need into APA",
       "Tell them the policy can be surrendered at any time for full value"
     ],
     correct: 1,
-    explanation: "From 'Pro Achiever Overview' and training: Partial withdrawals are available once the IIP (Investment Insurance Period) ends. There is no separate 10-year lock-in. Within the IIP, Premium Holiday lets the client pause payments if facing financial difficulty (charges may apply). After 5 years of payments, Premium Pass gives a charge-free pause of up to 36 cumulative months across IIP-dependent passes. The key message: worst case is a pause — not a total loss.",
+    explanation: "From 'Pro Achiever Overview' and training: Partial withdrawals are allowed from policy year 3; during the IIP (Initial Investment Period) a partial withdrawal charge applies, and after it there is none. There is no separate 10-year lock-in. Within the IIP, Premium Holiday lets the client pause payments if facing financial difficulty (charges may apply). After 5 years of payments, Premium Pass gives a charge-free pause of up to 36 cumulative months across IIP-dependent passes. The key message: worst case is a pause — not a total loss.",
     category: 'objection-handling'
   },
   {
@@ -425,19 +425,19 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
       "Change the subject to the life protection component instead"
     ],
     correct: 1,
-    explanation: "Honesty builds trust. The projected returns in the benefit illustration are NOT guaranteed — they are based on assumed fund performance. Acknowledge this directly, then pivot: (1) The welcome bonus is real and credited across years 1-3 [Product Summary p.2 Section 3.3], (2) The special bonus from the 10th annual premium is real, (3) Professional fund management and diversification maximise the probability of strong long-term returns. Risk is managed, not eliminated.",
+    explanation: "Honesty builds trust. The projected returns in the benefit illustration are NOT guaranteed — they are based on assumed fund performance. Acknowledge this directly, then pivot: (1) The welcome bonus is real and credited across years 1-3 [Product Summary p.2 Section 3.3], (2) The special bonus (5%, then 8% from the 21st annual premium) is real, (3) Professional fund management and diversification maximise the probability of strong long-term returns. Risk is managed, not eliminated.",
     category: 'roleplay'
   },
   {
     question: "In a roleplay closing demo, the prospect says: 'Let me see the numbers first.' What do you do?",
     options: [
       "Email them the benefit illustration and follow up next week",
-      "Run the benefit illustration with them live in the meeting — show the welcome bonus in year 1, the special bonus from year 10, and linearize the projected returns into a monthly income figure they can relate to",
+      "Run the benefit illustration with them live in the meeting — show the welcome bonus in year 1, the special bonus (start year per the current AIA product summary), and linearize the projected returns into a monthly income figure they can relate to",
       "Tell them you don't have the numbers handy and reschedule",
       "Show them a competitor comparison chart instead"
     ],
     correct: 1,
-    explanation: "From 'Explanation of Sales Illustrator for APA' and 'Commentary of My Own Closing': Always run the illustration live with the client, not in advance. Walk them through: (1) Welcome bonus credited across years 1-3 (Product Summary p.2 Section 3.3), (2) 100% invested from the start, (3) Special bonus from the 10th annual premium (Section 3.4), (4) Projected fund value at maturity. Then linearize - divide the projected profit into monthly income equivalent. Never leave the illustration for them to interpret alone.",
+    explanation: "From 'Explanation of Sales Illustrator for APA' and 'Commentary of My Own Closing': Always run the illustration live with the client, not in advance. Walk them through: (1) Welcome bonus credited across years 1-3 (Product Summary p.2 Section 3.3), (2) 100% invested from the start, (3) Special bonus (Section 3.4; check the current AIA product summary for the start year), (4) Projected fund value at maturity. Then linearize - divide the projected profit into monthly income equivalent. Never leave the illustration for them to interpret alone.",
     category: 'roleplay'
   },
   {

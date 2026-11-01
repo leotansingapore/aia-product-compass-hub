@@ -64,18 +64,18 @@ Effective total in the early years for Invest Plus: roughly **3.0%** (1.8% initi
 
 | Lock-in / band | AIA Pro Achiever | Manulife (LifeFinity / similar) | FWD Invest Plus |
 |---|---|---|---|
-| 10-yr lock-in, <$12K | 5–53% (band-dependent) | 0% | — |
+| 10-yr lock-in, <$12K | 5-38% (band-dependent) | 0% | — |
 | 10-yr lock-in, ≥$12K | 53% | 5% | — |
-| 15-yr lock-in, <$12K | 8–63% (band-dependent) | 10% | 17–21% (Reward Band 1–5) |
+| 15-yr lock-in, <$12K | 8-48% (band-dependent) | 10% | 17–21% (Reward Band 1–5) |
 | 15-yr lock-in, ≥$12K | 63% | 15% | 17–21% (Reward Band 1–5) |
-| 20-yr lock-in, <$12K | 10–75% (band-dependent) | 15% | Higher bands |
+| 20-yr lock-in, <$12K | 10-60% (band-dependent) | 15% | Higher bands |
 | 20-yr lock-in, ≥$12K | 75% | 20% | Higher bands |
 
 **Caveat:** FWD's reward-band system pays *per year of premium term* and scales with longer commitments (e.g. 30-yr term × ≥$48K = ~34% at Reward Band 5). Don't say "AIA is always 4x" — say **"at the same band, AIA's welcome bonus runs 3–5x the Manulife figure"** and bring the brochure to prove it.
 
 ### Surrender / withdrawal penalties
 
-- **AIA Pro Achiever IIP 10:** ~5% by year 10, drops to **0% from year 11 onwards**.
+- **AIA Pro Achiever IIP 10:** falls each year during the IIP (check the current AIA product summary for the exact rates), drops to **0% from year 11 onwards**.
 - **Manulife LifeFinity / similar:** Year 1–2 = 100% surrender penalty. **5–40% penalty still applies as far out as year 10.** Minimum Investment Period extending up to **19+ years** in some configurations.
 
 ### Illustrative figures (Loom training, no saved BI)

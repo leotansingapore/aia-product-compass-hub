@@ -39,7 +39,7 @@ iPaaS Plus does the numbers and benefit illustrations. The presenter does the *s
 | 2-3 | Slide age slider: start 5y later -> 10y later -> 20y later | *"Wait 20 years and the same outcome costs ~5x more per month."* |
 | 3-5 | Switch on **dividend mode** at age 65, premium holiday from 65 | *"From 66 onwards, this becomes a monthly income. Capital stays. Dividends come out."* |
 | 5-6 | Pull up linearised return: total - premiums / years / 12 | *"For every $100 you put in today, you eventually earn ~$500."* |
-| 6-7 | Open **bonus calculator** ($12K/yr tier) | *"Y1 to Y3 bonuses are ~$6.3K. Then 5% from Y10, 8% from Y20 - forever."* |
+| 6-7 | Open **bonus calculator** ($12K/yr tier) | *"Y1 to Y3 bonuses are ~$6.3K. Then 5% (check the current AIA product summary for the start year), 8% from Y21 - forever."* |
 | 7-8 | Switch to **mechanics slides** -> Diversification + 10-Year Rule | *"After 10 years, historical probability of negative return is ~0% across major equity markets."* |
 | 8-9 | Knowledge Assistant for any question you don't know | *"Let me ask the AI - one second."* |
 
@@ -157,7 +157,7 @@ Use this on ANY ILP / endowment / hybrid plan when the fees objection lands.
 
 ## Numbers worth memorising
 
-- **APA bonuses:** Y1-3 = 15% / 18% / 20% = 53% total on $12K/yr (~$6.3K). Y10 = 5%. Y20 = 8%.
+- **APA bonuses:** Y1-3 = 15% / 18% / 20% = 53% total on $12K/yr (~$6.3K). Then 5% (check the current AIA product summary for the start year), 8% from Y21.
 - **APA charges:** ~3.9%/yr first 10 years. Then stop. Breakeven ~34-36 years.
 - **PWV charges:** 3.6% Y1-7. Then 2.5% investment bonus Y8-11 + 0.4% performance bonus perpetual.
 - **PWV breakeven:** ~19 years.

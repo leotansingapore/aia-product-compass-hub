@@ -122,9 +122,9 @@ The trial close at the end lets the prospect tell you whether the service piece 
 
 > *"Honestly, fair — 3.9% is not a small number and I'm not going to pretend it is. The bit I'd want you to see is what happens on the other side of year 10.*
 >
-> *Year 10: the supplementary charge goes to zero. Permanently.*
+> *Year 11: the supplementary charge goes to zero. Permanently.*
 >
-> *The bonuses — 5% from year 10, 8% from year 21 — keep paying for the life of the plan.*
+> *The bonuses — 5% (check the current AIA product summary for the start year), 8% from year 21 — keep paying for the life of the plan.*
 >
 > *At $12k/year premium, by roughly year 34 the cumulative bonuses pass the cumulative charges. From there on, the net economics flip in your favour. At the minimum $2.4k/year premium, that crossover sits closer to year 40."*
 
@@ -189,18 +189,18 @@ Effective total in the early years (Invest Plus): roughly **3%** (1.8% initial +
 
 | Lock-in / band | AIA Pro Achiever | Manulife (LifeFinity / similar) | FWD Invest Plus |
 |---|---|---|---|
-| 10-yr lock-in, <$12K | 5–53% (band-dependent) | 0% | — |
+| 10-yr lock-in, <$12K | 5-38% (band-dependent) | 0% | — |
 | 10-yr lock-in, ≥$12K | 53% | 5% | — |
-| 15-yr lock-in, <$12K | 8–63% (band-dependent) | 10% | 17–21% (Reward Band 1–5) |
+| 15-yr lock-in, <$12K | 8-48% (band-dependent) | 10% | 17–21% (Reward Band 1–5) |
 | 15-yr lock-in, ≥$12K | 63% | 15% | 17–21% (Reward Band 1–5) |
-| 20-yr lock-in, <$12K | 10–75% (band-dependent) | 15% | Higher bands |
+| 20-yr lock-in, <$12K | 10-60% (band-dependent) | 15% | Higher bands |
 | 20-yr lock-in, ≥$12K | 75% | 20% | Higher bands |
 
 Caveat to memorise: FWD's reward-band system pays *per year of premium term* and scales with longer commitments (e.g. 30-yr term × ≥$48K = ~34% at Reward Band 5). Don't say "AIA is always 4x" — say **"at the same band, AIA's welcome bonus runs 3–5x the Manulife figure"** and bring the brochure to prove it.
 
 ### Surrender / withdrawal penalties (verified)
 
-- **AIA Pro Achiever IIP 10:** ~5% by year 10, drops to **0% from year 11 onwards**.
+- **AIA Pro Achiever IIP 10:** falls each year during the IIP (check the current AIA product summary for the exact rates), drops to **0% from year 11 onwards**.
 - **Manulife (LifeFinity / similar):** Year 1–2 = 100% surrender penalty; **5–40% penalty still applies as far out as year 10**, with the Minimum Investment Period extending up to **19+ years** in some configurations.
 
 That's the structural point: AIA's IIP ends at year 10 and the client gets full flexibility. Competing ILPs keep the client locked in for nearly twice as long.
@@ -315,7 +315,7 @@ When the prospect is offered a dividend-paying competitor plan that pays out fro
 
 When the prospect questions the 3.9% supplementary charge in Y1-10, give them the dollar receipt for the offset:
 
-> *"Let me show you what offsets the supplementary charge. At your $1,000/mo premium tier, the Welcome Bonus across Y1-3 is 15% + 18% + 20% on annualised premium — that's $6,360 of bonus credited in the first three years alone. Then from Y10 onwards, the Special Bonus credits 5% per year, going to 8% from Y21 — every year you keep paying premium. Over a 25-30 year hold, that totals around $18,000 - $23,000 of bonus stack.*
+> *"Let me show you what offsets the supplementary charge. At your $1,000/mo premium tier, the Welcome Bonus across Y1-3 is 15% + 18% + 20% on annualised premium — that's $6,360 of bonus credited in the first three years alone. Then the Special Bonus credits 5% per year (check the current AIA product summary for the start year), going to 8% from Y21 — every year you keep paying premium. Over a 25-30 year hold, that totals around $18,000 - $23,000 of bonus stack.*
 >
 > *That's the structural offset to the supplementary charge. The fee curve isn't 'high then zero' — it's 'high in Y1-10, then zero from Y11, and meanwhile bonus credits accumulate the whole way.' Net effective fee over the policy life is materially lower than competitors who have a 'low then perpetual' curve."*
 
@@ -376,7 +376,7 @@ Have the Investing Success & Track Record deck open (slide 4: 10-year fund perfo
 
 **The reframe:**
 
-> *"You're right that the supplementary charge runs at 3.9% for the first 10 years — and only the first 10 years. After Year 10 it drops to 0%. The trade-off is what AIA layers on top: a Welcome Bonus in the first 3 years, a Special Bonus from Year 10 onwards, and a bigger one from Year 21. Over the long run the bonuses more than compensate for the charge — that's the whole reason the plan is structured this way.*
+> *"You're right that the supplementary charge runs at 3.9% for the first 10 years — and only the first 10 years. After Year 10 it drops to 0%. The trade-off is what AIA layers on top: a Welcome Bonus in the first 3 years, a Special Bonus (check the current AIA product summary for the start year), and a bigger one from Year 21. Over the long run the bonuses more than compensate for the charge — that's the whole reason the plan is structured this way.*
 >
 > *If you compare APA against a DIY platform with a 1% perpetual platform fee at the same 8% IIRR, APA actually pulls ahead from policy year 17 onwards because of how those bonuses compound. By year 30, APA is roughly $130K ahead on a $12K-a-year premium."*
 
@@ -390,9 +390,9 @@ Refer the prospect to the APA-vs-DIY year-17 crossover table in the Investing Su
 
 > *"Yes, you can pause, withdraw, or surrender at any point. But here's the honest framing — 100% of your premium is invested from day one. So how does AIA actually make money on this plan? Not from the premium, because every dollar goes to investment.*
 >
-> *AIA makes its money when you break the rules of the plan. When you withdraw early, surrender, pause — that's when AIA collects. If you withdraw $1,000 in the first 2 years, AIA can take back up to ~400% of that on the surrender side because that's how the charge structure works.*
+> *AIA makes its money when you break the rules of the plan. When you withdraw early, surrender, pause — that's when AIA collects. If you withdraw $1,000 in year 3, AIA can take back up to 85% of that on the surrender side because that's how the charge structure works.*
 >
-> *So my view is — yes, you CAN do all of that, but why would you want to? Why would you actively hand AIA the money you put in to make a return on? Just pay the premium guai guai. After 10 years the Special Bonus kicks in at 5% per year. After 20 years it's 8% per year. The plan is actually very low cost — only people who break the rules so-called 'lose money'."*
+> *So my view is — yes, you CAN do all of that, but why would you want to? Why would you actively hand AIA the money you put in to make a return on? Just pay the premium guai guai. The Special Bonus kicks in at 5% per year (check the current AIA product summary for the start year). After 20 years it's 8% per year. The plan is actually very low cost — only people who break the rules so-called 'lose money'."*
 
 The discipline frame: every withdrawal is AIA earning money on you. Frame it that way and most prospects stop probing for the exit clause.
 

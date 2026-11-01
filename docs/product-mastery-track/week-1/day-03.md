@@ -25,7 +25,7 @@ The frame: APA is *deliberately* structured to look bad in years 1-10 and great 
 
 ### Q1: Why is APA structured to look bad in years 1-10 and great from year 11 onward?
 
-**A:** Because the bonus stack is engineered to reward long-hold behaviour. Charges are front-loaded (3.9% supplementary for the first 10 years), bonuses are back-loaded (Welcome Bonus Y1-Y3, then Special Bonus 5% from Y10, then 8% from Y21). The plan deliberately makes early exit expensive — that's how AIA can afford to give a 53% Welcome Bonus + perpetual 5/8% Special Bonus to disciplined holders.
+**A:** Because the bonus stack is engineered to reward long-hold behaviour. Charges are front-loaded (3.9% supplementary for the first 10 years), bonuses are back-loaded (Welcome Bonus Y1-Y3, then Special Bonus 5% (check the current AIA product summary for the start year), then 8% from Y21). The plan deliberately makes early exit expensive — that's how AIA can afford to give a 53% Welcome Bonus + perpetual 5/8% Special Bonus to disciplined holders.
 
 The honest framing for the prospect (don't get defensive about the early-years charge — lead with it):
 
@@ -35,7 +35,7 @@ The curve to draw on paper:
 
 ```
 Years 1-10:    Charges: 3.9% p.a.    Bonuses: 5%-75% welcome (years 1-3)
-Year 10+:      Charges: 0%           Bonuses: 5% special perpetual
+Year 11+:      Charges: 0%           Bonuses: 5% special perpetual
 Year 21+:      Charges: 0%           Bonuses: 8% special perpetual
 ```
 
@@ -54,11 +54,11 @@ If a prospect surfaces a sub-10-year worry, don't walk — reframe: this is the 
 
 ---
 
-### Q3: How does the Special Bonus pay out from Year 10 onwards?
+### Q3: How does the Special Bonus pay out?
 
 **A:** It's a loyalty bonus calculated on **annualised regular premium** (not policy value — this is the most-missed detail):
 
-- **5% per year from Year 10-20** (on a 10-yr IIP)
+- **5% per year up to Year 20** (on a 10-yr IIP; check the current AIA product summary for the start year)
 - **8% per year from Year 21 onwards**
 - Perpetual for the rest of the policy as long as the premium is paid
 
@@ -66,7 +66,7 @@ The script that prevents the most common confusion:
 
 > *"5% of your annualized premium, not 5% of the account value. Please take note, there's a difference."*
 
-Most prospects assume "5%" means 5% of their pot. It doesn't — it means 5% of their *annual premium*, added to the pot. On a $12K/year premium that's an extra $600/year from Year 10 onward. Forever.
+Most prospects assume "5%" means 5% of their pot. It doesn't — it means 5% of their *annual premium*, added to the pot. On a $12K/year premium that's an extra $600/year once the Special Bonus starts. Forever.
 
 ---
 
@@ -76,14 +76,14 @@ Most prospects assume "5%" means 5% of their pot. It doesn't — it means 5% of 
 
 | Detail | Value |
 |---|---|
-| Rate | **3.9% per annum** of policy value |
+| Rate | **3.9% per annum** of the regular premium policy value |
 | Frequency | Monthly deduction |
 | Duration | First 10 policy years only (10-yr IIP). Drops to 0% from Year 11 |
 | What it covers | Distribution costs (commission), ongoing servicing, AIA admin |
 
 The disclosure that builds trust is to surface the charge yourself, before the prospect probes it:
 
-> *"One thing I want to flag up front — there's a 3.9% supplementary charge for the first 10 years. After year 10 it goes to zero, but you'd feel it in the early years. The trade-off is on the other side of the same wall: a Welcome Bonus in Y1-Y3, then 5% Special Bonus from Y10, then 8% from Y21. Front-loaded charges, perpetual bonuses. I'd rather you hear that from me than spot it in the contract later."*
+> *"One thing I want to flag up front — there's a 3.9% supplementary charge for the first 10 years. After year 10 it goes to zero, but you'd feel it in the early years. The trade-off is on the other side of the same wall: a Welcome Bonus in Y1-Y3, then 5% Special Bonus (check the current AIA product summary for the start year), then 8% from Y21. Front-loaded charges, perpetual bonuses. I'd rather you hear that from me than spot it in the contract later."*
 
 Naming the cost yourself flips the prospect's read of you from "selling" to "explaining."
 
@@ -165,21 +165,15 @@ The trial close at the end hands the conversation back. If they hesitate on the 
 
 | Year | Charge |
 |---|---|
-| 1-2 | 100% (gets back nothing) |
-| 3 | 80% |
-| 4 | 70% |
-| 5 | 60% |
-| 6 | 50% |
-| 7-9 | (sliding down) |
-| 10 | 5% |
+| 1-10 | Falls each year (check the current AIA product summary for the exact rates) |
 | **11+** | **0%** |
 
 **Partial withdrawal:**
 - Min withdrawal: $1,000
 - Min remaining policy value: $10,000
 - Blocked in Years 1–2 entirely
-- Year 3 charge factor: ~4.0 (prohibitive — effectively the full policy value withdrawn)
-- Year 10 charge factor: ~0.053 (5.3% effective)
+- Charge factor on the regular premium value withdrawn (10-year IIP): 70% with 3 annual premiums paid
+- Falls 10 points per annual premium paid, to 10% with 9 paid
 - After Year 10: drops to 0%
 
 **Premium Pass:**
@@ -188,15 +182,15 @@ The trial close at the end hands the conversation back. If they hesitate on the 
 - Pause up to 12 months without charge
 
 **Premium reduction charge:**
-- 70% of reduction value at Year 5
-- 60% of reduction value at Year 15
+- Only allowed after the 4th annual premium is paid
+- 10-year IIP: 60% of reduction value with 4 annual premiums paid, falling to 10% with 9 paid and 0% from 10 paid
 - (You almost never need this — most clients increase, not decrease.)
 
 ---
 
 ### Q10: How does the death benefit math work?
 
-**A:** Two layers — the capital-guaranteed floor, plus a small accidental-death rider in the first 2 years.
+**A:** Two layers — the capital-guaranteed floor, plus a built-in accidental-death benefit in the first 2 years.
 
 The capital guarantee on death (the main benefit):
 
@@ -222,14 +216,14 @@ In the first 2 policy years, accidental death pays an additional 100% of total r
 | --- | --------------------------------------------------------------- | -------------------------------------------------------- |
 | 1   | Supplementary charge                                            | 3.9% p.a., first 10 yrs only                             |
 | 2   | Welcome bonus range                                             | 5% to 75% over years 1–3                                 |
-| 3   | Special bonus year 10+                                          | 5% of annualized premium / yr                            |
+| 3   | Special bonus to year 20 (start year: see AIA product summary)  | 5% of annualized premium / yr                            |
 | 4   | Special bonus year 21+                                          | 8% of annualized premium / yr                            |
 | 5   | Min annual premium                                              | $2,400 ($200/mo)                                         |
 | 6   | Min top-up                                                      | $1,000                                                   |
 | 7   | Min partial withdrawal                                          | $1,000                                                   |
 | 8   | Min remaining policy value                                      | $10,000                                                  |
 | 9   | Premium pass                                                    | 1 per 5 yrs paid, 12 mo pause                            |
-| 10  | Maximum maturity age                                            | 100                                                      |
+| 10  | Policy term                                                     | Whole life                                               |
 | 11  | Free-look                                                       | 14 days                                                  |
 | 12  | How much does an age 20 earn investing $200/mo till age 65?     | $96k in → $411,600 → $584/mo                             |
 | 13  | Monthly Distribution cost for a $200/mth plan                   | ~$11/month over 45 yrs                                   |
@@ -262,7 +256,7 @@ Memorise the pattern, then memorise the 5 answers.
 
 Cushion, then walk the three things a DIY route doesn't give them, then trial close:
 
-> *"That's a totally fair question — it's the first one I'd ask too. Three things APA gives you that a direct unit trust doesn't. One, the welcome bonus in years 1–3. Two, the perpetual 5% / 8% special bonus from year 10. Three, a capital-guaranteed death benefit that pays your beneficiary at least everything you put in, even if the market is down 50% the day before.*
+> *"That's a totally fair question — it's the first one I'd ask too. Three things APA gives you that a direct unit trust doesn't. One, the welcome bonus in years 1–3. Two, the perpetual 5% / 8% special bonus (check the current AIA product summary for the start year). Three, a capital-guaranteed death benefit that pays your beneficiary at least everything you put in, even if the market is down 50% the day before.*
 >
 > *Direct funds give you the investment. APA gives you a wrapper that adds on top of it — and someone (me) to keep an eye on it with you over the years. Does that distinction make sense, or is there a piece you'd want me to dig into more?"*
 
@@ -358,7 +352,7 @@ GDIF is the canonical dividend-mode fund for APA at retirement. Yield approximat
 
 ## The riders question (sometimes asked, sometimes you bring it up)
 
-APA carries 5 optional riders. The two that come up most often in real appointments are the **Term Rider** (the restructuring lever) and **ECPWP — Enhanced Critical Payor Waiver** (the premium-protection lever). Both work as the "stack a small protection layer on top of the investment plan" answer when the prospect asks about life or CI cover.
+APA carries 6 optional riders (5 premium waivers plus the Term Rider). The two that come up most often in real appointments are the **Term Rider** (the restructuring lever) and **ECPWP (II) — Early Critical Protector Waiver of Premium** (the premium-protection lever). Both work as the "stack a small protection layer on top of the investment plan" answer when the prospect asks about life or CI cover.
 
 ### The Term Rider — the restructuring lever
 
@@ -383,7 +377,7 @@ When a prospect already owns one of the legacy structures below, APA + Term Ride
 
 The seed-plant line — use this even when the prospect doesn't ask, during the answer to Question 3:
 
-> *"Speaking of protection — APA also has 5 optional riders we can layer on. The two that come up most often are the Term Rider — if you want a $1M death / TPD layer it's usually cheaper as a rider on APA than as a standalone term plan — and ECPWP, Enhanced Critical Payor Waiver, which means if you get a major critical illness or become disabled, AIA waives your future premiums but the plan keeps growing. If you already own a whole life or a hybrid ILP, there's also a restructure conversation worth having on the next visit."*
+> *"Speaking of protection — APA also has 6 optional riders we can layer on. The two that come up most often are the Term Rider — if you want a $1M death / TPD layer it's usually cheaper as a rider on APA than as a standalone term plan — and ECPWP, Enhanced Critical Payor Waiver, which means if you get a major critical illness or become disabled, AIA waives your future premiums but the plan keeps growing. If you already own a whole life or a hybrid ILP, there's also a restructure conversation worth having on the next visit."*
 
 ---
 
@@ -436,15 +430,15 @@ The five answers above handle *curious* prospects. If a prospect asks:
 - C) Year 21 ✓
 - D) Year 30
 
-**Why:** 5% per year from year 10 onward, then 8% per year from year 21 onward — perpetual while premiums are paid.
+**Why:** 5% per year first (check the current AIA product summary for the start year), then 8% per year from year 21 onward — perpetual while premiums are paid.
 
 3. **The "structural inversion" of APA refers to what?**
 - A) Charges increase over time, bonuses decrease
-- B) Charges run years 1–10, bonuses (5%/8%) are perpetual from year 10/21 ✓
+- B) Charges run years 1–10, bonuses (5%, then 8% from year 21) are perpetual ✓
 - C) The plan loses money for the first 30 years
 - D) Bonuses are taken back at maturity
 
-**Why:** Years 1–10 charge 3.9% with welcome bonus only; year 10+ charges 0% with perpetual 5%/8% bonuses — engineered for long-hold clients.
+**Why:** Years 1–10 charge 3.9% with the welcome bonus in years 1-3; year 11+ charges 0% with perpetual 5%/8% bonuses — engineered for long-hold clients.
 
 4. **What is "linearization" of policy returns?**
 - A) Showing the gain as a single lump sum at maturity
@@ -454,13 +448,13 @@ The five answers above handle *curious* prospects. If a prospect asks:
 
 **Why:** Linearization makes a 45-year projection feel real to a 22-year-old — they CAN picture $584/mo for life.
 
-5. **What is the surrender charge in policy years 1–2?**
+5. **On a 10-year IIP, what is the surrender charge from policy year 11?**
 - A) 50%
-- B) 80%
-- C) 100% (gets back nothing) ✓
+- B) 5%
+- C) 0% ✓
 - D) 25%
 
-**Why:** 100% surrender charge in years 1–2 (gets back nothing); tapers from 80% in year 3 down to 5% in year 10, 0% from year 11+.
+**Why:** The surrender charge falls each year during the IIP and is 0% from year 11+ (check the current AIA product summary for the exact rates in years 1-10).
 
 6. **What is the minimum partial withdrawal and minimum remaining policy value?**
 - A) $500 min withdrawal / $5,000 min remaining

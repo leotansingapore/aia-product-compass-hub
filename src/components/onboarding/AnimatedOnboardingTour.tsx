@@ -832,7 +832,7 @@ function AssistantVisual() {
     { who: "me", text: "Compare ProAchiever vs Platinum Wealth Venture" },
     {
       who: "ai",
-      text: "ProAchiever locks in guaranteed returns from year 5. Platinum Wealth Venture offers investment-linked upside but no floor. Here's a side-by-side...",
+      text: "ProAchiever is an ILP whose death benefit is at least 100% of premiums paid. Platinum Wealth Venture offers investment-linked upside but no floor. Here's a side-by-side...",
     },
   ];
   return (

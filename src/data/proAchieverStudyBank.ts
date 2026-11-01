@@ -83,7 +83,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
 
   // Q6 — correct: 0
   {
-    question: "What is the special bonus rate from year 10 onwards in Pro Achiever 3.0?",
+    question: "What is the special bonus rate in Pro Achiever 3.0 up to year 20?",
     options: [
       "5% of annualized premium per year",
       "3% of annualized premium per year",
@@ -91,7 +91,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "10% of annualized premium per year"
     ],
     correct: 0,
-    explanation: "From year 10 onwards, the special bonus pays 5% of annualized premium per year. This increases to 8% from year 21 onwards.",
+    explanation: "Up to year 20, the special bonus pays 5% of annualized premium per year (check the current AIA product summary for the start year). This increases to 8% from year 21 onwards.",
     category: 'product-facts'
   },
 
@@ -105,7 +105,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "From year 21 onwards"
     ],
     correct: 3,
-    explanation: "The special bonus starts at 5% from year 10, then increases to 8% of annualized premium per year from year 21 onwards.",
+    explanation: "The special bonus starts at 5% (check the current AIA product summary for the start year), then increases to 8% of annualized premium per year from year 21 onwards.",
     category: 'product-facts'
   },
 
@@ -119,7 +119,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "Only after year 15 of the policy duration"
     ],
     correct: 1,
-    explanation: "The special bonus is credited from the 10th annual premium onwards (5%, then 8% from the 21st premium per Product Summary p.2 Section 3.4) and can be withdrawn from year 10. The welcome bonus has no separate lock-in; its units sit inside the IIP charge framework like other regular-premium units.",
+    explanation: "The special bonus is credited as units (5%, then 8% from the 21st premium per Product Summary p.2 Section 3.4; check the current AIA product summary for the year the 5% starts), and partial withdrawals are allowed from policy year 3, so once credited it can be withdrawn like other units. The welcome bonus has no separate lock-in; its units sit inside the IIP charge framework like other regular-premium units.",
     category: 'product-facts'
   },
 
@@ -203,7 +203,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "AIA Global Dynamic Income Fund (GDIF)"
     ],
     correct: 3,
-    explanation: "The AIA Global Dynamic Income Fund (GDIF) is a new fund option in v3.0 that pays quarterly dividends to policyholders.",
+    explanation: "The AIA Global Dynamic Income Fund (GDIF) is a new fund option in v3.0 that pays quarterly dividends (reinvested during the IIP, with a cash payout option after it).",
     category: 'product-facts'
   },
 
@@ -211,13 +211,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "How often does the AIA Global Dynamic Income Fund (GDIF) pay dividends?",
     options: [
-      "Monthly to the policyholder",
-      "Quarterly to the policyholder",
-      "Semi-annually to the policyholder",
-      "Annually to the policyholder"
+      "Monthly",
+      "Quarterly",
+      "Semi-annually",
+      "Annually"
     ],
     correct: 1,
-    explanation: "The GDIF pays dividends on a quarterly basis, providing regular income to policyholders who invest in this fund.",
+    explanation: "The GDIF pays dividends on a quarterly basis. During the IIP they are reinvested; after the IIP the policyholder can take them as cash for regular income.",
     category: 'product-facts'
   },
 
@@ -469,7 +469,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "It waives charges entirely from the start"
     ],
     correct: 2,
-    explanation: "APA's 3.9% supplementary charge ceases on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2; Brochure p.2). Competitors typically charge supplementary fees perpetually (e.g. GE 0.6%, Manulife 0.7%, FWD 1.2%).",
+    explanation: "APA's 3.9% supplementary charge ceases on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2; Brochure p.2). Competitors typically charge supplementary fees perpetually (e.g. GE 0.7%, Manulife 0.7%, FWD 1.2%).",
     category: 'product-facts'
   },
 
@@ -697,7 +697,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "As an automatic reinvestment into the GDIF fund"
     ],
     correct: 2,
-    explanation: "Position the special bonus as a loyalty reward: 5% from year 10 and increasing to 8% from year 21, rewarding clients who stay committed long-term.",
+    explanation: "Position the special bonus as a loyalty reward: 5% (check the current AIA product summary for the start year) and increasing to 8% from year 21, rewarding clients who stay committed long-term.",
     category: 'sales-angles'
   },
 
@@ -767,7 +767,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "The fund is only available to clients above age 55"
     ],
     correct: 0,
-    explanation: "For retirees seeking income, the GDIF's quarterly dividend payments provide a regular cash flow stream, which is a compelling benefit.",
+    explanation: "For retirees seeking income, the GDIF's quarterly dividend payments provide a regular cash flow stream once the IIP has ended (during the IIP they are reinvested), which is a compelling benefit.",
     category: 'sales-angles'
   },
 
@@ -1037,7 +1037,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "Tell them the 3.9% is waived if they choose the GDIF fund"
     ],
     correct: 2,
-    explanation: "The 3.9% supplementary charge ceases on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2). Beyond fees, APA bundles life protection, the 100% net-premiums-in death benefit guarantee, welcome bonus (years 1-3), and special bonuses (5% from year 10, 8% from year 21) - none of which ETFs provide.",
+    explanation: "The 3.9% supplementary charge ceases on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2). Beyond fees, APA bundles life protection, the 100% net-premiums-in death benefit guarantee, welcome bonus (years 1-3), and special bonuses (5%, then 8% from year 21) - none of which ETFs provide.",
     category: 'objection-handling'
   },
 
@@ -1265,7 +1265,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "'It comes from the performance fees earned by the fund manager.'"
     ],
     correct: 2,
-    explanation: "The special bonus is an additional credit from AIA — 5% of annualized premium from year 10 and 8% from year 21 — not taken from the client's existing funds.",
+    explanation: "The special bonus is an additional credit from AIA — 5% of annualized premium (check the current AIA product summary for the start year) and 8% from year 21 — not taken from the client's existing funds.",
     category: 'roleplay'
   },
 
@@ -1287,13 +1287,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "A roleplay client asks: 'Can I put all my money into the GDIF for quarterly income?' What do you say?",
     options: [
-      "'Yes, you can allocate your funds to GDIF for quarterly dividend distributions.'",
+      "'Yes, you can allocate your funds to GDIF for quarterly dividend distributions. During the IIP they are reinvested; after it you can take them as cash income.'",
       "'No, GDIF is only available as part of a commingled portfolio with Elite funds.'",
       "'No, GDIF requires a minimum allocation of $100,000 to access.'",
       "'Yes, but GDIF is only available to clients over age 50.'"
     ],
     correct: 0,
-    explanation: "The GDIF is available as a fund option in Pro Achiever 3.0 and clients can allocate to it for quarterly dividend income distributions.",
+    explanation: "The GDIF is available as a fund option in Pro Achiever 3.0 and clients can allocate to it for quarterly dividend distributions, which are reinvested during the IIP and can be taken as cash after it.",
     category: 'roleplay'
   },
 
@@ -1402,10 +1402,10 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "'Both bonuses are identical - they are just paid at different times.'",
       "'The welcome bonus is cash; the special bonus is additional fund units.'",
       "'The welcome bonus applies to new clients only; the special bonus applies to renewals.'",
-      "'The welcome bonus is paid upon receipt of each basic regular premium for the 1st, 2nd, and 3rd policy years (allocated as regular-premium units, subject to IIP charges); the special bonus is paid upon receipt of each regular premium from the 10th annual onwards at 5%, increasing to 8% from the 21st annual premium.'"
+      "'The welcome bonus is paid upon receipt of each basic regular premium for the 1st, 2nd, and 3rd policy years (allocated as regular-premium units, subject to IIP charges); the special bonus is paid upon receipt of each regular premium at 5% (check the current AIA product summary for the start year), increasing to 8% from the 21st annual premium.'"
     ],
     correct: 3,
-    explanation: "The welcome bonus is paid across years 1-3 (Product Summary p.2 Section 3.3); the special bonus is 5% of annualised premium from the 10th annual premium and 8% from the 21st annual premium onwards (Section 3.4). Both are allocated as regular-premium units.",
+    explanation: "The welcome bonus is paid across years 1-3 (Product Summary p.2 Section 3.3); the special bonus is 5% of annualised premium (check the current AIA product summary for the start year) and 8% from the 21st annual premium onwards (Section 3.4). Both are allocated as regular-premium units.",
     category: 'roleplay'
   },
 
@@ -1438,7 +1438,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "Cumulative welcome bonus credited"
     ],
     correct: 1,
-    explanation: "The Special Bonus is 5% of the annualised regular premium from the 10th annual premium onwards, and 8% from the 21st annual premium onwards (Product Summary p.2 Section 3.4). It is NOT calculated on account value - this is the most-missed product detail.",
+    explanation: "The Special Bonus is 5% of the annualised regular premium (check the current AIA product summary for the start year), and 8% from the 21st annual premium onwards (Product Summary p.2 Section 3.4). It is NOT calculated on account value - this is the most-missed product detail.",
     category: 'product-facts'
   },
 

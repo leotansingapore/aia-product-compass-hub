@@ -24,11 +24,11 @@ interface FlashcardStudyInterfaceProps {
 // Sample flashcard data - in a real app, this would come from a database
 const flashcardData: { [key: string]: FlashcardData[] } = {
   "Pro Achiever Key Features": [
-    { question: "What is the minimum premium for Pro Achiever?", answer: "SGD 100 per month or SGD 1,200 annually" },
+    { question: "What is the minimum premium for Pro Achiever?", answer: "SGD 200 per month or SGD 2,400 annually" },
     { question: "What investment funds are available?", answer: "Over 40 funds including equity, bond, and balanced funds" },
     { question: "Can premiums be increased?", answer: "Yes, regular and ad-hoc top-ups are allowed" },
-    { question: "What is the surrender charge period?", answer: "First 5 years with decreasing charges" },
-    { question: "Is there partial withdrawal?", answer: "Yes, after policy year 1 with minimum balance requirements" }
+    { question: "What is the surrender charge period?", answer: "The Initial Investment Period (10, 15 or 20 years), with decreasing charges and none after it" },
+    { question: "Is there partial withdrawal?", answer: "Yes, from policy year 3, with at least SGD 10,000 left in the policy" }
   ],
   "Investment Risks & Benefits": [
     { question: "What is market risk?", answer: "The risk that investment values may fluctuate due to market conditions" },

@@ -55,7 +55,7 @@ The drawings below are the ones that close cases consistently across hundreds of
 
    !Hand-drawn AIA-vs-S&P-500 structural advantages list: no dividend tax, no estate tax, no FX risk, secondary insured, capital-guaranteed floor, multi-fund stewardship
 
-8. **The Welcome + Loyalty bonus stack** — 15% / 18% / 20% over Y1-3, then 5% Y10-20, 8% Y21+ — with the absolute dollar totals ($18K, $23K type receipts) circled at the bottom
+8. **The Welcome + Loyalty bonus stack** — 15% / 18% / 20% over Y1-3, then 5% to Y20 (check the current AIA product summary for the start year), 8% Y21+ — with the absolute dollar totals ($18K, $23K type receipts) circled at the bottom
 
    !Hand-drawn Welcome + Loyalty bonus stack: 15%/18%/20% Y1–3 then 5% Y10–20, 8% Y21+, with the dollar receipts circled at the bottom
 
@@ -587,9 +587,9 @@ You can demonstrate how flexible the plan is by playing around with the illustra
 - **Ad-hoc withdrawals** — *"Life happens. Age 35 — $50K for house downpayment. Age 45 — $50K for car. Age 55 — $100K for kids' education. Returns are slightly lower but still substantial."*
 - **Payment pauses** — *"If you have a hard year, pause 1-2 years, resume when ready. The plan allows you to activate premium holidays, for 1 year after the 5th year, or you can pause indefinitely after the 10th year"* - you can close bigger cases if you just frame it as a plan that you can stop paying after the 10th year.
 
-### Dividend mode — the year-10+ mechanic
+### Dividend mode — the post-IIP mechanic
 
-At **year 10 onwards** you can switch the plan into **dividend mode** by moving from the Adventurous Index Fund (the accumulation default) into **GDIF — the Global Dynamic Income Fund**. 
+Once the **IIP ends** (year 11 onwards on a 10-year IIP; dividends are reinvested during the IIP) you can switch the plan into **dividend mode** by moving from the Adventurous Index Fund (the accumulation default) into **GDIF — the Global Dynamic Income Fund**. 
 
 - Dividends pay out quarterly
 - Capital stays invested
@@ -677,24 +677,24 @@ For a $12,000/year premium (illustrative — verify exact tier in iPOS):
 |---|---|---|
 | Year 1 | 15% | ~$1,800 |
 | Year 2 | 18% | ~$2,160 |
-| Year 3 | 23% | ~$2,760 |
+| Year 3 | 20% | ~$2,400 |
 | **Total over 3 years** | | **~$6,360** |
 
-> *"In your first 3 years, AIA gives you a Welcome Bonus on top of your premium. Year 1, 15% extra. Year 2, 18%. Year 3, 23%. On a $12K/year premium, that's about $6,360 over the first three years — money that compounds inside the plan from day one. None of the DIY platforms do this."*
+> *"In your first 3 years, AIA gives you a Welcome Bonus on top of your premium. Year 1, 15% extra. Year 2, 18%. Year 3, 20%. On a $12K/year premium, that's about $6,360 over the first three years — money that compounds inside the plan from day one. None of the DIY platforms do this."*
 
 (Verify exact %s in iPOS for the prospect's specific premium tier and IIP length — the Welcome Bonus table varies.)
 
-#### The Special Bonus (Year 10 and Year 21 onwards)
+#### The Special Bonus (5%, then 8% from Year 21 onwards)
 
 After the Welcome Bonus, the loyalty bonuses kick in:
 
-> *"Then from Year 10 onwards, every single year, AIA gives you a 5% Special Bonus on your annualised premium. And from Year 21 onwards, that steps up to 8% per year — for the rest of the policy."*
+> *"Then every single year, AIA gives you a 5% Special Bonus on your annualised premium (check the current AIA product summary for the start year). And from Year 21 onwards, that steps up to 8% per year — for the rest of the policy."*
 
 #### The "make a guess" close
 
 This is the move that lands the bonus structure emotionally:
 
-> *"Quick question — which do you think adds up to more over a lifetime: the $6,360 Welcome Bonus in the first 3 years, or the $600-ish per year that keeps paying from Year 10 onwards?"*
+> *"Quick question — which do you think adds up to more over a lifetime: the $6,360 Welcome Bonus in the first 3 years, or the $600-ish per year that keeps paying once the Special Bonus starts (check the current AIA product summary for the start year)?"*
 
 Let them guess. Most pick the $6,360 because it's the bigger upfront number. Then reveal:
 
@@ -885,7 +885,7 @@ APA has none of the friction items most ILPs charge:
 | Bid / offer spread | ❌ None |
 | Policy fees | ❌ None |
 | Underwriting fees | ❌ None |
-| Benefit charges | ❌ None |
+| Benefit charges | Only while premiums paid exceed the policy value |
 
 The context that makes this land:
 

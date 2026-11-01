@@ -216,7 +216,7 @@ export const CASES: CaseEntry[] = [
     headline: "APA $1.69M vs FWD $1.31M @65 — front-load shape wins",
     tags: ["fwd", "front-load", "iip", "same-money"],
     drawings: [
-      "Premium holiday / limited-pay variant",
+      "Premium holiday after the IIP",
       "The Welcome + Loyalty bonus stack",
     ],
     sourcePath: sourcePath(

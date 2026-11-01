@@ -6,7 +6,7 @@ Goal-driven ILP for growth-focused clients seeking flexibility and long-term acc
 ## 📊 Key Highlights  
 - Regular premium ILP with access to curated funds  
 - Top-up options and policy loan features  
-- Bonus allocation tiers; charges vary by premium band  
+- Welcome bonus tiers vary by premium band; the 3.9% supplementary charge is the same for every IIP  
 
 ## 🔗 Useful Links  
 - [Benefit Illustration (PDF)](insert-link-here)  

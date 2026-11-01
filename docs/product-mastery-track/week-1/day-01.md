@@ -107,7 +107,7 @@ The systematic monthly auto-debit removes the willpower problem they've been los
 
 - **Skills:** Wellington / BlackRock / Baillie Gifford run the portfolio. The prospect doesn't need to learn asset allocation, factor rotation, or rebalancing.
 - **Time:** the plan auto-debits monthly. Zero ongoing management. They get their hours back.
-- **Effort:** the limited-pay variant ($12K/year × 10 years → $700K capital + ~$4,300/mo dividends at retirement) is the set-and-forget version. Pay heavy upfront, done by 35-40, capital compounds for the next 30 years. The cash sitting in their bank loses to inflation every year they don't deploy it.
+- **Effort:** paying through a 10-year IIP and then taking a premium holiday ($12K/year × 10 years → $700K capital + ~$4,300/mo dividends at retirement) is the set-and-forget version. (APA is not a limited-pay plan: premiums continue after the IIP, but a premium holiday after the IIP carries no Premium Holiday Charge.) Pay heavy upfront, done by 35-40, capital compounds for the next 30 years. The cash sitting in their bank loses to inflation every year they don't deploy it.
 
 ## SPIN-style questions for APA discovery (use during Phase 1 + Phase 2)
 
@@ -155,7 +155,7 @@ The prospect names the solution. You don't push it.
 A SGD-denominated, **regular-premium Investment-Linked Policy (ILP)** issued by AIA Singapore Private Limited (Reg. 201106386R). Key structural facts:
 
 - **Currency:** SGD (no FX risk to the policyholder; underlying funds use hedging where relevant)
-- **Maturity:** age 100 of the original Insured
+- **Policy term:** whole life
 - **Underwriting:** **none — guaranteed issuance, no medical**
 - **Mechanism:** premium buys units in chosen ILP sub-funds; unit values fluctuate with market performance; returns are **not guaranteed**
 - **Min entry age:** 1 month (child)
@@ -174,7 +174,7 @@ There is **no allocation charge** and **no bid-offer spread** on APA. Every doll
 The honest framing of where this is actually a differentiator:
 
 - **Versus older-generation ILPs** with legacy allocation periods (e.g. only 50-80% allocated in years 1-2) — APA's 100% allocation is a real edge
-- **Versus ILPs that bundle insurance** (e.g. AIA Pro Lifetime Protector — PLP has insurance charges drawn from your units) — APA does not
+- **Versus ILPs that bundle insurance** (e.g. AIA Pro Lifetime Protector — PLP has insurance charges drawn from your units) — APA's only insurance cost is a benefit charge on any gap between premiums paid and the policy value
 - **Versus a vanilla retail unit trust** — be careful here. Most popular retail unit trusts on FSMOne / Endowus / Syfe are also effectively 100% invested. Don't claim a false advantage.
 
 When a prospect says *"I already DIY my own unit trusts — why APA?"*, the honest answer isn't *"we're 100% allocated and you're not"*. It's *"the Welcome and Special bonuses don't exist on DIY platforms — that's the actual stacking advantage."*
@@ -218,16 +218,16 @@ Two bonus mechanics, both calculated on **annualised regular premium** (not poli
 - Y3: 20% × $12,000 = $2,400
 - **Total over 3 years: $6,360**
 
-#### Special Bonus — loyalty bonus from Year 10 onwards
+#### Special Bonus — loyalty bonus (check the current AIA product summary for the start year)
 
 | Policy Year (annual premium) | Special Bonus (% of annualised regular premium) |
 |---|---|
-| Years 10-20 | **5%** |
+| Start year to Year 20 (check the current AIA product summary for the start year) | **5%** |
 | Years 21 onwards | **8%** |
 
 Per-tier annual dollar amounts:
 
-| Annualised premium | Year 10-20 Special Bonus | Year 21+ Special Bonus |
+| Annualised premium | Special Bonus to Year 20 | Year 21+ Special Bonus |
 |---|---|---|
 | $6,000/yr ($500/mo) | $300/yr | $480/yr |
 | $7,200/yr ($600/mo) | $360/yr | $576/yr |
@@ -250,14 +250,14 @@ This is the floor that makes APA different from a pure DIY portfolio — your fa
 
 You name a Secondary Insured at signup (or any time the original Insured is alive). When the original Insured dies, **the policy doesn't liquidate** — the Secondary Insured becomes the new Insured and the policy continues. AIA keeps managing it. Dividends, bonuses, and capital stay invested.
 
-**Who can be appointed:** any natural person alive at appointment. Cannot be a corporation, trust, or someone already deceased.
+**Who can be appointed:** your spouse, or your child below age 16. Cannot be a corporation, trust, or someone already deceased.
 
 **What happens on death of original Insured (with SI appointed):**
 - Death benefit is NOT paid out
 - Secondary Insured becomes the new Insured
 - Policy continues with all bonuses and value intact
 - No new medical underwriting required for the SI
-- Capital-guaranteed floor still applies on the new Insured's eventual death (or the policy maturity at the new Insured's age 100)
+- Capital-guaranteed floor still applies on the new Insured's eventual death
 
 The contrast that lands with prospects:
 
@@ -292,7 +292,7 @@ The prospect picks one of three IIPs at signup. **Cannot be changed after issue.
 | **Elite Portfolios** | AIA-managed, 3 risk profiles (Conservative / Balanced / Adventurous) | Hands-off, professionally rebalanced. Use for prospects who explicitly want AIA to choose. |
 | **Self-Select**      | Client picks from 41 ILP sub-funds                                   | The default in practice. The **Adventurous index fund** has the lowest fund management charge on the platform (~1% p.a.), which produces the best-looking projection on the Benefit Illustration. |
 
-(Note: **AIA Guided Portfolios is no longer offered.** Ignore that row if you see it in older training material.)
+(Note: the Pro Achiever 3.0 fund list also includes **3 AIA Guided Portfolios**, alongside the 3 AIA Elite Funds and the retail funds.)
 
 **In practice: 99% of the time, allocate 100% to the Self-Select Adventurous Index Fund.** Reason: it carries the lowest FMC on the platform, which means the iPOS+ Benefit Illustration projects the most attractive numbers for the prospect to look at. Elite Portfolios are fine when the prospect explicitly asks for AIA-managed risk profiling, but they're not the structural default.
 
@@ -313,15 +313,15 @@ Note: if a Secondary Insured was appointed before the death of the Insured, the 
 
 ## Charges — and why they reframe as features, not taxes
 
-The reframe is simple: **AIA only earns money on the charges if you break the rules of the plan**. If you follow the rules (pay your premium, don't surrender, don't withdraw early), the only charge that touches you is the supplementary charge — and even that runs only for 10 years before dropping to zero. The rest of the charges are deliberately designed as "this exists if you deviate from the plan." If you stay the course, AIA earns nothing from you on those line items and *pays you back* over time through the Welcome and Special Bonus structure.
+The reframe is simple: **AIA only earns money on the charges if you break the rules of the plan**. If you follow the rules (pay your premium, don't surrender, don't withdraw early), the only regular charges that touch you are the supplementary charge and the benefit charge for insurance cover (only while premiums paid exceed the policy value) — and the supplementary charge runs only for 10 years before dropping to zero. The rest of the charges are deliberately designed as "this exists if you deviate from the plan." If you stay the course, AIA earns nothing from you on those line items and *pays you back* over time through the Welcome and Special Bonus structure.
 
 ### Supplementary Charge — the real one
-**3.9% p.a. of policy value, deducted monthly, for the first 10 policy years only.** Drops to **0% from Year 11 onwards.**
+**3.9% p.a. of the regular premium policy value, deducted monthly, for the first 10 policy years only.** Drops to **0% from Year 11 onwards.**
 
-The reframe: yes there's a charge early — but it's time-limited, and the Welcome Bonus (up to 53% over Y1-Y3 at $12K+ premium / 10-yr IIP) plus the Special Bonus (5% from Y10, 8% from Y21) more than compensate for it over the policy life. Compare to most competitor ILPs which carry a **perpetual** 1%-ish platform fee — on a $1M portfolio that's $10K/yr forever. APA's curve is "high early, then nothing." Competitors' curve is "low early, then bleeding for 40 years."
+The reframe: yes there's a charge early — but it's time-limited, and the Welcome Bonus (up to 53% over Y1-Y3 at $12K+ premium / 10-yr IIP) plus the Special Bonus (5%, then 8% from Y21; check the current AIA product summary for the year the 5% starts) more than compensate for it over the policy life. Compare to most competitor ILPs which carry a **perpetual** 1%-ish platform fee — on a $1M portfolio that's $10K/yr forever. APA's curve is "high early, then nothing." Competitors' curve is "low early, then bleeding for 40 years."
 
-### Top-Up Premium Charge — 0%
-You can add lump sums of $1,000+ at any time. Every dollar buys units at NAV. **No front-end charge.**
+### Top-Up Premium Charge — 5%
+You can add lump sums of $1,000+ at any time. **5% of each top-up is deducted as a premium charge**; the rest buys units at NAV.
 
 ### Switching Charge — 0%
 Unlimited fund switches between any of the 41 sub-funds. **No charge.** Typical APA lifecycle: start in the Self-Select Adventurous Index Fund for accumulation, then switch into **GDIF (Global Dynamic Income Fund)** at retirement age for dividend mode. Any other sub-fund pivot is free too.
@@ -331,7 +331,7 @@ On a 10-year IIP:
 
 | Policy Year of surrender | Surrender Charge |
 |---|---|
-| Years 1-2 | 100% (no surrender value paid) |
+| Years 1-2 | Highest (check the current AIA product summary for the exact rates) |
 | Years 3-4 | tapers down |
 | Years 5-10 | further taper |
 | **Year 11+** | **0%** |
@@ -342,21 +342,21 @@ The reframe: this isn't a punishment. AIA only collects on the surrender charge 
 Applies during the IIP on a sliding scale similar to surrender. Year 11+: 0%. Subject to a minimum remaining policy value. Same reframe — if the prospect leaves the capital alone, this charge doesn't touch them.
 
 ### Premium Holiday Charge — same logic
-If the client temporarily stops paying premiums during the IIP, a charge applies on the policy value during the holiday window. The reframe: AIA's plan is designed around consistent monthly contributions; pausing breaks the compounding structure, and the charge keeps AIA neutral. If the client stays disciplined, they never pay this.
+If the client temporarily stops paying premiums during the IIP, a charge applies on the annualised regular premium during the holiday window. The reframe: AIA's plan is designed around consistent monthly contributions; pausing breaks the compounding structure, and the charge keeps AIA neutral. If the client stays disciplined, they never pay this.
 
 ## Premium flexibility features
 
 ### Premium Pass
-After 10 years (on a 10-yr IIP), the client can permanently **stop paying regular premiums** while keeping the policy in force. Policy value continues to grow; bonuses still apply. Different from Premium Holiday: Premium Pass is permanent (you've finished the pay term); Premium Holiday is a temporary pause inside the IIP.
+During the IIP, each Premium Pass lets the client **skip premiums for up to 12 months without penalty**: no Premium Holiday Charge and no supplementary charge during the pass. 1 pass is given for every 5th annual premium paid, so a 10-yr IIP gets 1 pass, 15-yr gets 2, 20-yr gets 3. Different from Premium Holiday: Premium Pass is a charge-free skip earned by paying premiums; Premium Holiday is a pause that carries the Premium Holiday Charge during the IIP.
 
 ### Premium Holiday
 A temporary pause during the IIP — useful for job loss or short-term cash flow issues. Premium Holiday Charge applies during the pause. Policy must be reinstated by resuming premiums before lapse.
 
 ### Top-up Premiums
-Lump-sum additions of $1,000 or more at any time. Top-up Premium Charge: 0%.
+Lump-sum additions of $1,000 or more at any time. Top-up Premium Charge: 5%.
 
 ### Partial Withdrawals
-$1,000 minimum; remaining policy value must stay at least $10,000. Partial Withdrawal Charges apply during IIP only. Withdrawals are blocked in Years 1–2; from Year 3 the charge factor is ~4.0 (prohibitive); the ~5.3% effective rate only applies from Year 10 onwards.
+$1,000 minimum; remaining policy value must stay at least $10,000. Partial Withdrawal Charges apply during IIP only. Withdrawals are blocked in Years 1–2; from Year 3 the charge is a factor of the regular premium value withdrawn, which on a 10-yr IIP falls from 70% (3 annual premiums paid) to 10% (9 paid), with no charge after the IIP.
 
 ### Fund Switching
 Unlimited, free, instant.
@@ -385,11 +385,11 @@ Day 5 covers each of these reframes in full as objection-handling. The point on 
 ## Quiz
 1. **What is AIA Pro Achiever 3.0 structurally?**
 - A) A SGD-denominated participating endowment with guaranteed cash values
-- B) A SGD-denominated Investment-Linked Policy (ILP) with no medical underwriting, maturing at age 100 ✓
+- B) A SGD-denominated Investment-Linked Policy (ILP) with no medical underwriting, covering whole life ✓
 - C) A USD-denominated universal life policy with guaranteed returns
 - D) A regular unit trust wrapped with a term insurance rider
 
-**Why:** APA is a SGD ILP issued by AIA Singapore Private Limited, has no medical underwriting (guaranteed issuance), and matures at the original insured's age 100.
+**Why:** APA is a SGD ILP issued by AIA Singapore Private Limited, has no medical underwriting (guaranteed issuance), and its policy term is whole life.
 
 2. **What is the single most common APA hot button — the driver that surfaces in the majority of APA-fit prospects?**
 - A) Faith / religion
@@ -425,11 +425,11 @@ Day 5 covers each of these reframes in full as objection-handling. The point on 
 
 6. **What is the Special Bonus structure?**
 - A) 3% per year for the first 10 years
-- B) 5% per year from Year 10 onwards; 8% per year from Year 21 onwards (on annualised premium) ✓
+- B) 5% per year up to Year 20 (check the current AIA product summary for the start year); 8% per year from Year 21 onwards (on annualised premium) ✓
 - C) 8% per year for the entire policy term
 - D) One-time 10% bonus at Year 10
 
-**Why:** Verified from the Product Summary. The Special Bonus is a loyalty bonus that runs for the rest of the policy after Year 9, calculated on annualised regular premium (not policy value).
+**Why:** The Special Bonus is a loyalty bonus that runs for the rest of the policy once it starts (check the current AIA product summary for the start year), calculated on annualised regular premium (not policy value).
 
 7. **The Secondary Insured option means:**
 - A) The beneficiary inherits cash equal to the policy value
@@ -440,8 +440,8 @@ Day 5 covers each of these reframes in full as objection-handling. The point on 
 **Why:** The Secondary Insured is a separate appointment from the beneficiary. On the original Insured's death (with SI appointed), the policy continues — AIA keeps managing it for the SI's lifetime, dividends keep flowing, bonuses still apply.
 
 8. **What is the supplementary charge structure?**
-- A) 3.9% p.a. on policy value, for the entire policy term
-- B) 3.9% p.a. on policy value, for the first 10 policy years only — drops to 0% from Year 11 ✓
+- A) 3.9% p.a. on regular premium policy value, for the entire policy term
+- B) 3.9% p.a. on regular premium policy value, for the first 10 policy years only — drops to 0% from Year 11 ✓
 - C) 1.2% p.a. perpetual
 - D) 5% one-time at issue
 
