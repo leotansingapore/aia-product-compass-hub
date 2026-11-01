@@ -113,7 +113,7 @@ Important disclosure for cross-shopping prospects.
 
 # Part 2 — The Term-Then-Rider Close, AIA Vitality, Post-Close Handoff
 
-> **The one idea for Part 2:** Close on the term, then sequence riders. Enhancer is default. ECPWP comes after the term decision with the asymmetric ROI framing (best case ~679x, worst case ~S$8,400). Hand off Teladoc, WhiteCoat, AIA Vitality before the prospect leaves the meeting.
+> **The one idea for Part 2:** Close on the term, then sequence riders. Enhancer is default. ECPWP comes after the term decision with the asymmetric ROI framing (best case ~557x, worst case ~S$8,400). Hand off Teladoc, WhiteCoat, AIA Vitality before the prospect leaves the meeting.
 
 By the end of Part 2 you should be able to deliver the term-then-rider close cleanly in under 5 minutes, sequence the Enhancer + ECPWP correctly (never reverse), frame the Premium Waiver as asymmetric risk-reward, and book the post-close service rhythm.
 
@@ -140,13 +140,13 @@ Frame the rider as a one-way bet:
 
 > *"We have something called a waiver of premium rider. The moment you claim once, your plan becomes completely free for the rest of the coverage period.*
 >
-> *The best case is you paid S$168 and you received S$114,000 worth of free insurance premiums.*
+> *The best case is you paid S$168 and you received S$93,000 worth of free insurance premiums.*
 >
 > *The worst case is you pay an extra S$8,400 over your lifetime and never use it."*
 
 [Video 7 — verbatim]
 
-Sample math (25-yo, S$200,000 cover, To Age 75): +S$168/year (~S$15/month). At ~S$2,328/year base premium, claim in year 2 = S$2,328 × 49 = **S$114,072 waived**. That's a ~679× return on the rider in best case.
+Sample math (25-yo, S$200,000 cover, To Age 75): +S$168/year (~S$15/month). At ~S$1,908/year base premium, claim in year 2 = S$1,908 × 49 = **S$93,492 waived**. That's a ~557x return on the rider in best case.
 
 Most prospects take the Premium Waiver. Default it as recommended.
 
@@ -384,7 +384,7 @@ If just the $800/yr savings is redirected (the lower-commitment version): $800/y
 >
 > *But there's a second table — the **Early CI buffet**. It covers Stage 0 cancer, carcinoma in situ, mild stroke, early-stage heart attack. Up to 5 servings — meaning up to 5 separate Early CI claims over your life. Same illnesses as Major CI, but caught earlier and claimable when the diagnosis is far less severe.*
 >
-> *The third table — **Relapse** — is for 6 specific illnesses: cancer, heart attack, stroke, organ transplant, paralysis, and one more. If you've already claimed and recovered, you can come back to the buffet 2 years later and claim again for the same illness.*
+> *The third table — **Relapse** — is for 5 specific illnesses: cancer, heart attack, stroke, organ transplant, and one more. If you've already claimed and recovered, you can come back to the buffet 2 years later and claim again for the same illness.*
 >
 > *Right now you're at the Major CI buffet only. Most of the cases that actually arise — and the ones where early intervention matters most — are at the Early CI buffet. Adding the Early CI layer is roughly $150-180/month for $300K of recurring multi-claim coverage. The earlier the diagnosis, the easier the recovery, and the less your career and income get disrupted."*
 
@@ -495,12 +495,12 @@ Net change for the prospect:
 **Why:** Annual Vitality adjustments are Bronze +2% / Silver +1% / Gold -1% / Platinum -2%, with a minimum cumulative 85% and maximum 100% [PS p.9].
 
 7. **What is the asymmetric ECPWP framing for a 25-yo, S$200K cover, To Age 75 case?**
-- A) Best case: S$168 paid → S$114,072 of premiums waived (~679x); worst case: ~S$8,400 paid over 50 years and never used ✓
+- A) Best case: S$168 paid → S$93,492 of premiums waived (~557x); worst case: ~S$8,400 paid over 50 years and never used ✓
 - B) Best case: S$1,000 paid → S$10,000 waived (~10x); worst case: S$50,000 paid
 - C) Best case: zero return; worst case: zero loss
 - D) Best case: 100% premium refund regardless of claim
 
-**Why:** Video 7's verbatim framing puts ECPWP best case at ~679x return (S$2,328 × 49 = S$114,072 waived) versus a worst case of ~S$8,400 paid across the 50-year term and never used.
+**Why:** Video 7's framing puts ECPWP best case at ~557x return (S$1,908 × 49 = S$93,492 waived) versus a worst case of ~S$8,400 paid across the 50-year term and never used.
 
 8. **A prospect asks "Will my premium go up because I claimed?" What is the correct compliance disclosure?**
 - A) "Yes, claimants get individual premium loadings."

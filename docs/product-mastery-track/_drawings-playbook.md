@@ -386,9 +386,9 @@ Annotate: *"You can always step down (B-plan holder can stay C). You can never s
   - 3X or 2X multiplier
   - Optional ECI rider
   - No cash value
-- **UCC (Ultimate Critical Cover — whole-life CI):**
+- **UCC (Ultimate Critical Cover — CI to age 65, 75 or 85):**
   - More expensive premium
-  - Coverage to whichever age you choose (65, 75, 85, or lifelong)
+  - Coverage to whichever age you choose (65, 75 or 85)
   - Cash value
   - Multi-claim across 73 CIs / 150 condition-stages
 

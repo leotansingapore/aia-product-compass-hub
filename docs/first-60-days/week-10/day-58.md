@@ -171,7 +171,7 @@ Some gaps you fix by *adding* a product. Others are signals that the entire port
 
 **The gap:** the *"I had a heart attack, now I'm scared of cancer too"* scenario. Single-claim CI plans don't address it.
 
-**The restructure:** layer **[UCC (Ultimate Critical Cover)](/product/core-ultimate-critical-cover)** on top - the unlimited reset benefit covers up to 5 separate claims (1-year waiting period between each), max 5x the base sum. Don't replace the existing CI; supplement it.
+**The restructure:** layer **[UCC (Ultimate Critical Cover)](/product/core-ultimate-critical-cover)** on top - the unlimited reset benefit covers unlimited major-stage claims for different CIs (1-year waiting period between each), with early and intermediate claims capped at 5x the base sum. Don't replace the existing CI; supplement it.
 
 ### Pattern 2 - Endowment-only (no real cash-value engine)
 

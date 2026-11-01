@@ -184,7 +184,7 @@ Don't argue with the math. Show the cost difference and let them decide.
 
 ## 0d. Product deep-dive - UCC (Ultimate Critical Cover)
 
-Multi-claim standalone CI plan. **No death benefit** (only 5% of sum on death). Covers **150 conditions**. The reset benefit is the killer feature.
+Multi-claim standalone CI plan. **Small death benefit** (only 5% of sum on death, 100% on accidental death). Covers **150 conditions**. The reset benefit is the killer feature.
 
 ### The unlimited reset benefit (this is the hook)
 
@@ -193,7 +193,7 @@ For a $100K UCC policy:
 1. Coronary artery bypass surgery -> claim **$100K**
 2. 1-year waiting period -> early-stage cancer -> claim **$100K**
 3. 1-year waiting period -> pulmonary hypertension -> claim **$100K**
-4. ...up to 5 different conditions -> max payout **5 x $100K = $500K**
+4. ...no limit on major-stage claims for different conditions; early and intermediate claims cap at **5 x $100K = $500K**
 
 This is the "I had a heart attack, now I'm scared of cancer too" answer. Single-claim CI plans don't address it. UCC does.
 
@@ -201,7 +201,7 @@ This is the "I had a heart attack, now I'm scared of cancer too" answer. Single-
 
 Two benefits stack on top of the base:
 
-- **Catastrophic CI Benefit (200% payout)** - for the 5 most common CIs (cancer, stroke, heart attack, organ transplant, paralysis) IF they meet the catastrophic definition (e.g. Stage 4 cancer with distance metastasis). $200K base -> $400K payout.
+- **Catastrophic CI Benefit (+100% once, on top of the base claim)** - for the 5 most common CIs (cancer, stroke, heart attack, organ transplant, paralysis) IF they meet the catastrophic definition (e.g. Stage 4 cancer with distance metastasis). $200K base -> $400K payout.
 - **Ultimate Relapse Benefit** - additional 100% after relapse on the 5 most common conditions, capped at **50% per claim**, 2-year waiting period. (ASC pays 100% per relapse claim - that's the key ASC differentiator.)
 
 ### UCC pricing (30M non-smoker, $100K)
@@ -218,7 +218,7 @@ UCC is *not* a standalone protection. It's a complement:
 - **GPP $200-300K (with CI rider) + UCC $100K** = comprehensive multi-claim CI at affordable premiums
 - **SFT (high sum, low cost) + UCC** = max death + multi-claim CI, lowest total premium
 
-> **Go deeper:** the [UCC 5-day sales track](/product/core-ultimate-critical-cover) covers the unlimited reset benefit positioning, the Catastrophic CI 200% mechanic, the relapse waiting periods, and the "GPP $200-300K + UCC $100K = better than $500K single-claim CI" packaging close.
+> **Go deeper:** the [UCC 5-day sales track](/product/core-ultimate-critical-cover) covers the unlimited reset benefit positioning, the Catastrophic CI +100% mechanic, the relapse waiting periods, and the "GPP $200-300K + UCC $100K = better than $500K single-claim CI" packaging close.
 
 ## 0e. Product deep-dive - PLP (Pro Lifetime Protector)
 
@@ -621,11 +621,11 @@ This is the "fully loaded" baseline. Year 1 might cover 2-3 layers. Over time, l
 
 4. **What is the killer feature that makes UCC (Ultimate Critical Cover) the standalone CI workhorse for a multi-claim need?**
    - A) Higher payout per claim than any single-claim CI plan
-   - B) The unlimited reset benefit - up to 5 separate CI claims at 100% sum each, after a 1-year waiting period between claims (correct)
+   - B) The unlimited reset benefit - unlimited major-stage claims for different CIs at 100% sum each, after a 1-year waiting period between claims (correct)
    - C) It pays a lump sum on death like whole-life plans
    - D) It is the cheapest CI plan in the AIA portfolio
 
- **Why:** UCC's unlimited reset is what addresses the *"I had a heart attack, now I'm scared of cancer too"* scenario that single-claim CI plans leave open. A $100K UCC policy can pay $100K on each of up to 5 different conditions (max $500K total), with a 1-year waiting period between claims. Higher per-claim payouts (A) aren't UCC's differentiator. UCC pays only **5% of sum on death** - it is not a death-benefit product (C). Pricing (D) is competitive but not the defining feature - the reset is.
+ **Why:** UCC's unlimited reset is what addresses the *"I had a heart attack, now I'm scared of cancer too"* scenario that single-claim CI plans leave open. A $100K UCC policy can pay $100K on each different major-stage condition with no claim limit (early and intermediate claims cap at $500K total), with a 1-year waiting period between claims. Higher per-claim payouts (A) aren't UCC's differentiator. UCC pays only **5% of sum on death** - it is not a death-benefit product (C). Pricing (D) is competitive but not the defining feature - the reset is.
 
 5. **A freelance graphic designer with no employer sick leave asks what insurance is most often overlooked for people like her. What do you recommend addressing?**
    - A) Term insurance - cheapest coverage for her age

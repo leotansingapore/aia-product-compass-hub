@@ -40,7 +40,7 @@ A SGD non-participating regular-premium critical-illness plan issued by AIA. No 
 | Survival period | 7 days from diagnosis or surgery |
 | Waiting period (cardiac + cancer) | 90 days from issue / reinstatement |
 | Death Benefit | 5% non-accidental / 100% accidental (capped S$5M aggregate) |
-| Sample base premium (25M, $100K, To 75) | ~S$50/month |
+| Sample base premium (25M non-smoker, $100K, To 75) | ~S$87/month |
 
 ## The pitch angle - opener stems
 
@@ -65,7 +65,7 @@ The staircase walkthrough (Robert case study from brochure p.10):
 | "I already have CI in my GPP / PLP / whole-life" | *"What happens if you claim - do you still get your $20K surrender value? No. Do you still get death cover? No. Bundled CI collapses on first claim. UCC is pure CI - claiming on UCC leaves your death cover and savings completely untouched. Layer it on top, don't replace."* |
 | "Multi-claim sounds rare - is it worth the premium?" | *"Most CI claims are heart and cancer, both of which commonly recur. Robert's case in the brochure: $500K paid out across 8 years from a $100K base. Enhancer rider adds $7/month for the relapse coverage that catches exactly the recurrence scenario most likely to happen."* |
 | "Early CI seems redundant - I'd rather wait until major" | *"Modern imaging catches conditions at stages that didn't have payouts a decade ago. The years you need cash MOST are the diagnosis-to-recovery years - not the worst-case major stage. UCC covers 42 Early-Stage and 35 Intermediate-Stage conditions with the same $350K per-episode cap."* |
-| "Prudential / GE / Singlife multi-pay looks similar" | *"For Prudential PRUActive Protect - 37 conditions vs UCC's 73, and any future heart-related claims become non-claimable once you claim on one heart condition (related-illness block). GE GREAT Critical Cover caps at 3 claims, policy ceases. Singlife has 60 conditions, many showing 'Not applicable' at Early/Intermediate. UCC has no related-illness block, no claim-count cap on Major stage, 12-month reset built in."* |
+| "Prudential / GE / Singlife multi-pay looks similar" | *"For Prudential PRUActive Protect - 64 conditions vs UCC's 73, and any future heart-related claims become non-claimable once you claim on one heart condition (related-illness block). GE GREAT Critical Cover caps at 3 claims, policy ceases. Singlife has 135 conditions, many showing 'Not applicable' at Early/Intermediate. UCC has no related-illness block, no claim-count cap on Major stage, 12-month reset built in."* |
 | "What's the actual probability I'd recur?" | *"Probability is the wrong lens. The mechanic is what matters - the policy works the way it's designed regardless of what probability you assign. Robert's brochure case is the illustration: $500K from $100K base across 8 years. The Enhancer relapse rider plus the Catastrophic CI Benefit cover exactly that arithmetic."* |
 
 ## Cross-sell / sequencing
@@ -75,7 +75,7 @@ The staircase walkthrough (Robert case study from brochure p.10):
 | HSGM (Week 5) | The hospital foundation - mandatory. UCC pays a lump sum, HSGM pays the hospital. Both needed. |
 | GPP (Week 3) | **The canonical pair - GPP for death + Major CI + savings core, UCC bolted on for Early CI + recurring claims**. Half-half split: $150K Early via UCC + $150K Major via GPP base. |
 | PLP (Week 2) | Strip the LCC rider on PLP and replace with standalone UCC - cleaner CI, no death-benefit erosion via accelerated structure. |
-| ECPWP (Early Critical Protector Waiver of Premium) | Best-case ~679x ROI, worst-case ~$8,400 over 50 years. Asymmetric one-way bet at ~$15/month. |
+| ECPWP (Early Critical Protector Waiver of Premium) | Best-case ~557x ROI, worst-case ~$8,400 over 50 years. Asymmetric one-way bet at ~$15/month. |
 | Enhancer rider | 5 named relapse conditions (cancer, heart attack, stroke, transplant, heart-valve surgery) at 50% per relapse + 100% one-time Catastrophic top-up. Default in. |
 
 **Default close sequence:** Confirm term -> Enhancer is in by default -> THEN present ECPWP with the asymmetric ROI framing -> THEN AIA Vitality. Never reverse - mentioning ECPWP before the term is locked fragments the decision.
@@ -89,7 +89,7 @@ The staircase walkthrough (Robert case study from brochure p.10):
 5. **S$3,000,000** - CI per-life limit across all AIA CI policies
 6. **7 days** survival / **90 days** cardiac+cancer waiting / **2 years** Enhancer relapse waiting
 7. **5% non-accidental** death benefit (UCC is pure CI - death is not its job)
-8. ECPWP ROI: best-case **~679x**, worst-case **~$8,400** over a 50-year lifetime
+8. ECPWP ROI: best-case **~557x**, worst-case **~$8,400** over a 50-year lifetime
 9. Enhancer relapse: **50% per claim**, capped at **100% total**; 5 named conditions
 10. Catastrophic CI Benefit: **100% one-time top-up** that does NOT reduce base cover
 

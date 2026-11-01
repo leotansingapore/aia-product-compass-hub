@@ -131,9 +131,9 @@ Let them list factors. Confirm: age, coverage amount, coverage duration. Then pr
 
 | Term | Sample annual premium (25-yo female, S$200K cover) | Total premium |
 |---|---|---|
-| To Age 65 | ~S$1,400 | ~S$56,000–70,000 over 40–50 yrs [Video 5/9] |
-| To Age 75 | ~S$2,328 | ~S$116,000 over 50 yrs [Video 5] |
-| To Age 85 | ~S$3,320 | ~S$199,000 over 60 yrs [Video 5] |
+| To Age 65 | ~S$1,436 | ~S$56,000–70,000 over 40–50 yrs [Video 5/9] |
+| To Age 75 | ~S$1,908 | ~S$95,000 over 50 yrs |
+| To Age 85 | ~S$2,512 | ~S$151,000 over 60 yrs |
 
 The premium loading: To 75 ~+40% over To 65. To 85 ~+100% (double). [Video 1, Video 3]
 
@@ -151,7 +151,7 @@ Don't frame the term decision as "more expensive" vs "cheaper." Frame as risk:
 
 Then the choice question:
 
-> *"Would you prefer something that's safer at S$3,320 a year, or something that's riskier at S$1,400 a year?"* [Video 5]
+> *"Would you prefer something that's safer at S$2,512 a year, or something that's riskier at S$1,436 a year?"* [Video 5]
 
 The closing principle:
 
@@ -177,7 +177,7 @@ The Premium Waiver math (Day 5 Part 2 covers fully):
 
 | Scenario | Outcome |
 |---|---|
-| Best case (claim year 2 of 50-yr term) | S$2,328 × 49 = S$114,072 of premiums waived against ~S$168/yr cost = **~679x return** [Video 7] |
+| Best case (claim year 2 of 50-yr term) | S$1,908 × 49 = S$93,492 of premiums waived against ~S$168/yr cost = **~557x return** [Video 7] |
 | Worst case (no claim ever) | ~S$8,400 paid over 50 yrs [Video 7] |
 
 That's the asymmetric risk-reward close on the Premium Waiver.
@@ -260,13 +260,13 @@ If you're approaching the 30-minute mark and still in Phase 4, you're losing the
 
 **Why:** The brochure cites a 74% CI protection gap from the LIA Protection Gap Study 2022 [Brochure p.2].
 
-5. **For a 25-year-old female with S$200,000 cover, what is the approximate annual base premium for the To Age 75 term?**
-- A) ~S$1,400
-- B) ~S$2,328 ✓
-- C) ~S$3,320
+5. **For a 25-year-old female non-smoker with S$200,000 cover, what is the approximate annual base premium for the To Age 75 term?**
+- A) ~S$1,436
+- B) ~S$1,908 ✓
+- C) ~S$2,512
 - D) ~S$5,600
 
-**Why:** The Phase 2 sample table puts the To Age 75 base premium at roughly S$2,328/year for that profile [Video 5].
+**Why:** The Phase 2 sample table puts the To Age 75 base premium at roughly S$1,908/year for a non-smoker of that profile.
 
 6. **Roughly how much does the To Age 85 term cost relative to the To Age 65 term in premium loading?**
 - A) About the same
@@ -286,7 +286,7 @@ If you're approaching the 30-minute mark and still in Phase 4, you're losing the
 
 8. **A prospect hesitates between the To 75 and To 85 terms. Which closing line follows the source's risk-reward reframe?**
 - A) "Most people just go with the cheapest option."
-- B) "Would you prefer something that's safer at S$3,320 a year, or something that's riskier at S$1,400 a year?" ✓
+- B) "Would you prefer something that's safer at S$2,512 a year, or something that's riskier at S$1,436 a year?" ✓
 - C) "You should buy what you can afford."
 - D) "Let me decide for you — go with To 85."
 

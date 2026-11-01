@@ -17,7 +17,7 @@ This is the longest module. Part 1 covers the 5 objections (the conviction-story
 
 # Part 1 — Top 5 Objections (the Conviction-Story Heart)
 
-> **The one idea for Part 1:** Don't argue. Reframe what the prospect is actually choosing. Existing bundled cover collapses on first claim. Cancer/heart recur most often. Early CI catches things at year zero. Robert's case study (S$100K → S$500K across 8 years) is the proof. Competitor restrictions (Prudential's related-illness block, GE's three-claim cap) mean similar plans aren't actually similar.
+> **The one idea for Part 1:** Don't argue. Reframe what the prospect is actually choosing. Existing bundled cover collapses on first claim. Cancer/heart recur most often. Early CI catches things at year zero. Robert's case study (S$100K → S$500K across 8 years) is the proof. Competitor restrictions (Prudential's 24-month wait for a same-category claim, GE's three-claim cap) mean similar plans aren't actually similar.
 
 By the end of Part 1 you should be able to recite all 5 conviction stories from memory, deploy the brochure-page-10 Robert case study without notes, and recognise which objection arc the prospect is on.
 
@@ -116,12 +116,14 @@ Total claims: S$500,000+ across 8 years from S$100,000 base.
 
 > *"For Prudential, you cannot claim because it's a related CI. Because coronary artery disease versus bypass versus heart attack — as long as it's related to the same area, all the future claims related to heart conditions are not claimable anymore."* [Video 5]
 
-- 37 critical illnesses covered (vs UCC's 73)
-- Max claims: Up to 3 (separate Protect Me Again rider required)
+Note: on PRUActive Protect II, a further claim needs the optional Protect Plus rider (up to 500% in total), and a claim in the same category waits 24 months (12 months for a different category).
+
+- 64 critical illnesses covered at severe stage on PRUActive Protect II (vs UCC's 73)
+- Max claims: Up to 500% in total (optional Protect Plus rider required)
 - Coverage term: 10 to 99 years (customisable)
 - Sum assured: $50K – $500K
-- UCC has no related-illness block; no 3-claim cap; no separate rider needed for multi-claim
-- Brochure: https://www.prudential.com.sg/-/media/project/prudential/pdf/ebrochures/pruactive-protect/pruactive-protect-brochure-en.pdf
+- UCC has no 24-month same-category wait; no 500% cap on major-stage claims; no separate rider needed for multi-claim
+- Brochure: https://www.prudential.com.sg/content/dam/prudential-aem-lbu/pacs/en/project/prudential/pdf/ebrochures/pruactive-protect/PRUActive-Protect-Brochure-en.pdf
 
 ### vs Great Eastern GREAT Critical Cover: Complete
 
@@ -129,7 +131,7 @@ Total claims: S$500,000+ across 8 years from S$100,000 base.
 
 - 53 critical illnesses covered (vs UCC's 73)
 - Max claims: Up to 3 (with Protect Me Again rider)
-- Coverage term: Up to age 99
+- Coverage term: To age 65 or 85
 - Sum assured: $50K – $350K (lower max than competitors)
 - Death benefit only $25K — minimal legacy value
 - UCC has no claim-count cap on major-stage claims; higher SA max; automatic 12-month reset
@@ -137,21 +139,21 @@ Total claims: S$500,000+ across 8 years from S$100,000 base.
 
 ### vs Singlife Multi-Pay Critical Illness
 
-- 60 critical illnesses covered (vs UCC's 73 — missing 13)
+- 60 critical illnesses covered at severe stage, 135 conditions in all, on Multipay Critical Illness II (vs UCC's 73, 13 fewer)
 - Max claims: Multiple
-- Coverage term: Whole life
+- Coverage term: 10 years up to age 99
 - Many conditions show "Not applicable" at Early/Intermediate stages
 - No unlimited coverage reset; less established claims track record
-- Brochure: https://singlife.com/content/dam/public/sg/documents/critical-illness-insurance/singlife-multipay-critical-illness/brochure-2023.pdf
+- Brochure: https://singlife.com/content/dam/public/sg/documents/critical-illness-insurance/singlife-multipay-critical-illness-ii/brochure.pdf
 
 ### Headline comparison (verify pricing in iPOS — pricing is time-bound)
 
 | Plan | CIs covered | Max claims | Coverage term | Reset |
 |---|---|---|---|---|
 | **AIA UCC** | **73 (across 150 condition-stages)** | **Unlimited at Major stage** | **To 65 / 75 / 85** | **Automatic 12-month reset, no cap** |
-| Prudential PRUActive Protect | 37 | Up to 3 (rider) | 10 to 99 years | No automatic reset |
-| GE GREAT Critical Cover: Complete | 53 | Up to 3 (rider) | Up to age 99 | No automatic reset |
-| Singlife Multi-Pay CI | 60 | Multiple | Whole life | No unlimited reset |
+| Prudential PRUActive Protect II | 64 (severe stage) | Up to 500% (Protect Plus rider) | 10 to 99 years | Restores to 100% after each claim with Protect Plus, up to 500% |
+| GE GREAT Critical Cover: Complete | 53 | Up to 3 (rider) | To age 65 or 85 | No automatic reset |
+| Singlife Multipay CI II | 60 (severe stage) | Multiple | 10 years up to age 99 | No unlimited reset |
 
 **Sources:** Video 1, Video 5, Video 9; competitor brochures (URLs above)
 
@@ -308,20 +310,20 @@ If the prospect's existing plan has:
 **Why:** Great Eastern's multi-claim plan ceases after three claims; UCC has no claim-count cap on major-stage claims [Video 5].
 
 6. **UCC vs the Prudential multi-claim plan — what specific competitor restriction does UCC NOT have?**
-- A) A claim-count cap
-- B) A "related illness" rule that blocks future claims tied to the same body area (e.g. heart-area conditions become non-claimable after the first heart claim) ✓
+- A) A 90-day waiting period for heart attack and cancer
+- B) A 24-month wait before a claim in the same category (e.g. a second heart condition), with further claims only through the optional Protect Plus rider, up to 500% ✓
 - C) A 5-year exclusion on cancer
 - D) A higher per-life cap of only S$1M
 
-**Why:** Prudential's plan blocks future claims related to the same body area; UCC has no related-illness block — different illness, different claim, regardless of body area [Video 5].
+**Why:** On PRUActive Protect II, a same-category claim waits 24 months and further claims need the optional Protect Plus rider (up to 500%); UCC resets 12 months after the last claim for any different illness, with no cap on major-stage claims. UCC itself has a 90-day waiting period for the named cardiac and cancer conditions.
 
 7. **Which competitor weakness is factually correct vs UCC's published spec?**
-- A) Singlife Multi-Pay CI covers 60 CIs, missing 13 relative to UCC's 73 across 150 condition-stages ✓
+- A) Singlife Multipay CI II covers 60 CIs at severe stage, 13 fewer than UCC's 73 across 150 condition-stages ✓
 - B) Prudential PRUActive Protect covers 90 CIs and has unlimited claims built in
 - C) GE GREAT Critical Cover: Complete has a $1M death benefit
 - D) Manulife is the only competitor without a multi-claim option
 
-**Why:** Per published brochures: Singlife Multi-Pay CI = 60 CIs (missing 13 vs UCC's 73). PRUActive Protect = 37 CIs with multi-claim only via separate Protect Me Again rider. GE's death benefit is only $25K.
+**Why:** Per published brochures: Singlife Multipay CI II = 60 CIs at severe stage (13 fewer than UCC's 73). PRUActive Protect II = 64 severe-stage CIs with multi-claim only via the optional Protect Plus rider. GE's death benefit is only $25K.
 
 8. **A prospect says "Multi-claim sounds rare — is it worth the premium?" What is the most aligned response?**
 - A) "You're right, it is rare — let me drop the Enhancer."

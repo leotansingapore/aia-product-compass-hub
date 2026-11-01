@@ -97,15 +97,15 @@ Sample: 25-yo, S$200,000 cover, To Age 75 [Video 7]:
 
 | Scenario | Numbers |
 |---|---|
-| Base UCC alone | ~S$2,328/year |
-| With ECPWP rider | ~S$2,496/year |
+| Base UCC alone | ~S$1,908/year |
+| With ECPWP rider | ~S$2,076/year |
 | Rider cost | ~S$168/year (~S$15/month) |
-| **Best case** (claim year 2 of 49 remaining) | S$2,328 × 49 = **S$114,072 waived** = ~679× return |
+| **Best case** (claim year 2 of 49 remaining) | S$1,908 × 49 = **S$93,492 waived** = ~557x return |
 | **Worst case** (no claim, 50 years paid) | **~S$8,400 paid** without claim |
 
 The framing:
 
-> *"We have something called a waiver of premium rider. The moment you claim once, your plan becomes completely free for the rest of the coverage period. The best case is you paid $168 and you received $114,000 worth of free insurance premiums. The worst case is you pay an extra $8,400 over your lifetime and never use it."* [Video 7]
+> *"We have something called a waiver of premium rider. The moment you claim once, your plan becomes completely free for the rest of the coverage period. The best case is you paid $168 and you received $93,000 worth of free insurance premiums. The worst case is you pay an extra $8,400 over your lifetime and never use it."* [Video 7]
 
 Asymmetric risk-reward.
 
@@ -254,11 +254,11 @@ But if they push:
 
 5. **For a 25-yo, S$200,000 cover, To Age 75 profile, the ECPWP rider costs roughly how much per year and produces what best-case waiver?**
 - A) ~S$50/year, ~S$10,000 waived best case
-- B) ~S$168/year, ~S$114,072 waived best case (~679x return) ✓
+- B) ~S$168/year, ~S$93,492 waived best case (~557x return) ✓
 - C) ~S$500/year, ~S$200,000 waived best case
 - D) ~S$1,000/year, ~S$50,000 waived best case
 
-**Why:** ECPWP costs ~S$168/year (~S$15/month); claiming in year 2 of the 50-year term waives 49 × S$2,328 = ~S$114,072, roughly a 679x return on the rider [Video 7].
+**Why:** ECPWP costs ~S$168/year (~S$15/month); claiming in year 2 of the 50-year term waives 49 × S$1,908 = ~S$93,492, roughly a 557x return on the rider [Video 7].
 
 6. **What is the worst-case ECPWP outcome (no claim ever made) over a 50-year term?**
 - A) Premium refunded in full

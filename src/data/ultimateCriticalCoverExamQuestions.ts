@@ -28,20 +28,20 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
       "Coverage never resets -- each subsequent claim pays a reduced percentage"
     ],
     correct: 0,
-    explanation: "UCC resets coverage to 100% after a 12-month waiting period. Unlike Great Eastern which only allows 2 resets, UCC has no limit on the number of resets.",
+    explanation: "UCC resets coverage to 100% after a 12-month waiting period. Unlike Great Eastern which only allows 2 resets (with its optional Protect Me Again rider), UCC has no limit on the number of resets.",
     category: 'product-facts'
   },
 
   {
-    question: "A prospect is comparing UCC to Prudential PRUActive Protect on critical illnesses covered. What is the correct factual comparison?",
+    question: "A prospect is comparing UCC to Prudential PRUActive Protect II on critical illnesses covered. What is the correct factual comparison?",
     options: [
-      "PRUActive Protect covers more illnesses than UCC",
-      "PRUActive Protect covers 37 CIs vs UCC's 73 across 150 condition-stages (per Prudential's published brochure). Multi-claim on PRUActive Protect also requires the separate Protect Me Again rider — UCC's multi-claim is built in. Always verify current pricing in iPOS",
+      "PRUActive Protect II covers 100 severe-stage CIs vs UCC's 73",
+      "PRUActive Protect II covers 64 CIs at severe stage vs UCC's 73 across 150 condition-stages (per Prudential's published brochure). Multi-claim on PRUActive Protect II also requires the optional Protect Plus rider — UCC's multi-claim is built in. Always verify current pricing in iPOS",
       "Both cover the same number of illnesses",
       "PRUActive Protect covers 60 CIs vs UCC's 73"
     ],
     correct: 1,
-    explanation: "Per the published PRUActive Protect brochure (prudential.com.sg): 37 critical illnesses covered. UCC covers 73 underlying CIs across 150 condition-stage entries. PRUActive Protect's multi-claim requires the separate Protect Me Again rider; UCC's is built in. Competitor pricing is time-bound — always verify in iPOS.",
+    explanation: "Per the published PRUActive Protect II brochure (prudential.com.sg): 64 critical illnesses covered at severe stage. UCC covers 73 underlying CIs across 150 condition-stage entries. PRUActive Protect II's multi-claim requires the optional Protect Plus rider (up to 500%); UCC's is built in. Competitor pricing is time-bound — always verify in iPOS.",
     category: 'product-facts'
   },
 
@@ -124,15 +124,15 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "A 25-year-old female is choosing between coverage until age 65, 75, or 85 for $200k sum assured. What are the approximate annual premiums for each option?",
+    question: "A 25-year-old female non-smoker is choosing between coverage until age 65, 75, or 85 for $200k sum assured. What are the approximate annual premiums for each option?",
     options: [
-      "$1,400/year (age 65), $2,328/year (age 75), $3,320/year (age 85)",
-      "$1,000/year (age 65), $1,800/year (age 75), $2,500/year (age 85)",
+      "$1,436/year (age 65), $1,908/year (age 75), $2,512/year (age 85)",
+      "$1,000/year (age 65), $1,400/year (age 75), $1,800/year (age 85)",
       "$2,328/year (age 65), $3,320/year (age 75), $4,500/year (age 85)",
       "$800/year (age 65), $1,400/year (age 75), $2,328/year (age 85)"
     ],
     correct: 0,
-    explanation: "For a 25-year-old female with $200k coverage: age 65 costs about $1,400/year, age 75 costs about $2,328/year, and age 85 costs about $3,320/year.",
+    explanation: "For a 25-year-old female non-smoker with $200k coverage: age 65 costs about $1,436/year, age 75 costs about $1,908/year, and age 85 costs about $2,512/year.",
     category: 'product-facts'
   },
 
@@ -206,15 +206,15 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "A client chooses coverage until age 65 instead of 85, saving about $160/month. Using the Time Value of Money strategy, what growth potential should you illustrate?",
+    question: "A client chooses coverage until age 65 instead of 85, saving about $90/month. Using the Time Value of Money strategy, what growth potential should you illustrate?",
     options: [
-      "The $160/month could grow to about $100k by age 65",
-      "The $160/month could grow to about $200k by age 65, matching the coverage amount",
-      "The $160/month could grow to about $388k by age 65 and potentially $1.5 million by age 85",
-      "The $160/month should be kept in a savings account earning fixed interest"
+      "The $90/month could grow to about $50k by age 65",
+      "The $90/month could grow to about $1 million by age 65",
+      "The $90/month could grow to about $217k by age 65 and potentially $840k by age 85",
+      "The $90/month should be kept in a savings account earning fixed interest"
     ],
     correct: 2,
-    explanation: "By investing the $160/month premium savings, the fund could grow to approximately $388k by age 65 and $1.5 million by age 85 -- far exceeding the $200k coverage amount and accessible anytime.",
+    explanation: "By investing the $90/month premium savings, the fund could grow to approximately $217k by age 65 and $840k by age 85 -- exceeding the $200k coverage amount and accessible anytime.",
     category: 'sales-angles'
   },
 
@@ -236,11 +236,11 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
     options: [
       "Prudential does not cover any early-stage critical illnesses",
       "Prudential's plan has no premium waiver option available",
-      "Prudential has a 'related illness' restriction that blocks subsequent heart-related claims after the first one",
+      "Prudential pays a further claim only with its optional Protect Plus rider, and a claim in the same category, such as a second heart condition, waits 24 months",
       "Prudential limits coverage to age 65 only with no extension options"
     ],
     correct: 2,
-    explanation: "Prudential's 'related illness' restriction means that after claiming for coronary heart disease, subsequent heart-related conditions may be blocked. UCC treats each heart condition as separately claimable.",
+    explanation: "On PRUActive Protect II, further claims need the optional Protect Plus rider (up to 500% in total), and after claiming for coronary heart disease, a further heart-related claim waits 24 months. UCC's multi-claim is built in, resets 12 months after the last claim, and treats each heart condition as separately claimable.",
     category: 'sales-angles'
   },
 
@@ -275,11 +275,11 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
     options: [
       "Great Eastern's 3-claim limit is actually better because it keeps premiums low",
       "There is no advantage -- both plans have the same claim limits",
-      "Lead with UCC's canonical structure: unlimited claims at MAJOR stage across different illnesses (early+intermediate capped at 500% combined / S$350,000 per-life on the same CI), with restoration to 100% if the policy is in force 12 months after the date of the latest diagnosed CI. Then cite GE's published facts: 53 CIs covered, multi-claim capped at 3 (with Protect Me Again rider), coverage to age 99, sum assured $50K-$350K, and a death benefit of only $25K. Source: greateasternlife.com",
+      "Lead with UCC's canonical structure: unlimited claims at MAJOR stage across different illnesses (early+intermediate capped at 500% combined / S$350,000 per-life on the same CI), with restoration to 100% if the policy is in force 12 months after the date of the latest diagnosed CI. Then cite GE's published facts: 53 CIs covered, multi-claim capped at 3 (with Protect Me Again rider), coverage to age 65 or 85, sum assured $50K-$350K, and a death benefit of only $25K. Source: greateasternlife.com",
       "Great Eastern covers more illnesses despite the 3-claim limit"
     ],
     correct: 2,
-    explanation: "Lead with UCC's canonical numbers (Brochure p.13, PS p.4 / p.7), then cite GE's published facts directly from GE's website (53 CIs, 3-claim cap with rider, $25K death benefit, $50K-$350K sum assured, coverage to age 99). Always verify current pricing in iPOS.",
+    explanation: "Lead with UCC's canonical numbers (Brochure p.13, PS p.4 / p.7), then cite GE's published facts directly from GE's website (53 CIs, 3-claim cap with rider, $25K death benefit, $50K-$350K sum assured, coverage to age 65 or 85). Always verify current pricing in iPOS.",
     category: 'sales-angles'
   },
 
@@ -357,11 +357,11 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
     options: [
       "Agree that Prudential has better related-illness coverage and offer a different selling point",
       "Tell the client their Prudential agent is dishonest and cannot be trusted",
-      "Per the Prudential PRUActive Protect brochure, the plan covers only 37 CIs (vs UCC's 73), and the 'related illness' rule blocks subsequent claims for related conditions like a heart progression. Under UCC, coronary heart disease, bypass, heart attack, and transplant are each claimable separately after the 12-month reset.",
+      "Per the Prudential PRUActive Protect II brochure, the plan covers 64 CIs at severe stage (vs UCC's 73), pays a further claim only with the optional Protect Plus rider, and makes a related (same-category) claim, like the next step in a heart progression, wait 24 months. Under UCC, coronary heart disease, bypass, heart attack, and transplant are each claimable separately after the 12-month reset.",
       "Explain that related illness coverage is not important for most clients"
     ],
     correct: 2,
-    explanation: "Correct the misconception factually using Prudential's own published brochure: PRUActive Protect covers 37 CIs and applies a related-illness restriction. UCC has no related-illness block and covers 73 CIs across 150 condition-stages.",
+    explanation: "Correct the misconception factually using Prudential's own published brochure: PRUActive Protect II covers 64 severe-stage CIs, needs the optional Protect Plus rider for further claims, and makes a same-category claim wait 24 months. UCC has no such wait beyond its 12-month reset and covers 73 CIs across 150 condition-stages.",
     category: 'objection-handling'
   },
 
@@ -387,7 +387,7 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
       "Group CI coverage is only valid for workplace injuries and accidents"
     ],
     correct: 1,
-    explanation: "Group CI insurance is tied to employment -- changing jobs or retrenchment means losing coverage. It is also typically limited in coverage amount and number of illnesses compared to UCC's 150.",
+    explanation: "Group CI insurance is tied to employment -- changing jobs or retrenchment means losing coverage. It is also typically limited in coverage amount and number of illnesses compared to UCC's 150 medical conditions.",
     category: 'objection-handling'
   },
 
@@ -422,7 +422,7 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "A budget-conscious 35-year-old wants maximum CI protection for $60/month. What is your best recommendation?",
+    question: "A budget-conscious 20-year-old male non-smoker wants maximum CI protection for $60/month. What is your best recommendation?",
     options: [
       "UCC $200k until age 85 without any riders at about $55/month",
       "UCC $100k until age 65 with all three riders (Enhancer + Early CI + Premium Waiver) at approximately $57/month",
@@ -465,11 +465,11 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
     options: [
       "Tell the client to fire their Prudential agent immediately",
       "Agree that switching is risky and drop the recommendation",
-      "Clarify you are not suggesting they cancel Prudential -- UCC complements it. Then ask: 'Does your Prudential plan have a related illness restriction? Let me show you what that means for heart conditions.'",
+      "Clarify you are not suggesting they cancel Prudential -- UCC complements it. Then ask: 'Does your Prudential plan make you wait 24 months before a claim in the same category? Let me show you what that means for heart conditions.'",
       "Offer to undercut Prudential's pricing with a special discount"
     ],
     correct: 2,
-    explanation: "Positioning UCC as complementary rather than a replacement defuses the conflict. Then using the specific related-illness restriction educates the client on UCC's advantage without attacking the competitor.",
+    explanation: "Positioning UCC as complementary rather than a replacement defuses the conflict. Then using Prudential's 24-month same-category wait educates the client on UCC's advantage without attacking the competitor.",
     category: 'roleplay'
   },
 

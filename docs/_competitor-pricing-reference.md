@@ -106,17 +106,17 @@ These come from the original Pro Achiever training Loom (Video 16). Treat as dir
 - Three term options: To 65, To 75, To 85
 - $3M aggregate cap across all AIA CI policies
 
-### Prudential PRUActive Protect
+### Prudential PRUActive Protect II
 
 | Spec | Value | Source |
 |---|---|---|
-| Critical illnesses covered | **37 CIs** | prudential.com.sg PRUActive Protect brochure |
-| Multi-claim | Via separate **"Protect Me Again" rider** (not built in) | Prudential brochure |
+| Critical illnesses covered | **64 CIs at severe stage** (Early Protect rider adds 96 pre-critical, 7 special and 16 juvenile conditions) | PRUActive Protect II brochure, 2 Sep 2026 |
+| Multi-claim | Via the optional **Protect Plus** rider (not built in): cover restores to 100% after each claim, up to 500% | Prudential brochure |
 | Coverage term | 10–99 years, customisable | Prudential brochure |
-| Related-illness restriction | Yes — subsequent claims for related conditions (e.g. heart progression) blocked | Prudential brochure |
+| Waiting period between claims | 12 months (different category); 24 months (same category, e.g. heart progression) | Prudential brochure |
 | Claims-based pricing (PruShield medical, not CI) | Active | [prudential.com.sg/products/health-insurance/medical/claims-based-pricing](https://www.prudential.com.sg/products/health-insurance/medical/claims-based-pricing) |
 
-**The factual contrast:** Prudential's "related illness" rule blocks subsequent claims in the same condition family. Under UCC, coronary heart disease → bypass → heart attack → transplant are each claimable separately after the 12-month reset.
+**The factual contrast:** Prudential needs the optional Protect Plus rider for any further claim, caps total payouts at 500%, and makes a claim in the same condition family wait 24 months. Under UCC, coronary heart disease → bypass → heart attack → transplant are each claimable separately after the 12-month reset.
 
 ### Great Eastern — GREAT Critical Cover: Complete
 
@@ -125,17 +125,17 @@ These come from the original Pro Achiever training Loom (Video 16). Treat as dir
 | Critical illnesses covered | **53 CIs** | greateasternlife.com |
 | Sum assured range | **$50K – $350K** | GE product page |
 | Death benefit | **$25K only** — minimal legacy value | GE product page |
-| Coverage term | Up to **age 99** | GE product page |
-| Multi-claim | 3-claim cap **with Protect Me Again-equivalent rider** | GE product page |
+| Coverage term | To **age 65 or 85** | GE brochure, 26 Aug 2025 |
+| Multi-claim | 3-claim cap **with the optional Protect Me Again rider** (1 claim without it) | GE brochure |
 | Pre-authorisation (medical IP) | **Suspended for Mount Elizabeth admissions** as of relevant date | [straitstimes.com — Great Eastern Mount Elizabeth pre-auth](https://www.straitstimes.com/singapore/insurer-great-eastern-pauses-pre-authorisation-certificates-for-mount-elizabeth-admissions) |
 
 **The factual contrast:** lower sum-assured ceiling, near-zero death benefit, multi-claim only with rider, IP pre-auth suspended at a major private hospital.
 
-### Singlife — Multi-Pay Critical Illness
+### Singlife — Multipay Critical Illness II
 
 | Spec | Value | Source |
 |---|---|---|
-| Critical illnesses covered | **60 CIs** | Singlife Multi-Pay CI brochure (2023) |
+| Critical illnesses covered | **60 CIs at severe stage**, 135 conditions in all | Singlife Multipay Critical Illness II brochure (Dec 2025) |
 | Stage applicability | Many conditions listed "Not applicable" for Early / Intermediate stages | Singlife brochure |
 | Multi-claim | Built in (per Singlife brochure) | Singlife brochure |
 

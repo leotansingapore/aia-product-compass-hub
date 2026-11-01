@@ -1219,7 +1219,7 @@ This case closed on a visceral mental model, not a number. The buffet analogy:
 >
 > *But there's a second table — the Early CI buffet. It covers Stage 0 cancer, carcinoma in situ, mild stroke, early-stage heart attack. Up to 5 servings — meaning up to 5 separate Early CI claims over your life. Same illnesses as Major CI, but caught earlier and claimable when the diagnosis is far less severe.*
 >
-> *The third table — Relapse — is for 6 specific illnesses: cancer, heart attack, stroke, organ transplant, paralysis, and one more. If you've already claimed and recovered, you can come back to the buffet 2 years later and claim again for the same illness.*
+> *The third table — Relapse — is for 5 specific illnesses: cancer, heart attack, stroke, organ transplant, and one more. If you've already claimed and recovered, you can come back to the buffet 2 years later and claim again for the same illness.*
 >
 > *Right now you're at the Major CI buffet only. Most of the cases that actually arise — and the ones where early intervention matters most — are at the Early CI buffet. Adding the Early CI layer is roughly $150-180/month for $300K of recurring multi-claim coverage. The earlier the diagnosis, the easier the recovery, and the less your career and income get disrupted."*
 

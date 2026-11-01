@@ -77,15 +77,15 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
 
   // Q6 -- correct: 0
   {
-    question: "What is the approximate monthly premium for a 25-year-old male with $100k sum assured, paid to age 75?",
+    question: "What is the approximate monthly premium for a 25-year-old male non-smoker with $100k sum assured, paid to age 75?",
     options: [
-      "About $50 per month",
-      "About $80 per month",
+      "About $87 per month",
+      "About $60 per month",
       "About $120 per month",
       "About $35 per month"
     ],
     correct: 0,
-    explanation: "A 25-year-old male with $100k sum assured pays approximately $50 per month with premiums paid to age 75.",
+    explanation: "A 25-year-old male non-smoker with $100k sum assured pays approximately $87 per month with premiums paid to age 75.",
     category: 'product-facts'
   },
 
@@ -343,15 +343,15 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
 
   // Q25 -- correct: 2 (Prudential PRUActive Protect spec)
   {
-    question: "How does Prudential's PRUActive Protect compare to UCC on number of critical illnesses covered?",
+    question: "How does Prudential's PRUActive Protect II compare to UCC on number of critical illnesses covered?",
     options: [
-      "PRUActive Protect covers more illnesses than UCC",
+      "PRUActive Protect II covers 100 severe-stage CIs vs UCC's 73",
       "Both cover the same number of illnesses",
-      "PRUActive Protect covers 37 CIs vs UCC's 73 across 150 condition-stages (per Prudential's published brochure)",
+      "PRUActive Protect II covers 64 CIs at severe stage vs UCC's 73 across 150 condition-stages (per Prudential's published brochure)",
       "PRUActive Protect covers 60 CIs vs UCC's 73"
     ],
     correct: 2,
-    explanation: "Per the published PRUActive Protect brochure (prudential.com.sg), the plan covers 37 critical illnesses. UCC covers 73 underlying CIs across 150 condition-stage entries. Multi-claim on PRUActive Protect also requires the separate Protect Me Again rider; UCC's multi-claim is built in. Always verify pricing in iPOS (competitor pricing is time-bound).",
+    explanation: "Per the published PRUActive Protect II brochure (prudential.com.sg), the plan covers 64 critical illnesses at severe stage. UCC covers 73 underlying CIs across 150 condition-stage entries. Multi-claim on PRUActive Protect II also requires the optional Protect Plus rider (up to 500% in total); UCC's multi-claim is built in. Always verify pricing in iPOS (competitor pricing is time-bound).",
     category: 'product-facts'
   },
 
@@ -371,15 +371,15 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
 
   // Q27 -- correct: 1 (Singlife Multi-Pay CI spec)
   {
-    question: "How does Singlife Multi-Pay Critical Illness compare to UCC on CIs covered?",
+    question: "How does Singlife Multipay Critical Illness II compare to UCC on CIs covered?",
     options: [
       "Singlife covers more CIs than UCC",
-      "Singlife covers 60 CIs vs UCC's 73 — missing 13 conditions (per Singlife's published brochure)",
+      "Singlife covers 60 CIs at severe stage vs UCC's 73, 13 fewer (per Singlife's published brochure)",
       "Singlife covers 100 CIs",
       "Singlife covers the same 73 CIs as UCC"
     ],
     correct: 1,
-    explanation: "Per the Singlife Multi-Pay CI brochure (2023), the plan covers 60 critical illnesses — 13 fewer than UCC's 73. Many conditions are also listed as 'Not applicable' for Early / Intermediate stages, narrowing real-world early-stage coverage further.",
+    explanation: "Per the Singlife Multipay Critical Illness II brochure (Dec 2025), the plan covers 135 conditions, 60 of them critical illnesses at severe stage, 13 fewer than UCC's 73. Many conditions are also listed as 'Not applicable' for Early / Intermediate stages, narrowing real-world early-stage coverage further.",
     category: 'product-facts'
   },
 
@@ -389,11 +389,11 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
     options: [
       "Policy ceases after 3 claims",
       "Coverage only until age 65",
-      "A 'related illness' restriction that blocks subsequent heart claims",
-      "No coverage for early-stage illnesses"
+      "A 24-month wait before a claim in the same category, such as a second heart condition, with further claims only through the optional Protect Plus rider",
+      "No coverage for heart attack"
     ],
     correct: 2,
-    explanation: "Prudential has a 'related illness' restriction that blocks subsequent claims for related conditions (e.g., multiple heart conditions), which UCC does not have.",
+    explanation: "On PRUActive Protect II, a claim in the same category (e.g., a second heart condition) waits 24 months, against 12 for a different category, and further claims need the optional Protect Plus rider (up to 500%). UCC resets 12 months after the last claim, with multi-claim built in.",
     category: 'product-facts'
   },
 
@@ -407,7 +407,7 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
       "Policy resets after each claim with no limit"
     ],
     correct: 0,
-    explanation: "Great Eastern's CI policy ceases after 3 claims with a maximum total payout of 300% of sum assured.",
+    explanation: "Great Eastern's CI policy ceases after 3 claims (with its optional Protect Me Again rider) with a maximum total payout of 300% of sum assured.",
     category: 'product-facts'
   },
 
@@ -435,7 +435,7 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
       "Coverage resets to 50% after each claim"
     ],
     correct: 1,
-    explanation: "Great Eastern's CI plan only allows a 2x coverage reset, compared to UCC which resets after every 12-month waiting period with no limit.",
+    explanation: "Great Eastern's CI plan only allows a 2x coverage reset (with its optional Protect Me Again rider), compared to UCC which resets after every 12-month waiting period with no limit.",
     category: 'product-facts'
   },
 
@@ -483,71 +483,71 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
 
   // Q35 -- correct: 3
   {
-    question: "What is the approximate annual premium for a 25-year-old female with $200k coverage until age 65?",
+    question: "What is the approximate annual premium for a 25-year-old female non-smoker with $200k coverage until age 65?",
     options: [
-      "About $2,328 per year",
-      "About $3,320 per year",
+      "About $1,908 per year",
+      "About $2,512 per year",
       "About $1,000 per year",
-      "About $1,400 per year"
+      "About $1,436 per year"
     ],
     correct: 3,
-    explanation: "A 25-year-old female with $200k coverage until age 65 pays approximately $1,400 per year.",
+    explanation: "A 25-year-old female non-smoker with $200k coverage until age 65 pays approximately $1,436 per year.",
     category: 'product-facts'
   },
 
   // Q36 -- correct: 2
   {
-    question: "What is the approximate annual premium for a 25-year-old female with $200k coverage until age 75?",
+    question: "What is the approximate annual premium for a 25-year-old female non-smoker with $200k coverage until age 75?",
     options: [
-      "About $1,400 per year",
-      "About $3,320 per year",
-      "About $2,328 per year",
-      "About $1,800 per year"
+      "About $1,436 per year",
+      "About $2,512 per year",
+      "About $1,908 per year",
+      "About $1,200 per year"
     ],
     correct: 2,
-    explanation: "A 25-year-old female with $200k coverage until age 75 pays approximately $2,328 per year.",
+    explanation: "A 25-year-old female non-smoker with $200k coverage until age 75 pays approximately $1,908 per year.",
     category: 'product-facts'
   },
 
   // Q37 -- correct: 0
   {
-    question: "What is the approximate annual premium for a 25-year-old female with $200k coverage until age 85?",
+    question: "What is the approximate annual premium for a 25-year-old female non-smoker with $200k coverage until age 85?",
     options: [
-      "About $3,320 per year",
-      "About $2,328 per year",
+      "About $2,512 per year",
+      "About $1,908 per year",
       "About $4,500 per year",
-      "About $1,400 per year"
+      "About $1,436 per year"
     ],
     correct: 0,
-    explanation: "A 25-year-old female with $200k coverage until age 85 pays approximately $3,320 per year.",
+    explanation: "A 25-year-old female non-smoker with $200k coverage until age 85 pays approximately $2,512 per year.",
     category: 'product-facts'
   },
 
   // Q38 -- correct: 1
   {
-    question: "What is the total premium outlay for a 25-year-old female with $200k coverage until age 75?",
+    question: "What is the total premium outlay for a 25-year-old female non-smoker with $200k coverage until age 75?",
     options: [
       "About $70,000 total",
-      "About $116,000 total",
-      "About $199,000 total",
-      "About $85,000 total"
+      "About $95,000 total",
+      "About $151,000 total",
+      "About $120,000 total"
     ],
     correct: 1,
-    explanation: "With $2,328/year paid from age 25 to 75 (50 years), the total premium outlay is approximately $116,000.",
+    explanation: "With $1,908/year paid from age 25 to 75 (50 years), the total premium outlay is approximately $95,000.",
     category: 'product-facts'
   },
 
   // Q39 -- correct: 3
   {
-    question: "What is the total premium outlay for a 25-year-old female with $200k coverage until age 85?",
+    question: "What is the total premium outlay for a 25-year-old female non-smoker with $200k coverage until age 85?",
     options: [
-      "About $116,000 total",
-      "About $150,000 total",
+      "About $95,000 total",
+      "About $200,000 total",
       "About $70,000 total",
-      "About $199,000 total"
+      "About $151,000 total"
     ],
     correct: 3,
-    explanation: "With $3,320/year paid from age 25 to 85 (60 years), the total premium outlay is approximately $199,000.",
+    explanation: "With $2,512/year paid from age 25 to 85 (60 years), the total premium outlay is approximately $151,000.",
     category: 'product-facts'
   },
 
@@ -603,7 +603,7 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
       "UCC has unlimited 12-month resets, Great Eastern has only 2x reset"
     ],
     correct: 3,
-    explanation: "UCC resets coverage to 100% after every 12-month waiting period with no limit, while Great Eastern only allows a 2x reset.",
+    explanation: "UCC resets coverage to 100% after every 12-month waiting period with no limit, while Great Eastern only allows a 2x reset (with its optional Protect Me Again rider).",
     category: 'product-facts'
   },
 
@@ -611,13 +611,13 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
   {
     question: "What is the maximum coverage term for GE GREAT Critical Cover: Complete?",
     options: [
-      "To age 65 only",
+      "Up to age 99",
       "To age 75 only",
-      "Up to age 99 (per GE's current published terms)",
+      "To age 65 or 85 (per GE's current published brochure)",
       "Whole life with no maximum"
     ],
     correct: 2,
-    explanation: "Per GE's current published terms for GREAT Critical Cover: Complete, coverage term is up to age 99 (Source: greateasternlife.com). UCC's three plan-term options are To 65 / 75 / 85. Always verify current pricing in iPOS.",
+    explanation: "Per GE's current published brochure for GREAT Critical Cover: Complete, cover runs to age 65 or 85 (Source: greateasternlife.com). UCC's three plan-term options are To 65 / 75 / 85. Always verify current pricing in iPOS.",
     category: 'product-facts'
   },
 
@@ -775,7 +775,7 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
       "Start with a small coverage amount and increase it annually"
     ],
     correct: 0,
-    explanation: "By choosing coverage until 65 instead of 85, the monthly savings of ~$160 can be invested. At age 65 the investment could be worth $388k vs the $200k coverage.",
+    explanation: "By choosing coverage until 65 instead of 85, the monthly savings of ~$90 can be invested. At age 65 the investment could be worth about $217k vs the $200k coverage.",
     category: 'sales-angles'
   },
 
@@ -783,13 +783,13 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
   {
     question: "Using the Time Value of Money strategy, how much could the invested savings be worth at age 65?",
     options: [
-      "About $200,000",
+      "About $100,000",
       "About $150,000",
       "About $500,000",
-      "About $388,000"
+      "About $217,000"
     ],
     correct: 3,
-    explanation: "By investing the $160/month premium difference between the 65 and 85 options, the invested savings could grow to approximately $388,000 by age 65.",
+    explanation: "By investing the $90/month premium difference between the 65 and 85 options, the invested savings could grow to approximately $217,000 by age 65.",
     category: 'sales-angles'
   },
 
@@ -797,33 +797,33 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
   {
     question: "Using the Time Value of Money strategy, how much could the invested savings be worth at age 85?",
     options: [
-      "About $388,000",
-      "About $800,000",
+      "About $217,000",
       "About $1.5 million",
+      "About $840,000",
       "About $500,000"
     ],
     correct: 2,
-    explanation: "If the invested savings continue to compound, they could grow to approximately $1.5 million by age 85, far exceeding the $200k coverage amount.",
+    explanation: "If the invested savings continue to compound, they could grow to approximately $840,000 by age 85, far exceeding the $200k coverage amount.",
     category: 'sales-angles'
   },
 
   // Q58 -- correct: 1
   {
-    question: "What is the monthly premium savings when choosing coverage until 65 vs 85 for a 25-year-old female with $200k sum assured?",
+    question: "What is the monthly premium savings when choosing coverage until 65 vs 85 for a 25-year-old female non-smoker with $200k sum assured?",
     options: [
-      "About $100 per month",
       "About $160 per month",
+      "About $90 per month",
       "About $200 per month",
-      "About $80 per month"
+      "About $40 per month"
     ],
     correct: 1,
-    explanation: "The annual premium difference is $3,320 - $1,400 = $1,920 per year, which is approximately $160 per month.",
+    explanation: "The annual premium difference is $2,512 - $1,436 = $1,076 per year, which is approximately $90 per month.",
     category: 'sales-angles'
   },
 
   // Q59 -- correct: 0
   {
-    question: "How should you frame the choice between $200k coverage (needs illness) vs $388k-$1.5M cash (accessible anytime)?",
+    question: "How should you frame the choice between $200k coverage (needs illness) vs $217k-$840k cash (accessible anytime)?",
     options: [
       "As accessible cash vs locked-in coverage that requires a claim to access",
       "As insurance vs gambling on health",
@@ -831,7 +831,7 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
       "As the smart option vs the foolish option"
     ],
     correct: 0,
-    explanation: "Frame it as a contrast: $200k that you can only access if you get sick vs $388k-$1.5M in cash that is accessible anytime regardless of health.",
+    explanation: "Frame it as a contrast: $200k that you can only access if you get sick vs $217k-$840k in cash that is accessible anytime regardless of health.",
     category: 'sales-angles'
   },
 
@@ -863,17 +863,17 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
     category: 'sales-angles'
   },
 
-  // Q62 -- correct: 0 (PRUActive Protect: 37 CIs + rider-only multi-claim)
+  // Q62 -- correct: 0 (PRUActive Protect II: 64 severe-stage CIs + rider-only multi-claim)
   {
-    question: "When comparing UCC to Prudential PRUActive Protect, which weakness is factually correct per Prudential's published brochure?",
+    question: "When comparing UCC to Prudential PRUActive Protect II, which weakness is factually correct per Prudential's published brochure?",
     options: [
-      "PRUActive Protect covers 37 CIs (vs UCC's 73 across 150 condition-stages), and its multi-claim requires a separate Protect Me Again rider",
+      "PRUActive Protect II covers 64 CIs at severe stage (vs UCC's 73 across 150 condition-stages), and its multi-claim requires the optional Protect Plus rider",
       "PRUActive Protect has no premium waiver option",
-      "PRUActive Protect does not cover early-stage illnesses",
+      "PRUActive Protect II offers no early-stage cover, even as a rider",
       "PRUActive Protect limits coverage to age 65"
     ],
     correct: 0,
-    explanation: "Per the published PRUActive Protect brochure: the plan covers 37 critical illnesses, and multi-claim is delivered via the separate Protect Me Again rider rather than built in. Coverage term is 10-99 years, customisable. Brochure URL: prudential.com.sg.",
+    explanation: "Per the published PRUActive Protect II brochure: the plan covers 64 critical illnesses at severe stage, and multi-claim is delivered via the optional Protect Plus rider (up to 500%) rather than built in. Policy term is 10-99 years, up to age 100. Brochure URL: prudential.com.sg.",
     category: 'sales-angles'
   },
 
@@ -887,7 +887,7 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
       "UCC includes relapse coverage; Great Eastern does not"
     ],
     correct: 0,
-    explanation: "UCC allows unlimited claims for different illnesses, while Great Eastern's policy ceases after just 3 claims with a maximum payout of 300%.",
+    explanation: "UCC allows unlimited claims for different illnesses, while Great Eastern's policy ceases after just 3 claims (with its optional Protect Me Again rider) with a maximum payout of 300%.",
     category: 'sales-angles'
   },
 
@@ -1050,12 +1050,12 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
     question: "When presenting the Time Value of Money strategy, what contrast are you drawing for the client?",
     options: [
       "Insurance premiums vs CPF contributions",
-      "Coverage you can only access if sick ($200k) vs cash accessible anytime ($388k-$1.5M)",
+      "Coverage you can only access if sick ($200k) vs cash accessible anytime ($217k-$840k)",
       "Monthly premiums vs annual premiums",
       "Current coverage vs future coverage needs"
     ],
     correct: 1,
-    explanation: "The strategy contrasts $200k coverage (only accessible through illness) with $388k-$1.5M in investable cash (accessible anytime), helping clients see the opportunity cost.",
+    explanation: "The strategy contrasts $200k coverage (only accessible through illness) with $217k-$840k in investable cash (accessible anytime), helping clients see the opportunity cost.",
     category: 'sales-angles'
   },
 
@@ -1154,10 +1154,10 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
       "Prudential's plan is indeed better for related illnesses.",
       "All CI plans cover related illnesses the same way.",
       "Ask the client to get a written comparison from Prudential.",
-      "Actually, Prudential has a 'related illness' restriction that BLOCKS subsequent heart claims. UCC treats each condition separately, so coronary heart disease, bypass, heart attack, and transplant are all claimable."
+      "Actually, Prudential pays a related (same-category) claim only with its optional Protect Plus rider, after a 24-month wait, and caps total payouts at 500%. UCC treats each condition separately with a 12-month reset, so coronary heart disease, bypass, heart attack, and transplant are all claimable."
     ],
     correct: 3,
-    explanation: "Correct the misconception by explaining that Prudential's 'related illness' restriction actually blocks subsequent claims for related conditions, while UCC allows each to be claimed separately.",
+    explanation: "Correct the misconception by explaining that Prudential only pays a related (same-category) claim through its optional Protect Plus rider after 24 months, while UCC allows each different condition to be claimed 12 months after the last claim.",
     category: 'objection-handling'
   },
 
@@ -1334,12 +1334,12 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
     question: "A client asks: 'Why is UCC cheaper than competitors? Is the coverage worse?' How do you respond?",
     options: [
       "Yes, the cheaper price means less coverage.",
-      "UCC is cheaper because the base plan separates relapse coverage into an optional rider. This keeps costs low while actually covering more illnesses (150 vs competitors' 53-104).",
+      "UCC is cheaper because the base plan separates relapse coverage into an optional rider. This keeps costs low while covering 150 medical conditions (Great Eastern lists 121, Singlife 135).",
       "AIA is subsidizing the premium to gain market share.",
       "The competitors are overcharging their customers."
     ],
     correct: 1,
-    explanation: "Explain the structural reason for lower pricing (modular design separating relapse coverage) while highlighting that UCC covers more illnesses than competitors.",
+    explanation: "Explain the structural reason for lower pricing (modular design separating relapse coverage) while highlighting that UCC covers more conditions than several competitors.",
     category: 'objection-handling'
   },
 
@@ -1349,7 +1349,7 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
     options: [
       "You probably will not get sick after 65.",
       "You should definitely choose coverage until 85 to be safe.",
-      "Use the Time Value of Money strategy: invest the premium savings, and by 65 you could have $388k or more -- accessible anytime, not just when ill. This provides financial protection beyond the coverage term.",
+      "Use the Time Value of Money strategy: invest the premium savings, and by 65 you could have $217k or more -- accessible anytime, not just when ill. This provides financial protection beyond the coverage term.",
       "Once coverage ends, you can always buy a new policy."
     ],
     correct: 2,
@@ -1433,7 +1433,7 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
 
   // Q102 -- correct: 0
   {
-    question: "A 35-year-old female client says: 'I want the most comprehensive CI coverage but I am on a tight budget of $60/month.' Which recommendation is best?",
+    question: "A 20-year-old male non-smoker says: 'I want the most comprehensive CI coverage but I am on a tight budget of $60/month.' Which recommendation is best?",
     options: [
       "UCC $100k until age 65 with all three riders (Enhancer + Early CI + Premium Waiver) at approximately $57/month.",
       "UCC $200k until age 85 without any riders.",
@@ -1478,20 +1478,20 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
     question: "A client with existing Prudential CI coverage says their Prudential agent told them switching to AIA is risky. How do you respond?",
     options: [
       "Tell the client their Prudential agent is lying.",
-      "Clarify that you are not suggesting they cancel Prudential. UCC can complement their existing coverage. Then ask: 'Does your Prudential plan have a related illness restriction? Let me show you what that means for heart conditions.'",
+      "Clarify that you are not suggesting they cancel Prudential. UCC can complement their existing coverage. Then ask: 'Does your Prudential plan make you wait 24 months before a claim in the same category? Let me show you what that means for heart conditions.'",
       "Agree that switching is risky and recommend staying with Prudential.",
       "Offer to match whatever Prudential is offering."
     ],
     correct: 1,
-    explanation: "Position UCC as complementary rather than a replacement, then use the specific 'related illness' restriction to demonstrate UCC's advantage without attacking the competitor.",
+    explanation: "Position UCC as complementary rather than a replacement, then use Prudential's 24-month same-category wait to demonstrate UCC's advantage without attacking the competitor.",
     category: 'roleplay'
   },
 
   // Q106 -- correct: 0
   {
-    question: "A 40-year-old client is concerned about the premium difference between UCC coverage until 65 vs 85. You want to use the Time Value of Money strategy. What do you say?",
+    question: "A 25-year-old female client is concerned about the premium difference between UCC coverage until 65 vs 85. You want to use the Time Value of Money strategy. What do you say?",
     options: [
-      "The premium difference of about $160/month can be invested. By 65, that could grow to about $388k -- nearly double the $200k coverage. You get accessible cash instead of coverage you can only use if you are sick.",
+      "The premium difference of about $90/month can be invested. By 65, that could grow to about $217k -- more than the $200k coverage. You get accessible cash instead of coverage you can only use if you are sick.",
       "Just pick the cheapest option to save money.",
       "The longer term is always better because you get more years of coverage.",
       "The premium difference does not matter because both options have the same coverage amount."
@@ -1531,10 +1531,10 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
 
   // Q109 -- correct: 1
   {
-    question: "A financially savvy client asks: 'What is the total cost of ownership for UCC with all riders until age 75?' How do you respond for a 25-year-old female with $200k coverage?",
+    question: "A financially savvy client asks: 'What is the total cost of ownership for UCC with all riders until age 75?' How do you respond for a 25-year-old female non-smoker with $200k coverage?",
     options: [
       "I do not have the exact numbers, but it is very affordable.",
-      "Based on the $2,328/year premium until age 75, the total outlay over 50 years is approximately $116,000. With UCC's unlimited claims, the potential payout far exceeds this -- 550% or more of the $200k sum assured.",
+      "Based on the $1,908/year premium until age 75, the total outlay over 50 years is approximately $95,000. With UCC's unlimited claims, the potential payout far exceeds this -- 550% or more of the $200k sum assured.",
       "The total cost is approximately $50,000 over the life of the policy.",
       "I would need to check with the actuarial team and get back to you."
     ],
@@ -1564,7 +1564,7 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
       "You cannot afford insurance right now. Come back when you earn more.",
       "Borrow money from your parents to buy the coverage.",
       "Buy the maximum coverage now before premiums go up.",
-      "At your age, UCC base plan is about $44/month for $100k coverage until 65. That is less than one dinner out. Lock in this rate now -- the same coverage at 35 could cost 50% more."
+      "At your age, UCC base plan is about $48/month for $100k coverage until 65. That is less than one dinner out. Lock in this rate now -- the same coverage at 35 could cost 70% more."
     ],
     correct: 3,
     explanation: "Make the premium relatable (less than one dinner) and emphasize the advantage of locking in low rates while young and healthy.",
@@ -1745,15 +1745,15 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
 
   // Q124 -- correct: 2 (ECPWP asymmetric ROI)
   {
-    question: "A 25-year-old female buys UCC S$200,000 To Age 75 with the ECPWP rider. Base premium ~S$2,328/year, rider ~S$168/year. If she claims in policy year 2, roughly how much in premiums is waived across the remaining term?",
+    question: "A 25-year-old female non-smoker buys UCC S$200,000 To Age 75 with the ECPWP rider. Base premium ~S$1,908/year, rider ~S$168/year. If she claims in policy year 2, roughly how much in premiums is waived across the remaining term?",
     options: [
       "~S$8,400",
       "~S$25,000",
-      "~S$114,072 (~679x return on the rider)",
+      "~S$93,492 (~557x return on the rider)",
       "~S$200,000"
     ],
     correct: 2,
-    explanation: "Per Day 3 / Day 5 / Video 7: best-case ECPWP ROI is approximately 679x (~S$168/year rider waiving ~S$114,072 of base premium across the remaining term). Worst case: ~S$8,400 paid over 50 years with no claim.",
+    explanation: "Per Day 3 / Day 5 / Video 7: best-case ECPWP ROI is approximately 557x (~S$168/year rider waiving ~S$93,492 of base premium across the remaining term). Worst case: ~S$8,400 paid over 50 years with no claim.",
     category: 'sales-angles'
   },
 
