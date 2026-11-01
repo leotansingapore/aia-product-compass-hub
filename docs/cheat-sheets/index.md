@@ -68,7 +68,7 @@ One per product. Specs, openers, objections, cross-sell, and the numbers worth m
 | 2 | Pro Lifetime Protector (PLP) | Whole-life ILP | [Week 2](product-mastery/week-02.md) | 2-in-1 lifetime cover + Mercer wealth engine; Plus-vs-Max locked at issue |
 | 3 | Guaranteed Protect Plus (GPP) | Par whole-life + term Booster | [Week 3](product-mastery/week-03.md) | Accumulator + Booster (drops 65/75); 15/20/25-year pay; cash refund at maturity |
 | 4 | Ultimate Critical Cover (UCC) | Multi-claim CI | [Week 4](product-mastery/week-04.md) | 150 conditions (42 Early / 35 Intermediate / 73 Major); unlimited Major + 12mo Reset |
-| 5 | HealthShield Gold Max (HSGM) | Integrated Shield Plan | [Week 5](product-mastery/week-05.md) | Max A/B/B Lite, $2M annual cap, 13-month pre/post wrap, S$6K co-insurance cap |
+| 5 | HealthShield Gold Max (HSGM) | Integrated Shield Plan | [Week 5](product-mastery/week-05.md) | Max A/B/B Lite, annual cap (check the current AIA product summary for the exact limit), 13-month pre/post wrap, S$6K co-insurance cap |
 | 6 | Solitaire PA | Personal Accident | [Week 6](product-mastery/week-06.md) | Yearly-renewable, S$0.62-S$2.34/day, partial-disability Schedule (1 phalanx = S$37,500) |
 | 7 | Platinum Wealth Venture (PWV) | 5-pay retirement income | [Week 7](product-mastery/week-07.md) | 7-panel Drawing Concept, 3 moats vs CPF Life, $144K OA excess pitch |
 

@@ -43,7 +43,7 @@ const checks = [
       { pattern: /waiver\s+pass/i, reason: 'fictitious "Waiver Pass" mechanism — does not exist in canonical sources' },
       { pattern: /plan\s+b\s+lite.*S?\$\s*500,?000/i, reason: 'Plan B Lite annual limit is S$300K, not S$500K' },
       { pattern: /S?\$\s*500,?000.*plan\s+b\s+lite/i, reason: 'Plan B Lite annual limit is S$300K, not S$500K' },
-      { pattern: /vitalhealth\s+a\s+value/i, reason: 'fictitious "VitalHealth A Value" tier' },
+      { pattern: /vitalhealth\s+a\s+value/i, reason: '"VitalHealth A Value" was withdrawn in Mar 2026 and is not sold; banks teach the current Pro riders' },
       { pattern: /AQHP.*panel.*500\+/i, reason: 'AQHP panel is over 600, not 500+' },
     ],
   },

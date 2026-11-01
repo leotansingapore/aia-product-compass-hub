@@ -370,7 +370,7 @@ This is Leo's canonical "retirement healthcare funding angle" — see the [Drawi
 ### The restructure recommendation
 
 1. **Audit the 4 Manulife savings plans.** Pull the in-force illustrations for each. Calculate the projected monthly income at 65 from each. Many low-tier Manulife savings plans deliver under $200/mo income at 65 on $100K+ of premium — structurally inferior to a single PWV at the same money.
-2. **Upgrade the HSG B-Lite to HSG B + rider** — the rider waives the $3,500 deductible and caps co-insurance at 5%. Single biggest hospital coverage upgrade.
+2. **Upgrade the HSG B-Lite to HSG B + rider** — the rider cuts co-insurance to 5%, capped at $6,000 a year (the deductible still applies). Single biggest hospital coverage upgrade.
 3. **Surface the agent-disappearance pattern** as the framing — *"You bought from 4 different bankers, none of whom are servicing you. AIA tied agency means I'll be here for the 30-year servicing relationship, not just the initial sale."*
 
 ### The structural attack script

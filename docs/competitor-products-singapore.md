@@ -71,7 +71,7 @@ Product names get renamed and rebranded faster than the brochures get updated, s
 
 ### MEDICAL
 **Integrated Shield Plan — AIA HealthShield Gold Max** (four tiers):
-- **Plan A** — private hospitals, S$2M annual limit
+- **Plan A** — private hospitals, annual limit (check the current AIA product summary for the exact limit)
 - **Plan B** — restructured hospitals Ward A1
 - **Plan B Lite** — restructured Ward B1, S$300k limit
 - **Standard Plan** — MOH-standardised, S$200k limit
@@ -79,7 +79,7 @@ Product names get renamed and rebranded faster than the brochures get updated, s
 Oct 2025 revision added CTGTP cover at S$250k per indication per lifetime for Plan A/B/B Lite.
 
 **Riders**
-- **AIA Max VitalHealth / AIA Max VitalCare** — stacked on HealthShield Gold Max for co-pay caps and deductible reimbursement.
+- **AIA Max VitalHealth Pro A / Pro B / Pro B Lite** — stacked on HealthShield Gold Max for a 5% co-payment capped at S$6,000 a policy year (with an AIA Preferred Provider, pre-authorisation or A&E referral); does not cover the deductible. Sold from 1 Apr 2026; add-ons Cancer Care Pro and Emergency Care Pro.
 
 **Personal Accident**
 - **AIA Solitaire PA (II)** — flagship PA; 4 plan levels × 3 benefit groups = 12 variants; dengue, TCM, food poisoning.

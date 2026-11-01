@@ -30,8 +30,8 @@ An Integrated Shield Plan (IP) issued by AIA, layered on top of compulsory MediS
 | Structure | Integrated Shield Plan (IP) on top of MediShield Life |
 | Plan tiers | **Max A** (private hospital) / **Max B** (A-class public) / **Max B Lite** (B1-class public) |
 | Last entry age | 75 next birthday; coverage period **lifetime** |
-| Annual claim limit (Max A + preferred provider) | **S$2,000,000** |
-| Pre/post-hospitalisation window (Max A + preferred) | **13 months each side** (competitors typically cap at 6 months) |
+| Annual claim limit (Max A) | Check the current AIA product summary for the exact limit |
+| Pre/post-hospitalisation window (Max A + preferred) | **13 months each side**, 100 days otherwise (competitors typically cap at 180 days pre, 365 days post) |
 | Deductible (A-class / private) | **S$3,500** |
 | Co-insurance without rider | 10% above deductible (uncapped) |
 | Co-insurance with AIA Max VitalHealth Pro A rider | **5% capped at S$6,000/year** (with preferred provider OR pre-auth OR A&E referral) |
@@ -58,11 +58,11 @@ The travel-package analogy for the 13-month wraparound:
 
 Value-stack before price (the conversion):
 
-> *"$2 million annual limit, 13 months pre/post, unlimited claims for life, no premium loading because you claimed, Cancer Care Pro lifting CDL coverage 16-fold. How much do you think such a plan would cost per month?"*
+> *"[Annual limit, check the current AIA product summary for the exact figure], 13 months pre/post, unlimited claims for life, no premium loading because you claimed, Cancer Care Pro lifting CDL coverage 16-fold. How much do you think such a plan would cost per month?"*
 
 Let them guess (most anchor at S$150-S$300). Then reveal:
 
-> *"It's actually starting from just S$18 a month for public, or about S$70 to S$80 a month for private."*
+> *"It's actually starting from just S$15 a month for public, or about S$70 to S$80 a month for private."*
 
 ## Objection cluster
 
@@ -90,14 +90,14 @@ Let them guess (most anchor at S$150-S$300). Then reveal:
 ## Numbers worth memorising
 
 1. **Singapore medical inflation 2004-2024: +55.8%** [Brochure p.1]
-2. Max A annual claim limit (preferred provider): **S$2,000,000**
+2. Max A annual claim limit: check the current AIA product summary for the exact limit
 3. Pre/post window (Max A + preferred): **13 months each side**
 4. Deductible (A-class / private): **S$3,500**
 5. Co-insurance with Pro A rider: **5% capped at S$6,000/year** (preferred OR pre-auth OR A&E)
 6. **Tom S$200K example - WITH pre-auth: S$9,500 OOP; without: S$13,325 OOP. Pre-auth saves S$3,825.** [Brochure p.9]
 7. Cancer Care Pro CDL: **16x MSHL monthly per primary cancer**
 8. Cancer Care Pro non-CDL: **S$200,000 per policy year**
-9. MediSave AWL on AIA top-up (young adult): **S$300/year** - cash shortfall ~S$29/yr (HSGM is NOT 100% MediSave-payable)
+9. MediSave AWL on AIA top-up (young adult): **S$300/year** - cash shortfall ~S$48/yr on Plan A at age 25 and below (HSGM is NOT 100% MediSave-payable)
 10. SMA IP Providers Survey 2022: **AIA #1 across all 6 metrics** (overall 3.86 vs Prudential 3.27)
 
 ## Common pitch failure modes

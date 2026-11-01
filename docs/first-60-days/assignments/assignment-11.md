@@ -378,7 +378,7 @@ Ai Lin runs her own business and has bought insurance from one insurer for over 
 
 **Rachel's own policies**
 
-- HealthShield Gold Max A with the VitalHealth A Cancer Care Booster: private-hospital cover at standard room, about S$300/year via MediSave plus S$1,290 in cash
+- HealthShield Gold Max A with the VitalHealth A rider and Cancer Care Booster (both sold before 1 Apr 2026): private-hospital cover at standard room, about S$300/year via MediSave plus S$1,290 in cash
 - Secure Flexi Term (2021): S$1,300,000 of death/TPD cover that expires in 2030, when she is 34, at S$409.50/year; no nomination
 - Solitaire Personal Accident II (2022): S$500,000 of accidental cover at S$880/year; no nomination
 - SmartRewards Saver (II) 25 (2019): a 25-year endowment at S$4,408/year with a payor waiver on her mum, cash value S$19,124, maturing 2044 at a projected S$155,044

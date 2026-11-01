@@ -241,7 +241,7 @@ For health-conscious prospects, this is a real reason to enrol Vitality at deliv
 - C) Smoker loading
 - D) Cash-only premiums
 
-**Why:** MediShield Life is sized for B2 and C-class. A private-hospital bill is pro-rated to ~35% before MediShield Life pays anything; HSGM A removes pro-ration (factor 100%).
+**Why:** MediShield Life is sized for B2 and C-class. A private-hospital bill is pro-rated to a fraction of the bill before MediShield Life pays anything (check the current AIA product summary for the exact rates); HSGM A removes pro-ration (factor 100%).
 
 2. **The strongest reason to layer HSGM under existing employer/corporate medical is:**
 - A) The corporate plan has higher premiums
@@ -253,7 +253,7 @@ For health-conscious prospects, this is a real reason to enrol Vitality at deliv
 
 3. **The "rider is too expensive" objection is best answered with which math?**
 - A) "It's only S$10/month, you can afford it."
-- B) "Without rider, on a S$1M bill, the 10% co-insurance alone is ~S$99,650 — total OOP ~S$103,150. The rider caps lifetime medical risk at S$6,000/year." ✓
+- B) "Without rider, on a S$1M bill, the 10% co-insurance alone is ~S$99,650 — total OOP ~S$103,150. The rider caps the co-payment at S$6,000/year." ✓
 - C) "Riders are mandatory under MediShield Life."
 - D) "The rider is cheaper than CI, so it's a bargain."
 

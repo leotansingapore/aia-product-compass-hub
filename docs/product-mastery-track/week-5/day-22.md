@@ -124,7 +124,7 @@ By the end of Part 2 you should be able to: name all 8 phases in order, deploy t
 ```
 Phase 1     Phase 2              Phase 3       Phase 4         Phase 5        Phase 6       Phase 7         Phase 8
 Open    →   First-Line-Defence → Pain      →   Value-Stack →   Price-Anchor → Reveal    →   Demo Diff   →   Two-Option Close
-            (4-pillar question)  (real bills) (S$2M / 13mo)   (let them guess)
+            (4-pillar question)  (real bills) (limit / 13mo)  (let them guess)
 ```
 
 | Phase | Time | Micro-commit |
@@ -138,6 +138,8 @@ Open    →   First-Line-Defence → Pain      →   Value-Stack →   Price-Anc
 | 7. Demo differentiators (problem-feature-benefit) | 8 min | Multiple "I see why I need that" moments |
 | 8. Two-option close | 3 min | Plan A or Plan B picked |
 | **Total** | **~28 min** | **8+ small yeses** |
+
+Phase 4 annual limit: check the current AIA product summary for the exact figure.
 
 ## Phase 3 — Establishing pain (the script)
 
@@ -198,9 +200,9 @@ Verify in iPOS at quote time — these move with each rate update. Approximate b
 | Plan | Young adult cash band |
 |---|---|
 | HSG Max A (private) | S$70–S$80/month |
-| HSG Max B (public A-class) | S$18–S$20/month |
+| HSG Max B (public A-class) | S$15-S$16/month |
 
-Plus ~S$29/year MediSave shortfall for young Plan A (the AIA top-up exceeds the Additional Withdrawal Limit by ~S$29).
+Plus ~S$48/year MediSave shortfall for young Plan A (at age 25 and below the AIA top-up exceeds the Additional Withdrawal Limit by ~S$48).
 
 ## Phase reference: AIA Quality Healthcare Partner specialist count
 

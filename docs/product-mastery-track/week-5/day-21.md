@@ -78,7 +78,7 @@ Be straight about who the plan doesn't suit — cushion first, then the honest d
 
 | # | Number | What it means |
 |---|---|---|
-| 1 | **S$2,000,000** | Annual policy-year claim limit, HSG Max A with AIA preferred provider [Brochure p.12] |
+| 1 | **Annual limit** (check the current AIA product summary for the exact limit) | Annual policy-year claim limit, HSG Max A [Brochure p.12] |
 | 2 | **13 months** | Pre-hospitalisation window AND post-hospitalisation window (HSG Max A with preferred provider) [Brochure p.10] |
 | 3 | **75 (next birthday)** | Last entry age. Coverage period: **lifetime** [Brochure p.12] |
 | 4 | **+55.8%** | Singapore medical inflation 2004 to 2024 [Brochure p.1] |
@@ -99,7 +99,7 @@ Reflect and bridge:
 
 Three things, in order:
 
-1. **It closes the ward-class gap.** MediShield Life subsidises B2/C-class only; HSGM Max A removes pro-ration on private bills and pays up to S$2 million a year.
+1. **It closes the ward-class gap.** MediShield Life subsidises B2/C-class only; HSGM Max A removes pro-ration on private bills and pays up to its annual limit (check the current AIA product summary for the exact limit).
 2. **It pays the hospital, not the client.** Lifetime, unlimited claims, no premium loading because you claimed.
 3. **It's portable for life.** Employer medical disappears with the job. HSGM follows the person, not the payroll.
 
@@ -137,7 +137,7 @@ Then make it concrete:
 
 > *"Before the hospitalisation, you need MRI scans and specialist consults. After, you need follow-up consultations and chemotherapy. All of that is covered — up to 13 months on each side under HSG Max A with an AIA preferred provider."*
 
-Most competitor IPs cap at 6 months pre/post. AIA's 13-month wraparound is a real differentiator. Mention it if the prospect is cross-shopping; otherwise let the picture do the work.
+Most competitor IPs cap at 180 days pre and 365 days post. AIA's 13-month wraparound is a real differentiator. Mention it if the prospect is cross-shopping; otherwise let the picture do the work.
 
 ## Move 3 — The unlimited-lifetime claim phrase
 
@@ -151,7 +151,7 @@ Stack the headline values WITHOUT revealing price. Then ask the prospect to gues
 
 ```
 Stacked value:
-  S$2,000,000 annual claim limit
+  Annual claim limit (check the current AIA product summary for the exact limit)
 + 13 months pre/post wraparound
 + Unlimited claims for life (resets every year)
 + No premium change after a claim
@@ -161,13 +161,13 @@ Stacked value:
 
 Then:
 
-> *"For a plan that covers up to S$2 million, includes 13 months before and after, with unlimited claims that reset every year — how much do you think such a plan would cost per month?"*
+> *"For a plan that covers up to [its annual limit, check the current AIA product summary for the exact figure], includes 13 months before and after, with unlimited claims that reset every year — how much do you think such a plan would cost per month?"*
 
 Let them guess. Most prospects anchor at **S$150–S$300/month**.
 
 Then the reveal:
 
-> *"It's actually starting from just S$18 a month for public, or about S$70 to S$80 a month for private."*
+> *"It's actually starting from just S$15 a month for public, or about S$70 to S$80 a month for private."*
 
 The contrast between their anchor and the actual number is the conversion moment.
 
@@ -182,8 +182,8 @@ If the prospect has any family history of cancer (always surface in the fact-fin
 | CDL drugs (cancer drug list) | **16× MSHL monthly limit per primary cancer** |
 | Cancer drug services | **10× MSHL yearly limit per primary cancer** |
 | Non-CDL drugs (Classes A, B, C, D1-D3, E1-E3) | **S$200,000 per policy year** |
-| Proton beam therapy | **S$100,000 per policy year** |
-| Cell, tissue, gene therapy (Kymriah, Yescarta) | **S$250,000 per treatment per indication per lifetime** |
+| Proton beam therapy (base plan) | **S$100,000 per policy year** |
+| Cell, tissue, gene therapy (Kymriah, Yescarta) (base plan) | **S$250,000 per treatment per indication per lifetime** |
 
 [Brochure p.4 + p.12 + p.17] All less 10% co-insurance. Cancer Care Pro is an optional add-on to AIA Max VitalHealth Pro A.
 
@@ -232,13 +232,13 @@ The script for cancer-history prospects:
 
 **Why:** HSGM is an inpatient plan — the prospect must be warded for at least 6 hours or undergo surgery.
 
-5. **What is the annual policy-year claim limit on HSG Max A when treated by an AIA preferred provider?**
+5. **What is the highest annual policy-year claim limit HSG Max A can pay?**
 - A) S$1,000,000
 - B) S$1,500,000
 - C) S$2,000,000 ✓
 - D) Unlimited
 
-**Why:** HSG Max A pays up to S$2 million per policy year with an AIA preferred provider; otherwise the limit drops to S$1M [Brochure p.12].
+**Why:** HSG Max A pays up to S$2 million per policy year. Whether the full S$2 million applies only at some facilities (for example an AIA Partner Facility) is something to check in the current AIA product summary [Brochure p.12].
 
 6. **The pre- and post-hospitalisation window on HSG Max A with an AIA preferred provider is:**
 - A) 100 days each side
@@ -246,7 +246,7 @@ The script for cancer-history prospects:
 - C) 12 months each side
 - D) 13 months each side ✓
 
-**Why:** 13 months pre and 13 months post on HSG Max A with a preferred provider — most competitor IPs cap at 6 months [Brochure p.10].
+**Why:** 13 months pre and 13 months post on HSG Max A with a preferred provider (100 days otherwise) — most competitor IPs cap at 180 days pre and 365 days post [Brochure p.10].
 
 7. **The last entry age for HSGM is:**
 - A) 65 next birthday
@@ -266,7 +266,7 @@ The script for cancer-history prospects:
 
 9. **In the value-stack-before-price move, what is the FC supposed to do BEFORE revealing the actual premium?**
 - A) State the price first to anchor low
-- B) Stack the headline values (S$2M / 13 months / unlimited / no premium change / Cancer Care Pro) and ask the prospect to guess the price ✓
+- B) Stack the headline values (annual limit / 13 months / unlimited / no premium change / Cancer Care Pro) and ask the prospect to guess the price ✓
 - C) Show the IPOS quote immediately
 - D) Compare premiums against three competitors
 

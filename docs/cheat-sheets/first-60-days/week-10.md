@@ -21,7 +21,7 @@ tags: [first-60-days, week-10, cheatsheet, products, proposals, closing, claims]
 | **Protection** | Term | Pure protection, no cash value, low premium | Secure Flexi Term (SFT) |
 | **Protection** | Universal Life | High-leverage USD-denominated life cover | HNW legacy planning (3-10x leverage) |
 | **Living Benefits** | Disability Income | Monthly income if unable to work | Premier Disability Cover (PDC) |
-| **Living Benefits** | Accident & Health | Hospital, accident, outpatient | HealthShield Gold Max + Vital Health rider, Solitaire PA, Ultimate Critical Cover (UCC) |
+| **Living Benefits** | Accident & Health | Hospital, accident, outpatient | HealthShield Gold Max + VitalHealth Pro rider, Solitaire PA, Ultimate Critical Cover (UCC) |
 
 **Rule:** category-first, product-second. Start with a specific plan name and the client becomes a feature-comparer who shops competitors.
 

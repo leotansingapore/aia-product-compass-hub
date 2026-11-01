@@ -7,15 +7,15 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
   // ══════════════════════════════════════════
 
   {
-    question: "What is the annual claim limit and ward class coverage for HealthShield Gold Max Plan A?",
+    question: "What is the highest annual claim limit and the ward class coverage for HealthShield Gold Max Plan A?",
     options: [
-      "$2 million covering private hospital rooms on an as-charged basis",
+      "Up to $2 million covering private hospital rooms on an as-charged basis",
       "$500,000 covering private hospital rooms",
       "$1 million covering Class A wards in public hospitals",
       "$2 million covering Class B1 wards only"
     ],
     correct: 0,
-    explanation: "Plan A is the top-tier option with a $2 million annual claim limit covering private hospital stays on an as-charged basis, meaning there are no sub-limits on individual items up to the annual cap.",
+    explanation: "Plan A is the top-tier option, paying up to $2 million a policy year for private hospital stays on an as-charged basis, meaning there are no sub-limits on individual items up to the annual cap. Whether the full $2 million applies only at some facilities (for example an AIA Partner Facility), check the current AIA product summary.",
     category: 'product-facts'
   },
 
@@ -100,26 +100,26 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
   {
     question: "What is the CTGTP (Cell, Tissue and Gene Therapy Products) coverage, and how do listed vs non-listed treatments differ under the April 2026 product?",
     options: [
-      "S$250,000 for listed treatments and S$150,000 for non-listed treatments, per indication per lifetime",
+      "S$250,000 for listed treatments on the base plan and S$150,000 for non-listed treatments with AIA Max VitalHealth Pro, per indication per lifetime",
       "S$500,000 for all CTGTP treatments with no distinction",
       "S$100,000 for listed and S$50,000 for non-listed treatments",
       "S$150,000 for listed and S$250,000 for non-listed treatments"
     ],
     correct: 0,
-    explanation: "Listed CTGTP treatments are covered up to S$250,000 per indication per lifetime; non-listed treatments are covered up to S$150,000. CTGTP (e.g. Kymriah, Yescarta) is a current contractual benefit as of April 2026, not a future enhancement. Cite: Brochure p.12.",
+    explanation: "Listed CTGTP treatments are covered by the base plan up to S$250,000 per indication per lifetime; non-listed treatments are a VitalHealth Pro rider benefit, covered up to S$150,000 per treatment per indication per lifetime, less 10% co-insurance. CTGTP (e.g. Kymriah, Yescarta) is a current contractual benefit as of April 2026, not a future enhancement. Cite: Brochure p.12.",
     category: 'product-facts'
   },
 
   {
     question: "What is the pre- and post-hospitalisation coverage period for each HealthShield Gold Max plan tier?",
     options: [
-      "Plan A: 13 months across the board; Plan B: 12 months in public / 100 days in private; Plan B Lite: 100 days",
+      "Plan A: 13 months with an AIA Preferred Provider, 100 days otherwise; Plan B: 12 months in public / 100 days in private; Plan B Lite: 100 days",
       "All plans: 180 days",
       "Plan A: 12 months, Plan B: 6 months, Plan B Lite: 90 days",
       "Plan A: 6 months, Plan B: 100 days, Plan B Lite: 60 days"
     ],
     correct: 0,
-    explanation: "Plan A offers 13 months pre/post (longest in market). Plan B is 12 months in a public hospital and 100 days in a private hospital. Plan B Lite is 100 days. The April 2026 brochure does not use a '180 days' figure for Plan B. Cite: Brochure p.10.",
+    explanation: "Plan A offers 13 months pre/post with an AIA Preferred Provider (longest in market), 100 days otherwise. Plan B is 12 months in a public hospital and 100 days in a private hospital. Plan B Lite is 100 days. The April 2026 brochure does not use a '180 days' figure for Plan B. Cite: Brochure p.10.",
     category: 'product-facts'
   },
 
@@ -201,7 +201,7 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
       "Agent commission rates, claim settlement time, customer reviews, and branch count"
     ],
     correct: 1,
-    explanation: "The four key comparison points where AIA leads are: annual limit (Plan A S$2M), lifetime limit (unlimited), AQHP panel (over 600 vetted specialists per April 2026 brochure), and pre/post-hospitalisation (Plan A 13 months -- longest in market). Cite: Brochure p.5, p.10, p.12.",
+    explanation: "The four key comparison points are: annual limit (Plan A: check the current AIA product summary for the exact figure), lifetime limit (unlimited), AQHP panel (over 600 vetted specialists per April 2026 brochure), and pre/post-hospitalisation (Plan A 13 months -- longest in market). Cite: Brochure p.5, p.10, p.12.",
     category: 'sales-angles'
   },
 
@@ -232,15 +232,15 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "How should you position AIA's unlimited lifetime limit against competitors with capped limits?",
+    question: "How should you position AIA's unlimited lifetime limit?",
     options: [
       "It only matters for very wealthy clients who want premium coverage",
       "Focus on annual limits instead since lifetime limits rarely matter",
       "Capped limits like $3-5M are sufficient for most people in practice",
-      "With rising medical costs, a $3-5M cap could be exhausted by one chronic condition over 20+ years -- unlimited means true lifetime protection"
+      "With rising medical costs, one chronic condition over 20+ years can run into millions -- unlimited means true lifetime protection"
     ],
     correct: 3,
-    explanation: "Chronic conditions like cancer or kidney disease can accumulate millions in treatment costs over decades. A capped lifetime limit could run dry, leaving the policyholder unprotected when they need coverage most. Unlimited means the policy never runs out.",
+    explanation: "Chronic conditions like cancer or kidney disease can accumulate millions in treatment costs over decades. A capped lifetime limit could run dry, leaving the policyholder unprotected when they need coverage most. Unlimited means the policy never runs out. The other flagship private-hospital IPs are unlimited too (MOH comparison, Jun 2026), so do not claim a competitor caps it.",
     category: 'sales-angles'
   },
 
@@ -276,10 +276,10 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
       "Always push Plan A regardless of the prospect's budget",
       "Recommend Plan B Lite to save the maximum amount of money",
       "Suggest they skip the rider to keep costs down",
-      "Show that the Plan A upgrade costs only $50-60/month more than Plan B for double the annual limit ($2M vs $1M) and private hospital access"
+      "Show that the Plan A upgrade costs only about $60-80/month more than Plan B for private hospital access"
     ],
     correct: 3,
-    explanation: "Framing the Plan A upgrade as just $50-60/month for double the coverage ($2M vs $1M) and private hospital access makes it feel like an affordable step-up rather than a major expense.",
+    explanation: "Framing the Plan A upgrade as about $60-80/month more (with riders, ages 21-40) for private hospital access, with each plan's annual limit taken from the current AIA product summary, makes it feel like an affordable step-up rather than a major expense.",
     category: 'sales-angles'
   },
 
@@ -355,7 +355,7 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
   {
     question: "A prospect says: 'The 10% co-insurance means I'm still paying a lot out of pocket.' How do you address this?",
     options: [
-      "AIA Max VitalHealth Pro reduces it to 5% with an S$6,000 per policy year cap -- so on a S$100K bill, the maximum co-insurance out-of-pocket is S$6,000 instead of S$10,000 (subject to AIA preferred provider, pre-authorisation, or A&E referral)",
+      "AIA Max VitalHealth Pro reduces it to 5% with an S$6,000 per policy year cap -- so on a S$100K bill, the co-payment is S$4,825 (5% of the S$96,500 after the deductible) instead of S$9,650, and it never goes above S$6,000 a policy year (subject to AIA preferred provider, pre-authorisation, or A&E referral)",
       "Recommend they skip insurance entirely if they are worried about out-of-pocket costs",
       "Tell them co-insurance is unavoidable across all insurers",
       "Say the co-insurance rarely applies in real claims"

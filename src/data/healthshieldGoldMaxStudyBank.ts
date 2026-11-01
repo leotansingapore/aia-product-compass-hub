@@ -13,7 +13,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q1 — correct: 2
   {
-    question: "What is the annual claim limit for AIA HealthShield Gold Max Plan A?",
+    question: "What is the highest annual claim limit AIA HealthShield Gold Max Plan A can pay?",
     options: [
       "$1 million",
       "$1.5 million",
@@ -21,7 +21,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "$500,000"
     ],
     correct: 2,
-    explanation: "Plan A offers the highest annual claim limit of $2 million, covering private hospital stays on an as-charged basis.",
+    explanation: "Plan A pays up to $2 million a policy year, covering private hospital stays on an as-charged basis. Whether the full $2 million applies only at some facilities (for example an AIA Partner Facility), check the current AIA product summary.",
     category: 'product-facts'
   },
 
@@ -58,12 +58,12 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     question: "What is the annual claim limit for HealthShield Gold Max Plan B?",
     options: [
       "S$500,000",
-      "S$1,000,000 — or S$1,200,000 if hospitalised under an AIA preferred provider",
+      "S$1,000,000, or S$1,200,000 if hospitalised under an AIA Partner Facility",
       "S$2,000,000",
       "S$750,000"
     ],
     correct: 1,
-    explanation: "Plan B (covers up to A-class ward in public hospitals) has a maximum claim limit per policy year of S$1,000,000 — or S$1,200,000 if the hospitalisation is under an AIA preferred provider. Lifetime unlimited. Cite: Brochure p.12.",
+    explanation: "Plan B (covers up to A-class ward in public hospitals) has a maximum claim limit per policy year of S$1,000,000, or S$1,200,000 if the hospitalisation is under an AIA Partner Facility. Lifetime unlimited. Cite: Brochure p.12.",
     category: 'product-facts'
   },
 
@@ -133,7 +133,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "180 days"
     ],
     correct: 0,
-    explanation: "Plan A offers 13 months of pre- and post-hospitalization coverage, which is the longest in the market.",
+    explanation: "Plan A offers 13 months of pre- and post-hospitalization coverage with an AIA Preferred Provider (100 days otherwise), which is the longest in the market.",
     category: 'product-facts'
   },
 
@@ -195,7 +195,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q14 — correct: 3
   {
-    question: "What proration applies for Plan B or Plan B Lite policyholders who seek treatment at private hospitals?",
+    question: "What proration applies for Plan B policyholders who seek treatment at private hospitals?",
     options: [
       "85%",
       "50%",
@@ -203,7 +203,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "70%"
     ],
     correct: 3,
-    explanation: "Plan B and Plan B Lite policyholders who choose private hospitals face a 70% proration on their claims.",
+    explanation: "Plan B policyholders who choose private hospitals face a 70% proration on their claims. For Plan B Lite at a private hospital, check the current AIA product summary for the exact rate.",
     category: 'product-facts'
   },
 
@@ -363,15 +363,15 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q26 — correct: 3
   {
-    question: "Which benefit on HealthShield Gold Max is capped at S$36,000 per policy year?",
+    question: "Which benefit is covered as charged (no fixed dollar cap) on HealthShield Gold Max Plan A, B and B Lite?",
     options: [
-      "Outpatient chemotherapy",
-      "Outpatient psychiatric treatment",
-      "Day surgery",
-      "Renal dialysis (B1 standard benefit)"
+      "Outpatient cancer drug treatment on the CDL",
+      "Post-hospitalisation psychiatric treatment",
+      "Proton beam therapy",
+      "Renal dialysis"
     ],
     correct: 3,
-    explanation: "S$36,000 per policy year is the renal dialysis limit. Cancer drug treatments (CDL) are set in MSHL multiples — up to 5x MSHL per month on the base plan, up to 16x MSHL per month with Cancer Care Pro, not a flat S$36K cap. Cite: Brochure p.4, p.11, p.17.",
+    explanation: "Renal dialysis is covered as charged on Plan A, B and B Lite. Cancer drug treatments (CDL) are set in MSHL multiples (up to 5x MSHL per month on the base plan, plus up to 16x MSHL per month with Cancer Care Pro), post-hospitalisation psychiatric treatment has a fixed yearly limit, and proton beam therapy is capped at S$100,000 per policy year. Cite: Brochure p.4, p.11, p.17.",
     category: 'product-facts'
   },
 
@@ -419,7 +419,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q30 — correct: 3
   {
-    question: "What is the coverage limit for non-listed CTGTP treatments?",
+    question: "What is the coverage limit for non-listed CTGTP treatments under AIA Max VitalHealth Pro?",
     options: [
       "$250,000 per indication per lifetime",
       "$50,000 per indication per lifetime",
@@ -427,13 +427,13 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "$150,000 per indication per lifetime"
     ],
     correct: 3,
-    explanation: "Non-listed CTGTP treatments are covered at a lower limit of $150,000 per indication per lifetime, compared to $250,000 for listed treatments.",
+    explanation: "Non-listed CTGTP treatments are a VitalHealth Pro rider benefit, covered up to $150,000 per treatment per indication per lifetime, less 10% co-insurance. Listed treatments are covered by the base plan up to $250,000.",
     category: 'product-facts'
   },
 
   // Q31 — correct: 1
   {
-    question: "What is the organ transplant benefit per transplant under HealthShield Gold Max?",
+    question: "What is the living donor organ transplant benefit per transplant under HealthShield Gold Max Plan A?",
     options: [
       "$100,000",
       "$60,000",
@@ -441,27 +441,27 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "$40,000"
     ],
     correct: 1,
-    explanation: "Organ transplant coverage is $60,000 per transplant, applicable per policy year and per lifetime.",
+    explanation: "On Plan A the living donor organ transplant benefit is $60,000 per transplant (Plan B $40,000, Plan B Lite $20,000). The major organ transplant itself is covered as charged.",
     category: 'product-facts'
   },
 
   // Q32 — correct: 0
   {
-    question: "What is the annual limit for post-transplant immunosuppressant drugs?",
+    question: "How are approved post-transplant immunosuppressant drugs covered on HealthShield Gold Max Plan A, B and B Lite?",
     options: [
-      "$7,200 per year",
+      "As charged, with no fixed yearly dollar cap",
       "$12,000 per year",
       "$5,000 per year",
       "$10,000 per year"
     ],
     correct: 0,
-    explanation: "Post-transplant immunosuppressants are covered up to $7,200 per year, helping transplant recipients manage ongoing medication costs.",
+    explanation: "Approved immunosuppressants for organ transplant are covered as charged on Plan A, B and B Lite (MediShield Life alone pays up to S$710 a month), helping transplant recipients manage ongoing medication costs.",
     category: 'product-facts'
   },
 
   // Q33 — correct: 2
   {
-    question: "What is the annual limit for non-CDL (Community Drug List) coverage?",
+    question: "What is the annual limit for non-CDL (Cancer Drug List) cancer drug coverage under Cancer Care Pro?",
     options: [
       "$100,000 per year",
       "$150,000 per year",
@@ -469,7 +469,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "$50,000 per year"
     ],
     correct: 2,
-    explanation: "Non-CDL coverage provides up to $200,000 per year for drugs not on the Community Drug List.",
+    explanation: "Cancer Care Pro covers cancer drugs not on the Cancer Drug List up to $200,000 per policy year, less 10% co-insurance.",
     category: 'product-facts'
   },
 
@@ -581,7 +581,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "60 days"
     ],
     correct: 2,
-    explanation: "Plan B Lite provides 100 days of pre- and post-hospitalisation coverage. Plan B is 12 months public / 100 days private; Plan A is 13 months across the board. Cite: Brochure p.10.",
+    explanation: "Plan B Lite provides 100 days of pre- and post-hospitalisation coverage. Plan B is 12 months public / 100 days private; Plan A is 13 months with an AIA Preferred Provider, 100 days otherwise. Cite: Brochure p.10.",
     category: 'product-facts'
   },
 
@@ -697,7 +697,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "$200/month for comprehensive coverage"
     ],
     correct: 2,
-    explanation: "Public ward plans (B1) cost about $25/month, while private hospital coverage (Plan A) runs $80-$90/month — comparable to daily small expenses.",
+    explanation: "Public ward plans (Plan B, A-class ward, with rider) cost about $25/month, while private hospital coverage (Plan A) runs $80-$90/month — comparable to daily small expenses.",
     category: 'sales-angles'
   },
 
@@ -773,29 +773,29 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q55 — correct: 0
   {
-    question: "When comparing AIA to Prudential, what is AIA's key advantage in annual limits?",
+    question: "When comparing AIA to Prudential, what is AIA's key advantage in pre- and post-hospitalisation cover?",
     options: [
-      "AIA offers $2M annual vs Prudential's $1M annual",
-      "AIA offers $1M annual vs Prudential's $500K",
-      "Both have the same annual limits",
-      "Prudential has higher limits than AIA"
+      "AIA covers 13 months before and after with an AIA Preferred Provider, vs Prudential's 180 days before and 365 days after",
+      "AIA covers 90 days vs Prudential's 30 days",
+      "Both have the same pre- and post-hospitalisation windows",
+      "Prudential has a longer pre-hospitalisation window than AIA"
     ],
     correct: 0,
-    explanation: "AIA Plan A offers $2M annual limit compared to Prudential's $1M, giving AIA a clear edge for high-cost treatments.",
+    explanation: "AIA Plan A covers 13 months of pre- and post-hospitalisation treatment with an AIA Preferred Provider, against 180 days before and 365 days after on Prudential PRUShield Premier (MOH comparison of private-hospital IPs, Jun 2026). On annual limits, check the current AIA product summary; Prudential lists S$1,200,000 (up to S$2,000,000 via its panel).",
     category: 'sales-angles'
   },
 
-  // Q56 — correct: 3
+  // Q56 — correct: 1
   {
-    question: "What is AIA's advantage over Great Eastern in lifetime limits?",
+    question: "How do AIA and Great Eastern compare on lifetime limits?",
     options: [
       "AIA offers $10M lifetime vs Great Eastern's $5M",
       "Both have unlimited lifetime limits",
       "Great Eastern has better lifetime limits",
       "AIA offers unlimited lifetime vs Great Eastern's $5M"
     ],
-    correct: 3,
-    explanation: "AIA's unlimited lifetime limit significantly outperforms Great Eastern's $5M cap, especially for chronic or recurring conditions.",
+    correct: 1,
+    explanation: "AIA HealthShield Gold Max A and GREAT SupremeHealth P PLUS both have unlimited lifetime limits (MOH comparison of private-hospital IPs, Jun 2026). Lead with AIA's 13-month pre- and post-hospitalisation window with an AIA Preferred Provider instead; Great Eastern covers 180 days before and 365 days after on its panel.",
     category: 'sales-angles'
   },
 
@@ -809,7 +809,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "AIA offers 6 months, same as most competitors"
     ],
     correct: 2,
-    explanation: "AIA Plan A's 13-month pre- and post-hospitalization period is the longest in the Singapore market, covering more follow-up visits and tests.",
+    explanation: "AIA Plan A's 13-month pre- and post-hospitalization period with an AIA Preferred Provider is the longest in the Singapore market, covering more follow-up visits and tests.",
     category: 'sales-angles'
   },
 
@@ -823,7 +823,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "Agent commission, claim settlement time, customer reviews, branch count"
     ],
     correct: 1,
-    explanation: "The four AIA value-stack comparison points: annual limits (Plan A S$2M), lifetime limits (unlimited), AQHP panel (over 600 specialists), and pre/post-hospitalisation (Plan A 13 months — longest in market). Cite: Brochure p.5, p.10, p.12.",
+    explanation: "The four AIA value-stack comparison points: annual limits (Plan A: check the current AIA product summary for the exact figure), lifetime limits (unlimited), AQHP panel (over 600 specialists), and pre/post-hospitalisation (Plan A 13 months — longest in market). Cite: Brochure p.5, p.10, p.12.",
     category: 'sales-angles'
   },
 
@@ -887,13 +887,13 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
   {
     question: "What is the recommended approach when presenting Plan A vs Plan B to a cost-conscious prospect?",
     options: [
-      "Show the premium difference is only $50-60/month for double the annual limit and private hospital access",
+      "Show the premium difference is only about $60-80/month for private hospital access",
       "Always push Plan A as the only viable option",
       "Recommend Plan B Lite to save the most money",
       "Suggest they skip the rider to reduce costs"
     ],
     correct: 0,
-    explanation: "Framing the Plan A upgrade as just $50-60/month more than Plan B for double coverage ($2M vs $1M) and private hospital access makes it feel like an affordable upgrade.",
+    explanation: "Framing the Plan A upgrade as about $60-80/month more than Plan B (with riders, ages 21-40) for private hospital access makes it feel like an affordable upgrade. For each plan's annual limit, check the current AIA product summary.",
     category: 'sales-angles'
   },
 
@@ -943,13 +943,13 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
   {
     question: "How should you frame the comparison between AIA and NTUC Income?",
     options: [
-      "AIA offers $2M annual and unlimited lifetime vs NTUC Income's $1.2M annual and $4M lifetime",
+      "AIA covers 13 months before and after a hospitalisation with an AIA Preferred Provider, vs Income's 180 days before and 365 days after on its panel; both have unlimited lifetime limits",
       "NTUC Income has better panel doctor access",
       "Both companies offer identical coverage",
       "NTUC Income offers lower premiums for the same coverage"
     ],
     correct: 0,
-    explanation: "AIA's $2M annual / unlimited lifetime significantly outperforms NTUC Income's $1.2M annual / $4M lifetime, especially for prolonged or recurring treatments.",
+    explanation: "AIA's 13-month pre- and post-hospitalisation window beats Enhanced IncomeShield Preferred's 180 days before and 365 days after (100 days off panel), which matters for long follow-up treatment. Both plans have unlimited lifetime limits; Income lists a S$1,500,000 annual limit, and for AIA's check the current AIA product summary (MOH comparison of private-hospital IPs, Jun 2026).",
     category: 'sales-angles'
   },
 
@@ -1011,15 +1011,15 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q72 — correct: 3
   {
-    question: "How should you position AIA's unlimited lifetime limit against competitors with capped limits?",
+    question: "How should you position AIA's unlimited lifetime limit?",
     options: [
       "It only matters for very wealthy clients",
       "Capped limits are sufficient for most people",
       "Focus on annual limits instead",
-      "With rising medical costs, a $3-5M cap could be exhausted by one chronic condition over 20+ years — unlimited means true lifetime protection"
+      "With rising medical costs, one chronic condition over 20+ years can run into millions — unlimited means true lifetime protection"
     ],
     correct: 3,
-    explanation: "Chronic conditions like cancer or kidney disease can accumulate millions in treatment costs over decades. An unlimited lifetime limit ensures the policy never runs dry.",
+    explanation: "Chronic conditions like cancer or kidney disease can accumulate millions in treatment costs over decades. An unlimited lifetime limit ensures the policy never runs dry. The other flagship private-hospital IPs are unlimited too (MOH comparison, Jun 2026), so do not claim a competitor caps it.",
     category: 'sales-angles'
   },
 
@@ -1029,11 +1029,11 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     options: [
       "AIA is a bigger company so costs more",
       "The competitor is cutting corners on coverage",
-      "You're comparing the annual and lifetime limits, AQHP panel, and pre/post coverage — AIA's higher limits justify the premium difference",
+      "You're comparing the annual and lifetime limits, AQHP panel, and pre/post coverage — AIA's coverage justifies the premium difference",
       "AIA premiums are actually the lowest in the market"
     ],
     correct: 2,
-    explanation: "Redirect from price to value — $2M annual, unlimited lifetime, 600+ AQHP specialists (Brochure p.5), and 13-month pre/post coverage justify any premium difference.",
+    explanation: "Redirect from price to value — the annual limit (check the current AIA product summary for the exact figure), unlimited lifetime, 600+ AQHP specialists (Brochure p.5), and 13-month pre/post coverage justify any premium difference.",
     category: 'sales-angles'
   },
 
@@ -1229,11 +1229,11 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     options: [
       "Discourage comparison and push for immediate close",
       "Say competitors are unreliable",
-      "Encourage the comparison and provide a side-by-side: AIA's S$2M annual, unlimited lifetime, over 600 AQHP specialists, and 13-month pre/post vs their specific limits — let the numbers speak",
+      "Encourage the comparison and provide a side-by-side: AIA's annual limit (check the current AIA product summary for the exact figure), unlimited lifetime, over 600 AQHP specialists, and 13-month pre/post vs their specific limits — let the numbers speak",
       "Offer a deeper discount to prevent comparison"
     ],
     correct: 2,
-    explanation: "Welcoming comparison signals confidence. Use the four-point value stack (S$2M annual / unlimited lifetime / over 600 AQHP / 13 months pre/post) directly from the April 2026 brochure. Cite: Brochure p.5, p.10, p.12.",
+    explanation: "Welcoming comparison signals confidence. Use the four-point value stack (annual limit, check the current AIA product summary for the exact figure / unlimited lifetime / over 600 AQHP / 13 months pre/post) directly from the April 2026 brochure. Cite: Brochure p.5, p.10, p.12.",
     category: 'objection-handling'
   },
 
@@ -1299,7 +1299,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     options: [
       "Tell them co-insurance is unavoidable for all insurers",
       "Recommend they skip insurance entirely",
-      "Explain that AIA Max VitalHealth Pro reduces it to 5% with an S$6,000 per policy year cap — so on a $100K bill, the maximum co-insurance out-of-pocket is $6,000, not $10,000",
+      "Explain that AIA Max VitalHealth Pro reduces it to 5% with an S$6,000 per policy year cap — so on a $100K bill, the co-payment is $4,825 (5% of the $96,500 after the deductible) instead of $9,650, and it never goes above $6,000 a policy year",
       "Say the co-insurance rarely applies in practice"
     ],
     correct: 2,
@@ -1312,12 +1312,12 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     question: "A prospect says: 'I heard ISP plans don't cover outpatient treatments.' How should you correct this?",
     options: [
       "Confirm that outpatient is never covered",
-      "Clarify that HealthShield Gold Max covers cancer drug treatments at MSHL multiples (5x MSHL/month base; up to 16x MSHL/month with Cancer Care Pro), renal dialysis up to S$36,000/year, pre/post-hospitalisation (13 months for Plan A), and day surgery",
+      "Clarify that HealthShield Gold Max covers cancer drug treatments at MSHL multiples (5x MSHL/month base; up to 16x MSHL/month with Cancer Care Pro), renal dialysis as charged, pre/post-hospitalisation (13 months for Plan A with an AIA Preferred Provider), and day surgery",
       "Tell them to buy a separate outpatient plan",
       "Explain that only GP visits are excluded"
     ],
     correct: 1,
-    explanation: "ISPs cover substantial outpatient components: cancer drug treatments scaled in MSHL multiples (not a flat S$36K), renal dialysis (S$36,000/year), pre/post-hospitalisation, and day surgery. Cite: Brochure p.4, p.11, p.17.",
+    explanation: "ISPs cover substantial outpatient components: cancer drug treatments scaled in MSHL multiples (not a flat S$36K), renal dialysis (as charged), pre/post-hospitalisation, and day surgery. Cite: Brochure p.4, p.11, p.17.",
     category: 'objection-handling'
   },
 
@@ -1652,12 +1652,12 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     question: "Scenario: A prospect asks what happens if they need organ transplant surgery. What coverage details should you share?",
     options: [
       "Organ transplants are excluded from all ISPs",
-      "HealthShield Gold Max covers $60,000 per transplant (per policy year and lifetime), plus post-transplant immunosuppressants at $7,200/year — explain both the surgery and ongoing medication coverage",
+      "HealthShield Gold Max covers the major organ transplant as charged, a living donor transplant up to $60,000 per transplant on Plan A, and post-transplant immunosuppressants as charged — explain both the surgery and ongoing medication coverage",
       "Only kidney transplants are covered",
       "Coverage is limited to $10,000 per transplant"
     ],
     correct: 1,
-    explanation: "Provide both the transplant benefit ($60K) and the often-overlooked immunosuppressant coverage ($7,200/year). Ongoing medication costs are a major concern for transplant patients.",
+    explanation: "Provide both the transplant cover (major organ transplant as charged; living donor up to $60K on Plan A) and the often-overlooked immunosuppressant coverage (as charged). Ongoing medication costs are a major concern for transplant patients.",
     category: 'roleplay'
   },
 

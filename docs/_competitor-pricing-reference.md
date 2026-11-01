@@ -162,7 +162,7 @@ For BCC's exact specs (illness count, refund mechanic, claim cap), cite BCC's ow
 - SMA IP Providers Survey 2022 cites **over 500 private specialists** and ranks **AIA #1 across all 6 metrics**
 - Plan B Lite annual limit: **S$300K** (NOT S$500K)
 - AIA Max VitalHealth Pro A: $6,000 annual co-insurance cap triggered when **ONE of**: AIA preferred provider OR pre-authorisation OR A&E referral (Brochure p.16)
-- Plan A pre-/post-hospitalisation: **13 months**
+- Plan A pre-/post-hospitalisation: **13 months** with an AIA Preferred Provider (100 days otherwise)
 - Plan A deductible: **$3,500**
 
 ### Prudential PruShield

@@ -928,7 +928,7 @@ The framing isn't "Manulife is bad." It's *"You bought from four bankers who don
 
 ### What closed
 
-The audit. Each of the four Manulife plans pulled, illustrations examined, projected income at 65 calculated per plan. The underperformers got restructured into a consolidated PWV expansion. The HSG B-Lite got upgraded to HSG B + rider (the single biggest hospital-coverage upgrade — waives the $3,500 deductible, caps co-insurance at 5%). The existing PWV stayed and grew.
+The audit. Each of the four Manulife plans pulled, illustrations examined, projected income at 65 calculated per plan. The underperformers got restructured into a consolidated PWV expansion. The HSG B-Lite got upgraded to HSG B + rider (the single biggest hospital-coverage upgrade — cuts co-insurance to 5%, capped at $6,000 a year; the deductible still applies). The existing PWV stayed and grew.
 
 ### The lesson for any FC
 
@@ -1538,7 +1538,7 @@ A working adult holding AIA HSG B-Lite — basic hospital cover at the lowest ti
 
 - **AIA HSG B-Lite, no rider**
 - Implied coverage assumption: hospital bills are mostly paid by the plan
-- Actual exposure: $3,500 deductible upfront + 10% co-insurance on the remainder
+- Actual exposure: $2,500 deductible upfront (B1 ward) + 10% co-insurance on the remainder
 
 ### Where it broke down — the deductible math
 
@@ -1546,10 +1546,12 @@ Walk the prospect through the actual claim math on a few bill scenarios:
 
 | Bill scenario | HSG B-Lite, no rider | HSG B + rider |
 |---|---|---|
-| $5,000 bill | $3,500 deductible + 10% ($150) = **$3,650** | 5% of $5,000 = **$250** |
-| $10,000 bill | $3,500 + 10% ($650) = **$4,150** | 5% of $10K = **$500** |
-| $30,000 bill | $3,500 + 10% ($2,650) = **$6,150** | 5% capped at $3,000 = **$3,000** |
-| $100,000 bill | $3,500 + 10% ($9,650) = **$13,150** | 5% capped at $3,000 = **$3,000** |
+| $5,000 bill | $2,500 deductible + 10% ($250) = **$2,750** | 5% of $5,000 = **$250** |
+| $10,000 bill | $2,500 + 10% ($750) = **$3,250** | 5% of $10K = **$500** |
+| $30,000 bill | $2,500 + 10% ($2,750) = **$5,250** | 5% of $30K = **$1,500** |
+| $100,000 bill | $2,500 + 10% ($9,750) = **$12,250** | 5% capped at $3,000 = **$3,000** |
+
+(This close was before 1 Apr 2026, on the old rider, which covered the deductible. AIA Max VitalHealth Pro, sold from 1 Apr 2026, does not cover the deductible and caps the 5% co-payment at $6,000 a year. Day 25 of the Product Mastery Track has the current math.)
 
 The rider isn't a marginal upgrade. It's **the single biggest cover delta in the entire AIA hospital product line**. At ~$200-500/yr depending on ward tier, it saves $3,000-$10,000 on any single significant claim.
 
@@ -1561,9 +1563,9 @@ Plus a regulatory urgency layer: from April 2026, MAS rules around riders are ti
 
 ### What the pitch sounded like
 
-> *"Your HSG B-Lite covers the hospital bill — that's true. What it doesn't tell you on the surface is that there's a $3,500 deductible you pay upfront, plus 10% of everything above that. On a $10,000 bill, that's $4,150 out of your pocket. On a $30,000 bill, $6,150. The cover isn't 'fully paid' — there's a meaningful exposure window.*
+> *"Your HSG B-Lite covers the hospital bill — that's true. What it doesn't tell you on the surface is that there's a $2,500 deductible you pay upfront, plus 10% of everything above that. On a $10,000 bill, that's $3,250 out of your pocket. On a $30,000 bill, $5,250. The cover isn't 'fully paid' — there's a meaningful exposure window.*
 >
-> *Adding the rider: no deductible, just 5% of the bill capped at $3,000. So on a $30K bill, you pay $3,000. On a $100K bill, you also pay $3,000. The rider is the single biggest cover delta in the entire hospital plan structure.*
+> *Adding the rider: no deductible, just 5% of the bill capped at $3,000. So on a $30K bill, you pay $1,500. On a $100K bill, you pay $3,000. The rider is the single biggest cover delta in the entire hospital plan structure.*
 >
 > *Cost: roughly $200-500/year depending on ward tier. For a fraction of one expected hospital claim, you eliminate the deductible exposure for life. And — heads up — MAS is changing rider terms in April. Locking in the rider before the deadline grandfathers you at the better cap. Worth doing now, not later."*
 
@@ -1571,11 +1573,11 @@ Plus a regulatory urgency layer: from April 2026, MAS rules around riders are ti
 
 While the prospect is in restructure mode, layer the second move: upgrade from B-Lite to B or A. Differential pricing is small, ward access doubles:
 
-- **B-Lite** → C ward only
-- **B** → B or C
-- **A** → A, B, or C (full flexibility)
+- **B-Lite** → B1 ward or lower
+- **B** → A ward or lower
+- **A** → private hospital standard ward or lower (full flexibility)
 
-Typical upgrade cost: $50-100/mo. Combined with the rider, the prospect goes from *"$3,500 deductible exposed + restricted to C ward"* to *"$3,000 cap + can choose any ward"*. That's the actual structurally complete answer.
+Typical upgrade cost: $50-100/mo. Combined with the rider, the prospect goes from *"$2,500 deductible exposed + restricted to B1 ward or lower"* to *"$3,000 cap + can choose any ward"*. That's the actual structurally complete answer.
 
 ### What closed
 
@@ -1591,6 +1593,8 @@ The HSG B-Lite / no-rider prospect is the most common hospital-plan upsell in th
 
 A prospect's mother quoted **GE P-Optimum private hospital rider at $300+/yr** vs AIA Vitalcare A rider at $800+/yr. The pitch from GE's side: cheaper headline price, "same private hospital coverage."
 
+(VitalCare is no longer sold. Today's private rider is AIA Max VitalHealth Pro A: 5% co-payment capped at $6,000 a year, deductible not covered. Quote its premium in iPOS; the figures here are from the original case.)
+
 ### What was being compared
 
 | Dimension | GE P-Optimum | AIA HSGM with Vitalcare A rider |
@@ -1598,8 +1602,8 @@ A prospect's mother quoted **GE P-Optimum private hospital rider at $300+/yr** v
 | Premium | ~$300-500/yr | ~$800-1,100/yr |
 | Pre-authorisation | **Recently suspended** (claim delays) | Active and routine |
 | Coverage limits | Multiple sub-limits per category | Higher per-condition limits |
-| 12-month pre/post coverage | Limited | Yes |
-| Claim limit per year | Capped lower | Up to $1M private hospital |
+| 13-month pre/post coverage (AIA Preferred Provider) | Limited | Yes |
+| Claim limit per year | Capped lower | Check the current AIA product summary for the exact limit |
 | Hospital network | Selected | Full panel, including premier private |
 | Doctor ratings | N/A | Rated #1 by 200+ Singapore doctors (latest poll) |
 
@@ -1621,7 +1625,7 @@ Cheaper headline price doesn't mean better coverage. On a hospital plan for some
 
 > *"GE P-Optimum is cheaper on the brochure — about $300 a year vs $800-1,100 for AIA's equivalent. But pull up the actual policy summary and you'll see GE has multiple sub-limits per claim category, and they recently suspended pre-authorisation — meaning you can't get treatment pre-approved before going in. That's a real exposure for anyone with elective procedures.*
 >
-> *AIA's HSGM with the Vitalcare A rider gives you up to $1M of private hospital coverage per year, active pre-authorisation, 12 months of cover before and after each event, and access to the full premier private panel. Plus, the plan was rated #1 by over 200 Singapore doctors in the latest poll.*
+> *AIA's HSGM with the Vitalcare A rider gives you up to [its annual limit, check the current AIA product summary for the exact figure] of private hospital coverage per year, active pre-authorisation, 13 months of cover before and after each event with an AIA Preferred Provider, and access to the full premier private panel. Plus, the plan was rated #1 by over 200 Singapore doctors in the latest poll.*
 >
 > *The price difference is $500-700/year. For a mother who'll likely use the plan within the next 10-15 years, that's structurally well worth the upgrade — and arguing the lower-cost plan would only save money if you never claim, which is the opposite of why you bought the plan."*
 
@@ -1666,7 +1670,7 @@ This isn't a case of "your parents need more coverage." It's a case of *"what do
 | Plan | Cost/yr | Coverage |
 |---|---|---|
 | MediShield Life (existing) | ~$1,000 | C / B2 ward, limited caps |
-| **AIA HSG B + rider for parent** | ~$1,300 | Up to B ward, rider waives deductible, caps co-pay at $3K |
+| **AIA HSG B + rider for parent** | ~$1,300 | Up to A ward, rider reduces co-pay from 10% to 5% capped at $6K/yr (deductible still applies) |
 | **AIA Solitaire PA Plan 2 for parent** | ~$200-400 | Accident reimbursement up to $5K/event |
 
 Total upgrade cost per parent: ~$1,500-1,700/yr. For two parents: ~$3,000-3,400/yr.
@@ -1677,7 +1681,7 @@ For a working adult earning $80K+/yr, this is a small fraction of income that tr
 
 > *"Your parents are on MediShield Life with a basic GE DPS plan. That gives them C-tier ward access and minimal claim caps. The structural problem: most elderly hospital claims are bigger than MediShield's caps. A hip fracture, a stroke, a cancer diagnosis — these run $30K-$80K in private hospital, and MediShield covers maybe 30-50% of that. The rest is out of pocket — yours or theirs.*
 >
-> *Upgrade plan: B + rider for both parents at ~$1,300/yr each. The rider waives the $3,500 deductible and caps the co-pay at 5%, max $3,000. Plus an accident plan at ~$200-400/yr each for fall-related coverage that the hospital plan doesn't fully address.*
+> *Upgrade plan: B + rider for both parents at ~$1,300/yr each. The rider reduces co-insurance from 10% to 5% capped at $6,000/year (subject to preferred provider/pre-auth/A&E referral); the deductible still applies, but the co-insurance exposure is capped. Plus an accident plan at ~$200-400/yr each for fall-related coverage that the hospital plan doesn't fully address.*
 >
 > *Total: about $3,000-3,400/yr for both parents. Versus the alternative — a single uncovered medical event in your parents' 70s costing $30K-50K out of pocket. The math is structurally one-sided."*
 

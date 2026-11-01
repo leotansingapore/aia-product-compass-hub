@@ -347,9 +347,9 @@ The overlap region is where APA sits — covering risk-management while accumula
 
 **What to draw:** Two horizontal bars representing a $10,000 hospital bill.
 - **Without rider:** $3,500 deductible (paid by prospect) + 10% co-insurance (paid by prospect) + 90% covered by base plan. Total out-of-pocket: $3,500 + $650 = $4,150.
-- **With rider:** $0 deductible + 5% co-insurance capped at $3,000 (paid by prospect) + 95% covered. Total out-of-pocket: max $3,000 (often less).
+- **With rider:** $3,500 deductible (still paid by prospect) + 5% co-payment on the rest ($325), capped at $6,000 a policy year with an AIA Preferred Provider, pre-authorisation or A&E referral. Total out-of-pocket: $3,500 + $325 = $3,825.
 
-Annotate: *"Rider waives the deductible and caps the co-insurance. Single biggest add-on for hospital coverage."*
+Annotate: *"Rider does not cover the deductible; it cuts the co-insurance to 5% and caps it. Single biggest add-on for hospital coverage."*
 
 ### Accident vs hospital coverage scope
 

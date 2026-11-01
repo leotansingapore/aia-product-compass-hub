@@ -110,7 +110,7 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
       brochure: "https://www.aia.com.sg/content/dam/sg/en/docs/product_brochures/medical-protection/aia-health-shield-gold-max-english-brochure.pdf",
       summary: "https://www.aia.com.sg/content/dam/sg-wise/en/docs/aiaformlibrary/application-and-product-summary-for-healthshield-gold-max.pdf",
     },
-    "AIA Max VitalHealth / AIA Max VitalCare": {
+    "AIA Max VitalHealth Pro A / Pro B / Pro B Lite": {
       website: "https://www.aia.com.sg/en/our-products/health/medical-insurance/aia-healthshield-gold-max",
       brochure: "https://www.aia.com.sg/content/dam/sg/en/docs/product_brochures/medical-protection/aia-health-shield-gold-max-english-brochure.pdf",
     },

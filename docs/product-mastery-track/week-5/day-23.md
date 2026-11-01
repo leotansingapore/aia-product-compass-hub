@@ -34,11 +34,11 @@ HSGM premium has two layers. The FC who quotes "fully MediSave-payable" is wrong
 | AIA Max VitalHealth Pro rider | **100% cash** |
 | Cancer Care Pro / Emergency Care Pro add-ons | **100% cash** |
 
-For young adults, AWL on the AIA top-up is **S$300/year**. Typical AIA top-up Plan A is ~S$329/year — leaving ~S$29/year cash shortfall on the "MediSave portion" alone. [Video 8]
+For young adults, AWL on the AIA top-up is **S$300/year**. Typical AIA top-up Plan A is ~S$348/year at age 25 and below — leaving ~S$48/year cash shortfall on the "MediSave portion" alone. [Video 8]
 
 The script that prevents the most common confusion:
 
-> *"There is a maximum withdrawal limit from MediSave. For the AIA hospital plan portion, the limit is S$300 a year. The shortfall — usually around S$29 — has to be paid in cash. So the hospital plan is not 100% MediSave-payable, even before the rider."*
+> *"There is a maximum withdrawal limit from MediSave. For the AIA hospital plan portion, the limit is S$300 a year. The shortfall — usually around S$48 — has to be paid in cash. So the hospital plan is not 100% MediSave-payable, even before the rider."*
 
 When quoting, lead with the **cash all-in** — that's what hits the prospect's wallet.
 
@@ -71,7 +71,7 @@ If none of the three applies, the 5% co-insurance has no cap. [Brochure p.16]
 
 The disclosure script that builds trust:
 
-> *"Small bills, the deductible is irritating. Large bills, the co-insurance is scary. Without a rider, both ends hurt. With the rider, your maximum is S$6,000 a year — capped, no matter how big the bill."*
+> *"Small bills, the deductible is irritating. Large bills, the co-insurance is scary. Without a rider, both ends hurt. With the rider, your maximum is S$9,500 a year — capped, no matter how big the bill."*
 
 ## The 90-cent cheque story (memorise)
 
@@ -116,13 +116,13 @@ This number does the conviction work for "why pre-auth matters."
 
 ## Pro-ration (why MediShield Life alone fails for private)
 
-Under MediShield Life alone, a private-hospital bill is pro-rated to **35%** before MediShield Life pays anything (sized for B2/C). HSGM A removes pro-ration for private bills (factor 100%). [Brochure p.8 + p.14]
+Under MediShield Life alone, a private-hospital bill is pro-rated to a fraction of the bill (check the current AIA product summary for the exact rates) before MediShield Life pays anything (sized for B2/C). HSGM A removes pro-ration for private bills (factor 100%). [Brochure p.8 + p.14]
 
 | Plan | Pro-ration |
 |---|---|
 | HSG Max A | **100%** across the board |
 | HSG Max B | 70% for inpatient/outpatient/day-surgery in private hospitals |
-| HSG Max B Lite | 90% B1 (PR), 80% A-class, 50% private, 65% private outpatient |
+| HSG Max B Lite | 90% B1 (PR), 80% A-class, private inpatient (check the current AIA product summary for the exact rate), 65% private outpatient |
 
 This is why a prospect who says "I'll only ever go public" still benefits from at least Plan B Lite — emergencies don't ask which ward you wanted.
 
@@ -143,13 +143,13 @@ Optional add-on to AIA Max VitalHealth Pro A:
 
 | Item | HSG Max A | HSG Max B | HSG Max B Lite |
 |---|---|---|---|
-| Annual claim limit (with AIA preferred provider) | S$2,000,000 | S$1,200,000 | S$300,000 |
-| Annual claim limit (otherwise) | S$1,000,000 | S$1,000,000 | S$300,000 |
+| Annual claim limit (at an AIA Partner Facility) | Check the current AIA product summary for the exact limit | S$1,200,000 | S$300,000 |
+| Annual claim limit (otherwise) | Check the current AIA product summary for the exact limit | S$1,000,000 | S$300,000 |
 | Pre/post window (with preferred provider) | 13 months / 13 months | 12 months / 12 months (public); 100 days each (private) | 100 days each |
 | Extra cover for 30 critical illnesses | S$100,000 | S$75,000 | S$50,000 (per policy year) |
 | Living donor organ transplant | S$60,000 | S$40,000 | S$20,000 (per organ) |
 | Psychiatric inpatient | S$5,000 | S$4,000 | S$3,500 (per policy year) |
-| Final expense benefit | S$5,000 | S$3,500 | S$2,500 (per policy year) |
+| Final expense benefit | S$5,000 | S$3,500 | S$2,500 (per policy) |
 | Proton beam therapy | S$100,000 / year | (per benefit table) | (per benefit table) |
 | Cell, tissue, gene therapy | S$250,000 / treatment / indication / lifetime | | |
 
@@ -159,14 +159,14 @@ Optional add-on to AIA Max VitalHealth Pro A:
 
 | # | Item | Value |
 |---|---|---|
-| 1 | Annual limit HSG A (preferred provider) | S$2,000,000 |
+| 1 | Annual limit HSG A | Check the current AIA product summary for the exact limit |
 | 2 | Pre/post window | 13 months each (HSG A + preferred) |
 | 3 | Lifetime claim cap | Unlimited (HSG A + B) |
 | 4 | A-class / private deductible | S$3,500 |
 | 5 | Co-insurance with rider | 5% capped at S$6,000/year |
 | 6 | Cap conditions | Preferred provider OR pre-auth OR A&E referral |
 | 7 | MediSave AWL (young adult, AIA top-up) | S$300/year |
-| 8 | Cash shortfall (young Plan A) | ~S$29/year |
+| 8 | Cash shortfall (young Plan A, age 25 and below) | ~S$48/year |
 | 9 | Cancer Care Pro CDL | 16× MSHL monthly per primary cancer |
 | 10 | Cancer Care Pro non-CDL | S$200,000/policy year |
 | 11 | Last entry age | 75 (next birthday) |
@@ -216,7 +216,7 @@ By the end of Part 2 you should be able to deliver each answer in under 30 secon
 
 **A:** No, and any FC who tells you yes is wrong:
 - MediShield Life base — paid from MediSave (auto)
-- AIA top-up — MediSave-payable but only up to **S$300/year** AWL for young adults; ~S$29/year typically in cash
+- AIA top-up — MediSave-payable but only up to **S$300/year** AWL for young adults; ~S$48/year typically in cash (Plan A, age 25 and below)
 - Rider (AIA Max VitalHealth Pro) — **100% cash, no MediSave**
 
 > *"So expect a small MediSave shortfall plus the full rider premium in cash."*
@@ -309,7 +309,7 @@ But if they push back with:
 - C) S$600/year
 - D) S$1,200/year
 
-**Why:** The Additional Withdrawal Limit on the AIA top-up portion is S$300/year for young adults; typical AIA top-up Plan A is ~S$329/year, leaving ~S$29/year cash shortfall on the "MediSave portion" alone.
+**Why:** The Additional Withdrawal Limit on the AIA top-up portion is S$300/year for young adults; typical AIA top-up Plan A is ~S$348/year at age 25 and below, leaving ~S$48/year cash shortfall on the "MediSave portion" alone.
 
 8. **A prospect asks, "Can I claim HSGM if I just need stitches at A&E?" The correct answer is:**
 - A) "Yes — HSGM covers any A&E visit."
@@ -333,7 +333,7 @@ But if they push back with:
 - C) ~S$13,150
 - D) ~S$103,150 ✓
 
-**Why:** S$3,500 deductible + 10% of S$996,500 (~S$99,650) = ~S$103,150 OOP. The rider converts that unbounded exposure into a known S$6,000 annual maximum — that's why the rider is non-negotiable.
+**Why:** S$3,500 deductible + 10% of S$996,500 (~S$99,650) = ~S$103,150 OOP. The rider converts that unbounded exposure into a known S$9,500 annual maximum (S$3,500 deductible plus the S$6,000 cap) — that's why the rider is non-negotiable.
 
 ## Related
 

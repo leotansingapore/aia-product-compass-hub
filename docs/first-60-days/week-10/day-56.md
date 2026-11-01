@@ -302,7 +302,7 @@ For a 30M, $8.5K/month income, $1M death need, $500K CI need:
 | **SFT** (level term to 65) | $500-700K death + $250K CI | Top up death cover affordably | $1,500-$2,000 |
 | **UCC** (to 65 or 75) | $100-200K multi-claim CI | Multi-claim CI protection | $900-$1,500 |
 | **A&H** (Solidaire / PAC) | Accident cover | Outpatient, TCM, dismemberment | ~$50/month |
-| **HealthShield Gold Max A + riders** | Private hospitalisation | Medical expenses | Medisave-payable |
+| **HealthShield Gold Max A + riders** | Private hospitalisation | Medical expenses | Base Medisave-payable up to the AWL (cash above it); riders in cash |
 
 The package layers together: GPP as the cornerstone, SFT for cheap death-coverage top-up, UCC for multi-claim CI, A&H for outpatient, HealthShield for hospitalisation. **Never propose without all five categories represented** - the gap on the missing category becomes the comparison shop.
 
@@ -341,7 +341,7 @@ Worked example, $20K hospital bill on plain MediShield Life:
 3. MediShield Life covers the rest (~$16,200)
 4. **Out-of-pocket: ~$3,800**
 
-That $3,800 hits even a healthy 35-year-old with a $20K bill. The point of an Integrated Shield Plan (and the Vital Health rider) is to absorb most of that out-of-pocket exposure.
+That $3,800 hits even a healthy 35-year-old with a $20K bill. The point of an Integrated Shield Plan (and the VitalHealth Pro rider) is to absorb most of that out-of-pocket exposure.
 
 ## 0h2. HealthShield Gold Max - AIA's Integrated Shield Plan
 
@@ -351,21 +351,23 @@ That $3,800 hits even a healthy 35-year-old with a $20K bill. The point of an In
 |---|---|---|
 | **Max A** | Private hospital | Highest coverage, as-charged basis |
 | **Max B** | Government hospital (A ward) | Mid-tier |
-| **B Lite** | Government hospital (B ward & below) | Budget option |
+| **B Lite** | Government hospital (B1 ward & below) | Budget option |
 
-### Vital Health riders (the as-charged co-pay caps)
+### VitalHealth Pro riders (the co-pay caps)
 
 | Rider | What it covers | Co-payment | Cap |
 |---|---|---|---|
-| **Vital Health A** | Deductible + co-insurance | 5% | **$3,000** |
-| **Vital Health A Value** | Co-insurance only (not deductible) | 10% | $6,000 |
-| **Vital Health B** | Deductible + co-insurance (govt) | 5% | Government bills |
+| **VitalHealth Pro A** | Co-insurance only (not deductible) | 5% | **$6,000** a policy year |
+| **VitalHealth Pro B** | Co-insurance only (not deductible), govt | 5% | $6,000 a policy year |
+| **VitalHealth Pro B Lite** | Co-insurance only (not deductible), govt | 5% | $6,000 a policy year |
 
-### The Deductible Waiver Pass - easy to misexplain
+The $6,000 cap applies with an AIA Preferred Provider, a pre-authorisation, or an A&E-referred emergency. These riders have been sold since 1 Apr 2026.
 
-- **First claim:** Only 5% co-payment (no deductible if Vital Health A is attached)
-- **Second claim within 3 policy years:** 5% co-payment **+ $2K deductible** (the waiver runs out)
-- **If next claim is 4+ years later:** Deductible **resets** - back to 5% only
+### The deductible - easy to misexplain
+
+- **First:** the client pays the deductible (e.g. **$3,500** on Max A in a private hospital) - VitalHealth Pro does not cover it
+- **Then:** 5% co-payment on the rest, capped at **$6,000** a policy year (AIA Preferred Provider, pre-authorisation or A&E referral)
+- **Worst case on Max A + Pro A:** $3,500 + $6,000 = **$9,500** a policy year
 
 Tell the client up front. Surprised clients at claim time become disengaged clients at renewal.
 
@@ -376,27 +378,27 @@ MOH maintains a **Cancer Drug List (CDL)** with approved drugs and a monthly cla
 | Layer | CDL multiplier | Monthly cap |
 |---|---|---|
 | MediShield Life (base) | **1x** | e.g. $2K (varies by drug) |
-| HealthShield Max A (base) | + **5x** | $10K |
-| Cancer Care Booster rider | + **16x** | $32K |
+| HealthShield Max A (base) | **5x** (includes MediShield Life's 1x) | $10K |
+| Cancer Care Pro rider | + **16x** (less 10% co-insurance) | $32K |
 | **Full package total** | **21x** | **~$42K/month** |
 
-For **non-CDL drugs** (newer drugs not yet on the approved list): up to **$200K/year** with 10% co-insurance under the Booster rider.
+For **non-CDL drugs** (newer drugs not yet on the approved list): up to **$200K/year** with 10% co-insurance under Cancer Care Pro.
 
-For **cancer drug services** (scans, tests): Base 5x + Booster 10x = **15x total**.
+For **cancer drug services** (scans, tests): Base 5x + Cancer Care Pro 10x = **15x total**.
 
 ### Other HealthShield benefits worth naming
 
-- **Pre & post-hospitalisation:** 13 months coverage
+- **Pre & post-hospitalisation:** 13 months coverage on Max A with an AIA Preferred Provider (100 days otherwise)
 - **Panel of quality healthcare partners** - searchable by specialty
 - **Pre-authorisation (Letter of Guarantee):** inform AIA before surgery -> get approval beforehand -> no out-of-pocket scramble at admission
-- **Vitality discount** on Vital Health rider premiums
+- **Vitality discount** on VitalHealth Pro rider premiums
 - Covers: pregnancy complications, congenital abnormalities (child), organ donation/transplant, psychiatric treatment (limited), radiotherapy
 
 ### How to position HealthShield against MediShield Life
 
 Don't attack MediShield. Just show the gap:
 
-> *"MediShield Life is great as a baseline. The issue is one specific scenario - late-stage cancer drug treatment. MediShield pays 1x the CDL limit, maybe $2K/month. A typical late-stage cancer drug regime can run $20K-$40K/month. That's a gap of $18K-$38K every month, for years. The point of HealthShield Max A + the Cancer Care Booster is specifically to close that gap."*
+> *"MediShield Life is great as a baseline. The issue is one specific scenario - late-stage cancer drug treatment. MediShield pays 1x the CDL limit, maybe $2K/month. A typical late-stage cancer drug regime can run $20K-$40K/month. That's a gap of $18K-$38K every month, for years. The point of HealthShield Max A + Cancer Care Pro is specifically to close that gap."*
 
 That's a use-specific argument, not a "your government plan is bad" argument. Wins more conversions, breaks no relationships.
 
@@ -498,7 +500,7 @@ Always for:
 | Plan type | What it covers |
 |---|---|
 | **Hospital Plan (Integrated Shield Plan)** | Hospitalisation expenses; upgrades CPF MediShield Life to private / restructured hospital tiers |
-| **Rider on hospital plan** | Covers the deductible + co-insurance, so client pays near zero out of pocket |
+| **Rider on hospital plan** | Cuts the co-insurance to 5% with a yearly cap (riders sold from 1 Apr 2026 do not cover the deductible) |
 | **Daily hospital income** | Cash payout per day in hospital (for income replacement while recovering) |
 | **Accident-only plans** | Outpatient treatment for accidents; often includes children-specific plans |
 | **Cancer-specific plans** | Multi-stage cancer cover |
@@ -657,13 +659,13 @@ This is the "fully loaded" baseline. Year 1 might cover 2-3 layers. Over time, l
 
  **Why:** Hospital plans require admission to trigger; life and CI plans require *total* permanent disability or *major* illness; employer GPA dies with employment. Solitaire PA fills two gaps that nothing else closes: outpatient bills on non-hospitalising accidents (KK A&E + X-ray + physio = $400-$1,500), and partial dismemberment under the Schedule of Indemnity (lose a finger = 5%, an eye = 100%, anything between TPD and full-able-bodied). Death benefit (A) is not Solitaire PA's strength - it is a PA plan, not life cover. Lifetime renewability (C) is **not** a Solitaire PA feature - it is yearly-renewable, not guaranteed, with 50% reduction at 75 and termination at 80. It pays on accidental cancer-related events but is not a cancer plan (D).
 
-9. **The full HSGM + Vital Health A + Cancer Care Booster rider package raises the Cancer Drug List (CDL) coverage to roughly:**
+9. **The full HSGM Max A + VitalHealth Pro A + Cancer Care Pro rider package raises the Cancer Drug List (CDL) coverage to roughly:**
    - A) 5x the CDL limit (~$10K/month)
    - B) 10x the CDL limit (~$20K/month)
    - C) 21x the CDL limit (~$42K/month) (correct)
    - D) Unlimited - no CDL cap
 
- **Why:** MediShield Life pays 1x the CDL limit. HealthShield Max A base layer adds 5x (total 6x). The Cancer Care Booster rider adds another 16x on top, bringing the full package to 21x (~$42K/month). Late-stage cancer drug regimes can run $20-$40K/month for years, and the 1x MediShield baseline leaves catastrophic gaps - the CDL multiplier is HSGM's killer feature. 5x (A) is the base HSGM layer alone. 10x (B) is approximately the HSGM Max A coverage on cancer drug services + booster, but not the headline CDL multiplier. CDL coverage is capped (D) - the unlimited claim only applies to non-CDL drugs under the Booster rider, capped at $200K/year with 10% co-insurance.
+ **Why:** MediShield Life pays 1x the CDL limit. HealthShield Max A's base plan pays up to 5x (this includes MediShield Life's 1x). The Cancer Care Pro rider adds another 16x on top, less 10% co-insurance, bringing the full package to 21x (~$42K/month). Late-stage cancer drug regimes can run $20-$40K/month for years, and the 1x MediShield baseline leaves catastrophic gaps - the CDL multiplier is HSGM's killer feature. 5x (A) is the base HSGM layer alone. 10x (B) is what Cancer Care Pro adds for cancer drug services, not the headline CDL multiplier. CDL coverage is capped (D) - and the non-CDL cover under Cancer Care Pro is capped too, at $200K/year with 10% co-insurance.
 
 10. **The GPP "$1,600 more for $275K more cash value" closing technique is best described as:**
     - A) Showing 3x and 2x multipliers side-by-side cold and letting the client pick

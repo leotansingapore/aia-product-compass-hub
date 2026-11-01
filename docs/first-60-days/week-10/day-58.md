@@ -337,7 +337,7 @@ A well-done policy review often produces:
    - C) The Shield Plan covers 100% with a fixed $200 admin fee
    - D) Only outpatient treatment is affected; inpatient is fully covered
 
- **Why:** An Integrated Shield Plan without a rider leaves the client liable for the deductible (typically $1,500-$3,500) and co-insurance (typically 10%) on every claim - costs that can stack to $5,000 or more for a single admission. The rider covers these out-of-pocket amounts so the client pays near zero. Claims are not rejected without a rider (A) - the Shield Plan still covers the main hospitalisation cost. There is no flat $200 admin fee structure (C). The Shield Plan covers inpatient hospitalisation regardless of the rider; the rider reduces the client's personal share, not the coverage category (D).
+ **Why:** An Integrated Shield Plan without a rider leaves the client liable for the deductible (typically $1,500-$3,500) and co-insurance (typically 10%) on every claim - costs that can stack to $5,000 or more for a single admission. The rider cuts the co-insurance to 5% with a yearly cap (S$6,000 on AIA's VitalHealth Pro); riders sold from 1 Apr 2026 do not cover the deductible. Claims are not rejected without a rider (A) - the Shield Plan still covers the main hospitalisation cost. There is no flat $200 admin fee structure (C). The Shield Plan covers inpatient hospitalisation regardless of the rider; the rider reduces the client's personal share, not the coverage category (D).
 
 ---
 

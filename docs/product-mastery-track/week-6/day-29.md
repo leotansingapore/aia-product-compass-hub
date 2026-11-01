@@ -65,7 +65,7 @@ By the end of Part 1 you should be able to recite all 5 responses from memory, d
 > *"Honestly, fair — and that's exactly why I don't run PA as a standalone meeting. It's part of a basic-medical conversation — hospital plan plus accident plan, inpatient plus outpatient. We're already talking about your hospital cover; this is the missing piece on top. Together, we're looking at about S$45 a month for a young working adult."* [Video 9]
 
 **The conviction:**
-- Bundling = HSGM (B2 ward) ~S$20-25/month + Solitaire PA Plan 1 ~S$19/month = ~S$45/month
+- Bundling = HSGM (A ward) ~S$20-25/month + Solitaire PA Plan 1 ~S$19/month = ~S$45/month
 - Single basic-medical conversation, two products, one close
 - Don't burn an appointment slot just on PA
 
@@ -152,7 +152,7 @@ Always sell PA as part of a basic-medical conversation. Sample bundles:
 
 | Component | Monthly cost |
 |---|---|
-| HSGM B (B2 ward) | ~S$20-25/month |
+| HSGM B (A ward) | ~S$20-25/month |
 | Solitaire PA Plan 1 (Class 1-2) | ~S$19/month basic |
 | **Total** | **~S$45/month** |
 
@@ -262,7 +262,7 @@ The script:
 
 **Why:** Brochure p.3 specifies a 10% premium discount on AIA Star Protector Plus for children up to 21 years old, conditional on holding Solitaire PA (II) Plan 2 or higher.
 
-5. **Per Day 4, what is the approximate bundled monthly cost for a young working adult (age ~30) on HSGM B (B2 ward) plus Solitaire PA Plan 1?**
+5. **Per Day 4, what is the approximate bundled monthly cost for a young working adult (age ~30) on HSGM B (A ward) plus Solitaire PA Plan 1?**
 - A) ~S$25/month total
 - B) ~S$45/month total (~S$20-25 HSGM B + ~S$19 Solitaire PA Plan 1) ✓
 - C) ~S$100/month total

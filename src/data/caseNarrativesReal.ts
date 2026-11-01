@@ -370,7 +370,7 @@ With lean income and solid savings habits, the gap was total. No MediShield upgr
 Rather than loading the first meeting with a full four-layer stack, the priority was hospitalisation — the most immediate and catastrophic risk. The frame was not insurance for its own sake but a firewall protecting an active savings goal. CI and death coverage were deliberately deferred to the next session once the foundation was in place.
 
 ### The numbers side by side
-Public hospital plan (A ward): $18/month, $2M annual/lifetime coverage, pre- and post-hospitalisation included, specialist access without GP referral. Accident Plan 1: $18/month, covering sports injuries, food poisoning, overseas incidents, violence, and minor incidents like a sprained ankle. Total: ~$37/month — under 1.5% of take-home pay for the baseline protection layer.
+Public hospital plan (A ward): $18/month, $1M annual coverage and unlimited lifetime, pre- and post-hospitalisation included, specialist access without GP referral. Accident Plan 1: $18/month, covering sports injuries, food poisoning, overseas incidents, violence, and minor incidents like a sprained ankle. Total: ~$37/month — under 1.5% of take-home pay for the baseline protection layer.
 
 ### What closed
 AIA HealthShield Gold Max (public A ward tier) plus AIA accident Plan 1. Payment set up via OCBC debit card. A previous investment plan surrender was initiated and payout routed to OCBC for a clean payment flow. Follow-up Zoom booked for two weeks out — documents review, claims walkthrough, and the CI/death coverage conversation.
@@ -1754,12 +1754,12 @@ Medishield only. That meant a $3,500 deductible before any claim kicks in, plus 
 The gap was structural: basic Medishield is designed as a floor, not a plan. Without an integrated shield, any serious hospitalisation would trigger a large cash shortfall. They had no rider, no private coverage, and no framework for understanding what they were exposed to.
 
 ### The reframe
-The FC walked through a clean with/without comparison. Plan B (Public) at $314/year is fully payable via CPF Medisave — zero cash outlay. The $2 million annual limit with unlimited reset and 13 months of pre/post-hospitalisation coverage made it a straightforward upgrade from the Medishield floor. The rider question was parked deliberately: "You don't have to decide today — let's get the base in place first."
+The FC walked through a clean with/without comparison. Plan B (Public) at $314/year is fully payable via CPF Medisave — zero cash outlay. The $1 million annual limit with unlimited reset and 12 months of pre/post-hospitalisation coverage in a public hospital made it a straightforward upgrade from the Medishield floor. The rider question was parked deliberately: "You don't have to decide today — let's get the base in place first."
 
 ### The numbers side by side
 - No shield: $3,500 deductible + 10% coinsurance. $100,000 bill = ~$13,150 personal liability.
 - Plan B base: Max exposure still exists without rider, but $314/year is fully Medisave-funded.
-- With rider (future): $3,000 annual cap, 5% of total bill — rider premium ~$314/year in cash.
+- With rider (future): $3,000 annual cap, 5% of total bill — rider premium ~$314/year in cash. (That was the rider sold before 1 Apr 2026. VitalHealth Pro B, sold since, caps the 5% co-payment at $6,000 a year and does not cover the deductible.)
 
 ### What closed
 Plan B (Public) without rider. Medical questionnaire completed, SingPass authenticated, application submitted. CPF Medisave deduction processing expected within two weeks. Prospect flagged openness to adding the rider in a future conversation.
@@ -3630,7 +3630,7 @@ The conversation shifted from savings rate to investment returns — compounding
 - Investment alternative: $1,200/month achieves the same target via compounding
 - His proposed starting contribution: $500/month (potentially split with spouse)
 - Projected retirement value at ~$500/month: approximately $961,000
-- Hospital shield: ~$25/month, public ward, up to $2M coverage
+- Hospital shield: ~$25/month, public ward, up to $1M coverage
 - Accident plan (Plan 1 entry tier): ~$20/month, upgradeable anytime
 - Combined protection + investment proposal for both spouses: ~$1,000/month
 
@@ -3951,7 +3951,7 @@ Rather than treating the surrender values as a loss, Leo repositioned the $93k a
 
 ### The numbers side by side
 - Legacy policies: ~$93k surrender value, $2,000+/year outlay, outdated CI, no hospital plan
-- New hospital plan: ~$1,160/year all-in (base + rider capping out-of-pocket at $3,000 + $200k/year cancer booster)
+- New hospital plan: ~$1,160/year all-in (base + rider capping out-of-pocket at $3,000 + $200k/year cancer booster) (the rider and add-on sold before 1 Apr 2026; today VitalHealth Pro A caps the 5% co-payment at $6,000 a year on top of the deductible, and the add-on is Cancer Care Pro)
 - Single-premium legacy solution: $93k in → up to $770k coverage out, cash value continues to grow
 - Multi-claim early-CI: fixed premiums regardless of claims, coverage options at 100k / 200k / 300k to age 65/75/85
 - First-class CI tier: +$1,000/year for no coverage drop at 65 and higher cash value floor
@@ -5515,7 +5515,7 @@ The client conflated their CI payout with hospital bill cover. The CI plan was d
 Leo mapped the portfolio against four coverage categories: debt and disability, critical illness, hospitalization, and accident. With that grid visible, the gap was self-evident — the client could see it rather than being told. The CI plan was correctly reframed as income replacement, which justified adding a separate Shield plan rather than simply upsizing the CI sum assured.
 
 ### The numbers side by side
-Private-tier hospital plan: approximately $90/month, $2 million lifetime coverage limit. Adding the rider eliminated the standard $3,005 deductible and reduced co-insurance from 10% to 5%, capped at $3,000 out-of-pocket on any single claim. Net premium after Medisave drawdown settled at approximately $83–100/month cash. A daily cash benefit rider ($100/day for hospital stays not claimed under CI or accident) was also introduced as a short-term income buffer for minor inpatient events, flagged as a future add-on.
+Private-tier hospital plan: approximately $90/month, unlimited lifetime coverage. Adding the rider eliminated the standard $3,500 deductible and reduced co-insurance from 10% to 5%, capped at $3,000 out-of-pocket on any single claim. Net premium after Medisave drawdown settled at approximately $83–100/month cash. A daily cash benefit rider ($100/day for hospital stays not claimed under CI or accident) was also introduced as a short-term income buffer for minor inpatient events, flagged as a future add-on.
 
 ### What closed
 Private-tier Shield plan plus deductible-waiver rider. Application submission targeted February 1st, aligned with a team sales challenge. Next review booked for late July to revisit CPF contributions and coverage adjustments once employment and income stabilise.
@@ -6072,12 +6072,13 @@ A whole-life policy providing SGD 250k coverage each across death, TPD, critical
 Three gaps surfaced once the review opened. First, no hospitalization plan at all. Second, the whole-life structure was carrying premium weight that could be restructured. Third, a retirement shortfall: roughly SGD 3M needed by 65, with only SGD 1.5M currently on track — a SGD 1.5M gap. Layered on top: an April MAS policy change would raise rider co-pay from 5% to 10%, making the hospital conversation time-sensitive.
 
 ### The reframe
-The April deadline was the hook. Upgrading the hospital rider now locks in the 5% co-pay cap at a SGD 3,005 deductible threshold — waiting doubles the ongoing cost-sharing exposure. For CI, the multi-claim model was explained as a fundamentally different architecture: multiple payouts for different illnesses over time, versus a single-claim plan that resets after one event. On whole-life-to-term, the conversation centred on freeing up premium dollars while preserving early CI via a term-based multi-claim plan. The retirement gap led into a managed-fund discussion alongside the existing ETF portfolio.
+The April deadline was the hook. Upgrading the hospital rider now locks in the 5% co-pay cap at a SGD 3,500 deductible threshold — waiting doubles the ongoing cost-sharing exposure. For CI, the multi-claim model was explained as a fundamentally different architecture: multiple payouts for different illnesses over time, versus a single-claim plan that resets after one event. On whole-life-to-term, the conversation centred on freeing up premium dollars while preserving early CI via a term-based multi-claim plan. The retirement gap led into a managed-fund discussion alongside the existing ETF portfolio.
 
 ### The numbers side by side
 - Hospital plan: public ~SGD 20/month, private ~SGD 90/month
 - Rider co-pay: 5% cap (before April) vs 10% (after April)
-- Deductible: SGD 3,005
+- Deductible: SGD 3,500
+- (In the event, AIA's rider sold from 1 Apr 2026 kept the 5% co-payment, raised its cap to SGD 6,000 a year and no longer covers the deductible.)
 - CI in existing whole-life: SGD 250k
 - Retirement: SGD 3M target vs ~SGD 1.5M funded — shortfall ~SGD 1.5M
 

@@ -585,7 +585,7 @@ export const CASES: CaseEntry[] = [
     play: "Coverage upgrade",
     anchor: "Rider upgrade + plan upgrade",
     headline:
-      "$3,500 deductible exposure + 10% co-pay → with rider, capped at $3K out-of-pocket",
+      "$2,500 deductible (B1 ward) + 10% co-pay → with rider: deductible remains + co-insurance capped at $6K/yr",
     tags: ["hsg", "rider", "deductible", "b-lite"],
     drawings: ["Hospital plan with / without rider", "Plan A vs B vs C ward comparison"],
     sourcePath: sourcePath(
