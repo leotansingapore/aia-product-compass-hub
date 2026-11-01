@@ -39,7 +39,7 @@ A SGD yearly-renewable Personal Accident plan issued by AIA. Covers accidental d
 | Renewal Bonus | **5% per renewal year on Benefits 1-5, max 6 renewals = 30% extra** (forfeited on any Benefit 4 claim) |
 | Class 3-4 loading | ~75% above Class 1-2 |
 | Coverage reduction at 75 | -50% basic benefits |
-| Optional benefits termination | Age 75 |
+| Optional benefits termination | Check the current AIA product summary |
 | Policy termination | Age 80 |
 | MediSave-payable | **No - 100% cash** |
 | Free-look | 14 days |

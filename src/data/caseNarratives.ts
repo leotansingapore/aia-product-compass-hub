@@ -1093,7 +1093,7 @@ The prospect doesn't need to be convinced they're under-covered. They need to se
 | **AIA Pro Achiever (APA) wealth** | $4,800 | Long-term wealth build |
 | **Ultimate Critical Cover (UCC)** | $1,800 | $300K CI / ECI multi-claim |
 | **HealthShield Gold Max (HSGM)** | $1,900 | Private hospital plan |
-| **Solitaire PA (SPA)** | $224 | $5K/accident reimbursement + accidental DD |
+| **Solitaire PA (SPA)** | $224 | $2K/accident reimbursement + accidental DD |
 | **Singapore Family Term (SFT)** | $1,700 | $1M Death / TPD term |
 | **Total premium** | **$10,424/yr** | |
 
@@ -1671,9 +1671,9 @@ This isn't a case of "your parents need more coverage." It's a case of *"what do
 |---|---|---|
 | MediShield Life (existing) | ~$1,000 | C / B2 ward, limited caps |
 | **AIA HSG B + rider for parent** | ~$1,300 | Up to A ward, rider reduces co-pay from 10% to 5% capped at $6K/yr (deductible still applies) |
-| **AIA Solitaire PA Plan 2 for parent** | ~$200-400 | Accident reimbursement up to $5K/event |
+| **AIA Solitaire PA Plan 2 for parent** | ~$372-560 | Accident reimbursement up to $3K/event |
 
-Total upgrade cost per parent: ~$1,500-1,700/yr. For two parents: ~$3,000-3,400/yr.
+Total upgrade cost per parent: ~$1,670-1,860/yr. For two parents: ~$3,340-3,720/yr.
 
 For a working adult earning $80K+/yr, this is a small fraction of income that translates to dramatically reduced family financial exposure on parental medical events.
 
@@ -1764,13 +1764,13 @@ A prospect already considering Solitaire PA — quoted at Plan 1, the entry tier
 | Coverage area | Plan 1 (entry) | Plan 2 (recommended) |
 |---|---|---|
 | Accidental death | $100K | $250K |
-| Accidental TPD | $100K | $250K |
+| Accidental TPD | $300K | $750K |
 | Permanent dismemberment | scaled | 2.5× scaled |
-| Medical reimbursement per event | $3K | $5K |
-| Daily hospital cash | $50/day | $100/day |
-| Monthly premium (approx) | $20 | $30 |
+| Medical reimbursement per event | $2K | $3K |
+| Daily hospital cash | $50/day | $150/day |
+| Monthly premium (approx) | $19 | $31 |
 
-The differential between Plan 1 and Plan 2: **about $10/mo**.
+The differential between Plan 1 and Plan 2: **about $12/mo**.
 
 ### Where it broke down
 
@@ -1780,26 +1780,26 @@ A typical accident scenario:
 
 - Slip-and-fall fracture, A&E visit + outpatient follow-up + 2-week recovery
 - Bill: $4,000-6,000
-- Plan 1 reimburses up to $3K
-- Plan 2 reimburses up to $5K
+- Plan 1 reimburses up to $2K
+- Plan 2 reimburses up to $3K
 
 On the more serious end — a vehicle accident with permanent partial disability — the dismemberment payout difference is 2-3×. Plan 1 entry covers the case partially. Plan 2 covers it properly.
 
 ### The reframe
 
-The decision isn't "Plan 1 or Plan 2." It's *"are we buying coverage that handles the actual claim, or coverage that handles half of it?"* At $10/mo differential — the price of a meal — the coverage uplift is 2-3× across every line.
+The decision isn't "Plan 1 or Plan 2." It's *"are we buying coverage that handles the actual claim, or coverage that handles half of it?"* At $12/mo differential — the price of a meal — the coverage uplift is 1.5-3x across every line.
 
 ### What the pitch sounded like
 
-> *"Plan 1 is the entry plan, Plan 2 is what I'd actually recommend for you. The differential is about $10 a month — basically a meal out. For that $10/mo, your accidental death cover jumps from $100K to $250K, your permanent dismemberment cover scales similarly, and your per-event medical reimbursement goes from $3K to $5K. Same structural plan, just sized to actually handle a real claim. It's structurally one-sided to skip the upgrade."*
+> *"Plan 1 is the entry plan, Plan 2 is what I'd actually recommend for you. The differential is about $12 a month — basically a meal out. For that $12/mo, your accidental death cover jumps from $100K to $250K, your permanent dismemberment cover scales similarly, and your per-event medical reimbursement goes from $2K to $3K. Same structural plan, just sized to actually handle a real claim. It's structurally one-sided to skip the upgrade."*
 
 ### What closed
 
-Plan 2 (or Plan 3 / Plan 4 if cash flow allowed). The $10/mo differential anchor closed the case — once the prospect saw the coverage uplift against a meal-out cost, the decision wrote itself.
+Plan 2 (or Plan 3 / Plan 4 if cash flow allowed). The $12/mo differential anchor closed the case — once the prospect saw the coverage uplift against a meal-out cost, the decision wrote itself.
 
 ### The lesson for any FC
 
-The Plan 1 vs Plan 2 upsell is one of the lowest-friction closes in the AIA stack. The differential cost is trivial. The coverage uplift is significant. The framing is structural — *"are we buying coverage that handles the actual claim, or coverage that handles half of it?"* — and the $10/mo anchor against a routine purchase (meal, coffee, transport) makes the decision visceral. Always default to recommending Plan 3 or Plan 4 unless cash flow genuinely doesn't allow; Plan 1 is the floor, not the target.
+The Plan 1 vs Plan 2 upsell is one of the lowest-friction closes in the AIA stack. The differential cost is trivial. The coverage uplift is significant. The framing is structural — *"are we buying coverage that handles the actual claim, or coverage that handles half of it?"* — and the $12/mo anchor against a routine purchase (meal, coffee, transport) makes the decision visceral. Always default to recommending Plan 3 or Plan 4 unless cash flow genuinely doesn't allow; Plan 1 is the floor, not the target.
 `,
 
   "spa-s3": `
@@ -1830,23 +1830,23 @@ Don't replace the hospital plan. Layer SPA on top. SPA closes the coverage gap t
 
 | Parent | SPA Plan 2 cost | Coverage |
 |---|---|---|
-| Mother | ~$200-300/yr | $250K accidental death + $5K per accident medical + $100/day hospital cash |
-| Father | ~$200-300/yr | Same |
-| **Total for both** | **~$400-600/yr** | Comprehensive accident cover |
+| Mother | ~$372-560/yr | $250K accidental death + $3K per accident medical + $150/day hospital cash (if the Accidental Hospitalisation group is added) |
+| Father | ~$372-560/yr | Same |
+| **Total for both** | **~$744-1,121/yr** | Comprehensive accident cover |
 
 ### What the pitch sounded like
 
 > *"Your parents' hospital plan covers them if they're warded for 6 hours or have surgery. What it doesn't cover: a sprain at A&E, a TCM visit for a back injury, dengue treatment, food poisoning. And those are the most common claims for people in their 60s and 70s — they're not always hospitalised, but they generate real expenses.*
 >
-> *Solitaire PA Plan 2 for both your parents is about $400-600 a year combined. That covers $5K per accident in medical reimbursement, $100/day hospital cash if they are warded, and $250K of accidental death cover each. For a few hundred a year, you've closed a coverage gap that has a real claim probability for elderly parents."*
+> *Solitaire PA Plan 2 for both your parents is about $744-1,121 a year combined. That covers $3K per accident in medical reimbursement, $150/day hospital cash if they are warded (with the Accidental Hospitalisation group), and $250K of accidental death cover each. For a few hundred a year, you've closed a coverage gap that has a real claim probability for elderly parents."*
 
 ### What closed
 
-SPA Plan 2 for both parents. ~$400-600/yr in total premium. The closing anchor was the *type* of claim — fall injuries that don't trigger the hospital plan but generate real out-of-pocket costs.
+SPA Plan 2 for both parents. ~$744-1,121/yr in total premium. The closing anchor was the *type* of claim — fall injuries that don't trigger the hospital plan but generate real out-of-pocket costs.
 
 ### The lesson for any FC
 
-Elderly-parent accident coverage is the most under-pitched gap in the AIA stack. Prospects assume "hospital plan covers it" — and they're structurally wrong, because the most common elderly claims (outpatient sprains, TCM, dengue) don't meet hospital-plan claim thresholds. The pitch is mechanical: walk the prospect through what does and doesn't trigger a hospital claim, then show what SPA covers. The premium is low enough ($400-600/yr for both parents) that the close is friction-free once the gap is visible.
+Elderly-parent accident coverage is the most under-pitched gap in the AIA stack. Prospects assume "hospital plan covers it" — and they're structurally wrong, because the most common elderly claims (outpatient sprains, TCM, dengue) don't meet hospital-plan claim thresholds. The pitch is mechanical: walk the prospect through what does and doesn't trigger a hospital claim, then show what SPA covers. The premium is low enough ($744-1,121/yr for both parents) that the close is friction-free once the gap is visible.
 `,
 
   // ─── PLP ─────────────────────────────────────────────────────────────────

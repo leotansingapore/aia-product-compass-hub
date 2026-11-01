@@ -35,7 +35,7 @@ The script:
 
 ### Disclosure 2 — 50% reduction at 75 + termination at 80
 
-> *"From your 75th birthday renewal date, the basic-benefit insured amounts reduce by 50%. Optional benefits stop entirely. The policy itself terminates at age 80."* [PS p.3, p.14]
+> *"From your 75th birthday renewal date, the basic-benefit insured amounts reduce by 50%. The policy itself terminates at age 80."* [PS p.3, p.14] For the optional benefits, check the current AIA product summary for when they end.
 
 This is critical for older prospects:
 
@@ -56,7 +56,7 @@ This is critical for older prospects:
 | Last entry age | 70 last birthday |
 | Renewal-only ages | 71-79 last birthday |
 | Coverage reduction | 50% from renewal following 75th birthday |
-| Optional benefits termination | Age 75 |
+| Optional benefits termination | Check the current AIA product summary |
 | Policy termination | Age 80 |
 | SDIC protection | Up to specified limits [Brochure p.3, PS p.15] |
 | Claim notification window | 60 days from date of loss [PS p.14] |
@@ -272,8 +272,8 @@ Accident plan case studies. Solitaire PA is the lowest-friction close in the AIA
 | Case | Prospect type | Anchor | Headline receipt |
 |---|---|---|---|
 | **S1** | Young Singlife client paying $200/mo for wrong coverage | Cancel wrong plan, redirect to basic medical | $200/mo Singlife death/TPD/CI cancelled → $36/mo SPA + HSGM (basic medical) |
-| **S2** | Plan 1 vs Plan 2 upsell | Plan tier upgrade | $10/mo more → 2.5× cover for death/disability/dismemberment + more reimbursement |
-| **S3** | Parents accident coverage | Multi-generational accident cover | $400+/yr accident plan for both parents — covers fall-related injuries MediShield doesn't |
+| **S2** | Plan 1 vs Plan 2 upsell | Plan tier upgrade | $12/mo more → 2.5× cover for death/disability/dismemberment + more reimbursement |
+| **S3** | Parents accident coverage | Multi-generational accident cover | $740+/yr accident plan for both parents — covers fall-related injuries MediShield doesn't |
 
 ---
 
@@ -322,8 +322,8 @@ The trust this builds long-term is significant. The prospect saves money now, ge
 
 > **TLDR**
 > - Prospect quoted **Solitaire PA Plan 1** at base pricing
-> - Plan 2 costs **~$10/mo more** but delivers **2.5× the coverage** on death / disability / dismemberment + more medical reimbursement
-> - **Attack: at $10/mo differential, the coverage uplift is structurally far above the cost.**
+> - Plan 2 costs **~$12/mo more** but delivers **2.5× the coverage** on death / disability / dismemberment + more medical reimbursement
+> - **Attack: at $12/mo differential, the coverage uplift is structurally far above the cost.**
 
 ### The structural comparison
 
@@ -338,7 +338,7 @@ The trust this builds long-term is significant. The prospect saves money now, ge
 
 [PS p.1, Brochure p.2-3]
 
-The differential between Plan 1 and Plan 2 is roughly $10/mo for the same prospect, but the coverage uplift is 2-3× across every line. For most prospects, Plan 2 is structurally the correct entry point.
+The differential between Plan 1 and Plan 2 is roughly $12/mo for the same prospect, but the coverage uplift is 1.5-3x across every line. For most prospects, Plan 2 is structurally the correct entry point.
 
 ### The closer line
 
@@ -353,7 +353,7 @@ The differential between Plan 1 and Plan 2 is roughly $10/mo for the same prospe
 > **TLDR**
 > - Working-adult prospect (35-45-yo) considering coverage for elderly parents
 > - **Highest accident claim window: age 65+** (fall-related fractures, mobility incidents, vehicular accidents)
-> - Recommend **Plan 2 SPA for each parent at $200-400/yr** — covers what MediShield won't (TCM, outpatient injuries, dengue, food poisoning)
+> - Recommend **Plan 2 SPA for each parent at $372-560/yr** — covers what MediShield won't (TCM, outpatient injuries, dengue, food poisoning)
 > - **Attack: parents on basic medical only have a high accident-claim exposure. SPA fills the gap at very low cost.**
 
 ### Why parents need SPA specifically
@@ -373,9 +373,9 @@ For elderly parents, falls are the dominant claim trigger — and most fall inju
 
 | Parent | SPA Plan 2 cost | Coverage |
 |---|---|---|
-| Mother | ~$200-300/yr | $250K accidental death + $3K per accident medical (Feature 6 Plan 2) + $150/day hospital cash (if Accidental Hospitalisation group added) |
-| Father | ~$200-300/yr | Same |
-| **Total for both** | **~$400-600/yr** | Comprehensive accident cover |
+| Mother | ~$372-560/yr | $250K accidental death + $3K per accident medical (Feature 6 Plan 2) + $150/day hospital cash (if Accidental Hospitalisation group added) |
+| Father | ~$372-560/yr | Same |
+| **Total for both** | **~$744-1,121/yr** | Comprehensive accident cover |
 
 [PS p.1, Brochure p.2-3 — daily hospital cash requires Accidental Hospitalisation Benefits Group to be elected]
 
@@ -383,7 +383,7 @@ For elderly parents, falls are the dominant claim trigger — and most fall inju
 
 > *"Your parents' hospital plan covers them if they're warded for 6 hours or have surgery. What it doesn't cover: a sprain at A&E, a TCM visit for a back injury, dengue treatment, food poisoning. And those are the most common claims for people in their 60s and 70s — they're not always hospitalised, but they generate real expenses.*
 >
-> *Solitaire PA Plan 2 for both your parents is about $400-600 a year combined. That covers $3K per accident in medical reimbursement (Plan 2 basic), $250K of accidental death cover each, and — if you add the Accidental Hospitalisation group — $150/day hospital cash if they are warded. For a few hundred a year, you've closed a coverage gap that has a real claim probability for elderly parents."*
+> *Solitaire PA Plan 2 for both your parents is about $744-1,121 a year combined. That covers $3K per accident in medical reimbursement (Plan 2 basic), $250K of accidental death cover each, and — if you add the Accidental Hospitalisation group — $150/day hospital cash if they are warded. For a few hundred a year, you've closed a coverage gap that has a real claim probability for elderly parents."*
 
 ---
 

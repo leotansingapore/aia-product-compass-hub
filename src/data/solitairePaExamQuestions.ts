@@ -7,7 +7,7 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
   // ============================================================
 
   {
-    question: "A client on Plan 1 suffers a major dismemberment after 6 claim-free years. What is the maximum payout including the renewal bonus?",
+    question: "A client on Plan 1 suffers a major dismemberment after 6 renewals with no Accidental Dismemberment and Burns claim. What is the maximum payout including the renewal bonus?",
     options: [
       "$300,000",
       "$390,000",
@@ -15,7 +15,7 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
       "$360,000"
     ],
     correct: 1,
-    explanation: "Plan 1 major dismemberment is $300,000. After 6 claim-free years, the renewal bonus on Features 1-5 reaches the maximum of 30%. $300,000 x 1.30 = $390,000.",
+    explanation: "Plan 1 major dismemberment is $300,000. After 6 renewals with no Benefit 4 (Accidental Dismemberment and Burns) claim, the renewal bonus on Features 1-5 reaches the maximum of 30%. $300,000 x 1.30 = $390,000.",
     category: 'product-facts'
   },
 
@@ -59,7 +59,7 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "A policyholder suffers three separate accidents in one year -- a fracture, a sprain, and food poisoning. How much total medical reimbursement can they claim under Feature 6?",
+    question: "A Plan 4 policyholder suffers three separate accidents in one year -- a fracture, a sprain, and food poisoning. How much total medical reimbursement can they claim under Feature 6?",
     options: [
       "$5,000 total for all three accidents",
       "$10,000 total across two claims",
@@ -67,7 +67,7 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
       "$3,000 total with a per-year cap"
     ],
     correct: 2,
-    explanation: "Feature 6 provides up to $5,000 per accident with unlimited claims per year. Three accidents means up to $5,000 each, for a potential total of $15,000.",
+    explanation: "On Plan 4, Feature 6 provides up to $5,000 per accident with unlimited claims per year. Three accidents means up to $5,000 each, for a potential total of $15,000.",
     category: 'product-facts'
   },
 
@@ -318,11 +318,11 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
     options: [
       "Agree that self-insurance is a valid strategy and move on",
       "Tell them their emergency fund is useless",
-      "Point out that for $20/month (Plan 1), PA gives up to $5,000 per accident with unlimited claims -- far more protection than $70/month in savings could provide",
+      "Point out that for $20/month (Plan 1), PA gives up to $2,000 per accident with unlimited claims -- far more protection than $70/month in savings could provide",
       "Suggest they increase their monthly savings to $200 instead"
     ],
     correct: 2,
-    explanation: "Self-insuring at $70/month provides limited coverage. For just $20/month, PA guarantees up to $5,000 per accident with unlimited claims -- the math strongly favors PA.",
+    explanation: "Self-insuring at $70/month provides limited coverage. For just $20/month, PA guarantees up to $2,000 per accident with unlimited claims -- the math strongly favors PA.",
     category: 'objection-handling'
   },
 
@@ -422,22 +422,22 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "A couple is comparing Plan 2 ($365/yr) and Plan 4 ($855/yr). The wife says Plan 4 is too expensive. What value argument should you use?",
+    question: "A couple is comparing Plan 2 ($372/yr) and Plan 4 ($855/yr). The wife says Plan 4 is too expensive. What value argument should you use?",
     options: [
       "Tell her Plan 2 is good enough and stop pushing Plan 4",
       "Offer a discount on Plan 4",
-      "Explain that the jump from Plan 2 to Plan 4 costs about $1.35 more per day but increases dismemberment coverage to $2.25M -- 3.8x the price of Plan 1 for 7.5x the coverage",
+      "Explain that the jump from Plan 2 to Plan 4 costs about $1.33 more per day but triples dismemberment coverage to $2.25M -- about 2.3x the price of Plan 2 for 3x the coverage",
       "Tell her Plan 4 is cheaper than Plan 2 in the long run"
     ],
     correct: 2,
-    explanation: "Frame the cost difference in daily terms ($1.35/day more) while emphasizing the disproportionate coverage increase. The 3.8x price for 7.5x coverage ratio is the key value argument.",
+    explanation: "Frame the cost difference in daily terms ($1.33/day more) while emphasizing the disproportionate coverage increase. The 2.3x price for 3x coverage ratio is the key value argument.",
     category: 'roleplay'
   },
 
   {
-    question: "An elderly client's daughter asks: 'My 75-year-old father falls frequently. Can he still get coverage and is the application process complicated?' What is the best response?",
+    question: "An elderly client's daughter asks: 'My 68-year-old father falls frequently. Can he still get coverage and is the application process complicated?' What is the best response?",
     options: [
-      "'At 75, the premiums would be prohibitively expensive.'",
+      "'At 68, the premiums would be prohibitively expensive.'",
       "'Your father is too old for personal accident coverage.'",
       "'He should rely on government healthcare subsidies instead.'",
       "'AIA Solitaire PA covers him up to age 80 -- perfect for fall risk. No medical checkup needed, just SingPass verification. This protects his savings from outpatient costs like X-rays, physiotherapy, and fracture treatment.'"
@@ -451,12 +451,12 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
     question: "A young professional says: 'I cycle to work daily and play soccer on weekends. Last month I spent $2,500 on a knee injury that my hospital plan did not cover.' How should you respond?",
     options: [
       "'Your hospital plan should have covered that -- you should file a complaint.'",
-      "'Hospital plans only cover inpatient stays. Your $2,500 outpatient treatment would have been fully covered under Feature 6, which pays up to $5,000 per accident. Cycling and soccer injuries are covered. All this from just 62 cents a day.'",
+      "'Hospital plans only cover inpatient stays. Your $2,500 outpatient treatment would have been fully covered under Feature 6, which pays up to $5,000 per accident. Cycling and soccer injuries are covered. All this from about $1 a day on Plan 2.'",
       "'You should stop cycling and playing soccer to avoid injuries.'",
       "'PA coverage would not have helped with a knee injury.'"
     ],
     correct: 1,
-    explanation: "Use the client's real experience to demonstrate the exact gap. Their $2,500 is well within the $5,000 per-accident limit. Recreational sports are covered, and the daily cost framing makes it an easy decision.",
+    explanation: "Use the client's real experience to demonstrate the exact gap. Their $2,500 is within the $3,000 Plan 2 per-accident limit. Recreational sports are covered, and the daily cost framing makes it an easy decision.",
     category: 'roleplay'
   },
 

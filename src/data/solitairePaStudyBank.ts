@@ -203,7 +203,7 @@ export const solitairePaStudyBank: StudyQuestion[] = [
 
   // Q15 -- correct: 1
   {
-    question: "What is the renewal bonus percentage per claim-free year on Features 1-5?",
+    question: "What is the renewal bonus percentage per renewal on Features 1-5?",
     options: [
       "3% per year",
       "5% per year",
@@ -211,7 +211,7 @@ export const solitairePaStudyBank: StudyQuestion[] = [
       "7% per year"
     ],
     correct: 1,
-    explanation: "The renewal bonus increases Features 1-5 by 5% per year for each claim-free year, up to a maximum of 6 years.",
+    explanation: "The renewal bonus increases Features 1-5 by 5% at each renewal, up to a maximum of 6 renewals (30%). It resets only after a claim under Feature 4 (Accidental Dismemberment and Burns).",
     category: 'product-facts'
   },
 
@@ -309,7 +309,7 @@ export const solitairePaStudyBank: StudyQuestion[] = [
       "$2.00 per day"
     ],
     correct: 1,
-    explanation: "Plan 2 at $365/year costs about $1 per day, or approximately $30/month.",
+    explanation: "Plan 2 at S$371.82/year costs about $1 per day, or approximately $31/month.",
     category: 'product-facts'
   },
 
@@ -845,7 +845,7 @@ export const solitairePaStudyBank: StudyQuestion[] = [
       "About $1 per day"
     ],
     correct: 3,
-    explanation: "Plan 2 at $365/year costs about $1 per day. Advisors should frame it as 'about $1 a day' to make it feel accessible.",
+    explanation: "Plan 2 at S$371.82/year costs about $1 per day. Advisors should frame it as 'about $1 a day' to make it feel accessible.",
     category: 'sales-angles'
   },
 
@@ -1390,7 +1390,7 @@ export const solitairePaStudyBank: StudyQuestion[] = [
     question: "A client says: 'I prefer to self-insure by setting aside money each month.' How should you respond?",
     options: [
       "'That is a better strategy than insurance.'",
-      "'Self-insuring costs more. Setting aside $70/month for accident expenses means your savings are at risk. For $20/month, PA gives you up to $5,000 per accident with unlimited claims.'",
+      "'Self-insuring costs more. Setting aside $70/month for accident expenses means your savings are at risk. For $20/month, PA gives you up to $2,000 per accident with unlimited claims.'",
       "'You cannot self-insure for accidents.'",
       "'Self-insurance is the same as having PA coverage.'"
     ],
@@ -1505,13 +1505,13 @@ export const solitairePaStudyBank: StudyQuestion[] = [
   {
     question: "A couple is deciding between Plan 2 and Plan 4. The husband says: 'Plan 4 is almost triple the price of Plan 2.' How should you respond?",
     options: [
-      "'It is only 3.8 times the price but gives you 7.5 times the coverage. For an extra $1.35 per day over Plan 2, you get $2.25 million in dismemberment coverage instead of a lower amount. Look at the value, not just the price.'",
+      "'It is only about 2.3 times the price but gives you 3 times the coverage. For an extra $1.33 per day over Plan 2, you get $2.25 million in dismemberment coverage instead of a lower amount. Look at the value, not just the price.'",
       "'If you cannot afford Plan 4, just go with Plan 2.'",
       "'Plan 2 and Plan 4 have the same coverage.'",
       "'Plan 4 is too expensive for most people.'"
     ],
     correct: 0,
-    explanation: "Use the value argument: 3.8x the price for 7.5x the coverage. Frame the price difference in daily terms to make it feel manageable.",
+    explanation: "Use the value argument: about 2.3x the price for 3x the coverage. Frame the price difference in daily terms to make it feel manageable.",
     category: 'roleplay'
   },
 
@@ -1577,7 +1577,7 @@ export const solitairePaStudyBank: StudyQuestion[] = [
     options: [
       "'Just cover yourself, the breadwinner.'",
       "'Children do not need PA coverage.'",
-      "'Absolutely. Children are the most accident-prone, and your spouse also needs coverage. At $20/month per person, covering your family of five would cost about $100/month -- and everyone gets up to $5,000 per accident with unlimited claims.'",
+      "'Absolutely. Children are the most accident-prone, and your spouse also needs coverage. At $20/month per person, covering your family of five would cost about $100/month -- and everyone gets up to $2,000 per accident with unlimited claims.'",
       "'Family plans are not available for PA.'"
     ],
     correct: 2,
@@ -1671,10 +1671,10 @@ export const solitairePaStudyBank: StudyQuestion[] = [
 
   // Q119 -- correct: 0
   {
-    question: "An elderly client's adult child asks: 'My mother is 72. Can she still get coverage, and is it worth it at her age?' What is the best response?",
+    question: "An elderly client's adult child asks: 'My mother is 68. Can she still get coverage, and is it worth it at her age?' What is the best response?",
     options: [
       "'Yes, AIA Solitaire PA covers her up to age 80. At her age, fall risks increase significantly. A hip fracture or wrist injury could mean expensive outpatient treatment. No medical checkup is needed to apply -- just SingPass verification.'",
-      "'At 72, insurance premiums would be too expensive.'",
+      "'At 68, insurance premiums would be too expensive.'",
       "'She is too old for any personal accident plan.'",
       "'She should rely on government subsidies instead.'"
     ],
@@ -1790,12 +1790,12 @@ export const solitairePaStudyBank: StudyQuestion[] = [
     question: "What happens to Solitaire PA (II) cover at the renewal following the insured's 75th birthday?",
     options: [
       "Nothing changes; coverage continues at full strength",
-      "Basic benefit insured amounts reduce by 50%; optional benefits terminate",
+      "Basic benefit insured amounts reduce by 50% (check the current AIA product summary for the optional benefits)",
       "The policy converts to a whole-life plan",
       "Premiums are waived"
     ],
     correct: 1,
-    explanation: "Per PS p.3 and PS p.14, at the renewal following the 75th birthday the basic benefit insured amounts reduce by 50% and the optional benefits terminate. The policy itself terminates at age 80.",
+    explanation: "Per PS p.3 and PS p.14, at the renewal following the 75th birthday the basic benefit insured amounts reduce by 50% (check the current AIA product summary for when the optional benefits end). The policy itself terminates at age 80.",
     category: 'compliance'
   },
 

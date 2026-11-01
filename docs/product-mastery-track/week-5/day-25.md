@@ -344,9 +344,9 @@ A common elderly-parent claim scenario:
 |---|---|---|
 | MediShield Life (existing) | ~$1,000 | C / B2 ward, limited caps |
 | **AIA HSG B + rider for parent** | ~$1,300 | Up to A ward, rider reduces co-pay from 10% to 5% capped at $6K/yr (deductible still applies) |
-| **AIA Solitaire PA Plan 2 for parent** | ~$200-400 | Accident reimbursement up to $5K/event |
+| **AIA Solitaire PA Plan 2 for parent** | ~$372-560 | Accident reimbursement up to $3K/event |
 
-Total upgrade cost: ~$1,500-1,700/yr per parent. For two parents: ~$3,000-3,400/yr.
+Total upgrade cost: ~$1,670-1,860/yr per parent. For two parents: ~$3,340-3,720/yr.
 
 For a working adult earning $80K+/yr, this is a small fraction of income that translates to dramatically reduced family financial exposure on parental medical events.
 

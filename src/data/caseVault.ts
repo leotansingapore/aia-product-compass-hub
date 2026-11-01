@@ -652,7 +652,7 @@ export const CASES: CaseEntry[] = [
     play: "Coverage upgrade",
     anchor: "Plan tier upgrade",
     headline:
-      "$10/mo more → 2.5× cover for death/disability/dismemberment + more reimbursement",
+      "$12/mo more → 2.5× cover for death/disability/dismemberment + more reimbursement",
     tags: ["spa", "upsell", "plan-tiers"],
     drawings: ["Accident vs hospital coverage scope"],
     sourcePath: sourcePath("SPA", "case-s2--the-plan-1-vs-plan-2-upsell"),
@@ -666,7 +666,7 @@ export const CASES: CaseEntry[] = [
     play: "Coverage upgrade",
     anchor: "Multi-generational accident cover",
     headline:
-      "$400+/yr accident plan for both parents — covers fall-related injuries MediShield doesn't",
+      "$740+/yr accident plan for both parents — covers fall-related injuries MediShield doesn't",
     tags: ["parents", "multi-generational", "accident"],
     drawings: ["Accident vs hospital coverage scope"],
     sourcePath: sourcePath(

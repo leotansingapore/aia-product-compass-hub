@@ -261,8 +261,8 @@ Most clients believe their existing protection covers accident outcomes. It does
 | Plan | Annual premium (Class 1-2) | Major Dismemberment cover | Daily cost framing |
 |---|---|---|---|
 | **Plan 1** | ~$224 | $300K | ~$0.62/day |
-| **Plan 2** | ~$396 | $750K | ~$1.09/day |
-| **Plan 3** | ~$613 | $1.5M | ~$1.68/day |
+| **Plan 2** | ~$372 | $750K | ~$1.02/day |
+| **Plan 3** | ~$596 | $1.5M | ~$1.63/day |
 | **Plan 4** | ~$856 | $2.25M | ~$2.34/day |
 
 The daily-cost reframe is the close. *"Plan 4 is $2.34 a day - less than half a kopi-O at the kopitiam - for $2.25 million in cover and unlimited outpatient claims."*

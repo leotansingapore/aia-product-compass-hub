@@ -17,7 +17,7 @@ Part 1 covers the numbers. Part 2 covers the top 5 client questions.
 
 # Part 1 — The Numbers: 4 Plans × 8 Benefits + Optional Riders
 
-4 plans, 8 basic benefits per plan, 3 optional benefit groups. Premium tables vary by age band, occupation class, and payment frequency. Basic benefit insured amounts reduce 50% at age 75 and the policy terminates at 80. Optional benefits terminate at 75.
+4 plans, 8 basic benefits per plan, 3 optional benefit groups. Premium tables vary by age band, occupation class, and payment frequency. Basic benefit insured amounts reduce 50% at age 75 and the policy terminates at 80. For when the optional benefits end, check the current AIA product summary.
 
 By the end of Part 1 you should be able to recite the full basic-benefit insured amount table cold, walk through the optional benefits, deploy the Renewal Bonus mechanics, and quote the Broken Bones Schedule highlights.
 
@@ -127,7 +127,7 @@ The trade-off: claim Benefit 4 → lose all accumulated renewal bonus. Most clie
 
 ## Coverage reduction at 75 + termination at 80
 
-> *"From your 75th birthday renewal date, the basic-benefit insured amounts reduce by 50%. Optional benefits stop entirely. The policy itself terminates at age 80."* [PS p.3, p.14]
+> *"From your 75th birthday renewal date, the basic-benefit insured amounts reduce by 50%. The policy itself terminates at age 80."* [PS p.3, p.14] For the optional benefits, check the current AIA product summary for when they end.
 
 This is a critical disclosure — Day 5 covers in detail.
 
@@ -164,7 +164,7 @@ Mention only if asked. The cost is justified by the per-accident reimbursement w
 | 8 | Renewal Bonus forfeiture | Claim under Benefit 4 |
 | 9 | Schedule of Indemnity aggregate cap | 125% per accident |
 | 10 | Coverage reduction at 75 | -50% basic benefits |
-| 11 | Optional benefits termination | Age 75 |
+| 11 | Optional benefits termination | Check the current AIA product summary |
 | 12 | Policy termination | Age 80 |
 | 13 | Issue age | 16-70 |
 | 14 | Class 3-4 loading | ~75% above Class 1-2 |
@@ -232,7 +232,7 @@ If you have real claim screenshots, show them. Range S$14.50 to S$156 [Video 10]
 
 ## Bonus question — "What happens at age 75?"
 
-**A:** Basic benefits insured amounts reduce by 50%. Optional benefits terminate. Policy itself terminates at age 80.
+**A:** Basic benefits insured amounts reduce by 50%. For the optional benefits, check the current AIA product summary. Policy itself terminates at age 80.
 
 > *"Get the cover now while you're young — it's at full strength until 75. After that it steps down. After 80 it's gone."* [PS p.3, p.14]
 
@@ -318,11 +318,11 @@ But if they push:
 
 9. **According to the Day 3 disclosures, what happens to coverage at age 75 and at age 80?**
 - A) Coverage doubles at 75 and is reinstated at 80
-- B) Basic benefits insured amounts reduce by 50% from the 75th-birthday renewal, optional benefits terminate at 75, and the policy itself terminates at age 80 ✓
+- B) Basic benefits insured amounts reduce by 50% from the 75th-birthday renewal and the policy itself terminates at age 80 (check the current AIA product summary for when optional benefits end) ✓
 - C) Coverage reduces by 25% at 75 and 50% at 80
 - D) Optional benefits continue lifetime; only basic benefits step down
 
-**Why:** Per Product Summary p.3 and p.14, basic benefits halve from the 75th-birthday renewal, optional benefits terminate at 75, and the policy ends at 80.
+**Why:** Per Product Summary p.3 and p.14, basic benefits halve from the 75th-birthday renewal and the policy ends at 80. Check the current AIA product summary for when the optional benefits end.
 
 10. **Scenario: a client tells the FC, "I almost never go to a doctor — accident insurance feels useless." Based on Day 3 Q1, which response best uses frequency rather than probability?**
 - A) "Statistically only 5% of people claim PA each year"

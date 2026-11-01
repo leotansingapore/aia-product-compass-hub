@@ -290,7 +290,7 @@ A 5-10 month income runway for a death or CI claim is structurally not retiremen
 | **AIA Pro Achiever (APA) wealth** | $4,800 | Long-term wealth build |
 | **Ultimate Critical Cover (UCC)** | $1,800 | $300K CI / ECI multi-claim |
 | **HealthShield Gold Max (HSGM)** | $1,900 | Private hospital plan |
-| **Solitaire PA (SPA)** | $224 | $5K/accident reimbursement + accidental DD |
+| **Solitaire PA (SPA)** | $224 | $2K/accident reimbursement + accidental DD |
 | **Singapore Family Term (SFT)** | $1,700 | $1M Death / TPD term |
 | **Total premium** | **$10,424/yr** | |
 
