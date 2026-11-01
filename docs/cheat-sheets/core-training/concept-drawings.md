@@ -97,7 +97,7 @@ No growth after 65         |  Continues to grow
 
 ## The Bonuses vs Charges reframe (draw, then close)
 
-**APA bonus structure** ($12K/yr premium): Y1 15%, Y2 18%, Y3 20% = $6,360 upfront. Then **5% (check the current AIA product summary for the start year), 8% from Y21** as loyalty bonuses.
+**APA bonus structure** ($12K/yr premium): Y1 15%, Y2 18%, Y3 20% = $6,360 upfront. Then **5% from Y11, 8% from Y21** as loyalty bonuses.
 
 **The killer question:** *"Which bonus do you think is bigger - the $6,360 upfront, or the $600-$960/year forever?"* Walk the math: over 30+ years the loyalty bonuses dwarf the welcome bonus, and they pass to the next generation if the policy is inherited.
 
@@ -132,7 +132,7 @@ The inheritance risk point is the one that lands: *"If something happens to you,
 - **Retirement target reveal:** $3K today -> ~$10K/month at 65 -> **$2.4M corpus**
 - **Solution reveal:** $5K/month saving -> ~$1K/month investing (5x reduction)
 - **APA welcome bonuses:** Y1 15%, Y2 18%, Y3 20% on a $12K/yr plan
-- **APA loyalty:** 5% (check the current AIA product summary for the start year), 8% from Y21
+- **APA loyalty:** 5% from Y11, 8% from Y21
 - **PWV welcome:** 3% / 4% / 5% in Y1-3 per $100K tranche
 - **PWV loyalty:** 0.4% of policy value from Y8, perpetual
 - **CPF RA growth:** 4% until 65, **0% after 65**

@@ -55,7 +55,7 @@ The drawings below are the ones that close cases consistently across hundreds of
 
    !Hand-drawn AIA-vs-S&P-500 structural advantages list: no dividend tax, no estate tax, no FX risk, secondary insured, capital-guaranteed floor, multi-fund stewardship
 
-8. **The Welcome + Loyalty bonus stack** — 15% / 18% / 20% over Y1-3, then 5% to Y20 (check the current AIA product summary for the start year), 8% Y21+ — with the absolute dollar totals ($18K, $23K type receipts) circled at the bottom
+8. **The Welcome + Loyalty bonus stack** — 15% / 18% / 20% over Y1-3, then 5% Y11-20, 8% Y21+ — with the absolute dollar totals ($18K, $23K type receipts) circled at the bottom
 
    !Hand-drawn Welcome + Loyalty bonus stack: 15%/18%/20% Y1–3 then 5% Y10–20, 8% Y21+, with the dollar receipts circled at the bottom
 
@@ -684,17 +684,17 @@ For a $12,000/year premium (illustrative — verify exact tier in iPOS):
 
 (Verify exact %s in iPOS for the prospect's specific premium tier and IIP length — the Welcome Bonus table varies.)
 
-#### The Special Bonus (5%, then 8% from Year 21 onwards)
+#### The Special Bonus (Year 11 and Year 21 onwards)
 
 After the Welcome Bonus, the loyalty bonuses kick in:
 
-> *"Then every single year, AIA gives you a 5% Special Bonus on your annualised premium (check the current AIA product summary for the start year). And from Year 21 onwards, that steps up to 8% per year — for the rest of the policy."*
+> *"Then from Year 11 onwards, every single year, AIA gives you a 5% Special Bonus on your annualised premium. And from Year 21 onwards, that steps up to 8% per year — for the rest of the policy."*
 
 #### The "make a guess" close
 
 This is the move that lands the bonus structure emotionally:
 
-> *"Quick question — which do you think adds up to more over a lifetime: the $6,360 Welcome Bonus in the first 3 years, or the $600-ish per year that keeps paying once the Special Bonus starts (check the current AIA product summary for the start year)?"*
+> *"Quick question — which do you think adds up to more over a lifetime: the $6,360 Welcome Bonus in the first 3 years, or the $600-ish per year that keeps paying from Year 11 onwards?"*
 
 Let them guess. Most pick the $6,360 because it's the bigger upfront number. Then reveal:
 

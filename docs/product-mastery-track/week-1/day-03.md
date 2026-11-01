@@ -25,7 +25,7 @@ The frame: APA is *deliberately* structured to look bad in years 1-10 and great 
 
 ### Q1: Why is APA structured to look bad in years 1-10 and great from year 11 onward?
 
-**A:** Because the bonus stack is engineered to reward long-hold behaviour. Charges are front-loaded (3.9% supplementary for the first 10 years), bonuses are back-loaded (Welcome Bonus Y1-Y3, then Special Bonus 5% (check the current AIA product summary for the start year), then 8% from Y21). The plan deliberately makes early exit expensive — that's how AIA can afford to give a 53% Welcome Bonus + perpetual 5/8% Special Bonus to disciplined holders.
+**A:** Because the bonus stack is engineered to reward long-hold behaviour. Charges are front-loaded (3.9% supplementary for the first 10 years), bonuses are back-loaded (Welcome Bonus Y1-Y3, then Special Bonus 5% from Y11, then 8% from Y21). The plan deliberately makes early exit expensive — that's how AIA can afford to give a 53% Welcome Bonus + perpetual 5/8% Special Bonus to disciplined holders.
 
 The honest framing for the prospect (don't get defensive about the early-years charge — lead with it):
 
@@ -54,11 +54,11 @@ If a prospect surfaces a sub-10-year worry, don't walk — reframe: this is the 
 
 ---
 
-### Q3: How does the Special Bonus pay out?
+### Q3: How does the Special Bonus pay out from Year 11 onwards?
 
 **A:** It's a loyalty bonus calculated on **annualised regular premium** (not policy value — this is the most-missed detail):
 
-- **5% per year up to Year 20** (on a 10-yr IIP; check the current AIA product summary for the start year)
+- **5% per year from Year 11-20** (on a 10-yr IIP)
 - **8% per year from Year 21 onwards**
 - Perpetual for the rest of the policy as long as the premium is paid
 
@@ -66,7 +66,7 @@ The script that prevents the most common confusion:
 
 > *"5% of your annualized premium, not 5% of the account value. Please take note, there's a difference."*
 
-Most prospects assume "5%" means 5% of their pot. It doesn't — it means 5% of their *annual premium*, added to the pot. On a $12K/year premium that's an extra $600/year once the Special Bonus starts. Forever.
+Most prospects assume "5%" means 5% of their pot. It doesn't — it means 5% of their *annual premium*, added to the pot. On a $12K/year premium that's an extra $600/year from Year 11 onward. Forever.
 
 ---
 
@@ -83,7 +83,7 @@ Most prospects assume "5%" means 5% of their pot. It doesn't — it means 5% of 
 
 The disclosure that builds trust is to surface the charge yourself, before the prospect probes it:
 
-> *"One thing I want to flag up front — there's a 3.9% supplementary charge for the first 10 years. After year 10 it goes to zero, but you'd feel it in the early years. The trade-off is on the other side of the same wall: a Welcome Bonus in Y1-Y3, then 5% Special Bonus (check the current AIA product summary for the start year), then 8% from Y21. Front-loaded charges, perpetual bonuses. I'd rather you hear that from me than spot it in the contract later."*
+> *"One thing I want to flag up front — there's a 3.9% supplementary charge for the first 10 years. After year 10 it goes to zero, but you'd feel it in the early years. The trade-off is on the other side of the same wall: a Welcome Bonus in Y1-Y3, then 5% Special Bonus from Y11, then 8% from Y21. Front-loaded charges, perpetual bonuses. I'd rather you hear that from me than spot it in the contract later."*
 
 Naming the cost yourself flips the prospect's read of you from "selling" to "explaining."
 
@@ -216,7 +216,7 @@ In the first 2 policy years, accidental death pays an additional 100% of total r
 | --- | --------------------------------------------------------------- | -------------------------------------------------------- |
 | 1   | Supplementary charge                                            | 3.9% p.a., first 10 yrs only                             |
 | 2   | Welcome bonus range                                             | 5% to 75% over years 1–3                                 |
-| 3   | Special bonus to year 20 (start year: see AIA product summary)  | 5% of annualized premium / yr                            |
+| 3   | Special bonus year 11+  | 5% of annualized premium / yr                            |
 | 4   | Special bonus year 21+                                          | 8% of annualized premium / yr                            |
 | 5   | Min annual premium                                              | $2,400 ($200/mo)                                         |
 | 6   | Min top-up                                                      | $1,000                                                   |
@@ -256,7 +256,7 @@ Memorise the pattern, then memorise the 5 answers.
 
 Cushion, then walk the three things a DIY route doesn't give them, then trial close:
 
-> *"That's a totally fair question — it's the first one I'd ask too. Three things APA gives you that a direct unit trust doesn't. One, the welcome bonus in years 1–3. Two, the perpetual 5% / 8% special bonus (check the current AIA product summary for the start year). Three, a capital-guaranteed death benefit that pays your beneficiary at least everything you put in, even if the market is down 50% the day before.*
+> *"That's a totally fair question — it's the first one I'd ask too. Three things APA gives you that a direct unit trust doesn't. One, the welcome bonus in years 1–3. Two, the perpetual 5% / 8% special bonus from year 11. Three, a capital-guaranteed death benefit that pays your beneficiary at least everything you put in, even if the market is down 50% the day before.*
 >
 > *Direct funds give you the investment. APA gives you a wrapper that adds on top of it — and someone (me) to keep an eye on it with you over the years. Does that distinction make sense, or is there a piece you'd want me to dig into more?"*
 
@@ -430,11 +430,11 @@ The five answers above handle *curious* prospects. If a prospect asks:
 - C) Year 21 ✓
 - D) Year 30
 
-**Why:** 5% per year first (check the current AIA product summary for the start year), then 8% per year from year 21 onward — perpetual while premiums are paid.
+**Why:** 5% per year from year 11 onward, then 8% per year from year 21 onward — perpetual while premiums are paid.
 
 3. **The "structural inversion" of APA refers to what?**
 - A) Charges increase over time, bonuses decrease
-- B) Charges run years 1–10, bonuses (5%, then 8% from year 21) are perpetual ✓
+- B) Charges run years 1–10, bonuses (5%/8%) are perpetual from year 11/21 ✓
 - C) The plan loses money for the first 30 years
 - D) Bonuses are taken back at maturity
 

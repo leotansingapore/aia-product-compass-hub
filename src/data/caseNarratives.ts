@@ -55,7 +55,7 @@ Two structural flaws sit invisible under the bundle.
 
 ### The reframe
 
-Whole-life is doing two jobs at once — life cover and cash accumulation. The trade-off is that the cash side is forced to be conservative and the cover side is bundled, so neither piece can be optimised. The cleaner answer is to split the two jobs. A low-cost pure term policy for the cover (cheaper per dollar of cover, doesn't erode when claimed), and APA for the accumulation slot (Welcome Bonus stack in Y1-3, Special Bonus (check the current AIA product summary for the start year), 0% supplementary from Y11, 100% premium allocation working on the wealth side).
+Whole-life is doing two jobs at once — life cover and cash accumulation. The trade-off is that the cash side is forced to be conservative and the cover side is bundled, so neither piece can be optimised. The cleaner answer is to split the two jobs. A low-cost pure term policy for the cover (cheaper per dollar of cover, doesn't erode when claimed), and APA for the accumulation slot (Welcome Bonus stack in Y1-3, Special Bonus from Y11, 0% supplementary from Y11, 100% premium allocation working on the wealth side).
 
 ### The numbers, side by side
 
@@ -111,7 +111,7 @@ TDC keeps growing for the entire life of the policy — even after premium payme
 
 ### The reframe
 
-Don't argue FWD down. The prospect cross-shopped because they're price-sensitive — so attacking the company makes you sound desperate. Walk them through their own illustration's TDC line at year 40. Then walk them through APA's cost curve — high early (Y1-10), zero from Y11, with Welcome Bonus tier 1 of 15/18/20% in Y1-3 and Special Bonus 5% then 8% from Y21 (check the current AIA product summary for the start year). Same prospect tier, opposite shape. Their deductions never stop. Ours stop at Y11 and start crediting.
+Don't argue FWD down. The prospect cross-shopped because they're price-sensitive — so attacking the company makes you sound desperate. Walk them through their own illustration's TDC line at year 40. Then walk them through APA's cost curve — high early (Y1-10), zero from Y11, with Welcome Bonus tier 1 of 15/18/20% in Y1-3 and Special Bonus 5% from Y11, then 8% from Y21. Same prospect tier, opposite shape. Their deductions never stop. Ours stop at Y11 and start crediting.
 
 ### The numbers, side by side
 
@@ -308,7 +308,7 @@ If the FC doesn't surface the tier curve, the prospect anchors at $600 and the c
 
 ### The reframe
 
-This prospect doesn't need the "wealth building" story — they understand it. They need the *tier-stack math* exposed. The Welcome Bonus stack is contractually paid in Y1-3 regardless of market performance — it's a guaranteed kicker. Add the Special Bonus (5% then 8% of annualised premium per year; check the current AIA product summary for the start year) and the 0% supplementary from Y11. The bonus structure is doing two things a DIY ETF can't replicate at this premium level: loading the front, and removing the recurring drag from the back.
+This prospect doesn't need the "wealth building" story — they understand it. They need the *tier-stack math* exposed. The Welcome Bonus stack is contractually paid in Y1-3 regardless of market performance — it's a guaranteed kicker. Add the Special Bonus from Y11 (5% then 8% of annualised premium per year) and the 0% supplementary from Y11. The bonus structure is doing two things a DIY ETF can't replicate at this premium level: loading the front, and removing the recurring drag from the back.
 
 ### The numbers, side by side
 
@@ -327,7 +327,7 @@ Premium-to-value multiple at 65 is ~2.0× — much lower than younger-prospect c
 
 > *"At your premium level — $1,200 a month — you hit the top Welcome Bonus tier. Year 1 you get 15% bonus on your premium. Year 2: 18%. Year 3: 20%. Across Year 1-3, the bonus stack is 53% of your annual premium — that's $7,632 of bonus added on top of $43,200 of premium you've paid in. It's like a 17% kicker in the first three years before compounding even starts.*
 >
-> *Then from Year 11 onwards, the supplementary charge cliffs to zero, and the Special Bonus kicks in at 5% of annualised premium per year (check the current AIA product summary for the start year) — going to 8% from year 21 — credited every year you keep paying. The structure is doing two things you can't replicate with a DIY ETF: it's loading the front with bonuses, and removing the recurring drag from the back.*
+> *Then from Year 11 onwards, the supplementary charge cliffs to zero, and the Special Bonus kicks in at 5% of annualised premium per year — going to 8% from year 21 — credited every year you keep paying. The structure is doing two things you can't replicate with a DIY ETF: it's loading the front with bonuses, and removing the recurring drag from the back.*
 >
 > *At 65, on the 8% projection, continuous-pay $1,200 a month across 20 years projects to $549,836."*
 
@@ -337,7 +337,7 @@ $1,200/mo APA on continuous-pay to 65. Welcome Bonus tier 1 locked in. The legac
 
 ### The lesson for any FC
 
-The mid-career peak-earner case is *not* won on raw ROI — the 20-year window is too short. It's won on structural certainty: the Welcome Bonus stack, the 0% supplementary cliff, the Special Bonus (check the current AIA product summary for the start year), the secondary-insured for legacy. Bring the tier curve out explicitly. Most prospects at $200K+ household income can stretch to the $12K+ annualised tier — they just need to see the bonus differential to justify it. Show the curve.
+The mid-career peak-earner case is *not* won on raw ROI — the 20-year window is too short. It's won on structural certainty: the Welcome Bonus stack, the 0% supplementary cliff, the Special Bonus from Y11, the secondary-insured for legacy. Bring the tier curve out explicitly. Most prospects at $200K+ household income can stretch to the $12K+ annualised tier — they just need to see the bonus differential to justify it. Show the curve.
 `,
 
   "apa-f": `
@@ -364,7 +364,7 @@ Same money, two different tools, two different jobs. The pitch is *not* "switch 
 
 The structural argument is about cost curve, not cost level. DIY platforms charge 0.4-0.6% AUM fee. That's fair for what they do — fund execution and rebalancing on the trading-account side. But that 0.4-0.6% applies forever, every year, on the entire balance. On a $1M retirement pot at 65, that's $4,000-$6,000/year in fee drag, perpetually.
 
-APA's cost curve is the opposite. 3.9% supplementary in Y1-10, then 0% from Y11. Welcome Bonus tier 1 at the $1,000/mo level ($12,000/yr): 15% + 18% + 20% across Y1-3 = $6,360 in guaranteed bonus credits. The Special Bonus credits 5% then 8% (from Y21) of annualised premium every year premium is paid (check the current AIA product summary for the year the 5% starts).
+APA's cost curve is the opposite. 3.9% supplementary in Y1-10, then 0% from Y11. Welcome Bonus tier 1 at the $1,000/mo level ($12,000/yr): 15% + 18% + 20% across Y1-3 = $6,360 in guaranteed bonus credits. From Y11 onwards the Special Bonus credits 5% then 8% (from Y21) of annualised premium every year premium is paid.
 
 Front-loaded charge, back-loaded bonuses. Different cost curve, different job.
 
@@ -390,7 +390,7 @@ That's the retirement layer. The Endowus portfolio keeps doing the trading-accou
 >
 > *Endowus charges 0.4-0.6% AUM fee. That's fair for what it does. But that 0.4-0.6% applies forever, every year, on the entire balance. On a $1M retirement pot at 65, that's $4,000-$6,000 a year in fee drag, perpetually.*
 >
-> *APA's structure is the opposite. 3.9% supplementary charge in the first 10 years, then it cliffs to zero from year 11. At $1,000 a month, you hit the top Welcome Bonus tier — 15% / 18% / 20% across Y1-3 = $6,360 of bonus credits in the first three years. Then the Special Bonus credits 5% of your annualised premium every year (check the current AIA product summary for the start year), going to 8% from year 21.*
+> *APA's structure is the opposite. 3.9% supplementary charge in the first 10 years, then it cliffs to zero from year 11. At $1,000 a month, you hit the top Welcome Bonus tier — 15% / 18% / 20% across Y1-3 = $6,360 of bonus credits in the first three years. From year 11 onwards the Special Bonus credits 5% of your annualised premium every year, going to 8% from year 21.*
 >
 > *Different cost curve. Front-loaded charge, back-loaded bonuses. On $1,000 a month continuous to 65 — $408K total in — the engine projects $1,595,164 at 65. Your Endowus portfolio keeps doing its job. This is the second engine running alongside it."*
 
@@ -458,7 +458,7 @@ Plus a cash-flow advantage: after Year 10, the APA client can stop paying throug
 >
 > *At 65, APA's 8% projection on $180K paid in projects $1,692,753. That's $385,881 more than FWD on the exact same money in. And you stop paying after 10 years. FWD makes you pay for 25.*
 >
-> *The reason: APA cliffs the supplementary charge to zero from year 11, FWD never does. APA gives you a 15-18-20% Welcome Bonus stack in years 1-3, FWD doesn't. APA gives you a 5%-then-8% Special Bonus (check the current AIA product summary for the start year), FWD doesn't. The structure is different — and the math at 65 reflects it."*
+> *The reason: APA cliffs the supplementary charge to zero from year 11, FWD never does. APA gives you a 15-18-20% Welcome Bonus stack in years 1-3, FWD doesn't. APA gives you a 5%-then-8% Special Bonus from year 11 onwards, FWD doesn't. The structure is different — and the math at 65 reflects it."*
 
 ### What closed
 
@@ -585,7 +585,7 @@ From Leo's real Tokio Marine case: **AIA $5M vs Tokio $3.8M long-term = $1.2M ga
 >
 > *The reason: Tokio's fees never stop deducting. There's a 1.3% FMC inside the fund, a 1% advisory fee on top of that, and a 1.2% ongoing charge perpetually. As your account value grows, those percentages turn into bigger and bigger dollar amounts. At $3M of account value, 3.5% of perpetual fees is $105,000 per year — forever.*
 >
-> *AIA's curve is opposite. 3.9% supplementary in Y1-10, then 0% from Y11. The Special Bonus actually credits 5% then 8% of your annualised premium every year (check the current AIA product summary for the start year). The longer you hold, the less you pay in fees — and the more bonus you accrue.*
+> *AIA's curve is opposite. 3.9% supplementary in Y1-10, then 0% from Y11. The Special Bonus actually credits 5% then 8% of your annualised premium every year from Y11 onwards. The longer you hold, the less you pay in fees — and the more bonus you accrue.*
 >
 > *And Tokio locks you in for 30 years. If you surrender before then, the surrender charge eats your principal. APA's surrender cliffs to 0% from Year 11. If your life situation changes, APA gives you the flexibility. Tokio doesn't."*
 

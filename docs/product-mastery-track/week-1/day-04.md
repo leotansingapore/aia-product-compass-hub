@@ -124,7 +124,7 @@ The trial close at the end lets the prospect tell you whether the service piece 
 >
 > *Year 11: the supplementary charge goes to zero. Permanently.*
 >
-> *The bonuses — 5% (check the current AIA product summary for the start year), 8% from year 21 — keep paying for the life of the plan.*
+> *The bonuses — 5% from year 11, 8% from year 21 — keep paying for the life of the plan.*
 >
 > *At $12k/year premium, by roughly year 34 the cumulative bonuses pass the cumulative charges. From there on, the net economics flip in your favour. At the minimum $2.4k/year premium, that crossover sits closer to year 40."*
 
@@ -315,7 +315,7 @@ When the prospect is offered a dividend-paying competitor plan that pays out fro
 
 When the prospect questions the 3.9% supplementary charge in Y1-10, give them the dollar receipt for the offset:
 
-> *"Let me show you what offsets the supplementary charge. At your $1,000/mo premium tier, the Welcome Bonus across Y1-3 is 15% + 18% + 20% on annualised premium — that's $6,360 of bonus credited in the first three years alone. Then the Special Bonus credits 5% per year (check the current AIA product summary for the start year), going to 8% from Y21 — every year you keep paying premium. Over a 25-30 year hold, that totals around $18,000 - $23,000 of bonus stack.*
+> *"Let me show you what offsets the supplementary charge. At your $1,000/mo premium tier, the Welcome Bonus across Y1-3 is 15% + 18% + 20% on annualised premium — that's $6,360 of bonus credited in the first three years alone. Then from Y11 onwards the Special Bonus credits 5% per year, going to 8% from Y21 — every year you keep paying premium. Over a 25-30 year hold, that totals around $18,000 - $23,000 of bonus stack.*
 >
 > *That's the structural offset to the supplementary charge. The fee curve isn't 'high then zero' — it's 'high in Y1-10, then zero from Y11, and meanwhile bonus credits accumulate the whole way.' Net effective fee over the policy life is materially lower than competitors who have a 'low then perpetual' curve."*
 
@@ -376,7 +376,7 @@ Have the Investing Success & Track Record deck open (slide 4: 10-year fund perfo
 
 **The reframe:**
 
-> *"You're right that the supplementary charge runs at 3.9% for the first 10 years — and only the first 10 years. After Year 10 it drops to 0%. The trade-off is what AIA layers on top: a Welcome Bonus in the first 3 years, a Special Bonus (check the current AIA product summary for the start year), and a bigger one from Year 21. Over the long run the bonuses more than compensate for the charge — that's the whole reason the plan is structured this way.*
+> *"You're right that the supplementary charge runs at 3.9% for the first 10 years — and only the first 10 years. After Year 10 it drops to 0%. The trade-off is what AIA layers on top: a Welcome Bonus in the first 3 years, a Special Bonus from Year 11 onwards, and a bigger one from Year 21. Over the long run the bonuses more than compensate for the charge — that's the whole reason the plan is structured this way.*
 >
 > *If you compare APA against a DIY platform with a 1% perpetual platform fee at the same 8% IIRR, APA actually pulls ahead from policy year 17 onwards because of how those bonuses compound. By year 30, APA is roughly $130K ahead on a $12K-a-year premium."*
 
@@ -392,7 +392,7 @@ Refer the prospect to the APA-vs-DIY year-17 crossover table in the Investing Su
 >
 > *AIA makes its money when you break the rules of the plan. When you withdraw early, surrender, pause — that's when AIA collects. If you withdraw $1,000 in year 3, AIA can take back up to 85% of that on the surrender side because that's how the charge structure works.*
 >
-> *So my view is — yes, you CAN do all of that, but why would you want to? Why would you actively hand AIA the money you put in to make a return on? Just pay the premium guai guai. The Special Bonus kicks in at 5% per year (check the current AIA product summary for the start year). After 20 years it's 8% per year. The plan is actually very low cost — only people who break the rules so-called 'lose money'."*
+> *So my view is — yes, you CAN do all of that, but why would you want to? Why would you actively hand AIA the money you put in to make a return on? Just pay the premium guai guai. After 10 years the Special Bonus kicks in at 5% per year. After 20 years it's 8% per year. The plan is actually very low cost — only people who break the rules so-called 'lose money'."*
 
 The discipline frame: every withdrawal is AIA earning money on you. Frame it that way and most prospects stop probing for the exit clause.
 

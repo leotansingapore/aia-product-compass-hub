@@ -30,7 +30,7 @@ For the deep per-competitor product breakdowns, refer to the **[APA Competitor A
 
 Across virtually every alternative the prospect will compare APA against — competitor ILPs (FWD Invest Plus, Manulife Invest Ready, GE GREAT Wealth Advantage, Prudential PRUSelectVantage), participating plans (PRUWealth, GE GREAT Wealth Multiplier), and DIY platforms (iFAST, Endowus, StashAway, Tiger Brokers, IBKR) — **the same pattern repeats**:
 
-> **Competitors have lower headline charges in the early years, but they keep charging in some form for the entire life of the policy.** APA's curve is the opposite: higher charges in the first 10 years, then **0% supplementary charge from Year 11 onwards** — plus the Welcome Bonus stack in Y1-Y3 and the perpetual Special Bonus (check the current AIA product summary for the start year) that no DIY platform or competitor ILP replicates.
+> **Competitors have lower headline charges in the early years, but they keep charging in some form for the entire life of the policy.** APA's curve is the opposite: higher charges in the first 10 years, then **0% supplementary charge from Year 11 onwards** — plus the Welcome Bonus stack in Y1-Y3 and the Special Bonus from Y11 onward that no DIY platform or competitor ILP replicates.
 
 That's the structural insight. Once a prospect sees the curve, the "fees are too high" objection collapses on its own.
 
@@ -52,7 +52,7 @@ In fact, you can illustrate the above point using our presenter here: **[present
 |---|---|
 | **Long-term supplementary charge** | APA: 0% from Y11. Most competitors keep charging in some form for the lifetime of the policy. |
 | **Welcome Bonus stack** | APA: 5-75% across Y1-Y3 (53% at $12K+ premium / 10-yr IIP). DIY platforms have no equivalent; competitor ILP Welcome Bonuses run roughly 1/3 to 1/5 of APA's at the same tier. |
-| **Special Bonus loyalty stack** | APA: 5% (check the current AIA product summary for the start year), 8% from Y21, perpetual. Competitor ILPs and DIY platforms have no equivalent. |
+| **Special Bonus loyalty stack** | APA: 5% from Y11, 8% from Y21, perpetual. Competitor ILPs and DIY platforms have no equivalent. |
 | **Surrender flexibility from Year 11** | APA: 0% surrender / withdrawal charge from Y11. Manulife-style products often keep meaningful penalties for 15-19+ years. |
 | **Death benefit floor** | APA: 100% of premiums paid is contractually guaranteed (capital-guaranteed floor). DIY platforms have no equivalent; competitor ILPs vary. |
 | **Secondary insured (legacy continuity)** | APA: spouse inherits a managed policy, not cash. Almost no other product has this feature. |
@@ -66,7 +66,7 @@ If a prospect is already doing DIY, the move isn't "switch from DIY to APA." It'
 
 The structural reasons DIY can't replace APA for the retirement-portfolio job:
 - DIY platforms don't have the Welcome Bonus stack ($6,360+ over Y1-Y3 on a $12K premium)
-- No perpetual Special Bonus
+- No perpetual Special Bonus from Year 11
 - No secondary insured feature (spouse inherits cash to figure out, not a managed policy)
 - US-listed ETFs carry US estate tax and dividend withholding that APA structurally avoids by being SGD-domiciled
 
