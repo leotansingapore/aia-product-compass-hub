@@ -124,7 +124,7 @@ By the end of Part 2 you should be able to: name all 8 phases in order, deploy t
 ```
 Phase 1     Phase 2              Phase 3       Phase 4         Phase 5        Phase 6       Phase 7         Phase 8
 Open    →   First-Line-Defence → Pain      →   Value-Stack →   Price-Anchor → Reveal    →   Demo Diff   →   Two-Option Close
-            (4-pillar question)  (real bills) (limit / 13mo)  (let them guess)
+            (4-pillar question)  (real bills) (S$2M / 13mo)   (let them guess)
 ```
 
 | Phase | Time | Micro-commit |
@@ -139,7 +139,7 @@ Open    →   First-Line-Defence → Pain      →   Value-Stack →   Price-Anc
 | 8. Two-option close | 3 min | Plan A or Plan B picked |
 | **Total** | **~28 min** | **8+ small yeses** |
 
-Phase 4 annual limit: check the current AIA product summary for the exact figure.
+Phase 4 annual limit: S$2M is the AIA Partner Facility limit; it is S$1.35M at an Extended Partner Facility and S$1M elsewhere.
 
 ## Phase 3 — Establishing pain (the script)
 

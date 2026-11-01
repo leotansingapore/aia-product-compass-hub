@@ -78,7 +78,7 @@ Be straight about who the plan doesn't suit — cushion first, then the honest d
 
 | # | Number | What it means |
 |---|---|---|
-| 1 | **Annual limit** (check the current AIA product summary for the exact limit) | Annual policy-year claim limit, HSG Max A [Brochure p.12] |
+| 1 | **S$1,000,000 to S$2,000,000** | Annual policy-year claim limit, HSG Max A: S$1M, S$1.35M at an Extended Partner Facility, S$2M at an AIA Partner Facility [Brochure p.12] |
 | 2 | **13 months** | Pre-hospitalisation window AND post-hospitalisation window (HSG Max A with preferred provider) [Brochure p.10] |
 | 3 | **75 (next birthday)** | Last entry age. Coverage period: **lifetime** [Brochure p.12] |
 | 4 | **+55.8%** | Singapore medical inflation 2004 to 2024 [Brochure p.1] |
@@ -99,7 +99,7 @@ Reflect and bridge:
 
 Three things, in order:
 
-1. **It closes the ward-class gap.** MediShield Life subsidises B2/C-class only; HSGM Max A removes pro-ration on private bills and pays up to its annual limit (check the current AIA product summary for the exact limit).
+1. **It closes the ward-class gap.** MediShield Life subsidises B2/C-class only; HSGM Max A removes pro-ration on private bills and pays up to S$1 million a year (S$1.35 million at an Extended Partner Facility, S$2 million at an AIA Partner Facility).
 2. **It pays the hospital, not the client.** Lifetime, unlimited claims, no premium loading because you claimed.
 3. **It's portable for life.** Employer medical disappears with the job. HSGM follows the person, not the payroll.
 
@@ -151,7 +151,7 @@ Stack the headline values WITHOUT revealing price. Then ask the prospect to gues
 
 ```
 Stacked value:
-  Annual claim limit (check the current AIA product summary for the exact limit)
+  S$2,000,000 annual claim limit (at an AIA Partner Facility; S$1,000,000 otherwise)
 + 13 months pre/post wraparound
 + Unlimited claims for life (resets every year)
 + No premium change after a claim
@@ -161,7 +161,7 @@ Stacked value:
 
 Then:
 
-> *"For a plan that covers up to [its annual limit, check the current AIA product summary for the exact figure], includes 13 months before and after, with unlimited claims that reset every year — how much do you think such a plan would cost per month?"*
+> *"For a plan that covers up to S$2 million a year at an AIA Partner Facility, includes 13 months before and after, with unlimited claims that reset every year — how much do you think such a plan would cost per month?"*
 
 Let them guess. Most prospects anchor at **S$150–S$300/month**.
 
@@ -238,7 +238,7 @@ The script for cancer-history prospects:
 - C) S$2,000,000 ✓
 - D) Unlimited
 
-**Why:** HSG Max A pays up to S$2 million per policy year. Whether the full S$2 million applies only at some facilities (for example an AIA Partner Facility) is something to check in the current AIA product summary [Brochure p.12].
+**Why:** HSG Max A pays up to S$2 million per policy year at an AIA Partner Facility. The limit is S$1.35 million at an Extended Partner Facility and S$1 million elsewhere [Brochure p.12].
 
 6. **The pre- and post-hospitalisation window on HSG Max A with an AIA preferred provider is:**
 - A) 100 days each side
@@ -266,7 +266,7 @@ The script for cancer-history prospects:
 
 9. **In the value-stack-before-price move, what is the FC supposed to do BEFORE revealing the actual premium?**
 - A) State the price first to anchor low
-- B) Stack the headline values (annual limit / 13 months / unlimited / no premium change / Cancer Care Pro) and ask the prospect to guess the price ✓
+- B) Stack the headline values (up to S$2M / 13 months / unlimited / no premium change / Cancer Care Pro) and ask the prospect to guess the price ✓
 - C) Show the IPOS quote immediately
 - D) Compare premiums against three competitors
 

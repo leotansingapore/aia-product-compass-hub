@@ -116,7 +116,7 @@ This number does the conviction work for "why pre-auth matters."
 
 ## Pro-ration (why MediShield Life alone fails for private)
 
-Under MediShield Life alone, a private-hospital bill is pro-rated to a fraction of the bill (check the current AIA product summary for the exact rates) before MediShield Life pays anything (sized for B2/C). HSGM A removes pro-ration for private bills (factor 100%). [Brochure p.8 + p.14]
+Under MediShield Life alone, a private-hospital bill is pro-rated to **16%** of ward charges and **10%** of surgical charges (Singapore Citizens) before MediShield Life pays anything (sized for B2/C). HSGM A removes pro-ration for private bills (factor 100%). [Brochure p.8 + p.14]
 
 | Plan | Pro-ration |
 |---|---|
@@ -143,8 +143,8 @@ Optional add-on to AIA Max VitalHealth Pro A:
 
 | Item | HSG Max A | HSG Max B | HSG Max B Lite |
 |---|---|---|---|
-| Annual claim limit (at an AIA Partner Facility) | Check the current AIA product summary for the exact limit | S$1,200,000 | S$300,000 |
-| Annual claim limit (otherwise) | Check the current AIA product summary for the exact limit | S$1,000,000 | S$300,000 |
+| Annual claim limit (at an AIA Partner Facility) | S$2,000,000 | S$1,200,000 | S$300,000 |
+| Annual claim limit (otherwise) | S$1,000,000 (S$1,350,000 at an Extended Partner Facility) | S$1,000,000 | S$300,000 |
 | Pre/post window (with preferred provider) | 13 months / 13 months | 12 months / 12 months (public); 100 days each (private) | 100 days each |
 | Extra cover for 30 critical illnesses | S$100,000 | S$75,000 | S$50,000 (per policy year) |
 | Living donor organ transplant | S$60,000 | S$40,000 | S$20,000 (per organ) |
@@ -159,7 +159,7 @@ Optional add-on to AIA Max VitalHealth Pro A:
 
 | # | Item | Value |
 |---|---|---|
-| 1 | Annual limit HSG A | Check the current AIA product summary for the exact limit |
+| 1 | Annual limit HSG A | S$1,000,000 (S$1,350,000 at an Extended Partner Facility, S$2,000,000 at an AIA Partner Facility) |
 | 2 | Pre/post window | 13 months each (HSG A + preferred) |
 | 3 | Lifetime claim cap | Unlimited (HSG A + B) |
 | 4 | A-class / private deductible | S$3,500 |

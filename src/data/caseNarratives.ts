@@ -1603,7 +1603,7 @@ A prospect's mother quoted **GE P-Optimum private hospital rider at $300+/yr** v
 | Pre-authorisation | **Recently suspended** (claim delays) | Active and routine |
 | Coverage limits | Multiple sub-limits per category | Higher per-condition limits |
 | 13-month pre/post coverage (AIA Preferred Provider) | Limited | Yes |
-| Claim limit per year | Capped lower | Check the current AIA product summary for the exact limit |
+| Claim limit per year | Capped lower | $1M private hospital, up to $2M at an AIA Partner Facility |
 | Hospital network | Selected | Full panel, including premier private |
 | Doctor ratings | N/A | Rated #1 by 200+ Singapore doctors (latest poll) |
 
@@ -1625,7 +1625,7 @@ Cheaper headline price doesn't mean better coverage. On a hospital plan for some
 
 > *"GE P-Optimum is cheaper on the brochure — about $300 a year vs $800-1,100 for AIA's equivalent. But pull up the actual policy summary and you'll see GE has multiple sub-limits per claim category, and they recently suspended pre-authorisation — meaning you can't get treatment pre-approved before going in. That's a real exposure for anyone with elective procedures.*
 >
-> *AIA's HSGM with the Vitalcare A rider gives you up to [its annual limit, check the current AIA product summary for the exact figure] of private hospital coverage per year, active pre-authorisation, 13 months of cover before and after each event with an AIA Preferred Provider, and access to the full premier private panel. Plus, the plan was rated #1 by over 200 Singapore doctors in the latest poll.*
+> *AIA's HSGM with the Vitalcare A rider gives you up to $1M of private hospital coverage per year ($2M at an AIA Partner Facility), active pre-authorisation, 13 months of cover before and after each event with an AIA Preferred Provider, and access to the full premier private panel. Plus, the plan was rated #1 by over 200 Singapore doctors in the latest poll.*
 >
 > *The price difference is $500-700/year. For a mother who'll likely use the plan within the next 10-15 years, that's structurally well worth the upgrade — and arguing the lower-cost plan would only save money if you never claim, which is the opposite of why you bought the plan."*
 

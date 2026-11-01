@@ -15,7 +15,7 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
       "$2 million covering Class B1 wards only"
     ],
     correct: 0,
-    explanation: "Plan A is the top-tier option, paying up to $2 million a policy year for private hospital stays on an as-charged basis, meaning there are no sub-limits on individual items up to the annual cap. Whether the full $2 million applies only at some facilities (for example an AIA Partner Facility), check the current AIA product summary.",
+    explanation: "Plan A is the top-tier option, paying up to $2 million a policy year for private hospital stays on an as-charged basis, meaning there are no sub-limits on individual items up to the annual cap. The $2 million applies at an AIA Partner Facility; the limit is $1.35 million at an Extended Partner Facility and $1 million elsewhere.",
     category: 'product-facts'
   },
 
@@ -201,7 +201,7 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
       "Agent commission rates, claim settlement time, customer reviews, and branch count"
     ],
     correct: 1,
-    explanation: "The four key comparison points are: annual limit (Plan A: check the current AIA product summary for the exact figure), lifetime limit (unlimited), AQHP panel (over 600 vetted specialists per April 2026 brochure), and pre/post-hospitalisation (Plan A 13 months -- longest in market). Cite: Brochure p.5, p.10, p.12.",
+    explanation: "The four key comparison points are: annual limit (Plan A up to S$2M at an AIA Partner Facility), lifetime limit (unlimited), AQHP panel (over 600 vetted specialists per April 2026 brochure), and pre/post-hospitalisation (Plan A 13 months -- longest in market). Cite: Brochure p.5, p.10, p.12.",
     category: 'sales-angles'
   },
 
@@ -279,7 +279,7 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
       "Show that the Plan A upgrade costs only about $60-80/month more than Plan B for private hospital access"
     ],
     correct: 3,
-    explanation: "Framing the Plan A upgrade as about $60-80/month more (with riders, ages 21-40) for private hospital access, with each plan's annual limit taken from the current AIA product summary, makes it feel like an affordable step-up rather than a major expense.",
+    explanation: "Framing the Plan A upgrade as about $60-80/month more (with riders, ages 21-40) for private hospital access and a higher limit at an AIA Partner Facility ($2M vs $1.2M) makes it feel like an affordable step-up rather than a major expense.",
     category: 'sales-angles'
   },
 

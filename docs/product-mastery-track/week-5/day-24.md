@@ -241,7 +241,7 @@ For health-conscious prospects, this is a real reason to enrol Vitality at deliv
 - C) Smoker loading
 - D) Cash-only premiums
 
-**Why:** MediShield Life is sized for B2 and C-class. A private-hospital bill is pro-rated to a fraction of the bill before MediShield Life pays anything (check the current AIA product summary for the exact rates); HSGM A removes pro-ration (factor 100%).
+**Why:** MediShield Life is sized for B2 and C-class. A private-hospital bill is pro-rated to 16% of ward charges and 10% of surgical charges for Singapore Citizens before MediShield Life pays anything; HSGM A removes pro-ration (factor 100%).
 
 2. **The strongest reason to layer HSGM under existing employer/corporate medical is:**
 - A) The corporate plan has higher premiums

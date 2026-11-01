@@ -30,7 +30,7 @@ An Integrated Shield Plan (IP) issued by AIA, layered on top of compulsory MediS
 | Structure | Integrated Shield Plan (IP) on top of MediShield Life |
 | Plan tiers | **Max A** (private hospital) / **Max B** (A-class public) / **Max B Lite** (B1-class public) |
 | Last entry age | 75 next birthday; coverage period **lifetime** |
-| Annual claim limit (Max A) | Check the current AIA product summary for the exact limit |
+| Annual claim limit (Max A) | **S$1,000,000**; S$1,350,000 at an Extended Partner Facility; **S$2,000,000** at an AIA Partner Facility |
 | Pre/post-hospitalisation window (Max A + preferred) | **13 months each side**, 100 days otherwise (competitors typically cap at 180 days pre, 365 days post) |
 | Deductible (A-class / private) | **S$3,500** |
 | Co-insurance without rider | 10% above deductible (uncapped) |
@@ -58,7 +58,7 @@ The travel-package analogy for the 13-month wraparound:
 
 Value-stack before price (the conversion):
 
-> *"[Annual limit, check the current AIA product summary for the exact figure], 13 months pre/post, unlimited claims for life, no premium loading because you claimed, Cancer Care Pro lifting CDL coverage 16-fold. How much do you think such a plan would cost per month?"*
+> *"Up to $2 million a year at an AIA Partner Facility, 13 months pre/post, unlimited claims for life, no premium loading because you claimed, Cancer Care Pro lifting CDL coverage 16-fold. How much do you think such a plan would cost per month?"*
 
 Let them guess (most anchor at S$150-S$300). Then reveal:
 
@@ -90,7 +90,7 @@ Let them guess (most anchor at S$150-S$300). Then reveal:
 ## Numbers worth memorising
 
 1. **Singapore medical inflation 2004-2024: +55.8%** [Brochure p.1]
-2. Max A annual claim limit: check the current AIA product summary for the exact limit
+2. Max A annual claim limit: **S$1,000,000** (S$1,350,000 at an Extended Partner Facility, **S$2,000,000** at an AIA Partner Facility)
 3. Pre/post window (Max A + preferred): **13 months each side**
 4. Deductible (A-class / private): **S$3,500**
 5. Co-insurance with Pro A rider: **5% capped at S$6,000/year** (preferred OR pre-auth OR A&E)

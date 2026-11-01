@@ -71,7 +71,7 @@ Product names get renamed and rebranded faster than the brochures get updated, s
 
 ### MEDICAL
 **Integrated Shield Plan — AIA HealthShield Gold Max** (four tiers):
-- **Plan A** — private hospitals, annual limit (check the current AIA product summary for the exact limit)
+- **Plan A** — private hospitals, S$1M annual limit (S$1.35M at an Extended Partner Facility, S$2M at an AIA Partner Facility)
 - **Plan B** — restructured hospitals Ward A1
 - **Plan B Lite** — restructured Ward B1, S$300k limit
 - **Standard Plan** — MOH-standardised, S$200k limit

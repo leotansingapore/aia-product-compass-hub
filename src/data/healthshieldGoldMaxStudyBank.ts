@@ -21,7 +21,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "$500,000"
     ],
     correct: 2,
-    explanation: "Plan A pays up to $2 million a policy year, covering private hospital stays on an as-charged basis. Whether the full $2 million applies only at some facilities (for example an AIA Partner Facility), check the current AIA product summary.",
+    explanation: "Plan A pays up to $2 million a policy year, covering private hospital stays on an as-charged basis. The $2 million applies at an AIA Partner Facility; the limit is $1.35 million at an Extended Partner Facility and $1 million elsewhere.",
     category: 'product-facts'
   },
 
@@ -781,7 +781,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "Prudential has a longer pre-hospitalisation window than AIA"
     ],
     correct: 0,
-    explanation: "AIA Plan A covers 13 months of pre- and post-hospitalisation treatment with an AIA Preferred Provider, against 180 days before and 365 days after on Prudential PRUShield Premier (MOH comparison of private-hospital IPs, Jun 2026). On annual limits, check the current AIA product summary; Prudential lists S$1,200,000 (up to S$2,000,000 via its panel).",
+    explanation: "AIA Plan A covers 13 months of pre- and post-hospitalisation treatment with an AIA Preferred Provider, against 180 days before and 365 days after on Prudential PRUShield Premier (MOH comparison of private-hospital IPs, Jun 2026). On annual limits, AIA Plan A pays S$1,000,000 (S$2,000,000 at an AIA Partner Facility); Prudential lists S$1,200,000 (up to S$2,000,000 via its panel).",
     category: 'sales-angles'
   },
 
@@ -823,7 +823,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "Agent commission, claim settlement time, customer reviews, branch count"
     ],
     correct: 1,
-    explanation: "The four AIA value-stack comparison points: annual limits (Plan A: check the current AIA product summary for the exact figure), lifetime limits (unlimited), AQHP panel (over 600 specialists), and pre/post-hospitalisation (Plan A 13 months — longest in market). Cite: Brochure p.5, p.10, p.12.",
+    explanation: "The four AIA value-stack comparison points: annual limits (Plan A up to S$2M at an AIA Partner Facility), lifetime limits (unlimited), AQHP panel (over 600 specialists), and pre/post-hospitalisation (Plan A 13 months — longest in market). Cite: Brochure p.5, p.10, p.12.",
     category: 'sales-angles'
   },
 
@@ -893,7 +893,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "Suggest they skip the rider to reduce costs"
     ],
     correct: 0,
-    explanation: "Framing the Plan A upgrade as about $60-80/month more than Plan B (with riders, ages 21-40) for private hospital access makes it feel like an affordable upgrade. For each plan's annual limit, check the current AIA product summary.",
+    explanation: "Framing the Plan A upgrade as about $60-80/month more than Plan B (with riders, ages 21-40) for private hospital access makes it feel like an affordable upgrade. Plan A also pays up to $2M a year at an AIA Partner Facility, against $1.2M on Plan B.",
     category: 'sales-angles'
   },
 
@@ -949,7 +949,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "NTUC Income offers lower premiums for the same coverage"
     ],
     correct: 0,
-    explanation: "AIA's 13-month pre- and post-hospitalisation window beats Enhanced IncomeShield Preferred's 180 days before and 365 days after (100 days off panel), which matters for long follow-up treatment. Both plans have unlimited lifetime limits; Income lists a S$1,500,000 annual limit, and for AIA's check the current AIA product summary (MOH comparison of private-hospital IPs, Jun 2026).",
+    explanation: "AIA's 13-month pre- and post-hospitalisation window beats Enhanced IncomeShield Preferred's 180 days before and 365 days after (100 days off panel), which matters for long follow-up treatment. Both plans have unlimited lifetime limits; Income lists a S$1,500,000 annual limit, against AIA's S$1,000,000 (S$2,000,000 at an AIA Partner Facility) (MOH comparison of private-hospital IPs, Jun 2026).",
     category: 'sales-angles'
   },
 
@@ -1033,7 +1033,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "AIA premiums are actually the lowest in the market"
     ],
     correct: 2,
-    explanation: "Redirect from price to value — the annual limit (check the current AIA product summary for the exact figure), unlimited lifetime, 600+ AQHP specialists (Brochure p.5), and 13-month pre/post coverage justify any premium difference.",
+    explanation: "Redirect from price to value — up to $2M a year at an AIA Partner Facility, unlimited lifetime, 600+ AQHP specialists (Brochure p.5), and 13-month pre/post coverage justify any premium difference.",
     category: 'sales-angles'
   },
 
@@ -1229,11 +1229,11 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     options: [
       "Discourage comparison and push for immediate close",
       "Say competitors are unreliable",
-      "Encourage the comparison and provide a side-by-side: AIA's annual limit (check the current AIA product summary for the exact figure), unlimited lifetime, over 600 AQHP specialists, and 13-month pre/post vs their specific limits — let the numbers speak",
+      "Encourage the comparison and provide a side-by-side: AIA's annual limit (up to S$2M at an AIA Partner Facility), unlimited lifetime, over 600 AQHP specialists, and 13-month pre/post vs their specific limits — let the numbers speak",
       "Offer a deeper discount to prevent comparison"
     ],
     correct: 2,
-    explanation: "Welcoming comparison signals confidence. Use the four-point value stack (annual limit, check the current AIA product summary for the exact figure / unlimited lifetime / over 600 AQHP / 13 months pre/post) directly from the April 2026 brochure. Cite: Brochure p.5, p.10, p.12.",
+    explanation: "Welcoming comparison signals confidence. Use the four-point value stack (up to S$2M annual at an AIA Partner Facility / unlimited lifetime / over 600 AQHP / 13 months pre/post) directly from the April 2026 brochure. Cite: Brochure p.5, p.10, p.12.",
     category: 'objection-handling'
   },
 
