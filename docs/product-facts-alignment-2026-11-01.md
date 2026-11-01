@@ -12,7 +12,7 @@ How to read the paths:
 
 ## The in-app quizzes read the database, not the bank files
 
-The study page loads its questions from the live table `question_bank_questions` (`src/hooks/useQuestionBank.tsx:36`), not from the `src/data/*StudyBank.ts` and `src/data/*ExamQuestions.ts` files changed here. Those rows were seeded once from these files by `scripts/seed-question-bank.ts`. Learners keep seeing the old questions and answers until the rows are updated. `scripts/update-question-bank-product-facts.mjs` does that (section 5); it has not been run.
+The study page loads its questions from the live table `question_bank_questions` (`src/hooks/useQuestionBank.tsx:36`), not from the `src/data/*StudyBank.ts` and `src/data/*ExamQuestions.ts` files changed here. Those rows were seeded once from these files by `scripts/seed-question-bank.ts`. Learners keep seeing the old questions and answers until the rows are updated. `scripts/update-question-bank-product-facts.mjs` does that with the live-row edits in `scripts/quiz-live-fixes-2026-11-01.json` (section 5). It has not been applied.
 
 ## 1. Change list
 
@@ -453,24 +453,26 @@ Seed claims the Presenter says nothing about, so there is no SQL for them; they 
 
 Also stale outside the sync: `tools/seed-concept-cards.ts` skips cards that already exist, so the live "GPP vs UCC comparison" concept card keeps its old text.
 
-## 5. Live database updates Leo approved (prepared, not run)
+## 5. Live database updates Leo approved (prepared, not applied)
 
-Run these after the knowledge re-sync, in this order. Nothing here has been run, including the dry run.
+Run these after the knowledge re-sync, in this order. Only the quiz dry run has been run; it only reads.
 
 1. **Quiz rows, `scripts/update-question-bank-product-facts.mjs`.**
-   - It changes the 188 questions listed in `scripts/question-bank-product-facts-2026-11-01.json`: every study-bank and exam question that differs between d2b8ec41 (before these commits) and f8a90153.
-   - By bank, the counts are: Platinum Wealth Venture 39 study / 14 exam, HealthShield Gold Max 23 / 7, Ultimate Critical Cover 30 / 10, Pro Achiever 13 / 5, Guaranteed Protect Plus 13 / 8, Pro Lifetime Protector 10 / 2, Solitaire PA 8 / 6.
-   - Changed fields: explanation 159, options 124, question 68, answer key 4.
-   - **Matching:** a live row is updated only if it has the same `product_slug` and `bank_type` and still holds the old question, options, `correct_answer` and explanation exactly. The UPDATE repeats that guard.
-     - Rows already holding the new text are skipped.
-     - Anything else is printed as UNMATCHED, with the nearest row and the fields that differ.
-     - Identical duplicate rows are all updated.
-     - Ids are kept, so learner progress still points at its questions.
+   - **Why not the repo text:** the live rows were edited directly between 2026-06-30 and 2026-07-03 (options reshuffled, explanations rewritten). A first dry run that matched rows on the repo's pre-correction text matched 0 of 188.
+   - **Leo's pick:** carry each fact correction into the row's current wording and keep the June/July edits.
+   - **Change file:** `scripts/quiz-live-fixes-2026-11-01.json`. Each row holds:
+     - its id, field, live old value, new value, reason and Presenter source;
+     - the full live snapshot read on 2026-11-01.
+   - **Readable list:** `docs/quiz-live-fixes-2026-11-01.md`.
+   - **Scope:** 133 live rows to change, of which 56 are extra rows that carried the same wrong fact.
+     - 67 of the corrected repo questions already state the right fact in the live wording.
+     - 44 have no live row, mostly on `sort_order` gaps from rows removed in June/July.
+     - 5 changes move `correct_answer`; the readable list names them.
+   - **Guard:** a row is updated only while its question, options, `correct_answer` and explanation all still equal the snapshot. A row edited since then is skipped and reported. Ids are kept, so learner progress still points at its questions.
    - **How it connects:** through the Supabase Management API SQL endpoint, with the token at `~/.local/state/va-watchdog/token` and a browser User-Agent. It never uses the service-role key.
    - **Run:**
-     - `node scripts/update-question-bank-product-facts.mjs --self-test` checks the matcher offline.
-     - `node scripts/update-question-bank-product-facts.mjs --dry-run > /tmp/qb-dry-run.txt` only selects and prints old vs new for every change.
-     - Read the UNMATCHED lines, then run `node scripts/update-question-bank-product-facts.mjs --apply`.
-   - **Expected:** 188 questions update if the live rows still match the bank files at d2b8ec41. Rows edited in the admin since then, or seeded from an older version of the files, show as UNMATCHED. Which ones they are is only known after the dry run.
-   - **Progress note:** for the 4 questions whose answer key changed, a learner's earlier answer keeps its old right or wrong mark.
+     - `node scripts/update-question-bank-product-facts.mjs --self-test` checks the guard and SQL offline.
+     - `node scripts/update-question-bank-product-facts.mjs --dry-run` only reads. On 2026-11-02 it printed: "133 rows in the change file: 133 to update, 0 already updated, 0 edited since the snapshot, 0 missing."
+     - Then `node scripts/update-question-bank-product-facts.mjs --apply`.
+   - **Progress note:** for the 5 rows whose answer key moves, a learner's earlier answer keeps its old right or wrong mark.
 2. **Products and objection rows, `scripts/product-facts-2026-11-01-products.sql`.** This is the section 3 SQL. Run the select first.
