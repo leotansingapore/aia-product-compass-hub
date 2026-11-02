@@ -2377,277 +2377,277 @@ export default {
   },
   "/product/core-platinum-wealth-venture": {
     "title": "Platinum Wealth Venture",
-    "description": "Premium investment solution for high net worth individuals",
+    "description": "AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a 2-year term from S$48,000 a year or a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/activity-tracking-for-cot": {
     "title": "Activity Tracking for COT | Platinum Wealth Venture",
-    "description": "Lesson 54 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 54 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/aff-call-structure-scripts": {
     "title": "AFF Call Structure & Scripts | Platinum Wealth Venture",
-    "description": "Lesson 11 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 11 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/building-the-investment-case": {
     "title": "Building the Investment Case | Platinum Wealth Venture",
-    "description": "Lesson 21 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 21 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/consolidation-case-studies": {
     "title": "Consolidation Case Studies | Platinum Wealth Venture",
-    "description": "Lesson 41 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 41 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/couple-dynamics-the-karen-ng-session": {
     "title": "Couple Dynamics, The Karen Ng Session | Platinum Wealth Venture",
-    "description": "Lesson 51 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 51 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/cpf-life-schemes-decoded": {
     "title": "CPF Life Schemes Decoded | Platinum Wealth Venture",
-    "description": "Lesson 36 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 36 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/cynthias-overview-healthcare-funding-approach": {
     "title": "Cynthia's Overview - Healthcare Funding Approach | Platinum Wealth Venture",
-    "description": "Lesson 2 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 2 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/cynthias-part-1-retirement-funding": {
     "title": "Cynthia's Part 1 - Retirement Funding | Platinum Wealth Venture",
-    "description": "Lesson 3 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 3 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/cynthias-part-2-pain-avoidance-strategy": {
     "title": "Cynthia's Part 2: Pain Avoidance Strategy | Platinum Wealth Venture",
-    "description": "Lesson 4 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 4 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/disc-personality-profiling-for-pre-retirees": {
     "title": "DISC Personality Profiling for Pre-Retirees | Platinum Wealth Venture",
-    "description": "Lesson 9 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 9 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/dividend-performance-competitive-comparison": {
     "title": "Dividend Performance & Competitive Comparison | Platinum Wealth Venture",
-    "description": "Lesson 30 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 30 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/financial-calculator-mastery": {
     "title": "Financial Calculator Mastery | Platinum Wealth Venture",
-    "description": "Lesson 47 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 47 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/gentle-closing-techniques": {
     "title": "Gentle Closing Techniques | Platinum Wealth Venture",
-    "description": "Lesson 22 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 22 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/handling-market-volatility-conversations": {
     "title": "Handling Market Volatility Conversations | Platinum Wealth Venture",
-    "description": "Lesson 32 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 32 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/identifying-redundant-policies": {
     "title": "Identifying Redundant Policies | Platinum Wealth Venture",
-    "description": "Lesson 40 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 40 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/in-meeting-execution": {
     "title": "In-Meeting Execution | Platinum Wealth Venture",
-    "description": "Lesson 23 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 23 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/insurance-trust-vs-nomination": {
     "title": "Insurance Trust vs Nomination | Platinum Wealth Venture",
-    "description": "Lesson 43 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 43 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/lead-categorization-crm": {
     "title": "Lead Categorization & CRM | Platinum Wealth Venture",
-    "description": "Lesson 53 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 53 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/lead-quality-pipeline-management": {
     "title": "Lead Quality & Pipeline Management | Platinum Wealth Venture",
-    "description": "Lesson 12 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 12 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/nlp-techniques-psychological-framing": {
     "title": "NLP Techniques & Psychological Framing | Platinum Wealth Venture",
-    "description": "Lesson 35 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 35 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/overcoming-call-anxiety": {
     "title": "Overcoming Call Anxiety | Platinum Wealth Venture",
-    "description": "Lesson 13 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 13 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/part-1-retirement-funding-calculator": {
     "title": "Part 1: Retirement Funding Calculator | Platinum Wealth Venture",
-    "description": "Lesson 1 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 1 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/phase-1-2-rapport-building-framework-introduction": {
     "title": "Phase 1-2: Rapport Building & Framework Introduction | Platinum Wealth Venture",
-    "description": "Lesson 15 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 15 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/phase-3-the-discovery-deep-dive": {
     "title": "Phase 3: The Discovery Deep Dive | Platinum Wealth Venture",
-    "description": "Lesson 16 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 16 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/phase-4-cpf-education": {
     "title": "Phase 4: CPF Education | Platinum Wealth Venture",
-    "description": "Lesson 17 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 17 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/phase-5-the-gap-analysis": {
     "title": "Phase 5: The Gap Analysis | Platinum Wealth Venture",
-    "description": "Lesson 18 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 18 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/phase-6-7-solution-introduction-meeting-close": {
     "title": "Phase 6-7: Solution Introduction & Meeting Close | Platinum Wealth Venture",
-    "description": "Lesson 19 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 19 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/platinum-wealth-venture-overview": {
     "title": "Platinum Wealth Venture Overview",
-    "description": "Lesson 6 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 6 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/policy-by-policy-review-color-coded": {
     "title": "Policy-by-Policy Review (Color-Coded) | Platinum Wealth Venture",
-    "description": "Lesson 20 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 20 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/post-close-relationship-management": {
     "title": "Post-Close Relationship Management | Platinum Wealth Venture",
-    "description": "Lesson 26 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 26 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/pre-meeting-preparation": {
     "title": "Pre-Meeting Preparation | Platinum Wealth Venture",
-    "description": "Lesson 14 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 14 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/pwv-close-the-thian-boon-meng-conversion": {
     "title": "PWV Close, The Thian Boon Meng Conversion | Platinum Wealth Venture",
-    "description": "Lesson 50 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 50 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/pwv-drawing-concept": {
     "title": "PWV Drawing Concept | Platinum Wealth Venture",
-    "description": "Lesson 5 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 5 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/pwv-opening-the-kyaw-min-htut-case": {
     "title": "PWV Opening, The Kyaw Min Htut Case | Platinum Wealth Venture",
-    "description": "Lesson 48 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 48 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/pwv-pitch-the-jeffrey-foo-deep-dive": {
     "title": "PWV Pitch, The Jeffrey Foo Deep Dive | Platinum Wealth Venture",
-    "description": "Lesson 49 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 49 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/pwv-product-structure-fees": {
     "title": "PWV Product Structure & Fees | Platinum Wealth Venture",
-    "description": "Lesson 29 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 29 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/referral-scripts-timing": {
     "title": "Referral Scripts & Timing | Platinum Wealth Venture",
-    "description": "Lesson 52 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 52 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/saoa-transfer-tactics": {
     "title": "SA/OA Transfer Tactics | Platinum Wealth Venture",
-    "description": "Lesson 37 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 37 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/selling-to-couples-multi-generational": {
     "title": "Selling to Couples & Multi-Generational | Platinum Wealth Venture",
-    "description": "Lesson 28 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 28 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/singpass-portal-walkthrough": {
     "title": "SingPass & Portal Walkthrough | Platinum Wealth Venture",
-    "description": "Lesson 45 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 45 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/srs-tax-strategies": {
     "title": "SRS Tax Strategies | Platinum Wealth Venture",
-    "description": "Lesson 38 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 38 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/team-selling-methodology": {
     "title": "Team Selling Methodology | Platinum Wealth Venture",
-    "description": "Lesson 8 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 8 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/the-4-step-retirement-planning-framework": {
     "title": "The 4-Step Retirement Planning Framework | Platinum Wealth Venture",
-    "description": "Lesson 7 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 7 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/the-7-client-archetypes": {
     "title": "The 7 Client Archetypes | Platinum Wealth Venture",
-    "description": "Lesson 27 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 27 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/the-arq-framework-asking-the-right-questions": {
     "title": "The ARQ Framework: Asking the Right Questions | Platinum Wealth Venture",
-    "description": "Lesson 33 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 33 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/the-cash-flow-transformation": {
     "title": "The Cash Flow Transformation | Platinum Wealth Venture",
-    "description": "Lesson 39 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 39 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/the-consolidated-portfolio-summary": {
     "title": "The Consolidated Portfolio Summary | Platinum Wealth Venture",
-    "description": "Lesson 44 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 44 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/the-form-framework-key-scripts": {
     "title": "The FORM Framework & Key Scripts | Platinum Wealth Venture",
-    "description": "Lesson 34 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 34 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/the-healthcare-cost-angle": {
     "title": "The Healthcare Cost Angle | Platinum Wealth Venture",
-    "description": "Lesson 24 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 24 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/the-policy-audit-door-opener": {
     "title": "The Policy Audit Door Opener | Platinum Wealth Venture",
-    "description": "Lesson 25 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 25 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/the-sales-arc-meeting-flow-overview": {
     "title": "The Sales Arc: Meeting Flow Overview | Platinum Wealth Venture",
-    "description": "Lesson 10 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 10 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/top-10-objections-responses": {
     "title": "Top 10 Objections & Responses | Platinum Wealth Venture",
-    "description": "Lesson 31 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 31 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/whatsapp-follow-up-systems": {
     "title": "WhatsApp Follow-up Systems | Platinum Wealth Venture",
-    "description": "Lesson 46 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 46 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-platinum-wealth-venture/will-lpa-amd-basics": {
     "title": "Will, LPA & AMD Basics | Platinum Wealth Venture",
-    "description": "Lesson 42 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 42 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/core-pro-achiever": {
@@ -4457,277 +4457,277 @@ export default {
   },
   "/product/platinum-wealth-venture": {
     "title": "Platinum Wealth Venture",
-    "description": "Premium investment solution for high net worth individuals",
+    "description": "AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a 2-year term from S$48,000 a year or a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/activity-tracking-for-cot": {
     "title": "Activity Tracking for COT | Platinum Wealth Venture",
-    "description": "Lesson 54 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 54 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/aff-call-structure-scripts": {
     "title": "AFF Call Structure & Scripts | Platinum Wealth Venture",
-    "description": "Lesson 11 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 11 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/building-the-investment-case": {
     "title": "Building the Investment Case | Platinum Wealth Venture",
-    "description": "Lesson 21 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 21 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/consolidation-case-studies": {
     "title": "Consolidation Case Studies | Platinum Wealth Venture",
-    "description": "Lesson 41 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 41 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/couple-dynamics-the-karen-ng-session": {
     "title": "Couple Dynamics, The Karen Ng Session | Platinum Wealth Venture",
-    "description": "Lesson 51 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 51 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/cpf-life-schemes-decoded": {
     "title": "CPF Life Schemes Decoded | Platinum Wealth Venture",
-    "description": "Lesson 36 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 36 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/cynthias-overview-healthcare-funding-approach": {
     "title": "Cynthia's Overview - Healthcare Funding Approach | Platinum Wealth Venture",
-    "description": "Lesson 2 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 2 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/cynthias-part-1-retirement-funding": {
     "title": "Cynthia's Part 1 - Retirement Funding | Platinum Wealth Venture",
-    "description": "Lesson 3 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 3 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/cynthias-part-2-pain-avoidance-strategy": {
     "title": "Cynthia's Part 2: Pain Avoidance Strategy | Platinum Wealth Venture",
-    "description": "Lesson 4 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 4 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/disc-personality-profiling-for-pre-retirees": {
     "title": "DISC Personality Profiling for Pre-Retirees | Platinum Wealth Venture",
-    "description": "Lesson 9 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 9 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/dividend-performance-competitive-comparison": {
     "title": "Dividend Performance & Competitive Comparison | Platinum Wealth Venture",
-    "description": "Lesson 30 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 30 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/financial-calculator-mastery": {
     "title": "Financial Calculator Mastery | Platinum Wealth Venture",
-    "description": "Lesson 47 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 47 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/gentle-closing-techniques": {
     "title": "Gentle Closing Techniques | Platinum Wealth Venture",
-    "description": "Lesson 22 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 22 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/handling-market-volatility-conversations": {
     "title": "Handling Market Volatility Conversations | Platinum Wealth Venture",
-    "description": "Lesson 32 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 32 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/identifying-redundant-policies": {
     "title": "Identifying Redundant Policies | Platinum Wealth Venture",
-    "description": "Lesson 40 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 40 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/in-meeting-execution": {
     "title": "In-Meeting Execution | Platinum Wealth Venture",
-    "description": "Lesson 23 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 23 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/insurance-trust-vs-nomination": {
     "title": "Insurance Trust vs Nomination | Platinum Wealth Venture",
-    "description": "Lesson 43 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 43 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/lead-categorization-crm": {
     "title": "Lead Categorization & CRM | Platinum Wealth Venture",
-    "description": "Lesson 53 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 53 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/lead-quality-pipeline-management": {
     "title": "Lead Quality & Pipeline Management | Platinum Wealth Venture",
-    "description": "Lesson 12 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 12 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/nlp-techniques-psychological-framing": {
     "title": "NLP Techniques & Psychological Framing | Platinum Wealth Venture",
-    "description": "Lesson 35 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 35 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/overcoming-call-anxiety": {
     "title": "Overcoming Call Anxiety | Platinum Wealth Venture",
-    "description": "Lesson 13 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 13 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/part-1-retirement-funding-calculator": {
     "title": "Part 1: Retirement Funding Calculator | Platinum Wealth Venture",
-    "description": "Lesson 1 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 1 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/phase-1-2-rapport-building-framework-introduction": {
     "title": "Phase 1-2: Rapport Building & Framework Introduction | Platinum Wealth Venture",
-    "description": "Lesson 15 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 15 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/phase-3-the-discovery-deep-dive": {
     "title": "Phase 3: The Discovery Deep Dive | Platinum Wealth Venture",
-    "description": "Lesson 16 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 16 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/phase-4-cpf-education": {
     "title": "Phase 4: CPF Education | Platinum Wealth Venture",
-    "description": "Lesson 17 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 17 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/phase-5-the-gap-analysis": {
     "title": "Phase 5: The Gap Analysis | Platinum Wealth Venture",
-    "description": "Lesson 18 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 18 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/phase-6-7-solution-introduction-meeting-close": {
     "title": "Phase 6-7: Solution Introduction & Meeting Close | Platinum Wealth Venture",
-    "description": "Lesson 19 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 19 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/platinum-wealth-venture-overview": {
     "title": "Platinum Wealth Venture Overview",
-    "description": "Lesson 6 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 6 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/policy-by-policy-review-color-coded": {
     "title": "Policy-by-Policy Review (Color-Coded) | Platinum Wealth Venture",
-    "description": "Lesson 20 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 20 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/post-close-relationship-management": {
     "title": "Post-Close Relationship Management | Platinum Wealth Venture",
-    "description": "Lesson 26 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 26 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/pre-meeting-preparation": {
     "title": "Pre-Meeting Preparation | Platinum Wealth Venture",
-    "description": "Lesson 14 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 14 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/pwv-close-the-thian-boon-meng-conversion": {
     "title": "PWV Close, The Thian Boon Meng Conversion | Platinum Wealth Venture",
-    "description": "Lesson 50 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 50 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/pwv-drawing-concept": {
     "title": "PWV Drawing Concept | Platinum Wealth Venture",
-    "description": "Lesson 5 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 5 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/pwv-opening-the-kyaw-min-htut-case": {
     "title": "PWV Opening, The Kyaw Min Htut Case | Platinum Wealth Venture",
-    "description": "Lesson 48 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 48 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/pwv-pitch-the-jeffrey-foo-deep-dive": {
     "title": "PWV Pitch, The Jeffrey Foo Deep Dive | Platinum Wealth Venture",
-    "description": "Lesson 49 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 49 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/pwv-product-structure-fees": {
     "title": "PWV Product Structure & Fees | Platinum Wealth Venture",
-    "description": "Lesson 29 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 29 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/referral-scripts-timing": {
     "title": "Referral Scripts & Timing | Platinum Wealth Venture",
-    "description": "Lesson 52 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 52 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/saoa-transfer-tactics": {
     "title": "SA/OA Transfer Tactics | Platinum Wealth Venture",
-    "description": "Lesson 37 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 37 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/selling-to-couples-multi-generational": {
     "title": "Selling to Couples & Multi-Generational | Platinum Wealth Venture",
-    "description": "Lesson 28 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 28 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/singpass-portal-walkthrough": {
     "title": "SingPass & Portal Walkthrough | Platinum Wealth Venture",
-    "description": "Lesson 45 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 45 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/srs-tax-strategies": {
     "title": "SRS Tax Strategies | Platinum Wealth Venture",
-    "description": "Lesson 38 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 38 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/team-selling-methodology": {
     "title": "Team Selling Methodology | Platinum Wealth Venture",
-    "description": "Lesson 8 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 8 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/the-4-step-retirement-planning-framework": {
     "title": "The 4-Step Retirement Planning Framework | Platinum Wealth Venture",
-    "description": "Lesson 7 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 7 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/the-7-client-archetypes": {
     "title": "The 7 Client Archetypes | Platinum Wealth Venture",
-    "description": "Lesson 27 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 27 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/the-arq-framework-asking-the-right-questions": {
     "title": "The ARQ Framework: Asking the Right Questions | Platinum Wealth Venture",
-    "description": "Lesson 33 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 33 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/the-cash-flow-transformation": {
     "title": "The Cash Flow Transformation | Platinum Wealth Venture",
-    "description": "Lesson 39 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 39 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/the-consolidated-portfolio-summary": {
     "title": "The Consolidated Portfolio Summary | Platinum Wealth Venture",
-    "description": "Lesson 44 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 44 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/the-form-framework-key-scripts": {
     "title": "The FORM Framework & Key Scripts | Platinum Wealth Venture",
-    "description": "Lesson 34 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 34 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/the-healthcare-cost-angle": {
     "title": "The Healthcare Cost Angle | Platinum Wealth Venture",
-    "description": "Lesson 24 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 24 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/the-policy-audit-door-opener": {
     "title": "The Policy Audit Door Opener | Platinum Wealth Venture",
-    "description": "Lesson 25 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 25 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/the-sales-arc-meeting-flow-overview": {
     "title": "The Sales Arc: Meeting Flow Overview | Platinum Wealth Venture",
-    "description": "Lesson 10 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 10 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/top-10-objections-responses": {
     "title": "Top 10 Objections & Responses | Platinum Wealth Venture",
-    "description": "Lesson 31 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 31 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/whatsapp-follow-up-systems": {
     "title": "WhatsApp Follow-up Systems | Platinum Wealth Venture",
-    "description": "Lesson 46 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 46 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/platinum-wealth-venture/will-lpa-amd-basics": {
     "title": "Will, LPA & AMD Basics | Platinum Wealth Venture",
-    "description": "Lesson 42 of 54 in Platinum Wealth Venture. Premium investment solution for high net worth individuals",
+    "description": "Lesson 42 of 54 in Platinum Wealth Venture. AIA Platinum Wealth Venture 3.0: a whole-life investment-linked plan with a 5-year premium term from S$18,000 a year, also offered as a...",
     "card": "product-core-platinum-wealth-venture"
   },
   "/product/premier-disability-cover": {
