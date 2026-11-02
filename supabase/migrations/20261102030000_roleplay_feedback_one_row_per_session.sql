@@ -4,7 +4,8 @@
 -- conflict (23505) on its insert as "already generating"; until this key exists it falls
 -- back to a weaker oldest-row check.
 --
--- NOT APPLIED. Needs Leo's ok before it runs on production.
+-- Applied to production 2026-11-02 with Leo's ok: removed 1 duplicate row (session with two same-minute completed rows
+-- from Aug 2025; both kept in ~/.local/share/compass-backups/), 72 rows left, unique key in place.
 --
 -- A session with two rows already breaks its feedback page (the page reads one row per
 -- session), so keep one per session first: a completed row over any other, then the newest.
