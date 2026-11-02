@@ -1,6 +1,9 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { identifyCaller, denied } from "../_shared/caller-auth.ts";
+import { extractTextFromFile, replaceChunks } from "./chunks.ts";
+
+declare const EdgeRuntime: { waitUntil(work: Promise<unknown>): void };
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -102,22 +105,6 @@ async function embedAndStore(supabase: any, chunks: any[], supabaseUrl: string):
   return embedded;
 }
 
-async function extractTextFromFile(supabase: any, filePath: string, fileType: string): Promise<string> {
-  const { data, error } = await supabase.storage.from("knowledge-files").download(filePath);
-  if (error) throw new Error(`Failed to download file: ${error.message}`);
-  
-  if (["text/plain", "text/markdown", "text/csv"].includes(fileType) || 
-      filePath.endsWith(".txt") || filePath.endsWith(".md") || filePath.endsWith(".csv")) {
-    return await data.text();
-  }
-  try {
-    const text = await data.text();
-    const cleaned = text.replace(/[^\\x20-\\x7E\n\r\t]/g, " ").replace(/\s{3,}/g, "\n\n");
-    if (cleaned.trim().length > 50) return cleaned;
-  } catch { /* fall through */ }
-  return `[Document: ${filePath}] - Binary content, text extraction not available.`;
-}
-
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -153,10 +140,6 @@ serve(async (req) => {
         const trainingVideos = (product.training_videos || []) as any[];
         if (trainingVideos.length === 0) continue;
 
-        // Delete old chunks for this product
-        await supabase.from("knowledge_chunks").delete()
-          .eq("source_type", "training_video").eq("source_id", product.id);
-
         const categoryName = (product as any).categories?.name || "Unknown";
         const allChunks: any[] = [];
 
@@ -180,13 +163,16 @@ serve(async (req) => {
           }
         }
 
-        if (allChunks.length > 0) {
-          const { data: inserted, error: insErr } = await supabase
-            .from("knowledge_chunks").insert(allChunks).select("id, content");
-          if (insErr) { console.error(`Insert failed for ${product.id}:`, insErr.message); continue; }
-          const embedded = await embedAndStore(supabase, inserted, supabaseUrl);
-          totalEmbedded += embedded;
-          totalChunks += allChunks.length;
+        let inserted;
+        try {
+          inserted = await replaceChunks(supabase, { source_type: "training_video", source_id: product.id }, allChunks);
+        } catch (e) {
+          console.error(`Sync failed for ${product.id}, its old chunks are kept:`, e instanceof Error ? e.message : e);
+          continue;
+        }
+        if (inserted.length > 0) {
+          totalEmbedded += await embedAndStore(supabase, inserted, supabaseUrl);
+          totalChunks += inserted.length;
         }
         productsProcessed++;
       }
@@ -220,8 +206,6 @@ serve(async (req) => {
       if (productError || !product) throw new Error(`Product not found: ${product_id}`);
 
       const trainingVideos = (product.training_videos || []) as any[];
-      await supabase.from("knowledge_chunks").delete()
-        .eq("source_type", "training_video").eq("source_id", product_id);
 
       const categoryName = (product as any).categories?.name || "Unknown";
       const allChunks: any[] = [];
@@ -244,15 +228,9 @@ serve(async (req) => {
         }
       }
 
-      if (allChunks.length > 0) {
-        const { error: insErr } = await supabase
-          .from("knowledge_chunks").insert(allChunks);
-        if (insErr) throw new Error(`Failed to insert chunks: ${insErr.message}`);
-        // Fire-and-forget embedding to avoid timeout
-        supabase.functions.invoke("process-knowledge", {
-          body: { action: "reembed_missing" },
-        }).catch(() => {/* fire-and-forget */});
-      }
+      const inserted = await replaceChunks(supabase, { source_type: "training_video", source_id: product_id }, allChunks);
+      // Embed after the response so the embedding calls do not hold it up.
+      if (inserted.length > 0) EdgeRuntime.waitUntil(embedAndStore(supabase, inserted, supabaseUrl));
 
       return new Response(JSON.stringify({ success: true, chunks_created: allChunks.length, chunks_embedded: 0, note: "Embedding running in background" }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -264,8 +242,6 @@ serve(async (req) => {
       const { data: scripts, error: scriptsError } = await supabase
         .from("scripts").select("*").order("sort_order", { ascending: true });
       if (scriptsError) throw new Error(`Failed to fetch scripts: ${scriptsError.message}`);
-
-      await supabase.from("knowledge_chunks").delete().eq("source_type", "script");
 
       const chunks: any[] = [];
       for (const script of scripts || []) {
@@ -284,15 +260,9 @@ serve(async (req) => {
         }
       }
 
-      if (chunks.length > 0) {
-        const { error: insErr } = await supabase
-          .from("knowledge_chunks").insert(chunks);
-        if (insErr) throw new Error(`Failed to insert script chunks: ${insErr.message}`);
-        // Embedding happens asynchronously via reembed_missing to avoid timeout
-        supabase.functions.invoke("process-knowledge", {
-          body: { action: "reembed_missing" },
-        }).catch(() => {/* fire-and-forget */});
-      }
+      const inserted = await replaceChunks(supabase, { source_type: "script" }, chunks);
+      // Embed after the response so the embedding calls do not hold it up.
+      if (inserted.length > 0) EdgeRuntime.waitUntil(embedAndStore(supabase, inserted, supabaseUrl));
 
       return new Response(JSON.stringify({ success: true, chunks_created: chunks.length }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -313,9 +283,7 @@ serve(async (req) => {
           ? `Document: ${doc.title} | Product: ${doc.product_id}`
           : `Document: ${doc.title}`;
         const textChunks = chunkText(text, contextPrefix);
-        
-        await supabase.from("knowledge_chunks").delete().eq("document_id", document_id);
-        
+
         const chunks = textChunks.map(chunk => ({
           document_id, source_type: "document",
           source_id: doc.product_id || document_id,
@@ -324,12 +292,8 @@ serve(async (req) => {
           metadata: { title: doc.title, file_type: doc.file_type },
         }));
 
-        if (chunks.length > 0) {
-          const { data: inserted, error: insErr } = await supabase
-            .from("knowledge_chunks").insert(chunks).select("id, content");
-          if (insErr) throw new Error(`Failed to insert chunks: ${insErr.message}`);
-          await embedAndStore(supabase, inserted, supabaseUrl);
-        }
+        const inserted = await replaceChunks(supabase, { document_id }, chunks);
+        await embedAndStore(supabase, inserted, supabaseUrl);
 
         await supabase.from("knowledge_documents")
           .update({ status: "processed", chunk_count: chunks.length }).eq("id", document_id);
