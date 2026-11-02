@@ -111,26 +111,30 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
     setEntries(prev => prev.map(e =>
       e.id === id ? { ...e, duplicate: { isDuplicate: false, isSimilar: false, similarity: 0, matchedCardId: '', matchedCardTitle: '', reason: '', checking: true } } : e
     ));
+    const checkFailed = (reason: string) => {
+      console.error('Duplicate check failed:', reason);
+      setEntries(prev => prev.map(e => e.id === id ? { ...e, duplicate: null } : e));
+      toast.error("Couldn't check this image for duplicates. Look through the library before you save it.");
+    };
     try {
-      const { data } = await supabase.functions.invoke('check-duplicate-concept-image', {
+      const { data, error } = await supabase.functions.invoke('check-duplicate-concept-image', {
         body: { imageBase64: base64 },
       });
-      if (data && !data.aiError) {
-        setEntries(prev => prev.map(e =>
-          e.id === id ? { ...e, duplicate: { ...data, checking: false } } : e
-        ));
-        if (data.isDuplicate) {
-          toast.warning(`Possible duplicate detected — matches "${data.matchedCardTitle}"`, { duration: 5000 });
-        } else if (data.isSimilar && data.similarity >= 60) {
-          toast.info(`Similar card exists: "${data.matchedCardTitle}" (${data.similarity}% match)`, { duration: 4000 });
-        }
-      } else {
-        setEntries(prev => prev.map(e =>
-          e.id === id ? { ...e, duplicate: null } : e
-        ));
+      // aiError: the answer an older deploy of the function gives on failure.
+      if (error || !data || data.aiError) {
+        checkFailed(await functionsErrorMessage(error, 'no answer'));
+        return;
       }
-    } catch {
-      setEntries(prev => prev.map(e => e.id === id ? { ...e, duplicate: null } : e));
+      setEntries(prev => prev.map(e =>
+        e.id === id ? { ...e, duplicate: { ...data, checking: false } } : e
+      ));
+      if (data.isDuplicate) {
+        toast.warning(`Possible duplicate detected — matches "${data.matchedCardTitle}"`, { duration: 5000 });
+      } else if (data.isSimilar && data.similarity >= 60) {
+        toast.info(`Similar card exists: "${data.matchedCardTitle}" (${data.similarity}% match)`, { duration: 4000 });
+      }
+    } catch (e) {
+      checkFailed(String(e));
     }
   }, []);
 
