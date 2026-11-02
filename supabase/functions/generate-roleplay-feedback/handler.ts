@@ -218,13 +218,22 @@ export async function handle(req: Request, deps: Deps): Promise<Response> {
       practice_score: null,
       generation_status: 'generating'
     };
-    const { error: progressError } = existingFeedback
-      ? await supabase.from('roleplay_feedback').update(progress).eq('session_id', sessionId)
-      : await supabase.from('roleplay_feedback').insert(progress);
-    if (progressError) {
-      console.error('Could not create the feedback record:', progressError);
+    // Two calls at once (the Tavus webhook and the retry button, a double click) must not
+    // both pay for the model calls and both email the learner: only the call that claims
+    // the row goes on.
+    const claim = await claimFeedbackRow(supabase, sessionId, !!existingFeedback, progress);
+    if (claim === 'error') {
       return new Response(JSON.stringify({ error: 'Could not start feedback generation' }), {
         status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+    if (claim === 'busy') {
+      return new Response(JSON.stringify({
+        success: true,
+        message: 'Feedback is already being generated',
+        status: 'processing'
+      }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
@@ -257,6 +266,60 @@ export async function handle(req: Request, deps: Deps): Promise<Response> {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
+}
+
+// A failed row is claimed by an update that only matches while it is still 'failed'.
+// A new row is claimed by its insert: a unique-key conflict (23505) means another call got
+// there first. Until migration 20261102030000 adds that key, both inserts succeed, so the
+// call whose row is not the oldest for the session deletes its own row and stands down.
+// shortcut: without the key, a race where the later insert commits before the earlier
+// one's check can still let both run; apply the migration to close it.
+async function claimFeedbackRow(
+  // deno-lint-ignore no-explicit-any
+  supabase: any,
+  sessionId: string,
+  retryFailed: boolean,
+  progress: Record<string, unknown>,
+): Promise<'claimed' | 'busy' | 'error'> {
+  if (retryFailed) {
+    const { data, error } = await supabase
+      .from('roleplay_feedback')
+      .update(progress)
+      .eq('session_id', sessionId)
+      .eq('generation_status', 'failed')
+      .select('id');
+    if (error) {
+      console.error('Could not claim the failed feedback record:', error);
+      return 'error';
+    }
+    return data?.length ? 'claimed' : 'busy';
+  }
+
+  const { data: mine, error } = await supabase
+    .from('roleplay_feedback')
+    .insert(progress)
+    .select('id')
+    .single();
+  if (error?.code === '23505') return 'busy';
+  if (error || !mine) {
+    console.error('Could not create the feedback record:', error);
+    return 'error';
+  }
+  const { data: first, error: firstError } = await supabase
+    .from('roleplay_feedback')
+    .select('id')
+    .eq('session_id', sessionId)
+    .order('created_at', { ascending: true })
+    .order('id', { ascending: true })
+    .limit(1);
+  if (firstError) {
+    console.error('Could not check for a concurrent feedback record:', firstError);
+    return 'error';
+  }
+  if (first?.[0]?.id === mine.id) return 'claimed';
+  const { error: dropError } = await supabase.from('roleplay_feedback').delete().eq('id', mine.id);
+  if (dropError) console.error('Could not remove a duplicate feedback record:', mine.id, dropError);
+  return 'busy';
 }
 
 // The three calls run in parallel. The scores are what the page shows, so without them

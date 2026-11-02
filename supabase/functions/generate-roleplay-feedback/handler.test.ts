@@ -7,28 +7,57 @@ import { type Deps, handle } from "./handler.ts";
 type Row = Record<string, unknown>;
 const SECRET = "internal-test-secret";
 
-function fakeDb(tables: Record<string, Row[]>) {
+// Every query runs on a later macrotask, so two calls in flight interleave one query at a
+// time, the way two edge function invocations hit the database.
+function fakeDb(tables: Record<string, Row[]>, opts: { uniqueSessionId?: boolean } = {}) {
   const writes: { table: string; op: string; row: Row }[] = [];
+  let n = 0;
   const from = (table: string) => {
     let op = "select";
     let row: Row = {};
+    let one: "single" | "maybe" | null = null;
+    let order: string[] = [];
+    let limit = Infinity;
     const where: [string, unknown][] = [];
     const rows = () => (tables[table] ??= []).filter((r) => where.every(([k, v]) => r[k] === v));
     const run = () => {
-      if (op === "insert") tables[table].push({ ...row });
-      if (op === "update") for (const r of rows()) Object.assign(r, row);
+      let data: Row[];
+      if (op === "insert") {
+        if (opts.uniqueSessionId && tables[table].some((r) => r.session_id === row.session_id)) {
+          return { data: null, error: { code: "23505", message: "duplicate key value" } };
+        }
+        data = [{ id: `fb${++n}`, created_at: n, ...row }];
+        tables[table].push(data[0]);
+      } else if (op === "update") {
+        data = rows();
+        for (const r of data) Object.assign(r, row);
+      } else if (op === "delete") {
+        data = rows();
+        tables[table] = tables[table].filter((r) => !data.includes(r));
+      } else {
+        data = [...rows()].sort((a, b) => {
+          for (const k of order) if (a[k] !== b[k]) return String(a[k]) < String(b[k]) ? -1 : 1;
+          return 0;
+        }).slice(0, limit);
+      }
       if (op !== "select") writes.push({ table, op, row });
-      return { data: op === "select" ? rows() : null, error: null };
+      if (one === "single") return data.length === 1 ? { data: data[0], error: null } : { data: null, error: { code: "PGRST116" } };
+      if (one === "maybe") return { data: data[0] ?? null, error: null };
+      return { data, error: null };
     };
+    const later = () => new Promise((res) => setTimeout(() => res(run()), 0));
     // deno-lint-ignore no-explicit-any
     const b: any = {
       select: () => b,
       eq: (k: string, v: unknown) => (where.push([k, v]), b),
+      order: (k: string) => (order.push(k), b),
+      limit: (k: number) => ((limit = k), b),
       insert: (r: Row) => ((op = "insert"), (row = r), b),
       update: (r: Row) => ((op = "update"), (row = r), b),
-      maybeSingle: () => Promise.resolve({ data: rows()[0] ?? null, error: null }),
-      single: () => Promise.resolve(rows()[0] ? { data: rows()[0], error: null } : { data: null, error: { message: "none" } }),
-      then: (ok: (v: unknown) => unknown, bad: (e: unknown) => unknown) => Promise.resolve(run()).then(ok, bad),
+      delete: () => ((op = "delete"), b),
+      maybeSingle: () => ((one = "maybe"), later()),
+      single: () => ((one = "single"), later()),
+      then: (ok: (v: unknown) => unknown, bad: (e: unknown) => unknown) => later().then(ok, bad),
     };
     return b;
   };
@@ -68,11 +97,16 @@ const kindOf = (prompt: string) =>
   prompt.includes("FINANCE-SPECIFIC RUBRIC") ? "metrics" : prompt.includes("Yoodli-style") ? "qualitative" : "advanced";
 const answers = { metrics: METRICS, qualitative: QUALITATIVE, advanced: ADVANCED };
 
-function setup(modes: Partial<Record<"metrics" | "qualitative" | "advanced", Mode>> = {}, existing?: Row, gate?: Promise<void>) {
+function setup(
+  modes: Partial<Record<"metrics" | "qualitative" | "advanced", Mode>> = {},
+  existing?: Row,
+  gate?: Promise<void>,
+  dbOpts: { uniqueSessionId?: boolean } = {},
+) {
   const db = fakeDb({
     roleplay_sessions: [{ ...session }],
     roleplay_feedback: existing ? [{ session_id: "s1", ...existing }] : [],
-  });
+  }, dbOpts);
   const calls: { model: string; kind: string; body: Row; signal: unknown }[] = [];
   globalThis.fetch = (async (url: string, init: RequestInit) => {
     if (url !== "https://api.openai.com/v1/chat/completions") throw new Error(`unexpected fetch ${url}`);
@@ -195,4 +229,24 @@ Deno.test("an anonymous caller without the internal secret is still refused", as
   const res = await t.call({});
   assertEquals(res.status, 401);
   assertEquals([t.work.length, t.calls.length], [0, 0]);
+});
+
+for (const unique of [false, true]) {
+  Deno.test(`two calls at once generate and email once (${unique ? "with" : "without"} the unique key)`, async () => {
+    const t = setup({}, undefined, undefined, { uniqueSessionId: unique });
+    const bodies = await Promise.all([t.call(), t.call()].map(async (r) => await (await r).json()));
+    await Promise.all(t.work);
+    assertEquals(bodies.map((b) => b.status), ["processing", "processing"]);
+    assertEquals([t.work.length, t.calls.length, t.emails.length], [1, 3, 1]);
+    assertEquals(t.db.tables.roleplay_feedback.length, 1);
+    assertEquals(t.feedback().generation_status, "completed");
+  });
+}
+
+Deno.test("two retries of a failed row at once generate and email once", async () => {
+  const t = setup({}, { id: "f1", generation_status: "failed", overall_score: 0 });
+  await Promise.all([t.call(), t.call()]);
+  await Promise.all(t.work);
+  assertEquals([t.work.length, t.calls.length, t.emails.length], [1, 3, 1]);
+  assertEquals(t.feedback().generation_status, "completed");
 });
