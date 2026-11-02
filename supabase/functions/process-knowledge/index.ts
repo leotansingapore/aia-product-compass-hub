@@ -3,8 +3,6 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { identifyCaller, denied } from "../_shared/caller-auth.ts";
 import { extractTextFromFile, replaceChunks } from "./chunks.ts";
 
-declare const EdgeRuntime: { waitUntil(work: Promise<unknown>): void };
-
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
@@ -228,11 +226,10 @@ serve(async (req) => {
         }
       }
 
-      const inserted = await replaceChunks(supabase, { source_type: "training_video", source_id: product_id }, allChunks);
-      // Embed after the response so the embedding calls do not hold it up.
-      if (inserted.length > 0) EdgeRuntime.waitUntil(embedAndStore(supabase, inserted, supabaseUrl));
+      // No background re-embed: generate-embeddings is not semantic and nothing relies on these vectors, so it would only cost a model call per chunk.
+      await replaceChunks(supabase, { source_type: "training_video", source_id: product_id }, allChunks);
 
-      return new Response(JSON.stringify({ success: true, chunks_created: allChunks.length, chunks_embedded: 0, note: "Embedding running in background" }), {
+      return new Response(JSON.stringify({ success: true, chunks_created: allChunks.length, chunks_embedded: 0 }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
@@ -260,9 +257,8 @@ serve(async (req) => {
         }
       }
 
-      const inserted = await replaceChunks(supabase, { source_type: "script" }, chunks);
-      // Embed after the response so the embedding calls do not hold it up.
-      if (inserted.length > 0) EdgeRuntime.waitUntil(embedAndStore(supabase, inserted, supabaseUrl));
+      // No background re-embed: generate-embeddings is not semantic and nothing relies on these vectors, so it would only cost a model call per chunk.
+      await replaceChunks(supabase, { source_type: "script" }, chunks);
 
       return new Response(JSON.stringify({ success: true, chunks_created: chunks.length }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
