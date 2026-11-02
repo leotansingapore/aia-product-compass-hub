@@ -5,10 +5,15 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-// Library images per model call, and the newest cards compared in all.
-// shortcut: cards older than the newest MAX_CARDS are not compared; raise it as the library grows.
-const BATCH_SIZE = 16;
-const MAX_CARDS = 160;
+// Anyone with the public key can call this, so one call is bounded: the newest
+// MAX_BATCHES * BATCH_SIZE cards, one model call at a time, stopping at a duplicate.
+// shortcut: cards older than the newest 60 are not compared; raise MAX_BATCHES as the library grows.
+const BATCH_SIZE = 20;
+const MAX_BATCHES = 3;
+const MAX_CARDS = BATCH_SIZE * MAX_BATCHES;
+// The upload dialog takes images up to 10 MB; as a data URL that is about 14 million characters.
+const MAX_IMAGE_CHARS = 14_000_000;
+const IMAGE_DATA_URL = /^data:image\/(png|jpe?g|webp|gif);base64,/;
 
 type Reference = { id: string; title: string; url: string };
 type Verdict = {
@@ -27,8 +32,8 @@ export async function handle(req: Request, deps: { supabase: any }): Promise<Res
   try {
     const { imageBase64 } = await req.json();
 
-    if (!imageBase64) {
-      return new Response(JSON.stringify({ error: "imageBase64 is required" }), {
+    if (typeof imageBase64 !== "string" || !IMAGE_DATA_URL.test(imageBase64) || imageBase64.length > MAX_IMAGE_CHARS) {
+      return new Response(JSON.stringify({ error: "imageBase64 must be a PNG, JPEG, WebP or GIF data URL of 10 MB or less" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
@@ -66,11 +71,11 @@ export async function handle(req: Request, deps: { supabase: any }): Promise<Res
 
     // Every batch must answer: one unanswered batch means its cards were never compared,
     // so the upload is not called unique. The closest match across batches wins.
-    const batches: Reference[][] = [];
-    for (let i = 0; i < references.length; i += BATCH_SIZE) batches.push(references.slice(i, i + BATCH_SIZE));
-    const verdicts = await Promise.all(
-      batches.map((batch) => compareBatch(imageBase64, batch, useOwnKey, useOwnKey ? OPENAI_API_KEY! : LOVABLE_API_KEY!)),
-    );
+    const key = useOwnKey ? OPENAI_API_KEY! : LOVABLE_API_KEY!;
+    const verdicts: Verdict[] = [];
+    for (let i = 0; i < references.length && !verdicts.some((v) => v.isDuplicate); i += BATCH_SIZE) {
+      verdicts.push(await compareBatch(imageBase64, references.slice(i, i + BATCH_SIZE), useOwnKey, key));
+    }
     const best = verdicts.sort((a, b) => Number(b.isDuplicate) - Number(a.isDuplicate) || b.similarity - a.similarity)[0];
 
     return new Response(JSON.stringify(best), {
@@ -79,8 +84,8 @@ export async function handle(req: Request, deps: { supabase: any }): Promise<Res
 
   } catch (e) {
     console.error("check-duplicate-concept-image error:", e);
-    // An unchecked image is not a unique one: say the check failed.
-    return new Response(JSON.stringify({ error: `Duplicate check failed: ${e instanceof Error ? e.message : String(e)}` }), {
+    // An unchecked image is not a unique one: say the check failed (details stay in the log).
+    return new Response(JSON.stringify({ error: "Duplicate check failed" }), {
       status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }

@@ -23,24 +23,29 @@ function setup(n: number, opts: { duplicateOf?: string; failBatch?: number; badI
     },
   };
   const batches: string[][] = [];
-  globalThis.fetch = ((url: string, init: RequestInit) => {
+  let inFlight = 0;
+  let maxInFlight = 0;
+  globalThis.fetch = (async (url: string, init: RequestInit) => {
     if (url !== "https://api.openai.com/v1/chat/completions") throw new Error(`unexpected fetch ${url}`);
     const parts = JSON.parse(String(init.body)).messages[0].content as { type: string; image_url?: { url: string } }[];
     const shown = parts.filter((p) => p.type === "image_url").slice(1).map((p) => `c${p.image_url!.url.match(/(\d+)\.png/)![1]}`);
     const batch = batches.push(shown) - 1;
-    if (batch === opts.failBatch) return Promise.resolve(new Response("rate limited", { status: 429 }));
+    maxInFlight = Math.max(maxInFlight, ++inFlight);
+    await new Promise((r) => setTimeout(r, 1));
+    inFlight--;
+    if (batch === opts.failBatch) return new Response("rate limited", { status: 429 });
     const hit = opts.duplicateOf && shown.includes(opts.duplicateOf);
     const args = hit
       ? { isDuplicate: true, isSimilar: false, similarity: 95, matchedCardId: opts.badId ? "c999" : opts.duplicateOf, matchedCardTitle: "x", reason: "same" }
       : { isDuplicate: false, isSimilar: false, similarity: 10, matchedCardId: "", matchedCardTitle: "", reason: "different" };
-    return Promise.resolve(Response.json({
+    return Response.json({
       model: "m",
       choices: [{ message: { content: null, tool_calls: [{ function: { arguments: JSON.stringify(args) } }] } }],
-    }));
+    });
   }) as typeof fetch;
-  const call = () =>
-    handle(new Request("https://x", { method: "POST", body: JSON.stringify({ imageBase64: "data:image/png;base64,AAAA" }) }), { supabase });
-  return { call, batches };
+  const call = (imageBase64: unknown = "data:image/png;base64,AAAA") =>
+    handle(new Request("https://x", { method: "POST", body: JSON.stringify({ imageBase64 }) }), { supabase });
+  return { call, batches, maxInFlight: () => maxInFlight };
 }
 
 Deno.test("a duplicate of a card past the first eight is found", async () => {
@@ -51,15 +56,34 @@ Deno.test("a duplicate of a card past the first eight is found", async () => {
   assertEquals([body.isDuplicate, body.matchedCardId], [true, "c37"]);
 });
 
-Deno.test("every card is compared once, in batches, up to the bound", async () => {
+Deno.test("every card up to the cap is compared once, one batch at a time", async () => {
   const small = setup(40);
   await small.call();
   assertEquals(small.batches.flat().sort(), cards(40).map((c) => c.id).sort());
-  assert(small.batches.every((b) => b.length <= 16), "a batch is too big");
+  assert(small.batches.every((b) => b.length <= 20), "a batch is too big");
+  assertEquals(small.maxInFlight(), 1);
+});
 
+Deno.test("a library larger than the cap makes at most 3 model calls", async () => {
   const large = setup(500);
-  await large.call();
-  assertEquals(large.batches.flat().length, 160);
+  assertEquals((await large.call()).status, 200);
+  assertEquals(large.batches.length, 3);
+  assertEquals(large.batches.flat().length, 60);
+  assertEquals(large.maxInFlight(), 1);
+});
+
+Deno.test("a duplicate in the first batch stops the check there", async () => {
+  const t = setup(60, { duplicateOf: "c2" });
+  const body = await (await t.call()).json();
+  assertEquals([body.matchedCardId, t.batches.length], ["c2", 1]);
+});
+
+Deno.test("anything but a PNG, JPEG, WebP or GIF data URL of 10 MB or less is a 400 with no model call", async () => {
+  for (const bad of ["https://evil.example/x.png", "data:text/html;base64,AAAA", 42, "data:image/png;base64," + "A".repeat(14_000_001)]) {
+    const t = setup(40);
+    assertEquals((await t.call(bad)).status, 400);
+    assertEquals(t.batches.length, 0);
+  }
 });
 
 Deno.test("one failed batch is an error, not a 'not a duplicate'", async () => {
@@ -67,8 +91,7 @@ Deno.test("one failed batch is an error, not a 'not a duplicate'", async () => {
   const res = await t.call();
   assertEquals(res.status, 502);
   const body = await res.json();
-  assertEquals(body.isDuplicate, undefined);
-  assert(String(body.error).includes("429"), body.error);
+  assertEquals(body, { error: "Duplicate check failed" });
 });
 
 Deno.test("a match on a card the model was not shown is an error", async () => {
