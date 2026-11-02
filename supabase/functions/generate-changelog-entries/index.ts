@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.50.0";
+import { openaiFetch } from "../_shared/openaiChat.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -181,8 +182,10 @@ Generate changelog entries as a JSON array with this exact structure:
 
     console.log(`Sending activity signals to AI:\n${activitySummary}`);
 
-    const aiResponse = await fetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
+    // openaiFetch asks OPENAI_MODEL first and falls back to gpt-4o-mini; the gateway goes as written.
+    const aiResponse = await openaiFetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
       method: "POST",
+      signal: AbortSignal.timeout(60_000),
       headers: {
         "Authorization": `Bearer ${useOwnKey ? openaiKey : lovableApiKey}`,
         "Content-Type": "application/json",
