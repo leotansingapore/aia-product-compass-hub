@@ -1,6 +1,8 @@
-// Time shaping for the Product panel, kept pure so the rules are tested
-// without rendering anything. Ported from the GAC and CMFAS panels (monthly
-// passes, Oct-Nov 2026), which met every one of these on sparse data first.
+// The Product panel's rules, kept pure so they are tested without rendering
+// anything: time shaping (whole days, finished weeks, how much of the period
+// before is on record), What changed, and which scatter dots carry a name.
+// Ported from the GAC and CMFAS panels (monthly passes, Oct-Nov 2026), which
+// met most of these on sparse data first.
 
 import { RESCOPED, isKnownFeature } from '@/lib/featureCatalog'
 import type { DailyActiveRow, EventVolumeRow, FeatureAdoptionRow } from './useProductAnalytics'
@@ -112,6 +114,46 @@ export function whatChanged(
     rescoped: live.filter((f) => !settled(f.feature) && (f.users > 0 || f.prior_users > 0)).map((f) => f.feature),
     comparable: moves.length > 0 || events.some((e) => e.prior_n > 0),
   }
+}
+
+export interface ScatterPoint {
+  feature: string
+  label: string
+  reach: number
+  depth: number
+}
+
+/**
+ * Which outliers on Reach against depth carry a name. Only the five furthest
+ * from the median centre: a name on every dot is unreadable. The extremes
+ * cluster, so a candidate is skipped when an already-named point sits within
+ * 12% of the plot of it, and when its own name would run across another dot
+ * (Track: AIA training directory was drawn over two, 7 Nov 2026). A name is
+ * about 0.6% of the plot's width per character at desktop width; past 65%
+ * reach it is drawn to the left of its dot.
+ */
+export function pickNamed(points: ScatterPoint[], midReach: number, midDepth: number, max = 5): Set<string> {
+  const maxDepth = Math.max(1, ...points.map((p) => p.depth))
+  const norm = (p: ScatterPoint) => ({ x: p.reach, y: (p.depth / maxDepth) * 100 })
+  const centre = { x: midReach, y: (midDepth / maxDepth) * 100 }
+  const dist = (p: ScatterPoint) => Math.hypot(norm(p).x - centre.x, norm(p).y - centre.y)
+  const underName = (p: ScatterPoint, o: ScatterPoint) => {
+    const a = norm(p)
+    const b = norm(o)
+    const dx = p.reach > 65 ? a.x - b.x : b.x - a.x
+    return dx >= 0 && dx < Math.min(40, p.label.length * 0.6) && Math.abs(a.y - b.y) < 5
+  }
+  const taken: { x: number; y: number }[] = []
+  const out = new Set<string>()
+  for (const p of [...points].sort((a, b) => dist(b) - dist(a))) {
+    if (out.size >= max) break
+    const q = norm(p)
+    if (taken.some((t) => Math.abs(t.x - q.x) < 12 && Math.abs(t.y - q.y) < 12)) continue
+    if (points.some((o) => o !== p && underName(p, o))) continue
+    taken.push(q)
+    out.add(p.feature)
+  }
+  return out
 }
 
 export type WeekState = 'done' | 'running' | 'future'

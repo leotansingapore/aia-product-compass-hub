@@ -106,7 +106,7 @@ export function OverviewView({ days }: { days: number }) {
 
       <SectionCard
         title="Daily active users"
-        hint="Anyone whose client or assistant recorded an event that day."
+        hint="Anyone who opened a screen that day."
         action={
           <Button
             variant="outline"
@@ -209,9 +209,9 @@ export function OverviewView({ days }: { days: number }) {
                   />
                 </LineChart>
               </ResponsiveContainer>
-              <PartialToday series={series} />
             </div>
           )}
+          {series.length > 0 && <PartialToday series={series} />}
         </SectionCard>
 
       </div>

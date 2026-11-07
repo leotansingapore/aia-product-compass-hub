@@ -19,9 +19,10 @@ import { ChevronDown, ChevronUp, EyeOff, Moon } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { cn } from '@/lib/utils'
-import { FEATURE_CATALOG, UNTRACKED, featureArea, featureLabel } from '@/lib/featureCatalog'
+import { FEATURE_CATALOG, UNTRACKED, featureArea, featureLabel, isKnownFeature } from '@/lib/featureCatalog'
 import { Delta, Empty, Loading, MiniBar, SectionCard } from './parts'
 import { nf, pct, sinceLabel } from './format'
+import { pickNamed } from './changes'
 import { useFeatureAdoption, useFeatureDetail, useUsageOverview, type FeatureAdoptionRow } from './useProductAnalytics'
 
 type SortKey = 'feature' | 'users' | 'opens' | 'depth' | 'repeat' | 'trend'
@@ -181,7 +182,7 @@ export function FeaturesView({ days }: { days: number }) {
               {unseen.map((f) => (
                 <li key={f.key} className="flex items-center gap-2 text-sm min-w-0">
                   <Moon className="w-3.5 h-3.5 text-muted-foreground shrink-0" aria-hidden />
-                  <span className="truncate">{f.label}</span>
+                  <span className="min-w-0 leading-snug">{f.label}</span>
                   <Badge variant="outline" className="text-[10px] px-1.5 py-0 ml-auto shrink-0">{f.area}</Badge>
                 </li>
               ))}
@@ -292,7 +293,8 @@ function ReachDepthMap({ rows, activeUsers, loading }: { rows: FeatureAdoptionRo
   const points = useMemo(
     () =>
       rows
-        .filter((r) => r.users > 0)
+        // A retired key is a redirect that double-counted its destination; it is not a screen to place.
+        .filter((r) => r.users > 0 && isKnownFeature(r.feature))
         .map((r) => ({
           feature: r.feature,
           label: featureLabel(r.feature),
@@ -306,30 +308,9 @@ function ReachDepthMap({ rows, activeUsers, loading }: { rows: FeatureAdoptionRo
   const midReach = median(points.map((p) => p.reach))
   const midDepth = median(points.map((p) => p.depth))
 
-  // Only the outliers carry a name: a label on every dot is unreadable at this
-  // density, and the table above is the complete, WCAG-clean twin of the plot.
-  // Ranking by distance alone is not enough - the extremes CLUSTER (four quiet
-  // features all sit in the bottom-left corner), so two names land on top of
-  // each other. A candidate is skipped when an already-named point is within
-  // 12% of the plot's own width and height of it.
-  const named = useMemo(() => {
-    const maxDepth = Math.max(1, ...points.map((p) => p.depth))
-    const norm = (p: (typeof points)[number]) => ({ x: p.reach, y: (p.depth / maxDepth) * 100 })
-    const centre = { x: midReach, y: (midDepth / maxDepth) * 100 }
-    const ranked = [...points].sort(
-      (a, b) => Math.hypot(norm(b).x - centre.x, norm(b).y - centre.y) - Math.hypot(norm(a).x - centre.x, norm(a).y - centre.y),
-    )
-    const taken: { x: number; y: number }[] = []
-    const out = new Set<string>()
-    for (const p of ranked) {
-      if (out.size >= 5) break
-      const q = norm(p)
-      if (taken.some((t) => Math.abs(t.x - q.x) < 12 && Math.abs(t.y - q.y) < 12)) continue
-      taken.push(q)
-      out.add(p.feature)
-    }
-    return out
-  }, [points, midReach, midDepth])
+  // Only the outliers carry a name; the table above is the complete,
+  // WCAG-clean twin of the plot. The rules live in pickNamed().
+  const named = useMemo(() => pickNamed(points, midReach, midDepth), [points, midReach, midDepth])
 
   if (loading) return <SectionCard title="Reach against depth"><Loading className="h-72" /></SectionCard>
   if (points.length < 3) return null

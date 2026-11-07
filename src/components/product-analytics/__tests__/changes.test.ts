@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { priorCoverage, weekState, wholeDays } from '../changes'
+import { pickNamed, priorCoverage, weekState, wholeDays, type ScatterPoint } from '../changes'
 import type { DailyActiveRow } from '../useProductAnalytics'
 
 const row = (day: string, users: number): DailyActiveRow => ({ day, users, events: users, feature_opens: users })
@@ -62,5 +62,35 @@ describe('priorCoverage', () => {
   it('reads full once the whole period before is on record', () => {
     expect(priorCoverage(7, now)).toEqual({ kind: 'full' })
     expect(priorCoverage(30, Date.parse('2026-11-13T00:00:00Z'))).toEqual({ kind: 'full' })
+  })
+})
+
+describe('pickNamed', () => {
+  // The real 30-day map on 7 Nov 2026: [key, reach %, days each].
+  const raw: [string, number, number][] = [
+    ['lt_first_14_days', 55, 1.82], ['home', 45, 1.56], ['leaderboard', 40, 2.25], ['lt_pre_rnf_assignments', 30, 1.83],
+    ['product', 25, 2.8], ['lt_first_60_days', 20, 1.5], ['categories', 15, 3], ['library_playbooks', 15, 3],
+    ['cmfas_exams', 15, 1.33], ['library_products', 15, 2.67], ['lt_product_mastery', 15, 1], ['lt_post_rnf', 10, 2],
+    ['lt_post_rnf_assignments', 10, 1.5], ['cmfas_module', 10, 1], ['library_cheat_sheets', 10, 1],
+    ['lt_post_rnf_aia_training', 5, 1], ['lt_next_60_days', 5, 1], ['scripts', 5, 1],
+  ]
+  const points: ScatterPoint[] = raw.map(([feature, reach, depth]) => ({ feature, label: `${feature} label text`, reach, depth }))
+  const named = pickNamed(points, 15, 1.5)
+
+  it('never names a dot whose name would run across another dot', () => {
+    // Its name ran right, over the dots at 10% and 15% on the same row.
+    expect(named.has('lt_post_rnf_aia_training')).toBe(false)
+    for (const key of named) {
+      const p = points.find((x) => x.feature === key)!
+      const span = Math.min(40, p.label.length * 0.6)
+      const covered = points.filter((o) => o !== p && o.reach > p.reach && o.reach - p.reach < span && Math.abs(o.depth - p.depth) / 3 < 0.05)
+      expect(covered.map((o) => o.feature), key).toEqual([])
+    }
+  })
+
+  it('still names the far outliers, at most five', () => {
+    expect(named.has('lt_first_14_days')).toBe(true)
+    expect(named.size).toBeGreaterThan(2)
+    expect(named.size).toBeLessThanOrEqual(5)
   })
 })

@@ -63,10 +63,10 @@ export function EventsView({ days }: { days: number }) {
             <TableHeader>
               <TableRow>
                 <TableHead>Event</TableHead>
-                <TableHead className="text-right">Count</TableHead>
-                <TableHead className="text-right">People</TableHead>
-                <TableHead className="text-right">vs prior</TableHead>
-                <TableHead className="text-right">Last</TableHead>
+                <TableHead className="text-right whitespace-nowrap">Count</TableHead>
+                <TableHead className="text-right whitespace-nowrap">People</TableHead>
+                <TableHead className="text-right whitespace-nowrap">vs prior</TableHead>
+                <TableHead className="text-right whitespace-nowrap hidden sm:table-cell">Last</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -81,7 +81,7 @@ export function EventsView({ days }: { days: number }) {
       <SectionCard
         testId="all-events"
         title="All events"
-        hint={`Everything recorded in the last ${days} days, whether it came from the app, the Telegram assistant or a Lark job.`}
+        hint={`Every event the academy recorded in the last ${days} days.`}
         action={
           <div className="relative">
             <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" aria-hidden />
@@ -104,12 +104,12 @@ export function EventsView({ days }: { days: number }) {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="min-w-[9rem]">Event</TableHead>
+                  <TableHead className="sm:min-w-[9rem]">Event</TableHead>
                   <TableHead className="hidden sm:table-cell">Source</TableHead>
-                  <TableHead className="text-right">Count</TableHead>
-                  <TableHead className="text-right">People</TableHead>
-                  <TableHead className="text-right">vs prior</TableHead>
-                  <TableHead className="text-right">Last</TableHead>
+                  <TableHead className="text-right whitespace-nowrap">Count</TableHead>
+                  <TableHead className="text-right whitespace-nowrap">People</TableHead>
+                  <TableHead className="text-right whitespace-nowrap">vs prior</TableHead>
+                  <TableHead className="text-right whitespace-nowrap hidden sm:table-cell">Last</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -149,11 +149,11 @@ function EventRow({
           <span className="tabular-nums w-14 text-right">{nf.format(row.n)}</span>
         </div>
       </TableCell>
-      <TableCell className="py-2 text-right tabular-nums text-muted-foreground">{row.users}</TableCell>
-      <TableCell className="py-2 text-right">
+      <TableCell className="py-2 text-right tabular-nums text-muted-foreground whitespace-nowrap">{row.users}</TableCell>
+      <TableCell className="py-2 text-right whitespace-nowrap">
         <Delta now={row.n} prior={row.prior_n} invert={invert} />
       </TableCell>
-      <TableCell className="py-2 text-right text-[11px] text-muted-foreground whitespace-nowrap">
+      <TableCell className="py-2 text-right text-[11px] text-muted-foreground whitespace-nowrap hidden sm:table-cell">
         {sinceLabel(row.last_seen)}
       </TableCell>
     </TableRow>
