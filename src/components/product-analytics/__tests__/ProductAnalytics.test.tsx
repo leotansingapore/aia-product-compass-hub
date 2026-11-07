@@ -6,7 +6,7 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 type RpcResult = { data: unknown; error: unknown }
 const responses = new Map<string, RpcResult>()
@@ -36,6 +36,7 @@ import { FeaturesView } from '../FeaturesView'
 import { EventsView } from '../EventsView'
 import { RetentionView } from '../RetentionView'
 import { ProductAnalyticsPanel } from '../ProductAnalyticsPanel'
+import { OverviewView } from '../OverviewView'
 import { Delta } from '../parts'
 
 const wrap = (ui: React.ReactNode) => {
@@ -236,6 +237,31 @@ describe('RetentionView quiet weeks', () => {
     expect(cells).toEqual(['100%', '0%', '25%', '-'])
     // Week 1 is finished, so the summary counts this cohort: 0 of 4.
     expect(screen.getByText(/0 of 4 came back/)).toBeTruthy()
+  })
+})
+
+describe('OverviewView New this period', () => {
+  const tile = () => screen.getByText('New this period').parentElement!
+  // Coverage reads the clock; pin it so the 90d case stays "before tracking".
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(Date.parse('2026-11-07T15:00:00Z'))
+  })
+  afterEach(() => vi.useRealTimers())
+
+  it('does not compare against a period that holds the start of tracking', async () => {
+    // 90 days back reaches before 13 Sep: everyone was new in the period before.
+    responses.set('app_usage_overview', { data: [{ active_users: 10, new_users: 2, prior_new_users: 15 }], error: null })
+    wrap(<OverviewView days={90} />)
+    await waitFor(() => expect(tile().textContent).toContain('Not compared: tracking began 13 Sept 2026'))
+    expect(tile().textContent).not.toMatch(/\d+%/)
+  })
+
+  it('compares once the whole period before is on record', async () => {
+    responses.set('app_usage_overview', { data: [{ active_users: 10, new_users: 2, prior_new_users: 4 }], error: null })
+    wrap(<OverviewView days={7} />)
+    await waitFor(() => expect(tile().textContent).toContain('50%'))
+    expect(tile().textContent).not.toContain('Not compared')
   })
 })
 

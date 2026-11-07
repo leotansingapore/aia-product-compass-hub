@@ -27,6 +27,22 @@ export function wholeDays(rows: DailyActiveRow[], days: number, now: number): Da
     .map((day) => byDay.get(day) ?? { day, users: 0, events: 0, feature_opens: 0 })
 }
 
+export type PriorCoverage = { kind: 'none' } | { kind: 'partial'; days: number } | { kind: 'full' }
+
+/**
+ * How much of the period before this window is on record. For a while after
+ * tracking began that period is empty, then only partly covered, and every
+ * comparison against it reads as growth (everyone was "new" in launch week).
+ */
+export function priorCoverage(days: number, now: number, began = TRACKING_BEGAN): PriorCoverage {
+  const first = Date.parse(`${began}T00:00:00Z`)
+  const windowStart = now - days * DAY
+  const priorStart = now - 2 * days * DAY
+  if (first >= windowStart) return { kind: 'none' }
+  if (first > priorStart) return { kind: 'partial', days: Math.max(1, Math.round((windowStart - first) / DAY)) }
+  return { kind: 'full' }
+}
+
 export type WeekState = 'done' | 'running' | 'future'
 
 /**

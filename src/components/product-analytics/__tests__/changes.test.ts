@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { weekState, wholeDays } from '../changes'
+import { priorCoverage, weekState, wholeDays } from '../changes'
 import type { DailyActiveRow } from '../useProductAnalytics'
 
 const row = (day: string, users: number): DailyActiveRow => ({ day, users, events: users, feature_opens: users })
@@ -44,5 +44,23 @@ describe('weekState', () => {
   it('treats the cohort week itself the same way', () => {
     expect(weekState('2026-11-02', 0, now)).toBe('running')
     expect(weekState('2026-10-26', 0, now)).toBe('done')
+  })
+})
+
+describe('priorCoverage', () => {
+  const now = Date.parse('2026-11-07T15:00:00Z')
+
+  it('reads none when tracking began inside the window', () => {
+    expect(priorCoverage(90, now)).toEqual({ kind: 'none' })
+  })
+
+  it('reads partial, with the days on record, when tracking began inside the period before', () => {
+    // Window from 8 Oct 15:00, period before from 8 Sep: 13 Sep 00:00 onward is 25.6 days.
+    expect(priorCoverage(30, now)).toEqual({ kind: 'partial', days: 26 })
+  })
+
+  it('reads full once the whole period before is on record', () => {
+    expect(priorCoverage(7, now)).toEqual({ kind: 'full' })
+    expect(priorCoverage(30, Date.parse('2026-11-13T00:00:00Z'))).toEqual({ kind: 'full' })
   })
 })

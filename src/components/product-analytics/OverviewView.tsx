@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Delta, Empty, Loading, SectionCard, StatTile } from './parts'
 import { compact, nf, pct } from './format'
-import { wholeDays } from './changes'
+import { TRACKING_BEGAN, priorCoverage, wholeDays } from './changes'
 import { useDailyActive, useUsageOverview } from './useProductAnalytics'
 
 const axis = { stroke: 'hsl(var(--muted-foreground))', fontSize: 11, tickLine: false, axisLine: false } as const
@@ -23,6 +23,9 @@ const tooltipStyle = {
   fontSize: 12,
   color: 'hsl(var(--foreground))',
 }
+
+const fullDate = (iso: string) =>
+  new Date(`${iso.slice(0, 10)}T00:00:00Z`).toLocaleDateString('en-SG', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
 
 const dayLabel = (iso: string) =>
   new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-SG', { day: 'numeric', month: 'short', timeZone: 'UTC' })
@@ -44,6 +47,9 @@ export function OverviewView({ days }: { days: number }) {
   const [asTable, setAsTable] = useState(false)
 
   const o = overview.data
+  // Everyone was "new" in the period that holds the start of tracking, so a
+  // fall against it is an artefact (30d on 7 Nov read 7 against 15, down 53%).
+  const newComparable = priorCoverage(days, Date.now()).kind === 'full'
   const series = useMemo(
     () => wholeDays(daily.data ?? [], days, Date.now()).map((r) => ({ ...r, label: dayLabel(r.day) })),
     [daily.data, days],
@@ -77,8 +83,12 @@ export function OverviewView({ days }: { days: number }) {
             <StatTile
               label="New this period"
               value={nf.format(o?.new_users ?? 0)}
-              delta={<Delta now={o?.new_users ?? 0} prior={o?.prior_new_users ?? 0} />}
-              hint="First event ever landed in this window"
+              delta={newComparable ? <Delta now={o?.new_users ?? 0} prior={o?.prior_new_users ?? 0} /> : undefined}
+              hint={
+                newComparable
+                  ? 'First event ever landed in this window'
+                  : `First event ever landed in this window. Not compared: tracking began ${fullDate(TRACKING_BEGAN)}`
+              }
             />
             <StatTile
               label="Events"
