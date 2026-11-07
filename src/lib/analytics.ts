@@ -19,36 +19,44 @@ const APP = 'academy'
 
 let tableMissing = false
 
-export function trackEvent(event: EventName, props: Record<string, string | number | boolean> = {}): void {
-  if (tableMissing) return
-  void (async () => {
+/** Resolves true when a row was written, false when nothing could be recorded. */
+export function trackEvent(event: EventName, props: Record<string, string | number | boolean> = {}): Promise<boolean> {
+  if (tableMissing) return Promise.resolve(false)
+  return (async () => {
     try {
       const host = window.location.hostname
-      if (host === 'localhost' || host === '127.0.0.1' || host.endsWith('.local')) return
+      if (host === 'localhost' || host === '127.0.0.1' || host.endsWith('.local')) return false
       // getSession, not getUser: getUser is a round trip to Supabase Auth made
       // under the client's auth lock, so every query on the page waited on it.
       // RLS still checks the insert against the token's user.
       const { data } = await supabase.auth.getSession()
       const uid = data?.session?.user?.id
-      if (!uid) return // signed-in only; a share-link viewer without a session is not tracked
+      if (!uid) return false // signed-in only; a share-link viewer without a session is not tracked
       // The generated types do not carry app_events; the cast keeps the insert
       // honest without regenerating a large file for one table.
       const { error } = await (supabase as unknown as {
         from: (t: string) => { insert: (row: Record<string, unknown>) => Promise<{ error: { code?: string } | null }> }
       }).from('app_events').insert({ user_id: uid, event, props: { ...props, app: APP } })
       if (error && (error.code === '42P01' || error.code === 'PGRST205')) tableMissing = true
+      return !error
     } catch {
       /* offline or blocked; analytics is never load-bearing */
+      return false
     }
   })()
 }
 
 // Feature opens fire on every route change; dedupe to once per feature per
-// page load so a tab-happy user does not drown the signal.
+// page load so a tab-happy user does not drown the signal. The slot is given
+// back when nothing was written: a signed-out deep link goes to /auth and
+// sign-in navigates back to the same path in the same page load, and a slot
+// spent while signed out lost that open (the TrackerAttendance trap).
 const openedThisSession = new Set<string>()
 
 export function trackFeatureOpen(feature: string): void {
   if (openedThisSession.has(feature)) return
   openedThisSession.add(feature)
-  trackEvent('feature_open', { feature })
+  void trackEvent('feature_open', { feature }).then((sent) => {
+    if (!sent) openedThisSession.delete(feature)
+  })
 }
