@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Delta, Empty, Loading, MiniBar, SectionCard } from './parts'
 import { nf, sinceLabel } from './format'
+import { QUIET_FLOOR, stoppedEvents } from './changes'
 import { useEventVolume, type EventVolumeRow } from './useProductAnalytics'
 
 const isError = (event: string) => /error|fail|blocked/i.test(event)
@@ -37,11 +38,8 @@ export function EventsView({ days }: { days: number }) {
   const errors = filtered.filter((r) => isError(r.event))
   const normal = filtered.filter((r) => !isError(r.event))
   const max = Math.max(1, ...normal.map((r) => r.n))
-  // Only a tracker with real volume behind it. askai_down fired ONCE in its
-  // whole life; calling its silence a regression is how a warning banner
-  // becomes wallpaper.
-  const QUIET_FLOOR = 10
-  const silent = rows.filter((r) => r.n === 0 && r.prior_n >= QUIET_FLOOR)
+  // The same rule as the What changed strip on Overview, so the two never disagree.
+  const silent = stoppedEvents(rows)
 
   return (
     <div className="space-y-4">

@@ -2,7 +2,8 @@
 // without rendering anything. Ported from the GAC and CMFAS panels (monthly
 // passes, Oct-Nov 2026), which met every one of these on sparse data first.
 
-import type { DailyActiveRow } from './useProductAnalytics'
+import { RESCOPED, isKnownFeature } from '@/lib/featureCatalog'
+import type { DailyActiveRow, EventVolumeRow, FeatureAdoptionRow } from './useProductAnalytics'
 
 const DAY = 86_400_000
 
@@ -41,6 +42,76 @@ export function priorCoverage(days: number, now: number, began = TRACKING_BEGAN)
   if (first >= windowStart) return { kind: 'none' }
   if (first > priorStart) return { kind: 'partial', days: Math.max(1, Math.round((windowStart - first) / DAY)) }
   return { kind: 'full' }
+}
+
+/**
+ * Only a tracker with real volume behind it counts as stopped. One that fired
+ * once in its whole life going quiet is not a regression, and a warning that
+ * fires on it becomes wallpaper.
+ */
+export const QUIET_FLOOR = 10
+
+export function stoppedEvents(events: EventVolumeRow[]): EventVolumeRow[] {
+  return events.filter((e) => e.n === 0 && e.prior_n >= QUIET_FLOOR)
+}
+
+export interface FeatureMove {
+  feature: string
+  users: number
+  prior: number
+  change: number
+}
+
+export interface ChangeSummary {
+  gained: FeatureMove[]
+  lost: FeatureMove[]
+  stopped: string[]
+  /** Screens opened in this window by nobody in the period before. */
+  firstReported: number
+  /** Live keys left unranked because their matcher narrowed inside the comparison. */
+  rescoped: string[]
+  /** False when no screen had anyone in the period before: nothing to compare. */
+  comparable: boolean
+}
+
+/**
+ * What moved against the period before, in PEOPLE, not opens: an open count
+ * swings with page reloads, a head count does not. A screen nobody opened in
+ * the period before is never a gain (it is a tracking date dressed up as
+ * growth), a retired key is never a loss (tracking stopped, not learners), and
+ * a re-scoped key waits until both windows are after its new matcher.
+ */
+export function whatChanged(
+  features: FeatureAdoptionRow[],
+  events: EventVolumeRow[],
+  days: number,
+  now: number,
+  top = 3,
+): ChangeSummary {
+  const priorStart = now - 2 * days * DAY
+  const settled = (key: string) => !RESCOPED[key] || Date.parse(`${RESCOPED[key]}T00:00:00Z`) <= priorStart
+  const live = features.filter((f) => isKnownFeature(f.feature))
+  const moves = live
+    .filter((f) => f.prior_users > 0 && settled(f.feature))
+    .map((f) => ({ feature: f.feature, users: f.users, prior: f.prior_users, change: f.users - f.prior_users }))
+
+  return {
+    // Ties go to the bigger feature, which more people will feel, then to the
+    // key: with a few dozen learners most moves are ties, and without it the
+    // order follows whatever order the RPC returned.
+    gained: moves
+      .filter((m) => m.change > 0)
+      .sort((a, b) => b.change - a.change || b.users - a.users || a.feature.localeCompare(b.feature))
+      .slice(0, top),
+    lost: moves
+      .filter((m) => m.change < 0)
+      .sort((a, b) => a.change - b.change || b.prior - a.prior || a.feature.localeCompare(b.feature))
+      .slice(0, top),
+    stopped: stoppedEvents(events).map((e) => e.event),
+    firstReported: live.filter((f) => f.prior_users === 0 && f.users > 0).length,
+    rescoped: live.filter((f) => !settled(f.feature) && (f.users > 0 || f.prior_users > 0)).map((f) => f.feature),
+    comparable: moves.length > 0 || events.some((e) => e.prior_n > 0),
+  }
 }
 
 export type WeekState = 'done' | 'running' | 'future'

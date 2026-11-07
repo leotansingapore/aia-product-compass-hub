@@ -1,4 +1,5 @@
-// Overview - is the app being used at all, by how many, and how hard.
+// Overview - what moved since the period before, then is the app being used
+// at all, by how many, and how hard.
 //
 // The trend is ONE series (daily active users). Events per day is a second
 // measure on a wildly different scale, so it gets its own small plot below
@@ -10,10 +11,11 @@ import { Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, T
 import { Table as TableIcon, LineChart as LineChartIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { featureLabel } from '@/lib/featureCatalog'
 import { Delta, Empty, Loading, SectionCard, StatTile } from './parts'
 import { compact, nf, pct } from './format'
-import { TRACKING_BEGAN, priorCoverage, wholeDays } from './changes'
-import { useDailyActive, useUsageOverview } from './useProductAnalytics'
+import { TRACKING_BEGAN, priorCoverage, wholeDays, whatChanged, type FeatureMove } from './changes'
+import { useDailyActive, useEventVolume, useFeatureAdoption, useUsageOverview } from './useProductAnalytics'
 
 const axis = { stroke: 'hsl(var(--muted-foreground))', fontSize: 11, tickLine: false, axisLine: false } as const
 const tooltipStyle = {
@@ -58,6 +60,8 @@ export function OverviewView({ days }: { days: number }) {
 
   return (
     <div className="space-y-4">
+      <WhatChanged days={days} />
+
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {overview.isLoading && !o ? (
           <>
@@ -211,6 +215,106 @@ export function OverviewView({ days }: { days: number }) {
         </SectionCard>
 
       </div>
+    </div>
+  )
+}
+
+/**
+ * The three biggest gains and losses in people, and any tracker that went
+ * silent. Sits first because "what moved?" is what the tab is opened for; the
+ * Features table is where the full ranking lives.
+ */
+function WhatChanged({ days }: { days: number }) {
+  const adoption = useFeatureAdoption(days)
+  const volume = useEventVolume(days)
+  const now = Date.now()
+  const summary = useMemo(
+    () => whatChanged(adoption.data ?? [], volume.data ?? [], days, Date.now()),
+    [adoption.data, volume.data, days],
+  )
+  const coverage = priorCoverage(days, now)
+  const loading = (adoption.isLoading && !adoption.data) || (volume.isLoading && !volume.data)
+  const nothingBefore = coverage.kind === 'none' || !summary.comparable
+
+  return (
+    <SectionCard
+      testId="what-changed"
+      title="What changed"
+      hint={`People, against the ${days} days before. A screen nobody opened in that period is not compared.`}
+    >
+      {loading ? (
+        <Loading className="h-28" />
+      ) : nothingBefore ? (
+        <p className="text-sm text-muted-foreground" data-testid="changed-none">
+          Nothing to compare yet: tracking began {fullDate(TRACKING_BEGAN)}, inside this window.
+          {days > 30 ? ' Pick 30d or 7d for a period against the one before.' : ''}
+        </p>
+      ) : (
+        <>
+          <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
+            <MoveList title="Gained" moves={summary.gained} testId="changed-gained" />
+            <MoveList title="Lost" moves={summary.lost} testId="changed-lost" />
+            <div data-testid="changed-stopped" className="min-w-0">
+              <h3 className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Stopped firing</h3>
+              {summary.stopped.length === 0 ? (
+                <p className="text-sm text-muted-foreground">None</p>
+              ) : (
+                <ul className="space-y-1.5">
+                  {summary.stopped.map((e) => (
+                    <li key={e} className="text-sm min-w-0 truncate">
+                      <code className="text-xs">{e}</code>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+          {coverage.kind === 'partial' && (
+            <p className="mt-3 text-[11px] text-muted-foreground" data-testid="changed-partial">
+              Only {coverage.days} of the {days} days before are on record (tracking began {fullDate(TRACKING_BEGAN)}), so
+              gains read high.
+            </p>
+          )}
+          {(summary.firstReported > 0 || summary.rescoped.length > 0) && (
+            <p className="mt-3 text-[11px] text-muted-foreground" data-testid="changed-first">
+              Not ranked:
+              {summary.firstReported > 0 &&
+                ` ${summary.firstReported} ${summary.firstReported === 1 ? 'screen' : 'screens'} nobody opened in the period before.`}
+              {summary.rescoped.length > 0 &&
+                ` ${summary.rescoped.map(featureLabel).join(', ')}, which now counts fewer pages than it did.`}
+            </p>
+          )}
+        </>
+      )}
+    </SectionCard>
+  )
+}
+
+function MoveList({ title, moves, testId }: { title: string; moves: FeatureMove[]; testId: string }) {
+  return (
+    <div data-testid={testId} className="min-w-0">
+      <h3 className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">{title}</h3>
+      {moves.length === 0 ? (
+        <p className="text-sm text-muted-foreground">None</p>
+      ) : (
+        <ul className="space-y-1.5">
+          {moves.map((m) => (
+            <li key={m.feature} data-feature={m.feature} className="flex items-baseline gap-2 text-sm min-w-0">
+              <span className="font-medium truncate">{featureLabel(m.feature)}</span>
+              <span className="ml-auto shrink-0 tabular-nums text-xs text-muted-foreground">
+                {m.prior} to {m.users}
+              </span>
+              <span
+                className={`shrink-0 w-9 text-right tabular-nums text-xs font-semibold ${
+                  m.change > 0 ? 'text-success' : 'text-destructive'
+                }`}
+              >
+                {m.change > 0 ? '+' : '-'}{Math.abs(m.change)}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }
