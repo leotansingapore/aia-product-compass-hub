@@ -107,8 +107,8 @@ describe('FeaturesView', () => {
     wrap(<FeaturesView days={30} />)
 
     const card = await screen.findByTestId('silent-features')
-    // Pre-RNF has no row at all: tracking for it is new, nothing has landed.
-    await waitFor(() => expect(within(card).getByText('Track: pre-RNF')).toBeTruthy())
+    // Pre-RNF worksheets has no row at all: tracking for it is new, nothing has landed.
+    await waitFor(() => expect(within(card).getByText('Track: pre-RNF worksheets')).toBeTruthy())
     // Notes has a row, so it belongs in the table and never in this card.
     expect(within(card).queryByText('Library: products')).toBeNull()
     // Roleplay has a row too - it is down to 2 users, which is abandonment and
