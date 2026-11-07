@@ -66,6 +66,9 @@ export function ProductAnalyticsPanel() {
           <p className="text-xs text-muted-foreground">
             Which screens learners and their managers actually open. A developer's view, not learning progress.
           </p>
+          <p className="text-[11px] text-muted-foreground mt-0.5" data-testid="excluded-note">
+            Your own account and the demo and test logins are left out, since 7 Oct 2026.
+          </p>
         </div>
         <div className="flex rounded-lg border p-0.5" role="group" aria-label="Time range">
           {RANGES.map((r) => (
