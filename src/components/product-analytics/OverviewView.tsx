@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Delta, Empty, Loading, SectionCard, StatTile } from './parts'
 import { compact, nf, pct } from './format'
+import { wholeDays } from './changes'
 import { useDailyActive, useUsageOverview } from './useProductAnalytics'
 
 const axis = { stroke: 'hsl(var(--muted-foreground))', fontSize: 11, tickLine: false, axisLine: false } as const
@@ -44,8 +45,8 @@ export function OverviewView({ days }: { days: number }) {
 
   const o = overview.data
   const series = useMemo(
-    () => (daily.data ?? []).map((r) => ({ ...r, label: dayLabel(r.day) })),
-    [daily.data],
+    () => wholeDays(daily.data ?? [], days, Date.now()).map((r) => ({ ...r, label: dayLabel(r.day) })),
+    [daily.data, days],
   )
 
 

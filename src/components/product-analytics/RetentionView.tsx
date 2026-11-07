@@ -9,6 +9,7 @@ import { Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Empty, Loading, MiniBar, SectionCard } from './parts'
 import { nf, pct } from './format'
+import { weekState } from './changes'
 import { useRetentionCohorts, useUserEngagement } from './useProductAnalytics'
 
 const WEEKS = 8
@@ -53,16 +54,17 @@ export function RetentionView({ days }: { days: number }) {
     [cohorts.data],
   )
 
+  const now = Date.now()
   const buckets = engagement.data ?? []
   const maxBucket = Math.max(1, ...buckets.map((b) => b.users))
   const totalBucketed = buckets.reduce((a, b) => a + b.users, 0)
 
-  // Week-1 return, counting only cohorts old enough to have had a week 1. The
-  // current week's cohort has not had the chance yet, and including it drags
+  // Week-1 return, counting only cohorts whose week 1 has FINISHED. A cohort
+  // still inside its week 1 has not had the chance yet, and including it drags
   // the number down by exactly the amount of time that has not passed.
   const weekOne = useMemo(() => {
-    const cutoff = Date.now() - 7 * 86_400_000
-    const eligible = grid.filter((g) => new Date(`${g.week}T00:00:00Z`).getTime() <= cutoff)
+    const now = Date.now()
+    const eligible = grid.filter((g) => weekState(g.week, 1, now) === 'done')
     return {
       size: eligible.reduce((a, g) => a + g.size, 0),
       back: eligible.reduce((a, g) => a + (g.cells.get(1) ?? 0), 0),
@@ -100,8 +102,17 @@ export function RetentionView({ days }: { days: number }) {
                       <td className="pr-2 whitespace-nowrap font-medium">{weekLabel(row.week)}</td>
                       <td className="pr-2 text-right tabular-nums text-muted-foreground">{row.size}</td>
                       {Array.from({ length: maxOffset + 1 }, (_, i) => {
-                        const users = row.cells.get(i)
-                        if (users === undefined) return <td key={i} />
+                        const state = weekState(row.week, i, now)
+                        if (state === 'future') return <td key={i} />
+                        if (state === 'running' && i > 0) {
+                          return (
+                            <td key={i} className="text-center text-muted-foreground" title={`Week ${i} has not finished`}>
+                              -
+                            </td>
+                          )
+                        }
+                        // A finished week nobody came back in has no row: that is a 0%, not a gap.
+                        const users = row.cells.get(i) ?? 0
                         const share = pct(users, row.size)
                         return (
                           <td

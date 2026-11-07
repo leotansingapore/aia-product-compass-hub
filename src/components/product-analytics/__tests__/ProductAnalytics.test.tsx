@@ -210,6 +210,35 @@ describe('RetentionView', () => {
   })
 })
 
+describe('RetentionView quiet weeks', () => {
+  const monday = (daysAgo: number) => {
+    const d = new Date(Date.now() - daysAgo * 86_400_000)
+    d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7))
+    return d.toISOString().slice(0, 10)
+  }
+
+  it('reads a finished week nobody came back in as 0%, and the running week as a dash', async () => {
+    // Joined 3 weeks ago: W1 had nobody (no row), W2 had one, W3 is this week.
+    const joined = monday(21)
+    responses.set('app_retention_cohorts', {
+      data: [
+        { cohort_week: joined, cohort_size: 4, week_offset: 0, users: 4 },
+        { cohort_week: joined, cohort_size: 4, week_offset: 2, users: 1 },
+        { cohort_week: joined, cohort_size: 4, week_offset: 3, users: 1 },
+      ],
+      error: null,
+    })
+    responses.set('app_user_engagement', { data: [], error: null })
+    wrap(<RetentionView days={30} />)
+
+    const label = new Date(`${joined}T00:00:00Z`).toLocaleDateString('en-SG', { day: 'numeric', month: 'short', timeZone: 'UTC' })
+    const cells = [...(await screen.findByText(label)).closest('tr')!.querySelectorAll('td')].slice(2).map((td) => td.textContent)
+    expect(cells).toEqual(['100%', '0%', '25%', '-'])
+    // Week 1 is finished, so the summary counts this cohort: 0 of 4.
+    expect(screen.getByText(/0 of 4 came back/)).toBeTruthy()
+  })
+})
+
 describe('ProductAnalyticsPanel', () => {
   it('explains an unmigrated database instead of showing it as an error', async () => {
     responses.set('app_usage_overview', {
