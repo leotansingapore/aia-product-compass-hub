@@ -33,6 +33,8 @@ export function SimplifiedAuthForm({ hideTitle = false }: SimplifiedAuthFormProp
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Password left blank: email a sign-in link instead (Leo, 2026-11-22).
+    if (!formData.password) return handleSendLink();
     setIsSigningIn(true);
     try {
       await signIn(formData.email, formData.password);
@@ -54,8 +56,7 @@ export function SimplifiedAuthForm({ hideTitle = false }: SimplifiedAuthFormProp
   // A sign-in link instead of a password (Leo, 2026-10-05). Existing accounts
   // only: signups are off for links, so an unknown email answers 422, and the
   // screen says the same thing either way rather than revealing who has an account.
-  const handleSendLink = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSendLink = async () => {
     const email = formData.email.trim();
     if (!email) return;
     setIsSendingLink(true);
@@ -85,48 +86,16 @@ export function SimplifiedAuthForm({ hideTitle = false }: SimplifiedAuthFormProp
     setActiveTab('reset');
   };
 
-  if (activeTab === 'link') {
+  if (linkSentTo) {
     return (
       <div className="space-y-6">
-        <h2 className="text-2xl font-bold text-foreground font-sans">Sign in with a link</h2>
-
-        {linkSentTo ? (
-          <div role="status" className="rounded-lg border bg-muted/40 p-4 text-sm text-foreground" data-testid="link-sent">
-            Check your email. If {linkSentTo} has an account, a sign-in link is on its way.
-          </div>
-        ) : (
-          <form onSubmit={handleSendLink} className="space-y-4">
-            <div className="space-y-1.5">
-              <Label htmlFor="link-email">Email</Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                <Input
-                  id="link-email"
-                  type="email"
-                  placeholder="you@example.com"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
-                  className="pl-10"
-                  autoComplete="email"
-                  autoFocus
-                  required
-                />
-              </div>
-            </div>
-
-            <Button type="submit" className="w-full" disabled={isSendingLink}>
-              {isSendingLink ? (
-                <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Sending…</>
-              ) : 'Email me a sign-in link'}
-            </Button>
-          </form>
-        )}
-
-        <p className="text-center text-xs text-muted-foreground">
-          <button type="button" onClick={() => { setActiveTab('signin'); setLinkSentTo(null); }} className="text-primary hover:underline underline-offset-2">
-            Sign in with a password instead
-          </button>
-        </p>
+        <h2 className="text-2xl font-bold text-foreground font-sans">Check your email</h2>
+        <div role="status" className="rounded-lg border bg-muted/40 p-4 text-sm text-foreground" data-testid="link-sent">
+          If {linkSentTo} has an account, a sign-in link is on its way.
+        </div>
+        <Button type="button" variant="outline" className="w-full" onClick={() => setLinkSentTo(null)}>
+          Back to sign in
+        </Button>
       </div>
     );
   }
@@ -201,7 +170,7 @@ export function SimplifiedAuthForm({ hideTitle = false }: SimplifiedAuthFormProp
 
         <div className="space-y-1.5">
           <div className="flex items-center justify-between">
-            <Label htmlFor="signin-password">Password</Label>
+            <Label htmlFor="signin-password">Password <span className="font-normal text-muted-foreground">(optional)</span></Label>
             <button
               type="button"
               onClick={switchToForgotPassword}
@@ -220,7 +189,6 @@ export function SimplifiedAuthForm({ hideTitle = false }: SimplifiedAuthFormProp
               onChange={(e) => handleInputChange('password', e.target.value)}
               className="pl-10 pr-10"
               autoComplete="current-password"
-              required
             />
             <Button
               type="button"
@@ -236,17 +204,13 @@ export function SimplifiedAuthForm({ hideTitle = false }: SimplifiedAuthFormProp
           </div>
         </div>
 
-        <Button type="submit" className="w-full" disabled={isSigningIn}>
+        <Button type="submit" className="w-full" disabled={isSigningIn || isSendingLink}>
           {isSigningIn ? (
             <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Signing in…</>
-          ) : 'Sign In'}
+          ) : isSendingLink ? (
+            <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Sending…</>
+          ) : formData.password ? 'Sign In' : 'Email me a sign-in link'}
         </Button>
-
-        <p className="text-center text-xs text-muted-foreground">
-          <button type="button" onClick={() => setActiveTab('link')} className="text-primary hover:underline underline-offset-2" data-testid="use-sign-in-link">
-            Email me a sign-in link instead
-          </button>
-        </p>
       </form>
     </div>
   );
