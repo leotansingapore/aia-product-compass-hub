@@ -175,8 +175,6 @@ src/
 ├── integrations/supabase/     # Auto-generated (DO NOT MODIFY)
 ├── types/               # TypeScript type definitions
 ├── pages/               # Route page components
-├── config/
-│   └── authConfig.ts    # Demo accounts, redirect URLs, validation rules
 ├── data/
 │   └── cmfasModuleData.ts # CMFAS module definitions & video metadata
 ├── lib/
