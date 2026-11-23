@@ -10,7 +10,7 @@ export async function launch(viewport = { width: 1440, height: 900 }) {
   return { b, ctx, p };
 }
 
-export async function login(p, email = 'master_admin@demo.com', password = 'demo123456') {
+export async function login(p, email = 'master_admin@demo.com', password = process.env.DEMO_PASSWORD) {
   await p.goto(`${BASE}/auth`, { waitUntil: 'domcontentloaded' });
   await p.waitForTimeout(1000);
   await p.locator('input[type="email"]').fill(email);

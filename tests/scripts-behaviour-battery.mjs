@@ -462,7 +462,7 @@ await check('shared url opens identically in a fresh session (no localStorage)',
   await fp.goto(`${BASE}/auth`, { waitUntil: 'domcontentloaded' });
   await fp.waitForTimeout(800);
   await fp.locator('input[type="email"]').fill('master_admin@demo.com');
-  await fp.locator('input[type="password"]').fill('demo123456');
+  await fp.locator('input[type="password"]').fill(process.env.DEMO_PASSWORD);
   await fp.locator('button[type="submit"]').first().click();
   await fp.waitForURL(u => !u.toString().includes('/auth'), { timeout: 60000 });
   await fp.goto(url, { waitUntil: 'domcontentloaded' });

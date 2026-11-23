@@ -44,7 +44,7 @@ async function authenticate() {
   let authRes = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
     method: "POST",
     headers: { apikey: SUPABASE_KEY, "Content-Type": "application/json" },
-    body: JSON.stringify({ email: "master_admin@demo.com", password: "demo123456" }),
+    body: JSON.stringify({ email: "master_admin@demo.com", password: process.env.DEMO_PASSWORD }),
   });
   if (!authRes.ok) {
     console.log("  First auth failed; calling ensure-demo-account and retrying ...");
@@ -52,7 +52,7 @@ async function authenticate() {
     authRes = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
       method: "POST",
       headers: { apikey: SUPABASE_KEY, "Content-Type": "application/json" },
-      body: JSON.stringify({ email: "master_admin@demo.com", password: "demo123456" }),
+      body: JSON.stringify({ email: "master_admin@demo.com", password: process.env.DEMO_PASSWORD }),
     });
   }
   if (authRes.ok) {

@@ -3,7 +3,7 @@ import { test, expect, type Page } from "@playwright/test";
 // Real creds never live in this file — set via env before running.
 const RECRUIT = {
   email: process.env.E2E_USER_EMAIL ?? "user@demo.com",
-  password: process.env.E2E_USER_PASSWORD ?? "demo123456",
+  password: process.env.E2E_USER_PASSWORD ?? process.env.DEMO_PASSWORD,
 };
 
 const WORKSHEET_URL = "/learning-track/pre-rnf/worksheets/business-plan";

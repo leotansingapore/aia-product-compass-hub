@@ -44,7 +44,7 @@ try {
     },
     body: JSON.stringify({
       email: "master_admin@demo.com",
-      password: "demo123456",
+      password: process.env.DEMO_PASSWORD,
     }),
   });
 

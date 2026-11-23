@@ -82,7 +82,7 @@ Run without asking. Implement → build check → commit → push → next task.
 After implementation, run a **3-step verification pipeline** — no user needed:
 1. **Build gate:** `npm run build` must pass (no type errors). If it fails, fix and rebuild. Do not proceed until clean.
 2. **Playwright browser verification:** Open the relevant page(s) using Playwright MCP.
-   **Login:** Use demo accounts from `src/config/authConfig.ts` — master_admin, admin, or user @demo.com emails. Sign in at `/auth` before navigating to protected pages.
+   **Login:** Use the master_admin, admin or user @demo.com accounts; the password is in the keychain (`security find-generic-password -s academy-demo-password -w`), never in the repo, which is public. Sign in at `/auth` before navigating to protected pages.
    **Base URL:** `http://localhost:8080`
    - Navigate to the page → interact with the changed element/feature → verify it renders and behaves correctly
    - If the task involves admin features: sign in as admin, navigate to `/admin`
@@ -119,7 +119,7 @@ When user says **"run batch tasks"** or **"autonomous mode"**:
 - **Do not use `npm install`.** It ignores `bun.lock` and resolves newer versions. On 2026-09-15 it pulled `@supabase/supabase-js` 2.116 instead of the pinned 2.56, which crashed every signed-in page locally while production was fine. Never commit a `package-lock.json`.
 - **Windows:** stop any running dev server before `bun install`. A dev server holding files in `node_modules` made bun hang at full CPU after it had finished installing.
 - **Unit tests:** `npx vitest run`. **Browser tests:** `npx playwright test` (expects the dev server on http://localhost:8080).
-- **Browser test accounts:** the default `user@demo.com` is on the Explorer tier, so Pre-RNF, Post-RNF, question banks and playbooks show a lock screen. Run tier-gated specs with `E2E_USER_EMAIL=admin@demo.com` (password in `src/config/authConfig.ts`).
+- **Browser test accounts:** the default `user@demo.com` is on the Explorer tier, so Pre-RNF, Post-RNF, question banks and playbooks show a lock screen. Run tier-gated specs with `E2E_USER_EMAIL=admin@demo.com` and `DEMO_PASSWORD=$(security find-generic-password -s academy-demo-password -w)`.
 
 ---
 

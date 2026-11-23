@@ -3,7 +3,7 @@ import { test, expect, type Page } from "@playwright/test";
 // Set via env: E2E_ADMIN_EMAIL / E2E_ADMIN_PASSWORD before running.
 const ADMIN = {
   email: process.env.E2E_ADMIN_EMAIL ?? "admin@demo.com",
-  password: process.env.E2E_ADMIN_PASSWORD ?? "demo123456",
+  password: process.env.E2E_ADMIN_PASSWORD ?? process.env.DEMO_PASSWORD,
 };
 
 const CRASH_UI = /Something went wrong|Error in this page/;

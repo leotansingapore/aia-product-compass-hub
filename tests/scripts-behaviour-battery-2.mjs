@@ -49,7 +49,7 @@ await check('A1 anon shared link -> login -> lands back on the exact filtered vi
   await fp.waitForURL(u => u.toString().includes('/auth'), { timeout: 20000 });
   await fp.waitForTimeout(800);
   await fp.locator('input[type="email"]').fill('master_admin@demo.com');
-  await fp.locator('input[type="password"]').fill('demo123456');
+  await fp.locator('input[type="password"]').fill(process.env.DEMO_PASSWORD);
   await fp.locator('button[type="submit"]').first().click();
   await fp.waitForURL(u => u.toString().includes('/scripts'), { timeout: 60000 });
   const url = fp.url();
@@ -75,7 +75,7 @@ await check('A2 tier-locked user on a shared scripts link is bounced, never half
   await fp.goto(`${BASE}/auth`, { waitUntil: 'domcontentloaded' });
   await fp.waitForTimeout(800);
   await fp.locator('input[type="email"]').fill('user@demo.com');
-  await fp.locator('input[type="password"]').fill('demo123456');
+  await fp.locator('input[type="password"]').fill(process.env.DEMO_PASSWORD);
   await fp.locator('button[type="submit"]').first().click();
   await fp.waitForURL(u => !u.toString().includes('/auth'), { timeout: 60000 });
   await fp.goto(`${BASE}/scripts?category=cold-calling`, { waitUntil: 'domcontentloaded' });
@@ -854,7 +854,7 @@ await check('G5 localStorage that THROWS still renders a working page', async ()
   await fp.goto(`${BASE}/auth`, { waitUntil: 'domcontentloaded' });
   await fp.waitForTimeout(800);
   await fp.locator('input[type="email"]').fill('master_admin@demo.com');
-  await fp.locator('input[type="password"]').fill('demo123456');
+  await fp.locator('input[type="password"]').fill(process.env.DEMO_PASSWORD);
   await fp.locator('button[type="submit"]').first().click();
   await fp.waitForURL(u => !u.toString().includes('/auth'), { timeout: 60000 });
   // Break storage AFTER auth so the session survives but the page's own
@@ -916,7 +916,7 @@ await check('G8 login flow never honours an off-origin redirect target', async (
   await fp.goto(`${BASE}/auth?redirect=https://evil.example.com`, { waitUntil: 'domcontentloaded' });
   await fp.waitForTimeout(800);
   await fp.locator('input[type="email"]').fill('master_admin@demo.com');
-  await fp.locator('input[type="password"]').fill('demo123456');
+  await fp.locator('input[type="password"]').fill(process.env.DEMO_PASSWORD);
   await fp.locator('button[type="submit"]').first().click();
   await fp.waitForURL(u => !u.toString().includes('/auth'), { timeout: 60000 });
   ok(fp.url().startsWith(BASE), `stayed on origin (${fp.url()})`);
@@ -959,7 +959,7 @@ await check('H2 REGRESSION: typing 20 chars fires few replaceState calls (deboun
   await fp.goto(`${BASE}/auth`, { waitUntil: 'domcontentloaded' });
   await fp.waitForTimeout(800);
   await fp.locator('input[type="email"]').fill('master_admin@demo.com');
-  await fp.locator('input[type="password"]').fill('demo123456');
+  await fp.locator('input[type="password"]').fill(process.env.DEMO_PASSWORD);
   await fp.locator('button[type="submit"]').first().click();
   await fp.waitForURL(u => !u.toString().includes('/auth'), { timeout: 60000 });
   await fp.goto(`${BASE}/scripts`, { waitUntil: 'domcontentloaded' });

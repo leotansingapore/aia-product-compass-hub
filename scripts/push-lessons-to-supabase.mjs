@@ -39,7 +39,7 @@ const authRes = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`,
   },
   body: JSON.stringify({
     email: "master_admin@demo.com",
-    password: "demo123456",
+    password: process.env.DEMO_PASSWORD,
   }),
 });
 

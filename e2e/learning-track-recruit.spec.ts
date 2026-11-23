@@ -6,7 +6,7 @@ import { test, expect, type Page } from "@playwright/test";
 // admin account (e.g. admin@demo.com) for the track pages to render.
 const RECRUIT = {
   email: process.env.E2E_USER_EMAIL ?? "user@demo.com",
-  password: process.env.E2E_USER_PASSWORD ?? "demo123456",
+  password: process.env.E2E_USER_PASSWORD ?? process.env.DEMO_PASSWORD,
 };
 
 async function signIn(page: Page, email: string, password: string) {

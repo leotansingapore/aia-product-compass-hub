@@ -43,7 +43,7 @@ export { scrubUrl }
 
 const KEY = (import.meta.env.VITE_POSTHOG_KEY as string | undefined) || 'phc_ASWcvPVSHR7n7tsss2szQ3kaVFzSMbFbo3dW2DQ9kL4G'
 
-// The demo accounts in src/config/authConfig.ts (all @demo.com), plus the
+// The shared demo accounts (all @demo.com), plus the
 // shared test domains.
 const TEST_EMAIL = /(@demo\.com|@mailinator\.com|@example\.com|\.test|\.demo|\.invalid)$/i
 

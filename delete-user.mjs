@@ -11,7 +11,7 @@ async function main() {
   // Sign in as master admin
   const { data: signInData, error: signInError } = await client.auth.signInWithPassword({
     email: 'master_admin@demo.com',
-    password: 'demo123456'
+    password: process.env.DEMO_PASSWORD
   });
 
   if (signInError) {

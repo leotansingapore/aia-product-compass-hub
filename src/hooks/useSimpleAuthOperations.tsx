@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
-import { DemoService } from '@/services/demoService';
 
 export const useSimpleAuthOperations = () => {
   const [loading, setLoading] = useState(false);
@@ -49,40 +48,9 @@ export const useSimpleAuthOperations = () => {
     }
   };
 
-  const demoSignIn = async (email: string, password: string) => {
-    setLoading(true);
-    try {
-      const result = await DemoService.signInWithDemoAccount(email, password);
-      
-      if (result.success) {
-        toast({
-          title: "Demo Account Ready!",
-          description: "Exploring the platform with demo access"
-        });
-        window.location.href = '/';
-      } else {
-        toast({
-          variant: "destructive",
-          title: "Demo Login Failed",
-          description: result.error || "Unable to access demo account"
-        });
-      }
-    } catch (error) {
-      console.error('Demo sign in error:', error);
-      toast({
-        variant: "destructive",
-        title: "Demo Login Failed",
-        description: "An unexpected error occurred"
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return {
     loading,
     signIn,
-    resetPassword,
-    demoSignIn
+    resetPassword
   };
 };
