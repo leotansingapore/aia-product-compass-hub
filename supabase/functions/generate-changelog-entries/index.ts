@@ -1,6 +1,8 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.50.0";
 import { openaiFetch } from "../_shared/openaiChat.ts";
+import { identifyCaller, denied } from "../_shared/caller-auth.ts";
+import { sha256hex } from "../_shared/crypto.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -22,6 +24,16 @@ interface ChangelogEntry {
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // The weekly pg_cron job sends x-cron-secret (vault changelog_cron_secret); anyone else must be an admin.
+  const cronSecret = Deno.env.get("CHANGELOG_CRON_SECRET");
+  const sent = req.headers.get("x-cron-secret") ?? "";
+  const isCron = !!cronSecret && !!sent && (await sha256hex(sent)) === (await sha256hex(cronSecret));
+  if (!isCron) {
+    const caller = await identifyCaller(req);
+    if (!caller.userId) return denied(corsHeaders, "Sign in to use this", 401);
+    if (!caller.isAdmin) return denied(corsHeaders, "Only admins can generate the changelog");
   }
 
   const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
