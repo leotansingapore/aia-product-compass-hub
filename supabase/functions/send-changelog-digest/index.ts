@@ -1,6 +1,8 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.50.0";
 import { Resend } from "npm:resend@4.0.0";
+import { identifyCaller, denied } from "../_shared/caller-auth.ts";
+import { sha256hex } from "../_shared/crypto.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -175,6 +177,16 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // One call emails every user, so only the Monday pg_cron job (x-cron-secret, vault changelog_cron_secret) or an admin may run it.
+  const cronSecret = Deno.env.get("CHANGELOG_CRON_SECRET");
+  const sent = req.headers.get("x-cron-secret") ?? "";
+  const isCron = !!cronSecret && !!sent && (await sha256hex(sent)) === (await sha256hex(cronSecret));
+  if (!isCron) {
+    const caller = await identifyCaller(req);
+    if (!caller.userId) return denied(corsHeaders, "Sign in to use this", 401);
+    if (!caller.isAdmin) return denied(corsHeaders, "Only admins can send the changelog digest");
+  }
+
   const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
   const resendApiKey = Deno.env.get("RESEND_API_KEY");
@@ -225,7 +237,8 @@ serve(async (req) => {
 
     if (profileError) throw new Error(`Failed to fetch profiles: ${profileError.message}`);
 
-    const recipients = (profiles || []).filter((p) => p.email && p.email.includes("@"));
+    // @demo.com is a stranger's real domain (shared QA logins): never mail it.
+    const recipients = (profiles || []).filter((p) => p.email && p.email.includes("@") && !p.email.toLowerCase().endsWith("@demo.com"));
 
     console.log(`Sending digest to ${recipients.length} users...`);
 
