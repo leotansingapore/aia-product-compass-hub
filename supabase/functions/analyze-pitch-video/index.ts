@@ -418,12 +418,18 @@ serve(async (req) => {
   const supabase = createClient(supabaseUrl, serviceKey);
 
   try {
-    const { analysisId, videoUrl, transcript: manualTranscript, userId } = await req.json();
+    const { analysisId, videoUrl, transcript: manualTranscript } = await req.json();
 
     if (!analysisId || !videoUrl) {
       return new Response(JSON.stringify({ error: "analysisId and videoUrl required" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
+    }
+
+    // Every write below uses the service role, so the row must be the caller's (or an admin's to act on).
+    const { data: owned } = await supabase.from("pitch_analyses").select("user_id").eq("id", analysisId).maybeSingle();
+    if (!owned || (owned.user_id !== caller.userId && !caller.isAdmin)) {
+      return denied(corsHeaders, "Analysis not found", 404);
     }
 
     // ── 1. Update status: transcribing ────────────────────────────────────────
@@ -662,13 +668,13 @@ Return ONLY a valid JSON object (no markdown, no code blocks). Structure:
 
     // ── 9. Send email notification ──────────────────────────────────────────
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
-    if (resendApiKey && userId) {
+    if (resendApiKey && owned.user_id) {
       try {
         // Fetch user profile email
         const { data: profile } = await supabase
           .from("profiles")
           .select("email, display_name, first_name")
-          .eq("user_id", userId)
+          .eq("user_id", owned.user_id)
           .maybeSingle();
 
         if (profile?.email) {
