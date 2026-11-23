@@ -22,6 +22,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { ChatMessage } from "./ChatMessage";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { cn } from "@/lib/utils";
+import { signedInFunctionHeaders } from "@/lib/aiChatStream";
 import type { ChatMode } from "@/components/chat/types";
 
 interface ChatMessageType {
@@ -275,7 +276,7 @@ export const ProductKnowledgeChat = memo(function ProductKnowledgeChat({
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          ...(await signedInFunctionHeaders()),
         },
         body: JSON.stringify({ messages: apiMessages, productId, mode: chatMode }),
       });

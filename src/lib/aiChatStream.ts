@@ -1,4 +1,12 @@
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+
+/** Headers for a direct fetch to an edge function: the AI functions refuse a caller with no signed-in user, and the anon key is not one. */
+export async function signedInFunctionHeaders(): Promise<Record<string, string>> {
+  const anon = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+  const { data } = await supabase.auth.getSession();
+  return { apikey: anon, Authorization: `Bearer ${data.session?.access_token ?? anon}` };
+}
 
 export type AiChatRole = "user" | "assistant";
 
@@ -40,7 +48,7 @@ export async function streamAiChat({
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+      ...(await signedInFunctionHeaders()),
     },
     body: JSON.stringify({ messages, ...body }),
     signal,

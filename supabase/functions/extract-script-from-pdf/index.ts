@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { openaiFetch } from "../_shared/openaiChat.ts";
+import { identifyCaller, denied } from "../_shared/caller-auth.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -8,6 +9,8 @@ const corsHeaders = {
 
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
+  const caller = await identifyCaller(req);
+  if (!caller.userId) return denied(corsHeaders, "Sign in to use this", 401);
 
   try {
     const { pdfUrls } = await req.json();

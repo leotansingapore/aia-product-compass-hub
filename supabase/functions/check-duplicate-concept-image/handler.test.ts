@@ -9,7 +9,7 @@ const cards = (n: number) =>
   Array.from({ length: n }, (_, i) => ({ id: `c${i}`, title: `Card ${i}`, image_url: `https://img/${i}.png` }));
 
 // The model answers "duplicate of <id>" when that card's image is in its batch, else "unique".
-function setup(n: number, opts: { duplicateOf?: string; failBatch?: number; badId?: boolean } = {}) {
+function setup(n: number, opts: { duplicateOf?: string; failBatch?: number; badId?: boolean; userId?: string | null } = {}) {
   let limit = Infinity;
   const supabase = {
     from: () => {
@@ -44,7 +44,10 @@ function setup(n: number, opts: { duplicateOf?: string; failBatch?: number; badI
     });
   }) as typeof fetch;
   const call = (imageBase64: unknown = "data:image/png;base64,AAAA") =>
-    handle(new Request("https://x", { method: "POST", body: JSON.stringify({ imageBase64 }) }), { supabase });
+    handle(new Request("https://x", { method: "POST", body: JSON.stringify({ imageBase64 }) }), {
+      supabase,
+      caller: () => Promise.resolve({ userId: opts.userId === undefined ? "u1" : opts.userId }),
+    });
   return { call, batches, maxInFlight: () => maxInFlight };
 }
 
@@ -103,4 +106,10 @@ Deno.test("an empty library is honestly not a duplicate", async () => {
   const t = setup(0);
   const body = await (await t.call()).json();
   assertEquals([body.isDuplicate, t.batches.length], [false, 0]);
+});
+
+Deno.test("a signed-out caller is a 401 with no model call", async () => {
+  const t = setup(40, { userId: null });
+  const res = await t.call();
+  assertEquals([res.status, t.batches.length], [401, 0]);
 });

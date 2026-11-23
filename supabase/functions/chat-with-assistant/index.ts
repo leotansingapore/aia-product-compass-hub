@@ -20,12 +20,13 @@ serve(async (req) => {
     // This function writes products.assistant_id/assistant_instructions with the
     // SERVICE ROLE, which bypasses the admin-scoped RLS added in the E1 lockdown.
     // Authoring actions therefore need their own admin check; ordinary chat does
-    // not (any signed-in learner may chat).
+    // not (any signed-in learner may chat). Chat still needs a signed-in caller, or
+    // anyone holding the public anon key spends the OpenAI credits.
     const isAuthoringAction = action === 'create_assistant' || action === 'update_assistant';
-    if (isAuthoringAction) {
-      const caller = await identifyCaller(req);
-      if (!caller.userId) return denied(corsHeaders, 'Sign in to manage assistants', 401);
-      if (!caller.isAdmin) return denied(corsHeaders, 'Only admins can create or update product assistants');
+    const caller = await identifyCaller(req);
+    if (!caller.userId) return denied(corsHeaders, 'Sign in to use this', 401);
+    if (isAuthoringAction && !caller.isAdmin) {
+      return denied(corsHeaders, 'Only admins can create or update product assistants');
     }
 
     const openAIApiKey = Deno.env.get('OPENAI_API_KEY');

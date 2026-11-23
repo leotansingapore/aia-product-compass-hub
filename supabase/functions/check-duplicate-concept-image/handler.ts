@@ -5,7 +5,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-// Anyone with the public key can call this, so one call is bounded: the newest
+// Any signed-in user can call this, so one call is bounded: the newest
 // MAX_BATCHES * BATCH_SIZE cards, one model call at a time, stopping at a duplicate.
 // shortcut: cards older than the newest 60 are not compared; raise MAX_BATCHES as the library grows.
 const BATCH_SIZE = 20;
@@ -25,9 +25,17 @@ type Verdict = {
   reason: string;
 };
 
-// deno-lint-ignore no-explicit-any
-export async function handle(req: Request, deps: { supabase: any }): Promise<Response> {
+export async function handle(
+  req: Request,
+  // deno-lint-ignore no-explicit-any
+  deps: { supabase: any; caller: (req: Request) => Promise<{ userId: string | null }> },
+): Promise<Response> {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
+  if (!(await deps.caller(req)).userId) {
+    return new Response(JSON.stringify({ error: "Sign in to use this" }), {
+      status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
 
   try {
     const { imageBase64 } = await req.json();

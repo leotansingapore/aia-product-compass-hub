@@ -4,6 +4,7 @@ import { FEEDBACK_DOORS_PROMPT } from "../_shared/feedback-doors.ts";
 import { openaiFetch } from "../_shared/openaiChat.ts";
 import { termFilter } from "../_shared/rank-chunks.ts";
 import { type KnowledgeStore, rankedSearch, retrieveLessons } from "./retrieval.ts";
+import { identifyCaller, denied } from "../_shared/caller-auth.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -281,6 +282,8 @@ serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
+  const caller = await identifyCaller(req);
+  if (!caller.userId) return denied(corsHeaders, "Sign in to use this", 401);
 
   try {
     const { messages, mode } = await req.json();

@@ -7,6 +7,7 @@ export interface Deps {
   // deno-lint-ignore no-explicit-any
   supabase: any; // service-role client
   tavusApiKey?: string;
+  caller: (req: Request) => Promise<{ userId: string | null; isAdmin: boolean }>;
 }
 
 export async function handle(req: Request, deps: Deps): Promise<Response> {
@@ -17,6 +18,12 @@ export async function handle(req: Request, deps: Deps): Promise<Response> {
 
   try {
     const { supabase, tavusApiKey } = deps;
+    const caller = await deps.caller(req);
+    if (!caller.userId) {
+      return new Response(JSON.stringify({ error: 'Sign in to use this' }), {
+        status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
     if (!tavusApiKey) {
       throw new Error('TAVUS_API_KEY not configured');
     }
@@ -32,7 +39,8 @@ export async function handle(req: Request, deps: Deps): Promise<Response> {
       .eq('id', sessionId)
       .single();
 
-    if (sessionError || !session) {
+    // The service-role read sees every learner's sessions; answer another learner's like a missing one.
+    if (sessionError || !session || (session.user_id !== caller.userId && !caller.isAdmin)) {
       console.error('Session not found:', sessionError);
       return new Response(JSON.stringify({ error: 'Session not found' }), {
         status: 404,

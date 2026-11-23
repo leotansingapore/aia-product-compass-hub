@@ -10,7 +10,8 @@ const TRANSCRIPT = [
   { role: "assistant", content: "What worries you most?" },
 ];
 
-function setup(opts: { savedEntries?: number; feedbackError?: string } = {}) {
+type Caller = { userId: string | null; isAdmin: boolean };
+function setup(opts: { savedEntries?: number; feedbackError?: string; caller?: Caller } = {}) {
   const inserts: Row[][] = [];
   const invokes: { name: string; body: unknown; headers: Record<string, string> }[] = [];
   const supabase = {
@@ -20,7 +21,7 @@ function setup(opts: { savedEntries?: number; feedbackError?: string } = {}) {
         select: () => b,
         eq: () => b,
         update: () => b,
-        single: () => Promise.resolve({ data: { id: "s1", tavus_conversation_id: "c123" }, error: null }),
+        single: () => Promise.resolve({ data: { id: "s1", user_id: "learner", tavus_conversation_id: "c123" }, error: null }),
         insert: (rows: Row[]) => (inserts.push(rows), Promise.resolve({ error: null })),
         then: (ok: (v: unknown) => unknown) =>
           Promise.resolve(table === "conversation_transcripts" ? { count: opts.savedEntries ?? 0, error: null } : { error: null }).then(ok),
@@ -43,7 +44,11 @@ function setup(opts: { savedEntries?: number; feedbackError?: string } = {}) {
       method: "POST",
       headers: { Authorization: "Bearer learner-jwt" },
       body: JSON.stringify({ sessionId: "s1" }),
-    }), { supabase, tavusApiKey: "tavus-test-key" });
+    }), {
+      supabase,
+      tavusApiKey: "tavus-test-key",
+      caller: () => Promise.resolve(opts.caller ?? { userId: "learner", isAdmin: false }),
+    });
   return { call, inserts, invokes };
 }
 
@@ -71,4 +76,21 @@ Deno.test("feedback that cannot be started is an error, not a success", async ()
   const t = setup({ feedbackError: "Edge Function returned a non-2xx status code" });
   const res = await t.call();
   assertEquals(res.status, 502);
+});
+
+Deno.test("a signed-out caller is a 401 and nothing is fetched or started", async () => {
+  const t = setup({ caller: { userId: null, isAdmin: false } });
+  const res = await t.call();
+  assertEquals([res.status, t.invokes.length, t.inserts.length], [401, 0, 0]);
+});
+
+Deno.test("another learner's session reads as not found and nothing is started", async () => {
+  const t = setup({ caller: { userId: "someone-else", isAdmin: false } });
+  const res = await t.call();
+  assertEquals([res.status, t.invokes.length, t.inserts.length], [404, 0, 0]);
+});
+
+Deno.test("an admin may retry a learner's session", async () => {
+  const t = setup({ caller: { userId: "admin-1", isAdmin: true } });
+  assertEquals((await t.call()).status, 200);
 });

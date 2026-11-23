@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
+import { signedInFunctionHeaders } from "@/lib/aiChatStream";
 
 type ChatMode = "scripts" | "objections";
 type Msg = { role: "user" | "assistant"; content: string; image?: string };
@@ -39,7 +40,7 @@ async function streamChat({
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+      ...(await signedInFunctionHeaders()),
     },
     body: JSON.stringify({ messages: apiMessages, mode }),
   });
