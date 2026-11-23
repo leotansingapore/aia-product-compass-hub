@@ -19,7 +19,7 @@
  * Every app's copy is an exact copy. Change it there, then run scripts/sync-dock.mjs.
  */
 
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 
 // ---------- types ----------
 
@@ -538,6 +538,27 @@ function MenuItem({ active, onClick, children }: { active?: boolean; onClick: ()
 
 // ---------- vote pill ----------
 
+const voteEcho = new Map<number, { voted: boolean; count: number }>();
+const voteListeners = new Set<() => void>();
+
+const publishVote = (n: number, next: { voted: boolean; count: number }) => {
+  voteEcho.set(n, next);
+  voteListeners.forEach((listener) => listener());
+};
+
+const subscribeVotes = (listener: () => void) => {
+  voteListeners.add(listener);
+  return () => {
+    voteListeners.delete(listener);
+  };
+};
+
+export const clearVoteEcho = () => {
+  if (voteEcho.size === 0) return;
+  voteEcho.clear();
+  voteListeners.forEach((listener) => listener());
+};
+
 function VotePill({
   api,
   post,
@@ -556,19 +577,24 @@ function VotePill({
   // newest click is allowed to write the server's answer into state.
   const seq = useRef(0);
 
+  // The server snapshot is required in the Next.js apps that render this board on the server.
+  const echo = useSyncExternalStore(subscribeVotes, () => voteEcho.get(post.number), () => undefined);
   const [seen, setSeen] = useState({ voted: post.voted, count: post.vote_count });
   if (seen.voted !== post.voted || seen.count !== post.vote_count) {
     setSeen({ voted: post.voted, count: post.vote_count });
     setState({ voted: post.voted, count: post.vote_count });
   }
 
+  const shown = echo ?? state;
+
   async function click(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
-    const previous = state;
-    const next = { voted: !state.voted, count: state.count + (state.voted ? -1 : 1) };
+    const before = shown;
+    const next = { voted: !shown.voted, count: shown.count + (shown.voted ? -1 : 1) };
     const ticket = ++seq.current;
     setState(next);
+    publishVote(post.number, next);
     setError(null);
     if (next.voted) {
       setPop(true);
@@ -578,10 +604,12 @@ function VotePill({
       const res = await api.vote(post.number);
       if (ticket !== seq.current) return;
       setState(res);
+      publishVote(post.number, res);
       onChange?.(res);
     } catch (err) {
       if (ticket !== seq.current) return;
-      setState(previous);
+      setState(before);
+      publishVote(post.number, before);
       setError(err instanceof Error ? err.message : "Could not vote.");
     }
   }
@@ -592,13 +620,13 @@ function VotePill({
       <button
         type="button"
         onClick={click}
-        aria-pressed={state.voted}
-        aria-label={`${state.voted ? "Remove your vote from" : "Vote for"} this post. ${state.count} ${state.count === 1 ? "vote" : "votes"} so far.`}
-        title={state.voted ? "Remove your vote" : "Vote for this"}
+        aria-pressed={shown.voted}
+        aria-label={`${shown.voted ? "Remove your vote from" : "Vote for"} this post. ${shown.count} ${shown.count === 1 ? "vote" : "votes"} so far.`}
+        title={shown.voted ? "Remove your vote" : "Vote for this"}
         className={`flex flex-col items-center justify-center gap-0.5 rounded-md border transition-all active:scale-[0.96] ${
           lg ? "w-14 py-2" : "w-9 py-1"
         } ${
-          state.voted
+          shown.voted
             ? "border-primary bg-primary/10 text-foreground"
             : "border-border bg-background text-muted-foreground hover:border-primary hover:text-foreground"
         }`}
@@ -608,7 +636,7 @@ function VotePill({
           className={`font-bold tabular-nums text-foreground ${lg ? "text-base" : "text-[13px]"}`}
           style={pop ? { transform: "scale(1.18)", transition: "transform 120ms" } : { transform: "scale(1)", transition: "transform 140ms" }}
         >
-          {state.count}
+          {shown.count}
         </span>
       </button>
       {error ? (
@@ -626,6 +654,7 @@ function TopBar({
   identity,
   homeUrl,
   helpUrl,
+  brand = true,
   onTab,
   onSearch,
   onContact,
@@ -635,6 +664,7 @@ function TopBar({
   identity?: FeedbackIdentity;
   homeUrl?: string;
   helpUrl?: string;
+  brand?: boolean;
   onTab: (t: Tab) => void;
   onSearch: () => void;
   onContact: () => void;
@@ -646,36 +676,38 @@ function TopBar({
   ];
   return (
     <header className="border-b border-border">
-      <div className="mx-auto flex w-full max-w-[960px] items-center gap-3 px-4 md:h-[59px] md:px-0 py-3 md:py-0">
-        {(() => {
-          const mark = (
-            <>
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-primary text-[13px] font-bold text-primary-foreground">
-                {appName.trim()[0]?.toUpperCase() ?? "A"}
+      {brand ? (
+        <div className="mx-auto flex w-full max-w-[960px] items-center gap-3 px-4 md:h-[59px] md:px-0 py-3 md:py-0">
+          {(() => {
+            const mark = (
+              <>
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-primary text-[13px] font-bold text-primary-foreground">
+                  {appName.trim()[0]?.toUpperCase() ?? "A"}
+                </span>
+                <span className="truncate text-[19px] font-semibold tracking-tight">{appName}</span>
+              </>
+            );
+            return homeUrl ? (
+              <a href={homeUrl} className="flex min-w-0 items-center gap-2.5" aria-label={`Back to ${appName}`}>
+                {mark}
+              </a>
+            ) : (
+              <span className="flex min-w-0 items-center gap-2.5">{mark}</span>
+            );
+          })()}
+          <div className="ml-auto flex items-center gap-2">
+            {identity?.name || identity?.email ? (
+              <span className="hidden items-center gap-2 text-[13px] text-muted-foreground sm:flex">
+                <Avatar name={identity.name ?? identity.email ?? null} size={22} />
+                <span className="max-w-[10rem] truncate">{identity.name || identity.email}</span>
               </span>
-              <span className="truncate text-[19px] font-semibold tracking-tight">{appName}</span>
-            </>
-          );
-          return homeUrl ? (
-            <a href={homeUrl} className="flex min-w-0 items-center gap-2.5" aria-label={`Back to ${appName}`}>
-              {mark}
-            </a>
-          ) : (
-            <span className="flex min-w-0 items-center gap-2.5">{mark}</span>
-          );
-        })()}
-        <div className="ml-auto flex items-center gap-2">
-          {identity?.name || identity?.email ? (
-            <span className="hidden items-center gap-2 text-[13px] text-muted-foreground sm:flex">
-              <Avatar name={identity.name ?? identity.email ?? null} size={22} />
-              <span className="max-w-[10rem] truncate">{identity.name || identity.email}</span>
-            </span>
-          ) : null}
-          <button type="button" onClick={onContact} className={`${btn.outline} h-8 px-3`}>
-            Contact us
-          </button>
+            ) : null}
+            <button type="button" onClick={onContact} className={`${btn.outline} h-8 px-3`}>
+              Contact us
+            </button>
+          </div>
         </div>
-      </div>
+      ) : null}
       <div className="mx-auto flex w-full max-w-[960px] items-center gap-1 px-2 sm:gap-5 sm:px-4 md:h-[42px] md:px-0">
         <nav aria-label="Sections" className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto [scrollbar-width:none] sm:gap-5">
           {tabs.map((t) => (
@@ -708,6 +740,7 @@ function TopBar({
         <button
           type="button"
           onClick={onSearch}
+          aria-label="Search"
           className="flex h-full shrink-0 items-center gap-1.5 px-2 py-2.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground md:py-0 sm:text-[14px]"
         >
           <Icon path={ICONS.search} className="h-4 w-4" />
@@ -872,9 +905,11 @@ function RoadmapTab({
   const withPosts = CATEGORIES.filter((c) => (summary?.counts[c.value] ?? 0) > 0);
   // A full board wants columns that hold the fold, the way the reference has them. A
   // board with two cards in it does not: three tall empty boxes read as broken, where
-  // three short ones read as early.
+  // three short ones read as early. From md up only: below it the columns stack, and
+  // a minimum height on the last one was a 207px band of nothing at the end of the
+  // page on a phone (2026-09-20).
   const fullest = Math.max(0, ...ROADMAP_COLUMNS.map((c) => shown.filter((p) => p.status === c.status).length));
-  const columnHeight = fullest >= 3 ? "min-h-[280px] md:min-h-[468px]" : "min-h-[180px]";
+  const columnHeight = fullest >= 3 ? "md:min-h-[468px]" : "md:min-h-[180px]";
 
   return (
     <>
@@ -951,7 +986,7 @@ function RoadmapTab({
             title="Nothing is on the roadmap yet"
             body={`Once a request gets picked up it shows here, on its way from under review to being built. Ask for something and it starts in the Feedback tab.`}
             action={
-              <button type="button" className={btn.primary} onClick={() => onCategory("feature")}>
+              <button type="button" className={btn.primary} onClick={onRequest}>
                 Ask for something
               </button>
             }
@@ -1435,7 +1470,7 @@ function FeedbackTab({
                 trigger={(open) => (
                   <span className="inline-flex items-center gap-1 rounded px-1 py-0.5 text-[14px] font-medium text-foreground hover:bg-accent">
                     {sortLabel}
-                    {status === "all" ? "" : ` . ${statusLabel}`}
+                    {status === "all" ? "" : ` \u00b7 ${statusLabel}`}
                     <Icon path={open ? ICONS.chevronUp : ICONS.chevronDown} className="h-3.5 w-3.5" />
                   </span>
                 )}
@@ -1730,7 +1765,13 @@ function PostView({
             <p className="flex flex-wrap items-center gap-2 text-[13px] text-muted-foreground">
               <span className="font-semibold text-foreground">{appName}</span>
               <span>updated the status to</span>
-              <StatusPill status={ev.to_status} />
+              {ev.to_status === "open" ? (
+                <span className={`inline-flex shrink-0 items-center rounded px-2 py-0.5 text-[11px] font-medium ${STATUS_TONE.open.pill}`}>
+                  {STATUS_LABEL.open}
+                </span>
+              ) : (
+                <StatusPill status={ev.to_status} />
+              )}
               <span aria-hidden>&middot;</span>
               <time dateTime={ev.created_at}>{shortDate(ev.created_at)}</time>
             </p>
@@ -1812,13 +1853,18 @@ function PostView({
         ) : (
           <>
             <article className="flex gap-4">
-              <VotePill api={api} post={data.post} size="lg" />
+              <VotePill
+                api={api}
+                post={data.post}
+                size="lg"
+                onChange={(r) => setData((d) => (d ? { ...d, post: { ...d.post, voted: r.voted, vote_count: r.count }, voters: { ...d.voters, votes: r.count } } : d))}
+              />
               <div className="min-w-0 flex-1">
                 <h1 className="text-[20px] font-semibold leading-snug tracking-tight">{data.post.title}</h1>
                 <p className="mt-1.5 flex flex-wrap items-center gap-2 text-[12px] font-semibold uppercase tracking-wide" style={{ color: STATUS_TONE[data.post.status].dot }}>
                   {STATUS_LABEL[data.post.status]}
                   <span className="font-normal normal-case tracking-normal text-muted-foreground">
-                    {categoryLabel(data.post.category)} . #{data.post.number}
+                    {categoryLabel(data.post.category)} <span aria-hidden>&middot;</span> #{data.post.number}
                   </span>
                 </p>
                 <div className="mt-4 flex items-center gap-2 text-[13px]">
@@ -2051,6 +2097,16 @@ function ChangelogTab({
 
   // One entry, on its own, at its own address.
   if (openSlug) {
+    if (!items && error) {
+      return (
+        <div className="space-y-4">
+          <ErrorNote message={error} onRetry={retry} />
+          <button type="button" className={btn.outline} onClick={() => onOpenEntry(null)}>
+            Back to changelog
+          </button>
+        </div>
+      );
+    }
     if (!items) return <Skeleton rows={2} />;
     if (!open) {
       return (
@@ -2248,7 +2304,7 @@ function ChangelogTab({
                           ) : null}
 
                           <div className="mt-6">
-                            <EntryFooter item={item} onLike={like} />
+                            <EntryFooter item={item} onLike={like} social={chrome} />
                           </div>
                         </li>
                       );
@@ -2367,15 +2423,22 @@ function EntryBody({ item, onOpen }: { item: ChangelogItem; onOpen: (n: number) 
 }
 
 /** Likes on the left, the three share buttons on the right, as the reference draws them. */
-function EntryFooter({ item, onLike }: { item: ChangelogItem; onLike: (i: ChangelogItem) => void }) {
+function EntryFooter({ item, onLike, social = true }: { item: ChangelogItem; onLike: (i: ChangelogItem) => void; social?: boolean }) {
   const [copied, setCopied] = useState(false);
   const square =
     // 6px stated outright: rounded-md follows each app's --radius, which is 10px in some.
     "inline-flex h-8 w-8 items-center justify-center rounded-[6px] border border-border bg-background text-muted-foreground transition-colors hover:text-foreground";
 
   const address = () => {
-    const base = `${window.location.origin}${window.location.pathname}?tab=changelog`;
-    return item.slug ? `${base}&entry=${item.slug}` : `${base}#${item.id}`;
+    // A standalone link can go to Facebook or X, so it carries only the board's own keys and
+    // never a token the page arrived with. Embedded, the host's params are what reopen its
+    // section, and there is no public share to leak them through.
+    const url = new URL(social ? window.location.origin + window.location.pathname : window.location.href);
+    ["post", "status", "category", "entry"].forEach((k) => url.searchParams.delete(k));
+    url.searchParams.set("tab", "changelog");
+    if (item.slug) url.searchParams.set("entry", item.slug);
+    url.hash = item.slug ? "" : item.id;
+    return url.toString();
   };
 
   function copyLink() {
@@ -2419,12 +2482,16 @@ function EntryFooter({ item, onLike }: { item: ChangelogItem; onLike: (i: Change
         <button type="button" onClick={copyLink} aria-label={copied ? "Link copied" : "Copy link"} title={copied ? "Link copied" : "Copy link"} className={`${square} ${copied ? "border-primary text-primary" : ""}`}>
           <Icon path={copied ? ICONS.check : ICONS.link} className="h-4 w-4" />
         </button>
-        <button type="button" onClick={() => share("facebook")} aria-label="Share on Facebook" title="Share on Facebook" className={square}>
-          <Icon path={ICONS.facebook} className="h-4 w-4" filled />
-        </button>
-        <button type="button" onClick={() => share("x")} aria-label="Share on X" title="Share on X" className={square}>
-          <Icon path={ICONS.x} className="h-3.5 w-3.5" />
-        </button>
+        {social ? (
+          <>
+            <button type="button" onClick={() => share("facebook")} aria-label="Share on Facebook" title="Share on Facebook" className={square}>
+              <Icon path={ICONS.facebook} className="h-4 w-4" filled />
+            </button>
+            <button type="button" onClick={() => share("x")} aria-label="Share on X" title="Share on X" className={square}>
+              <Icon path={ICONS.x} className="h-3.5 w-3.5" />
+            </button>
+          </>
+        ) : null}
       </div>
     </div>
   );
@@ -2484,7 +2551,7 @@ function ChangelogArticle({
         ) : null}
 
         <div className="mt-8">
-          <EntryFooter item={item} onLike={onLike} />
+          <EntryFooter item={item} onLike={onLike} social={chrome} />
         </div>
       </article>
     </div>
@@ -2677,6 +2744,7 @@ export function FeedbackBoard({
   const [entrySlug, setEntrySlug] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
+  const replaceNext = useRef(true);
 
   // Take the tab, post, filters and entry anchor out of the URL once, before the first
   // paint, so a shared link opens on what it points at without a visible jump.
@@ -2734,6 +2802,8 @@ export function FeedbackBoard({
   useEffect(() => {
     if (typeof window === "undefined" || !ready) return;
     const url = new URL(window.location.href);
+    const place = (u: URL) => ["post", "tab", "entry"].map((k) => u.searchParams.get(k)).join("|");
+    const was = place(url);
     url.searchParams.delete("post");
     url.searchParams.delete("tab");
     url.searchParams.delete("status");
@@ -2748,15 +2818,44 @@ export function FeedbackBoard({
         if (category !== "all") url.searchParams.set("category", category);
       }
     }
-    window.history.replaceState(window.history.state, "", url.toString());
-  }, [view, status, category, entrySlug, ready]);
+    const push = chrome && !replaceNext.current && place(url) !== was;
+    replaceNext.current = false;
+    if (push) window.history.pushState(window.history.state, "", url.toString());
+    else window.history.replaceState(window.history.state, "", url.toString());
+  }, [view, status, category, entrySlug, ready, chrome]);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !chrome) return;
+    const path = window.location.pathname;
+    const onPop = () => {
+      if (window.location.pathname !== path) return;
+      const url = readUrl();
+      if (!url) return;
+      replaceNext.current = true;
+      setView(url.view);
+      setStatus(url.status);
+      setCategory(url.category);
+      setEntryId(url.entryId);
+      setEntrySlug(url.entrySlug);
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, [chrome]);
 
   const openPost = useCallback((n: number) => setView({ kind: "post", number: n }), []);
+  const redirectPost = useCallback((n: number) => {
+    replaceNext.current = true;
+    setView({ kind: "post", number: n });
+  }, []);
   const backToList = useCallback(() => {
     setView({ kind: "feedback" });
+    clearVoteEcho();
     setReloadKey((k) => k + 1);
   }, []);
-  const reload = useCallback(() => setReloadKey((k) => k + 1), []);
+  const reload = useCallback(() => {
+    clearVoteEcho();
+    setReloadKey((k) => k + 1);
+  }, []);
 
   const goSearch = useCallback(() => {
     setView({ kind: "feedback" });
@@ -2797,22 +2896,24 @@ export function FeedbackBoard({
 
   return (
     <div className={`min-h-full bg-background text-foreground ${className}`}>
-      {chrome ? (
-        <TopBar
-          appName={appName}
-          tab={tab}
-          identity={identity}
-          homeUrl={homeUrl}
-          helpUrl={helpUrl}
-          onTab={(t) => setView({ kind: t })}
-          onSearch={goSearch}
-          onContact={() => setContactOpen(true)}
-        />
-      ) : null}
+      <TopBar
+        appName={appName}
+        tab={tab}
+        identity={identity}
+        homeUrl={homeUrl}
+        helpUrl={helpUrl}
+        brand={chrome}
+        onTab={(t) => {
+          setEntrySlug(null);
+          setView({ kind: t });
+        }}
+        onSearch={goSearch}
+        onContact={() => setContactOpen(true)}
+      />
 
       <main className="mx-auto w-full max-w-[960px] px-4 py-8 md:px-0">
         {view.kind === "post" ? (
-          <PostView key={view.number} api={api} appName={appName} number={view.number} identity={identity} onBack={backToList} onRedirect={openPost} />
+          <PostView key={view.number} api={api} appName={appName} number={view.number} identity={identity} onBack={backToList} onRedirect={redirectPost} />
         ) : view.kind === "roadmap" ? (
           <RoadmapTab api={api} summary={summary} onOpen={openPost} onCategory={pickCategory} onRequest={() => setRequestOpen(true)} />
         ) : view.kind === "changelog" ? (
